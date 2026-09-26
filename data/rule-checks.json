@@ -959,7 +959,7 @@
     "ruleIds": [
       "ba-bei"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Какое слово ставится перед предметом, с которым что-то сделали: 请___窗户打开?",
     "options": [
       {
@@ -990,7 +990,7 @@
     "ruleIds": [
       "ba-bei"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Кто совершил действие в этом предложении?",
     "sentence": "我的钱包被偷了。",
     "sentenceRu": "У меня украли кошелёк.",
@@ -1023,7 +1023,7 @@
     "ruleIds": [
       "prepositions-more"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Какой предлог вводит тему — «о чём» книга, фильм, разговор?",
     "options": [
       {
@@ -1054,7 +1054,7 @@
     "ruleIds": [
       "prepositions-more"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Что вводит 为了 в этом предложении?",
     "sentence": "为了学好汉语，他去了中国。",
     "sentenceRu": "Чтобы как следует выучить китайский, он поехал в Китай.",
@@ -1087,7 +1087,7 @@
     "ruleIds": [
       "adverbs-other"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Как сказать «я только что пришёл»?",
     "options": [
       {
@@ -1118,7 +1118,7 @@
     "ruleIds": [
       "adverbs-other"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Что выражает пара 先…然后 в этом предложении?",
     "sentence": "我们先吃饭，然后去看电影。",
     "sentenceRu": "Сначала мы поедим, а потом пойдём в кино.",
@@ -1151,7 +1151,7 @@
     "ruleIds": [
       "result-more"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Какая морфема присоединяет место, где человек в итоге находится: 他住___北京?",
     "options": [
       {
@@ -1182,7 +1182,7 @@
     "ruleIds": [
       "result-more"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Что добавляет 掉 к глаголу?",
     "sentence": "他把那封信撕掉了。",
     "sentenceRu": "Он разорвал то письмо — письма больше нет.",
