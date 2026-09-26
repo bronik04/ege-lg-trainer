@@ -96,6 +96,41 @@ test('пропуски в условии', () => {
   assert.deepEqual(L.stemSegments('整齐.'), [{ text: '整齐.' }]);
 });
 
+// ---------- пропуск-клетка ----------
+
+const opts = (...texts) => texts.map((text, i) => ({ id: String(i + 1), text }));
+
+test('blankFill: один пропуск — текст варианта целиком', () => {
+  const item = { stem: '他说___是将来的事。', options: opts('的', '地') };
+  assert.deepEqual(L.blankFill(item, '2'), ['地']);
+  assert.equal(L.blankFill(item, 'нет такого'), null);
+});
+
+test('blankFill: союз задания 27 раскладывается по двум пропускам', () => {
+  const item = { stem: '___西瓜有这么多的优点，___ 我最爱吃西瓜。', options: opts('要是……，就……', '虽然……但是', '除了........以外,........', '不但……，而且……，还……', '除了……以外，还……') };
+  assert.deepEqual(L.blankFill(item, '1'), ['要是', '就']);
+  assert.deepEqual(L.blankFill(item, '2'), ['虽然', '但是']);
+  assert.deepEqual(L.blankFill(item, '3'), ['除了', '以外']);
+  assert.equal(L.blankFill(item, '4'), null, 'три части на два пропуска');
+  assert.equal(L.blankFill(item, '5'), null, 'знак препинания внутри части');
+});
+
+test('blankFill: без пропуска и без иероглифов — null', () => {
+  assert.equal(L.blankFill({ stem: '整齐.', options: opts('2-3') }, '1'), null);
+  assert.equal(L.blankFill({ sentence: '他十点___来。', options: opts('Позже ожидаемого') }, '1'), null);
+  assert.deepEqual(L.blankFill({ sentence: '他十点___来。', options: opts('就', '才') }, '2'), ['才']);
+});
+
+test('blankCells: по самому длинному варианту, от 1 до 4, длинный — 0', () => {
+  assert.deepEqual(L.blankCells({ stem: '拿___本书。', options: opts('上来', '回去', '出') }), [2]);
+  assert.deepEqual(L.blankCells({ stem: '他说___是将来的事。', options: opts('的', '地', '得') }), [1]);
+  assert.deepEqual(L.blankCells({ stem: '___我看来', options: opts('在……看来', '对') }), [0]);
+  assert.deepEqual(L.blankCells({ stem: '___他，___我。', options: opts('因为……，所以……', '要是……，就……') }), [2, 2]);
+  assert.deepEqual(L.blankCells({ stem: '___他，___我。', options: opts('一……就……一……', '除了……以外，还……') }), [2, 2], 'не раскладывается — по две');
+  assert.deepEqual(L.blankCells({ sentence: '他十点___来。', options: opts('Раньше', 'Позже') }), [2]);
+  assert.deepEqual(L.blankCells({ stem: '整齐.', options: opts('2-3') }), []);
+});
+
 test('прогресс: сохранение и восстановление', () => {
   let p = L.emptyProgress();
   p = L.recordAnswer(p, 'questions', 'a', '1', false, '2026-09-26T10:00:00Z');
