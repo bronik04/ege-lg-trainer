@@ -66,6 +66,9 @@
   let variantConfirm = false;
   let resetConfirm = false;
   let transferNotice = null; // итог загрузки файла прогресса, виден на экране банка
+  let shareNotice = null; // что открыто по ссылке учителя; показывается один раз
+  let shareOpen = null; // какой блок «Ссылка…» раскрыт: setup, round или variant
+  let pendingVariant = null; // вариант из ссылки ждёт решения: поверх незавершённого своего
   let bankFilters = { task: '', topic: '', state: 'all', origin: '' };
 
   // ---------- DOM ----------
@@ -103,14 +106,15 @@
   // ---------- маршруты ----------
 
   function route() {
-    const parts = (location.hash || '#/rules').replace(/^#\/?/, '').split('/');
+    const [path, query = ''] = (location.hash || '#/rules').split('?');
+    const parts = path.replace(/^#\/?/, '').split('/');
     let arg = null;
     try {
       arg = parts[1] ? decodeURIComponent(parts[1]) : null;
     } catch {
       arg = parts[1]; // испорченный адрес: покажем «не найдено», а не пустой экран
     }
-    return { name: parts[0] || 'rules', arg };
+    return { name: parts[0] || 'rules', arg, query };
   }
 
   function go(hash) {
@@ -121,7 +125,11 @@
   function render(focus = true) {
     const active = document.activeElement;
     const activeKey = active && active.dataset ? active.dataset.key : null;
-    const { name, arg } = route();
+    let { name, arg, query } = route();
+    if (query && (name === 'practice' || name === 'variant')) {
+      openShared(name, query);
+      ({ name, arg } = route());
+    }
     document.querySelectorAll('.tab').forEach((tab) => {
       const active = tab.dataset.tab === name;
       if (active) tab.setAttribute('aria-current', 'page');
@@ -129,6 +137,7 @@
     });
     view.replaceChildren();
     if (name !== 'bank') transferNotice = null;
+    if (name !== 'variant') pendingVariant = null;
     if (name === 'rules' && arg) renderRule(arg);
     else if (name === 'rules') renderRules();
     else if (name === 'check') renderCheck();
@@ -136,6 +145,13 @@
     else if (name === 'variant') renderVariant();
     else if (name === 'bank') renderBank();
     else renderRules();
+    if (shareNotice) {
+      const node = el('p', { class: shareNotice.warn ? 'notice warn' : 'notice', id: 'shareNotice', role: 'status', text: shareNotice.text });
+      const title = view.querySelector('h2');
+      if (title) title.after(node);
+      else view.prepend(node);
+      shareNotice = null;
+    }
     if (!storageOk) {
       view.append(el('p', { class: 'notice warn small', text: 'Браузер не даёт сохранить прогресс: он пропадёт после перезагрузки страницы.' }));
     }
@@ -149,6 +165,75 @@
   }
 
   // ---------- общие части ----------
+
+  // Ссылка учителя: открыть подборку, раунд из тех же заданий или тот же вариант.
+  // Адрес сразу заменяется обычным, чтобы перезагрузка не открывала ссылку повторно.
+  function openShared(name, query) {
+    const link = parseShareQuery(query, { topicIds: new Set(topicsById.keys()), origins, questionIds: new Set(byId.keys()) });
+    let target = `#/${name}`;
+    if (name === 'variant') {
+      if (link.kind === 'ids' && isVariant(link.ids, byId)) {
+        const v = progress.variant;
+        const own = v && !v.finishedAt && Object.keys(v.answers).length > 0 && v.ids.join() !== link.ids.join();
+        if (own) pendingVariant = link.ids;
+        else startLinkedVariant(link.ids);
+      } else {
+        shareNotice = { warn: true, text: 'Вариант из ссылки не открыть: части его заданий больше нет в банке. Соберите новый вариант.' };
+      }
+    } else if (link.kind === 'ids') {
+      if (link.ids.length) {
+        progress = { ...progress, round: startSession(link.ids, now()) };
+        save();
+        if (link.missing) shareNotice = { warn: true, text: `Из ссылки не найдено в банке: ${tasksWord(link.missing)}. Раунд собран из остальных.` };
+      } else {
+        shareNotice = { warn: true, text: 'Заданий из ссылки больше нет в банке. Выберите подборку сами.' };
+        target = '#/practice/setup';
+      }
+    } else {
+      filters = { ...filters, ...link.filters, state: 'all' };
+      saveFilters();
+      shareNotice = { warn: false, text: 'Подборка открыта по ссылке: темы, номера и размер раунда уже выбраны.' };
+      target = '#/practice/setup';
+    }
+    window.history.replaceState(null, '', target);
+  }
+
+  function startLinkedVariant(ids) {
+    progress = { ...progress, variant: startSession(ids, now()) };
+    variantConfirm = false;
+    save();
+  }
+
+  const pageUrl = (hash) => `${location.href.split('#')[0]}${hash}`;
+
+  // Раскрывающийся блок со ссылкой и кнопкой «Скопировать».
+  function shareToggle(key, label, url, note, disabled = false) {
+    const button = el('button', {
+      class: 'button ghost', type: 'button', id: `share-${key}`, disabled, 'aria-expanded': String(shareOpen === key),
+      onclick: () => { shareOpen = shareOpen === key ? null : key; render(false); },
+      dataset: { key: `share:${key}` },
+    }, label);
+    if (shareOpen !== key || disabled) return { button, box: null };
+    const input = el('input', { class: 'share-url', type: 'text', readonly: true, value: url, 'aria-label': 'Ссылка', onfocus: (e) => e.target.select() });
+    const status = el('span', { class: 'small muted', 'aria-live': 'polite' });
+    const box = el('div', { class: 'share', id: 'shareBox' },
+      el('p', { class: 'small', text: note }),
+      el('div', { class: 'share-row' }, input,
+        el('button', {
+          class: 'button', type: 'button', id: 'copyLink',
+          onclick: async () => {
+            try {
+              await navigator.clipboard.writeText(url);
+              status.textContent = 'Ссылка скопирована.';
+            } catch {
+              input.focus();
+              status.textContent = 'Скопируйте выделенную ссылку вручную.';
+            }
+          },
+        }, 'Скопировать')),
+      status);
+    return { button, box };
+  }
 
   function originLabel(q) {
     if (q.origin === 'fipi') return q.sourceRef && q.sourceRef.fipiId ? `Банк ФИПИ · ${q.sourceRef.fipiId}` : 'Банк ФИПИ';
@@ -470,7 +555,12 @@
     if (round && !round.finishedAt) {
       actions.append(el('a', { class: 'button alt', href: '#/practice', text: `Продолжить раунд · ${Object.keys(round.answers).length} из ${round.ids.length}` }));
     }
+    const share = shareToggle('setup', 'Ссылка на подборку', pageUrl(`#/practice?${shareQuery(filters)}`),
+      'По ссылке откроется эта подборка: темы, номера, источник и размер раунда. Задания каждому выпадут свои. Чтобы у всех были одни и те же задания, пройдите раунд и возьмите ссылку на его итоге.',
+      !available.length);
+    actions.append(share.button);
     view.append(actions);
+    if (share.box) view.append(share.box);
   }
 
   function startRound(ids) {
@@ -548,10 +638,14 @@
     const wrong = result.items.filter((i) => !i.correct).map((i) => i.id);
     view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Раунд окончен' }),
       el('p', { class: 'score' }, el('b', { text: `${result.score} из ${result.total}` }), el('span', { class: 'muted', text: 'верных ответов' })),
-      resultList(round.ids, round.answers),
-      el('div', { class: 'actions' },
-        wrong.length ? el('button', { class: 'button', type: 'button', onclick: () => startRound(shuffle(wrong)) }, `Повторить ошибки раунда · ${wrong.length}`) : null,
-        el('a', { class: wrong.length ? 'button alt' : 'button', href: '#/practice/setup', text: 'Новый раунд' })));
+      resultList(round.ids, round.answers));
+    const share = shareToggle('round', 'Ссылка на эти задания', pageUrl(`#/practice?${idsQuery(round.ids)}`),
+      `По ссылке откроется раунд из этих же заданий (${round.ids.length}) в том же порядке — одинаковый для всех, кто её получит.`);
+    view.append(el('div', { class: 'actions' },
+      wrong.length ? el('button', { class: 'button', type: 'button', onclick: () => startRound(shuffle(wrong)) }, `Повторить ошибки раунда · ${wrong.length}`) : null,
+      el('a', { class: wrong.length ? 'button alt' : 'button', href: '#/practice/setup', text: 'Новый раунд' }),
+      share.button));
+    if (share.box) view.append(share.box);
   }
 
   // ---------- полный вариант ----------
@@ -575,6 +669,18 @@
 
   function renderVariant() {
     const v = progress.variant;
+    if (pendingVariant) {
+      const answered = Object.values(v.answers).filter((x) => x != null).length;
+      view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Вариант по ссылке' }),
+        el('p', { class: 'notice warn', id: 'pendingVariant', text: `У вас есть незавершённый вариант: отвечено ${answered} из ${v.ids.length}. Если открыть вариант из ссылки, эти ответы пропадут.` }),
+        el('div', { class: 'actions' },
+          el('button', {
+            class: 'button', type: 'button', id: 'openLinkedVariant',
+            onclick: () => { startLinkedVariant(pendingVariant); pendingVariant = null; render(); },
+          }, 'Открыть вариант из ссылки'),
+          el('button', { class: 'button ghost', type: 'button', id: 'keepOwnVariant', onclick: () => { pendingVariant = null; render(); } }, 'Продолжить свой')));
+      return;
+    }
     if (v && !v.finishedAt) {
       renderVariantRun();
       return;
@@ -672,13 +778,18 @@
     if (wrong.length) {
       actions.append(el('button', { class: 'button alt', type: 'button', onclick: () => startRound(wrong) }, `Повторить ошибки варианта · ${wrong.length}`));
     }
+    const share = shareToggle('variant', 'Ссылка на этот вариант', pageUrl(`#/variant?${idsQuery(v.ids)}`),
+      'По ссылке откроется этот же вариант — те же 13 заданий. Удобно, чтобы весь класс решал одно и то же.');
+    actions.append(share.button);
     view.append(el('p', { class: 'section-title', text: 'Результат последнего варианта' }),
       el('p', { class: 'score' }, el('b', { text: `${result.score} из ${result.total}` }), el('span', { class: 'muted', text: 'первичных баллов за раздел 3' })),
       sheet(v, { reveal: true, onPick: (i) => {
-        const items = view.querySelectorAll('.results details');
+        // Только позиции варианта: у раскрытого разбора есть свой вложенный details.
+        const items = view.querySelectorAll('.results > li > details');
         if (items[i]) { items[i].open = true; items[i].querySelector('summary').focus(); }
       } }),
       actions,
+      share.box,
       el('p', { class: 'section-title', text: 'Разбор по позициям' }),
       resultList(v.ids, v.answers));
   }
@@ -848,6 +959,7 @@
   });
   window.addEventListener('hashchange', () => {
     if (location.hash && !location.hash.startsWith('#/')) return;
+    shareOpen = null;
     render();
   });
   render(false);

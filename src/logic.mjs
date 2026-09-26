@@ -215,6 +215,58 @@ export function buildVariant(questions, rng = Math.random) {
   return { ok: true, ids };
 }
 
+// ---------- ссылки для учителя ----------
+
+const ROUND_SIZES = ['5', '10', '20', 'all'];
+
+// Запятая в адресе допустима: ссылка остаётся читаемой (topics=aspect,adverbs).
+function query(pairs) {
+  return pairs.map(([k, v]) => `${k}=${encodeURIComponent(v).replace(/%2C/g, ',')}`).join('&');
+}
+
+// Подборка: темы, номера, источник и размер раунда. «Новые» и «ошибки» — личное
+// состояние ученика, в ссылку оно не входит.
+export function shareQuery(filters) {
+  const pairs = [];
+  if (filters.topics.length) pairs.push(['topics', filters.topics.join(',')]);
+  if (filters.tasks.length) pairs.push(['tasks', filters.tasks.join(',')]);
+  if (filters.origins.length) pairs.push(['origins', filters.origins.join(',')]);
+  pairs.push(['size', filters.size]);
+  return query(pairs);
+}
+
+// Одни и те же задания для всех, в том же порядке.
+export function idsQuery(ids) {
+  return query([['ids', ids.join(',')]]);
+}
+
+// Разбор ссылки. known: { topicIds: Set, origins: [], questionIds: Set } — незнакомое
+// отбрасывается: ссылка могла пережить снятое с публикации задание или тему.
+export function parseShareQuery(text, known) {
+  const params = new URLSearchParams(text);
+  const list = (key) => (params.get(key) || '').split(',').map((s) => s.trim()).filter(Boolean);
+  if (params.has('ids')) {
+    const asked = [...new Set(list('ids'))];
+    const ids = asked.filter((id) => known.questionIds.has(id));
+    return { kind: 'ids', ids, missing: asked.length - ids.length };
+  }
+  return {
+    kind: 'filters',
+    filters: {
+      topics: list('topics').filter((t) => known.topicIds.has(t)),
+      tasks: list('tasks').map(Number).filter((n) => TASK_NUMBERS.includes(n)),
+      origins: list('origins').filter((o) => known.origins.includes(o)),
+      size: ROUND_SIZES.includes(params.get('size')) ? params.get('size') : '10',
+    },
+  };
+}
+
+// Вариант из ссылки — ровно по одному заданию на позиции 15–27, по порядку.
+export function isVariant(ids, byId) {
+  return ids.length === TASK_NUMBERS.length
+    && ids.every((id, i) => byId.has(id) && byId.get(id).taskNumber === TASK_NUMBERS[i]);
+}
+
 // ---------- ответ и разбор ----------
 
 export function optionText(item, optionId) {

@@ -221,3 +221,27 @@ test('объединение прогресса: по заданию — пос�
   assert.deepEqual(L.mergeProgress(merged, L.emptyProgress()), merged);
 });
 
+test('ссылка на подборку: читается обратно, незнакомое отбрасывается', () => {
+  const known = { topicIds: new Set(['aspect', 'adverbs']), origins: ['fipi', 'generated'], questionIds: new Set(['q20-a']) };
+  const filters = { topics: ['aspect', 'adverbs'], tasks: [20, 22], origins: ['fipi'], state: 'mistakes', size: '5' };
+  const text = L.shareQuery(filters);
+  assert.equal(text, 'topics=aspect,adverbs&tasks=20,22&origins=fipi&size=5', 'личное состояние в ссылку не входит');
+  assert.deepEqual(L.parseShareQuery(text, known), {
+    kind: 'filters', filters: { topics: ['aspect', 'adverbs'], tasks: [20, 22], origins: ['fipi'], size: '5' },
+  });
+  assert.deepEqual(L.parseShareQuery('topics=gone,aspect&tasks=14,20,x&origins=other&size=1000', known).filters,
+    { topics: ['aspect'], tasks: [20], origins: [], size: '10' });
+});
+
+test('ссылка на задания: порядок сохраняется, пропавшие считаются', () => {
+  const known = { topicIds: new Set(), origins: [], questionIds: new Set(['q20-a', 'q22-a']) };
+  assert.equal(L.idsQuery(['q22-a', 'q20-a']), 'ids=q22-a,q20-a');
+  assert.deepEqual(L.parseShareQuery('ids=q22-a,gone,q20-a,q22-a', known), { kind: 'ids', ids: ['q22-a', 'q20-a'], missing: 1 });
+  const byId = new Map(fullBank.map((x) => [x.id, x]));
+  const variant = L.TASK_NUMBERS.map((n) => `q${n}-a`);
+  assert.equal(L.isVariant(variant, byId), true);
+  assert.equal(L.isVariant(variant.slice().reverse(), byId), false, 'позиции не по порядку');
+  assert.equal(L.isVariant(variant.slice(1), byId), false, 'не хватает позиции');
+  assert.equal(L.isVariant([...variant.slice(0, 12), 'gone'], byId), false, 'задания нет в банке');
+});
+

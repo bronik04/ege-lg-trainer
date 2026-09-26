@@ -280,6 +280,68 @@ test('прогресс: файл с одного устройства загру
   await context.close();
 });
 
+const storedProgress = (page) => page.evaluate(() => JSON.parse(localStorage.getItem('ege-lg-trainer:progress')));
+
+test('ссылки учителя: подборка, те же задания, тот же вариант', { skip }, async () => {
+  // Подборка по ссылке: фильтры выбраны, адрес заменён обычным.
+  const { page, context, errors } = await open(mainUrl, { hash: '#/practice?topics=adverbs&tasks=22&size=5' });
+  await see(page, '#shareNotice', /Подборка открыта по ссылке/);
+  assert.equal(new URL(page.url()).hash, '#/practice/setup');
+  assert.equal(await page.locator('input[data-key="Темы:adverbs"]').isChecked(), true);
+  assert.equal(await page.locator('input[data-key="Номер задания:22"]').isChecked(), true);
+  assert.equal(await page.locator('#roundSize').inputValue(), '5');
+  await see(page, '#available', /Доступно: 2 задания/);
+  // Своя ссылка на подборку повторяет выбранные фильтры.
+  await page.locator('#share-setup').click();
+  const setupLink = new URL(await page.locator('#shareBox input').inputValue());
+  assert.equal(setupLink.hash, '#/practice?topics=adverbs&tasks=22&size=5');
+
+  // Раунд → ссылка на те же задания → у другого ученика тот же набор в том же порядке.
+  await page.locator('#startRound').click();
+  for (let i = 0; i < 2; i += 1) {
+    await page.locator('[data-card]').waitFor();
+    await page.keyboard.press('1');
+    await page.keyboard.press('Enter');
+  }
+  await see(page, 'h2', /Раунд окончен/);
+  await page.locator('#share-round').click();
+  const roundLink = await page.locator('#shareBox input').inputValue();
+  const roundIds = (await storedProgress(page)).round.ids;
+  await context.close();
+
+  const other = await open(roundLink);
+  await see(other.page, '.progress', /Задание 1 из 2/);
+  assert.deepEqual((await storedProgress(other.page)).round.ids, roundIds);
+  assert.equal(new URL(other.page.url()).hash, '#/practice');
+  await other.context.close();
+
+  // Вариант по ссылке: у всех одни и те же 13 заданий.
+  const ids = (suffix22, suffix27) => [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27]
+    .map((n) => (n === 22 ? `q22-${suffix22}` : n === 27 ? `q27-${suffix27}` : `q${n}-a`));
+  const first = ids('a', 'a');
+  const second = ids('b', 'gen');
+  const student = await open(mainUrl, { hash: `#/variant?ids=${first.join(',')}` });
+  await see(student.page, '.progress', /Позиция 15/);
+  assert.deepEqual((await storedProgress(student.page)).variant.ids, first);
+  await student.page.keyboard.press('1');
+  // Ссылка на другой вариант поверх начатого своего — сначала вопрос.
+  await student.page.goto(`${mainUrl}#/variant?ids=${second.join(',')}`);
+  await see(student.page, '#pendingVariant', /отвечено 1 из 13/);
+  await student.page.locator('#keepOwnVariant').click();
+  await see(student.page, '.progress', /Позиция 15/);
+  assert.deepEqual((await storedProgress(student.page)).variant.ids, first);
+  await student.page.goto(`${mainUrl}#/variant?ids=${second.join(',')}`);
+  await student.page.locator('#openLinkedVariant').click();
+  await see(student.page, '.progress', /Позиция 15/);
+  assert.deepEqual((await storedProgress(student.page)).variant.ids, second);
+  // Испорченный вариант не открывается, свой остаётся.
+  await student.page.goto(`${mainUrl}#/variant?ids=${first.slice(1).join(',')}`);
+  await see(student.page, '#shareNotice', /не открыть/);
+  assert.deepEqual((await storedProgress(student.page)).variant.ids, second);
+  assert.deepEqual([...errors, ...student.errors], []);
+  await student.context.close();
+});
+
 test('телефон: без горизонтальной прокрутки во всех режимах', { skip }, async () => {
   const { page, context } = await open(mainUrl, { width: 375, height: 812 });
   for (const hash of ['#/rules', '#/rules/jiu-cai', '#/practice', '#/variant', '#/bank']) {
