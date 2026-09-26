@@ -1,6 +1,6 @@
 [
   {
-    "id": "g17-01306cb3",
+    "id": "g17-15dffc05",
     "taskNumber": 17,
     "formatYear": 2026,
     "origin": "generated",
@@ -13,7 +13,7 @@
       "2.3.1"
     ],
     "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
-    "stem": "小王工作非常___，每天都是第一个到办公室。",
+    "stem": "小王工作非常___，每天都是第一个到办公室的。",
     "options": [
       {
         "id": "1",
@@ -33,6 +33,41 @@
       }
     ],
     "correctOptionId": "3"
+  },
+  {
+    "id": "g17-17ca1b9f",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-26-claude-17-18-26"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "这次比赛我们班___了第一名。",
+    "options": [
+      {
+        "id": "1",
+        "text": "收集"
+      },
+      {
+        "id": "2",
+        "text": "获得"
+      },
+      {
+        "id": "3",
+        "text": "获奖"
+      },
+      {
+        "id": "4",
+        "text": "收到"
+      }
+    ],
+    "correctOptionId": "2"
   },
   {
     "id": "g17-37b686bf",
@@ -70,7 +105,7 @@
     "correctOptionId": "4"
   },
   {
-    "id": "g17-42e70343",
+    "id": "g17-4f7df0c0",
     "taskNumber": 17,
     "formatYear": 2026,
     "origin": "generated",
@@ -83,26 +118,26 @@
       "2.3.1"
     ],
     "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
-    "stem": "这件事我已经___他了，他说今天晚上来找你。",
+    "stem": "下雨了，比赛只好___到明天下午。",
     "options": [
       {
         "id": "1",
-        "text": "告诉"
+        "text": "迟到"
       },
       {
         "id": "2",
-        "text": "告别"
+        "text": "推广"
       },
       {
         "id": "3",
-        "text": "报告"
+        "text": "退出"
       },
       {
         "id": "4",
-        "text": "广告"
+        "text": "推迟"
       }
     ],
-    "correctOptionId": "1"
+    "correctOptionId": "4"
   },
   {
     "id": "g17-63e74320",
@@ -138,6 +173,41 @@
       }
     ],
     "correctOptionId": "2"
+  },
+  {
+    "id": "g17-7209409d",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-26-claude-17-18-26"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "这件事我已经___他了，他说今天晚上来找你。",
+    "options": [
+      {
+        "id": "1",
+        "text": "告诉"
+      },
+      {
+        "id": "2",
+        "text": "告别"
+      },
+      {
+        "id": "3",
+        "text": "报名"
+      },
+      {
+        "id": "4",
+        "text": "广告"
+      }
+    ],
+    "correctOptionId": "1"
   },
   {
     "id": "g17-743c287c",
@@ -245,41 +315,6 @@
     "correctOptionId": "3"
   },
   {
-    "id": "g17-9635ed9d",
-    "taskNumber": 17,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-09-26-claude-17-18-26"
-    },
-    "codifierCodes": [
-      "2.3.1"
-    ],
-    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
-    "stem": "下雨了，比赛只好___到下个星期。",
-    "options": [
-      {
-        "id": "1",
-        "text": "迟到"
-      },
-      {
-        "id": "2",
-        "text": "推广"
-      },
-      {
-        "id": "3",
-        "text": "退出"
-      },
-      {
-        "id": "4",
-        "text": "推迟"
-      }
-    ],
-    "correctOptionId": "4"
-  },
-  {
     "id": "g17-b38d2b21",
     "taskNumber": 17,
     "formatYear": 2026,
@@ -350,6 +385,41 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g17-be646e45",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-26-claude-17-18-26"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "这件衣服的颜色很漂亮，可是___太高了，我买不起。",
+    "options": [
+      {
+        "id": "1",
+        "text": "表格"
+      },
+      {
+        "id": "2",
+        "text": "价格"
+      },
+      {
+        "id": "3",
+        "text": "性格"
+      },
+      {
+        "id": "4",
+        "text": "风格"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g17-bfd43ff4",
     "taskNumber": 17,
     "formatYear": 2026,
@@ -385,41 +455,6 @@
     "correctOptionId": "3"
   },
   {
-    "id": "g17-c4ae729d",
-    "taskNumber": 17,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-09-26-claude-17-18-26"
-    },
-    "codifierCodes": [
-      "2.3.1"
-    ],
-    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
-    "stem": "这件衣服的颜色很漂亮，可是___太贵了。",
-    "options": [
-      {
-        "id": "1",
-        "text": "价值"
-      },
-      {
-        "id": "2",
-        "text": "价格"
-      },
-      {
-        "id": "3",
-        "text": "性格"
-      },
-      {
-        "id": "4",
-        "text": "风格"
-      }
-    ],
-    "correctOptionId": "2"
-  },
-  {
     "id": "g17-c8ff056c",
     "taskNumber": 17,
     "formatYear": 2026,
@@ -453,41 +488,6 @@
       }
     ],
     "correctOptionId": "1"
-  },
-  {
-    "id": "g17-ce50c098",
-    "taskNumber": 17,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-09-26-claude-17-18-26"
-    },
-    "codifierCodes": [
-      "2.3.1"
-    ],
-    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
-    "stem": "这次比赛我们班___了第一名。",
-    "options": [
-      {
-        "id": "1",
-        "text": "收获"
-      },
-      {
-        "id": "2",
-        "text": "获得"
-      },
-      {
-        "id": "3",
-        "text": "获奖"
-      },
-      {
-        "id": "4",
-        "text": "收到"
-      }
-    ],
-    "correctOptionId": "2"
   },
   {
     "id": "g17-f1496562",
@@ -560,41 +560,6 @@
     "correctOptionId": "3"
   },
   {
-    "id": "g18-493b95c3",
-    "taskNumber": 18,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-09-26-claude-17-18-26"
-    },
-    "codifierCodes": [
-      "2.4.45"
-    ],
-    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
-    "stem": "今天的气温___昨天高了五度。",
-    "options": [
-      {
-        "id": "1",
-        "text": "从"
-      },
-      {
-        "id": "2",
-        "text": "比"
-      },
-      {
-        "id": "3",
-        "text": "对"
-      },
-      {
-        "id": "4",
-        "text": "往"
-      }
-    ],
-    "correctOptionId": "2"
-  },
-  {
     "id": "g18-5431fa02",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -630,7 +595,7 @@
     "correctOptionId": "2"
   },
   {
-    "id": "g18-71675b5c",
+    "id": "g18-88b7885d",
     "taskNumber": 18,
     "formatYear": 2026,
     "origin": "generated",
@@ -643,7 +608,7 @@
       "2.4.45"
     ],
     "prompt": "Укажите, какой предлог пропущен в данном предложении.",
-    "stem": "我的汉语水平并不___他差。",
+    "stem": "我觉得坐火车___坐飞机更舒服。",
     "options": [
       {
         "id": "1",
@@ -803,6 +768,41 @@
       }
     ],
     "correctOptionId": "1"
+  },
+  {
+    "id": "g18-d7083fb6",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-26-claude-17-18-26"
+    },
+    "codifierCodes": [
+      "2.4.45"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "这个月的气温___上个月高了五度。",
+    "options": [
+      {
+        "id": "1",
+        "text": "从"
+      },
+      {
+        "id": "2",
+        "text": "比"
+      },
+      {
+        "id": "3",
+        "text": "对"
+      },
+      {
+        "id": "4",
+        "text": "往"
+      }
+    ],
+    "correctOptionId": "2"
   },
   {
     "id": "g26-005a10f4",
