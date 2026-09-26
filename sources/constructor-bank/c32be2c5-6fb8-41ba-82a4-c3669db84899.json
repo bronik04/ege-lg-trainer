@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "c32be2c5-6fb8-41ba-82a4-c3669db84899",
+  "type": "grammar-20",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.34",
+    "2.4.35"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "厨房的门在开___ 没有？",
+      "options": [
+        {
+          "id": "1",
+          "text": "了"
+        },
+        {
+          "id": "2",
+          "text": "过"
+        },
+        {
+          "id": "3",
+          "text": "着"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.513Z",
+  "updatedAt": "2026-07-24T12:48:37.513Z"
+}

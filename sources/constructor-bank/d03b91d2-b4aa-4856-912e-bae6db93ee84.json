@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "d03b91d2-b4aa-4856-912e-bae6db93ee84",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "昨天晚上姥姥工作 ___ 十一点。",
+      "options": [
+        {
+          "id": "1",
+          "text": "完"
+        },
+        {
+          "id": "2",
+          "text": "给"
+        },
+        {
+          "id": "3",
+          "text": "好"
+        },
+        {
+          "id": "4",
+          "text": "到"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.506Z",
+  "updatedAt": "2026-07-24T12:48:37.506Z"
+}

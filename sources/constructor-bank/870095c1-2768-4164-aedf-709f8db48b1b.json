@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "870095c1-2768-4164-aedf-709f8db48b1b",
+  "type": "grammar-17",
+  "level": "Б",
+  "codifierCodes": [
+    "2.3.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "大雨过后，天空___了一道美丽的彩虹，美极了！",
+      "options": [
+        {
+          "id": "1",
+          "text": "发觉"
+        },
+        {
+          "id": "2",
+          "text": "发现"
+        },
+        {
+          "id": "3",
+          "text": "诞生"
+        },
+        {
+          "id": "4",
+          "text": "出现"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.483Z",
+  "updatedAt": "2026-07-24T12:48:37.483Z"
+}

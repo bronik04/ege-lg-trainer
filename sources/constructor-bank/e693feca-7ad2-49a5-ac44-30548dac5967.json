@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "e693feca-7ad2-49a5-ac44-30548dac5967",
+  "type": "grammar-19",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.32"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "七千四百二十七万零二十一",
+      "options": [
+        {
+          "id": "1",
+          "text": "74 270 210"
+        },
+        {
+          "id": "2",
+          "text": "74 720 021"
+        },
+        {
+          "id": "3",
+          "text": "74 270 021"
+        },
+        {
+          "id": "4",
+          "text": "74 027 021"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.446Z",
+  "updatedAt": "2026-07-24T12:48:37.446Z"
+}

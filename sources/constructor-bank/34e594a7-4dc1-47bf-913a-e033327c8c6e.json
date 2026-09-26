@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "34e594a7-4dc1-47bf-913a-e033327c8c6e",
+  "type": "grammar-23",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.64"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "小张的母亲很会做饺子，上次小张过生日，我们尝___了她做的饺子。",
+      "options": [
+        {
+          "id": "1",
+          "text": "到"
+        },
+        {
+          "id": "2",
+          "text": "成"
+        },
+        {
+          "id": "3",
+          "text": "完"
+        },
+        {
+          "id": "4",
+          "text": "好"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.475Z",
+  "updatedAt": "2026-07-24T12:48:37.475Z"
+}

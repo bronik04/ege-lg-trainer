@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "1f12e577-577a-4b6b-8842-62dbefd69330",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "明天是新月的生日，她的朋友要把生日蛋糕和漂亮的花送 ___她。",
+      "options": [
+        {
+          "id": "1",
+          "text": "完"
+        },
+        {
+          "id": "2",
+          "text": "给"
+        },
+        {
+          "id": "3",
+          "text": "住"
+        },
+        {
+          "id": "4",
+          "text": "好"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.458Z",
+  "updatedAt": "2026-07-24T12:48:37.458Z"
+}

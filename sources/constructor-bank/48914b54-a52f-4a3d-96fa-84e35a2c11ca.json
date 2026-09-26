@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "48914b54-a52f-4a3d-96fa-84e35a2c11ca",
+  "type": "grammar-23",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.64"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "以偏远地区的孩子为例，他们如果考上大学，就可以在大城市学 ___ 更多的东西，选择喜欢的职业。",
+      "options": [
+        {
+          "id": "1",
+          "text": "完"
+        },
+        {
+          "id": "2",
+          "text": "到"
+        },
+        {
+          "id": "3",
+          "text": "懂"
+        },
+        {
+          "id": "4",
+          "text": "住"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.425Z",
+  "updatedAt": "2026-07-24T12:48:37.425Z"
+}

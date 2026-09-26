@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "e427067a-c67d-474d-b460-a396fe65d3f2",
+  "type": "grammar-22",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.27"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "这儿离王府井很远，走路我们走不到，坐地铁要坐一个多小时___能到我们要去的地方。",
+      "options": [
+        {
+          "id": "1",
+          "text": "就"
+        },
+        {
+          "id": "2",
+          "text": "才"
+        },
+        {
+          "id": "3",
+          "text": "只"
+        },
+        {
+          "id": "4",
+          "text": "再"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.502Z",
+  "updatedAt": "2026-07-24T12:48:37.502Z"
+}

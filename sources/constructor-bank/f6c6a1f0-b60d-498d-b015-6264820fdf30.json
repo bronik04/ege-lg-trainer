@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "f6c6a1f0-b60d-498d-b015-6264820fdf30",
+  "type": "grammar-27",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.44",
+    "2.4.58"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "___今天天气太冷了，___他穿得很少。",
+      "options": [
+        {
+          "id": "1",
+          "text": "虽然……，但是……"
+        },
+        {
+          "id": "2",
+          "text": "要是……，就……"
+        },
+        {
+          "id": "3",
+          "text": "因为……，所以……"
+        },
+        {
+          "id": "4",
+          "text": "先……， 然后……"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.451Z",
+  "updatedAt": "2026-07-24T12:48:37.451Z"
+}

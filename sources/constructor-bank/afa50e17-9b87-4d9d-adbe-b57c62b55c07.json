@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "afa50e17-9b87-4d9d-adbe-b57c62b55c07",
+  "type": "grammar-15",
+  "level": "Б",
+  "codifierCodes": [
+    "2.1.4"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "酱油。",
+      "options": [
+        {
+          "id": "1",
+          "text": "3-4"
+        },
+        {
+          "id": "2",
+          "text": "4-3"
+        },
+        {
+          "id": "3",
+          "text": "4-2"
+        },
+        {
+          "id": "4",
+          "text": "1-4"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.500Z",
+  "updatedAt": "2026-07-24T12:48:37.500Z"
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "0b148f87-bdce-4ade-9b66-b5b1dee1cfdc",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "奶奶在她的花园里种了三___梅树。",
+      "options": [
+        {
+          "id": "1",
+          "text": "棵"
+        },
+        {
+          "id": "2",
+          "text": "间"
+        },
+        {
+          "id": "3",
+          "text": "块"
+        },
+        {
+          "id": "4",
+          "text": "条"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.449Z",
+  "updatedAt": "2026-07-24T12:48:37.449Z"
+}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "35c114d1-273d-4bee-8d87-2638fcf3b18e",
+  "type": "grammar-18",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.31",
+    "2.4.45",
+    "2.4.46"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我们多年没见。没想到他___一个年轻的大学生变成了一位有名的演员。",
+      "options": [
+        {
+          "id": "1",
+          "text": "为"
+        },
+        {
+          "id": "2",
+          "text": "对"
+        },
+        {
+          "id": "3",
+          "text": "从"
+        },
+        {
+          "id": "4",
+          "text": "向"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.483Z",
+  "updatedAt": "2026-07-24T12:48:37.483Z"
+}

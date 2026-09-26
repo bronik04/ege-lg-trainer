@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "4f92102f-19ea-49ee-98f3-f5f2309a3006",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "这次考试的内容太多了，可是时间太少了。那么多题，我觉得一个小时根本做 ___。",
+      "options": [
+        {
+          "id": "1",
+          "text": "得完"
+        },
+        {
+          "id": "2",
+          "text": "不完"
+        },
+        {
+          "id": "3",
+          "text": "得好"
+        },
+        {
+          "id": "4",
+          "text": "不对"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.440Z",
+  "updatedAt": "2026-07-24T12:48:37.440Z"
+}

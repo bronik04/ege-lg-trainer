@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "ebf85257-4000-4e62-a9af-23e39f161d04",
+  "type": "grammar-23",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.64"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我们坐 ___ 了公共汽车，我不认识这条路， 也不认识这些建筑。应该坐的是15路汽车，这是51路汽车。",
+      "options": [
+        {
+          "id": "1",
+          "text": "好"
+        },
+        {
+          "id": "2",
+          "text": "错"
+        },
+        {
+          "id": "3",
+          "text": "坏"
+        },
+        {
+          "id": "4",
+          "text": "对"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.485Z",
+  "updatedAt": "2026-07-24T12:48:37.485Z"
+}

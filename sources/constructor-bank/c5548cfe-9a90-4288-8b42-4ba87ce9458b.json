@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "c5548cfe-9a90-4288-8b42-4ba87ce9458b",
+  "type": "grammar-17",
+  "level": "Б",
+  "codifierCodes": [
+    "2.3.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "对初学者来说，刚开始 ___ 太极拳的时间可以很短，以后再逐渐加长。",
+      "options": [
+        {
+          "id": "1",
+          "text": "练习"
+        },
+        {
+          "id": "2",
+          "text": "教练"
+        },
+        {
+          "id": "3",
+          "text": "练兵"
+        },
+        {
+          "id": "4",
+          "text": "练武"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.435Z",
+  "updatedAt": "2026-07-24T12:48:37.435Z"
+}

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "16bcbcec-de19-4ddf-9ef4-bd91e8d9541e",
+  "type": "grammar-20",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.34",
+    "2.4.35"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "老师昨天在课堂上宣布___下周的作业任务，让同学们都非常紧张。",
+      "options": [
+        {
+          "id": "1",
+          "text": "了"
+        },
+        {
+          "id": "2",
+          "text": "着"
+        },
+        {
+          "id": "3",
+          "text": "过"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.501Z",
+  "updatedAt": "2026-07-24T12:48:37.501Z"
+}

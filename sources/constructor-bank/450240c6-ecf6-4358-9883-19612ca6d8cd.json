@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "450240c6-ecf6-4358-9883-19612ca6d8cd",
+  "type": "grammar-22",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.27"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "老师，对不起，我___没带课本。",
+      "options": [
+        {
+          "id": "1",
+          "text": "才"
+        },
+        {
+          "id": "2",
+          "text": "就"
+        },
+        {
+          "id": "3",
+          "text": "又"
+        },
+        {
+          "id": "4",
+          "text": "刚"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.461Z",
+  "updatedAt": "2026-07-24T12:48:37.461Z"
+}

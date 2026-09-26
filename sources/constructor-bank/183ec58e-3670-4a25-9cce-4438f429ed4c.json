@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "183ec58e-3670-4a25-9cce-4438f429ed4c",
+  "type": "grammar-19",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.32"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "一亿三千五百零五万八千六百",
+      "options": [
+        {
+          "id": "1",
+          "text": "135 580 600"
+        },
+        {
+          "id": "2",
+          "text": "135 058 600"
+        },
+        {
+          "id": "3",
+          "text": "13 505 860"
+        },
+        {
+          "id": "4",
+          "text": "13 558 600"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.469Z",
+  "updatedAt": "2026-07-24T12:48:37.469Z"
+}

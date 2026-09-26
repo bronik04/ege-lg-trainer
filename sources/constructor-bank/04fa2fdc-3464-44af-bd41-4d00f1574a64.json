@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "04fa2fdc-3464-44af-bd41-4d00f1574a64",
+  "type": "grammar-18",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.31",
+    "2.4.45",
+    "2.4.46"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我从小就___古典音乐感兴趣。",
+      "options": [
+        {
+          "id": "1",
+          "text": "跟"
+        },
+        {
+          "id": "2",
+          "text": "比"
+        },
+        {
+          "id": "3",
+          "text": "从"
+        },
+        {
+          "id": "4",
+          "text": "对"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.456Z",
+  "updatedAt": "2026-07-24T12:48:37.456Z"
+}

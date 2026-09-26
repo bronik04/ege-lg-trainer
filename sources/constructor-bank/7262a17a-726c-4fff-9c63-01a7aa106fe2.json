@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "7262a17a-726c-4fff-9c63-01a7aa106fe2",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我一句中文都不会。今天我看了一场京剧，音乐很好听，可惜唱的内容是什么，我一句也听 ___。",
+      "options": [
+        {
+          "id": "1",
+          "text": "不见"
+        },
+        {
+          "id": "2",
+          "text": "得见"
+        },
+        {
+          "id": "3",
+          "text": "不懂"
+        },
+        {
+          "id": "4",
+          "text": "得懂"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.436Z",
+  "updatedAt": "2026-07-24T12:48:37.436Z"
+}

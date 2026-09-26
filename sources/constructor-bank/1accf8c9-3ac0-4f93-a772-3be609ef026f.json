@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "1accf8c9-3ac0-4f93-a772-3be609ef026f",
+  "type": "grammar-22",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.27"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "您的话我没听懂，请您 ___说一遍，好吗？",
+      "options": [
+        {
+          "id": "1",
+          "text": "再"
+        },
+        {
+          "id": "2",
+          "text": "才"
+        },
+        {
+          "id": "3",
+          "text": "就"
+        },
+        {
+          "id": "4",
+          "text": "还"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.505Z",
+  "updatedAt": "2026-07-24T12:48:37.505Z"
+}

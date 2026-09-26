@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "c469d69b-0e8c-4347-ad5c-97c584596691",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "妈妈过生日的时候，王明给她买来了这___蛋糕。",
+      "options": [
+        {
+          "id": "1",
+          "text": "件"
+        },
+        {
+          "id": "2",
+          "text": "间"
+        },
+        {
+          "id": "3",
+          "text": "块"
+        },
+        {
+          "id": "4",
+          "text": "只"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.459Z",
+  "updatedAt": "2026-07-24T12:48:37.459Z"
+}

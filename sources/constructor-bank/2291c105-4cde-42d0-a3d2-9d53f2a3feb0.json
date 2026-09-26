@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "2291c105-4cde-42d0-a3d2-9d53f2a3feb0",
+  "type": "grammar-27",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.44",
+    "2.4.58"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "___你说什么、做什么，你父母___会一直支持你。",
+      "options": [
+        {
+          "id": "1",
+          "text": "虽然……，但是……"
+        },
+        {
+          "id": "2",
+          "text": "要是……，就……"
+        },
+        {
+          "id": "3",
+          "text": "无论……，都……"
+        },
+        {
+          "id": "4",
+          "text": "先……， 然后……"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.436Z",
+  "updatedAt": "2026-07-24T12:48:37.436Z"
+}

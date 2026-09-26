@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "8e9f47ae-dc88-42af-9326-ccfe1a0cbf14",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "天津特大桥是中国最长的一 ___ 铁路桥之一。",
+      "options": [
+        {
+          "id": "1",
+          "text": "把"
+        },
+        {
+          "id": "2",
+          "text": "座"
+        },
+        {
+          "id": "3",
+          "text": "张"
+        },
+        {
+          "id": "4",
+          "text": "家"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ",
+    "добавлено 2026-09",
+    "ФИПИ 1B6AEB",
+    "КЭС ФИПИ 2.4.61"
+  ],
+  "createdAt": "2026-09-06T13:20:20.037Z",
+  "updatedAt": "2026-09-06T13:20:20.037Z"
+}

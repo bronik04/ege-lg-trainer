@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "f723a5c1-84f1-444e-ac7d-3a973d22d28c",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "你汉字写得很乱，我看不___。",
+      "options": [
+        {
+          "id": "1",
+          "text": "能"
+        },
+        {
+          "id": "2",
+          "text": "下"
+        },
+        {
+          "id": "3",
+          "text": "会"
+        },
+        {
+          "id": "4",
+          "text": "懂"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.482Z",
+  "updatedAt": "2026-07-24T12:48:37.482Z"
+}

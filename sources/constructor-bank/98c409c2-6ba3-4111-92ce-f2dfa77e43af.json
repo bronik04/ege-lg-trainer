@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "98c409c2-6ba3-4111-92ce-f2dfa77e43af",
+  "type": "grammar-22",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.27"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "他刚出去，你过一会儿___打电话吧。",
+      "options": [
+        {
+          "id": "1",
+          "text": "再"
+        },
+        {
+          "id": "2",
+          "text": "才"
+        },
+        {
+          "id": "3",
+          "text": "也"
+        },
+        {
+          "id": "4",
+          "text": "还"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.499Z",
+  "updatedAt": "2026-07-24T12:48:37.499Z"
+}

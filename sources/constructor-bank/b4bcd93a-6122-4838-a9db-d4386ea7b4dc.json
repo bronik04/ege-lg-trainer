@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "b4bcd93a-6122-4838-a9db-d4386ea7b4dc",
+  "type": "grammar-27",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.44",
+    "2.4.58"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "___大家已经很累了，___仍然继续干着。",
+      "options": [
+        {
+          "id": "1",
+          "text": "却……然而……"
+        },
+        {
+          "id": "2",
+          "text": "因为……所以……"
+        },
+        {
+          "id": "3",
+          "text": "虽然……但是……"
+        },
+        {
+          "id": "4",
+          "text": "不但……但是……"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.520Z",
+  "updatedAt": "2026-07-24T12:48:37.520Z"
+}

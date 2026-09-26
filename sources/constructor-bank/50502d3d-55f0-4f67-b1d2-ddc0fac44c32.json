@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "50502d3d-55f0-4f67-b1d2-ddc0fac44c32",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "这种药每天要吃一 ___。",
+      "options": [
+        {
+          "id": "1",
+          "text": "片"
+        },
+        {
+          "id": "2",
+          "text": "件"
+        },
+        {
+          "id": "3",
+          "text": "口"
+        },
+        {
+          "id": "4",
+          "text": "张"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.456Z",
+  "updatedAt": "2026-07-24T12:48:37.456Z"
+}

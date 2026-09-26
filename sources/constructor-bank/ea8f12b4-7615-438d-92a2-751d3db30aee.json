@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "ea8f12b4-7615-438d-92a2-751d3db30aee",
+  "type": "grammar-17",
+  "level": "Б",
+  "codifierCodes": [
+    "2.3.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "这次英语考试我考得不太好。老师祝我在下次考试中取得好___。",
+      "options": [
+        {
+          "id": "1",
+          "text": "成绩"
+        },
+        {
+          "id": "2",
+          "text": "成立"
+        },
+        {
+          "id": "3",
+          "text": "成长"
+        },
+        {
+          "id": "4",
+          "text": "成本"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.491Z",
+  "updatedAt": "2026-07-24T12:48:37.491Z"
+}

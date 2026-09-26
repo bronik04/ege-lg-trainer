@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "afebfe9a-2fa2-44ba-8f09-82383c7a40fc",
+  "type": "grammar-15",
+  "level": "Б",
+  "codifierCodes": [
+    "2.1.4"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "紧张。",
+      "options": [
+        {
+          "id": "1",
+          "text": "3-3"
+        },
+        {
+          "id": "2",
+          "text": "2-1"
+        },
+        {
+          "id": "3",
+          "text": "3-1"
+        },
+        {
+          "id": "4",
+          "text": "4-3"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.494Z",
+  "updatedAt": "2026-07-24T12:48:37.494Z"
+}

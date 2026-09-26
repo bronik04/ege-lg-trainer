@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "415afdf5-41e1-4ee6-a37a-39f5583a0021",
+  "type": "grammar-17",
+  "level": "Б",
+  "codifierCodes": [
+    "2.3.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "喝茶的风气是很长时间前在中国___的。",
+      "options": [
+        {
+          "id": "1",
+          "text": "造成"
+        },
+        {
+          "id": "2",
+          "text": "变成"
+        },
+        {
+          "id": "3",
+          "text": "成为"
+        },
+        {
+          "id": "4",
+          "text": "形成"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.501Z",
+  "updatedAt": "2026-07-24T12:48:37.501Z"
+}

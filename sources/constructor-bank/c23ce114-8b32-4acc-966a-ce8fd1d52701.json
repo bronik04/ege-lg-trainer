@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "c23ce114-8b32-4acc-966a-ce8fd1d52701",
+  "type": "grammar-18",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.31",
+    "2.4.45",
+    "2.4.46"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "这里的天气___我不合适。",
+      "options": [
+        {
+          "id": "1",
+          "text": "对"
+        },
+        {
+          "id": "2",
+          "text": "为"
+        },
+        {
+          "id": "3",
+          "text": "向"
+        },
+        {
+          "id": "4",
+          "text": "给"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.468Z",
+  "updatedAt": "2026-07-24T12:48:37.468Z"
+}

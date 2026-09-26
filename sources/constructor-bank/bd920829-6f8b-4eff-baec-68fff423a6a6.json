@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "bd920829-6f8b-4eff-baec-68fff423a6a6",
+  "type": "grammar-22",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.27"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "上个月我搬家了，所以今天我找了半天，好不容易 ___ 找到了这家银行。",
+      "options": [
+        {
+          "id": "1",
+          "text": "只"
+        },
+        {
+          "id": "2",
+          "text": "刚"
+        },
+        {
+          "id": "3",
+          "text": "就"
+        },
+        {
+          "id": "4",
+          "text": "才"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.429Z",
+  "updatedAt": "2026-07-24T12:48:37.429Z"
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "033bbce7-12a4-4849-9f32-c870fcc2feb0",
+  "type": "grammar-26",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "A) 这是社会发展的必然趋势\nB) 所以你一定要提高自己的业务水平\nC) 现代社会是一个竞争日趋激烈的社会.",
+      "options": [
+        {
+          "id": "1",
+          "text": "CAB"
+        },
+        {
+          "id": "2",
+          "text": "ACB"
+        },
+        {
+          "id": "3",
+          "text": "BAC"
+        },
+        {
+          "id": "4",
+          "text": "BCA"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.503Z",
+  "updatedAt": "2026-07-24T12:48:37.503Z"
+}

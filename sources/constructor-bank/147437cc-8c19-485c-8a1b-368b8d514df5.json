@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "147437cc-8c19-485c-8a1b-368b8d514df5",
+  "type": "grammar-23",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.64"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "他在大学里读的专业是法律。毕业后，他自然当 ___ 了一名律师，他的理想是当一名全国有名的律师。",
+      "options": [
+        {
+          "id": "1",
+          "text": "住"
+        },
+        {
+          "id": "2",
+          "text": "完"
+        },
+        {
+          "id": "3",
+          "text": "下"
+        },
+        {
+          "id": "4",
+          "text": "上"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.431Z",
+  "updatedAt": "2026-07-24T12:48:37.431Z"
+}

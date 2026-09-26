@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "ed5be886-428e-4c34-983f-6c8260937528",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "他关___了窗户。",
+      "options": [
+        {
+          "id": "1",
+          "text": "完"
+        },
+        {
+          "id": "2",
+          "text": "上"
+        },
+        {
+          "id": "3",
+          "text": "好"
+        },
+        {
+          "id": "4",
+          "text": "住"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.452Z",
+  "updatedAt": "2026-07-24T12:48:37.452Z"
+}

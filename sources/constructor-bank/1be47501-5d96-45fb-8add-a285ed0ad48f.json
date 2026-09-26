@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "1be47501-5d96-45fb-8add-a285ed0ad48f",
+  "type": "grammar-15",
+  "level": "Б",
+  "codifierCodes": [
+    "2.1.4"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "工程师。",
+      "options": [
+        {
+          "id": "1",
+          "text": "1-3-1"
+        },
+        {
+          "id": "2",
+          "text": "1-2-1"
+        },
+        {
+          "id": "3",
+          "text": "1-4-1"
+        },
+        {
+          "id": "4",
+          "text": "1-3-0"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.504Z",
+  "updatedAt": "2026-07-24T12:48:37.504Z"
+}

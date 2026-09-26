@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "e01a7ad7-58ae-4b5c-9617-5e8d2bb83c9a",
+  "type": "grammar-26",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "A) 这次去旅行，收获很多\nB) 而且还了解了一些当地的风俗习惯\nC) 不仅欣赏了美丽的自然风景.",
+      "options": [
+        {
+          "id": "1",
+          "text": "ABC"
+        },
+        {
+          "id": "2",
+          "text": "BAC"
+        },
+        {
+          "id": "3",
+          "text": "ACB"
+        },
+        {
+          "id": "4",
+          "text": "CBA"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.471Z",
+  "updatedAt": "2026-07-24T12:48:37.471Z"
+}

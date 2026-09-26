@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "52fc222d-0c28-4a9e-82ff-55370914a4ed",
+  "type": "grammar-15",
+  "level": "Б",
+  "codifierCodes": [
+    "2.1.4"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "国歌.",
+      "options": [
+        {
+          "id": "1",
+          "text": "2-2"
+        },
+        {
+          "id": "2",
+          "text": "2-4"
+        },
+        {
+          "id": "3",
+          "text": "2-1"
+        },
+        {
+          "id": "4",
+          "text": "2-3"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.445Z",
+  "updatedAt": "2026-07-24T12:48:37.445Z"
+}

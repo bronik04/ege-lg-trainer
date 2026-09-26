@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "2cc625ff-a2a1-4832-9a5a-41f53cc9ea42",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "好吧，我在家等你，八点半你来___吗？",
+      "options": [
+        {
+          "id": "1",
+          "text": "得了"
+        },
+        {
+          "id": "2",
+          "text": "不了"
+        },
+        {
+          "id": "3",
+          "text": "得起"
+        },
+        {
+          "id": "4",
+          "text": "得下"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.516Z",
+  "updatedAt": "2026-07-24T12:48:37.516Z"
+}

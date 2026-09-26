@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "4ab544e5-7691-4cbb-996c-c9005aa68fb3",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "小吴的弟弟已学___了游泳。",
+      "options": [
+        {
+          "id": "1",
+          "text": "完"
+        },
+        {
+          "id": "2",
+          "text": "来"
+        },
+        {
+          "id": "3",
+          "text": "会"
+        },
+        {
+          "id": "4",
+          "text": "错"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.447Z",
+  "updatedAt": "2026-07-24T12:48:37.447Z"
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "76f28f63-3919-46e7-872f-c7d6330c7842",
+  "type": "grammar-25",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.53"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我在楼下叫张文，他一听到，立刻就跑___。",
+      "options": [
+        {
+          "id": "1",
+          "text": "下去"
+        },
+        {
+          "id": "2",
+          "text": "回去"
+        },
+        {
+          "id": "3",
+          "text": "下来"
+        },
+        {
+          "id": "4",
+          "text": "起来"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.453Z",
+  "updatedAt": "2026-07-24T12:48:37.453Z"
+}

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "3953bb84-3414-4879-9678-c3435a7bb0d3",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "他卖___了汽车，后来又买了回来。",
+      "options": [
+        {
+          "id": "1",
+          "text": "上"
+        },
+        {
+          "id": "2",
+          "text": "会"
+        },
+        {
+          "id": "3",
+          "text": "掉"
+        },
+        {
+          "id": "4",
+          "text": "光"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.461Z",
+  "updatedAt": "2026-07-24T12:48:37.461Z"
+}

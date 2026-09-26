@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "e487da43-363f-42f9-a2a7-8ad772ffd425",
+  "type": "grammar-23",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.64"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "小学到初中，平时的作文中，描写小动物的作文是比较多的，怎样写 ___ 这类作文呢？",
+      "options": [
+        {
+          "id": "1",
+          "text": "懂"
+        },
+        {
+          "id": "2",
+          "text": "好"
+        },
+        {
+          "id": "3",
+          "text": "住"
+        },
+        {
+          "id": "4",
+          "text": "错"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.434Z",
+  "updatedAt": "2026-07-24T12:48:37.434Z"
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "8f87e024-dd1a-4141-8db4-cbbf0d16aeb8",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我一直认为，拥有一___狗是一件非常特殊的经历。",
+      "options": [
+        {
+          "id": "1",
+          "text": "块"
+        },
+        {
+          "id": "2",
+          "text": "只"
+        },
+        {
+          "id": "3",
+          "text": "枝"
+        },
+        {
+          "id": "4",
+          "text": "套"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.483Z",
+  "updatedAt": "2026-07-24T12:48:37.483Z"
+}

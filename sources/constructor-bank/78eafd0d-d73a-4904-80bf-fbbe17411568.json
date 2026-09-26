@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "78eafd0d-d73a-4904-80bf-fbbe17411568",
+  "type": "grammar-18",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.31",
+    "2.4.45",
+    "2.4.46"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "这里的风景___我们老家的美得多。",
+      "options": [
+        {
+          "id": "1",
+          "text": "跟"
+        },
+        {
+          "id": "2",
+          "text": "从"
+        },
+        {
+          "id": "3",
+          "text": "比"
+        },
+        {
+          "id": "4",
+          "text": "和"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.517Z",
+  "updatedAt": "2026-07-24T12:48:37.517Z"
+}

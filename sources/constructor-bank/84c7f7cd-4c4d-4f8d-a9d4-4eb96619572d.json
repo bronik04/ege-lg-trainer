@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "84c7f7cd-4c4d-4f8d-a9d4-4eb96619572d",
+  "type": "grammar-25",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.53"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "你能不能想___他的地址？",
+      "options": [
+        {
+          "id": "1",
+          "text": "出来"
+        },
+        {
+          "id": "2",
+          "text": "出去"
+        },
+        {
+          "id": "3",
+          "text": "起来"
+        },
+        {
+          "id": "4",
+          "text": "进来"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.455Z",
+  "updatedAt": "2026-07-24T12:48:37.455Z"
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "768efd14-da57-4f0d-bfa3-fd6f7edef123",
+  "type": "grammar-15",
+  "level": "Б",
+  "codifierCodes": [
+    "2.1.4"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "校长.",
+      "options": [
+        {
+          "id": "1",
+          "text": "4-2"
+        },
+        {
+          "id": "2",
+          "text": "3-4"
+        },
+        {
+          "id": "3",
+          "text": "3-2"
+        },
+        {
+          "id": "4",
+          "text": "4-3"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.453Z",
+  "updatedAt": "2026-07-24T12:48:37.453Z"
+}

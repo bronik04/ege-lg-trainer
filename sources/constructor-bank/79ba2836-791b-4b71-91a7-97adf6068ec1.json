@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "79ba2836-791b-4b71-91a7-97adf6068ec1",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "这座楼房里住___三百多个家庭。",
+      "options": [
+        {
+          "id": "1",
+          "text": "得到"
+        },
+        {
+          "id": "2",
+          "text": "得下"
+        },
+        {
+          "id": "3",
+          "text": "得动"
+        },
+        {
+          "id": "4",
+          "text": "得完"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.458Z",
+  "updatedAt": "2026-07-24T12:48:37.458Z"
+}

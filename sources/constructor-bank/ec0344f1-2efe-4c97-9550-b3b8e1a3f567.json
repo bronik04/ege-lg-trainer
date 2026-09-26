@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "ec0344f1-2efe-4c97-9550-b3b8e1a3f567",
+  "type": "grammar-22",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.27"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "老师让我们排好队等候大巴车的到来，不一会儿，车子___来了。",
+      "options": [
+        {
+          "id": "1",
+          "text": "再"
+        },
+        {
+          "id": "2",
+          "text": "就"
+        },
+        {
+          "id": "3",
+          "text": "又"
+        },
+        {
+          "id": "4",
+          "text": "刚"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.464Z",
+  "updatedAt": "2026-07-24T12:48:37.464Z"
+}

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "7fa71f26-cc64-4537-a246-24de8964ee83",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我们公司的章程是我翻译的最长的一篇了。我已经花了三天，今天可能也翻译 ___。",
+      "options": [
+        {
+          "id": "1",
+          "text": "不住"
+        },
+        {
+          "id": "2",
+          "text": "得住"
+        },
+        {
+          "id": "3",
+          "text": "不完"
+        },
+        {
+          "id": "4",
+          "text": "得完"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.427Z",
+  "updatedAt": "2026-07-24T12:48:37.427Z"
+}

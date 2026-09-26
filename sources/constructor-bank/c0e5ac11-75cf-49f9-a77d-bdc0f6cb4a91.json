@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "c0e5ac11-75cf-49f9-a77d-bdc0f6cb4a91",
+  "type": "grammar-15",
+  "level": "Б",
+  "codifierCodes": [
+    "2.1.4"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "错误。",
+      "options": [
+        {
+          "id": "1",
+          "text": "4-1"
+        },
+        {
+          "id": "2",
+          "text": "4-2"
+        },
+        {
+          "id": "3",
+          "text": "4-4"
+        },
+        {
+          "id": "4",
+          "text": "1-4"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ",
+    "добавлено 2026-09",
+    "ФИПИ 9F61DD",
+    "КЭС ФИПИ 2.1.4"
+  ],
+  "createdAt": "2026-09-06T13:20:20.037Z",
+  "updatedAt": "2026-09-06T13:20:20.037Z"
+}

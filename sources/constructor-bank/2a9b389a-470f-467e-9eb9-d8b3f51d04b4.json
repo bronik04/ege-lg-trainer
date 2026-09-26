@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "2a9b389a-470f-467e-9eb9-d8b3f51d04b4",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "到上海的一___飞机只有这一班，错过了就回不去了。",
+      "options": [
+        {
+          "id": "1",
+          "text": "件"
+        },
+        {
+          "id": "2",
+          "text": "张"
+        },
+        {
+          "id": "3",
+          "text": "架"
+        },
+        {
+          "id": "4",
+          "text": "艘"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.477Z",
+  "updatedAt": "2026-07-24T12:48:37.477Z"
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "8444cf37-fed8-4159-aaca-53fcc3726186",
+  "type": "grammar-25",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.53"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我的电脑里有这个文件，可是我想不___它在哪儿了。",
+      "options": [
+        {
+          "id": "1",
+          "text": "过来"
+        },
+        {
+          "id": "2",
+          "text": "起来"
+        },
+        {
+          "id": "3",
+          "text": "回来"
+        },
+        {
+          "id": "4",
+          "text": "进来"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.514Z",
+  "updatedAt": "2026-07-24T12:48:37.514Z"
+}

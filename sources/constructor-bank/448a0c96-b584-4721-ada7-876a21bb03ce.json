@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "448a0c96-b584-4721-ada7-876a21bb03ce",
+  "type": "grammar-25",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.53"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "真没想到这场演出如此精彩！演出一结束，观众都站 ___，非常激动地鼓掌。",
+      "options": [
+        {
+          "id": "1",
+          "text": "起来"
+        },
+        {
+          "id": "2",
+          "text": "回来"
+        },
+        {
+          "id": "3",
+          "text": "开来"
+        },
+        {
+          "id": "4",
+          "text": "到来"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.428Z",
+  "updatedAt": "2026-07-24T12:48:37.428Z"
+}

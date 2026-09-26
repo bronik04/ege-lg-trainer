@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "653e1353-e033-4216-8fa1-c2cdded8b33f",
+  "type": "grammar-25",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.53"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "看到领导人走___了，运动员就站起来了。",
+      "options": [
+        {
+          "id": "1",
+          "text": "起来"
+        },
+        {
+          "id": "2",
+          "text": "过去"
+        },
+        {
+          "id": "3",
+          "text": "进来"
+        },
+        {
+          "id": "4",
+          "text": "出去"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.467Z",
+  "updatedAt": "2026-07-24T12:48:37.467Z"
+}

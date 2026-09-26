@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "a871794b-1878-414f-bee9-863ac40477af",
+  "type": "grammar-18",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.31",
+    "2.4.45",
+    "2.4.46"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "这辆汽车___那辆汽车沉重。",
+      "options": [
+        {
+          "id": "1",
+          "text": "跟"
+        },
+        {
+          "id": "2",
+          "text": "比"
+        },
+        {
+          "id": "3",
+          "text": "从"
+        },
+        {
+          "id": "4",
+          "text": "为"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.446Z",
+  "updatedAt": "2026-07-24T12:48:37.446Z"
+}

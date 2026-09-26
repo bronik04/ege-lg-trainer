@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "3d336552-be56-43e2-9476-cfeb34880767",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "西方人吃饭的习惯是左手拿叉子，右手拿一 ___ 刀子。",
+      "options": [
+        {
+          "id": "1",
+          "text": "块"
+        },
+        {
+          "id": "2",
+          "text": "只"
+        },
+        {
+          "id": "3",
+          "text": "张"
+        },
+        {
+          "id": "4",
+          "text": "把"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.433Z",
+  "updatedAt": "2026-07-24T12:48:37.433Z"
+}

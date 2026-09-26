@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "95f3955b-2f28-4257-be96-afbeec91bae2",
+  "type": "grammar-25",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.53"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "老师从书包里拿___本书。",
+      "options": [
+        {
+          "id": "1",
+          "text": "上来"
+        },
+        {
+          "id": "2",
+          "text": "回去"
+        },
+        {
+          "id": "3",
+          "text": "出来"
+        },
+        {
+          "id": "4",
+          "text": "下去"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.497Z",
+  "updatedAt": "2026-07-24T12:48:37.497Z"
+}

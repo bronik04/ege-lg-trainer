@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "11b29ab8-bde6-4c6a-a10b-add0b6f0c564",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "爸爸书房里的墙上挂着两 ___ 新照片。",
+      "options": [
+        {
+          "id": "1",
+          "text": "件"
+        },
+        {
+          "id": "2",
+          "text": "本"
+        },
+        {
+          "id": "3",
+          "text": "张"
+        },
+        {
+          "id": "4",
+          "text": "双"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.504Z",
+  "updatedAt": "2026-07-24T12:48:37.504Z"
+}

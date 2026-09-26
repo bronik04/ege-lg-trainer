@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "f07097ba-7d85-47d8-876c-4e9d883cb506",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "刚才在电话里，我听___是你。今天的声音怎么这么低？不像你的！",
+      "options": [
+        {
+          "id": "1",
+          "text": "不出"
+        },
+        {
+          "id": "2",
+          "text": "不起"
+        },
+        {
+          "id": "3",
+          "text": "得出"
+        },
+        {
+          "id": "4",
+          "text": "不下"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.485Z",
+  "updatedAt": "2026-07-24T12:48:37.485Z"
+}

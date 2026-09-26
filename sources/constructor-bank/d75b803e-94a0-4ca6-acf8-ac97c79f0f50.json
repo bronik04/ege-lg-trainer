@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "d75b803e-94a0-4ca6-acf8-ac97c79f0f50",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "皮包太重了，张太太拿___，请您帮个忙吧。",
+      "options": [
+        {
+          "id": "1",
+          "text": "得完"
+        },
+        {
+          "id": "2",
+          "text": "不完"
+        },
+        {
+          "id": "3",
+          "text": "得动"
+        },
+        {
+          "id": "4",
+          "text": "不动"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.514Z",
+  "updatedAt": "2026-07-24T12:48:37.514Z"
+}

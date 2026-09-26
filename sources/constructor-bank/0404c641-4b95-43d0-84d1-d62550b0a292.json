@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "id": "0404c641-4b95-43d0-84d1-d62550b0a292",
+  "type": "grammar-21",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.18",
+    "2.4.43",
+    "2.4.49"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "他说___是将来的事。",
+      "options": [
+        {
+          "id": "1",
+          "text": "的"
+        },
+        {
+          "id": "2",
+          "text": "地"
+        },
+        {
+          "id": "3",
+          "text": "得"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.467Z",
+  "updatedAt": "2026-07-24T12:48:37.467Z"
+}

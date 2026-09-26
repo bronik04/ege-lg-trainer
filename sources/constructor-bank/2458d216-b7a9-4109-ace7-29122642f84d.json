@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "2458d216-b7a9-4109-ace7-29122642f84d",
+  "type": "grammar-22",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.27"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我们要___去图书馆办借书卡，再去借书，然后去上网。",
+      "options": [
+        {
+          "id": "1",
+          "text": "还"
+        },
+        {
+          "id": "2",
+          "text": "才"
+        },
+        {
+          "id": "3",
+          "text": "只"
+        },
+        {
+          "id": "4",
+          "text": "先"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.470Z",
+  "updatedAt": "2026-07-24T12:48:37.470Z"
+}

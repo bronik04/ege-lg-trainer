@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "971bce04-db2b-4809-923e-b518a0bd5ac1",
+  "type": "grammar-20",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.34",
+    "2.4.35"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我在中国留学的时候，认识了一位老师。他常告诉我们：“复习是为了记住学___的东西”",
+      "options": [
+        {
+          "id": "1",
+          "text": "了"
+        },
+        {
+          "id": "2",
+          "text": "着"
+        },
+        {
+          "id": "3",
+          "text": "过"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.469Z",
+  "updatedAt": "2026-07-24T12:48:37.469Z"
+}

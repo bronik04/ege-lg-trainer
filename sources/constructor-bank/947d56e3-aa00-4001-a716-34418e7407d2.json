@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "947d56e3-aa00-4001-a716-34418e7407d2",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "今晚我太忙了，有很多事，去___。",
+      "options": [
+        {
+          "id": "1",
+          "text": "得起"
+        },
+        {
+          "id": "2",
+          "text": "不了"
+        },
+        {
+          "id": "3",
+          "text": "不下"
+        },
+        {
+          "id": "4",
+          "text": "得了"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.448Z",
+  "updatedAt": "2026-07-24T12:48:37.448Z"
+}

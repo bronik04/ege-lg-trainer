@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "ec10cdc9-7503-4ddf-a4ff-61932b01be91",
+  "type": "grammar-20",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.34",
+    "2.4.35"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "医生对妈妈说：“没关系，孩子小的时候很文静，长大___就会活泼的！”",
+      "options": [
+        {
+          "id": "1",
+          "text": "了"
+        },
+        {
+          "id": "2",
+          "text": "着"
+        },
+        {
+          "id": "3",
+          "text": "过"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.464Z",
+  "updatedAt": "2026-07-24T12:48:37.464Z"
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "d36205ef-156e-4c4d-8fa4-8a5211d64238",
+  "type": "grammar-25",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.53"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "爸爸从书架上拿了一本俄汉词典，看了看又放___了。",
+      "options": [
+        {
+          "id": "1",
+          "text": "上来"
+        },
+        {
+          "id": "2",
+          "text": "回去"
+        },
+        {
+          "id": "3",
+          "text": "进来"
+        },
+        {
+          "id": "4",
+          "text": "出去"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.485Z",
+  "updatedAt": "2026-07-24T12:48:37.485Z"
+}

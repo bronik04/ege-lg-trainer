@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "a9a661ba-8bbd-4187-82c3-c66c3a24a50f",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我妹妹才十八岁，但是她已经学 ___了开车。",
+      "options": [
+        {
+          "id": "1",
+          "text": "完"
+        },
+        {
+          "id": "2",
+          "text": "会"
+        },
+        {
+          "id": "3",
+          "text": "到"
+        },
+        {
+          "id": "4",
+          "text": "错"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.510Z",
+  "updatedAt": "2026-07-24T12:48:37.510Z"
+}

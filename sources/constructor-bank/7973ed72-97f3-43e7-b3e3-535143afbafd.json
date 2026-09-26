@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "7973ed72-97f3-43e7-b3e3-535143afbafd",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "外面要下雨，出去时你最好带一 ___ 雨伞。",
+      "options": [
+        {
+          "id": "1",
+          "text": "棵"
+        },
+        {
+          "id": "2",
+          "text": "件"
+        },
+        {
+          "id": "3",
+          "text": "把"
+        },
+        {
+          "id": "4",
+          "text": "朵"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ",
+    "добавлено 2026-09",
+    "ФИПИ c1FD45",
+    "КЭС ФИПИ 2.4.33"
+  ],
+  "createdAt": "2026-09-06T13:20:20.038Z",
+  "updatedAt": "2026-09-06T13:20:20.038Z"
+}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "6088fbb2-860c-49d1-ac09-8bffa03d99a7",
+  "type": "grammar-18",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.31",
+    "2.4.45",
+    "2.4.46"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "梅花上面有个___芝麻还小的点，像一顶小帽子似的。",
+      "options": [
+        {
+          "id": "1",
+          "text": "比"
+        },
+        {
+          "id": "2",
+          "text": "跟"
+        },
+        {
+          "id": "3",
+          "text": "给"
+        },
+        {
+          "id": "4",
+          "text": "从"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.463Z",
+  "updatedAt": "2026-07-24T12:48:37.463Z"
+}

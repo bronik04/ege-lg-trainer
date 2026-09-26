@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "072c7244-911d-48ff-8e96-afa85d1c670a",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "王明感到这 ___ 事很难办。",
+      "options": [
+        {
+          "id": "1",
+          "text": "匹"
+        },
+        {
+          "id": "2",
+          "text": "件"
+        },
+        {
+          "id": "3",
+          "text": "块"
+        },
+        {
+          "id": "4",
+          "text": "条"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.441Z",
+  "updatedAt": "2026-07-24T12:48:37.441Z"
+}

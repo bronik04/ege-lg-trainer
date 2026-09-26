@@ -1,0 +1,56 @@
+[
+  {
+    "id": "check-jiu",
+    "kind": "choose-form",
+    "ruleIds": [
+      "jiu-cai"
+    ],
+    "status": "accepted",
+    "prompt": "Какое наречие показывает, что действие произошло раньше, чем ожидалось?",
+    "options": [
+      {
+        "id": "a",
+        "text": "就"
+      },
+      {
+        "id": "b",
+        "text": "才"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": {
+      "correct": "就 подчёркивает, что всё случилось рано и легко.",
+      "options": {
+        "b": "才 говорит об обратном: поздно или с трудом."
+      }
+    }
+  },
+  {
+    "id": "check-cai",
+    "kind": "identify-rule",
+    "ruleIds": [
+      "jiu-cai"
+    ],
+    "status": "accepted",
+    "prompt": "Что выражает наречие в этом предложении?",
+    "sentence": "他十点才来。",
+    "sentenceRu": "Он пришёл только в десять.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Раньше ожидаемого"
+      },
+      {
+        "id": "b",
+        "text": "Позже ожидаемого"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": {
+      "correct": "才 после указания времени: говорящий считает, что это поздно.",
+      "options": {
+        "a": "Раньше ожидаемого выражает 就, а не 才."
+      }
+    }
+  }
+]

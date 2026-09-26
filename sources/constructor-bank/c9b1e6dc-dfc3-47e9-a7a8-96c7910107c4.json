@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "c9b1e6dc-dfc3-47e9-a7a8-96c7910107c4",
+  "type": "grammar-22",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.27"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "周末我和朋友去看京剧吧，能了解中国文化，而且那附近 ___ 有个很好的饭馆。",
+      "options": [
+        {
+          "id": "1",
+          "text": "再"
+        },
+        {
+          "id": "2",
+          "text": "才"
+        },
+        {
+          "id": "3",
+          "text": "又"
+        },
+        {
+          "id": "4",
+          "text": "还"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.436Z",
+  "updatedAt": "2026-07-24T12:48:37.436Z"
+}

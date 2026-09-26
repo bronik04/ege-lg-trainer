@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "35872d97-0b94-42f2-af36-f22170cd7921",
+  "type": "grammar-26",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "A) 因为好天不仅可以方便人们逛街\nB) 大部分人都很注意天气的好坏\nC) 而且会给人们带来好心情.",
+      "options": [
+        {
+          "id": "1",
+          "text": "CBA"
+        },
+        {
+          "id": "2",
+          "text": "BCA"
+        },
+        {
+          "id": "3",
+          "text": "BAC"
+        },
+        {
+          "id": "4",
+          "text": "CAB"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.430Z",
+  "updatedAt": "2026-07-24T12:48:37.430Z"
+}

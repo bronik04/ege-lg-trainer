@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "62df1bf6-76a3-457e-9000-bc0898d2faaa",
+  "type": "grammar-19",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.32"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "八亿零三万九千零二",
+      "options": [
+        {
+          "id": "1",
+          "text": "800 390 002"
+        },
+        {
+          "id": "2",
+          "text": "800 309 002"
+        },
+        {
+          "id": "3",
+          "text": "800 039 002"
+        },
+        {
+          "id": "4",
+          "text": "8 000 039 002"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.427Z",
+  "updatedAt": "2026-07-24T12:48:37.427Z"
+}

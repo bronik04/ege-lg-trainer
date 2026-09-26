@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "80ccbf22-d01a-4c3d-99e6-4c780db321b0",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "想学___汉语，一定要注意学习方法。",
+      "options": [
+        {
+          "id": "1",
+          "text": "到"
+        },
+        {
+          "id": "2",
+          "text": "会"
+        },
+        {
+          "id": "3",
+          "text": "完"
+        },
+        {
+          "id": "4",
+          "text": "成"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.467Z",
+  "updatedAt": "2026-07-24T12:48:37.467Z"
+}

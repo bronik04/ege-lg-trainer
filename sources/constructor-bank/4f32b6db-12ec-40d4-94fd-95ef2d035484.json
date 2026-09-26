@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "4f32b6db-12ec-40d4-94fd-95ef2d035484",
+  "type": "grammar-26",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "A) 科学研究告诉我们鱼类有许多是会发声的\nB) 各种动物，大多数会发出叫声\nC) 那么，鱼类会不会发出声音呢.",
+      "options": [
+        {
+          "id": "1",
+          "text": "BCA"
+        },
+        {
+          "id": "2",
+          "text": "CAB"
+        },
+        {
+          "id": "3",
+          "text": "ABC"
+        },
+        {
+          "id": "4",
+          "text": "ACB"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.494Z",
+  "updatedAt": "2026-07-24T12:48:37.494Z"
+}

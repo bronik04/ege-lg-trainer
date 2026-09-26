@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "f20f220e-9222-4c66-b0ed-1a4ed1f8bf31",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "马丁最近失眠，晚上经常睡___。他非常痛苦。",
+      "options": [
+        {
+          "id": "1",
+          "text": "不着"
+        },
+        {
+          "id": "2",
+          "text": "得着"
+        },
+        {
+          "id": "3",
+          "text": "不到"
+        },
+        {
+          "id": "4",
+          "text": "起"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.479Z",
+  "updatedAt": "2026-07-24T12:48:37.479Z"
+}

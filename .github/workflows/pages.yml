@@ -1,0 +1,71 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      # playwright-core для браузерного теста; браузер свой не качает —
+      # берёт Google Chrome, который уже стоит на раннере
+      - name: Установить зависимости тестов
+        run: npm ci
+
+      # Банк пересобирается из снимка источников. Закоммиченные данные и отчёты
+      # (в том числе очередь проверки, по которой автор принимает содержание)
+      # обязаны совпасть с пересборкой — иначе публикация останавливается.
+      - name: Пересобрать и проверить данные
+        run: |
+          python3 scripts/import_constructor.py
+          python3 scripts/import_generated.py
+          python3 scripts/build_bank.py
+          python3 scripts/validate.py
+          git diff --exit-code -- data/ || { echo "::error::данные в репозитории устарели: запустите npm run data и закоммитьте"; exit 1; }
+
+      - name: Тесты данных
+        run: python3 -m unittest discover -s test -t . -v
+
+      - name: Тесты логики и интерфейса
+        env:
+          CI: '1'
+        run: node --test test/*.test.mjs
+
+      - name: Собрать страницу
+        run: python3 scripts/build_site.py
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

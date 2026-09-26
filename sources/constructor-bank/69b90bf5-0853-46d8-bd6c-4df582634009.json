@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "69b90bf5-0853-46d8-bd6c-4df582634009",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "以前我们家养过一___可爱的小猫咪。",
+      "options": [
+        {
+          "id": "1",
+          "text": "块"
+        },
+        {
+          "id": "2",
+          "text": "匹"
+        },
+        {
+          "id": "3",
+          "text": "头"
+        },
+        {
+          "id": "4",
+          "text": "只"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.430Z",
+  "updatedAt": "2026-07-24T12:48:37.430Z"
+}

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "c9e70717-74e8-4bc1-b1f0-4b95f5c87beb",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "妈妈对他说：“晚饭还没做___呢”。",
+      "options": [
+        {
+          "id": "1",
+          "text": "上"
+        },
+        {
+          "id": "2",
+          "text": "完"
+        },
+        {
+          "id": "3",
+          "text": "掉"
+        },
+        {
+          "id": "4",
+          "text": "光"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.450Z",
+  "updatedAt": "2026-07-24T12:48:37.450Z"
+}
