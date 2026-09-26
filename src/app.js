@@ -253,6 +253,12 @@
         el('summary', { text: 'Остальные варианты' }),
         el('ul', {}, e.others.map((o) => el('li', {}, el('span', { class: 'zh', lang: 'zh', text: o.text }), ` — ${o.explanation}`)))));
     }
+    const report = reportUrl(DATA.meta.issuesUrl, item, optionId);
+    if (report) {
+      box.append(el('p', { class: 'report' },
+        el('a', { href: report, target: '_blank', rel: 'noopener', text: 'Нашли ошибку в задании или разборе? Сообщить' }),
+        el('span', { class: 'muted', text: ' — откроется GitHub, нужен аккаунт' })));
+    }
     return box;
   }
 

@@ -168,6 +168,23 @@ export function grade(item, optionId) {
   return { correct: optionId === item.correctOptionId, correctOptionId: item.correctOptionId };
 }
 
+// Ссылка «Сообщить об ошибке»: новый issue на GitHub с ID, условием и ответами.
+// В ней только то, что ученик и так видит на экране, — никаких данных о нём самом.
+export function reportUrl(base, item, optionId) {
+  if (!base) return '';
+  const what = item.taskNumber ? `задание ${item.taskNumber}` : 'вопрос к правилу';
+  const body = [
+    `ID: ${item.id} (${what})`,
+    `Условие: ${item.stem || item.sentence || item.prompt || ''}`,
+    `Выбранный ответ: ${optionId == null ? '—' : optionText(item, optionId)}`,
+    `Ответ по ключу: ${optionText(item, item.correctOptionId)}`,
+    '',
+    'Что не так:',
+    '',
+  ].join('\n');
+  return `${base}?${new URLSearchParams({ title: `Ошибка: ${what} · ${item.id}`, body })}`;
+}
+
 export function explainChoice(item, optionId) {
   const correct = optionId === item.correctOptionId;
   const explanation = item.explanation || { correct: '', options: {} };

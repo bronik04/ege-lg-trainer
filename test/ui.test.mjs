@@ -142,6 +142,13 @@ test('тренировка: разбор выбранного неверного
       assert.match(await text(page, '.verdict.bad p'), new RegExp(`Вариант ${texts[1]}|${texts[1]}:`));
     }
     assert.ok(await page.locator('.rule-note a').count() > 0, 'есть ссылка на правило');
+    // «Сообщить об ошибке» ведёт в issues репозитория и называет задание.
+    const report = page.locator('.report a');
+    const href = new URL(await report.getAttribute('href'));
+    assert.match(href.pathname, /\/issues\/new$/);
+    assert.match(href.searchParams.get('title'), new RegExp(`Ошибка: задание \\d+ · q\\d+-`));
+    assert.equal(await report.getAttribute('target'), '_blank');
+    assert.equal(await report.getAttribute('rel'), 'noopener');
     await page.keyboard.press('Enter');
   }
   assert.ok(seen.has('Задание 20:3'), 'задание 20 с тремя вариантами');
