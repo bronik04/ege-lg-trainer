@@ -162,6 +162,8 @@ test('тренировка: разбор выбранного неверного
   assert.ok(seen.has('Задание 20:3'), 'задание 20 с тремя вариантами');
   assert.ok(seen.has('Задание 22:4'), 'задание 22 с четырьмя вариантами');
   await see(page, 'h2', /Раунд окончен/);
+  // Ошибки были в задании 22 — страница советует его правило.
+  await see(page, '#ruleAdvice', /Перечитайте правило: 就 и 才/);
   assert.deepEqual(errors, []);
   await context.close();
 });
@@ -236,6 +238,7 @@ test('банк и ошибки: повтор ошибок, сброс прогр
   await page.keyboard.press('Enter');
   await page.goto(`${mainUrl}#/bank`);
   await see(page, '#repeatMistakes', /Повторить ошибки · 1/);
+  await see(page, '#weakTopics', /Прочие темы — ошибок: 1/);
   await page.locator('#repeatMistakes').click();
   await page.locator('[data-card]').waitFor();
   await see(page, '.progress', /Задание 1 из 1/);
@@ -340,6 +343,37 @@ test('ссылки учителя: подборка, те же задания, �
   assert.deepEqual((await storedProgress(student.page)).variant.ids, second);
   assert.deepEqual([...errors, ...student.errors], []);
   await student.context.close();
+});
+
+test('повторение: исправленная ошибка возвращается в срок, прогресс версии 1 читается', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { hash: '#/bank' });
+  const ago = (days) => new Date(Date.now() - days * 86400000).toISOString();
+  const put = (value) => page.evaluate((v) => localStorage.setItem('ege-lg-trainer:progress', JSON.stringify(v)), value);
+  const base = { checks: {}, round: null, variant: null, history: [] };
+  // Версия 1: ошибка без поля review — встаёт на повтор, тема попадает в слабые.
+  await put({ ...base, version: 1, questions: { 'q20-a': { attempts: 1, correctCount: 0, last: { optionId: '1', correct: false, at: ago(2) } } } });
+  await page.reload();
+  await see(page, '#repeatMistakes', /Повторить ошибки · 1/);
+  await see(page, '#weakTopics', /Глагольные суффиксы/);
+  assert.equal(await page.locator('#weakTopics a').first().innerText(), '了, 过 и 着');
+  // Ошибка исправлена позавчера, срок повтора вчера — пора повторить.
+  await put({ ...base, version: 2, questions: { 'q20-a': { attempts: 2, correctCount: 1, last: { optionId: '2', correct: true, at: ago(2) }, review: { step: 1, due: ago(1) } } } });
+  await page.reload();
+  await see(page, '#repeatDue', /Пора повторить · 1/);
+  await see(page, '.bank-list', /повторить/);
+  assert.equal(await page.locator('#weakTopics').count(), 0, 'исправленная ошибка — не слабая тема');
+  await page.locator('#repeatDue').click();
+  await page.locator('[data-card]').waitFor();
+  await page.keyboard.press('2');
+  await page.locator('.feedback').waitFor();
+  await page.goto(`${mainUrl}#/bank`);
+  await see(page, '#repeatMistakes', /Ошибок нет/);
+  assert.equal(await page.locator('#repeatDue').count(), 0);
+  const stored = await storedProgress(page);
+  assert.equal(stored.version, 2);
+  assert.equal(stored.questions['q20-a'].review.step, 2, 'следующий повтор — через 3 дня');
+  assert.deepEqual(errors, []);
+  await context.close();
 });
 
 test('телефон: без горизонтальной прокрутки во всех режимах', { skip }, async () => {

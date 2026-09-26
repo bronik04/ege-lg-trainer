@@ -49,7 +49,7 @@
         topics: Array.isArray(raw.topics) ? raw.topics.filter((t) => topicsById.has(t)) : [],
         tasks: Array.isArray(raw.tasks) ? raw.tasks.filter((n) => TASK_NUMBERS.includes(n)) : [],
         origins: Array.isArray(raw.origins) ? raw.origins.filter((o) => origins.includes(o)) : [],
-        state: ['all', 'new', 'mistakes'].includes(raw.state) ? raw.state : 'all',
+        state: ['all', 'new', 'review', 'mistakes'].includes(raw.state) ? raw.state : 'all',
         size: ['5', '10', '20', 'all'].includes(raw.size) ? raw.size : '10',
       };
     } catch {
@@ -165,6 +165,14 @@
   }
 
   // ---------- общие части ----------
+
+  // «Перечитайте правило» — к ошибкам раунда или варианта.
+  function ruleAdvice(items) {
+    const ids = rulesForMistakes(items, byId).filter((id) => rulesById.has(id));
+    if (!ids.length) return null;
+    const links = ids.flatMap((id, i) => [i ? ', ' : '', el('a', { href: `#/rules/${encodeURIComponent(id)}`, text: rulesById.get(id).title })]);
+    return el('p', { class: 'notice advice', id: 'ruleAdvice' }, 'Перечитайте правило: ', ...links, '.');
+  }
 
   // Ссылка учителя: открыть подборку, раунд из тех же заданий или тот же вариант.
   // Адрес сразу заменяется обычным, чтобы перезагрузка не открывала ссылку повторно.
@@ -531,18 +539,20 @@
         filters.origins, (v) => { filters.origins = toggle(filters.origins, v); saveFilters(); render(false); }));
     }
     const stateSelect = el('select', { id: 'stateFilter', dataset: { key: 'state' }, onchange: (e) => { filters.state = e.target.value; saveFilters(); render(false); } },
-      [['all', 'Все'], ['new', 'Новые'], ['mistakes', 'Ошибки']].map(([v, label]) => el('option', { value: v, selected: filters.state === v, text: label })));
+      [['all', 'Все'], ['new', 'Новые'], ['review', 'На повторение'], ['mistakes', 'Ошибки']].map(([v, label]) => el('option', { value: v, selected: filters.state === v, text: label })));
     const sizeSelect = el('select', { id: 'roundSize', dataset: { key: 'size' }, onchange: (e) => { filters.size = e.target.value; saveFilters(); render(false); } },
       [['5', '5 заданий'], ['10', '10 заданий'], ['20', '20 заданий'], ['all', 'Все доступные']].map(([v, label]) => el('option', { value: v, selected: filters.size === v, text: label })));
     view.append(el('div', { class: 'filters-row' },
       el('label', { class: 'field' }, 'Какие задания', stateSelect),
       el('label', { class: 'field' }, 'Размер раунда', sizeSelect)));
-    const available = filterQuestions(questions, filters, progress);
+    const available = filterQuestions(questions, filters, progress, now());
     const roundSize = filters.size === 'all' ? available.length : Math.min(Number(filters.size), available.length);
     view.append(el('p', { class: 'notice', id: 'available', 'aria-live': 'polite' },
       available.length
         ? `Доступно: ${tasksWord(available.length)}. В раунд попадёт ${roundSize}.`
-        : filters.state === 'mistakes' ? 'Ошибок с такими фильтрами нет.' : 'С такими фильтрами заданий нет — снимите часть фильтров.'));
+        : filters.state === 'mistakes' ? 'Ошибок с такими фильтрами нет.'
+          : filters.state === 'review' ? 'Повторять пока нечего: ошибок нет, а исправленные ещё не подошли к сроку.'
+            : 'С такими фильтрами заданий нет — снимите часть фильтров.'));
     const actions = el('div', { class: 'actions' },
       el('button', {
         class: 'button', type: 'button', id: 'startRound', disabled: !available.length, dataset: { enter: '1' },
@@ -638,6 +648,7 @@
     const wrong = result.items.filter((i) => !i.correct).map((i) => i.id);
     view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Раунд окончен' }),
       el('p', { class: 'score' }, el('b', { text: `${result.score} из ${result.total}` }), el('span', { class: 'muted', text: 'верных ответов' })),
+      ruleAdvice(result.items),
       resultList(round.ids, round.answers));
     const share = shareToggle('round', 'Ссылка на эти задания', pageUrl(`#/practice?${idsQuery(round.ids)}`),
       `По ссылке откроется раунд из этих же заданий (${round.ids.length}) в том же порядке — одинаковый для всех, кто её получит.`);
@@ -783,6 +794,7 @@
     actions.append(share.button);
     view.append(el('p', { class: 'section-title', text: 'Результат последнего варианта' }),
       el('p', { class: 'score' }, el('b', { text: `${result.score} из ${result.total}` }), el('span', { class: 'muted', text: 'первичных баллов за раздел 3' })),
+      ruleAdvice(result.items),
       sheet(v, { reveal: true, onPick: (i) => {
         // Только позиции варианта: у раскрытого разбора есть свой вложенный details.
         const items = view.querySelectorAll('.results > li > details');
@@ -802,18 +814,33 @@
       view.append(el('p', { class: 'lead', text: 'Все проверенные задания с источником и вашим результатом.' }), emptyBank());
       return;
     }
-    const states = questions.map((q) => answerState(progress, 'questions', q.id));
-    const count = (s) => states.filter((x) => x === s).length;
-    const mistakes = questions.filter((q) => answerState(progress, 'questions', q.id) === 'mistake');
-    view.append(el('p', { class: 'lead', text: 'Все проверенные задания с источником и вашим результатом. Ошибкой считается задание, на которое последний ответ был неверным.' }),
+    const at = now();
+    const stateOf = new Map(questions.map((q) => [q.id, answerState(progress, 'questions', q.id, at)]));
+    const count = (s) => [...stateOf.values()].filter((x) => x === s).length;
+    const mistakes = questions.filter((q) => stateOf.get(q.id) === 'mistake');
+    const due = questions.filter((q) => stateOf.get(q.id) === 'due');
+    view.append(el('p', { class: 'lead', text: 'Все проверенные задания с источником и вашим результатом. Ошибкой считается задание, на которое последний ответ был неверным. Исправленная ошибка возвращается на повтор через 1, 3 и 7 дней.' }),
       el('div', { class: 'stats' },
         el('div', { class: 'stat' }, el('b', { text: String(questions.length) }), el('span', { text: 'в банке' })),
         el('div', { class: 'stat' }, el('b', { text: String(count('solved')) }), el('span', { text: 'решено верно' })),
+        el('div', { class: 'stat' }, el('b', { text: String(count('due')) }), el('span', { text: 'пора повторить' })),
         el('div', { class: 'stat' }, el('b', { text: String(count('mistake')) }), el('span', { text: 'ошибки' })),
         el('div', { class: 'stat' }, el('b', { text: String(count('new')) }), el('span', { text: 'ещё не решались' }))),
       el('div', { class: 'actions' },
         el('button', { class: 'button', type: 'button', id: 'repeatMistakes', disabled: !mistakes.length, onclick: () => startRound(shuffle(mistakes.map((q) => q.id))) },
-          mistakes.length ? `Повторить ошибки · ${mistakes.length}` : 'Ошибок нет')));
+          mistakes.length ? `Повторить ошибки · ${mistakes.length}` : 'Ошибок нет'),
+        due.length ? el('button', { class: 'button alt', type: 'button', id: 'repeatDue', onclick: () => startRound(shuffle(due.map((q) => q.id))) }, `Пора повторить · ${due.length}`) : null));
+    const weak = weakTopics(questions, progress).filter((w) => topicsById.has(w.topicId));
+    if (weak.length) {
+      view.append(el('p', { class: 'section-title', text: 'Слабые темы' }),
+        el('ul', { class: 'usage weak', id: 'weakTopics' }, weak.map((w) => {
+          const topicRules = rules.filter((r) => r.topicIds.includes(w.topicId));
+          return el('li', {},
+            el('b', { text: topicsById.get(w.topicId).title }), ` — ошибок: ${w.count}`,
+            topicRules.length ? ' · правило: ' : '',
+            topicRules.flatMap((r, i) => [i ? ', ' : '', el('a', { href: `#/rules/${encodeURIComponent(r.id)}`, text: r.title })]));
+        })));
+    }
 
     const select = (label, key, items) => el('label', { class: 'field' }, label,
       el('select', { dataset: { key: `bank:${key}` }, onchange: (e) => { bankFilters = { ...bankFilters, [key]: e.target.value }; render(false); } },
@@ -821,18 +848,18 @@
     const row = el('div', { class: 'filters-row' },
       select('Номер', 'task', [['', 'Все номера'], ...TASK_NUMBERS.filter((n) => questions.some((q) => q.taskNumber === n)).map((n) => [String(n), `Задание ${n}`])]),
       select('Тема', 'topic', [['', 'Все темы'], ...topics.filter((t) => questions.some((q) => q.topicIds.includes(t.id))).map((t) => [t.id, t.title])]),
-      select('Результат', 'state', [['all', 'Любой'], ['new', 'Не решались'], ['mistake', 'Ошибки'], ['solved', 'Решено верно']]));
+      select('Результат', 'state', [['all', 'Любой'], ['new', 'Не решались'], ['mistake', 'Ошибки'], ['due', 'Пора повторить'], ['solved', 'Решено верно']]));
     if (origins.length > 1) row.append(select('Источник', 'origin', [['', 'Все'], ...origins.map((o) => [o, ORIGIN_NAMES[o] || o])]));
     view.append(el('div', { class: 'section-title', text: 'Задания' }), row);
 
     const shown = questions.filter((q) => (!bankFilters.task || q.taskNumber === Number(bankFilters.task))
       && (!bankFilters.topic || q.topicIds.includes(bankFilters.topic))
       && (!bankFilters.origin || q.origin === bankFilters.origin)
-      && (bankFilters.state === 'all' || answerState(progress, 'questions', q.id) === bankFilters.state));
-    const STATE_TEXT = { new: 'не решалось', mistake: 'ошибка', solved: 'верно' };
+      && (bankFilters.state === 'all' || stateOf.get(q.id) === bankFilters.state));
+    const STATE_TEXT = { new: 'не решалось', mistake: 'ошибка', due: 'повторить', solved: 'верно' };
     view.append(el('p', { class: 'small muted', 'aria-live': 'polite', text: `Показано: ${tasksWord(shown.length)}` }),
       el('ul', { class: 'bank-list' }, shown.map((q) => {
-        const state = answerState(progress, 'questions', q.id);
+        const state = stateOf.get(q.id);
         return el('li', {}, el('button', { class: 'bank-item', type: 'button', onclick: () => startRound([q.id]) },
           el('span', { class: 'n', text: String(q.taskNumber) }),
           el('span', {},

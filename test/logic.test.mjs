@@ -245,3 +245,66 @@ test('ссылка на задания: порядок сохраняется, �
   assert.equal(L.isVariant([...variant.slice(0, 12), 'gone'], byId), false, 'задания нет в банке');
 });
 
+test('повторение: исправленная ошибка возвращается через 1, 3 и 7 дней', () => {
+  const day = (d, h = 10) => new Date(Date.UTC(2026, 8, 1 + d, h)).toISOString();
+  const state = (p, at) => L.answerState(p, 'questions', 'a', at);
+  let p = L.recordAnswer(L.emptyProgress(), 'questions', 'a', '1', false, day(0));
+  assert.equal(state(p, day(0)), 'mistake');
+  p = L.recordAnswer(p, 'questions', 'a', '2', true, day(0, 11));
+  assert.equal(state(p, day(0, 12)), 'solved', 'исправлено — до срока не беспокоим');
+  assert.equal(state(p, day(1, 11)), 'due', 'через день — пора повторить');
+  assert.equal(state(p), 'solved', 'без текущего времени срок не проверяется');
+  // Верный ответ до срока ничего не сдвигает.
+  const early = L.recordAnswer(p, 'questions', 'a', '2', true, day(0, 20));
+  assert.deepEqual(early.questions.a.review, p.questions.a.review);
+  // Повторы в срок: 1 → 3 → 7 дней, потом задание усвоено.
+  p = L.recordAnswer(p, 'questions', 'a', '2', true, day(1, 11));
+  assert.deepEqual(p.questions.a.review, { step: 2, due: day(4, 11) });
+  p = L.recordAnswer(p, 'questions', 'a', '2', true, day(4, 11));
+  assert.deepEqual(p.questions.a.review, { step: 3, due: day(11, 11) });
+  p = L.recordAnswer(p, 'questions', 'a', '2', true, day(11, 11));
+  assert.deepEqual(p.questions.a.review, { step: 4, due: null });
+  assert.equal(state(p, day(100)), 'solved');
+  // Ошибка на любом шаге — снова ошибка с начала.
+  p = L.recordAnswer(p, 'questions', 'a', '1', false, day(101));
+  assert.deepEqual(p.questions.a.review, { step: 0, due: day(101) });
+  // Верно решённое сразу на повтор не ставится.
+  const clean = L.recordAnswer(L.emptyProgress(), 'questions', 'b', '2', true, day(0));
+  assert.equal(clean.questions.b.review, null);
+});
+
+test('прогресс версии 1 читается: неисправленная ошибка встаёт на повтор', () => {
+  const v1 = {
+    version: 1,
+    questions: {
+      a: { attempts: 1, correctCount: 0, last: { optionId: '1', correct: false, at: 't1' } },
+      b: { attempts: 2, correctCount: 1, last: { optionId: '2', correct: true, at: 't2' } },
+    },
+    checks: {}, round: null, variant: null, history: [],
+  };
+  const p = L.parseProgress(JSON.stringify(v1));
+  assert.equal(p.version, 2);
+  assert.deepEqual(p.questions.a.review, { step: 0, due: 't1' });
+  assert.equal(p.questions.b.review, null);
+  const file = L.readProgressFile(JSON.stringify({ app: 'ege-lg-trainer', ...v1 }));
+  assert.equal(file.ok, true, 'файл версии 1 тоже загружается');
+  assert.deepEqual(file.progress.questions, p.questions);
+});
+
+test('фильтр «на повторение», слабые темы и правила к ошибкам', () => {
+  const now = '2026-09-26T12:00:00.000Z';
+  const bank = [q('a', 20), q('b', 22, { topicIds: ['adverbs'], ruleIds: ['jiu-cai'] }), q('c', 22, { topicIds: ['adverbs'], ruleIds: ['jiu-cai', 'you-zai-hai'] }), q('d', 20)];
+  let p = L.recordAnswer(L.emptyProgress(), 'questions', 'b', '1', false, '2026-09-20T10:00:00.000Z');
+  p = L.recordAnswer(p, 'questions', 'c', '1', false, '2026-09-20T10:00:00.000Z');
+  p = L.recordAnswer(p, 'questions', 'a', '1', false, '2026-09-20T10:00:00.000Z');
+  p = L.recordAnswer(p, 'questions', 'a', '2', true, '2026-09-21T10:00:00.000Z');
+  p = L.recordAnswer(p, 'questions', 'd', '2', true, '2026-09-21T10:00:00.000Z');
+  assert.deepEqual(L.filterQuestions(bank, { state: 'review' }, p, now).map((x) => x.id), ['a', 'b', 'c']);
+  assert.deepEqual(L.filterQuestions(bank, { state: 'mistakes' }, p, now).map((x) => x.id), ['b', 'c']);
+  assert.deepEqual(L.weakTopics(bank, p), [{ topicId: 'adverbs', count: 2 }]);
+  const byId = new Map(bank.map((x) => [x.id, x]));
+  const items = [{ id: 'b', correct: false }, { id: 'c', correct: false }, { id: 'a', correct: true }];
+  assert.deepEqual(L.rulesForMistakes(items, byId), ['jiu-cai', 'you-zai-hai']);
+  assert.deepEqual(L.rulesForMistakes([{ id: 'a', correct: true }], byId), []);
+});
+

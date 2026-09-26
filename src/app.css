@@ -272,7 +272,7 @@ h3 { margin: 0 0 6px; font-size: 1rem; }
 
 /* ---------- банк ---------- */
 
-.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 0 0 18px; }
+.stats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin: 0 0 18px; }
 .stat { padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--field); }
 .stat b { display: block; font-size: 1.5rem; letter-spacing: -.03em; }
 .stat span { color: var(--muted); font-size: .84rem; font-weight: 700; }
@@ -291,6 +291,8 @@ h3 { margin: 0 0 6px; font-size: 1rem; }
 .state.new { color: var(--muted); }
 .state.solved { color: var(--green); }
 .state.mistake { color: var(--red); }
+.state.due { color: var(--warn-ink); }
+.advice { margin: 0 0 14px; }
 
 .foot { margin-top: 18px; color: var(--muted); font-size: .84rem; }
 .foot p { margin: 0; }
@@ -304,6 +306,7 @@ h3 { margin: 0 0 6px; font-size: 1rem; }
   .view { padding: 18px 16px; border-radius: 18px; }
   .sheet { grid-template-columns: repeat(7, minmax(0, 1fr)); }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stats .stat:first-child { grid-column: span 2; }
   .contrast { grid-template-columns: 1fr; }
   .bank-item { grid-template-columns: 2.6em 1fr; }
   .bank-item .state { grid-column: 2; }
