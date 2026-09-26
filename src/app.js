@@ -103,7 +103,13 @@
 
   function route() {
     const parts = (location.hash || '#/rules').replace(/^#\/?/, '').split('/');
-    return { name: parts[0] || 'rules', arg: parts[1] ? decodeURIComponent(parts[1]) : null };
+    let arg = null;
+    try {
+      arg = parts[1] ? decodeURIComponent(parts[1]) : null;
+    } catch {
+      arg = parts[1]; // испорченный адрес: покажем «не найдено», а не пустой экран
+    }
+    return { name: parts[0] || 'rules', arg };
   }
 
   function go(hash) {
@@ -569,8 +575,9 @@
     const attempt = buildVariant(questions);
     const actions = el('div', { class: 'actions' });
     if (attempt.ok) {
+      // После результата Enter не должен сразу собирать новый вариант и стирать разбор.
       actions.append(el('button', {
-        class: 'button', type: 'button', id: 'buildVariant', dataset: { enter: '1' },
+        class: 'button', type: 'button', id: 'buildVariant', dataset: v && v.finishedAt ? {} : { enter: '1' },
         onclick: () => {
           const fresh = buildVariant(questions);
           progress = { ...progress, variant: startSession(fresh.ids, now()) };
@@ -772,9 +779,20 @@
     ? `${tasksWord(questions.length)} · ${rules.length} ${plural(rules.length, 'правило', 'правила', 'правил')}`
     : 'Банк готовится';
   document.getElementById('reviewBanner').hidden = !DATA.meta.drafts;
+  const sourceNote = origins.includes('generated')
+    ? 'Задания — открытый банк ФИПИ и новые задания в том же формате'
+    : 'Задания — открытый банк ФИПИ';
   document.getElementById('footNote').textContent =
-    `Задания — открытый банк ФИПИ, формат ЕГЭ ${DATA.meta.formatYear}. Разборы и правила проверены автором тренажёра. Прогресс хранится в этом браузере.`;
+    `${sourceNote}, формат ЕГЭ ${DATA.meta.formatYear}. Разборы и правила проверены автором тренажёра. Прогресс хранится в этом браузере.`;
 
-  window.addEventListener('hashchange', () => render());
+  // Ссылка «К содержимому» переводит фокус, а не меняет маршрут.
+  document.querySelector('.skip').addEventListener('click', (event) => {
+    event.preventDefault();
+    view.focus();
+  });
+  window.addEventListener('hashchange', () => {
+    if (location.hash && !location.hash.startsWith('#/')) return;
+    render();
+  });
   render(false);
 })();

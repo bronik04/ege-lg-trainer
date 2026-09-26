@@ -10,7 +10,8 @@
 
 2. Markdown в формате ответа навыка (sources/generated/<партия>.md): задания вида
    «**22.** Укажите…», затем условие и строка «1) 还  2) 再  3) 又  4) 就»; ключи — строки
-   «**22 — ответ: 3**» во второй части. Версия спецификации — строка «Спецификация: ЕГЭ 2026».
+   «**22 — ответ: 3**» во второй части. Если заданий одного номера несколько, ключи
+   сопоставляются по порядку. Версия спецификации — строка «Спецификация: ЕГЭ 2026».
 
 ID задания вычисляется из номера, условия и вариантов: повторный импорт даёт тот же ID,
 и прогресс учеников не теряется. Всё, что не удалось прочитать, — в отчёт, а не в банк.
@@ -52,6 +53,10 @@ def record(task, batch_name, generator, spec_version):
         problems.append("пустое условие")
     if len(options) not in (3, 4):
         problems.append(f"вариантов {len(options)}, нужно 3 или 4")
+    if any(not o for o in options):
+        problems.append("пустой вариант")
+    if len(set(options)) != len(options):
+        problems.append("повторяются варианты")
     if not isinstance(key, int) or not 1 <= key <= len(options):
         problems.append(f"ключ {key!r} не номер варианта")
     if problems:
@@ -85,7 +90,11 @@ def parse_markdown(text):
     """Задания и ключи из ответа навыка. Возвращает (spec, tasks, problems)."""
     spec_match = SPEC.search(text)
     spec = spec_match.group(1).strip() if spec_match else None
-    keys = {int(m.group(1)): int(m.group(2)) for m in map(KEY_LINE.match, text.splitlines()) if m}
+    # Навык нумерует как на бланке: три задания 27 — это три «**27.**» и три ключа «27 — ответ».
+    keys = {}
+    for m in map(KEY_LINE.match, text.splitlines()):
+        if m:
+            keys.setdefault(int(m.group(1)), []).append(int(m.group(2)))
     tasks, problems = [], []
     lines = text.splitlines()
     i = 0
@@ -107,10 +116,18 @@ def parse_markdown(text):
             continue
         options = [m.group(2).strip() for m in OPTION.finditer(option_lines[0])]
         stem_lines = body[:body.index(option_lines[0])]
-        if n not in keys:
-            problems.append(f"№{n}: нет ключа «**{n} — ответ: N**»")
+        tasks.append({"taskNumber": n, "stem": "\n".join(stem_lines), "options": options})
+    for n in sorted({t["taskNumber"] for t in tasks}):
+        group = [t for t in tasks if t["taskNumber"] == n]
+        found = keys.get(n, [])
+        if len(found) != len(group):
+            problems.append(f"№{n}: заданий {len(group)}, ключей «**{n} — ответ: N**» {len(found)} — партия этого номера пропущена")
+            tasks = [t for t in tasks if t["taskNumber"] != n]
             continue
-        tasks.append({"taskNumber": n, "stem": "\n".join(stem_lines), "options": options, "key": keys[n]})
+        for task, key in zip(group, found):
+            task["key"] = key
+    if not tasks and not problems:
+        problems.append("в партии нет заданий 15–27")
     return spec, tasks, problems
 
 

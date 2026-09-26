@@ -20,6 +20,11 @@ FRAGMENT_IDS = ["A", "B", "C"]
 # Разбор, который ничего не объясняет про конкретный вариант, готовым не считается.
 GENERIC = re.compile(r"^(неверно|не подходит|повторите правило|см\. правило)[.!]?$", re.I)
 MIN_EXPLANATION = 25
+HAN = re.compile(r"[\u4e00-\u9fff]+")
+BLANK = re.compile(r"\s*_{2,}\s*")
+# Столько иероглифов подряд, совпавших с заданием банка, уже выдают его сюжет, а не
+# словарное сочетание вроде 一条裙子, которое и есть содержание правила.
+OVERLAP = 5
 
 
 def _text_problem(label, text):
@@ -168,6 +173,45 @@ def rule_check_problems(check, rules_by_id):
     return problems
 
 
+def filled_stem(q):
+    """Условие с ключом на месте пропуска — то, что ученик запомнит как «ответ»."""
+    key = next((o["text"] for o in q.get("options") or [] if o.get("id") == q.get("correctOptionId")), "")
+    stem = q.get("stem") or ""
+    blanks = len(BLANK.findall(stem))
+    parts = [p.strip() for p in re.split(r"…+|\.{3,}|,|，", key) if p.strip()]
+    if blanks == 1:
+        stem = BLANK.sub(key, stem)
+    elif blanks == 2 and len(parts) >= 2:
+        pieces = iter(parts)
+        stem = BLANK.sub(lambda _: next(pieces), stem)
+    return "".join(HAN.findall(stem))
+
+
+def _strings(value):
+    if isinstance(value, str):
+        yield value
+    elif isinstance(value, dict):
+        for v in value.values():
+            yield from _strings(v)
+    elif isinstance(value, list):
+        for v in value:
+            yield from _strings(v)
+
+
+def bank_overlap_problems(item, bank_texts, n=OVERLAP):
+    """Китайский текст правила или вопроса к нему, повторяющий задание банка."""
+    problems = []
+    for text in _strings({k: v for k, v in item.items() if k not in ("id", "status", "ruleIds", "topicIds")}):
+        for segment in HAN.findall(text):
+            for i in range(len(segment) - n + 1):
+                gram = segment[i:i + n]
+                hit = next((qid for qid, filled in bank_texts if gram in filled), None)
+                if hit:
+                    problems.append(f"«{segment}» повторяет задание {hit} ({gram}) — возьмите пример на другой лексике")
+                    break
+    return sorted(set(problems))
+
+
 def _duplicates(items, label):
     seen, problems = set(), []
     for item in items:
@@ -191,10 +235,13 @@ def check_all(questions, topics, rules, rule_checks):
             errors.append(f"тема {t.get('id')}: нет названия")
         if any(n not in TASK_NUMBERS for n in t.get("taskNumbers", [])):
             errors.append(f"тема {t.get('id')}: номер задания вне 15–27")
+    bank_texts = [(q.get("id"), filled_stem(q)) for q in questions]
     for r in rules:
         errors += [f"правило {r.get('id')}: {p}" for p in rule_problems(r, topic_ids)]
+        errors += [f"правило {r.get('id')}: {p}" for p in bank_overlap_problems(r, bank_texts)]
     for c in rule_checks:
         errors += [f"вопрос по правилу {c.get('id')}: {p}" for p in rule_check_problems(c, rules_by_id)]
+        errors += [f"вопрос по правилу {c.get('id')}: {p}" for p in bank_overlap_problems(c, bank_texts)]
     for q in questions:
         errors += [f"задание {q.get('id')}: {p}" for p in question_problems(q, topic_ids, rules_by_id)]
     return errors

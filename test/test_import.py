@@ -1,5 +1,8 @@
 import hashlib
+import json
+import tempfile
 import unittest
+from pathlib import Path
 
 from test import helpers  # noqa: F401  (добавляет scripts/ в sys.path)
 
@@ -75,10 +78,20 @@ class SnapshotTest(unittest.TestCase):
             self.assertEqual(hashlib.sha256((SNAPSHOT / name).read_bytes()).hexdigest(), digest, name)
 
     def test_reimport_is_deterministic_and_committed(self):
-        first = imp.load_snapshot()
-        second = imp.load_snapshot()
+        first, skipped = imp.load_snapshot()
+        second, _ = imp.load_snapshot()
         self.assertEqual(first, second)
+        self.assertEqual(skipped, [])
         self.assertEqual(first, read_json(RAW), "data/raw/fipi.json устарел: запустите import_constructor.py")
+
+    def test_block_without_task_is_skipped_not_crashing(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            empty = dict(block(), tasks=[])
+            (Path(tmp) / "empty.json").write_text(json.dumps(empty), encoding="utf-8")
+            (Path(tmp) / "ok.json").write_text(json.dumps(block()), encoding="utf-8")
+            records, skipped = imp.load_snapshot(tmp)
+        self.assertEqual(len(records), 1)
+        self.assertIn("empty.json", skipped[0])
 
     def test_every_position_imported(self):
         numbers = {r["taskNumber"] for r in read_json(RAW)}

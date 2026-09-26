@@ -135,6 +135,9 @@ test('тренировка: разбор выбранного неверного
     await page.locator('.feedback').waitFor();
     const verdicts = await page.locator('.verdict').count();
     if (verdicts === 2) {
+      // Сначала — почему не подходит выбранный вариант, потом — верный ответ.
+      const order = await page.evaluate(() => [...document.querySelectorAll('.verdict')].map((n) => (n.classList.contains('bad') ? 'bad' : 'ok')));
+      assert.deepEqual(order, ['bad', 'ok']);
       assert.match(await text(page, '.verdict.bad h3'), new RegExp(`Почему не ${texts[1]}`));
       assert.match(await text(page, '.verdict.bad p'), new RegExp(`Вариант ${texts[1]}|${texts[1]}:`));
     }
@@ -165,11 +168,20 @@ test('полный вариант: 13 позиций, разбор только 
   await see(page, '.progress', /Позиция 20/);
   // Исходный порядок вариантов: у задания 26 первым идёт CAB.
   await page.locator('.sheet .cell').nth(11).click();
-  assert.equal(await text(page, '.option .text'), 'CAB');
+  assert.deepEqual(await page.locator('.option .text').allInnerTexts(), ['CAB', 'BAC', 'ACB', 'BCA']);
   assert.equal(await page.locator('.fragments li').count(), 3);
   await page.locator('#finishVariant').click();
   await see(page, '.notice.warn', /Без ответа: 20, 21, 22, 23, 24, 25, 26, 27/);
   await page.locator('#confirmFinish').click();
+  await see(page, '.score', /из 13/);
+  // Enter после результата не собирает новый вариант: разбор по позициям остаётся.
+  await page.keyboard.press('Enter');
+  await see(page, '.score', /из 13/);
+  assert.equal(await page.locator('.results li').count(), 13);
+  // «К содержимому» переводит фокус, но не уводит с экрана варианта.
+  await page.locator('.skip').focus();
+  await page.keyboard.press('Enter');
+  assert.equal(new URL(page.url()).hash, '#/variant');
   await see(page, '.score', /из 13/);
   assert.equal(await page.locator('.sheet .cell.good, .sheet .cell.bad').count(), 13);
   await page.locator('.results summary').nth(1).click();

@@ -70,7 +70,9 @@ class RecordTest(unittest.TestCase):
         for task in ({"taskNumber": 14, "stem": "x", "options": ["a", "b", "c"], "key": 1},
                      {"taskNumber": 20, "stem": "x", "options": ["a", "b"], "key": 1},
                      {"taskNumber": 20, "stem": "x", "options": ["a", "b", "c"], "key": 4},
-                     {"taskNumber": 20, "stem": "", "options": ["a", "b", "c"], "key": 1}):
+                     {"taskNumber": 20, "stem": "", "options": ["a", "b", "c"], "key": 1},
+                     {"taskNumber": 20, "stem": "x", "options": ["a", "a", "c"], "key": 1},
+                     {"taskNumber": 20, "stem": "x", "options": ["a", "", "c"], "key": 1}):
             rec, problems = ig.record(task, "b", "g", "ЕГЭ 2026")
             self.assertIsNone(rec)
             self.assertTrue(problems, task)
@@ -90,7 +92,19 @@ class MarkdownTest(unittest.TestCase):
     def test_missing_key_is_reported(self):
         spec, tasks, problems = ig.parse_markdown(SKILL_MD.replace("**20 — ответ: 2**", ""))
         self.assertEqual([t["taskNumber"] for t in tasks], [16])
-        self.assertIn("№20: нет ключа «**20 — ответ: N**»", problems)
+        self.assertTrue(any(p.startswith("№20: заданий 1, ключей") for p in problems), problems)
+
+    def test_several_tasks_of_one_number_keep_their_keys(self):
+        md = SKILL_MD.replace("**20.**", "**16.**", 1).replace("**20 — ответ: 2**", "**16 — ответ: 2**")
+        md = md.replace("1) 了  2) 着  3) 过", "1) 本  2) 张  3) 条  4) 只")
+        spec, tasks, problems = ig.parse_markdown(md)
+        self.assertEqual(problems, [])
+        self.assertEqual([(t["taskNumber"], t["key"]) for t in tasks], [(16, 1), (16, 2)])
+
+    def test_batch_without_grammar_tasks_is_reported(self):
+        spec, tasks, problems = ig.parse_markdown("Спецификация: ЕГЭ 2026\n\n**1.** Аудирование\n")
+        self.assertEqual(tasks, [])
+        self.assertIn("в партии нет заданий 15–27", problems)
 
     def test_batches_from_directory(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -125,6 +139,18 @@ class GeneratedInBankTest(unittest.TestCase):
         self.assertEqual(status[generated["id"]]["reviewStatus"], "excluded")
         self.assertEqual(status[generated["id"]]["duplicateOf"], "q20-aaaaaaaa")
         self.assertEqual(status["q20-aaaaaaaa"]["reviewStatus"], "imported")
+
+    def test_near_copy_of_fipi_is_excluded(self):
+        fipi = fipi_record(task=22, qid="q22-b24a67ef", stem="你看，他昨天来找你，今天 ___ 来了。",
+                           options=("再", "才", "就", "又"), correct="4")
+        near, _ = ig.record({"taskNumber": 22, "stem": "他昨天来了，今天___来了。", "options": ["还", "再", "又", "就"], "key": 3},
+                            "b", "g", "ЕГЭ 2026")
+        other, _ = ig.record({"taskNumber": 22, "stem": "这个电影我上个月看过，昨天___看了一遍。", "options": ["还", "再", "又", "就"], "key": 3},
+                             "b", "g", "ЕГЭ 2026")
+        questions, _ = bb.merge([fipi, near, other], {}, TOPICS, [rule()])
+        status = {q["id"]: q["reviewStatus"] for q in questions}
+        self.assertEqual(status[near["id"]], "excluded")
+        self.assertEqual(status[other["id"]], "imported")
 
 
 if __name__ == "__main__":

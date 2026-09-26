@@ -34,14 +34,16 @@ jobs:
       - name: Установить зависимости тестов
         run: npm ci
 
-      # Банк пересобирается из снимка источников. Если закоммиченные данные
-      # разошлись с пересборкой, тесты ниже это поймают.
+      # Банк пересобирается из снимка источников. Закоммиченные данные и отчёты
+      # (в том числе очередь проверки, по которой автор принимает содержание)
+      # обязаны совпасть с пересборкой — иначе публикация останавливается.
       - name: Пересобрать и проверить данные
         run: |
           python3 scripts/import_constructor.py
           python3 scripts/import_generated.py
           python3 scripts/build_bank.py
           python3 scripts/validate.py
+          git diff --exit-code -- data/ || { echo "::error::данные в репозитории устарели: запустите npm run data и закоммитьте"; exit 1; }
 
       - name: Тесты данных
         run: python3 -m unittest discover -s test -t . -v

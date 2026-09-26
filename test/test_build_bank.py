@@ -134,11 +134,26 @@ class MergeTest(unittest.TestCase):
 
 
 class CommittedBankTest(unittest.TestCase):
+    def setUp(self):
+        self.topics = read_json(bb.TOPICS)
+        self.rules = read_json(bb.RULES)
+        self.checks = read_json(bb.RULE_CHECKS)
+        self.records = bb.load_records()
+        self.questions, self.pending = bb.merge(self.records, bb.load_authored(), self.topics, self.rules)
+
     def test_questions_json_is_up_to_date(self):
-        topics = read_json(bb.TOPICS)
-        rules = read_json(bb.RULES)
-        questions, _ = bb.merge(bb.load_records(), bb.load_authored(), topics, rules)
-        self.assertEqual(questions, read_json(QUESTIONS), "data/questions.json устарел: запустите build_bank.py")
+        self.assertEqual(self.questions, read_json(QUESTIONS), "data/questions.json устарел: запустите build_bank.py")
+
+    def test_reports_are_up_to_date(self):
+        # Автор принимает содержание по queue.md: устаревшая очередь — это принятие не того текста.
+        expected = {
+            "queue.md": bb.queue_report(self.questions, self.pending, self.rules, self.checks),
+            "coverage.md": bb.coverage_report(self.questions, self.topics),
+            "duplicates.md": bb.duplicates_report(self.records, self.questions),
+        }
+        for name, text in expected.items():
+            self.assertEqual((bb.REVIEW / name).read_text(encoding="utf-8"), text,
+                             f"data/review/{name} устарел: запустите build_bank.py")
 
 
 if __name__ == "__main__":

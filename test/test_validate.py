@@ -92,6 +92,26 @@ class RuleTest(unittest.TestCase):
         self.assertTrue(v.rule_check_problems(check, {"aspect-suffixes": rule(status="draft")}))
 
 
+class BankOverlapTest(unittest.TestCase):
+    def test_filled_stem_puts_key_into_blank(self):
+        q = ready_question(stem="老板正开___会。")
+        self.assertEqual(v.filled_stem(q), "老板正开着会")
+        pair = ready_question(task=27, stem="___他很累，___还在工作。",
+                              options=("因为……，所以……", "虽然……，但是……", "只有……，才……"), correct="2")
+        self.assertEqual(v.filled_stem(pair), "虽然他很累但是还在工作")
+
+    def test_rule_example_from_bank_is_rejected(self):
+        bank = [("q20-x", v.filled_stem(ready_question(stem="老板正开___会，不方便接电话。")))]
+        copied = dict(rule(), examples=[{"zh": "老板正开着会呢。", "ru": "…"}, {"zh": "我吃过。", "ru": "…"}])
+        self.assertTrue(v.bank_overlap_problems(copied, bank))
+        self.assertEqual(v.bank_overlap_problems(rule(), bank), [])
+
+    def test_short_collocation_is_allowed(self):
+        bank = [("q16-x", "父亲给我女儿送了一条裙子")]
+        item = dict(rule(), usage=["条 — 一条裙子, 一条河"])
+        self.assertEqual(v.bank_overlap_problems(item, bank), [])
+
+
 class RealDataTest(unittest.TestCase):
     def test_project_data_is_valid(self):
         errors = v.check_all(read_json(QUESTIONS), read_json(TOPICS_PATH), read_json(RULES), read_json(RULE_CHECKS))

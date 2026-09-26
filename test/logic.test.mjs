@@ -115,6 +115,17 @@ test('прогресс: повреждённые и чужие данные да
   assert.deepEqual(partial.checks, {});
 });
 
+test('прогресс: несогласованные сессии не восстанавливаются', () => {
+  const base = { version: 1, questions: {}, checks: {}, history: [] };
+  const empty = L.parseProgress(JSON.stringify({ ...base, round: { ids: [], answers: {}, index: 0 }, variant: { ids: [] } }));
+  assert.equal(empty.round, null);
+  assert.equal(empty.variant, null);
+  const outside = L.parseProgress(JSON.stringify({ ...base, round: { ids: ['a'], answers: {}, index: 5 } }));
+  assert.equal(outside.round.index, 0);
+  const negative = L.parseProgress(JSON.stringify({ ...base, round: { ids: ['a', 'b'], answers: {}, index: -3 } }));
+  assert.equal(negative.round.index, 0);
+});
+
 test('прогресс: сессии с исчезнувшими заданиями сбрасываются', () => {
   const p = { ...L.emptyProgress(), round: L.startSession(['a', 'gone'], 't'), variant: L.startSession(['a'], 't') };
   const pruned = L.pruneProgress(p, ['a']);

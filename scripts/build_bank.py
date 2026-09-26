@@ -15,6 +15,7 @@
 import re
 import sys
 from collections import defaultdict
+from difflib import SequenceMatcher
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -28,6 +29,9 @@ RAW_DIR = DATA / "raw"
 NOISE = re.compile(r"[\s_.,。，、!?！？\"“”'‘’:：;；()（）…—-]+")
 ZH_DIGITS = {"零": 0, "〇": 0, "一": 1, "二": 2, "两": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9}
 ZH_SMALL = {"十": 10, "百": 100, "千": 1000}
+HAN = re.compile(r"[\u4e00-\u9fff]")
+# Сгенерированное задание с условием, похожим на задание ФИПИ хотя бы на столько, — повтор.
+NEAR_DUPLICATE = 0.8
 
 
 class BuildError(Exception):
@@ -82,6 +86,32 @@ def stem_key(record):
 
 def option_key(record):
     return tuple(sorted(NOISE.sub("", o["text"]) for o in record["options"]))
+
+
+def similarity(a, b, task_number):
+    """Доля совпадения условий. Урезанная копия («他昨天来…» из «你看，他昨天来…») тоже повтор,
+    поэтому берётся и доля совпавших иероглифов от более короткого условия. У №15 и №19 условие —
+    одно слово или число: похожие записи там не повтор, считается только полное совпадение."""
+    if task_number in (15, 19):
+        return 1.0 if a == b else 0.0
+    if not a or not b:
+        return 0.0
+    matcher = SequenceMatcher(None, a, b)
+    matched = sum(block.size for block in matcher.get_matching_blocks())
+    return max(matcher.ratio(), matched / min(len(a), len(b)))
+
+
+def fipi_twin(record, fipi_records):
+    """Самое похожее задание ФИПИ того же номера: (id, сходство) или (None, 0)."""
+    mine = "".join(HAN.findall(record["stem"]))
+    best = (None, 0.0)
+    for other in fipi_records:
+        if other["taskNumber"] != record["taskNumber"]:
+            continue
+        ratio = similarity(mine, "".join(HAN.findall(other["stem"])), record["taskNumber"])
+        if ratio > best[1]:
+            best = (other["id"], ratio)
+    return best
 
 
 def correct_text(record):
@@ -151,11 +181,13 @@ def merge(records, authored, topics, rules):
         raise BuildError("разборы к несуществующим заданиям: " + ", ".join(unknown))
 
     excluded, conflicts, _, _ = find_duplicates(records)
-    # Сгенерированное задание с тем же условием, что у задания ФИПИ, в банк не идёт.
-    fipi_by_stem = {(r["taskNumber"], stem_key(r)): r["id"] for r in records if r["origin"] == "fipi"}
+    # Сгенерированное задание, повторяющее или почти повторяющее задание ФИПИ, в банк не идёт.
+    fipi_records = [r for r in records if r["origin"] == "fipi"]
     for r in records:
-        twin = fipi_by_stem.get((r["taskNumber"], stem_key(r)))
-        if r["origin"] == "generated" and twin and r["id"] not in excluded:
+        if r["origin"] != "generated" or r["id"] in excluded:
+            continue
+        twin, ratio = fipi_twin(r, fipi_records)
+        if twin and ratio >= NEAR_DUPLICATE:
             excluded[r["id"]] = twin
     pending = {}
     questions = []
@@ -289,6 +321,15 @@ def duplicates_report(records, questions):
         lines.append("Нет.")
     for q in conflicted:
         lines.append(f"- `{q['id']}` (№{q['taskNumber']}) «{q['stem']}»: {q['conflict']}")
+    lines += ["", "## Сгенерированные задания, похожие на ФИПИ", ""]
+    fipi_records = [r for r in records if r["origin"] == "fipi"]
+    near = [(r, *fipi_twin(r, fipi_records)) for r in records if r["origin"] == "generated"]
+    near = [(r, twin, ratio) for r, twin, ratio in near if twin and ratio >= 0.6]
+    if not near:
+        lines.append("Нет.")
+    for r, twin, ratio in near:
+        verdict = "исключено как повтор" if ratio >= NEAR_DUPLICATE else "проверить вручную"
+        lines.append(f"- `{r['id']}` ~ `{twin}`: сходство {round(ratio * 100)}% — {verdict}")
     lines += ["", "## То же условие, другие варианты (проверить вручную)", ""]
     if not similar:
         lines.append("Нет.")

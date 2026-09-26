@@ -52,13 +52,16 @@ function cleanAnswers(map) {
   return out;
 }
 
+// Сессия без заданий или с индексом за границей не восстанавливается: такой прогресс
+// мог записать только сбой, и страница не должна на нём падать.
 function cleanSession(session) {
-  if (!isRecord(session) || !Array.isArray(session.ids)) return null;
+  if (!isRecord(session) || !Array.isArray(session.ids) || session.ids.length === 0) return null;
+  const index = Number.isInteger(session.index) ? session.index : 0;
   return {
     ...session,
     ids: session.ids.map(String),
     answers: isRecord(session.answers) ? { ...session.answers } : {},
-    index: Number.isInteger(session.index) ? session.index : 0,
+    index: Math.max(0, Math.min(session.ids.length - 1, index)),
   };
 }
 

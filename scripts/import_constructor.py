@@ -91,19 +91,26 @@ def convert(block, snapshot_name):
 
 
 def load_snapshot(snapshot=SNAPSHOT):
-    records = []
+    """Записи банка и список блоков, которые прочитать нельзя: (records, skipped)."""
+    records, skipped = [], []
     for path in sorted(Path(snapshot).glob("*.json")):
         block = read_json(path)
         kind = block.get("type", "")
         if not kind.startswith("grammar-") or int(kind.split("-")[1]) not in TASK_NUMBERS:
             continue
+        tasks = block.get("tasks") or []
+        if not tasks or not tasks[0].get("options"):
+            skipped.append(f"{path.name} ({kind}): нет задания или вариантов — блок пропущен")
+            continue
         records.append(convert(block, path.name))
     records.sort(key=lambda r: (r["taskNumber"], r["id"]))
-    return records
+    return records, skipped
 
 
-def report(records):
+def report(records, skipped=()):
     lines = ["# Отчёт импорта", "", f"Записей: {len(records)}.", ""]
+    if skipped:
+        lines += ["## Пропущенные блоки", ""] + [f"- {line}" for line in skipped] + [""]
     lines += ["| Задание | Записей | С ID ФИПИ | Не прочитано | С заметками |", "| --- | --- | --- | --- | --- |"]
     for n in TASK_NUMBERS:
         group = [r for r in records if r["taskNumber"] == n]
@@ -134,9 +141,9 @@ def report(records):
 
 
 def main():
-    records = load_snapshot()
+    records, skipped = load_snapshot()
     write_json(RAW, records)
-    write_text(REVIEW / "import-report.md", report(records))
+    write_text(REVIEW / "import-report.md", report(records, skipped))
     print(f"Импорт: {len(records)} записей → {RAW.relative_to(ROOT)}")
 
 
