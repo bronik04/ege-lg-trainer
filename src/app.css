@@ -136,7 +136,7 @@ h3 { margin: 0 0 6px; font-size: 1rem; }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
 
 .field { display: grid; gap: 6px; color: var(--muted); font-size: .86rem; font-weight: 750; }
-.field select { min-height: 42px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--field); }
+.field select { width: 100%; min-width: 0; min-height: 42px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--field); }
 
 .filter { margin: 0 0 16px; padding: 0; border: 0; }
 .filter legend { padding: 0; margin-bottom: 8px; color: var(--muted); font-size: .86rem; font-weight: 750; }
@@ -272,11 +272,12 @@ h3 { margin: 0 0 6px; font-size: 1rem; }
 
 /* ---------- банк ---------- */
 
-.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 0 0 18px; }
+.stats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin: 0 0 18px; }
 .stat { padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--field); }
 .stat b { display: block; font-size: 1.5rem; letter-spacing: -.03em; }
 .stat span { color: var(--muted); font-size: .84rem; font-weight: 700; }
-.filters-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; margin-bottom: 14px; }
+.filters-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr)); gap: 10px; margin-bottom: 14px; }
+.filters-row > * { min-width: 0; }
 .bank-list { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
 .bank-item {
   display: grid; grid-template-columns: 3.2em 1fr auto; gap: 12px; align-items: center; width: 100%;
@@ -291,6 +292,8 @@ h3 { margin: 0 0 6px; font-size: 1rem; }
 .state.new { color: var(--muted); }
 .state.solved { color: var(--green); }
 .state.mistake { color: var(--red); }
+.state.due { color: var(--warn-ink); }
+.advice { margin: 0 0 14px; }
 
 .foot { margin-top: 18px; color: var(--muted); font-size: .84rem; }
 .foot p { margin: 0; }
@@ -304,6 +307,7 @@ h3 { margin: 0 0 6px; font-size: 1rem; }
   .view { padding: 18px 16px; border-radius: 18px; }
   .sheet { grid-template-columns: repeat(7, minmax(0, 1fr)); }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stats .stat:first-child { grid-column: span 2; }
   .contrast { grid-template-columns: 1fr; }
   .bank-item { grid-template-columns: 2.6em 1fr; }
   .bank-item .state { grid-column: 2; }

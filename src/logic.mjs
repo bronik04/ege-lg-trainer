@@ -4,7 +4,14 @@
 
 export const TASK_NUMBERS = [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27];
 export const PROGRESS_KEY = 'ege-lg-trainer:progress';
-export const PROGRESS_VERSION = 1;
+// Версия 2 (26.09.2026): у записи задания есть review — интервальное повторение ошибок.
+// Прогресс и файлы версии 1 читаются: review выводится из последнего ответа.
+export const PROGRESS_VERSION = 2;
+const READABLE_VERSIONS = [1, 2];
+
+// Через сколько дней исправленная ошибка возвращается на повтор. После последнего
+// верного повтора задание считается усвоенным.
+export const REVIEW_DAYS = [1, 3, 7];
 
 // ---------- случайность ----------
 
@@ -38,15 +45,29 @@ function isRecord(value) {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
 }
 
+const isTime = (value) => typeof value === 'string' && !Number.isNaN(Date.parse(value));
+
+// step — сколько повторов пройдено; после последнего (step = REVIEW_DAYS.length + 1) due = null.
+function cleanReview(review, last) {
+  if (isRecord(review) && Number.isInteger(review.step) && review.step >= 0 && review.step <= REVIEW_DAYS.length + 1) {
+    const learned = review.step > REVIEW_DAYS.length && review.due === null;
+    if (learned || isTime(review.due)) return { step: review.step, due: review.due };
+  }
+  // Версия 1: на повтор ставится только неисправленная ошибка.
+  return last.correct ? null : { step: 0, due: last.at };
+}
+
 function cleanAnswers(map) {
   const out = {};
   if (!isRecord(map)) return out;
   for (const [id, entry] of Object.entries(map)) {
     if (!isRecord(entry) || !isRecord(entry.last)) continue;
+    const last = { optionId: String(entry.last.optionId), correct: entry.last.correct === true, at: String(entry.last.at || '') };
     out[id] = {
       attempts: Number(entry.attempts) || 0,
       correctCount: Number(entry.correctCount) || 0,
-      last: { optionId: String(entry.last.optionId), correct: entry.last.correct === true, at: String(entry.last.at || '') },
+      last,
+      review: cleanReview(entry.review, last),
     };
   }
   return out;
@@ -67,6 +88,17 @@ function cleanSession(session) {
 
 // Разбирает сохранённый прогресс. Повреждённые или чужие данные не роняют страницу:
 // вернётся пустой прогресс, а не исключение.
+// Версия сохранённого прогресса или null, если это не прогресс. Страница, которая старше
+// сохранённых данных, не должна их перезаписывать: иначе откат выкладки сотрёт прогресс.
+export function progressVersion(text) {
+  try {
+    const raw = JSON.parse(text);
+    return isRecord(raw) && Number.isInteger(raw.version) ? raw.version : null;
+  } catch {
+    return null;
+  }
+}
+
 export function parseProgress(text) {
   if (!text) return emptyProgress();
   let raw;
@@ -75,7 +107,7 @@ export function parseProgress(text) {
   } catch {
     return emptyProgress();
   }
-  if (!isRecord(raw) || raw.version !== PROGRESS_VERSION) return emptyProgress();
+  if (!isRecord(raw) || !READABLE_VERSIONS.includes(raw.version)) return emptyProgress();
   return {
     version: PROGRESS_VERSION,
     questions: cleanAnswers(raw.questions),
@@ -114,7 +146,7 @@ export function readProgressFile(text) {
     return { ok: false, reason: 'not-json' };
   }
   if (!isRecord(raw) || raw.app !== PROGRESS_APP) return { ok: false, reason: 'not-progress' };
-  if (raw.version !== PROGRESS_VERSION) return { ok: false, reason: 'version' };
+  if (!READABLE_VERSIONS.includes(raw.version)) return { ok: false, reason: 'version' };
   return { ok: true, progress: parseProgress(text) };
 }
 
@@ -154,8 +186,31 @@ export function mergeProgress(local, incoming) {
   return merged;
 }
 
+// Срок — начало местных суток через days дней: исправленное вечером повторяется уже утром
+// следующего дня, а не через ровно 24 часа.
+function addDays(at, days) {
+  const ms = Date.parse(at);
+  if (Number.isNaN(ms)) return null;
+  const date = new Date(ms);
+  date.setDate(date.getDate() + days);
+  date.setHours(0, 0, 0, 0);
+  return date.toISOString();
+}
+
+// Ошибка ставит задание на повтор сразу. Исправленная возвращается через 1, 3 и 7 дней;
+// верный ответ до срока ничего не сдвигает, неверный — снова делает задание ошибкой.
+function nextReview(prev, correct, at) {
+  if (!correct) return { step: 0, due: at };
+  const review = prev.review || null;
+  if (!review || review.due === null) return review;
+  const fixing = prev.last && !prev.last.correct;
+  if (!fixing && review.due > at) return review;
+  const step = review.step + 1;
+  return { step, due: step > REVIEW_DAYS.length ? null : addDays(at, REVIEW_DAYS[step - 1]) };
+}
+
 export function recordAnswer(progress, kind, id, optionId, correct, at) {
-  const prev = progress[kind][id] || { attempts: 0, correctCount: 0 };
+  const prev = progress[kind][id] || { attempts: 0, correctCount: 0, review: null };
   return {
     ...progress,
     [kind]: {
@@ -164,22 +219,51 @@ export function recordAnswer(progress, kind, id, optionId, correct, at) {
         attempts: prev.attempts + 1,
         correctCount: prev.correctCount + (correct ? 1 : 0),
         last: { optionId, correct, at },
+        review: nextReview(prev, correct, at),
       },
     },
   };
 }
 
-// new — ещё не решалось; mistake — последний ответ неверный; solved — последний ответ верный.
-export function answerState(progress, kind, id) {
+// new — ещё не решалось; mistake — последний ответ неверный; due — ошибка исправлена, но
+// подошёл срок повтора (только если передано now); solved — последний ответ верный.
+export function answerState(progress, kind, id, now = null) {
   const entry = progress[kind][id];
   if (!entry) return 'new';
-  return entry.last.correct ? 'solved' : 'mistake';
+  if (!entry.last.correct) return 'mistake';
+  const review = entry.review;
+  if (now && review && review.due && review.due <= now) return 'due';
+  return 'solved';
+}
+
+// Темы, в которых больше всего неисправленных ошибок: что перечитать в первую очередь.
+export function weakTopics(questions, progress, limit = 3) {
+  const counts = new Map();
+  for (const q of questions) {
+    if (answerState(progress, 'questions', q.id) !== 'mistake') continue;
+    for (const t of q.topicIds) counts.set(t, (counts.get(t) || 0) + 1);
+  }
+  return [...counts].map(([topicId, count]) => ({ topicId, count }))
+    .sort((a, b) => b.count - a.count).slice(0, limit);
+}
+
+// Правила к ошибкам раунда или варианта — чаще встретившиеся первыми. Пропущенная позиция
+// варианта (chosen === null) не ошибка понимания; known — правила, которые есть на странице.
+export function rulesForMistakes(items, byId, known = null, limit = 2) {
+  const counts = new Map();
+  for (const item of items) {
+    if (item.correct || item.chosen === null) continue;
+    for (const r of byId.get(item.id).ruleIds || []) {
+      if (!known || known.has(r)) counts.set(r, (counts.get(r) || 0) + 1);
+    }
+  }
+  return [...counts].sort((a, b) => b[1] - a[1]).slice(0, limit).map(([ruleId]) => ruleId);
 }
 
 // ---------- отбор ----------
 
 // Пустой список в фильтре означает «без ограничения». Тема и номер задания — независимые признаки.
-export function filterQuestions(questions, filters, progress) {
+export function filterQuestions(questions, filters, progress, now = null) {
   const topics = filters.topics || [];
   const tasks = filters.tasks || [];
   const origins = filters.origins || [];
@@ -190,6 +274,7 @@ export function filterQuestions(questions, filters, progress) {
     if (origins.length && !origins.includes(q.origin)) return false;
     if (state === 'new') return answerState(progress, 'questions', q.id) === 'new';
     if (state === 'mistakes') return answerState(progress, 'questions', q.id) === 'mistake';
+    if (state === 'review') return ['mistake', 'due'].includes(answerState(progress, 'questions', q.id, now));
     return true;
   });
 }

@@ -218,6 +218,11 @@ test('объединение прогресса: по заданию — пос�
   assert.deepEqual(merged.history.map((h) => h.score), [7, 5]);
   // Повторная загрузка того же файла ничего не меняет.
   assert.deepEqual(L.mergeProgress(merged, phone), merged);
+  // Файл версии 1 объединяется с прогрессом версии 2: повтор идёт вместе с последним ответом.
+  const v1 = L.parseProgress(JSON.stringify({ version: 1, questions: { 'q22-a': { attempts: 1, correctCount: 0, last: { optionId: '1', correct: false, at: t(9) } } } }));
+  const withV1 = L.mergeProgress(merged, v1);
+  assert.deepEqual(withV1.questions['q22-a'].review, { step: 0, due: t(9) });
+  assert.equal(withV1.questions['q20-a'].review, merged.questions['q20-a'].review);
   assert.deepEqual(L.mergeProgress(merged, L.emptyProgress()), merged);
 });
 
@@ -243,5 +248,91 @@ test('ссылка на задания: порядок сохраняется, �
   assert.equal(L.isVariant(variant.slice().reverse(), byId), false, 'позиции не по порядку');
   assert.equal(L.isVariant(variant.slice(1), byId), false, 'не хватает позиции');
   assert.equal(L.isVariant([...variant.slice(0, 12), 'gone'], byId), false, 'задания нет в банке');
+});
+
+test('повторение: исправленная ошибка возвращается через 1, 3 и 7 дней', () => {
+  const day = (d, h = 10) => new Date(Date.UTC(2026, 8, 1 + d, h)).toISOString();
+  // Срок — начало местных суток через n дней после ответа (тест не зависит от часового пояса).
+  const dayStart = (at, n) => { const x = new Date(at); x.setDate(x.getDate() + n); x.setHours(0, 0, 0, 0); return x.toISOString(); };
+  const before = (iso) => new Date(Date.parse(iso) - 1).toISOString();
+  const state = (p, at) => L.answerState(p, 'questions', 'a', at);
+  let p = L.recordAnswer(L.emptyProgress(), 'questions', 'a', '1', false, day(0));
+  assert.equal(state(p, day(0)), 'mistake');
+  p = L.recordAnswer(p, 'questions', 'a', '2', true, day(0, 11));
+  const first = dayStart(day(0, 11), 1);
+  assert.deepEqual(p.questions.a.review, { step: 1, due: first });
+  assert.equal(state(p, before(first)), 'solved', 'исправлено — до срока не беспокоим');
+  assert.equal(state(p, first), 'due', 'со следующих суток — пора повторить');
+  assert.equal(state(p), 'solved', 'без текущего времени срок не проверяется');
+  // Верный ответ до срока ничего не сдвигает.
+  const early = L.recordAnswer(p, 'questions', 'a', '2', true, before(first));
+  assert.deepEqual(early.questions.a.review, p.questions.a.review);
+  // Повторы в срок: 1 → 3 → 7 дней, потом задание усвоено.
+  p = L.recordAnswer(p, 'questions', 'a', '2', true, day(1, 11));
+  assert.deepEqual(p.questions.a.review, { step: 2, due: dayStart(day(1, 11), 3) });
+  p = L.recordAnswer(p, 'questions', 'a', '2', true, day(4, 11));
+  assert.deepEqual(p.questions.a.review, { step: 3, due: dayStart(day(4, 11), 7) });
+  p = L.recordAnswer(p, 'questions', 'a', '2', true, day(11, 11));
+  assert.deepEqual(p.questions.a.review, { step: 4, due: null });
+  assert.equal(state(p, day(100)), 'solved');
+  // Усвоенное переживает сохранение и загрузку.
+  assert.deepEqual(L.parseProgress(JSON.stringify(p)).questions.a.review, { step: 4, due: null });
+  // Ошибка на любом шаге — снова ошибка с начала.
+  p = L.recordAnswer(p, 'questions', 'a', '1', false, day(101));
+  assert.deepEqual(p.questions.a.review, { step: 0, due: day(101) });
+  // Верно решённое сразу на повтор не ставится.
+  const clean = L.recordAnswer(L.emptyProgress(), 'questions', 'b', '2', true, day(0));
+  assert.equal(clean.questions.b.review, null);
+});
+
+test('повторение: испорченный срок не принимается, версия прогресса читается отдельно', () => {
+  const entry = (review, correct) => JSON.stringify({ version: 2, questions: { a: { attempts: 1, correctCount: 0, last: { optionId: '1', correct, at: '2026-09-20T10:00:00.000Z' }, review } } });
+  assert.deepEqual(L.parseProgress(entry({ step: 1, due: 'zzz' }, false)).questions.a.review,
+    { step: 0, due: '2026-09-20T10:00:00.000Z' }, 'мусор вместо срока — повтор выводится из ответа');
+  assert.equal(L.parseProgress(entry({ step: 2, due: null }, true)).questions.a.review, null, 'due = null бывает только у усвоенного');
+  assert.equal(L.progressVersion('{"version":3,"questions":{}}'), 3);
+  assert.equal(L.progressVersion('не json'), null);
+  assert.equal(L.progressVersion(null), null);
+});
+
+test('прогресс версии 1 читается: неисправленная ошибка встаёт на повтор', () => {
+  const v1 = {
+    version: 1,
+    questions: {
+      a: { attempts: 1, correctCount: 0, last: { optionId: '1', correct: false, at: 't1' } },
+      b: { attempts: 2, correctCount: 1, last: { optionId: '2', correct: true, at: 't2' } },
+    },
+    checks: {}, round: null, variant: null, history: [],
+  };
+  const p = L.parseProgress(JSON.stringify(v1));
+  assert.equal(p.version, 2);
+  assert.deepEqual(p.questions.a.review, { step: 0, due: 't1' });
+  assert.equal(p.questions.b.review, null);
+  const file = L.readProgressFile(JSON.stringify({ app: 'ege-lg-trainer', ...v1 }));
+  assert.equal(file.ok, true, 'файл версии 1 тоже загружается');
+  assert.deepEqual(file.progress.questions, p.questions);
+});
+
+test('фильтр «на повторение», слабые темы и правила к ошибкам', () => {
+  const now = '2026-09-26T12:00:00.000Z';
+  const bank = [q('a', 20), q('b', 22, { topicIds: ['adverbs'], ruleIds: ['jiu-cai'] }), q('c', 22, { topicIds: ['adverbs'], ruleIds: ['jiu-cai', 'you-zai-hai'] }), q('d', 20)];
+  let p = L.recordAnswer(L.emptyProgress(), 'questions', 'b', '1', false, '2026-09-20T10:00:00.000Z');
+  p = L.recordAnswer(p, 'questions', 'c', '1', false, '2026-09-20T10:00:00.000Z');
+  p = L.recordAnswer(p, 'questions', 'a', '1', false, '2026-09-20T10:00:00.000Z');
+  p = L.recordAnswer(p, 'questions', 'a', '2', true, '2026-09-21T10:00:00.000Z');
+  p = L.recordAnswer(p, 'questions', 'd', '2', true, '2026-09-21T10:00:00.000Z');
+  assert.deepEqual(L.filterQuestions(bank, { state: 'review' }, p, now).map((x) => x.id), ['a', 'b', 'c']);
+  // Исправлено сегодня — до завтрашнего срока на повтор не попадает.
+  const fresh = L.recordAnswer(p, 'questions', 'a', '2', true, '2026-09-26T11:00:00.000Z');
+  assert.deepEqual(L.filterQuestions(bank, { state: 'review' }, fresh, now).map((x) => x.id), ['b', 'c']);
+  assert.deepEqual(L.filterQuestions(bank, { state: 'mistakes' }, p, now).map((x) => x.id), ['b', 'c']);
+  assert.deepEqual(L.weakTopics(bank, p), [{ topicId: 'adverbs', count: 2 }]);
+  const byId = new Map(bank.map((x) => [x.id, x]));
+  const items = [{ id: 'b', correct: false }, { id: 'c', correct: false }, { id: 'a', correct: true }];
+  assert.deepEqual(L.rulesForMistakes(items, byId), ['jiu-cai', 'you-zai-hai']);
+  assert.deepEqual(L.rulesForMistakes([{ id: 'a', correct: true }], byId), []);
+  // Неизвестное странице правило не занимает место в совете; пропуск — не ошибка.
+  assert.deepEqual(L.rulesForMistakes(items, byId, new Set(['you-zai-hai'])), ['you-zai-hai']);
+  assert.deepEqual(L.rulesForMistakes([{ id: 'b', correct: false, chosen: null }], byId), []);
 });
 
