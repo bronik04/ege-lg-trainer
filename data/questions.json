@@ -49,7 +49,7 @@
         "4": "Первый слог верен, но 齐 qí произносится вторым, восходящим тоном, а не четвёртым."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q15-0bd9d448",
@@ -965,7 +965,7 @@
         "3": "Здесь неверны оба слога: 熊 xióng — второй тон, 猫 māo — первый."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q15-c788c851",
@@ -2053,7 +2053,7 @@
         "4": "朵 — для цветов и облаков: 一朵花, 一朵云. Зонт так не считают, хотя он и раскрывается."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q16-84511e16",
@@ -2193,7 +2193,7 @@
         "3": "张 — для плоских предметов: бумаги, столов, фотографий. Кроссовки не плоские."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q16-8f87e024",
@@ -2720,7 +2720,7 @@
         "4": "热心 — «отзывчивый, увлечённый» — тоже о человеке: 他对工作很热心. К рынку это слово не подходит."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q17-a462f9eb",
@@ -2862,7 +2862,7 @@
         "3": "感觉 — «чувствовать, ощущать». Слова ничего не ощущают; они вызвали чувство у людей, а это 感动."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q17-c5548cfe",
@@ -3358,7 +3358,7 @@
         "4": "到 — «до»: 到那条河 «до той реки». «Эта река до той длиннее на 30 км» — бессмыслица; нужна конструкция с 比."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q18-44502a82",
@@ -3457,7 +3457,7 @@
         "4": "到 — «до, в» о месте или времени: 到公园去. Для того, на что что-то влияет, нужен 对."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q18-4caa7fa9",
@@ -4145,7 +4145,7 @@
         "4": "在 — «находиться в / на»: 体育馆在超市旁边. С 不太远 после названия места оно не сочетается."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q18-f41d1001",
@@ -4465,7 +4465,7 @@
         "4": "Так читалось бы 两千三百三十万六千四百零五. В записи 零三 — ноль десятков и три единицы: 2303, а не 2330."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q19-2cd74d26",
@@ -5213,7 +5213,7 @@
         "4": "Так записывается 七百九十万零五百. 零 в 七百零九 означает, что десятков нет: 709, а не 790."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q19-d2417962",
@@ -5608,7 +5608,7 @@
         "3": "着 — длящееся действие. «Завтракая, сразу пошла» не складывается: 就 требует, чтобы первое действие закончилось."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q20-16bcbcec",
@@ -5696,7 +5696,7 @@
         "3": "过 — опыт в прошлом («когда-то проводил совещание»). Это не объясняет, почему он не может ответить сейчас, и с 正 не сочетается."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q20-1a438101",
@@ -6026,7 +6026,7 @@
         "2": "着 — длящееся действие или состояние. «Раньше пребывал в процессе поездок» не имеет смысла: поездки остались в опыте."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q20-4143ee10",
@@ -6881,7 +6881,7 @@
         "3": "地 стоит перед глаголом (快快地跑). Здесь глагол 跑 уже стоит до пропуска."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q21-11cf69ee",
@@ -7096,7 +7096,7 @@
         "3": "地 присоединяет признак к глаголу. Здесь после пропуска существительное, а не глагол."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q21-5760054d",
@@ -7518,7 +7518,7 @@
         "2": "得 стоит после глагола перед оценкой (笑得很大声). Здесь признак 大声 идёт до глагола."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q21-c86ecd7d",
@@ -7984,7 +7984,7 @@
         "4": "还 значит «ещё, всё ещё, кроме того». Для просьбы «повторите, пожалуйста» в китайском служит 再."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q22-1e660332",
@@ -8554,7 +8554,7 @@
         "3": "就 — «уже, сразу». Предложение же подчёркивает повтор: вчера приходил и сегодня опять."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q22-bd920829",
@@ -8866,7 +8866,7 @@
         "4": "再 — повтор или «потом» в будущем. Повтора здесь нет: речь о том, сколько занимает дорога."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q22-e5bacad2",
@@ -9043,6 +9043,49 @@
     "reviewStatus": "imported"
   },
   {
+    "id": "q23-02a1aa09",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "fipi",
+    "sourceRef": {
+      "collection": "Открытый банк заданий ФИПИ",
+      "fipiId": null,
+      "kes": [],
+      "constructorBlockId": "02a1aa09-2086-4013-acb6-a2bd5f1be7b6",
+      "file": "sources/constructor-bank/02a1aa09-2086-4013-acb6-a2bd5f1be7b6.json"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "打___羽毛球，运动员就去浴室洗澡。",
+    "options": [
+      {
+        "id": "1",
+        "text": "完"
+      },
+      {
+        "id": "2",
+        "text": "给"
+      },
+      {
+        "id": "3",
+        "text": "动"
+      },
+      {
+        "id": "4",
+        "text": "到"
+      }
+    ],
+    "correctOptionId": "1",
+    "topicIds": [
+      "result-complements"
+    ],
+    "ruleIds": [],
+    "explanation": null,
+    "reviewStatus": "imported"
+  },
+  {
     "id": "q23-0b823312",
     "taskNumber": 23,
     "formatYear": 2026,
@@ -9086,6 +9129,92 @@
     "reviewStatus": "imported"
   },
   {
+    "id": "q23-0c18725b",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "fipi",
+    "sourceRef": {
+      "collection": "Открытый банк заданий ФИПИ",
+      "fipiId": null,
+      "kes": [],
+      "constructorBlockId": "0c18725b-b5c4-4674-9a94-bbec56f373f1",
+      "file": "sources/constructor-bank/0c18725b-b5c4-4674-9a94-bbec56f373f1.json"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "这本英文书很有意思，我看___后还给你，好吗？",
+    "options": [
+      {
+        "id": "1",
+        "text": "上"
+      },
+      {
+        "id": "2",
+        "text": "完"
+      },
+      {
+        "id": "3",
+        "text": "定"
+      },
+      {
+        "id": "4",
+        "text": "到"
+      }
+    ],
+    "correctOptionId": "2",
+    "topicIds": [
+      "result-complements"
+    ],
+    "ruleIds": [],
+    "explanation": null,
+    "reviewStatus": "imported"
+  },
+  {
+    "id": "q23-0d04662a",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "fipi",
+    "sourceRef": {
+      "collection": "Открытый банк заданий ФИПИ",
+      "fipiId": null,
+      "kes": [],
+      "constructorBlockId": "0d04662a-1daa-4ac9-91f8-933285a0b287",
+      "file": "sources/constructor-bank/0d04662a-1daa-4ac9-91f8-933285a0b287.json"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "我刚考___试，还不知道考得怎么样。",
+    "options": [
+      {
+        "id": "1",
+        "text": "好"
+      },
+      {
+        "id": "2",
+        "text": "到"
+      },
+      {
+        "id": "3",
+        "text": "会"
+      },
+      {
+        "id": "4",
+        "text": "完"
+      }
+    ],
+    "correctOptionId": "4",
+    "topicIds": [
+      "result-complements"
+    ],
+    "ruleIds": [],
+    "explanation": null,
+    "reviewStatus": "imported"
+  },
+  {
     "id": "q23-147437cc",
     "taskNumber": 23,
     "formatYear": 2026,
@@ -9118,6 +9247,92 @@
       {
         "id": "4",
         "text": "上"
+      }
+    ],
+    "correctOptionId": "4",
+    "topicIds": [
+      "result-complements"
+    ],
+    "ruleIds": [],
+    "explanation": null,
+    "reviewStatus": "imported"
+  },
+  {
+    "id": "q23-1f12e577",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "fipi",
+    "sourceRef": {
+      "collection": "Открытый банк заданий ФИПИ",
+      "fipiId": null,
+      "kes": [],
+      "constructorBlockId": "1f12e577-577a-4b6b-8842-62dbefd69330",
+      "file": "sources/constructor-bank/1f12e577-577a-4b6b-8842-62dbefd69330.json"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "明天是新月的生日，她的朋友要把生日蛋糕和漂亮的花送 ___她。",
+    "options": [
+      {
+        "id": "1",
+        "text": "完"
+      },
+      {
+        "id": "2",
+        "text": "给"
+      },
+      {
+        "id": "3",
+        "text": "住"
+      },
+      {
+        "id": "4",
+        "text": "好"
+      }
+    ],
+    "correctOptionId": "2",
+    "topicIds": [
+      "result-complements"
+    ],
+    "ruleIds": [],
+    "explanation": null,
+    "reviewStatus": "imported"
+  },
+  {
+    "id": "q23-2943365c",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "fipi",
+    "sourceRef": {
+      "collection": "Открытый банк заданий ФИПИ",
+      "fipiId": null,
+      "kes": [],
+      "constructorBlockId": "2943365c-4518-4b7f-99a6-1eabdf407e75",
+      "file": "sources/constructor-bank/2943365c-4518-4b7f-99a6-1eabdf407e75.json"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "对不起，我看___时间，所以来晚了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "懂"
+      },
+      {
+        "id": "2",
+        "text": "完"
+      },
+      {
+        "id": "3",
+        "text": "成"
+      },
+      {
+        "id": "4",
+        "text": "错"
       }
     ],
     "correctOptionId": "4",
@@ -9215,6 +9430,92 @@
     "reviewStatus": "imported"
   },
   {
+    "id": "q23-3953bb84",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "fipi",
+    "sourceRef": {
+      "collection": "Открытый банк заданий ФИПИ",
+      "fipiId": null,
+      "kes": [],
+      "constructorBlockId": "3953bb84-3414-4879-9678-c3435a7bb0d3",
+      "file": "sources/constructor-bank/3953bb84-3414-4879-9678-c3435a7bb0d3.json"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "他卖___了汽车，后来又买了回来。",
+    "options": [
+      {
+        "id": "1",
+        "text": "上"
+      },
+      {
+        "id": "2",
+        "text": "会"
+      },
+      {
+        "id": "3",
+        "text": "掉"
+      },
+      {
+        "id": "4",
+        "text": "光"
+      }
+    ],
+    "correctOptionId": "3",
+    "topicIds": [
+      "result-complements"
+    ],
+    "ruleIds": [],
+    "explanation": null,
+    "reviewStatus": "imported"
+  },
+  {
+    "id": "q23-41cf12d9",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "fipi",
+    "sourceRef": {
+      "collection": "Открытый банк заданий ФИПИ",
+      "fipiId": null,
+      "kes": [],
+      "constructorBlockId": "41cf12d9-2d59-42f4-945c-ececee3ca8f4",
+      "file": "sources/constructor-bank/41cf12d9-2d59-42f4-945c-ececee3ca8f4.json"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "这辆车有问题，停车时怎么也停不___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "上"
+      },
+      {
+        "id": "2",
+        "text": "住"
+      },
+      {
+        "id": "3",
+        "text": "掉"
+      },
+      {
+        "id": "4",
+        "text": "到"
+      }
+    ],
+    "correctOptionId": "2",
+    "topicIds": [
+      "result-complements"
+    ],
+    "ruleIds": [],
+    "explanation": null,
+    "reviewStatus": "imported"
+  },
+  {
     "id": "q23-48914b54",
     "taskNumber": 23,
     "formatYear": 2026,
@@ -9258,6 +9559,92 @@
     "reviewStatus": "imported"
   },
   {
+    "id": "q23-4ab544e5",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "fipi",
+    "sourceRef": {
+      "collection": "Открытый банк заданий ФИПИ",
+      "fipiId": null,
+      "kes": [],
+      "constructorBlockId": "4ab544e5-7691-4cbb-996c-c9005aa68fb3",
+      "file": "sources/constructor-bank/4ab544e5-7691-4cbb-996c-c9005aa68fb3.json"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "小吴的弟弟已学___了游泳。",
+    "options": [
+      {
+        "id": "1",
+        "text": "完"
+      },
+      {
+        "id": "2",
+        "text": "来"
+      },
+      {
+        "id": "3",
+        "text": "会"
+      },
+      {
+        "id": "4",
+        "text": "错"
+      }
+    ],
+    "correctOptionId": "3",
+    "topicIds": [
+      "result-complements"
+    ],
+    "ruleIds": [],
+    "explanation": null,
+    "reviewStatus": "imported"
+  },
+  {
+    "id": "q23-5651f377",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "fipi",
+    "sourceRef": {
+      "collection": "Открытый банк заданий ФИПИ",
+      "fipiId": null,
+      "kes": [],
+      "constructorBlockId": "5651f377-f5d9-475d-8d5d-ce993940df25",
+      "file": "sources/constructor-bank/5651f377-f5d9-475d-8d5d-ce993940df25.json"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "记___一个人那么容易，忘记却那么困难。",
+    "options": [
+      {
+        "id": "1",
+        "text": "住"
+      },
+      {
+        "id": "2",
+        "text": "到"
+      },
+      {
+        "id": "3",
+        "text": "完"
+      },
+      {
+        "id": "4",
+        "text": "懂"
+      }
+    ],
+    "correctOptionId": "1",
+    "topicIds": [
+      "result-complements"
+    ],
+    "ruleIds": [],
+    "explanation": null,
+    "reviewStatus": "imported"
+  },
+  {
     "id": "q23-6b415e47",
     "taskNumber": 23,
     "formatYear": 2026,
@@ -9293,6 +9680,92 @@
       }
     ],
     "correctOptionId": "1",
+    "topicIds": [
+      "result-complements"
+    ],
+    "ruleIds": [],
+    "explanation": null,
+    "reviewStatus": "imported"
+  },
+  {
+    "id": "q23-80ccbf22",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "fipi",
+    "sourceRef": {
+      "collection": "Открытый банк заданий ФИПИ",
+      "fipiId": null,
+      "kes": [],
+      "constructorBlockId": "80ccbf22-d01a-4c3d-99e6-4c780db321b0",
+      "file": "sources/constructor-bank/80ccbf22-d01a-4c3d-99e6-4c780db321b0.json"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "想学___汉语，一定要注意学习方法。",
+    "options": [
+      {
+        "id": "1",
+        "text": "到"
+      },
+      {
+        "id": "2",
+        "text": "会"
+      },
+      {
+        "id": "3",
+        "text": "完"
+      },
+      {
+        "id": "4",
+        "text": "成"
+      }
+    ],
+    "correctOptionId": "2",
+    "topicIds": [
+      "result-complements"
+    ],
+    "ruleIds": [],
+    "explanation": null,
+    "reviewStatus": "imported"
+  },
+  {
+    "id": "q23-a9a661ba",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "fipi",
+    "sourceRef": {
+      "collection": "Открытый банк заданий ФИПИ",
+      "fipiId": null,
+      "kes": [],
+      "constructorBlockId": "a9a661ba-8bbd-4187-82c3-c66c3a24a50f",
+      "file": "sources/constructor-bank/a9a661ba-8bbd-4187-82c3-c66c3a24a50f.json"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "我妹妹才十八岁，但是她已经学 ___了开车。",
+    "options": [
+      {
+        "id": "1",
+        "text": "完"
+      },
+      {
+        "id": "2",
+        "text": "会"
+      },
+      {
+        "id": "3",
+        "text": "到"
+      },
+      {
+        "id": "4",
+        "text": "错"
+      }
+    ],
+    "correctOptionId": "2",
     "topicIds": [
       "result-complements"
     ],
@@ -9350,7 +9823,50 @@
         "4": "看错 — «увидеть не то, ошибиться». Много слов и длинные фразы объясняют, почему чтение не закончено, а не почему прочитано с ошибкой."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
+  },
+  {
+    "id": "q23-c43c799f",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "fipi",
+    "sourceRef": {
+      "collection": "Открытый банк заданий ФИПИ",
+      "fipiId": null,
+      "kes": [],
+      "constructorBlockId": "c43c799f-7454-4791-9557-de5758ecca2c",
+      "file": "sources/constructor-bank/c43c799f-7454-4791-9557-de5758ecca2c.json"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "孩子常常写 ___字，所以老师要修改他们的作文。",
+    "options": [
+      {
+        "id": "1",
+        "text": "完"
+      },
+      {
+        "id": "2",
+        "text": "错"
+      },
+      {
+        "id": "3",
+        "text": "成"
+      },
+      {
+        "id": "4",
+        "text": "住"
+      }
+    ],
+    "correctOptionId": "2",
+    "topicIds": [
+      "result-complements"
+    ],
+    "ruleIds": [],
+    "explanation": null,
+    "reviewStatus": "imported"
   },
   {
     "id": "q23-c5d0307e",
@@ -9388,6 +9904,92 @@
       }
     ],
     "correctOptionId": "3",
+    "topicIds": [
+      "result-complements"
+    ],
+    "ruleIds": [],
+    "explanation": null,
+    "reviewStatus": "imported"
+  },
+  {
+    "id": "q23-c9e70717",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "fipi",
+    "sourceRef": {
+      "collection": "Открытый банк заданий ФИПИ",
+      "fipiId": null,
+      "kes": [],
+      "constructorBlockId": "c9e70717-74e8-4bc1-b1f0-4b95f5c87beb",
+      "file": "sources/constructor-bank/c9e70717-74e8-4bc1-b1f0-4b95f5c87beb.json"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "妈妈对他说：“晚饭还没做___呢”。",
+    "options": [
+      {
+        "id": "1",
+        "text": "上"
+      },
+      {
+        "id": "2",
+        "text": "完"
+      },
+      {
+        "id": "3",
+        "text": "掉"
+      },
+      {
+        "id": "4",
+        "text": "光"
+      }
+    ],
+    "correctOptionId": "2",
+    "topicIds": [
+      "result-complements"
+    ],
+    "ruleIds": [],
+    "explanation": null,
+    "reviewStatus": "imported"
+  },
+  {
+    "id": "q23-d03b91d2",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "fipi",
+    "sourceRef": {
+      "collection": "Открытый банк заданий ФИПИ",
+      "fipiId": null,
+      "kes": [],
+      "constructorBlockId": "d03b91d2-b4aa-4856-912e-bae6db93ee84",
+      "file": "sources/constructor-bank/d03b91d2-b4aa-4856-912e-bae6db93ee84.json"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "昨天晚上姥姥工作 ___ 十一点。",
+    "options": [
+      {
+        "id": "1",
+        "text": "完"
+      },
+      {
+        "id": "2",
+        "text": "给"
+      },
+      {
+        "id": "3",
+        "text": "好"
+      },
+      {
+        "id": "4",
+        "text": "到"
+      }
+    ],
+    "correctOptionId": "4",
     "topicIds": [
       "result-complements"
     ],
@@ -9447,7 +10049,7 @@
         "4": "学好 — «выучить как следует». Но предложение противопоставляет «не умел» и «теперь умею» — это пара 不会 / 学会."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q23-dc0b000e",
@@ -9581,6 +10183,49 @@
     "reviewStatus": "imported"
   },
   {
+    "id": "q23-ed5be886",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "fipi",
+    "sourceRef": {
+      "collection": "Открытый банк заданий ФИПИ",
+      "fipiId": null,
+      "kes": [],
+      "constructorBlockId": "ed5be886-428e-4c34-983f-6c8260937528",
+      "file": "sources/constructor-bank/ed5be886-428e-4c34-983f-6c8260937528.json"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "他关___了窗户。",
+    "options": [
+      {
+        "id": "1",
+        "text": "完"
+      },
+      {
+        "id": "2",
+        "text": "上"
+      },
+      {
+        "id": "3",
+        "text": "好"
+      },
+      {
+        "id": "4",
+        "text": "住"
+      }
+    ],
+    "correctOptionId": "2",
+    "topicIds": [
+      "result-complements"
+    ],
+    "ruleIds": [],
+    "explanation": null,
+    "reviewStatus": "imported"
+  },
+  {
     "id": "q23-ef09bd2a",
     "taskNumber": 23,
     "formatYear": 2026,
@@ -9624,47 +10269,43 @@
     "reviewStatus": "imported"
   },
   {
-    "id": "q24-02a1aa09",
-    "taskNumber": 24,
+    "id": "q23-f723a5c1",
+    "taskNumber": 23,
     "formatYear": 2026,
     "origin": "fipi",
     "sourceRef": {
       "collection": "Открытый банк заданий ФИПИ",
       "fipiId": null,
       "kes": [],
-      "constructorBlockId": "02a1aa09-2086-4013-acb6-a2bd5f1be7b6",
-      "file": "sources/constructor-bank/02a1aa09-2086-4013-acb6-a2bd5f1be7b6.json"
+      "constructorBlockId": "f723a5c1-84f1-444e-ac7d-3a973d22d28c",
+      "file": "sources/constructor-bank/f723a5c1-84f1-444e-ac7d-3a973d22d28c.json"
     },
     "codifierCodes": [
-      "2.4.49",
-      "2.4.61"
+      "2.4.64"
     ],
-    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
-    "stem": "打___羽毛球，运动员就去浴室洗澡。",
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "你汉字写得很乱，我看不___。",
     "options": [
       {
         "id": "1",
-        "text": "完"
+        "text": "能"
       },
       {
         "id": "2",
-        "text": "给"
+        "text": "下"
       },
       {
         "id": "3",
-        "text": "动"
+        "text": "会"
       },
       {
         "id": "4",
-        "text": "到"
+        "text": "懂"
       }
     ],
-    "correctOptionId": "1",
-    "notes": [
-      "в вариантах нет 得/不: по формату это задание 23 (результативная морфема), а не 24"
-    ],
+    "correctOptionId": "4",
     "topicIds": [
-      "potential-complements"
+      "result-complements"
     ],
     "ruleIds": [],
     "explanation": null,
@@ -9761,100 +10402,6 @@
     "reviewStatus": "imported"
   },
   {
-    "id": "q24-0c18725b",
-    "taskNumber": 24,
-    "formatYear": 2026,
-    "origin": "fipi",
-    "sourceRef": {
-      "collection": "Открытый банк заданий ФИПИ",
-      "fipiId": null,
-      "kes": [],
-      "constructorBlockId": "0c18725b-b5c4-4674-9a94-bbec56f373f1",
-      "file": "sources/constructor-bank/0c18725b-b5c4-4674-9a94-bbec56f373f1.json"
-    },
-    "codifierCodes": [
-      "2.4.49",
-      "2.4.61"
-    ],
-    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
-    "stem": "这本英文书很有意思，我看___后还给你，好吗？",
-    "options": [
-      {
-        "id": "1",
-        "text": "上"
-      },
-      {
-        "id": "2",
-        "text": "完"
-      },
-      {
-        "id": "3",
-        "text": "定"
-      },
-      {
-        "id": "4",
-        "text": "到"
-      }
-    ],
-    "correctOptionId": "2",
-    "notes": [
-      "в вариантах нет 得/不: по формату это задание 23 (результативная морфема), а не 24"
-    ],
-    "topicIds": [
-      "potential-complements"
-    ],
-    "ruleIds": [],
-    "explanation": null,
-    "reviewStatus": "imported"
-  },
-  {
-    "id": "q24-0d04662a",
-    "taskNumber": 24,
-    "formatYear": 2026,
-    "origin": "fipi",
-    "sourceRef": {
-      "collection": "Открытый банк заданий ФИПИ",
-      "fipiId": null,
-      "kes": [],
-      "constructorBlockId": "0d04662a-1daa-4ac9-91f8-933285a0b287",
-      "file": "sources/constructor-bank/0d04662a-1daa-4ac9-91f8-933285a0b287.json"
-    },
-    "codifierCodes": [
-      "2.4.49",
-      "2.4.61"
-    ],
-    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
-    "stem": "我刚考___试，还不知道考得怎么样。",
-    "options": [
-      {
-        "id": "1",
-        "text": "好"
-      },
-      {
-        "id": "2",
-        "text": "到"
-      },
-      {
-        "id": "3",
-        "text": "会"
-      },
-      {
-        "id": "4",
-        "text": "完"
-      }
-    ],
-    "correctOptionId": "4",
-    "notes": [
-      "в вариантах нет 得/不: по формату это задание 23 (результативная морфема), а не 24"
-    ],
-    "topicIds": [
-      "potential-complements"
-    ],
-    "ruleIds": [],
-    "explanation": null,
-    "reviewStatus": "imported"
-  },
-  {
     "id": "q24-1a4b9f68",
     "taskNumber": 24,
     "formatYear": 2026,
@@ -9891,100 +10438,6 @@
       }
     ],
     "correctOptionId": "2",
-    "topicIds": [
-      "potential-complements"
-    ],
-    "ruleIds": [],
-    "explanation": null,
-    "reviewStatus": "imported"
-  },
-  {
-    "id": "q24-1f12e577",
-    "taskNumber": 24,
-    "formatYear": 2026,
-    "origin": "fipi",
-    "sourceRef": {
-      "collection": "Открытый банк заданий ФИПИ",
-      "fipiId": null,
-      "kes": [],
-      "constructorBlockId": "1f12e577-577a-4b6b-8842-62dbefd69330",
-      "file": "sources/constructor-bank/1f12e577-577a-4b6b-8842-62dbefd69330.json"
-    },
-    "codifierCodes": [
-      "2.4.49",
-      "2.4.61"
-    ],
-    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
-    "stem": "明天是新月的生日，她的朋友要把生日蛋糕和漂亮的花送 ___她。",
-    "options": [
-      {
-        "id": "1",
-        "text": "完"
-      },
-      {
-        "id": "2",
-        "text": "给"
-      },
-      {
-        "id": "3",
-        "text": "住"
-      },
-      {
-        "id": "4",
-        "text": "好"
-      }
-    ],
-    "correctOptionId": "2",
-    "notes": [
-      "в вариантах нет 得/不: по формату это задание 23 (результативная морфема), а не 24"
-    ],
-    "topicIds": [
-      "potential-complements"
-    ],
-    "ruleIds": [],
-    "explanation": null,
-    "reviewStatus": "imported"
-  },
-  {
-    "id": "q24-2943365c",
-    "taskNumber": 24,
-    "formatYear": 2026,
-    "origin": "fipi",
-    "sourceRef": {
-      "collection": "Открытый банк заданий ФИПИ",
-      "fipiId": null,
-      "kes": [],
-      "constructorBlockId": "2943365c-4518-4b7f-99a6-1eabdf407e75",
-      "file": "sources/constructor-bank/2943365c-4518-4b7f-99a6-1eabdf407e75.json"
-    },
-    "codifierCodes": [
-      "2.4.49",
-      "2.4.61"
-    ],
-    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
-    "stem": "对不起，我看___时间，所以来晚了。",
-    "options": [
-      {
-        "id": "1",
-        "text": "懂"
-      },
-      {
-        "id": "2",
-        "text": "完"
-      },
-      {
-        "id": "3",
-        "text": "成"
-      },
-      {
-        "id": "4",
-        "text": "错"
-      }
-    ],
-    "correctOptionId": "4",
-    "notes": [
-      "в вариантах нет 得/不: по формату это задание 23 (результативная морфема), а не 24"
-    ],
     "topicIds": [
       "potential-complements"
     ],
@@ -10081,100 +10534,6 @@
     "reviewStatus": "imported"
   },
   {
-    "id": "q24-3953bb84",
-    "taskNumber": 24,
-    "formatYear": 2026,
-    "origin": "fipi",
-    "sourceRef": {
-      "collection": "Открытый банк заданий ФИПИ",
-      "fipiId": null,
-      "kes": [],
-      "constructorBlockId": "3953bb84-3414-4879-9678-c3435a7bb0d3",
-      "file": "sources/constructor-bank/3953bb84-3414-4879-9678-c3435a7bb0d3.json"
-    },
-    "codifierCodes": [
-      "2.4.49",
-      "2.4.61"
-    ],
-    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
-    "stem": "他卖___了汽车，后来又买了回来。",
-    "options": [
-      {
-        "id": "1",
-        "text": "上"
-      },
-      {
-        "id": "2",
-        "text": "会"
-      },
-      {
-        "id": "3",
-        "text": "掉"
-      },
-      {
-        "id": "4",
-        "text": "光"
-      }
-    ],
-    "correctOptionId": "3",
-    "notes": [
-      "в вариантах нет 得/不: по формату это задание 23 (результативная морфема), а не 24"
-    ],
-    "topicIds": [
-      "potential-complements"
-    ],
-    "ruleIds": [],
-    "explanation": null,
-    "reviewStatus": "imported"
-  },
-  {
-    "id": "q24-41cf12d9",
-    "taskNumber": 24,
-    "formatYear": 2026,
-    "origin": "fipi",
-    "sourceRef": {
-      "collection": "Открытый банк заданий ФИПИ",
-      "fipiId": null,
-      "kes": [],
-      "constructorBlockId": "41cf12d9-2d59-42f4-945c-ececee3ca8f4",
-      "file": "sources/constructor-bank/41cf12d9-2d59-42f4-945c-ececee3ca8f4.json"
-    },
-    "codifierCodes": [
-      "2.4.49",
-      "2.4.61"
-    ],
-    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
-    "stem": "这辆车有问题，停车时怎么也停不___。",
-    "options": [
-      {
-        "id": "1",
-        "text": "上"
-      },
-      {
-        "id": "2",
-        "text": "住"
-      },
-      {
-        "id": "3",
-        "text": "掉"
-      },
-      {
-        "id": "4",
-        "text": "到"
-      }
-    ],
-    "correctOptionId": "2",
-    "notes": [
-      "в вариантах нет 得/不: по формату это задание 23 (результативная морфема), а не 24"
-    ],
-    "topicIds": [
-      "potential-complements"
-    ],
-    "ruleIds": [],
-    "explanation": null,
-    "reviewStatus": "imported"
-  },
-  {
     "id": "q24-41d3f9f2",
     "taskNumber": 24,
     "formatYear": 2026,
@@ -10263,53 +10622,6 @@
     "reviewStatus": "imported"
   },
   {
-    "id": "q24-4ab544e5",
-    "taskNumber": 24,
-    "formatYear": 2026,
-    "origin": "fipi",
-    "sourceRef": {
-      "collection": "Открытый банк заданий ФИПИ",
-      "fipiId": null,
-      "kes": [],
-      "constructorBlockId": "4ab544e5-7691-4cbb-996c-c9005aa68fb3",
-      "file": "sources/constructor-bank/4ab544e5-7691-4cbb-996c-c9005aa68fb3.json"
-    },
-    "codifierCodes": [
-      "2.4.49",
-      "2.4.61"
-    ],
-    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
-    "stem": "小吴的弟弟已学___了游泳。",
-    "options": [
-      {
-        "id": "1",
-        "text": "完"
-      },
-      {
-        "id": "2",
-        "text": "来"
-      },
-      {
-        "id": "3",
-        "text": "会"
-      },
-      {
-        "id": "4",
-        "text": "错"
-      }
-    ],
-    "correctOptionId": "3",
-    "notes": [
-      "в вариантах нет 得/不: по формату это задание 23 (результативная морфема), а не 24"
-    ],
-    "topicIds": [
-      "potential-complements"
-    ],
-    "ruleIds": [],
-    "explanation": null,
-    "reviewStatus": "imported"
-  },
-  {
     "id": "q24-4f92102f",
     "taskNumber": 24,
     "formatYear": 2026,
@@ -10346,53 +10658,6 @@
       }
     ],
     "correctOptionId": "2",
-    "topicIds": [
-      "potential-complements"
-    ],
-    "ruleIds": [],
-    "explanation": null,
-    "reviewStatus": "imported"
-  },
-  {
-    "id": "q24-5651f377",
-    "taskNumber": 24,
-    "formatYear": 2026,
-    "origin": "fipi",
-    "sourceRef": {
-      "collection": "Открытый банк заданий ФИПИ",
-      "fipiId": null,
-      "kes": [],
-      "constructorBlockId": "5651f377-f5d9-475d-8d5d-ce993940df25",
-      "file": "sources/constructor-bank/5651f377-f5d9-475d-8d5d-ce993940df25.json"
-    },
-    "codifierCodes": [
-      "2.4.49",
-      "2.4.61"
-    ],
-    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
-    "stem": "记___一个人那么容易，忘记却那么困难。",
-    "options": [
-      {
-        "id": "1",
-        "text": "住"
-      },
-      {
-        "id": "2",
-        "text": "到"
-      },
-      {
-        "id": "3",
-        "text": "完"
-      },
-      {
-        "id": "4",
-        "text": "懂"
-      }
-    ],
-    "correctOptionId": "1",
-    "notes": [
-      "в вариантах нет 得/不: по формату это задание 23 (результативная морфема), а не 24"
-    ],
     "topicIds": [
       "potential-complements"
     ],
@@ -10667,53 +10932,6 @@
     "reviewStatus": "imported"
   },
   {
-    "id": "q24-80ccbf22",
-    "taskNumber": 24,
-    "formatYear": 2026,
-    "origin": "fipi",
-    "sourceRef": {
-      "collection": "Открытый банк заданий ФИПИ",
-      "fipiId": null,
-      "kes": [],
-      "constructorBlockId": "80ccbf22-d01a-4c3d-99e6-4c780db321b0",
-      "file": "sources/constructor-bank/80ccbf22-d01a-4c3d-99e6-4c780db321b0.json"
-    },
-    "codifierCodes": [
-      "2.4.49",
-      "2.4.61"
-    ],
-    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
-    "stem": "想学___汉语，一定要注意学习方法。",
-    "options": [
-      {
-        "id": "1",
-        "text": "到"
-      },
-      {
-        "id": "2",
-        "text": "会"
-      },
-      {
-        "id": "3",
-        "text": "完"
-      },
-      {
-        "id": "4",
-        "text": "成"
-      }
-    ],
-    "correctOptionId": "2",
-    "notes": [
-      "в вариантах нет 得/不: по формату это задание 23 (результативная морфема), а не 24"
-    ],
-    "topicIds": [
-      "potential-complements"
-    ],
-    "ruleIds": [],
-    "explanation": null,
-    "reviewStatus": "imported"
-  },
-  {
     "id": "q24-8893d9bb",
     "taskNumber": 24,
     "formatYear": 2026,
@@ -10764,7 +10982,7 @@
         "3": "找不了 — «не могу искать» (например, нет времени). А здесь человек ищет, но не находит — это 找不到."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q24-8ddfec5f",
@@ -10817,7 +11035,7 @@
         "3": "坐得好 — «сидеть правильно, удобно», к тому же это утвердительная форма. А 太小 говорит о проблеме."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q24-947d56e3",
@@ -10856,53 +11074,6 @@
       }
     ],
     "correctOptionId": "2",
-    "topicIds": [
-      "potential-complements"
-    ],
-    "ruleIds": [],
-    "explanation": null,
-    "reviewStatus": "imported"
-  },
-  {
-    "id": "q24-a9a661ba",
-    "taskNumber": 24,
-    "formatYear": 2026,
-    "origin": "fipi",
-    "sourceRef": {
-      "collection": "Открытый банк заданий ФИПИ",
-      "fipiId": null,
-      "kes": [],
-      "constructorBlockId": "a9a661ba-8bbd-4187-82c3-c66c3a24a50f",
-      "file": "sources/constructor-bank/a9a661ba-8bbd-4187-82c3-c66c3a24a50f.json"
-    },
-    "codifierCodes": [
-      "2.4.49",
-      "2.4.61"
-    ],
-    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
-    "stem": "我妹妹才十八岁，但是她已经学 ___了开车。",
-    "options": [
-      {
-        "id": "1",
-        "text": "完"
-      },
-      {
-        "id": "2",
-        "text": "会"
-      },
-      {
-        "id": "3",
-        "text": "到"
-      },
-      {
-        "id": "4",
-        "text": "错"
-      }
-    ],
-    "correctOptionId": "2",
-    "notes": [
-      "в вариантах нет 得/不: по формату это задание 23 (результативная морфема), а не 24"
-    ],
     "topicIds": [
       "potential-complements"
     ],
@@ -11087,147 +11258,6 @@
     "reviewStatus": "imported"
   },
   {
-    "id": "q24-c43c799f",
-    "taskNumber": 24,
-    "formatYear": 2026,
-    "origin": "fipi",
-    "sourceRef": {
-      "collection": "Открытый банк заданий ФИПИ",
-      "fipiId": null,
-      "kes": [],
-      "constructorBlockId": "c43c799f-7454-4791-9557-de5758ecca2c",
-      "file": "sources/constructor-bank/c43c799f-7454-4791-9557-de5758ecca2c.json"
-    },
-    "codifierCodes": [
-      "2.4.49",
-      "2.4.61"
-    ],
-    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
-    "stem": "孩子常常写 ___字，所以老师要修改他们的作文。",
-    "options": [
-      {
-        "id": "1",
-        "text": "完"
-      },
-      {
-        "id": "2",
-        "text": "错"
-      },
-      {
-        "id": "3",
-        "text": "成"
-      },
-      {
-        "id": "4",
-        "text": "住"
-      }
-    ],
-    "correctOptionId": "2",
-    "notes": [
-      "в вариантах нет 得/不: по формату это задание 23 (результативная морфема), а не 24"
-    ],
-    "topicIds": [
-      "potential-complements"
-    ],
-    "ruleIds": [],
-    "explanation": null,
-    "reviewStatus": "imported"
-  },
-  {
-    "id": "q24-c9e70717",
-    "taskNumber": 24,
-    "formatYear": 2026,
-    "origin": "fipi",
-    "sourceRef": {
-      "collection": "Открытый банк заданий ФИПИ",
-      "fipiId": null,
-      "kes": [],
-      "constructorBlockId": "c9e70717-74e8-4bc1-b1f0-4b95f5c87beb",
-      "file": "sources/constructor-bank/c9e70717-74e8-4bc1-b1f0-4b95f5c87beb.json"
-    },
-    "codifierCodes": [
-      "2.4.49",
-      "2.4.61"
-    ],
-    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
-    "stem": "妈妈对他说：“晚饭还没做___呢”。",
-    "options": [
-      {
-        "id": "1",
-        "text": "上"
-      },
-      {
-        "id": "2",
-        "text": "完"
-      },
-      {
-        "id": "3",
-        "text": "掉"
-      },
-      {
-        "id": "4",
-        "text": "光"
-      }
-    ],
-    "correctOptionId": "2",
-    "notes": [
-      "в вариантах нет 得/不: по формату это задание 23 (результативная морфема), а не 24"
-    ],
-    "topicIds": [
-      "potential-complements"
-    ],
-    "ruleIds": [],
-    "explanation": null,
-    "reviewStatus": "imported"
-  },
-  {
-    "id": "q24-d03b91d2",
-    "taskNumber": 24,
-    "formatYear": 2026,
-    "origin": "fipi",
-    "sourceRef": {
-      "collection": "Открытый банк заданий ФИПИ",
-      "fipiId": null,
-      "kes": [],
-      "constructorBlockId": "d03b91d2-b4aa-4856-912e-bae6db93ee84",
-      "file": "sources/constructor-bank/d03b91d2-b4aa-4856-912e-bae6db93ee84.json"
-    },
-    "codifierCodes": [
-      "2.4.49",
-      "2.4.61"
-    ],
-    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
-    "stem": "昨天晚上姥姥工作 ___ 十一点。",
-    "options": [
-      {
-        "id": "1",
-        "text": "完"
-      },
-      {
-        "id": "2",
-        "text": "给"
-      },
-      {
-        "id": "3",
-        "text": "好"
-      },
-      {
-        "id": "4",
-        "text": "到"
-      }
-    ],
-    "correctOptionId": "4",
-    "notes": [
-      "в вариантах нет 得/不: по формату это задание 23 (результативная морфема), а не 24"
-    ],
-    "topicIds": [
-      "potential-complements"
-    ],
-    "ruleIds": [],
-    "explanation": null,
-    "reviewStatus": "imported"
-  },
-  {
     "id": "q24-d3504820",
     "taskNumber": 24,
     "formatYear": 2026,
@@ -11360,53 +11390,6 @@
     "reviewStatus": "imported"
   },
   {
-    "id": "q24-ed5be886",
-    "taskNumber": 24,
-    "formatYear": 2026,
-    "origin": "fipi",
-    "sourceRef": {
-      "collection": "Открытый банк заданий ФИПИ",
-      "fipiId": null,
-      "kes": [],
-      "constructorBlockId": "ed5be886-428e-4c34-983f-6c8260937528",
-      "file": "sources/constructor-bank/ed5be886-428e-4c34-983f-6c8260937528.json"
-    },
-    "codifierCodes": [
-      "2.4.49",
-      "2.4.61"
-    ],
-    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
-    "stem": "他关___了窗户。",
-    "options": [
-      {
-        "id": "1",
-        "text": "完"
-      },
-      {
-        "id": "2",
-        "text": "上"
-      },
-      {
-        "id": "3",
-        "text": "好"
-      },
-      {
-        "id": "4",
-        "text": "住"
-      }
-    ],
-    "correctOptionId": "2",
-    "notes": [
-      "в вариантах нет 得/不: по формату это задание 23 (результативная морфема), а не 24"
-    ],
-    "topicIds": [
-      "potential-complements"
-    ],
-    "ruleIds": [],
-    "explanation": null,
-    "reviewStatus": "imported"
-  },
-  {
     "id": "q24-ef772303",
     "taskNumber": 24,
     "formatYear": 2026,
@@ -11531,53 +11514,6 @@
       }
     ],
     "correctOptionId": "1",
-    "topicIds": [
-      "potential-complements"
-    ],
-    "ruleIds": [],
-    "explanation": null,
-    "reviewStatus": "imported"
-  },
-  {
-    "id": "q24-f723a5c1",
-    "taskNumber": 24,
-    "formatYear": 2026,
-    "origin": "fipi",
-    "sourceRef": {
-      "collection": "Открытый банк заданий ФИПИ",
-      "fipiId": null,
-      "kes": [],
-      "constructorBlockId": "f723a5c1-84f1-444e-ac7d-3a973d22d28c",
-      "file": "sources/constructor-bank/f723a5c1-84f1-444e-ac7d-3a973d22d28c.json"
-    },
-    "codifierCodes": [
-      "2.4.49",
-      "2.4.61"
-    ],
-    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
-    "stem": "你汉字写得很乱，我看不___。",
-    "options": [
-      {
-        "id": "1",
-        "text": "能"
-      },
-      {
-        "id": "2",
-        "text": "下"
-      },
-      {
-        "id": "3",
-        "text": "会"
-      },
-      {
-        "id": "4",
-        "text": "懂"
-      }
-    ],
-    "correctOptionId": "4",
-    "notes": [
-      "в вариантах нет 得/不: по формату это задание 23 (результативная морфема), а не 24"
-    ],
     "topicIds": [
       "potential-complements"
     ],
@@ -11810,7 +11746,7 @@
         "4": "进来 — «войти внутрь». С 从办公室里 «из кабинета» это противоречит смыслу."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q25-3991756d",
@@ -12249,7 +12185,7 @@
         "3": "出去 — движение наружу от говорящего. Смех здесь никуда не движется."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q25-8444cf37",
@@ -12878,7 +12814,7 @@
         "4": "Фрагмент с 所以 не может стоять первым: следствие идёт после того, из чего оно следует."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q26-328fd2a9",
@@ -13345,7 +13281,7 @@
         "4": "但是 — вторая часть пары 虽然…但是 и не может открывать предложение."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q26-b2e5bcc9",
@@ -13804,7 +13740,7 @@
         "4": "除了…以外 охватывает всю первую часть: 以外 должно стоять перед запятой, а не во втором пропуске. К тому же во второй части понадобилось бы 还 или 也."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q27-50053dfe",
@@ -14033,7 +13969,7 @@
         "4": "不论…都 — «что бы ни…, всё равно». Но он как раз не верит при любых условиях — кроме одного."
       }
     },
-    "reviewStatus": "draft"
+    "reviewStatus": "ready"
   },
   {
     "id": "q27-6bf86432",
