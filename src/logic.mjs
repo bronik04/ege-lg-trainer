@@ -95,6 +95,65 @@ export function pruneProgress(progress, questionIds) {
   return out;
 }
 
+// ---------- перенос прогресса файлом ----------
+
+const PROGRESS_APP = 'ege-lg-trainer';
+
+// Файл прогресса — тот же объект, что в localStorage, с пометкой приложения и датой выгрузки.
+export function exportProgress(progress, at) {
+  return `${JSON.stringify({ app: PROGRESS_APP, exportedAt: at, ...progress }, null, 1)}\n`;
+}
+
+// Разбор загруженного файла: { ok, progress } или { ok: false, reason } — понятная причина
+// отказа нужна ученику, поэтому, в отличие от parseProgress, ошибка не прячется.
+export function readProgressFile(text) {
+  let raw;
+  try {
+    raw = JSON.parse(text);
+  } catch {
+    return { ok: false, reason: 'not-json' };
+  }
+  if (!isRecord(raw) || raw.app !== PROGRESS_APP) return { ok: false, reason: 'not-progress' };
+  if (raw.version !== PROGRESS_VERSION) return { ok: false, reason: 'version' };
+  return { ok: true, progress: parseProgress(text) };
+}
+
+function laterEntry(a, b) {
+  if (!a) return b;
+  if (!b) return a;
+  return b.last.at > a.last.at ? b : a;
+}
+
+function laterSession(a, b) {
+  if (!a) return b;
+  if (!b) return a;
+  return String(b.startedAt || '') > String(a.startedAt || '') ? b : a;
+}
+
+// Объединение прогресса двух устройств. По каждому заданию остаётся запись с более поздним
+// последним ответом, из сессий — начатая позже, история складывается без повторов.
+// Повторная загрузка того же файла ничего не меняет.
+export function mergeProgress(local, incoming) {
+  const merged = emptyProgress();
+  for (const kind of ['questions', 'checks']) {
+    for (const id of new Set([...Object.keys(local[kind]), ...Object.keys(incoming[kind])])) {
+      merged[kind][id] = laterEntry(local[kind][id], incoming[kind][id]);
+    }
+  }
+  merged.round = laterSession(local.round, incoming.round);
+  merged.variant = laterSession(local.variant, incoming.variant);
+  const seen = new Set();
+  merged.history = [...local.history, ...incoming.history]
+    .filter((h) => {
+      const key = JSON.stringify([h.kind, h.at, h.score, h.total]);
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .sort((a, b) => String(a.at).localeCompare(String(b.at)));
+  return merged;
+}
+
 export function recordAnswer(progress, kind, id, optionId, correct, at) {
   const prev = progress[kind][id] || { attempts: 0, correctCount: 0 };
   return {

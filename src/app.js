@@ -65,6 +65,7 @@
   let checkSession = null;
   let variantConfirm = false;
   let resetConfirm = false;
+  let transferNotice = null; // итог загрузки файла прогресса, виден на экране банка
   let bankFilters = { task: '', topic: '', state: 'all', origin: '' };
 
   // ---------- DOM ----------
@@ -127,6 +128,7 @@
       else tab.removeAttribute('aria-current');
     });
     view.replaceChildren();
+    if (name !== 'bank') transferNotice = null;
     if (name === 'rules' && arg) renderRule(arg);
     else if (name === 'rules') renderRules();
     else if (name === 'check') renderCheck();
@@ -729,7 +731,18 @@
       })));
 
     view.append(el('p', { class: 'section-title', text: 'Прогресс' }),
-      el('p', { class: 'small muted', text: 'Прогресс хранится только в этом браузере на этом устройстве. В другом браузере или после очистки данных сайта его не будет.' }));
+      el('p', { class: 'small muted', text: 'Прогресс хранится только в этом браузере на этом устройстве. Чтобы продолжить на другом устройстве, сохраните его в файл и загрузите там: ответы объединятся, по каждому заданию останется последний.' }));
+    const fileInput = el('input', {
+      type: 'file', accept: '.json,application/json', hidden: true, id: 'progressFile',
+      onchange: (e) => importProgress(e.target.files[0]),
+    });
+    view.append(el('div', { class: 'actions' },
+      el('button', { class: 'button ghost', type: 'button', id: 'exportProgress', dataset: { key: 'progress:export' }, onclick: downloadProgress }, 'Сохранить в файл'),
+      el('button', { class: 'button ghost', type: 'button', id: 'importProgress', dataset: { key: 'progress:import' }, onclick: () => fileInput.click() }, 'Загрузить из файла'),
+      fileInput));
+    if (transferNotice) {
+      view.append(el('p', { class: transferNotice.ok ? 'notice' : 'notice warn', role: 'status', id: 'transferNotice', text: transferNotice.text }));
+    }
     const reset = el('div', { class: 'actions' });
     if (!resetConfirm) {
       reset.append(el('button', { class: 'button ghost danger', type: 'button', onclick: () => { resetConfirm = true; render(false); } }, 'Сбросить прогресс'));
@@ -739,11 +752,47 @@
           progress = emptyProgress();
           storage.remove(PROGRESS_KEY);
           resetConfirm = false;
+          transferNotice = null;
           render(false);
         } }, 'Удалить прогресс'),
         el('button', { class: 'button ghost', type: 'button', onclick: () => { resetConfirm = false; render(false); } }, 'Отмена'));
     }
     view.append(reset);
+  }
+
+  function downloadProgress() {
+    const at = now();
+    const url = URL.createObjectURL(new Blob([exportProgress(progress, at)], { type: 'application/json' }));
+    const link = el('a', { href: url, download: `ege-lg-trainer-progress-${at.slice(0, 10)}.json` });
+    document.body.append(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  const FILE_ERRORS = {
+    'not-json': 'Файл не прочитан: это не файл прогресса тренажёра.',
+    'not-progress': 'Это не файл прогресса тренажёра. Нужен файл, сохранённый кнопкой «Сохранить в файл».',
+    version: 'Файл сохранён другой версией тренажёра и сюда не подходит.',
+  };
+
+  async function importProgress(file) {
+    if (!file) return;
+    let result;
+    try {
+      result = readProgressFile(await file.text());
+    } catch {
+      result = { ok: false, reason: 'not-json' };
+    }
+    if (result.ok) {
+      progress = pruneProgress(mergeProgress(progress, result.progress), questions.map((q) => q.id));
+      save();
+      const count = Object.keys(result.progress.questions).length;
+      transferNotice = { ok: true, text: `Прогресс из файла объединён с этим браузером. В файле ответы на ${tasksWord(count)}.` };
+    } else {
+      transferNotice = { ok: false, text: FILE_ERRORS[result.reason] };
+    }
+    render(false);
   }
 
   // ---------- клавиатура, тема, запуск ----------
