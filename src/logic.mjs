@@ -169,13 +169,17 @@ export function grade(item, optionId) {
 }
 
 // Ссылка «Сообщить об ошибке»: новый issue на GitHub с ID, условием и ответами.
-// В ней только то, что ученик и так видит на экране, — никаких данных о нём самом.
+// В ней только данные задания — ничего о самом ученике. Условие идёт блоком кода:
+// иначе GitHub прочтёт два пропуска ___…___ как разметку и они пропадут.
 export function reportUrl(base, item, optionId) {
   if (!base) return '';
   const what = item.taskNumber ? `задание ${item.taskNumber}` : 'вопрос к правилу';
   const body = [
     `ID: ${item.id} (${what})`,
-    `Условие: ${item.stem || item.sentence || item.prompt || ''}`,
+    'Условие:',
+    '```',
+    item.stem || item.sentence || item.prompt || '',
+    '```',
     `Выбранный ответ: ${optionId == null ? '—' : optionText(item, optionId)}`,
     `Ответ по ключу: ${optionText(item, item.correctOptionId)}`,
     '',

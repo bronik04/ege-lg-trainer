@@ -167,7 +167,7 @@ test('ссылка «сообщить об ошибке»: ID, условие, �
   assert.equal(url.searchParams.get('title'), 'Ошибка: задание 20 · q20-x');
   const body = url.searchParams.get('body');
   assert.match(body, /ID: q20-x \(задание 20\)/);
-  assert.match(body, /Условие: 他___着一件红衣服。/);
+  assert.match(body, /Условие:\n```\n他___着一件红衣服。\n```/);
   assert.match(body, /Выбранный ответ: 了/);
   assert.match(body, /Ответ по ключу: 着/);
 });
@@ -176,8 +176,15 @@ test('ссылка «сообщить об ошибке»: вопрос к пр�
   const check = { id: 'check-x', sentence: '你好 nǐ hǎo', options: [{ id: 'a', text: '3-3' }], correctOptionId: 'a' };
   const url = new URL(L.reportUrl('https://example.org/new', check, null));
   assert.equal(url.searchParams.get('title'), 'Ошибка: вопрос к правилу · check-x');
-  assert.match(url.searchParams.get('body'), /Условие: 你好 nǐ hǎo/);
+  assert.match(url.searchParams.get('body'), /```\n你好 nǐ hǎo\n```/);
   assert.match(url.searchParams.get('body'), /Выбранный ответ: —/);
   assert.equal(L.reportUrl('', check, 'a'), '');
+});
+
+test('ссылка «сообщить об ошибке»: два пропуска задания 27 не превращаются в разметку', () => {
+  const item = q('q27-x', 27, { stem: '___下雨，___我们去。' });
+  const body = new URL(L.reportUrl('https://example.org/new', item, '2')).searchParams.get('body');
+  // Внутри блока кода GitHub не читает ___…___ как жирный курсив.
+  assert.match(body, /```\n___下雨，___我们去。\n```/);
 });
 

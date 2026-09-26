@@ -256,8 +256,9 @@
     const report = reportUrl(DATA.meta.issuesUrl, item, optionId);
     if (report) {
       box.append(el('p', { class: 'report' },
-        el('a', { href: report, target: '_blank', rel: 'noopener', text: 'Нашли ошибку в задании или разборе? Сообщить' }),
-        el('span', { class: 'muted', text: ' — откроется GitHub, нужен аккаунт' })));
+        'Нашли ошибку в задании или разборе? ',
+        el('a', { href: report, target: '_blank', rel: 'noopener', text: 'Сообщить на GitHub (новая вкладка)' }),
+        el('span', { class: 'muted', text: ' — нужен аккаунт, сообщение увидят все' })));
     }
     return box;
   }
