@@ -60,6 +60,8 @@ after(async () => {
 
 async function open(url, { width = 1100, height = 900, hash = '' } = {}) {
   const context = await browser.newContext({ viewport: { width, height } });
+  // Шрифты из сети тесту не нужны: без них страница работает на системных.
+  await context.route(/^https?:\/\//, (route) => route.abort());
   const page = await context.newPage();
   const errors = [];
   page.on('pageerror', (e) => errors.push(e.message));
@@ -401,16 +403,78 @@ test('прогресс более новой версии страница не 
 });
 
 test('телефон: без горизонтальной прокрутки во всех режимах', { skip }, async () => {
-  for (const width of [375, 320]) {
+  for (const width of [390, 375, 320]) {
     const { page, context } = await open(mainUrl, { width, height: 812 });
+    const noOverflow = async (where) => {
+      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+      assert.ok(overflow <= 0, `${width}px ${where}: горизонтальная прокрутка ${overflow}px`);
+    };
     for (const hash of ['#/rules', '#/rules/jiu-cai', '#/practice', '#/variant', '#/bank']) {
       await page.goto(mainUrl + hash);
       if (hash === '#/variant' && await page.locator('#buildVariant').count()) await page.locator('#buildVariant').click();
-      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-      assert.ok(overflow <= 0, `${width}px ${hash}: горизонтальная прокрутка ${overflow}px`);
+      await noOverflow(hash);
     }
+    // Раунд с разбором и итог варианта: длинные предложения в одну строку не распирают страницу.
+    await page.goto(`${mainUrl}#/practice?ids=q21-a`);
+    await page.locator('[data-card]').waitFor();
+    await page.keyboard.press('2');
+    await page.locator('.feedback').waitFor();
+    await noOverflow('раунд с разбором');
+    await page.goto(`${mainUrl}#/variant`);
+    await page.locator('#finishVariant').click();
+    await page.locator('#confirmFinish').click();
+    await see(page, '.score', /из 13/);
+    await noOverflow('итог варианта');
     await context.close();
   }
+});
+
+test('тетрадь: пропуск-клетка, исправление красной ручкой, панель на телефоне', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { width: 390, height: 844, hash: '#/practice?ids=q25-a' });
+  await page.locator('[data-card]').waitFor();
+  // Два знака в самом длинном варианте — две клетки; пустая клетка ничего не подсказывает.
+  assert.equal(await page.locator('.stem .tz .c').count(), 2);
+  assert.equal(await page.locator('.stem .tz').getAttribute('aria-label'), 'пропуск');
+  // Неверно: выбранное вписано и зачёркнуто, сверху верный ответ.
+  await page.keyboard.press('3');
+  await page.locator('.feedback').waitFor();
+  assert.deepEqual(await page.locator('.stem .tz .ink').allInnerTexts(), ['下', '去']);
+  assert.equal(await page.locator('.stem .tz.wrong .fix').innerText(), '过来');
+  assert.equal(await page.locator('.stem .tz').getAttribute('aria-label'), 'пропуск: выбрано 下去, верно 过来');
+  // «Дальше» — в панели внизу экрана, видна без прокрутки.
+  const next = await page.locator('.dock [data-enter]').boundingBox();
+  assert.ok(next && next.y + next.height <= 844, `«Дальше» за краем экрана: ${JSON.stringify(next)}`);
+  await page.keyboard.press('Enter');
+  await see(page, 'h2', /Раунд окончен/);
+  assert.doesNotMatch(await page.locator('#view').innerText(), /\bnull\b/);
+
+  // Верно: галочка у клетки, исправления нет; итог без ошибок — без «null».
+  await page.goto(`${mainUrl}#/practice?ids=q21-a`);
+  await page.locator('[data-card]').waitFor();
+  await page.keyboard.press('1');
+  await page.locator('.stem .tz.right .tick').waitFor();
+  assert.equal(await page.locator('.stem .fix').count(), 0);
+  await page.keyboard.press('Enter');
+  await see(page, 'h2', /Раунд окончен/);
+  assert.doesNotMatch(await page.locator('#view').innerText(), /\bnull\b/);
+
+  // Вариант: ответ вписан без пометок; союз задания 27 разложен по двум пропускам.
+  const ids = [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27].map((n) => `q${n}-a`);
+  await page.goto(`${mainUrl}#/variant?ids=${ids.join(',')}`);
+  await page.locator('.sheet .cell').nth(1).click();
+  await page.keyboard.press('2');
+  assert.deepEqual(await page.locator('.stem .tz .ink').allInnerTexts(), ['场']);
+  assert.equal(await page.locator('.stem .tz.right, .stem .tz.wrong, .stem .fix').count(), 0);
+  await page.locator('.sheet .cell').nth(12).click();
+  await page.keyboard.press('4');
+  assert.equal(await page.locator('.stem .tz').count(), 2);
+  assert.deepEqual(await page.locator('.stem .tz .ink').allInnerTexts(), ['不', '但', '而', '且']);
+  await page.locator('#finishVariant').click();
+  await page.locator('#confirmFinish').click();
+  await see(page, '.score', /из 13/);
+  assert.doesNotMatch(await page.locator('#view').innerText(), /\bnull\b/);
+  assert.deepEqual(errors, []);
+  await context.close();
 });
 
 test('публикация без черновиков, проверка — с пометкой', { skip }, async () => {

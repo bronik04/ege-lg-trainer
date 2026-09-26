@@ -16,6 +16,7 @@
   const origins = [...new Set(questions.map((q) => q.origin))];
   const ORIGIN_NAMES = { fipi: 'Банк ФИПИ', generated: 'Новые задания' };
   const SOLO_STEM = new Set([15, 19]);
+  const HANZI_RE = /[㐀-鿿]/;
   const FILTERS_KEY = 'ege-lg-trainer:filters';
   const THEME_KEY = 'ege-lg-trainer:theme';
 
@@ -167,8 +168,10 @@
       view.append(el('p', { class: 'notice warn small', text: 'Браузер не даёт сохранить прогресс: он пропадёт после перезагрузки страницы.' }));
     }
     if (focus) {
+      // Новый экран — с начала страницы: на телефоне сверху выход и деления раунда.
+      window.scrollTo(0, 0);
       const target = view.querySelector('[data-focus]') || view;
-      target.focus({ preventScroll: false });
+      target.focus({ preventScroll: true });
     } else if (activeKey) {
       const same = [...view.querySelectorAll('[data-key]')].find((node) => node.dataset.key === activeKey);
       if (same) same.focus();
@@ -177,10 +180,11 @@
 
   // ---------- общие части ----------
 
-  // «Перечитайте правило» — к ошибкам раунда или варианта.
+  // «Перечитайте правило» — к ошибкам раунда или варианта. Без ошибок — пустой фрагмент:
+  // null штатный view.append напечатал бы словом «null».
   function ruleAdvice(items) {
     const ids = rulesForMistakes(items, byId, new Set(rulesById.keys()));
-    if (!ids.length) return null;
+    if (!ids.length) return document.createDocumentFragment();
     const links = ids.flatMap((id, i) => [i ? ', ' : '', el('a', { href: `#/rules/${encodeURIComponent(id)}`, text: rulesById.get(id).title })]);
     return el('p', { class: 'notice advice', id: 'ruleAdvice' }, 'Перечитайте правило: ', ...links, '.');
   }
@@ -261,26 +265,77 @@
 
   function questionPills(q) {
     return el('div', { class: 'pills' },
-      el('span', { class: 'pill', text: `Задание ${q.taskNumber}` }),
+      el('span', { class: 'pill task' }, 'Задание ', el('span', { class: 'cellnum', text: String(q.taskNumber) })),
       q.topicIds.map((id) => topicsById.get(id)).filter(Boolean).map((t) => el('span', { class: 'pill quiet', text: t.title })),
       el('span', { class: 'pill quiet', text: originLabel(q) }),
       q.draft ? el('span', { class: 'pill draft', text: 'черновик' }) : null);
   }
 
-  function stemNode(q) {
+  // Красная галочка учителя у клетки: рисуется штрихом.
+  function tickMark() {
+    const ns = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('class', 'tick');
+    svg.setAttribute('viewBox', '0 0 20 20');
+    svg.setAttribute('aria-hidden', 'true');
+    const path = document.createElementNS(ns, 'path');
+    path.setAttribute('d', 'M3 11 L8 16 L18 3');
+    path.setAttribute('pathLength', '1');
+    svg.append(path);
+    return svg;
+  }
+
+  // Пропуск — клетка 田字格. Ответ ученика вписан синим; после проверки — галочка
+  // или зачёркнутое и верный ответ над клеткой красной ручкой.
+  function blankNode(cells, { written, state, fix }) {
+    const chars = written ? [...written.replace(/\s+/g, '')] : [];
+    let label = 'пропуск';
+    if (state === 'right' && written) label = `пропуск: верно, ${written}`;
+    else if (state === 'wrong' && written && fix) label = `пропуск: выбрано ${written}, верно ${fix}`;
+    else if (state === 'wrong' && fix) label = `пропуск: верно ${fix}`;
+    else if (state === 'wrong' && written) label = `пропуск: выбрано ${written}, неверно`;
+    else if (written) label = `пропуск, вписано: ${written}`;
+    const box = el('span', { class: ['tz', written ? 'written' : '', state || ''].filter(Boolean).join(' '), role: 'img', 'aria-label': label });
+    if (cells === 0 || chars.length > cells) {
+      box.append(el('span', { class: 'c long' }, written ? el('span', { class: 'ink', text: written }) : null));
+    } else {
+      for (let i = 0; i < cells; i += 1) box.append(el('span', { class: 'c' }, chars[i] ? el('span', { class: 'ink', text: chars[i] }) : null));
+    }
+    if (state === 'right' && written) box.append(tickMark());
+    if (fix) box.append(el('span', { class: 'fix', 'aria-hidden': 'true', text: fix }));
+    return box;
+  }
+
+  // Предложение с пропусками-клетками. selected — выбранный вариант, reveal — после проверки.
+  function sentenceNode(item, text, cls, { selected, reveal }) {
+    const cells = blankCells(item);
+    const chosen = selected == null ? null : blankFill(item, selected);
+    const right = reveal ? blankFill(item, item.correctOptionId) : null;
+    const correct = selected != null && selected === item.correctOptionId;
+    let index = 0;
+    return el('p', { class: cls, lang: 'zh' }, stemSegments(text).map((part) => {
+      if (!part.blank) return part.text;
+      const i = index;
+      index += 1;
+      return blankNode(cells[i], {
+        written: chosen ? chosen[i] : null,
+        state: reveal ? (correct ? 'right' : 'wrong') : null,
+        fix: reveal && !correct && right ? right[i] : null,
+      });
+    }));
+  }
+
+  function stemNode(q, state) {
     if (q.taskNumber === 26 && q.fragments) {
       return el('ol', { class: 'fragments' },
         q.fragments.map((f) => el('li', {}, el('b', { text: f.id }), el('span', { text: f.text }))));
     }
-    const cls = SOLO_STEM.has(q.taskNumber) ? 'stem solo' : 'stem';
-    return el('p', { class: cls, lang: 'zh' },
-      stemSegments(q.stem).map((part) => (part.blank
-        ? el('span', { class: 'blank', role: 'img', 'aria-label': 'пропуск' })
-        : part.text)));
+    return sentenceNode(q, q.stem, SOLO_STEM.has(q.taskNumber) ? 'stem solo' : 'stem', state);
   }
 
   // Карточка вопроса: задание ЕГЭ или вопрос по правилу. reveal — показать верный/неверный.
-  function questionCard(item, { kind, selected, reveal, onChoose, heading }) {
+  // hint — что делает Enter (подсказка клавиш видна только при мыши и клавиатуре).
+  function questionCard(item, { kind, selected, reveal, onChoose, heading, hint }) {
     const card = el('article', { class: 'question', dataset: { card: '1' } });
     if (kind === 'exam') card.append(questionPills(item));
     else {
@@ -289,10 +344,9 @@
         item.draft ? el('span', { class: 'pill draft', text: 'черновик' }) : null));
     }
     card.append(el('p', { class: 'instruction', tabindex: '-1', dataset: { focus: '1' }, text: heading || item.prompt }));
-    if (kind === 'exam') card.append(stemNode(item));
+    if (kind === 'exam') card.append(stemNode(item, { selected, reveal }));
     else if (item.sentence) {
-      card.append(el('p', { class: 'stem', lang: 'zh' },
-        stemSegments(item.sentence).map((part) => (part.blank ? el('span', { class: 'blank', role: 'img', 'aria-label': 'пропуск' }) : part.text))));
+      card.append(sentenceNode(item, item.sentence, 'stem', { selected, reveal }));
       if (item.sentenceRu) card.append(el('p', { class: 'stem-ru', text: item.sentenceRu }));
     }
     const short = item.options.every((o) => o.text.length <= 12);
@@ -309,9 +363,15 @@
         'aria-pressed': o.id === selected ? 'true' : 'false',
         dataset: { option: String(i + 1) },
         onclick: () => onChoose(o.id),
-      }, el('span', { class: 'num', text: `${i + 1})` }), el('span', { class: 'text', lang: kind === 'exam' || /[一-鿿]/.test(o.text) ? 'zh' : 'ru', text: o.text })));
+      }, el('span', { class: 'num', text: String(i + 1) }),
+      // Тоны «2-4-2», числа и «CAB» — не китайский текст: свой шрифт и lang.
+      HANZI_RE.test(o.text) ? el('span', { class: 'text', lang: 'zh', text: o.text }) : el('span', { class: 'text plain', lang: 'ru', text: o.text })));
     });
     card.append(list);
+    if (hint) {
+      card.append(el('p', { class: 'keys' }, 'Клавиши: ', el('kbd', { text: '1' }), '–', el('kbd', { text: String(item.options.length) }),
+        ' — ответ, ', el('kbd', { text: 'Enter' }), ` — ${hint}`));
+    }
     return card;
   }
 
@@ -369,10 +429,41 @@
     return box;
   }
 
-  function progressBar(label, right, done, total) {
-    return el('div', { class: 'quiz-top' },
-      el('div', { class: 'progress' }, el('span', { text: label }), el('span', { text: right })),
-      el('div', { class: 'track' }, el('div', { class: 'fill', style: `width:${total ? Math.round((done / total) * 100) : 0}%` })));
+  function progressLine(label, right) {
+    return el('div', { class: 'progress' }, el('span', { text: label }), el('span', { text: right }));
+  }
+
+  // Верх раунда и проверки правила: выход, деления по заданиям (нефрит — верно, красное —
+  // ошибка, синее — текущее) и строка счёта. Длинный раунд — сплошная полоска.
+  function sessionBar({ exit, marks, index, label, right }) {
+    const bar = el('div', { class: 'session-bar' },
+      el('a', { class: 'exit', href: exit, 'aria-label': 'Выйти', title: 'Выйти', text: '✕' }));
+    if (marks.length <= 30) {
+      bar.append(el('div', { class: 'ticks', 'aria-hidden': 'true' },
+        marks.map((m, i) => el('i', { class: m || (i === index ? 'now' : null) }))));
+    } else {
+      const done = marks.filter(Boolean).length;
+      bar.append(el('div', { class: 'track', 'aria-hidden': 'true' },
+        el('div', { class: 'fill', style: `width:${Math.round((done / marks.length) * 100)}%` })));
+    }
+    return el('div', { class: 'quiz-top' }, bar, progressLine(label, right));
+  }
+
+  const markOf = (answer, correctId) => (answer === undefined || answer === null ? null : answer === correctId ? 'ok' : 'bad');
+  const reducedMotion = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // После ответа: если разбор ниже экрана (телефон), предложение с исправлением — к верху,
+  // под ним начало разбора. Фокус — на «Дальше»: панель внизу видна и так.
+  function afterAnswer() {
+    const box = view.querySelector('.feedback');
+    const anchor = view.querySelector('[data-card] .stem, [data-card] .fragments, [data-card] .instruction');
+    const dock = view.querySelector('.dock');
+    const bottom = window.innerHeight - (dock ? dock.getBoundingClientRect().height : 0);
+    if (box && anchor && box.getBoundingClientRect().top + 48 > bottom) {
+      anchor.scrollIntoView({ block: 'start', behavior: reducedMotion() ? 'auto' : 'smooth' });
+    }
+    const next = view.querySelector('[data-enter]');
+    if (next) next.focus({ preventScroll: true });
   }
 
   function emptyBank() {
@@ -392,37 +483,45 @@
       return;
     }
     if (checks.length) {
-      view.append(el('div', { class: 'actions' },
-        el('button', { class: 'button alt', type: 'button', onclick: () => startChecks(checks.map((c) => c.id), null) },
-          `Проверить себя по всем правилам · ${questionsWord(checks.length)}`)));
+      view.append(el('button', { class: 'all-checks', type: 'button', onclick: () => startChecks(checks.map((c) => c.id), null) },
+        'Проверить себя по всем правилам', el('span', { text: `${questionsWord(checks.length)} →` })));
     }
+    // Оглавление по номерам заданий: темы с одним набором номеров — одна строка.
+    const rows = new Map();
     for (const topic of topics) {
       const topicRules = rules.filter((r) => r.topicIds.includes(topic.id));
       if (!topicRules.length) continue;
-      view.append(el('section', { class: 'topic-group' },
-        el('h3', {}, topic.title, el('small', { text: `№ ${topic.taskNumbers.join(', ')}` })),
-        el('div', { class: 'rule-list' }, topicRules.map((r) => el('a', { class: 'rule-card', href: `#/rules/${encodeURIComponent(r.id)}` },
-          el('strong', { text: r.title }), el('span', { text: r.summary }),
-          r.draft ? el('span', { class: 'pill draft', text: 'черновик' }) : null)))));
+      const key = topic.taskNumbers.join('·');
+      if (!rows.has(key)) rows.set(key, { numbers: topic.taskNumbers, titles: [], rules: [] });
+      const row = rows.get(key);
+      row.titles.push(topic.title);
+      for (const r of topicRules) if (!row.rules.includes(r)) row.rules.push(r);
     }
+    const first = (row) => (row.numbers.length ? Math.min(...row.numbers) : Infinity);
+    view.append(el('ul', { class: 'index' }, [...rows.values()].sort((a, b) => first(a) - first(b)).map((row) => el('li', {},
+      el('span', { class: 'cellnum' }, el('span', { class: 'sr', text: 'Задание ' }), row.numbers.join('·') || '—'),
+      el('div', {},
+        el('h3', { text: row.titles.join(' · ') }),
+        row.rules.map((r) => el('a', { class: 'rule-card', href: `#/rules/${encodeURIComponent(r.id)}` },
+          r.title, r.draft ? el('span', { class: 'pill draft', text: 'черновик' }) : null)))))));
   }
 
   function renderRule(id) {
     const rule = rulesById.get(id);
     if (!rule) {
       view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Правило не найдено' }),
-        el('p', {}, el('a', { href: '#/rules', text: '← Все правила' })));
+        el('p', {}, el('a', { class: 'back', href: '#/rules', text: '← Все правила' })));
       return;
     }
     const ruleChecks = checks.filter((c) => c.ruleIds.includes(id));
     const ruleQuestions = questions.filter((q) => q.topicIds.some((t) => rule.topicIds.includes(t)));
     const taskNumbers = [...new Set(rule.topicIds.flatMap((t) => (topicsById.get(t) || { taskNumbers: [] }).taskNumbers))];
     const detail = el('article', { class: 'rule-detail' },
-      el('a', { href: '#/rules', text: '← Все правила' }),
+      el('a', { class: 'back', href: '#/rules', text: '← Все правила' }),
       el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: rule.title }),
       el('div', { class: 'pills' },
+        taskNumbers.length ? el('span', { class: 'pill task' }, 'Задание ', el('span', { class: 'cellnum', text: taskNumbers.join('·') })) : null,
         rule.topicIds.map((t) => topicsById.get(t)).filter(Boolean).map((t) => el('span', { class: 'pill quiet', text: t.title })),
-        taskNumbers.length ? el('span', { class: 'pill', text: `ЕГЭ: № ${taskNumbers.join(', ')}` }) : null,
         rule.draft ? el('span', { class: 'pill draft', text: 'черновик' }) : null),
       el('p', { text: rule.summary }),
       el('p', { class: 'section-title', text: 'Когда употребляется' }),
@@ -478,33 +577,35 @@
     const id = s.ids[s.index];
     const item = checksById.get(id);
     const chosen = s.answers[id];
-    view.append(progressBar(`Вопрос ${s.index + 1} из ${s.ids.length}`, `верно: ${correctCount}`, answered, s.ids.length));
+    view.append(sessionBar({
+      exit: back, index: s.index, label: `Вопрос ${s.index + 1} из ${s.ids.length}`, right: `верно: ${correctCount}`,
+      marks: s.ids.map((x) => markOf(s.answers[x], checksById.get(x).correctOptionId)),
+    }));
     view.append(questionCard(item, {
       kind: 'check',
       selected: chosen,
       reveal: chosen !== undefined,
+      hint: 'дальше',
       onChoose: (optionId) => {
         if (checkSession.answers[id] !== undefined) return;
         checkSession = answerSession(checkSession, id, optionId);
         progress = recordAnswer(progress, 'checks', id, optionId, optionId === item.correctOptionId, now());
         save();
         render(false);
-        const next = view.querySelector('[data-enter]');
-        if (next) next.focus();
+        afterAnswer();
       },
     }));
     if (chosen !== undefined) {
       view.append(feedback(item, chosen));
       const last = s.index === s.ids.length - 1;
-      view.append(el('div', { class: 'actions' },
+      view.append(el('div', { class: 'actions dock' },
         el('button', {
           class: 'button', type: 'button', dataset: { enter: '1' },
           onclick: () => {
             checkSession = last ? { ...checkSession, finishedAt: now() } : moveSession(checkSession, checkSession.index + 1);
             render();
           },
-        }, last ? 'Итог' : 'Дальше'),
-        el('a', { class: 'button ghost', href: back, text: 'Выйти' })));
+        }, last ? 'Итог' : 'Дальше')));
     }
   }
 
@@ -598,36 +699,36 @@
     const answered = round.ids.filter((x) => round.answers[x] !== undefined);
     const correct = answered.filter((x) => round.answers[x] === byId.get(x).correctOptionId).length;
     const chosen = round.answers[id];
-    view.append(progressBar(`Задание ${round.index + 1} из ${round.ids.length}`, `верно: ${correct}`, answered.length, round.ids.length));
+    view.append(sessionBar({
+      exit: '#/practice/setup', index: round.index, label: `Задание ${round.index + 1} из ${round.ids.length}`, right: `верно: ${correct}`,
+      marks: round.ids.map((x) => markOf(round.answers[x], byId.get(x).correctOptionId)),
+    }));
     view.append(questionCard(q, {
       kind: 'exam',
       selected: chosen,
       reveal: chosen !== undefined,
+      hint: 'дальше',
       onChoose: (optionId) => {
         if (progress.round.answers[id] !== undefined) return;
         progress = recordAnswer({ ...progress, round: answerSession(progress.round, id, optionId) },
           'questions', id, optionId, grade(q, optionId).correct, now());
         save();
         render(false);
-        const next = view.querySelector('[data-enter]');
-        if (next) next.focus();
+        afterAnswer();
       },
     }));
-    const actions = el('div', { class: 'actions' });
     if (chosen !== undefined) {
       view.append(feedback(q, chosen));
       const last = round.index === round.ids.length - 1;
-      actions.append(el('button', {
+      view.append(el('div', { class: 'actions dock' }, el('button', {
         class: 'button', type: 'button', dataset: { enter: '1' },
         onclick: () => {
           progress = { ...progress, round: last ? { ...progress.round, finishedAt: now() } : moveSession(progress.round, progress.round.index + 1) };
           save();
           render();
         },
-      }, last ? 'Итог раунда' : 'Дальше'));
+      }, last ? 'Итог раунда' : 'Дальше')));
     }
-    actions.append(el('a', { class: 'button ghost', href: '#/practice/setup', text: 'К настройкам' }));
-    view.append(actions);
   }
 
   function resultList(ids, answers) {
@@ -645,7 +746,7 @@
         },
       },
       el('summary', {},
-        el('span', { class: 'n', text: String(q.taskNumber) }),
+        el('span', { class: 'n cellnum', text: String(q.taskNumber) }),
         el('span', { class: 'zh', lang: 'zh', text: q.stem.replace(/\s+/g, ' ') }),
         el('span', { class: ok ? 'ok-mark' : 'bad-mark', text: ok ? 'верно' : chosen == null ? 'без ответа' : 'ошибка' })),
       body);
@@ -744,12 +845,13 @@
     const q = byId.get(id);
     const answered = v.ids.filter((x) => v.answers[x] != null).length;
     view.append(el('h2', { class: 'sr-title', tabindex: '-1', text: 'Полный вариант' }),
-      progressBar(`Позиция ${q.taskNumber} · ${v.index + 1} из ${v.ids.length}`, `отвечено: ${answered}`, answered, v.ids.length),
+      progressLine(`Позиция ${q.taskNumber} · ${v.index + 1} из ${v.ids.length}`, `отвечено: ${answered}`),
       sheet(v, { reveal: false, onPick: (i) => { progress = { ...progress, variant: moveSession(progress.variant, i) }; save(); render(); } }),
       questionCard(q, {
         kind: 'exam',
         selected: v.answers[id],
         reveal: false,
+        hint: 'следующая позиция',
         onChoose: (optionId) => {
           progress = { ...progress, variant: answerSession(progress.variant, id, optionId) };
           variantConfirm = false;
@@ -757,28 +859,26 @@
           render(false);
           // Фокус на «Дальше»: Enter ведёт к следующей позиции, цифры по-прежнему меняют ответ.
           const next = view.querySelector('[data-enter]') || view.querySelector('#finishVariant');
-          if (next) next.focus();
+          if (next) next.focus({ preventScroll: true });
         },
       }));
     const last = v.index === v.ids.length - 1;
     const missing = unansweredPositions(v, byId);
-    const actions = el('div', { class: 'actions' },
-      el('button', { class: 'button ghost', type: 'button', disabled: v.index === 0, onclick: () => { progress = { ...progress, variant: moveSession(v, v.index - 1) }; save(); render(); } }, '← Назад'),
-      last ? null : el('button', { class: 'button alt', type: 'button', dataset: { enter: '1' }, onclick: () => { progress = { ...progress, variant: moveSession(v, v.index + 1) }; save(); render(); } }, 'Дальше →'),
-      el('button', {
-        class: last ? 'button' : 'button ghost', type: 'button', id: 'finishVariant',
-        onclick: () => {
-          if (missing.length && !variantConfirm) {
-            variantConfirm = true;
-            render(false);
-            const confirm = view.querySelector('#confirmFinish');
-            if (confirm) confirm.focus();
-            return;
-          }
-          finish();
-        },
-      }, 'Завершить вариант'));
-    view.append(actions);
+    const finishButton = el('button', {
+      class: last ? 'button' : 'button ghost', type: 'button', id: 'finishVariant',
+      onclick: () => {
+        if (missing.length && !variantConfirm) {
+          variantConfirm = true;
+          render(false);
+          const confirm = view.querySelector('#confirmFinish');
+          if (confirm) confirm.focus();
+          return;
+        }
+        finish();
+      },
+    }, 'Завершить вариант');
+    // На последней позиции «Завершить» — главная кнопка панели, на остальных — обычная под заданием.
+    if (!last) view.append(el('div', { class: 'actions' }, finishButton));
     if (variantConfirm && missing.length) {
       view.append(el('div', { class: 'notice warn' },
         `Без ответа: ${missing.join(', ')}. Эти задания будут засчитаны как неверные.`,
@@ -786,6 +886,9 @@
           el('button', { class: 'button', type: 'button', id: 'confirmFinish', onclick: finish }, 'Всё равно завершить'),
           el('button', { class: 'button ghost', type: 'button', onclick: () => { variantConfirm = false; render(false); } }, 'Вернуться к заданиям'))));
     }
+    view.append(el('div', { class: 'actions dock' },
+      el('button', { class: 'button ghost', type: 'button', disabled: v.index === 0, onclick: () => { progress = { ...progress, variant: moveSession(v, v.index - 1) }; save(); render(); } }, '← Назад'),
+      last ? finishButton : el('button', { class: 'button', type: 'button', dataset: { enter: '1' }, onclick: () => { progress = { ...progress, variant: moveSession(v, v.index + 1) }; save(); render(); } }, 'Дальше →')));
     function finish() {
       progress = finishVariant(progress, byId, now());
       variantConfirm = false;
@@ -811,9 +914,10 @@
         const items = view.querySelectorAll('.results > li > details');
         if (items[i]) { items[i].open = true; items[i].querySelector('summary').focus(); }
       } }),
-      actions,
-      share.box,
-      el('p', { class: 'section-title', text: 'Разбор по позициям' }),
+      actions);
+    // Закрытый блок ссылки — null: штатный append напечатал бы его словом «null».
+    if (share.box) view.append(share.box);
+    view.append(el('p', { class: 'section-title', text: 'Разбор по позициям' }),
       resultList(v.ids, v.answers));
   }
 
@@ -872,7 +976,7 @@
       el('ul', { class: 'bank-list' }, shown.map((q) => {
         const state = stateOf.get(q.id);
         return el('li', {}, el('button', { class: 'bank-item', type: 'button', onclick: () => startRound([q.id]) },
-          el('span', { class: 'n', text: String(q.taskNumber) }),
+          el('span', { class: 'n cellnum', text: String(q.taskNumber) }),
           el('span', {},
             el('span', { class: 'zh', lang: 'zh', text: q.stem.replace(/\s+/g, ' ') }),
             el('span', { class: 'meta', text: `${q.topicIds.map((t) => (topicsById.get(t) || {}).title).filter(Boolean).join(', ')} · ${originLabel(q)}${q.draft ? ' · черновик' : ''}` })),
@@ -968,9 +1072,13 @@
   });
 
   const themeLabel = document.getElementById('themeLabel');
+  // Кнопка-переключатель «Тёмная тема»: подпись постоянная, состояние — в aria-pressed.
   function syncTheme() {
     const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-    themeLabel.textContent = dark ? 'Светлая' : 'Тёмная';
+    const toggle = document.getElementById('themeToggle');
+    themeLabel.textContent = 'Тёмная тема';
+    toggle.setAttribute('aria-pressed', String(dark));
+    toggle.title = dark ? 'Включить светлую тему' : 'Включить тёмную тему';
   }
   document.getElementById('themeToggle').addEventListener('click', () => {
     const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';

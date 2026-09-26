@@ -2,11 +2,18 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Лексика и грамматика ЕГЭ — китайский язык</title>
 <meta name="description" content="/*DESCRIPTION*/">
-<meta name="theme-color" content="#245eea">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23245eea'/%3E%3Ctext x='32' y='45' font-family='PingFang SC,Noto Sans SC,sans-serif' font-size='36' font-weight='700' fill='%23fff' text-anchor='middle'%3E%E8%AF%AD%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#F2F4EF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1B2338" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%23C23A2C'/%3E%3Ctext x='32' y='46' font-family='Kaiti SC,STKaiti,KaiTi,PingFang SC,Noto Sans SC,serif' font-size='40' fill='%23FFF6F2' text-anchor='middle'%3E%E8%AF%AD%3C/text%3E%3C/svg%3E">
+<!-- Шрифты из сети: без неё страница работает на системных. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500..800&amp;family=Golos+Text:wght@400..800&amp;display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/lxgwwenkaigbscreen.css">
 <script>
   // Тема до первой отрисовки, чтобы не мигал светлый фон.
   (function () {
@@ -24,34 +31,34 @@
 <a class="skip" href="#view">К содержимому</a>
 <div class="shell">
   <header class="top">
-    <div>
-      <p class="eyebrow">ЕГЭ · китайский язык · задания 15–27</p>
-      <h1>Лексика и грамматика</h1>
-      <p class="subtitle">Правило, короткая проверка, задания из банка ФИПИ и полный вариант раздела 3.
-        Ошибку здесь разбирают на том варианте, который вы выбрали.</p>
-    </div>
-    <div class="top-side">
-      <p class="count" id="bankCount"></p>
-      <button class="theme" id="themeToggle" type="button" aria-label="Переключить тему">
-        <span aria-hidden="true">◐</span><span id="themeLabel">Тема</span>
-      </button>
-    </div>
+    <a class="brand" href="#/rules">
+      <span class="seal" aria-hidden="true">语</span>
+      <span class="brand-text">
+        <strong>Лексика и грамматика</strong>
+        <small>ЕГЭ · китайский · задания 15–27</small>
+      </span>
+    </a>
+    <button class="theme" id="themeToggle" type="button" aria-pressed="false">
+      <span aria-hidden="true">◐</span><span class="sr" id="themeLabel">Тёмная тема</span>
+    </button>
   </header>
+
+  <nav class="tabs" aria-label="Режимы">
+    <a class="tab" href="#/rules" data-tab="rules">Правила</a>
+    <a class="tab" href="#/practice" data-tab="practice">Практика</a>
+    <a class="tab" href="#/variant" data-tab="variant">Вариант</a>
+    <a class="tab" href="#/bank" data-tab="bank">Банк</a>
+  </nav>
 
   <p class="review-banner" id="reviewBanner" hidden>Сборка для проверки: черновики показаны с пометкой «черновик».
     Эту страницу не публиковать.</p>
 
-  <nav class="tabs" aria-label="Режимы">
-    <a class="tab" href="#/rules" data-tab="rules">Правила</a>
-    <a class="tab" href="#/practice" data-tab="practice">Практика ЕГЭ</a>
-    <a class="tab" href="#/variant" data-tab="variant">Полный вариант</a>
-    <a class="tab" href="#/bank" data-tab="bank">Банк и ошибки</a>
-  </nav>
-
-  <main class="card view" id="view" tabindex="-1"></main>
+  <main class="view" id="view" tabindex="-1"></main>
 
   <footer class="foot">
-    <p id="footNote"></p>
+    <p>Правило, короткая проверка, задания из банка ФИПИ и полный вариант раздела 3.
+      Ошибку здесь разбирают на том варианте, который вы выбрали.</p>
+    <p><span id="bankCount"></span>. <span id="footNote"></span></p>
   </footer>
 </div>
 <script type="application/json" id="trainer-data">/*DATA_JSON*/</script>
