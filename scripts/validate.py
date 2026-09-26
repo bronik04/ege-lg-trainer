@@ -74,6 +74,13 @@ def explanation_problems(explanation, options, correct_id):
     extra = sorted(set(by_option) - set(wrong_ids))
     if extra:
         problems.append("разбор для несуществующих или верного вариантов: " + ", ".join(extra))
+    # У каждого неверного варианта — свой разбор, а не общий на двоих.
+    seen = {}
+    for option_id in wrong_ids:
+        text = (by_option.get(option_id) or "").strip()
+        if text and text in seen:
+            problems.append(f"у вариантов {seen[text]} и {option_id} одинаковый разбор")
+        seen.setdefault(text, option_id)
     return problems
 
 
