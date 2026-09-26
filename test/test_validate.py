@@ -38,6 +38,11 @@ class QuestionInvariantsTest(unittest.TestCase):
         q["explanation"]["options"]["1"] = "Повторите правило."
         self.assertIn("задание q20-00000001: разбор варианта 1: общая фраза вместо разбора", problems(q))
 
+    def test_same_explanation_for_two_options_is_rejected(self):
+        q = ready_question(options=("了", "着", "过", "的"))
+        q["explanation"]["options"]["3"] = q["explanation"]["options"]["1"]
+        self.assertTrue(any("одинаковый разбор" in p for p in problems(q)))
+
     def test_explanation_for_correct_option_as_wrong_is_rejected(self):
         q = ready_question()
         q["explanation"]["options"]["2"] = "Лишний разбор для верного варианта, который не нужен."

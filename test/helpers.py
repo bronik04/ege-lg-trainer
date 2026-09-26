@@ -30,7 +30,7 @@ def record(task=20, qid=None, options=("了", "着", "过"), correct="2", stem="
 def explanation_for(rec):
     return {
         "correct": EXPLAIN,
-        "options": {o["id"]: EXPLAIN for o in rec["options"] if o["id"] != rec["correctOptionId"]},
+        "options": {o["id"]: f"{EXPLAIN} Вариант {o['id']}." for o in rec["options"] if o["id"] != rec["correctOptionId"]},
     }
 
 
