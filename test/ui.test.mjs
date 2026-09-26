@@ -80,6 +80,7 @@ test('правило → проверка правила → задания по
   await see(page, 'h2', /就 и 才/);
   await see(page, '.mistake', /после долгого срока/);
   await page.getByRole('button', { name: /Проверить правило/ }).click();
+  await page.locator('[data-card]').waitFor();
   // Отвечаем на оба вопроса заведомо неверно и читаем разбор выбранного варианта.
   for (let i = 0; i < 2; i += 1) {
     const prompt = await text(page, '.instruction');
@@ -263,6 +264,35 @@ test('повреждённый прогресс в хранилище не ло�
   await page.evaluate(() => localStorage.setItem('ege-lg-trainer:progress', '{битый json'));
   await page.reload();
   await see(page, '#repeatMistakes', /Ошибок нет/);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('настоящие данные: сборка для проверки открывается во всех режимах без ошибок', { skip }, async () => {
+  const out = join(work, 'real', 'review.html');
+  mkdirSync(dirname(out), { recursive: true });
+  const result = spawnSync('python3', [join(ROOT, 'scripts', 'build_site.py'), '--drafts', '--out', out], { encoding: 'utf8' });
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+  const url = pathToFileURL(out).href;
+  const { page, context, errors } = await open(url, { hash: '#/rules' });
+  const ruleLinks = await page.locator('.rule-card').count();
+  assert.ok(ruleLinks >= 13, `карточек правил: ${ruleLinks}`);
+  await page.locator('.rule-card').first().click();
+  await page.getByRole('button', { name: /Проверить правило/ }).click();
+  await page.locator('[data-card]').waitFor();
+  await page.keyboard.press('1');
+  await page.locator('.feedback').waitFor();
+  await page.goto(`${url}#/practice`);
+  await page.locator('#roundSize').selectOption('all');
+  await page.locator('#startRound').click();
+  await page.locator('[data-card]').waitFor();
+  await page.keyboard.press('2');
+  await page.locator('.feedback').waitFor();
+  await page.goto(`${url}#/variant`);
+  await page.locator('#buildVariant').click();
+  assert.equal(await page.locator('.sheet .cell').count(), 13);
+  await page.goto(`${url}#/bank`);
+  await see(page, '.bank-list', /черновик/);
   assert.deepEqual(errors, []);
   await context.close();
 });

@@ -81,6 +81,8 @@ def convert(block, snapshot_name):
         odd = [o["text"] for o in options if not NUMBER_OPTION.match(o["text"])]
         if odd:
             notes.append("нестандартная запись числа в вариантах: " + ", ".join(odd))
+    if task_number == 24 and not any(("得" in o["text"] or "不" in o["text"]) for o in options):
+        notes.append("в вариантах нет 得/不: по формату это задание 23 (результативная морфема), а не 24")
     if issues:
         record["issues"] = issues
     if notes:

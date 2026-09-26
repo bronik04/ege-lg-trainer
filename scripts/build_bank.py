@@ -101,7 +101,7 @@ def find_duplicates(records):
     for members in groups.values():
         if len(members) < 2:
             continue
-        members = sorted(members, key=lambda r: (r["sourceRef"].get("fipiId") is None, r["id"]))
+        members = sorted(members, key=lambda r: (r["origin"] != "fipi", r["sourceRef"].get("fipiId") is None, r["id"]))
         dup_groups.append(members)
         keys = {NOISE.sub("", correct_text(m) or "") for m in members}
         if len(keys) > 1:
@@ -151,6 +151,12 @@ def merge(records, authored, topics, rules):
         raise BuildError("разборы к несуществующим заданиям: " + ", ".join(unknown))
 
     excluded, conflicts, _, _ = find_duplicates(records)
+    # Сгенерированное задание с тем же условием, что у задания ФИПИ, в банк не идёт.
+    fipi_by_stem = {(r["taskNumber"], stem_key(r)): r["id"] for r in records if r["origin"] == "fipi"}
+    for r in records:
+        twin = fipi_by_stem.get((r["taskNumber"], stem_key(r)))
+        if r["origin"] == "generated" and twin and r["id"] not in excluded:
+            excluded[r["id"]] = twin
     pending = {}
     questions = []
     for record in records:
