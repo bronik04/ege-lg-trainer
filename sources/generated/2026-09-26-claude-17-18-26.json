@@ -1,0 +1,538 @@
+{
+  "generator": "Claude (Opus 5.5) по заданию автора тренажёра",
+  "specVersion": "ЕГЭ 2026",
+  "tasks": [
+    {
+      "taskNumber": 17,
+      "stem": "这件事我已经___他了，他说今天晚上来找你。",
+      "options": [
+        "告诉",
+        "告别",
+        "报名",
+        "广告"
+      ],
+      "key": 1,
+      "codifierCodes": [
+        "2.3.1"
+      ]
+    },
+    {
+      "taskNumber": 17,
+      "stem": "这家饭馆的菜又便宜又好吃，___特别好，每天晚上都坐满了客人。",
+      "options": [
+        "生产",
+        "生意",
+        "生活",
+        "生气"
+      ],
+      "key": 2,
+      "codifierCodes": [
+        "2.3.1"
+      ]
+    },
+    {
+      "taskNumber": 17,
+      "stem": "明天的考试非常重要，你要好好___。",
+      "options": [
+        "准时",
+        "准确",
+        "准备",
+        "标准"
+      ],
+      "key": 3,
+      "codifierCodes": [
+        "2.3.1"
+      ]
+    },
+    {
+      "taskNumber": 17,
+      "stem": "我们一边喝茶，一边___着最近发生的事情。",
+      "options": [
+        "讨厌",
+        "谈判",
+        "论文",
+        "谈论"
+      ],
+      "key": 4,
+      "codifierCodes": [
+        "2.3.1"
+      ]
+    },
+    {
+      "taskNumber": 17,
+      "stem": "这件衣服的颜色很漂亮，可是___太高了，我买不起。",
+      "options": [
+        "表格",
+        "价格",
+        "性格",
+        "风格"
+      ],
+      "key": 2,
+      "codifierCodes": [
+        "2.3.1"
+      ]
+    },
+    {
+      "taskNumber": 17,
+      "stem": "小王工作非常___，每天都是第一个到办公室的。",
+      "options": [
+        "认识",
+        "认为",
+        "认真",
+        "真正"
+      ],
+      "key": 3,
+      "codifierCodes": [
+        "2.3.1"
+      ]
+    },
+    {
+      "taskNumber": 17,
+      "stem": "下雨了，比赛只好___到明天下午。",
+      "options": [
+        "迟到",
+        "推广",
+        "退出",
+        "推迟"
+      ],
+      "key": 4,
+      "codifierCodes": [
+        "2.3.1"
+      ]
+    },
+    {
+      "taskNumber": 17,
+      "stem": "我对中国历史很有___，所以选了这门课。",
+      "options": [
+        "兴趣",
+        "有趣",
+        "兴奋",
+        "高兴"
+      ],
+      "key": 1,
+      "codifierCodes": [
+        "2.3.1"
+      ]
+    },
+    {
+      "taskNumber": 17,
+      "stem": "这个城市的交通很___，去哪儿都很快。",
+      "options": [
+        "方面",
+        "方便",
+        "方法",
+        "方向"
+      ],
+      "key": 2,
+      "codifierCodes": [
+        "2.3.1"
+      ]
+    },
+    {
+      "taskNumber": 17,
+      "stem": "他从小就___当一名医生。",
+      "options": [
+        "失望",
+        "看望",
+        "希望",
+        "愿望"
+      ],
+      "key": 3,
+      "codifierCodes": [
+        "2.3.1"
+      ]
+    },
+    {
+      "taskNumber": 17,
+      "stem": "请大家___，火车马上就要开了。",
+      "options": [
+        "主意",
+        "意见",
+        "意思",
+        "注意"
+      ],
+      "key": 4,
+      "codifierCodes": [
+        "2.3.1"
+      ]
+    },
+    {
+      "taskNumber": 17,
+      "stem": "老师的话让我___了学习的重要性。",
+      "options": [
+        "明白",
+        "明天",
+        "明亮",
+        "明星"
+      ],
+      "key": 1,
+      "codifierCodes": [
+        "2.3.1"
+      ]
+    },
+    {
+      "taskNumber": 17,
+      "stem": "这次比赛我们班___了第一名。",
+      "options": [
+        "收集",
+        "获得",
+        "获奖",
+        "收到"
+      ],
+      "key": 2,
+      "codifierCodes": [
+        "2.3.1"
+      ]
+    },
+    {
+      "taskNumber": 17,
+      "stem": "冬天到了，天气越来越___了。",
+      "options": [
+        "冷静",
+        "冷饮",
+        "寒冷",
+        "冷淡"
+      ],
+      "key": 3,
+      "codifierCodes": [
+        "2.3.1"
+      ]
+    },
+    {
+      "taskNumber": 17,
+      "stem": "他每天早上都去公园___身体。",
+      "options": [
+        "联系",
+        "练习",
+        "运动",
+        "锻炼"
+      ],
+      "key": 4,
+      "codifierCodes": [
+        "2.3.1"
+      ]
+    },
+    {
+      "taskNumber": 18,
+      "stem": "这个月的气温___上个月高了五度。",
+      "options": [
+        "从",
+        "比",
+        "对",
+        "往"
+      ],
+      "key": 2,
+      "codifierCodes": [
+        "2.4.45"
+      ]
+    },
+    {
+      "taskNumber": 18,
+      "stem": "我的看法___你的一样。",
+      "options": [
+        "比",
+        "对",
+        "跟",
+        "向"
+      ],
+      "key": 3,
+      "codifierCodes": [
+        "2.4.45"
+      ]
+    },
+    {
+      "taskNumber": 18,
+      "stem": "___去年相比，今年来这里旅游的人多了不少。",
+      "options": [
+        "和",
+        "比",
+        "向",
+        "给"
+      ],
+      "key": 1,
+      "codifierCodes": [
+        "2.4.45"
+      ]
+    },
+    {
+      "taskNumber": 18,
+      "stem": "弟弟虽然年纪小，可是个子___哥哥还高。",
+      "options": [
+        "跟",
+        "从",
+        "比",
+        "为"
+      ],
+      "key": 3,
+      "codifierCodes": [
+        "2.4.45"
+      ]
+    },
+    {
+      "taskNumber": 18,
+      "stem": "坐地铁去机场___坐出租车快多了。",
+      "options": [
+        "离",
+        "比",
+        "对",
+        "在"
+      ],
+      "key": 2,
+      "codifierCodes": [
+        "2.4.45"
+      ]
+    },
+    {
+      "taskNumber": 18,
+      "stem": "这本小说的内容___电影里的完全不一样。",
+      "options": [
+        "比",
+        "往",
+        "从",
+        "跟"
+      ],
+      "key": 4,
+      "codifierCodes": [
+        "2.4.45"
+      ]
+    },
+    {
+      "taskNumber": 18,
+      "stem": "他说汉语说得___中国人一样流利。",
+      "options": [
+        "和",
+        "比",
+        "替",
+        "向"
+      ],
+      "key": 1,
+      "codifierCodes": [
+        "2.4.45"
+      ]
+    },
+    {
+      "taskNumber": 18,
+      "stem": "我觉得坐火车___坐飞机更舒服。",
+      "options": [
+        "从",
+        "给",
+        "对",
+        "比"
+      ],
+      "key": 4,
+      "codifierCodes": [
+        "2.4.45"
+      ]
+    },
+    {
+      "taskNumber": 26,
+      "stem": "A) 但是他每天都坚持跑步\nB) 虽然工作很忙\nC) 所以身体一直很好",
+      "options": [
+        "ABC",
+        "BAC",
+        "CBA",
+        "BCA"
+      ],
+      "key": 2,
+      "codifierCodes": [
+        "2.4.1"
+      ]
+    },
+    {
+      "taskNumber": 26,
+      "stem": "A) 我们就去公园划船\nB) 顺便在湖边吃午饭\nC) 要是明天不下雨",
+      "options": [
+        "CAB",
+        "ACB",
+        "BAC",
+        "CBA"
+      ],
+      "key": 1,
+      "codifierCodes": [
+        "2.4.1"
+      ]
+    },
+    {
+      "taskNumber": 26,
+      "stem": "A) 我先去超市买了点儿水果\nB) 最后才回家做饭\nC) 然后去邮局寄了一封信",
+      "options": [
+        "ABC",
+        "CAB",
+        "ACB",
+        "BCA"
+      ],
+      "key": 3,
+      "codifierCodes": [
+        "2.4.1"
+      ]
+    },
+    {
+      "taskNumber": 26,
+      "stem": "A) 所以想请老师给我讲一讲\nB) 这本书我看了三遍\nC) 可是还有很多地方看不懂",
+      "options": [
+        "BCA",
+        "ABC",
+        "CAB",
+        "BAC"
+      ],
+      "key": 1,
+      "codifierCodes": [
+        "2.4.1"
+      ]
+    },
+    {
+      "taskNumber": 26,
+      "stem": "A) 才能学好外语\nB) 只有多听多说\nC) 老师常常对我们说",
+      "options": [
+        "ABC",
+        "CAB",
+        "BCA",
+        "CBA"
+      ],
+      "key": 4,
+      "codifierCodes": [
+        "2.4.1"
+      ]
+    },
+    {
+      "taskNumber": 26,
+      "stem": "A) 他一下课\nB) 就跑到操场去打篮球\nC) 直到天黑才回家",
+      "options": [
+        "ACB",
+        "ABC",
+        "BAC",
+        "CBA"
+      ],
+      "key": 2,
+      "codifierCodes": [
+        "2.4.1"
+      ]
+    },
+    {
+      "taskNumber": 26,
+      "stem": "A) 不仅要学好课本上的知识\nB) 作为一名大学生\nC) 而且要多参加社会活动",
+      "options": [
+        "ABC",
+        "BCA",
+        "CAB",
+        "BAC"
+      ],
+      "key": 4,
+      "codifierCodes": [
+        "2.4.1"
+      ]
+    },
+    {
+      "taskNumber": 26,
+      "stem": "A) 我就不再说什么了\nB) 祝你一切顺利\nC) 既然你已经决定了",
+      "options": [
+        "ABC",
+        "CAB",
+        "BAC",
+        "ACB"
+      ],
+      "key": 2,
+      "codifierCodes": [
+        "2.4.1"
+      ]
+    },
+    {
+      "taskNumber": 26,
+      "stem": "A) 除了英语以外\nB) 真让人羡慕\nC) 她还会说汉语和日语",
+      "options": [
+        "ACB",
+        "BAC",
+        "CBA",
+        "ABC"
+      ],
+      "key": 1,
+      "codifierCodes": [
+        "2.4.1"
+      ]
+    },
+    {
+      "taskNumber": 26,
+      "stem": "A) 所以大家都很佩服他\nB) 无论遇到什么困难\nC) 他都不会放弃",
+      "options": [
+        "ABC",
+        "CAB",
+        "BAC",
+        "BCA"
+      ],
+      "key": 4,
+      "codifierCodes": [
+        "2.4.1"
+      ]
+    },
+    {
+      "taskNumber": 26,
+      "stem": "A) 火车已经开走了\nB) 只好等下一趟\nC) 我们到了车站的时候",
+      "options": [
+        "ABC",
+        "CBA",
+        "CAB",
+        "BAC"
+      ],
+      "key": 3,
+      "codifierCodes": [
+        "2.4.1"
+      ]
+    },
+    {
+      "taskNumber": 26,
+      "stem": "A) 听说明天有大雨\nB) 学校决定把运动会\nC) 推迟到下个星期",
+      "options": [
+        "ABC",
+        "ACB",
+        "CAB",
+        "BAC"
+      ],
+      "key": 1,
+      "codifierCodes": [
+        "2.4.1"
+      ]
+    },
+    {
+      "taskNumber": 26,
+      "stem": "A) 妈妈让我\nB) 再出去玩儿\nC) 先把作业写完",
+      "options": [
+        "ABC",
+        "ACB",
+        "CBA",
+        "BAC"
+      ],
+      "key": 2,
+      "codifierCodes": [
+        "2.4.1"
+      ]
+    },
+    {
+      "taskNumber": 26,
+      "stem": "A) 老师只好让大家先回家\nB) 突然停电了\nC) 我们正在上课的时候",
+      "options": [
+        "BAC",
+        "ABC",
+        "CBA",
+        "CAB"
+      ],
+      "key": 3,
+      "codifierCodes": [
+        "2.4.1"
+      ]
+    },
+    {
+      "taskNumber": 26,
+      "stem": "A) 可是突然有事\nB) 我本来打算今天去看他\nC) 只好改天再去了",
+      "options": [
+        "ABC",
+        "CAB",
+        "BAC",
+        "BCA"
+      ],
+      "key": 3,
+      "codifierCodes": [
+        "2.4.1"
+      ]
+    }
+  ]
+}
