@@ -66,3 +66,11 @@
 
 - Создан публичный репозиторий https://github.com/bronik04/ege-lg-trainer, включены
   GitHub Pages через Actions: https://bronik04.github.io/ege-lg-trainer/.
+
+## 2026-09-26 — спорные ключи и сборка
+
+- Решение автора по трём заданиям с `keyConflict` (`q23-ed5be886`, `q18-3343db6a`,
+  `q24-41d3f9f2`): оставить скрытыми, запись в `data/review/reading-notes.md`.
+- Сборка: actions обновлены до версий на Node 24 (checkout v7, setup-python v7, setup-node v7,
+  upload-pages-artifact v5, deploy-pages v5), тесты идут в Node 24; раннер закреплён на
+  `ubuntu-24.04`, чтобы переход ubuntu-latest на Ubuntu 26 не сломал браузерный тест.
