@@ -33,9 +33,18 @@
     },
   };
 
-  let progress = pruneProgress(parseProgress(storage.get(PROGRESS_KEY)), questions.map((q) => q.id));
-  let storageOk = true;
+  const storedText = storage.get(PROGRESS_KEY);
+  const storedVersion = progressVersion(storedText);
+  // Прогресс записан более новой страницей (например, выкладку откатили) — не трогаем его.
+  const progressLocked = storedVersion !== null && storedVersion > PROGRESS_VERSION;
+  // Перед переносом на новую структуру — копия как была, на случай ошибки в переносе.
+  if (storedVersion !== null && storedVersion < PROGRESS_VERSION && !storage.get(`${PROGRESS_KEY}:v${storedVersion}`)) {
+    storage.set(`${PROGRESS_KEY}:v${storedVersion}`, storedText);
+  }
+  let progress = pruneProgress(parseProgress(storedText), questions.map((q) => q.id));
+  let storageOk = !progressLocked;
   function save() {
+    if (progressLocked) return;
     storageOk = storage.set(PROGRESS_KEY, JSON.stringify(progress));
   }
   const now = () => new Date().toISOString();
@@ -152,7 +161,9 @@
       else view.prepend(node);
       shareNotice = null;
     }
-    if (!storageOk) {
+    if (progressLocked) {
+      view.append(el('p', { class: 'notice warn small', id: 'progressLocked', text: 'Прогресс сохранён более новой версией тренажёра. Обновите страницу — иначе новые ответы не сохранятся.' }));
+    } else if (!storageOk) {
       view.append(el('p', { class: 'notice warn small', text: 'Браузер не даёт сохранить прогресс: он пропадёт после перезагрузки страницы.' }));
     }
     if (focus) {
@@ -168,7 +179,7 @@
 
   // «Перечитайте правило» — к ошибкам раунда или варианта.
   function ruleAdvice(items) {
-    const ids = rulesForMistakes(items, byId).filter((id) => rulesById.has(id));
+    const ids = rulesForMistakes(items, byId, new Set(rulesById.keys()));
     if (!ids.length) return null;
     const links = ids.flatMap((id, i) => [i ? ', ' : '', el('a', { href: `#/rules/${encodeURIComponent(id)}`, text: rulesById.get(id).title })]);
     return el('p', { class: 'notice advice', id: 'ruleAdvice' }, 'Перечитайте правило: ', ...links, '.');

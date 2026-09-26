@@ -136,7 +136,7 @@ h3 { margin: 0 0 6px; font-size: 1rem; }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
 
 .field { display: grid; gap: 6px; color: var(--muted); font-size: .86rem; font-weight: 750; }
-.field select { min-height: 42px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--field); }
+.field select { width: 100%; min-width: 0; min-height: 42px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--field); }
 
 .filter { margin: 0 0 16px; padding: 0; border: 0; }
 .filter legend { padding: 0; margin-bottom: 8px; color: var(--muted); font-size: .86rem; font-weight: 750; }
@@ -276,7 +276,8 @@ h3 { margin: 0 0 6px; font-size: 1rem; }
 .stat { padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--field); }
 .stat b { display: block; font-size: 1.5rem; letter-spacing: -.03em; }
 .stat span { color: var(--muted); font-size: .84rem; font-weight: 700; }
-.filters-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; margin-bottom: 14px; }
+.filters-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr)); gap: 10px; margin-bottom: 14px; }
+.filters-row > * { min-width: 0; }
 .bank-list { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
 .bank-item {
   display: grid; grid-template-columns: 3.2em 1fr auto; gap: 12px; align-items: center; width: 100%;

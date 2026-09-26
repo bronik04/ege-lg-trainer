@@ -45,9 +45,13 @@ function isRecord(value) {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
 }
 
+const isTime = (value) => typeof value === 'string' && !Number.isNaN(Date.parse(value));
+
+// step — сколько повторов пройдено; после последнего (step = REVIEW_DAYS.length + 1) due = null.
 function cleanReview(review, last) {
-  if (isRecord(review) && Number.isInteger(review.step) && review.step >= 0 && review.step <= REVIEW_DAYS.length) {
-    return { step: review.step, due: typeof review.due === 'string' ? review.due : null };
+  if (isRecord(review) && Number.isInteger(review.step) && review.step >= 0 && review.step <= REVIEW_DAYS.length + 1) {
+    const learned = review.step > REVIEW_DAYS.length && review.due === null;
+    if (learned || isTime(review.due)) return { step: review.step, due: review.due };
   }
   // Версия 1: на повтор ставится только неисправленная ошибка.
   return last.correct ? null : { step: 0, due: last.at };
@@ -84,6 +88,17 @@ function cleanSession(session) {
 
 // Разбирает сохранённый прогресс. Повреждённые или чужие данные не роняют страницу:
 // вернётся пустой прогресс, а не исключение.
+// Версия сохранённого прогресса или null, если это не прогресс. Страница, которая старше
+// сохранённых данных, не должна их перезаписывать: иначе откат выкладки сотрёт прогресс.
+export function progressVersion(text) {
+  try {
+    const raw = JSON.parse(text);
+    return isRecord(raw) && Number.isInteger(raw.version) ? raw.version : null;
+  } catch {
+    return null;
+  }
+}
+
 export function parseProgress(text) {
   if (!text) return emptyProgress();
   let raw;
@@ -171,9 +186,15 @@ export function mergeProgress(local, incoming) {
   return merged;
 }
 
+// Срок — начало местных суток через days дней: исправленное вечером повторяется уже утром
+// следующего дня, а не через ровно 24 часа.
 function addDays(at, days) {
   const ms = Date.parse(at);
-  return Number.isNaN(ms) ? null : new Date(ms + days * 86400000).toISOString();
+  if (Number.isNaN(ms)) return null;
+  const date = new Date(ms);
+  date.setDate(date.getDate() + days);
+  date.setHours(0, 0, 0, 0);
+  return date.toISOString();
 }
 
 // Ошибка ставит задание на повтор сразу. Исправленная возвращается через 1, 3 и 7 дней;
@@ -226,12 +247,15 @@ export function weakTopics(questions, progress, limit = 3) {
     .sort((a, b) => b.count - a.count).slice(0, limit);
 }
 
-// Правила к ошибкам раунда или варианта — чаще встретившиеся первыми.
-export function rulesForMistakes(items, byId, limit = 2) {
+// Правила к ошибкам раунда или варианта — чаще встретившиеся первыми. Пропущенная позиция
+// варианта (chosen === null) не ошибка понимания; known — правила, которые есть на странице.
+export function rulesForMistakes(items, byId, known = null, limit = 2) {
   const counts = new Map();
   for (const item of items) {
-    if (item.correct) continue;
-    for (const r of byId.get(item.id).ruleIds || []) counts.set(r, (counts.get(r) || 0) + 1);
+    if (item.correct || item.chosen === null) continue;
+    for (const r of byId.get(item.id).ruleIds || []) {
+      if (!known || known.has(r)) counts.set(r, (counts.get(r) || 0) + 1);
+    }
   }
   return [...counts].sort((a, b) => b[1] - a[1]).slice(0, limit).map(([ruleId]) => ruleId);
 }

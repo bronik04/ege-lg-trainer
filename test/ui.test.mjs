@@ -356,12 +356,21 @@ test('повторение: исправленная ошибка возвращ
   await see(page, '#repeatMistakes', /Повторить ошибки · 1/);
   await see(page, '#weakTopics', /Глагольные суффиксы/);
   assert.equal(await page.locator('#weakTopics a').first().innerText(), '了, 过 и 着');
+  // Прогресс версии 1 сохранён копией до переноса.
+  const backup = await page.evaluate(() => JSON.parse(localStorage.getItem('ege-lg-trainer:progress:v1')));
+  assert.equal(backup.version, 1);
   // Ошибка исправлена позавчера, срок повтора вчера — пора повторить.
   await put({ ...base, version: 2, questions: { 'q20-a': { attempts: 2, correctCount: 1, last: { optionId: '2', correct: true, at: ago(2) }, review: { step: 1, due: ago(1) } } } });
   await page.reload();
   await see(page, '#repeatDue', /Пора повторить · 1/);
   await see(page, '.bank-list', /повторить/);
   assert.equal(await page.locator('#weakTopics').count(), 0, 'исправленная ошибка — не слабая тема');
+  await page.locator('select[data-key="bank:state"]').selectOption('due');
+  await see(page, '.small.muted', /Показано: 1 задание/);
+  await page.goto(`${mainUrl}#/practice/setup`);
+  await page.locator('#stateFilter').selectOption('review');
+  await see(page, '#available', /Доступно: 1 задание/);
+  await page.goto(`${mainUrl}#/bank`);
   await page.locator('#repeatDue').click();
   await page.locator('[data-card]').waitFor();
   await page.keyboard.press('2');
@@ -376,15 +385,32 @@ test('повторение: исправленная ошибка возвращ
   await context.close();
 });
 
-test('телефон: без горизонтальной прокрутки во всех режимах', { skip }, async () => {
-  const { page, context } = await open(mainUrl, { width: 375, height: 812 });
-  for (const hash of ['#/rules', '#/rules/jiu-cai', '#/practice', '#/variant', '#/bank']) {
-    await page.goto(mainUrl + hash);
-    if (hash === '#/variant' && await page.locator('#buildVariant').count()) await page.locator('#buildVariant').click();
-    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-    assert.ok(overflow <= 0, `${hash}: горизонтальная прокрутка ${overflow}px`);
-  }
+test('прогресс более новой версии страница не перезаписывает', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { hash: '#/bank' });
+  const newer = JSON.stringify({ version: 99, questions: { 'q20-a': { future: true } } });
+  await page.evaluate((v) => localStorage.setItem('ege-lg-trainer:progress', v), newer);
+  await page.reload();
+  await see(page, '#progressLocked', /более новой версией/);
+  await page.locator('.bank-item').first().click();
+  await page.locator('[data-card]').waitFor();
+  await page.keyboard.press('1');
+  await page.locator('.feedback').waitFor();
+  assert.equal(await page.evaluate(() => localStorage.getItem('ege-lg-trainer:progress')), newer);
+  assert.deepEqual(errors, []);
   await context.close();
+});
+
+test('телефон: без горизонтальной прокрутки во всех режимах', { skip }, async () => {
+  for (const width of [375, 320]) {
+    const { page, context } = await open(mainUrl, { width, height: 812 });
+    for (const hash of ['#/rules', '#/rules/jiu-cai', '#/practice', '#/variant', '#/bank']) {
+      await page.goto(mainUrl + hash);
+      if (hash === '#/variant' && await page.locator('#buildVariant').count()) await page.locator('#buildVariant').click();
+      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+      assert.ok(overflow <= 0, `${width}px ${hash}: горизонтальная прокрутка ${overflow}px`);
+    }
+    await context.close();
+  }
 });
 
 test('публикация без черновиков, проверка — с пометкой', { skip }, async () => {
