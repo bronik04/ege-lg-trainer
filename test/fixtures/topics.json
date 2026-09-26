@@ -1,0 +1,43 @@
+[
+  {
+    "id": "aspect",
+    "title": "Глагольные суффиксы 了, 过, 着",
+    "description": "…",
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "taskNumbers": [
+      20
+    ]
+  },
+  {
+    "id": "adverbs",
+    "title": "Наречия",
+    "description": "…",
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "taskNumbers": [
+      22
+    ]
+  },
+  {
+    "id": "other",
+    "title": "Прочие темы",
+    "description": "…",
+    "codifierCodes": [],
+    "taskNumbers": [
+      15,
+      16,
+      17,
+      18,
+      19,
+      21,
+      23,
+      24,
+      25,
+      26,
+      27
+    ]
+  }
+]
