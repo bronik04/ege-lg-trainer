@@ -211,6 +211,7 @@ h3 { margin: 0 0 6px; font-size: 1rem; }
 .rule-note p { margin: 6px 0 0; }
 .others summary { color: var(--muted); font-weight: 700; cursor: pointer; }
 .others ul { margin: 8px 0 0; padding-left: 20px; }
+.report { margin: 0; font-size: 0.9em; }
 
 /* ---------- бланк ответов: ячейки позиций 15–27 ---------- */
 

@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import DATA, FORMAT_YEAR, ROOT, read_json, write_text  # noqa: E402
+from common import DATA, FORMAT_YEAR, ISSUES_URL, ROOT, read_json, write_text  # noqa: E402
 
 SRC = ROOT / "src"
 QUESTION_FIELDS = ("id", "taskNumber", "formatYear", "origin", "prompt", "stem", "fragments", "options",
@@ -48,7 +48,7 @@ def payload(questions, topics, rules, rule_checks, drafts=False):
         return out
 
     return {
-        "meta": {"formatYear": FORMAT_YEAR, "drafts": drafts},
+        "meta": {"formatYear": FORMAT_YEAR, "drafts": drafts, "issuesUrl": ISSUES_URL},
         "topics": topics,
         "rules": [content(r) for r in shown_rules],
         "ruleChecks": [content(c) for c in shown_checks],

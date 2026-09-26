@@ -31,6 +31,7 @@ class PayloadTest(unittest.TestCase):
         self.assertEqual([r["id"] for r in data["rules"]], ["aspect-suffixes"])
         self.assertEqual([c["id"] for c in data["ruleChecks"]], ["c-ok"])
         self.assertFalse(data["meta"]["drafts"])
+        self.assertRegex(data["meta"]["issuesUrl"], r"^https://github\.com/[^/]+/[^/]+/issues/new$")
         self.assertNotIn("draft", data["questions"][0])
         self.assertNotIn("status", data["rules"][0])
 

@@ -158,3 +158,33 @@ test('раунд: размер и перемешивание', () => {
   assert.equal(L.moveSession(L.startSession(['a', 'b'], 't'), 5).index, 1);
   assert.equal(L.moveSession(L.startSession(['a', 'b'], 't'), -1).index, 0);
 });
+
+test('ссылка «сообщить об ошибке»: ID, условие, выбранный и верный ответ', () => {
+  const base = 'https://github.com/owner/repo/issues/new';
+  const item = q('q20-x', 20, { stem: '他___着一件红衣服。' });
+  const url = new URL(L.reportUrl(base, item, '1'));
+  assert.equal(`${url.origin}${url.pathname}`, base);
+  assert.equal(url.searchParams.get('title'), 'Ошибка: задание 20 · q20-x');
+  const body = url.searchParams.get('body');
+  assert.match(body, /ID: q20-x \(задание 20\)/);
+  assert.match(body, /Условие:\n```\n他___着一件红衣服。\n```/);
+  assert.match(body, /Выбранный ответ: 了/);
+  assert.match(body, /Ответ по ключу: 着/);
+});
+
+test('ссылка «сообщить об ошибке»: вопрос к правилу, без ответа, без адреса', () => {
+  const check = { id: 'check-x', sentence: '你好 nǐ hǎo', options: [{ id: 'a', text: '3-3' }], correctOptionId: 'a' };
+  const url = new URL(L.reportUrl('https://example.org/new', check, null));
+  assert.equal(url.searchParams.get('title'), 'Ошибка: вопрос к правилу · check-x');
+  assert.match(url.searchParams.get('body'), /```\n你好 nǐ hǎo\n```/);
+  assert.match(url.searchParams.get('body'), /Выбранный ответ: —/);
+  assert.equal(L.reportUrl('', check, 'a'), '');
+});
+
+test('ссылка «сообщить об ошибке»: два пропуска задания 27 не превращаются в разметку', () => {
+  const item = q('q27-x', 27, { stem: '___下雨，___我们去。' });
+  const body = new URL(L.reportUrl('https://example.org/new', item, '2')).searchParams.get('body');
+  // Внутри блока кода GitHub не читает ___…___ как жирный курсив.
+  assert.match(body, /```\n___下雨，___我们去。\n```/);
+});
+

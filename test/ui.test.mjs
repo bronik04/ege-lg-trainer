@@ -89,6 +89,8 @@ test('правило → проверка правила → задания по
     await page.locator('.verdict.bad').waitFor();
     const reason = await text(page, '.verdict.bad p');
     assert.ok(reason.length > 10, 'разбор неверного варианта не пустой');
+    const report = new URL(await page.locator('.report a').getAttribute('href'));
+    assert.match(report.searchParams.get('title'), /^Ошибка: вопрос к правилу · /);
     await page.keyboard.press('Enter');
   }
   await see(page, 'h2', /0 из 2/);
@@ -142,6 +144,19 @@ test('тренировка: разбор выбранного неверного
       assert.match(await text(page, '.verdict.bad p'), new RegExp(`Вариант ${texts[1]}|${texts[1]}:`));
     }
     assert.ok(await page.locator('.rule-note a').count() > 0, 'есть ссылка на правило');
+    // «Сообщить об ошибке» ведёт в issues репозитория и называет задание.
+    const report = page.locator('.report a');
+    const href = new URL(await report.getAttribute('href'));
+    assert.match(href.pathname, /\/issues\/new$/);
+    assert.match(href.searchParams.get('title'), new RegExp(`Ошибка: задание \\d+ · q\\d+-`));
+    // В сообщении — это задание: его условие и выбранный вариант.
+    const body = href.searchParams.get('body');
+    const stemParts = await page.evaluate(() => [...document.querySelector('.stem').childNodes]
+      .filter((n) => n.nodeType === Node.TEXT_NODE).map((n) => n.textContent.trim()).filter(Boolean));
+    for (const part of stemParts) assert.ok(body.includes(part), `условие в сообщении: ${part}`);
+    assert.ok(body.includes(`Выбранный ответ: ${texts[1]}`));
+    assert.equal(await report.getAttribute('target'), '_blank');
+    assert.equal(await report.getAttribute('rel'), 'noopener');
     await page.keyboard.press('Enter');
   }
   assert.ok(seen.has('Задание 20:3'), 'задание 20 с тремя вариантами');
@@ -186,6 +201,14 @@ test('полный вариант: 13 позиций, разбор только 
   assert.equal(await page.locator('.sheet .cell.good, .sheet .cell.bad').count(), 13);
   await page.locator('.results summary').nth(1).click();
   await page.locator('.results .feedback').first().waitFor();
+  // Позиция 27 осталась без ответа — в сообщении об ошибке это видно.
+  const last = page.locator('.results > li').nth(12);
+  await last.locator('summary').first().click();
+  const skipped = last.locator('.report a');
+  await skipped.waitFor();
+  const skippedBody = new URL(await skipped.getAttribute('href')).searchParams.get('body');
+  assert.match(skippedBody, /Выбранный ответ: —/);
+  assert.match(skippedBody, /задание 27/);
   await page.getByRole('button', { name: /Повторить ошибки варианта/ }).click();
   await see(page, '.progress', /Задание 1 из/);
   assert.deepEqual(errors, []);
