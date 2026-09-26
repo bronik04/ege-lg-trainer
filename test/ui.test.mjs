@@ -304,7 +304,13 @@ test('настоящие данные: сборка для проверки от
   await page.locator('#buildVariant').click();
   assert.equal(await page.locator('.sheet .cell').count(), 13);
   await page.goto(`${url}#/bank`);
-  await see(page, '.bank-list', /черновик/);
+  // В сборке для проверки — все задания с разбором: готовые и черновики (с пометкой).
+  const bank = JSON.parse(readFileSync(join(ROOT, 'data', 'questions.json'), 'utf8'))
+    .filter((q) => (q.reviewStatus === 'ready' || q.reviewStatus === 'draft') && q.explanation);
+  await page.locator('.bank-item').first().waitFor();
+  assert.equal(await page.locator('.bank-item').count(), bank.length);
+  const drafts = bank.filter((q) => q.reviewStatus === 'draft').length;
+  assert.equal(await page.locator('.bank-item .meta', { hasText: 'черновик' }).count(), drafts);
   assert.deepEqual(errors, []);
   await context.close();
 });

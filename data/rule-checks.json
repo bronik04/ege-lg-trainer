@@ -5,7 +5,7 @@
     "ruleIds": [
       "tones-in-words"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Как запишут тоны этого слова в задании 15?",
     "sentence": "你好 nǐ hǎo",
     "options": [
@@ -37,7 +37,7 @@
     "ruleIds": [
       "tones-in-words"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Что обозначает цифра 0 в варианте ответа задания 15?",
     "options": [
       {
@@ -68,7 +68,7 @@
     "ruleIds": [
       "measure-words"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Какое счётное слово нужно для пары обуви или палочек для еды?",
     "options": [
       {
@@ -104,7 +104,7 @@
     "ruleIds": [
       "measure-words"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Почему здесь стоит счётное слово 把?",
     "sentence": "我借了一把椅子。",
     "sentenceRu": "Я одолжил стул.",
@@ -137,7 +137,7 @@
     "ruleIds": [
       "word-choice"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Какое слово описывает место, где людно, шумно и оживлённо?",
     "options": [
       {
@@ -168,7 +168,7 @@
     "ruleIds": [
       "word-choice"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Почему здесь 感动, а не 感觉?",
     "sentence": "这个电影感动了很多人。",
     "sentenceRu": "Этот фильм тронул многих людей.",
@@ -201,7 +201,7 @@
     "ruleIds": [
       "prepositions"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Какой предлог нужен, чтобы сказать «A далеко от B»?",
     "options": [
       {
@@ -232,7 +232,7 @@
     "ruleIds": [
       "prepositions"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Что вводит предлог 向 в этом предложении?",
     "sentence": "你应该向他道歉。",
     "sentenceRu": "Тебе стоит перед ним извиниться.",
@@ -265,7 +265,7 @@
     "ruleIds": [
       "comparison-bi"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Какое предложение построено правильно?",
     "options": [
       {
@@ -296,7 +296,7 @@
     "ruleIds": [
       "comparison-bi"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Как сказать «Здесь не так холодно, как в Москве»?",
     "options": [
       {
@@ -327,7 +327,7 @@
     "ruleIds": [
       "numerals-wan-yi"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Чему равно 一万?",
     "options": [
       {
@@ -358,7 +358,7 @@
     "ruleIds": [
       "numerals-wan-yi"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Как записать цифрами 三千零五十万?",
     "options": [
       {
@@ -389,7 +389,7 @@
     "ruleIds": [
       "aspect-suffixes"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Какой суффикс говорит о прошлом опыте — «когда-то уже бывало»?",
     "options": [
       {
@@ -420,7 +420,7 @@
     "ruleIds": [
       "aspect-suffixes"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Что выражает 着 в этом предложении?",
     "sentence": "门口站着一个人。",
     "sentenceRu": "У двери стоит человек.",
@@ -453,7 +453,7 @@
     "ruleIds": [
       "de-particles"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Что ставится между глаголом и оценкой того, как он выполнен: 跑___快?",
     "options": [
       {
@@ -484,7 +484,7 @@
     "ruleIds": [
       "de-particles"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Почему в этом предложении 地?",
     "sentence": "她认真地回答了问题。",
     "sentenceRu": "Она обстоятельно ответила на вопрос.",
@@ -517,7 +517,7 @@
     "ruleIds": [
       "jiu-cai"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Какое наречие показывает, что действие произошло раньше или быстрее, чем ожидалось?",
     "options": [
       {
@@ -543,7 +543,7 @@
     "ruleIds": [
       "jiu-cai"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Что выражает 才 в этом предложении?",
     "sentence": "我等了两个小时他才来。",
     "sentenceRu": "Я прождал два часа, пока он наконец пришёл.",
@@ -576,7 +576,7 @@
     "ruleIds": [
       "you-zai-hai"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Какое наречие нужно для повтора, который ещё только предстоит (просьба или план)?",
     "options": [
       {
@@ -607,7 +607,7 @@
     "ruleIds": [
       "you-zai-hai"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Почему здесь 又, а не 再?",
     "sentence": "我上午给他打过电话，下午又打了一次。",
     "sentenceRu": "Я звонил ему утром, а после обеда позвонил ещё раз.",
@@ -640,7 +640,7 @@
     "ruleIds": [
       "result-complements"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Какая морфема значит, что действие доведено до конца?",
     "options": [
       {
@@ -671,7 +671,7 @@
     "ruleIds": [
       "result-complements"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Что значит 住 в сочетании 记住?",
     "sentence": "这些生词你记住了吗？",
     "sentenceRu": "Ты запомнил эти новые слова?",
@@ -704,7 +704,7 @@
     "ruleIds": [
       "potential-complements"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Как сказать «в шкаф все книги не поместятся»?",
     "options": [
       {
@@ -735,7 +735,7 @@
     "ruleIds": [
       "potential-complements"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Что выражает 不 в сочетании 听不见?",
     "sentence": "广播的声音太小，我听不见。",
     "sentenceRu": "Объявление по радио слишком тихое, мне не расслышать.",
@@ -768,7 +768,7 @@
     "ruleIds": [
       "direction-complements"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Какой модификатор показывает, что действие или состояние началось и развивается (заплакать, разволноваться)?",
     "options": [
       {
@@ -799,7 +799,7 @@
     "ruleIds": [
       "direction-complements"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Где находится говорящий?",
     "sentence": "他从山上走下来了。",
     "sentenceRu": "Он спустился с горы.",
@@ -832,7 +832,7 @@
     "ruleIds": [
       "sentence-order"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Какой фрагмент не может открывать предложение?",
     "options": [
       {
@@ -864,7 +864,7 @@
       "sentence-order",
       "constructions"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Какая связка идёт в паре с 虽然?",
     "options": [
       {
@@ -895,7 +895,7 @@
     "ruleIds": [
       "constructions"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Какая конструкция значит «только при этом условии, иначе нет»?",
     "options": [
       {
@@ -926,7 +926,7 @@
     "ruleIds": [
       "constructions"
     ],
-    "status": "draft",
+    "status": "accepted",
     "prompt": "Какая связь между частями этого предложения?",
     "sentence": "虽然他很累，但是还在工作。",
     "sentenceRu": "Хотя он очень устал, он всё ещё работает.",
