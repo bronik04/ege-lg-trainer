@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "id": "d0b21b9a-3d28-4616-8263-e06e4c9fd161",
+  "type": "grammar-21",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.18",
+    "2.4.43",
+    "2.4.49"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "他们住___新房子很舒服。",
+      "options": [
+        {
+          "id": "1",
+          "text": "的"
+        },
+        {
+          "id": "2",
+          "text": "得"
+        },
+        {
+          "id": "3",
+          "text": "地"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.460Z",
+  "updatedAt": "2026-07-24T12:48:37.460Z"
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "6ba04829-1c01-410b-aebc-84cc484c0a26",
+  "type": "grammar-15",
+  "level": "Б",
+  "codifierCodes": [
+    "2.1.4"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "游泳池.",
+      "options": [
+        {
+          "id": "1",
+          "text": "2-3-4"
+        },
+        {
+          "id": "2",
+          "text": "2-3-2"
+        },
+        {
+          "id": "3",
+          "text": "2-2-3"
+        },
+        {
+          "id": "4",
+          "text": "3-3-4"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.486Z",
+  "updatedAt": "2026-07-24T12:48:37.486Z"
+}

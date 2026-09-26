@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "a462f9eb-fa74-4bc0-95a8-12a15fcbfc79",
+  "type": "grammar-17",
+  "level": "Б",
+  "codifierCodes": [
+    "2.3.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "他不仅脑子聪明，而且学习 ___ 很灵活。",
+      "options": [
+        {
+          "id": "1",
+          "text": "作法"
+        },
+        {
+          "id": "2",
+          "text": "方法"
+        },
+        {
+          "id": "3",
+          "text": "说法"
+        },
+        {
+          "id": "4",
+          "text": "新法"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ",
+    "добавлено 2026-09",
+    "ФИПИ 11272D",
+    "КЭС ФИПИ 2.3.1"
+  ],
+  "createdAt": "2026-09-06T13:20:20.039Z",
+  "updatedAt": "2026-09-06T13:20:20.039Z"
+}

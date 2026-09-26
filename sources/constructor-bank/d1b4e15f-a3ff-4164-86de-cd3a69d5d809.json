@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "d1b4e15f-a3ff-4164-86de-cd3a69d5d809",
+  "type": "grammar-18",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.31",
+    "2.4.45",
+    "2.4.46"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "这段时间的学习___我很有帮助。",
+      "options": [
+        {
+          "id": "1",
+          "text": "把"
+        },
+        {
+          "id": "2",
+          "text": "对"
+        },
+        {
+          "id": "3",
+          "text": "跟"
+        },
+        {
+          "id": "4",
+          "text": "在"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.491Z",
+  "updatedAt": "2026-07-24T12:48:37.491Z"
+}

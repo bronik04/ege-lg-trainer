@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "1a77e4ec-debe-4425-9315-00bcca046ca1",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我跟着陈师傅先后学会了三___太极拳拳式。",
+      "options": [
+        {
+          "id": "1",
+          "text": "张"
+        },
+        {
+          "id": "2",
+          "text": "条"
+        },
+        {
+          "id": "3",
+          "text": "种"
+        },
+        {
+          "id": "4",
+          "text": "把"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.468Z",
+  "updatedAt": "2026-07-24T12:48:37.468Z"
+}

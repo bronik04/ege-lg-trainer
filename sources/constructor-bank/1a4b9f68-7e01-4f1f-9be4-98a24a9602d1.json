@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "1a4b9f68-7e01-4f1f-9be4-98a24a9602d1",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "电话机可能坏了，我听___你说的话。",
+      "options": [
+        {
+          "id": "1",
+          "text": "得见"
+        },
+        {
+          "id": "2",
+          "text": "不见"
+        },
+        {
+          "id": "3",
+          "text": "得清楚"
+        },
+        {
+          "id": "4",
+          "text": "不了"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.500Z",
+  "updatedAt": "2026-07-24T12:48:37.500Z"
+}

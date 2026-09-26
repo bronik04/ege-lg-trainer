@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "b0d59156-58fd-46e5-8a40-15aae006da56",
+  "type": "grammar-15",
+  "level": "Б",
+  "codifierCodes": [
+    "2.1.4"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "长大。",
+      "options": [
+        {
+          "id": "1",
+          "text": "1-4"
+        },
+        {
+          "id": "2",
+          "text": "4-1"
+        },
+        {
+          "id": "3",
+          "text": "3-4"
+        },
+        {
+          "id": "4",
+          "text": "4-4"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.445Z",
+  "updatedAt": "2026-07-24T12:48:37.445Z"
+}

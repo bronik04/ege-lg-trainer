@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "320f44dc-b3a2-4e33-aaa5-c5cf95c0ced4",
+  "type": "grammar-18",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.31",
+    "2.4.45",
+    "2.4.46"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "你已经搬 ___ 新房子了没有？",
+      "options": [
+        {
+          "id": "1",
+          "text": "离"
+        },
+        {
+          "id": "2",
+          "text": "对"
+        },
+        {
+          "id": "3",
+          "text": "为"
+        },
+        {
+          "id": "4",
+          "text": "到"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.509Z",
+  "updatedAt": "2026-07-24T12:48:37.509Z"
+}

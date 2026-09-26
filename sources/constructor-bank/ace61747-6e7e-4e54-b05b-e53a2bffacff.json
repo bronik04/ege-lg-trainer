@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "ace61747-6e7e-4e54-b05b-e53a2bffacff",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "东西真是太多了！我试了几次，袋子都装___。",
+      "options": [
+        {
+          "id": "1",
+          "text": "得下"
+        },
+        {
+          "id": "2",
+          "text": "不下"
+        },
+        {
+          "id": "3",
+          "text": "得动"
+        },
+        {
+          "id": "4",
+          "text": "不动"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.465Z",
+  "updatedAt": "2026-07-24T12:48:37.465Z"
+}

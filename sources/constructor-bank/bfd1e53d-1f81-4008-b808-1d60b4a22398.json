@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "bfd1e53d-1f81-4008-b808-1d60b4a22398",
+  "type": "grammar-26",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "A) 时间长了就感到寂寞，请我朋友跟我一起住\nB) 去年我自己租了一套房子\nC) 刚开始，我觉得一个人住人自由.",
+      "options": [
+        {
+          "id": "1",
+          "text": "ACB"
+        },
+        {
+          "id": "2",
+          "text": "BAC"
+        },
+        {
+          "id": "3",
+          "text": "BCA"
+        },
+        {
+          "id": "4",
+          "text": "CBA"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.498Z",
+  "updatedAt": "2026-07-24T12:48:37.498Z"
+}

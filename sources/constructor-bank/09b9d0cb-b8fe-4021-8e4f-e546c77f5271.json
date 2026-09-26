@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "09b9d0cb-b8fe-4021-8e4f-e546c77f5271",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "儿子给妈妈寄回一___明信片。",
+      "options": [
+        {
+          "id": "1",
+          "text": "条"
+        },
+        {
+          "id": "2",
+          "text": "张"
+        },
+        {
+          "id": "3",
+          "text": "对"
+        },
+        {
+          "id": "4",
+          "text": "项"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.463Z",
+  "updatedAt": "2026-07-24T12:48:37.463Z"
+}

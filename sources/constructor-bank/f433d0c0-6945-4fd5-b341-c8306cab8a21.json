@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "f433d0c0-6945-4fd5-b341-c8306cab8a21",
+  "type": "grammar-19",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.32"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "七千八百万零五千零二。",
+      "options": [
+        {
+          "id": "1",
+          "text": "78 050 022"
+        },
+        {
+          "id": "2",
+          "text": "78 005 020"
+        },
+        {
+          "id": "3",
+          "text": "78 005 002"
+        },
+        {
+          "id": "4",
+          "text": "78 500 002"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.456Z",
+  "updatedAt": "2026-07-24T12:48:37.456Z"
+}

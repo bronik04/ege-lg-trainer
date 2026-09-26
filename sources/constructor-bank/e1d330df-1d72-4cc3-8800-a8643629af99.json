@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "e1d330df-1d72-4cc3-8800-a8643629af99",
+  "type": "grammar-19",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.32"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "五千九百零七万零三十",
+      "options": [
+        {
+          "id": "1",
+          "text": "590 070 030"
+        },
+        {
+          "id": "2",
+          "text": "59 070 030"
+        },
+        {
+          "id": "3",
+          "text": "59 700 300"
+        },
+        {
+          "id": "4",
+          "text": "59 070 300"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.478Z",
+  "updatedAt": "2026-07-24T12:48:37.478Z"
+}

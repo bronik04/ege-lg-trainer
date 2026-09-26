@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "fefbdb97-f5f4-47fe-8ae6-da54773070db",
+  "type": "grammar-22",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.27"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "她发誓说：“我 ___ 也不会相信他了”。",
+      "options": [
+        {
+          "id": "1",
+          "text": "再"
+        },
+        {
+          "id": "2",
+          "text": "还"
+        },
+        {
+          "id": "3",
+          "text": "就"
+        },
+        {
+          "id": "4",
+          "text": "又"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ",
+    "добавлено 2026-09",
+    "ФИПИ A73e46",
+    "КЭС ФИПИ 2.4.27"
+  ],
+  "createdAt": "2026-09-06T13:20:20.043Z",
+  "updatedAt": "2026-09-06T13:20:20.043Z"
+}

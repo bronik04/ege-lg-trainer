@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "f01e7266-8cee-4395-b3e0-455d8241d5c9",
+  "type": "grammar-22",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.27"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "这个女孩不可能是他的妹妹。他们家 ___ 有他一个儿子，他是个独生子。",
+      "options": [
+        {
+          "id": "1",
+          "text": "才"
+        },
+        {
+          "id": "2",
+          "text": "只"
+        },
+        {
+          "id": "3",
+          "text": "也"
+        },
+        {
+          "id": "4",
+          "text": "刚"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.432Z",
+  "updatedAt": "2026-07-24T12:48:37.432Z"
+}

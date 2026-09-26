@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "94ff42d8-fbdb-4cc8-bf98-ece97016a134",
+  "type": "grammar-19",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.32"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "两亿四千零五十五万零三百八十六",
+      "options": [
+        {
+          "id": "1",
+          "text": "240 055 386"
+        },
+        {
+          "id": "2",
+          "text": "240 550 386"
+        },
+        {
+          "id": "3",
+          "text": "24 550 386"
+        },
+        {
+          "id": "4",
+          "text": "24 055 386"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.496Z",
+  "updatedAt": "2026-07-24T12:48:37.496Z"
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "8976f2a6-3a4b-4dd2-b1f3-2215ad3a4926",
+  "type": "grammar-15",
+  "level": "Б",
+  "codifierCodes": [
+    "2.1.4"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "墨镜。",
+      "options": [
+        {
+          "id": "1",
+          "text": "4-4"
+        },
+        {
+          "id": "2",
+          "text": "2-4"
+        },
+        {
+          "id": "3",
+          "text": "4-1"
+        },
+        {
+          "id": "4",
+          "text": "4-3"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.482Z",
+  "updatedAt": "2026-07-24T12:48:37.482Z"
+}

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "0c18725b-b5c4-4674-9a94-bbec56f373f1",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "这本英文书很有意思，我看___后还给你，好吗？",
+      "options": [
+        {
+          "id": "1",
+          "text": "上"
+        },
+        {
+          "id": "2",
+          "text": "完"
+        },
+        {
+          "id": "3",
+          "text": "定"
+        },
+        {
+          "id": "4",
+          "text": "到"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.433Z",
+  "updatedAt": "2026-07-24T12:48:37.433Z"
+}

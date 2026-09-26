@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "15173f0c-6a72-4e1b-8366-d7382a21bcd0",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "情人节那天小王送给女朋友一大 ___ 玫瑰花。",
+      "options": [
+        {
+          "id": "1",
+          "text": "支"
+        },
+        {
+          "id": "2",
+          "text": "束"
+        },
+        {
+          "id": "3",
+          "text": "朵"
+        },
+        {
+          "id": "4",
+          "text": "个"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ",
+    "добавлено 2026-09",
+    "ФИПИ cc7FFc",
+    "КЭС ФИПИ 2.4.33"
+  ],
+  "createdAt": "2026-09-06T13:20:20.038Z",
+  "updatedAt": "2026-09-06T13:20:20.038Z"
+}

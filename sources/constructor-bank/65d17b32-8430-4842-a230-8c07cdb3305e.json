@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "65d17b32-8430-4842-a230-8c07cdb3305e",
+  "type": "grammar-17",
+  "level": "Б",
+  "codifierCodes": [
+    "2.3.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "宾馆为客人提供洗衣服务，所以住在这儿很 ___。",
+      "options": [
+        {
+          "id": "1",
+          "text": "服装"
+        },
+        {
+          "id": "2",
+          "text": "信服"
+        },
+        {
+          "id": "3",
+          "text": "校服"
+        },
+        {
+          "id": "4",
+          "text": "舒服"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.438Z",
+  "updatedAt": "2026-07-24T12:48:37.438Z"
+}

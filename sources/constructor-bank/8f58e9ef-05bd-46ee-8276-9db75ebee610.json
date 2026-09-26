@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "8f58e9ef-05bd-46ee-8276-9db75ebee610",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "妈妈昨天买的一 ___ 运动鞋哥哥不喜欢。",
+      "options": [
+        {
+          "id": "1",
+          "text": "条"
+        },
+        {
+          "id": "2",
+          "text": "件"
+        },
+        {
+          "id": "3",
+          "text": "张"
+        },
+        {
+          "id": "4",
+          "text": "双"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.512Z",
+  "updatedAt": "2026-07-24T12:48:37.512Z"
+}

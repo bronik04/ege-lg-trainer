@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "id": "ae5362db-1ff5-4a3e-b670-de28499fa1e1",
+  "type": "grammar-21",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.18",
+    "2.4.43",
+    "2.4.49"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "小张跟小黄小声___说话。",
+      "options": [
+        {
+          "id": "1",
+          "text": "的"
+        },
+        {
+          "id": "2",
+          "text": "地"
+        },
+        {
+          "id": "3",
+          "text": "得"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.447Z",
+  "updatedAt": "2026-07-24T12:48:37.447Z"
+}

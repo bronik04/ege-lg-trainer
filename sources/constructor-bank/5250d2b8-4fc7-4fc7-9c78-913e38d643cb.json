@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "5250d2b8-4fc7-4fc7-9c78-913e38d643cb",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "这个戏只演了一___。我觉得，票一定很难买到。",
+      "options": [
+        {
+          "id": "1",
+          "text": "件"
+        },
+        {
+          "id": "2",
+          "text": "场"
+        },
+        {
+          "id": "3",
+          "text": "个"
+        },
+        {
+          "id": "4",
+          "text": "对"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.500Z",
+  "updatedAt": "2026-07-24T12:48:37.500Z"
+}

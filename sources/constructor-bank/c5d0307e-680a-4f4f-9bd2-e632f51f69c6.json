@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "c5d0307e-680a-4f4f-9bd2-e632f51f69c6",
+  "type": "grammar-23",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.64"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "考试的时候，你一定要细心。写___以后再认真检查，一点儿也不能马虎。",
+      "options": [
+        {
+          "id": "1",
+          "text": "对"
+        },
+        {
+          "id": "2",
+          "text": "错"
+        },
+        {
+          "id": "3",
+          "text": "完"
+        },
+        {
+          "id": "4",
+          "text": "到"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.493Z",
+  "updatedAt": "2026-07-24T12:48:37.493Z"
+}

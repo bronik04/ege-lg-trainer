@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "3e26113a-ed5f-4bc6-9041-4f5056e29813",
+  "type": "grammar-18",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.31",
+    "2.4.45",
+    "2.4.46"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "这条河___那条长三十公里。",
+      "options": [
+        {
+          "id": "1",
+          "text": "从"
+        },
+        {
+          "id": "2",
+          "text": "比"
+        },
+        {
+          "id": "3",
+          "text": "为"
+        },
+        {
+          "id": "4",
+          "text": "到"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.449Z",
+  "updatedAt": "2026-07-24T12:48:37.449Z"
+}

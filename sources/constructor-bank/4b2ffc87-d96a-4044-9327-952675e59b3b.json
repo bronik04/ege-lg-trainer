@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "4b2ffc87-d96a-4044-9327-952675e59b3b",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我朋友请我给他拿来一___帽子。",
+      "options": [
+        {
+          "id": "1",
+          "text": "支"
+        },
+        {
+          "id": "2",
+          "text": "顶"
+        },
+        {
+          "id": "3",
+          "text": "条"
+        },
+        {
+          "id": "4",
+          "text": "件"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.495Z",
+  "updatedAt": "2026-07-24T12:48:37.495Z"
+}

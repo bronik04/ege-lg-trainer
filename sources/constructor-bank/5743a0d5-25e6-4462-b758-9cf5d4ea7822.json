@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "5743a0d5-25e6-4462-b758-9cf5d4ea7822",
+  "type": "grammar-22",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.27"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "听完老师解释这个语法后___知道这个句子是什么意思。",
+      "options": [
+        {
+          "id": "1",
+          "text": "再"
+        },
+        {
+          "id": "2",
+          "text": "才"
+        },
+        {
+          "id": "3",
+          "text": "总"
+        },
+        {
+          "id": "4",
+          "text": "又"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.425Z",
+  "updatedAt": "2026-07-24T12:48:37.425Z"
+}

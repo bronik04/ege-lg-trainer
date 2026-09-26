@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "1dcde8be-5aa6-4d82-a5b8-fe77bfb56fef",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "姥姥让我在市场买一___糖。",
+      "options": [
+        {
+          "id": "1",
+          "text": "张"
+        },
+        {
+          "id": "2",
+          "text": "台"
+        },
+        {
+          "id": "3",
+          "text": "斤"
+        },
+        {
+          "id": "4",
+          "text": "个"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.490Z",
+  "updatedAt": "2026-07-24T12:48:37.490Z"
+}

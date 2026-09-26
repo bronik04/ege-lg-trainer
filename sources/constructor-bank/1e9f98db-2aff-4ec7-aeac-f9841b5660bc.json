@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "1e9f98db-2aff-4ec7-aeac-f9841b5660bc",
+  "type": "grammar-25",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.53"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "阅读书籍，学习新语言，去大海游泳，或者去听小鸟唱歌……这些事情看 ___ 非常简单，实现却特别困难。",
+      "options": [
+        {
+          "id": "1",
+          "text": "回来"
+        },
+        {
+          "id": "2",
+          "text": "上来"
+        },
+        {
+          "id": "3",
+          "text": "起来"
+        },
+        {
+          "id": "4",
+          "text": "进来"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.432Z",
+  "updatedAt": "2026-07-24T12:48:37.432Z"
+}

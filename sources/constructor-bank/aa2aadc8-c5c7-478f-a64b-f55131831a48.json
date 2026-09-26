@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "aa2aadc8-c5c7-478f-a64b-f55131831a48",
+  "type": "grammar-22",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.27"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "刘爷爷每天起得很早，早上五点钟他___起床去外边锻炼，所以他身体非常结实。",
+      "options": [
+        {
+          "id": "1",
+          "text": "就"
+        },
+        {
+          "id": "2",
+          "text": "只"
+        },
+        {
+          "id": "3",
+          "text": "才"
+        },
+        {
+          "id": "4",
+          "text": "再"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.484Z",
+  "updatedAt": "2026-07-24T12:48:37.484Z"
+}

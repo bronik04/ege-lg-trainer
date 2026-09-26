@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "97639401-9f34-4217-a55d-da1554cd2c74",
+  "type": "grammar-26",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "A) 但是他却坚持骑车上班\nB) 虽然在别人看来\nC) 以他的工资买辆车是不成问题的.",
+      "options": [
+        {
+          "id": "1",
+          "text": "BCA"
+        },
+        {
+          "id": "2",
+          "text": "BAC"
+        },
+        {
+          "id": "3",
+          "text": "CBA"
+        },
+        {
+          "id": "4",
+          "text": "ABC"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.431Z",
+  "updatedAt": "2026-07-24T12:48:37.431Z"
+}

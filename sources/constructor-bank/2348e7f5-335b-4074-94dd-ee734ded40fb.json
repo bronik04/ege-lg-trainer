@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "2348e7f5-335b-4074-94dd-ee734ded40fb",
+  "type": "grammar-20",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.34",
+    "2.4.35"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "明天晚上我得去机场接一个朋友，所以她的生日晚会不能参加 ___。",
+      "options": [
+        {
+          "id": "1",
+          "text": "了"
+        },
+        {
+          "id": "2",
+          "text": "着"
+        },
+        {
+          "id": "3",
+          "text": "过"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.434Z",
+  "updatedAt": "2026-07-24T12:48:37.434Z"
+}

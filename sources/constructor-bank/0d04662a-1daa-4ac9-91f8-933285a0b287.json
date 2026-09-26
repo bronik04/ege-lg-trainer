@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "0d04662a-1daa-4ac9-91f8-933285a0b287",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我刚考___试，还不知道考得怎么样。",
+      "options": [
+        {
+          "id": "1",
+          "text": "好"
+        },
+        {
+          "id": "2",
+          "text": "到"
+        },
+        {
+          "id": "3",
+          "text": "会"
+        },
+        {
+          "id": "4",
+          "text": "完"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.455Z",
+  "updatedAt": "2026-07-24T12:48:37.455Z"
+}

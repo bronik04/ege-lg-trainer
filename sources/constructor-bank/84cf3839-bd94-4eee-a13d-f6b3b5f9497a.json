@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "id": "84cf3839-bd94-4eee-a13d-f6b3b5f9497a",
+  "type": "grammar-21",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.18",
+    "2.4.43",
+    "2.4.49"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "白老师说的谜语很难猜，大家认真___想，都说不知道。",
+      "options": [
+        {
+          "id": "1",
+          "text": "的"
+        },
+        {
+          "id": "2",
+          "text": "得"
+        },
+        {
+          "id": "3",
+          "text": "地"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.496Z",
+  "updatedAt": "2026-07-24T12:48:37.496Z"
+}

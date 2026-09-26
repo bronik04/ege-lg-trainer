@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "c43c799f-7454-4791-9557-de5758ecca2c",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "孩子常常写 ___字，所以老师要修改他们的作文。",
+      "options": [
+        {
+          "id": "1",
+          "text": "完"
+        },
+        {
+          "id": "2",
+          "text": "错"
+        },
+        {
+          "id": "3",
+          "text": "成"
+        },
+        {
+          "id": "4",
+          "text": "住"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.488Z",
+  "updatedAt": "2026-07-24T12:48:37.488Z"
+}

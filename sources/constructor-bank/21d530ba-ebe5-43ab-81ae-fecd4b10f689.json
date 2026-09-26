@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "21d530ba-ebe5-43ab-81ae-fecd4b10f689",
+  "type": "grammar-15",
+  "level": "Б",
+  "codifierCodes": [
+    "2.1.4"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "理发。",
+      "options": [
+        {
+          "id": "1",
+          "text": "3-1"
+        },
+        {
+          "id": "2",
+          "text": "3-4"
+        },
+        {
+          "id": "3",
+          "text": "3-0"
+        },
+        {
+          "id": "4",
+          "text": "4-1"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.445Z",
+  "updatedAt": "2026-07-24T12:48:37.445Z"
+}

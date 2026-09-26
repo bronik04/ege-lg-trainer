@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "bcefc885-b8c1-40a1-ab95-d5f25a0b4f08",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "最近工作很忙，还要准备毕业考试。我太累了，有点儿受___。",
+      "options": [
+        {
+          "id": "1",
+          "text": "得了"
+        },
+        {
+          "id": "2",
+          "text": "不到"
+        },
+        {
+          "id": "3",
+          "text": "不好"
+        },
+        {
+          "id": "4",
+          "text": "不了"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.470Z",
+  "updatedAt": "2026-07-24T12:48:37.470Z"
+}

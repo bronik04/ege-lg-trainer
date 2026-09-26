@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "efdbaa16-fc93-4744-a88f-32e15819b92a",
+  "type": "grammar-17",
+  "level": "Б",
+  "codifierCodes": [
+    "2.3.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "下个月我要陪我的父母去西安___兵马俑。",
+      "options": [
+        {
+          "id": "1",
+          "text": "旅游"
+        },
+        {
+          "id": "2",
+          "text": "旅行"
+        },
+        {
+          "id": "3",
+          "text": "游客"
+        },
+        {
+          "id": "4",
+          "text": "游览"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.468Z",
+  "updatedAt": "2026-07-24T12:48:37.468Z"
+}

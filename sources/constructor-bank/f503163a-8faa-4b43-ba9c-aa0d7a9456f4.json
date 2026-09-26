@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "f503163a-8faa-4b43-ba9c-aa0d7a9456f4",
+  "type": "grammar-18",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.31",
+    "2.4.45",
+    "2.4.46"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "最近睡眠不足。咖啡 ___ 我不起作用，喝了三杯我还是觉得困。需要进行休息！",
+      "options": [
+        {
+          "id": "1",
+          "text": "在"
+        },
+        {
+          "id": "2",
+          "text": "到"
+        },
+        {
+          "id": "3",
+          "text": "对"
+        },
+        {
+          "id": "4",
+          "text": "从"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.435Z",
+  "updatedAt": "2026-07-24T12:48:37.435Z"
+}

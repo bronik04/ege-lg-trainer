@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "aa2afa29-dd12-4837-aa53-d43401847d11",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我认识这位先生，以前在一个班学习过，但是我实在想___他的名字。",
+      "options": [
+        {
+          "id": "1",
+          "text": "不出"
+        },
+        {
+          "id": "2",
+          "text": "不到"
+        },
+        {
+          "id": "3",
+          "text": "不起"
+        },
+        {
+          "id": "4",
+          "text": "不下"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.493Z",
+  "updatedAt": "2026-07-24T12:48:37.493Z"
+}

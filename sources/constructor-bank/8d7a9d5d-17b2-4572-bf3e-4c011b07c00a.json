@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "8d7a9d5d-17b2-4572-bf3e-4c011b07c00a",
+  "type": "grammar-18",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.31",
+    "2.4.45",
+    "2.4.46"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "别忘了，我们要___老人学习！",
+      "options": [
+        {
+          "id": "1",
+          "text": "从"
+        },
+        {
+          "id": "2",
+          "text": "比"
+        },
+        {
+          "id": "3",
+          "text": "为"
+        },
+        {
+          "id": "4",
+          "text": "向"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.460Z",
+  "updatedAt": "2026-07-24T12:48:37.460Z"
+}

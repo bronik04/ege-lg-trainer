@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "e5bacad2-9c61-4c54-9e72-32d042d0740b",
+  "type": "grammar-22",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.27"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "妈妈说我买的面包过期了，让我 ___买一包。",
+      "options": [
+        {
+          "id": "1",
+          "text": "再"
+        },
+        {
+          "id": "2",
+          "text": "才"
+        },
+        {
+          "id": "3",
+          "text": "就"
+        },
+        {
+          "id": "4",
+          "text": "又"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.488Z",
+  "updatedAt": "2026-07-24T12:48:37.488Z"
+}

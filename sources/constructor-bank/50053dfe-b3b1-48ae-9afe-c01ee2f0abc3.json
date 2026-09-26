@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "50053dfe-b3b1-48ae-9afe-c01ee2f0abc3",
+  "type": "grammar-27",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.44",
+    "2.4.58"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "房价越来越高，还好，房子买得早，___ 等到现在，买房子 ___ 更难了。",
+      "options": [
+        {
+          "id": "1",
+          "text": "连……，也……"
+        },
+        {
+          "id": "2",
+          "text": "除了……，也……"
+        },
+        {
+          "id": "3",
+          "text": "如果……，就……"
+        },
+        {
+          "id": "4",
+          "text": "因为……，所以……"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.429Z",
+  "updatedAt": "2026-07-24T12:48:37.429Z"
+}

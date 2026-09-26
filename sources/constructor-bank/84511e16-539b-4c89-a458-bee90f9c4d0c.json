@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "84511e16-539b-4c89-a458-bee90f9c4d0c",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我们家后面有一___高山。",
+      "options": [
+        {
+          "id": "1",
+          "text": "所"
+        },
+        {
+          "id": "2",
+          "text": "架"
+        },
+        {
+          "id": "3",
+          "text": "座"
+        },
+        {
+          "id": "4",
+          "text": "只"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.498Z",
+  "updatedAt": "2026-07-24T12:48:37.498Z"
+}

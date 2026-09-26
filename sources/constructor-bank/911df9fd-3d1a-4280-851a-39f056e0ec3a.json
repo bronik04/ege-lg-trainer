@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "911df9fd-3d1a-4280-851a-39f056e0ec3a",
+  "type": "grammar-20",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.34",
+    "2.4.35"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "那个男人不但长得好，而且性格也不错，我从来没见他和谁发 ___ 脾气。",
+      "options": [
+        {
+          "id": "1",
+          "text": "了"
+        },
+        {
+          "id": "2",
+          "text": "着"
+        },
+        {
+          "id": "3",
+          "text": "过"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.435Z",
+  "updatedAt": "2026-07-24T12:48:37.435Z"
+}

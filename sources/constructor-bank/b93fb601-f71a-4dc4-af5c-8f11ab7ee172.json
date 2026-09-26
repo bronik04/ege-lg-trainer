@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "b93fb601-f71a-4dc4-af5c-8f11ab7ee172",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我们村出了一___ 新闻。",
+      "options": [
+        {
+          "id": "1",
+          "text": "条"
+        },
+        {
+          "id": "2",
+          "text": "件"
+        },
+        {
+          "id": "3",
+          "text": "张"
+        },
+        {
+          "id": "4",
+          "text": "块"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.486Z",
+  "updatedAt": "2026-07-24T12:48:37.486Z"
+}

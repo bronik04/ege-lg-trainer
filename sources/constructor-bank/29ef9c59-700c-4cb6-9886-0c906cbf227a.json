@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "29ef9c59-700c-4cb6-9886-0c906cbf227a",
+  "type": "grammar-19",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.32"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "两千三百零三万六千四百零五",
+      "options": [
+        {
+          "id": "1",
+          "text": "230 036 405"
+        },
+        {
+          "id": "2",
+          "text": "23 036 405"
+        },
+        {
+          "id": "3",
+          "text": "2 306 405"
+        },
+        {
+          "id": "4",
+          "text": "23 306 405"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.442Z",
+  "updatedAt": "2026-07-24T12:48:37.442Z"
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "26294686-81e7-4cb6-a9a7-f5245f5cff66",
+  "type": "grammar-25",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.53"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "孩子们很尊敬王老师。他一进教室，学生们就站 ___。",
+      "options": [
+        {
+          "id": "1",
+          "text": "下来"
+        },
+        {
+          "id": "2",
+          "text": "进去"
+        },
+        {
+          "id": "3",
+          "text": "起来"
+        },
+        {
+          "id": "4",
+          "text": "下去"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.489Z",
+  "updatedAt": "2026-07-24T12:48:37.489Z"
+}

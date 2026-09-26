@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "151eca47-36d2-4aaf-b7ce-e9e1ece44ad8",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "今天我在超市买了很多食物，回家的时候才发现我一 ___ 酱油也没买。",
+      "options": [
+        {
+          "id": "1",
+          "text": "棵"
+        },
+        {
+          "id": "2",
+          "text": "堂"
+        },
+        {
+          "id": "3",
+          "text": "瓶"
+        },
+        {
+          "id": "4",
+          "text": "条"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.426Z",
+  "updatedAt": "2026-07-24T12:48:37.426Z"
+}

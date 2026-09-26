@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "id": "2981e158-510b-408e-8fe8-b563fb2dc52d",
+  "type": "grammar-21",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.18",
+    "2.4.43",
+    "2.4.49"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "他病 ___不能吃饭，只能喝汤。",
+      "options": [
+        {
+          "id": "1",
+          "text": "的"
+        },
+        {
+          "id": "2",
+          "text": "得"
+        },
+        {
+          "id": "3",
+          "text": "地"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.442Z",
+  "updatedAt": "2026-07-24T12:48:37.442Z"
+}

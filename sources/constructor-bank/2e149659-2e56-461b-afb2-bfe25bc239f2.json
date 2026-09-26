@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "2e149659-2e56-461b-afb2-bfe25bc239f2",
+  "type": "grammar-18",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.31",
+    "2.4.45",
+    "2.4.46"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "小王有时候___一些公司翻译资料，有时候也陪代表团。",
+      "options": [
+        {
+          "id": "1",
+          "text": "为"
+        },
+        {
+          "id": "2",
+          "text": "从"
+        },
+        {
+          "id": "3",
+          "text": "被"
+        },
+        {
+          "id": "4",
+          "text": "由"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.501Z",
+  "updatedAt": "2026-07-24T12:48:37.501Z"
+}

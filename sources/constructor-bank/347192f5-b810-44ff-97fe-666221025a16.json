@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "347192f5-b810-44ff-97fe-666221025a16",
+  "type": "grammar-20",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.34",
+    "2.4.35"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我来中国以前没有讲___价，所以第一次被骗了。",
+      "options": [
+        {
+          "id": "1",
+          "text": "了"
+        },
+        {
+          "id": "2",
+          "text": "着"
+        },
+        {
+          "id": "3",
+          "text": "过"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.487Z",
+  "updatedAt": "2026-07-24T12:48:37.487Z"
+}

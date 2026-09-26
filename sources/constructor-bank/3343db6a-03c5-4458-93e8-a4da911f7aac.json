@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "3343db6a-03c5-4458-93e8-a4da911f7aac",
+  "type": "grammar-18",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.31",
+    "2.4.45",
+    "2.4.46"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "王中看着中国地图___小张介绍中国的地理位置。",
+      "options": [
+        {
+          "id": "1",
+          "text": "给"
+        },
+        {
+          "id": "2",
+          "text": "为"
+        },
+        {
+          "id": "3",
+          "text": "由"
+        },
+        {
+          "id": "4",
+          "text": "在"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.477Z",
+  "updatedAt": "2026-07-24T12:48:37.477Z"
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "48d54ff2-314d-478b-8673-85de13bfb18e",
+  "type": "grammar-25",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.53"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "他慢慢地变得强___。",
+      "options": [
+        {
+          "id": "1",
+          "text": "下来"
+        },
+        {
+          "id": "2",
+          "text": "起来"
+        },
+        {
+          "id": "3",
+          "text": "过来"
+        },
+        {
+          "id": "4",
+          "text": "下去"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.519Z",
+  "updatedAt": "2026-07-24T12:48:37.519Z"
+}

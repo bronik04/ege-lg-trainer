@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "2e11d7f0-505a-4b27-b1c6-dd023b233c9a",
+  "type": "grammar-25",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.53"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我在楼上看见他从办公室里走___。",
+      "options": [
+        {
+          "id": "1",
+          "text": "过来"
+        },
+        {
+          "id": "2",
+          "text": "出来"
+        },
+        {
+          "id": "3",
+          "text": "下去"
+        },
+        {
+          "id": "4",
+          "text": "进来"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.470Z",
+  "updatedAt": "2026-07-24T12:48:37.470Z"
+}

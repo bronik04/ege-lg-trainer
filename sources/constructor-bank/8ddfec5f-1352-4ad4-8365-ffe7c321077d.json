@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "8ddfec5f-1352-4ad4-8365-ffe7c321077d",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "这间教室太小，我们汉语班坐 ___。",
+      "options": [
+        {
+          "id": "1",
+          "text": "得起"
+        },
+        {
+          "id": "2",
+          "text": "不完"
+        },
+        {
+          "id": "3",
+          "text": "得好"
+        },
+        {
+          "id": "4",
+          "text": "不下"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.511Z",
+  "updatedAt": "2026-07-24T12:48:37.511Z"
+}

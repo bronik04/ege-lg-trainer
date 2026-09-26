@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "b5227ed7-7a20-4702-a740-a57edb94a81b",
+  "type": "grammar-17",
+  "level": "Б",
+  "codifierCodes": [
+    "2.3.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "小孩子说的话深深地___了在座的人。",
+      "options": [
+        {
+          "id": "1",
+          "text": "感谢"
+        },
+        {
+          "id": "2",
+          "text": "感激"
+        },
+        {
+          "id": "3",
+          "text": "感觉"
+        },
+        {
+          "id": "4",
+          "text": "感动"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.495Z",
+  "updatedAt": "2026-07-24T12:48:37.495Z"
+}

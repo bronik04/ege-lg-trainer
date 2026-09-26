@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "bb848657-d0b5-4bc5-9a8f-0ebe8349a45d",
+  "type": "grammar-27",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.44",
+    "2.4.58"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "昨天晚上看杂技比赛,___我坐在前边，___看得非常清楚。",
+      "options": [
+        {
+          "id": "1",
+          "text": "虽然……但是"
+        },
+        {
+          "id": "2",
+          "text": "因为……所以"
+        },
+        {
+          "id": "3",
+          "text": "不但……而且"
+        },
+        {
+          "id": "4",
+          "text": "既然……那么"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.467Z",
+  "updatedAt": "2026-07-24T12:48:37.467Z"
+}

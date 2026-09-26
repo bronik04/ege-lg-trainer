@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "6b415e47-ef22-492e-9165-1fb99cb3bee4",
+  "type": "grammar-23",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.64"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "这几个问题比较难，我虽然做___了，但是不知道做对没做对。",
+      "options": [
+        {
+          "id": "1",
+          "text": "完"
+        },
+        {
+          "id": "2",
+          "text": "上"
+        },
+        {
+          "id": "3",
+          "text": "错"
+        },
+        {
+          "id": "4",
+          "text": "好"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.502Z",
+  "updatedAt": "2026-07-24T12:48:37.502Z"
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "89bb2bc2-1504-4c12-ad94-2d771c70cfa4",
+  "type": "grammar-26",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "A) 你祝他“马到成功”\nB) 他一定会对你表示感谢\nC) 如果你的一位朋友要做一件重要的事情.",
+      "options": [
+        {
+          "id": "1",
+          "text": "ABC"
+        },
+        {
+          "id": "2",
+          "text": "ACB"
+        },
+        {
+          "id": "3",
+          "text": "BAC"
+        },
+        {
+          "id": "4",
+          "text": "CAB"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.431Z",
+  "updatedAt": "2026-07-24T12:48:37.431Z"
+}

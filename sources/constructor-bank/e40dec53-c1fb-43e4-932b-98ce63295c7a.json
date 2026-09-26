@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "e40dec53-c1fb-43e4-932b-98ce63295c7a",
+  "type": "grammar-27",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.44",
+    "2.4.58"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "___今天下暴雪，___同学们上课都迟到了。",
+      "options": [
+        {
+          "id": "1",
+          "text": "只要……，就……"
+        },
+        {
+          "id": "2",
+          "text": "因为……，所以……"
+        },
+        {
+          "id": "3",
+          "text": "不但……，而且……"
+        },
+        {
+          "id": "4",
+          "text": "虽然……，但是……"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.466Z",
+  "updatedAt": "2026-07-24T12:48:37.466Z"
+}

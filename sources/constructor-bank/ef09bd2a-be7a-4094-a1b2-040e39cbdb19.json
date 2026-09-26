@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "ef09bd2a-be7a-4094-a1b2-040e39cbdb19",
+  "type": "grammar-23",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.64"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我买的那件衣服整整六十块钱呢。你怎么随便送___别人了？",
+      "options": [
+        {
+          "id": "1",
+          "text": "到"
+        },
+        {
+          "id": "2",
+          "text": "给"
+        },
+        {
+          "id": "3",
+          "text": "上"
+        },
+        {
+          "id": "4",
+          "text": "往"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.479Z",
+  "updatedAt": "2026-07-24T12:48:37.479Z"
+}

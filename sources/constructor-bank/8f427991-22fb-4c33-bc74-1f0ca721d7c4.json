@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "8f427991-22fb-4c33-bc74-1f0ca721d7c4",
+  "type": "grammar-22",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.27"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "这是离海边最近的房子，___近的没有了。",
+      "options": [
+        {
+          "id": "1",
+          "text": "还"
+        },
+        {
+          "id": "2",
+          "text": "又"
+        },
+        {
+          "id": "3",
+          "text": "再"
+        },
+        {
+          "id": "4",
+          "text": "很"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.474Z",
+  "updatedAt": "2026-07-24T12:48:37.474Z"
+}

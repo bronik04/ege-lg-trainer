@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "ca228d2e-b872-410c-900c-68a80c6da18a",
+  "type": "grammar-15",
+  "level": "Б",
+  "codifierCodes": [
+    "2.1.4"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "时差。",
+      "options": [
+        {
+          "id": "1",
+          "text": "2-1"
+        },
+        {
+          "id": "2",
+          "text": "2-4"
+        },
+        {
+          "id": "3",
+          "text": "2-0"
+        },
+        {
+          "id": "4",
+          "text": "4-4"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.472Z",
+  "updatedAt": "2026-07-24T12:48:37.472Z"
+}

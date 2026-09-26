@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "07127549-b7d0-4d1c-a792-e036c6b76d46",
+  "type": "grammar-22",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.27"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "这个饭馆很贵，也很难吃。我们去过两次，不要___去。",
+      "options": [
+        {
+          "id": "1",
+          "text": "才"
+        },
+        {
+          "id": "2",
+          "text": "还"
+        },
+        {
+          "id": "3",
+          "text": "再"
+        },
+        {
+          "id": "4",
+          "text": "又"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.492Z",
+  "updatedAt": "2026-07-24T12:48:37.492Z"
+}

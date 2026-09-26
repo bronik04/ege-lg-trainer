@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "5695945c-6935-4491-abd7-f3ecd9ca3fe1",
+  "type": "grammar-18",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.31",
+    "2.4.45",
+    "2.4.46"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "昨天的作业我 ___ 晚上六点做到十二点，太多了！",
+      "options": [
+        {
+          "id": "1",
+          "text": "从"
+        },
+        {
+          "id": "2",
+          "text": "起"
+        },
+        {
+          "id": "3",
+          "text": "为"
+        },
+        {
+          "id": "4",
+          "text": "跟"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.442Z",
+  "updatedAt": "2026-07-24T12:48:37.442Z"
+}

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "f8bae1de-c286-4863-b223-2bcb0c62cd57",
+  "type": "grammar-27",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.44",
+    "2.4.58"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "___选择了你的人生道路，你___应该勇敢地走下去。",
+      "options": [
+        {
+          "id": "1",
+          "text": "只有……才……"
+        },
+        {
+          "id": "2",
+          "text": "虽然……但是……"
+        },
+        {
+          "id": "3",
+          "text": "既然……就……"
+        },
+        {
+          "id": "4",
+          "text": "不管……都……"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.476Z",
+  "updatedAt": "2026-07-24T12:48:37.476Z"
+}

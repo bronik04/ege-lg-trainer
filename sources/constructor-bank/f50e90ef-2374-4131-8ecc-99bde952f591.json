@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "f50e90ef-2374-4131-8ecc-99bde952f591",
+  "type": "grammar-17",
+  "level": "Б",
+  "codifierCodes": [
+    "2.3.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "这次考试的重点___生词和语法。",
+      "options": [
+        {
+          "id": "1",
+          "text": "包裹"
+        },
+        {
+          "id": "2",
+          "text": "保活"
+        },
+        {
+          "id": "3",
+          "text": "包括"
+        },
+        {
+          "id": "4",
+          "text": "打包"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.434Z",
+  "updatedAt": "2026-07-24T12:48:37.434Z"
+}

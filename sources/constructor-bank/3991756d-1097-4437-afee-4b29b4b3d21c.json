@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "3991756d-1097-4437-afee-4b29b4b3d21c",
+  "type": "grammar-25",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.53"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我和朋友合租了一套房子。在搬___以前，我们想把这套房子装修一下儿。",
+      "options": [
+        {
+          "id": "1",
+          "text": "上去"
+        },
+        {
+          "id": "2",
+          "text": "出来"
+        },
+        {
+          "id": "3",
+          "text": "过来"
+        },
+        {
+          "id": "4",
+          "text": "下去"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.480Z",
+  "updatedAt": "2026-07-24T12:48:37.480Z"
+}

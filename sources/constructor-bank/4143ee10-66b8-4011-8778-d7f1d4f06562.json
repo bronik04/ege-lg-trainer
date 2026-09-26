@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "4143ee10-66b8-4011-8778-d7f1d4f06562",
+  "type": "grammar-20",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.34",
+    "2.4.35"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "他没听___ 那只歌曲。",
+      "options": [
+        {
+          "id": "1",
+          "text": "了"
+        },
+        {
+          "id": "2",
+          "text": "着"
+        },
+        {
+          "id": "3",
+          "text": "过"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.509Z",
+  "updatedAt": "2026-07-24T12:48:37.509Z"
+}

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "1f77c632-55b2-4263-813d-0ace2d01d35d",
+  "type": "grammar-20",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.34",
+    "2.4.35"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "近年来，有越来越多的人喜欢骑 ___ 自行车旅游。",
+      "options": [
+        {
+          "id": "1",
+          "text": "了"
+        },
+        {
+          "id": "2",
+          "text": "着"
+        },
+        {
+          "id": "3",
+          "text": "过"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.439Z",
+  "updatedAt": "2026-07-24T12:48:37.439Z"
+}

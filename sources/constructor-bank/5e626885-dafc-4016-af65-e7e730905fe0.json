@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "id": "5e626885-dafc-4016-af65-e7e730905fe0",
+  "type": "grammar-21",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.18",
+    "2.4.43",
+    "2.4.49"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "下午你去农贸市场买点儿冬瓜、黄瓜什么___，晚上我们做饭。",
+      "options": [
+        {
+          "id": "1",
+          "text": "的"
+        },
+        {
+          "id": "2",
+          "text": "得"
+        },
+        {
+          "id": "3",
+          "text": "地"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.469Z",
+  "updatedAt": "2026-07-24T12:48:37.469Z"
+}

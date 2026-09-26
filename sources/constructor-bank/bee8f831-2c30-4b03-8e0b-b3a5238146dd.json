@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "bee8f831-2c30-4b03-8e0b-b3a5238146dd",
+  "type": "grammar-22",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.27"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我___开始学汉语的时候,李老师的话都听不懂。",
+      "options": [
+        {
+          "id": "1",
+          "text": "就"
+        },
+        {
+          "id": "2",
+          "text": "才"
+        },
+        {
+          "id": "3",
+          "text": "还"
+        },
+        {
+          "id": "4",
+          "text": "刚"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.482Z",
+  "updatedAt": "2026-07-24T12:48:37.482Z"
+}

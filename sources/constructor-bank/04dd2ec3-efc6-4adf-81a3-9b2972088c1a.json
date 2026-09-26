@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "04dd2ec3-efc6-4adf-81a3-9b2972088c1a",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "王老师说得非常快，用很多我不认识的词语，真遗憾，我听___。",
+      "options": [
+        {
+          "id": "1",
+          "text": "不了"
+        },
+        {
+          "id": "2",
+          "text": "得好"
+        },
+        {
+          "id": "3",
+          "text": "得完"
+        },
+        {
+          "id": "4",
+          "text": "不懂"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.488Z",
+  "updatedAt": "2026-07-24T12:48:37.488Z"
+}

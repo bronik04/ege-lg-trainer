@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "d5f9a56d-f632-4261-893f-35ae5cc8b7c0",
+  "type": "grammar-25",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.53"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我一整天都找不到我的手机，直到晚上我才想起我没有把它从包里拿 ___ 。",
+      "options": [
+        {
+          "id": "1",
+          "text": "出来"
+        },
+        {
+          "id": "2",
+          "text": "下来"
+        },
+        {
+          "id": "3",
+          "text": "回来"
+        },
+        {
+          "id": "4",
+          "text": "进来"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.432Z",
+  "updatedAt": "2026-07-24T12:48:37.432Z"
+}

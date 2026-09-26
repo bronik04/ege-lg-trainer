@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "4587b6d7-1a37-4d5a-bfa3-f9947573bd9c",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "这种活儿她一个人做___。",
+      "options": [
+        {
+          "id": "1",
+          "text": "得住"
+        },
+        {
+          "id": "2",
+          "text": "不住"
+        },
+        {
+          "id": "3",
+          "text": "得下"
+        },
+        {
+          "id": "4",
+          "text": "不了"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.506Z",
+  "updatedAt": "2026-07-24T12:48:37.506Z"
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "d32189fe-d817-4516-a2b7-09856b2afb91",
+  "type": "grammar-25",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.53"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "万事开头难，你们应该坚定信心，坚持___就一定能成功。",
+      "options": [
+        {
+          "id": "1",
+          "text": "下去"
+        },
+        {
+          "id": "2",
+          "text": "起来"
+        },
+        {
+          "id": "3",
+          "text": "回来"
+        },
+        {
+          "id": "4",
+          "text": "上来"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.475Z",
+  "updatedAt": "2026-07-24T12:48:37.475Z"
+}

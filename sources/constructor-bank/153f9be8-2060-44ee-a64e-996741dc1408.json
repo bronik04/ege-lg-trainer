@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "153f9be8-2060-44ee-a64e-996741dc1408",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "父亲给我女儿送了一___裙子。",
+      "options": [
+        {
+          "id": "1",
+          "text": "个"
+        },
+        {
+          "id": "2",
+          "text": "件"
+        },
+        {
+          "id": "3",
+          "text": "条"
+        },
+        {
+          "id": "4",
+          "text": "只"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.446Z",
+  "updatedAt": "2026-07-24T12:48:37.446Z"
+}

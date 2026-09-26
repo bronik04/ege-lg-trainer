@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "fff46d4a-0b64-422e-ab73-f112905061e5",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "要学好一___外语，非得下苦功夫不可。",
+      "options": [
+        {
+          "id": "1",
+          "text": "口"
+        },
+        {
+          "id": "2",
+          "text": "件"
+        },
+        {
+          "id": "3",
+          "text": "门"
+        },
+        {
+          "id": "4",
+          "text": "套"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.473Z",
+  "updatedAt": "2026-07-24T12:48:37.473Z"
+}

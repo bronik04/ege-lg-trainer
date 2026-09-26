@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "0b823312-c7ff-436c-9d21-7fa789643803",
+  "type": "grammar-23",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.64"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "这是我第一次跟她见面，但她已经给我留 ___ 了深刻的印象。",
+      "options": [
+        {
+          "id": "1",
+          "text": "上"
+        },
+        {
+          "id": "2",
+          "text": "好"
+        },
+        {
+          "id": "3",
+          "text": "下"
+        },
+        {
+          "id": "4",
+          "text": "住"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.438Z",
+  "updatedAt": "2026-07-24T12:48:37.438Z"
+}

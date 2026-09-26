@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "35cf9543-1b1e-46a5-acf5-bc358f6f5b43",
+  "type": "grammar-17",
+  "level": "Б",
+  "codifierCodes": [
+    "2.3.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "对于那些学习有困难的学生，老师要帮助他们想办法___困难。",
+      "options": [
+        {
+          "id": "1",
+          "text": "决定"
+        },
+        {
+          "id": "2",
+          "text": "解决"
+        },
+        {
+          "id": "3",
+          "text": "了解"
+        },
+        {
+          "id": "4",
+          "text": "决心"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.477Z",
+  "updatedAt": "2026-07-24T12:48:37.477Z"
+}

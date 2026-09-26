@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "e73c58d2-87e3-43a6-81b7-482bf70a36b8",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "安娜请我下星期五去看电影，她说这是一___非常有意思的中国电影。",
+      "options": [
+        {
+          "id": "1",
+          "text": "张"
+        },
+        {
+          "id": "2",
+          "text": "只"
+        },
+        {
+          "id": "3",
+          "text": "部"
+        },
+        {
+          "id": "4",
+          "text": "块"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.481Z",
+  "updatedAt": "2026-07-24T12:48:37.481Z"
+}

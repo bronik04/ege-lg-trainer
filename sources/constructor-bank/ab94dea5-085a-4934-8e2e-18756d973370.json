@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "ab94dea5-085a-4934-8e2e-18756d973370",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "最近我开始学中文，我的中国朋友给我一本书，但是我都看___，很多字不认识。",
+      "options": [
+        {
+          "id": "1",
+          "text": "得懂"
+        },
+        {
+          "id": "2",
+          "text": "不下"
+        },
+        {
+          "id": "3",
+          "text": "不懂"
+        },
+        {
+          "id": "4",
+          "text": "得了"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.443Z",
+  "updatedAt": "2026-07-24T12:48:37.443Z"
+}

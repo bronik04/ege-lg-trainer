@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "328fd2a9-c0ea-4db1-b3d3-92c6ae654b13",
+  "type": "grammar-26",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "A) 全家人能在一起在照相馆里照一张全家福，是一件很重要的事儿\nB) 80年代后，大多数人有了照相机，去照相馆的人就少了\nC) 40年前，中国人大多数家庭没有照相机，人们都去照相馆里照相.",
+      "options": [
+        {
+          "id": "1",
+          "text": "BAC"
+        },
+        {
+          "id": "2",
+          "text": "CBA"
+        },
+        {
+          "id": "3",
+          "text": "CAB"
+        },
+        {
+          "id": "4",
+          "text": "ACB"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.480Z",
+  "updatedAt": "2026-07-24T12:48:37.480Z"
+}

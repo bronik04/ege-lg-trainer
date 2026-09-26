@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "8c09462f-ca5b-48aa-8b68-eb02c3c3d34b",
+  "type": "grammar-22",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.27"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "你买的水果不够，要___买一点儿。",
+      "options": [
+        {
+          "id": "1",
+          "text": "才"
+        },
+        {
+          "id": "2",
+          "text": "再"
+        },
+        {
+          "id": "3",
+          "text": "又"
+        },
+        {
+          "id": "4",
+          "text": "还"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.518Z",
+  "updatedAt": "2026-07-24T12:48:37.518Z"
+}

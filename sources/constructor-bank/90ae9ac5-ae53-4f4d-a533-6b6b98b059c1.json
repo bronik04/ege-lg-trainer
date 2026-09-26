@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "90ae9ac5-ae53-4f4d-a533-6b6b98b059c1",
+  "type": "grammar-26",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "A) 平时，儿子总是在学校上课\nB) 只有放了假，才有可能和我们一块儿去旅游\nC) 他学习很紧张，很少有时间出去玩儿.",
+      "options": [
+        {
+          "id": "1",
+          "text": "CAB"
+        },
+        {
+          "id": "2",
+          "text": "ACB"
+        },
+        {
+          "id": "3",
+          "text": "CBA"
+        },
+        {
+          "id": "4",
+          "text": "BAC"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.476Z",
+  "updatedAt": "2026-07-24T12:48:37.476Z"
+}

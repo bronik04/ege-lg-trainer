@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "d32d6683-5d06-43fa-ae67-daae8cca2a68",
+  "type": "grammar-18",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.31",
+    "2.4.45",
+    "2.4.46"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "体育馆___ 超市不太远。",
+      "options": [
+        {
+          "id": "1",
+          "text": "跟"
+        },
+        {
+          "id": "2",
+          "text": "往"
+        },
+        {
+          "id": "3",
+          "text": "离"
+        },
+        {
+          "id": "4",
+          "text": "在"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.512Z",
+  "updatedAt": "2026-07-24T12:48:37.512Z"
+}

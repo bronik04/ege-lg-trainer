@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "b2ba0f34-79b2-45a8-ba8a-cc1e5719170e",
+  "type": "grammar-25",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.53"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "上课的时候，突然从教室里跑___了一个学生。",
+      "options": [
+        {
+          "id": "1",
+          "text": "进去"
+        },
+        {
+          "id": "2",
+          "text": "下来"
+        },
+        {
+          "id": "3",
+          "text": "回来"
+        },
+        {
+          "id": "4",
+          "text": "出来"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.458Z",
+  "updatedAt": "2026-07-24T12:48:37.458Z"
+}

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "8c54e1bd-2f71-481e-ba23-b463ec9f178c",
+  "type": "grammar-26",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "A 我儿子的个子长得非常快 B 今年春天就有很多不能穿了 C 去年春天我给他买了几件衣服",
+      "options": [
+        {
+          "id": "1",
+          "text": "ABC"
+        },
+        {
+          "id": "2",
+          "text": "ACB"
+        },
+        {
+          "id": "3",
+          "text": "BCA"
+        },
+        {
+          "id": "4",
+          "text": "CAB"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ",
+    "добавлено 2026-09",
+    "ФИПИ 375e69",
+    "КЭС ФИПИ 2.4.1"
+  ],
+  "createdAt": "2026-09-06T13:20:20.045Z",
+  "updatedAt": "2026-09-06T13:20:20.045Z"
+}

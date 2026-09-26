@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "52f56989-0d63-46dd-96a0-f963c3a95836",
+  "type": "grammar-26",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "A) 莫斯科的机场特别大\nB) 但伏尔加格勒的就很小\nC) 拿机场来说.",
+      "options": [
+        {
+          "id": "1",
+          "text": "ABC"
+        },
+        {
+          "id": "2",
+          "text": "ACB"
+        },
+        {
+          "id": "3",
+          "text": "BAC"
+        },
+        {
+          "id": "4",
+          "text": "CAB"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.440Z",
+  "updatedAt": "2026-07-24T12:48:37.440Z"
+}

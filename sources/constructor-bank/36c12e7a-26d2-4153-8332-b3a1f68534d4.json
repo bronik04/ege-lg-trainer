@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "36c12e7a-26d2-4153-8332-b3a1f68534d4",
+  "type": "grammar-23",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.64"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "开汉语晚会以前，我们把会场收拾干净，把红纸贴___门上和窗户上。",
+      "options": [
+        {
+          "id": "1",
+          "text": "好"
+        },
+        {
+          "id": "2",
+          "text": "上"
+        },
+        {
+          "id": "3",
+          "text": "在"
+        },
+        {
+          "id": "4",
+          "text": "住"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.470Z",
+  "updatedAt": "2026-07-24T12:48:37.470Z"
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "bde8da7e-10c8-47fa-a905-42792a949497",
+  "type": "grammar-23",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.64"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "这篇文章的生词太多了，句子很长，我还没看___。",
+      "options": [
+        {
+          "id": "1",
+          "text": "到"
+        },
+        {
+          "id": "2",
+          "text": "完"
+        },
+        {
+          "id": "3",
+          "text": "住"
+        },
+        {
+          "id": "4",
+          "text": "错"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.497Z",
+  "updatedAt": "2026-07-24T12:48:37.497Z"
+}

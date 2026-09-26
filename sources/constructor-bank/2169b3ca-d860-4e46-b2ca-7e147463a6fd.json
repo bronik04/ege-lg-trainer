@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "id": "2169b3ca-d860-4e46-b2ca-7e147463a6fd",
+  "type": "grammar-21",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.18",
+    "2.4.43",
+    "2.4.49"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我们会给小猫安排一个舒服___家。",
+      "options": [
+        {
+          "id": "1",
+          "text": "的"
+        },
+        {
+          "id": "2",
+          "text": "得"
+        },
+        {
+          "id": "3",
+          "text": "地"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.518Z",
+  "updatedAt": "2026-07-24T12:48:37.518Z"
+}

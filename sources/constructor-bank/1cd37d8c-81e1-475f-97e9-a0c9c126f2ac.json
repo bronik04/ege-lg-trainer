@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "1cd37d8c-81e1-475f-97e9-a0c9c126f2ac",
+  "type": "grammar-27",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.44",
+    "2.4.58"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "___她在病休，___她还用时间学外语。",
+      "options": [
+        {
+          "id": "1",
+          "text": "因为……，所以……"
+        },
+        {
+          "id": "2",
+          "text": "要是……，就……"
+        },
+        {
+          "id": "3",
+          "text": "尽管……，但是……"
+        },
+        {
+          "id": "4",
+          "text": "除了……，以外……"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.453Z",
+  "updatedAt": "2026-07-24T12:48:37.453Z"
+}

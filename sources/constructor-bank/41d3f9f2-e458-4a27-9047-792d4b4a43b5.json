@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "41d3f9f2-e458-4a27-9047-792d4b4a43b5",
+  "type": "grammar-24",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.49",
+    "2.4.61"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "别着急，还有座位，你们都坐 ___。",
+      "options": [
+        {
+          "id": "1",
+          "text": "起来"
+        },
+        {
+          "id": "2",
+          "text": "得上"
+        },
+        {
+          "id": "3",
+          "text": "得下"
+        },
+        {
+          "id": "4",
+          "text": "过来"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.511Z",
+  "updatedAt": "2026-07-24T12:48:37.511Z"
+}

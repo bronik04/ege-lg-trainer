@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "b2e5bcc9-3e01-440f-a394-2b5eb9168b2f",
+  "type": "grammar-26",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "A) 有一些歌词是很久以前的，但我还是用了\nB) 这首歌是我寒假时写出来的\nC) 我想用这些词来表达我的感受.",
+      "options": [
+        {
+          "id": "1",
+          "text": "BAC"
+        },
+        {
+          "id": "2",
+          "text": "CAB"
+        },
+        {
+          "id": "3",
+          "text": "ACB"
+        },
+        {
+          "id": "4",
+          "text": "ABC"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.486Z",
+  "updatedAt": "2026-07-24T12:48:37.486Z"
+}

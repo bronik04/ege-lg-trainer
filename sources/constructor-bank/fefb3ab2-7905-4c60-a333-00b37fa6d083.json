@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "fefb3ab2-7905-4c60-a333-00b37fa6d083",
+  "type": "grammar-18",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.31",
+    "2.4.45",
+    "2.4.46"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "上海的公园不___北京的多。",
+      "options": [
+        {
+          "id": "1",
+          "text": "跟"
+        },
+        {
+          "id": "2",
+          "text": "比"
+        },
+        {
+          "id": "3",
+          "text": "从"
+        },
+        {
+          "id": "4",
+          "text": "在"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.504Z",
+  "updatedAt": "2026-07-24T12:48:37.504Z"
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "fa0ee1a4-4e47-467d-bbb8-88b9953c86af",
+  "type": "grammar-25",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.53"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "社会发展了，可是人们的压力却越来越大了。最重要的是要多和别人交流，有时候你把压力说 ___，压力就变小了。",
+      "options": [
+        {
+          "id": "1",
+          "text": "回来"
+        },
+        {
+          "id": "2",
+          "text": "下来"
+        },
+        {
+          "id": "3",
+          "text": "出来"
+        },
+        {
+          "id": "4",
+          "text": "进来"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.429Z",
+  "updatedAt": "2026-07-24T12:48:37.429Z"
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "d8f3a39e-ffc6-43b2-b221-3ad38eb26c62",
+  "type": "grammar-16",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.33"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "你看，那___ 熊猫这么可爱！",
+      "options": [
+        {
+          "id": "1",
+          "text": "部"
+        },
+        {
+          "id": "2",
+          "text": "只"
+        },
+        {
+          "id": "3",
+          "text": "杯"
+        },
+        {
+          "id": "4",
+          "text": "棵"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.508Z",
+  "updatedAt": "2026-07-24T12:48:37.508Z"
+}

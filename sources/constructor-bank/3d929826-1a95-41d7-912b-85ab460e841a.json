@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "3d929826-1a95-41d7-912b-85ab460e841a",
+  "type": "grammar-25",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.53"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "看到你踉踉跄跄地在我前边走___，我就知道没有什么好事。",
+      "options": [
+        {
+          "id": "1",
+          "text": "过来"
+        },
+        {
+          "id": "2",
+          "text": "出来"
+        },
+        {
+          "id": "3",
+          "text": "下去"
+        },
+        {
+          "id": "4",
+          "text": "进来"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.503Z",
+  "updatedAt": "2026-07-24T12:48:37.503Z"
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "22430935-17aa-49d4-b869-b1f8cc0aa620",
+  "type": "grammar-17",
+  "level": "Б",
+  "codifierCodes": [
+    "2.3.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "开车的___到了，司机怎么还没来？",
+      "options": [
+        {
+          "id": "1",
+          "text": "时期"
+        },
+        {
+          "id": "2",
+          "text": "时代"
+        },
+        {
+          "id": "3",
+          "text": "小时"
+        },
+        {
+          "id": "4",
+          "text": "时间"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "4"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.473Z",
+  "updatedAt": "2026-07-24T12:48:37.473Z"
+}

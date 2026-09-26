@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "fe11f817-50f9-4007-b660-d87d28104e67",
+  "type": "grammar-25",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.53"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "快走___吧，我们在楼下的体育馆等着你呢。",
+      "options": [
+        {
+          "id": "1",
+          "text": "上去"
+        },
+        {
+          "id": "2",
+          "text": "下来"
+        },
+        {
+          "id": "3",
+          "text": "出去"
+        },
+        {
+          "id": "4",
+          "text": "上来"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.451Z",
+  "updatedAt": "2026-07-24T12:48:37.451Z"
+}

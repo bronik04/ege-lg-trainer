@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "9804289d-cd6b-4c8f-9bc9-329871881344",
+  "type": "grammar-18",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.31",
+    "2.4.45",
+    "2.4.46"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "___我看来，观念更新不是一件容易的事儿。",
+      "options": [
+        {
+          "id": "1",
+          "text": "对"
+        },
+        {
+          "id": "2",
+          "text": "在"
+        },
+        {
+          "id": "3",
+          "text": "从"
+        },
+        {
+          "id": "4",
+          "text": "给"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.473Z",
+  "updatedAt": "2026-07-24T12:48:37.473Z"
+}

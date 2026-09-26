@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "9b2c0674-e379-4bf5-b627-27619f498dc8",
+  "type": "grammar-25",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.53"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "孩子们一看见小猫，就向它跑 ___了。",
+      "options": [
+        {
+          "id": "1",
+          "text": "出来"
+        },
+        {
+          "id": "2",
+          "text": "过来"
+        },
+        {
+          "id": "3",
+          "text": "回来"
+        },
+        {
+          "id": "4",
+          "text": "进来"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.506Z",
+  "updatedAt": "2026-07-24T12:48:37.506Z"
+}

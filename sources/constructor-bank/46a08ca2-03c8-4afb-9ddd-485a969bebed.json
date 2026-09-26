@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "46a08ca2-03c8-4afb-9ddd-485a969bebed",
+  "type": "grammar-18",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.31",
+    "2.4.45",
+    "2.4.46"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "任何运动 ___ 身体都有好处，最简单的就是跑步。",
+      "options": [
+        {
+          "id": "1",
+          "text": "在"
+        },
+        {
+          "id": "2",
+          "text": "对"
+        },
+        {
+          "id": "3",
+          "text": "跟"
+        },
+        {
+          "id": "4",
+          "text": "到"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.425Z",
+  "updatedAt": "2026-07-24T12:48:37.425Z"
+}

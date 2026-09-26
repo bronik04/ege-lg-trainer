@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "3b28ffea-e762-467b-80a2-b79ce7e20e87",
+  "type": "grammar-19",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.32"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "五亿零三百一十五万零二十",
+      "options": [
+        {
+          "id": "1",
+          "text": "50 315 020"
+        },
+        {
+          "id": "2",
+          "text": "503 150 020"
+        },
+        {
+          "id": "3",
+          "text": "503 015 020"
+        },
+        {
+          "id": "4",
+          "text": "503 150 200"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "2"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.428Z",
+  "updatedAt": "2026-07-24T12:48:37.428Z"
+}

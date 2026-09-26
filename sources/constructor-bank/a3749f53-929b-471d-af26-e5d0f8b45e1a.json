@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "a3749f53-929b-471d-af26-e5d0f8b45e1a",
+  "type": "grammar-25",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.53"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "下课了，老师和学生们从教室里走 ___了。",
+      "options": [
+        {
+          "id": "1",
+          "text": "下去"
+        },
+        {
+          "id": "2",
+          "text": "进来"
+        },
+        {
+          "id": "3",
+          "text": "出去"
+        },
+        {
+          "id": "4",
+          "text": "上来"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.444Z",
+  "updatedAt": "2026-07-24T12:48:37.444Z"
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "6187b8cc-b262-4a69-9171-18d660a95c20",
+  "type": "grammar-25",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.53"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "要到他家，你就需要从那条桥上走___。",
+      "options": [
+        {
+          "id": "1",
+          "text": "过去"
+        },
+        {
+          "id": "2",
+          "text": "进去"
+        },
+        {
+          "id": "3",
+          "text": "出来"
+        },
+        {
+          "id": "4",
+          "text": "上去"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "1"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.493Z",
+  "updatedAt": "2026-07-24T12:48:37.493Z"
+}

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "cc1b765a-06d3-4f10-8ff8-801e96a36be0",
+  "type": "grammar-26",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.1"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "A 所以这种游戏十分简单 B 谁就赢了比赛 C 谁在规定的时间内接到的球最多",
+      "options": [
+        {
+          "id": "1",
+          "text": "ABC"
+        },
+        {
+          "id": "2",
+          "text": "CAB"
+        },
+        {
+          "id": "3",
+          "text": "CBA"
+        },
+        {
+          "id": "4",
+          "text": "ACB"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ",
+    "добавлено 2026-09",
+    "ФИПИ D8c85D",
+    "КЭС ФИПИ 2.4.1"
+  ],
+  "createdAt": "2026-09-06T13:20:20.045Z",
+  "updatedAt": "2026-09-06T13:20:20.045Z"
+}

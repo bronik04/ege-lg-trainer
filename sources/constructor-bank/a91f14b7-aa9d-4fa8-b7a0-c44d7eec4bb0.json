@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "a91f14b7-aa9d-4fa8-b7a0-c44d7eec4bb0",
+  "type": "grammar-18",
+  "level": "Б",
+  "codifierCodes": [
+    "2.4.31",
+    "2.4.45",
+    "2.4.46"
+  ],
+  "stimulus": {
+    "kind": "none"
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "order": 1,
+      "prompt": "我最喜欢___世界历史的电影。",
+      "options": [
+        {
+          "id": "1",
+          "text": "向"
+        },
+        {
+          "id": "2",
+          "text": "给"
+        },
+        {
+          "id": "3",
+          "text": "关于"
+        },
+        {
+          "id": "4",
+          "text": "从"
+        }
+      ],
+      "positions": [
+        {
+          "id": "p1",
+          "correct": "3"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "Банк ФИПИ"
+  ],
+  "createdAt": "2026-07-24T12:48:37.481Z",
+  "updatedAt": "2026-07-24T12:48:37.481Z"
+}
