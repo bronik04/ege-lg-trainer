@@ -15,7 +15,7 @@
 ## Как устроены данные
 
     sources/constructor-bank/   снимок банка ФИПИ из «ЕГЭ Конструктора» (не редактируется)
-    sources/generated/          партии заданий от навыка ege-chinese
+    sources/generated/          партии новых заданий (навык ege-chinese или Claude)
     data/raw/                   импорт без правки текста
     data/authored/task-NN.json  разборы, темы и правила заданий (черновик → принято)
     data/topics.json            темы; номер задания и тема — разные признаки
@@ -30,7 +30,8 @@
 ## Как добавить и проверить задания
 
 1. Новые задания ФИПИ — в Конструктор, затем `python3 scripts/snapshot_constructor.py`.
-   Задания от навыка — файлом в `sources/generated/` (формат — в `sources/generated/README.md`).
+   Новые задания (от навыка или написанные Claude по команде автора) — файлом в
+   `sources/generated/` (формат — в `sources/generated/README.md`).
 2. Пересобрать банк: `npm run data` (импорт → сборка банка → проверка).
 3. Написать разборы волной: `python3 scripts/add_explanations.py wave.json`.
 4. Прочитать `data/review/queue.md` или открыть страницу проверки
