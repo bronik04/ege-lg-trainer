@@ -246,6 +246,40 @@ test('банк и ошибки: повтор ошибок, сброс прогр
   await context.close();
 });
 
+test('прогресс: файл с одного устройства загружается на другом', { skip }, async () => {
+  const first = await open(mainUrl, { hash: '#/bank' });
+  await first.page.locator('.bank-item').first().click();
+  await first.page.locator('[data-card]').waitFor();
+  await first.page.keyboard.press('1');
+  await first.page.goto(`${mainUrl}#/bank`);
+  await see(first.page, '#repeatMistakes', /Повторить ошибки · 1/);
+  const [download] = await Promise.all([first.page.waitForEvent('download'), first.page.locator('#exportProgress').click()]);
+  assert.match(download.suggestedFilename(), /^ege-lg-trainer-progress-\d{4}-\d{2}-\d{2}\.json$/);
+  const file = join(work, 'progress.json');
+  await download.saveAs(file);
+  await first.context.close();
+
+  // Новый контекст браузера — как другое устройство: прогресса нет, пока не загрузить файл.
+  const { page, context, errors } = await open(mainUrl, { hash: '#/bank' });
+  await see(page, '#repeatMistakes', /Ошибок нет/);
+  await page.locator('#progressFile').setInputFiles(file);
+  await see(page, '#transferNotice', /объединён/);
+  await see(page, '#repeatMistakes', /Повторить ошибки · 1/);
+  // Тот же файл ещё раз ничего не меняет.
+  await page.locator('#progressFile').setInputFiles(file);
+  await see(page, '#repeatMistakes', /Повторить ошибки · 1/);
+  // Чужой файл — понятная ошибка, прогресс не тронут, после перезагрузки он на месте.
+  const junk = join(work, 'junk.json');
+  writeFileSync(junk, '{"hello": 1}');
+  await page.locator('#progressFile').setInputFiles(junk);
+  await see(page, '#transferNotice', /не файл прогресса/);
+  await page.reload();
+  await see(page, '#repeatMistakes', /Повторить ошибки · 1/);
+  assert.equal(await page.locator('#transferNotice').count(), 0);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
 test('телефон: без горизонтальной прокрутки во всех режимах', { skip }, async () => {
   const { page, context } = await open(mainUrl, { width: 375, height: 812 });
   for (const hash of ['#/rules', '#/rules/jiu-cai', '#/practice', '#/variant', '#/bank']) {

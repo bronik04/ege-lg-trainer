@@ -188,3 +188,36 @@ test('ссылка «сообщить об ошибке»: два пропуск
   assert.match(body, /```\n___下雨，___我们去。\n```/);
 });
 
+test('файл прогресса: выгрузка читается обратно, чужой файл — понятная причина', () => {
+  let p = L.recordAnswer(L.emptyProgress(), 'questions', 'q20-a', '1', false, '2026-09-26T10:00:00.000Z');
+  p = { ...p, round: L.startSession(['q20-a'], '2026-09-26T09:59:00.000Z') };
+  const text = L.exportProgress(p, '2026-09-26T10:05:00.000Z');
+  const back = L.readProgressFile(text);
+  assert.equal(back.ok, true);
+  assert.deepEqual(back.progress, L.parseProgress(JSON.stringify(p)));
+  assert.deepEqual(L.readProgressFile('не json'), { ok: false, reason: 'not-json' });
+  assert.deepEqual(L.readProgressFile('{"version": 1, "questions": {}}'), { ok: false, reason: 'not-progress' });
+  assert.deepEqual(L.readProgressFile(JSON.stringify({ app: 'ege-lg-trainer', version: 99 })), { ok: false, reason: 'version' });
+});
+
+test('объединение прогресса: по заданию — последний ответ, сессия — начатая позже, история без повторов', () => {
+  const t = (m) => `2026-09-26T10:${String(m).padStart(2, '0')}:00.000Z`;
+  let phone = L.recordAnswer(L.emptyProgress(), 'questions', 'q20-a', '1', false, t(1));
+  phone = L.recordAnswer(phone, 'questions', 'q22-a', '2', true, t(5));
+  phone = { ...phone, variant: L.startSession(['q20-a'], t(4)), history: [{ kind: 'variant', at: t(4), score: 5, total: 13 }] };
+  let laptop = L.recordAnswer(L.emptyProgress(), 'questions', 'q20-a', '2', true, t(3));
+  laptop = L.recordAnswer(laptop, 'checks', 'check-x', 'a', true, t(2));
+  laptop = { ...laptop, variant: L.startSession(['q22-a'], t(2)), history: [{ kind: 'variant', at: t(2), score: 7, total: 13 }] };
+
+  const merged = L.mergeProgress(laptop, phone);
+  assert.equal(merged.questions['q20-a'].last.at, t(3), 'на ноутбуке ответ позже');
+  assert.equal(L.answerState(merged, 'questions', 'q20-a'), 'solved');
+  assert.equal(merged.questions['q22-a'].last.optionId, '2', 'задание только с телефона');
+  assert.equal(merged.checks['check-x'].last.optionId, 'a');
+  assert.deepEqual(merged.variant.ids, ['q20-a'], 'вариант с телефона начат позже');
+  assert.deepEqual(merged.history.map((h) => h.score), [7, 5]);
+  // Повторная загрузка того же файла ничего не меняет.
+  assert.deepEqual(L.mergeProgress(merged, phone), merged);
+  assert.deepEqual(L.mergeProgress(merged, L.emptyProgress()), merged);
+});
+
