@@ -1,5 +1,9 @@
 # Лексика и грамматика ЕГЭ — китайский язык
 
+[![Deploy to GitHub Pages](https://github.com/bronik04/ege-lg-trainer/actions/workflows/pages.yml/badge.svg)](https://github.com/bronik04/ege-lg-trainer/actions/workflows/pages.yml)
+
+**Сайт:** https://bronik04.github.io/ege-lg-trainer/
+
 Тренажёр заданий 15–27 ЕГЭ по китайскому языку. Ученик читает правило, проверяет себя
 коротким вопросом, решает задания из открытого банка ФИПИ и собирает полный вариант
 раздела 3 — по одному заданию на каждую позицию 15–27. После ошибки он видит, почему
@@ -44,5 +48,6 @@
 ## Публикация
 
 `.github/workflows/pages.yml` при каждом push в `main` пересобирает банк, прогоняет
-проверку и тесты и только после этого публикует `dist/` на GitHub Pages. Репозиторий на
-GitHub пока не создан.
+проверку и тесты и только после этого публикует `dist/` на GitHub Pages:
+https://bronik04.github.io/ege-lg-trainer/. Если закоммиченные данные разошлись с
+пересборкой, публикация останавливается — запустите `npm run data` и закоммитьте.
