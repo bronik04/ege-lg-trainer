@@ -44,10 +44,51 @@
   let progress = pruneProgress(parseProgress(storedText), questions.map((q) => q.id));
   let storageOk = !progressLocked;
   function save() {
+    commitClock();
     if (progressLocked) return;
     storageOk = storage.set(PROGRESS_KEY, JSON.stringify(progress));
   }
   const now = () => new Date().toISOString();
+
+  // ---------- время варианта ----------
+  // Часы идут, только пока открыт незавершённый вариант и страница видна: перерыв на день
+  // не съедает минуты. clock — текущий отрезок: с какого момента и для какого варианта.
+  let clock = null;
+  let clockSaved = 0;
+  const isCurrent = (v) => v && !v.finishedAt && clock && v.startedAt === clock.startedAt;
+
+  function variantElapsed() {
+    const v = progress.variant;
+    if (!v) return 0;
+    return (v.elapsedMs || 0) + (isCurrent(v) ? Date.now() - clock.since : 0);
+  }
+
+  // Переносит набежавшее время в сессию варианта — перед каждым сохранением.
+  function commitClock() {
+    if (!clock) return;
+    const v = progress.variant;
+    const t = Date.now();
+    if (isCurrent(v)) progress = { ...progress, variant: { ...v, elapsedMs: (v.elapsedMs || 0) + (t - clock.since) } };
+    clock = { ...clock, since: t };
+  }
+
+  function syncClock() {
+    const v = progress.variant;
+    const running = route().name === 'variant' && v && !v.finishedAt && !pendingVariant
+      && document.visibilityState === 'visible';
+    if (running && !isCurrent(v)) clock = { since: Date.now(), startedAt: v.startedAt };
+    if (!running && clock) {
+      commitClock();
+      clock = null;
+      save();
+    }
+  }
+
+  function paintClock(node) {
+    const state = clockState(variantElapsed());
+    node.textContent = state.over ? `время вышло · ${state.text}` : `осталось ${state.text}`;
+    node.classList.toggle('over', state.over);
+  }
 
   function loadFilters() {
     const empty = { topics: [], tasks: [], origins: [], state: 'all', size: '10' };
@@ -175,6 +216,9 @@
       const same = [...view.querySelectorAll('[data-key]')].find((node) => node.dataset.key === activeKey);
       if (same) same.focus();
     }
+    syncClock();
+    const clockNode = document.getElementById('variantClock');
+    if (clockNode) paintClock(clockNode);
   }
 
   // ---------- общие части ----------
@@ -432,7 +476,7 @@
   }
 
   function progressLine(label, right) {
-    return el('div', { class: 'progress' }, el('span', { text: label }), el('span', { text: right }));
+    return el('div', { class: 'progress' }, el('span', { text: label }), el('span', {}, right));
   }
 
   // Верх раунда и проверки правила: выход, деления по заданиям (нефрит — верно, красное —
@@ -818,7 +862,7 @@
       return;
     }
     view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Полный вариант' }),
-      el('p', { class: 'lead', text: 'Тринадцать заданий, по одному на каждую позицию 15–27, в порядке раздела 3 экзамена. Ответы можно менять до конца; разбор — после завершения.' }));
+      el('p', { class: 'lead', text: `Тринадцать заданий, по одному на каждую позицию 15–27, в порядке раздела 3 экзамена. Ответы можно менять до конца; разбор — после завершения. На раздел рекомендовано ${VARIANT_MINUTES} минут: часы идут, только пока вариант открыт.` }));
     const attempt = buildVariant(questions);
     const actions = el('div', { class: 'actions' });
     if (attempt.ok) {
@@ -844,7 +888,7 @@
     const history = progress.history.filter((h) => h.kind === 'variant').slice(-5).reverse();
     if (history.length > 1) {
       view.append(el('p', { class: 'section-title', text: 'Прошлые варианты' }),
-        el('ul', { class: 'usage' }, history.map((h) => el('li', { text: `${new Date(h.at).toLocaleString('ru-RU', { dateStyle: 'short', timeStyle: 'short' })} — ${h.score} из ${h.total}` }))));
+        el('ul', { class: 'usage' }, history.map((h) => el('li', { text: `${new Date(h.at).toLocaleString('ru-RU', { dateStyle: 'short', timeStyle: 'short' })} — ${h.score} из ${h.total}${Number.isFinite(h.timeMs) ? ` · ${formatClock(h.timeMs)}` : ''}` }))));
     }
   }
 
@@ -853,8 +897,10 @@
     const id = v.ids[v.index];
     const q = byId.get(id);
     const answered = v.ids.filter((x) => v.answers[x] != null).length;
+    // role="timer" не зачитывается диктором каждую секунду; подпись — рекомендованное время.
+    const clockNode = el('span', { class: 'clock', id: 'variantClock', role: 'timer', title: `Рекомендовано ${VARIANT_MINUTES} минут на раздел 3` });
     view.append(el('h2', { class: 'sr-title', tabindex: '-1', text: 'Полный вариант' }),
-      progressLine(`Позиция ${q.taskNumber} · ${v.index + 1} из ${v.ids.length}`, `отвечено: ${answered}`),
+      progressLine(`Позиция ${q.taskNumber} · ${v.index + 1} из ${v.ids.length}`, [`отвечено: ${answered} · `, clockNode]),
       sheet(v, { reveal: false, onPick: (i) => { progress = { ...progress, variant: moveSession(progress.variant, i) }; save(); render(); } }),
       questionCard(q, {
         kind: 'exam',
@@ -901,6 +947,7 @@
       el('button', { class: 'button ghost', type: 'button', disabled: v.index === 0, onclick: () => { progress = { ...progress, variant: moveSession(v, v.index - 1) }; save(); render(); } }, '← Назад'),
       last ? finishButton : el('button', { class: 'button', type: 'button', dataset: { enter: '1' }, onclick: () => { progress = { ...progress, variant: moveSession(v, v.index + 1) }; save(); render(); } }, 'Дальше →')));
     function finish() {
+      commitClock();
       progress = finishVariant(progress, byId, now());
       variantConfirm = false;
       save();
@@ -919,6 +966,9 @@
     actions.append(share.button);
     view.append(el('p', { class: 'section-title', text: 'Результат последнего варианта' }),
       el('p', { class: 'score' }, el('b', { text: `${result.score} из ${result.total}` }), el('span', { class: 'muted', text: 'первичных баллов за раздел 3' })),
+      Number.isFinite(v.result && v.result.timeMs)
+        ? el('p', { class: v.result.timeMs > VARIANT_MINUTES * 60000 ? 'small variant-time over' : 'small variant-time', id: 'variantTime', text: `Время: ${formatClock(v.result.timeMs)} · рекомендовано ${VARIANT_MINUTES}:00` })
+        : document.createDocumentFragment(),
       ruleAdvice(result.items),
       sheet(v, { reveal: true, onPick: (i) => {
         // Только позиции варианта: у раскрытого разбора есть свой вложенный details.
@@ -1121,5 +1171,19 @@
     shareOpen = null;
     render();
   });
+  // Часы варианта: пауза, пока страница скрыта; раз в секунду — табло, раз в полминуты — запись.
+  document.addEventListener('visibilitychange', syncClock);
+  // Только если часы идут: иначе закрытие вкладки записало бы её устаревший прогресс
+  // поверх ответов из другой вкладки.
+  window.addEventListener('pagehide', () => { if (clock) save(); });
+  setInterval(() => {
+    if (!clock) return;
+    const node = document.getElementById('variantClock');
+    if (node) paintClock(node);
+    if (Date.now() - clockSaved > 30000) {
+      clockSaved = Date.now();
+      save();
+    }
+  }, 1000);
   render(false);
 })();

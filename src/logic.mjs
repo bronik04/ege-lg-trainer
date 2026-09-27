@@ -488,11 +488,36 @@ export function finishVariant(progress, byId, at) {
   for (const item of result.items) {
     if (item.chosen !== null) next = recordAnswer(next, 'questions', item.id, item.chosen, item.correct, at);
   }
+  // Время есть только у вариантов, начатых после появления таймера.
+  const time = Number.isFinite(variant.elapsedMs) ? { timeMs: Math.round(variant.elapsedMs) } : {};
   return {
     ...next,
-    variant: { ...variant, finishedAt: at, result: { score: result.score, total: result.total } },
-    history: [...next.history, { kind: 'variant', at, score: result.score, total: result.total }],
+    variant: { ...variant, finishedAt: at, result: { score: result.score, total: result.total, ...time } },
+    history: [...next.history, { kind: 'variant', at, score: result.score, total: result.total, ...time }],
   };
+}
+
+// ---------- время варианта ----------
+
+// Спецификация ЕГЭ 2026: на раздел «Грамматика, лексика и иероглифика» (задания 15–27)
+// рекомендовано 40 минут.
+export const VARIANT_MINUTES = 40;
+
+// «мм:сс», от часа — «ч:мм:сс».
+export function formatClock(ms) {
+  const total = Math.max(0, Math.floor(ms / 1000));
+  const pad = (n) => String(n).padStart(2, '0');
+  const h = Math.floor(total / 3600);
+  const rest = `${pad(Math.floor((total % 3600) / 60))}:${pad(total % 60)}`;
+  return h ? `${h}:${rest}` : rest;
+}
+
+// Сколько осталось из рекомендованных минут — или насколько они превышены.
+export function clockState(elapsedMs) {
+  const limit = VARIANT_MINUTES * 60000;
+  const elapsed = Math.max(0, elapsedMs);
+  if (elapsed <= limit) return { over: false, text: formatClock(limit - elapsed + 999) };
+  return { over: true, text: `+${formatClock(elapsed - limit)}` };
 }
 
 export function unansweredPositions(session, byId) {
