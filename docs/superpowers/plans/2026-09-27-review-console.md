@@ -1410,9 +1410,7 @@ def finish(tally):
 def main():
     ask = ui.Asker()
     tally = Tally()
-    print("\n" + ui.RULE)
-    print("  Проверка — что ждёт вашего решения")
-    print(ui.RULE)
+    # Строка до чтения данных и gh: иначе двойной клик дал бы на пару секунд пустое окно.
     print("\n  Смотрю черновики и сообщения учеников…")
     reports = rq.list_reports()
     try:
