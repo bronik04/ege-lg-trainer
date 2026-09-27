@@ -32,7 +32,7 @@ SECTIONS = {
 NOT_ACCEPTED = "разбор не принят автором"
 RULE_NOT_ACCEPTED = re.compile(r"^правило \S+ не принято$")
 PENDING = re.compile(r"^- `([^`]+)`", re.M)
-ISSUE = re.compile(r"issue #(\d+)")
+ISSUE = re.compile(r"^- `issue:(\d+)`", re.M)
 REPORT_TITLE = re.compile(r"^Ошибка: .* · (\S+)$")
 DECISIONS = ("hidden", "restore")
 
@@ -52,6 +52,8 @@ def pending_ids(text):
 
 
 def pending_issues(text):
+    """Сообщения учеников, стоящие в списке на правку (строка `issue:N`): Claude держит её,
+    пока исправление не опубликовано и сообщение не закрыто."""
     return {int(n) for n in ISSUE.findall(text)}
 
 
@@ -120,6 +122,14 @@ def rule_queue(rules, checks, fixes_text):
     return groups
 
 
+def checks_ready(checks, rules):
+    """(вопросы, все правила которых приняты; сколько ждут правила). Принятый вопрос к
+    непринятому правилу validate.py считает ошибкой — такой вопрос сначала ждёт правило."""
+    accepted = {r["id"] for r in rules if r.get("status") == "accepted"}
+    ready = [c for c in checks if all(r in accepted for r in c.get("ruleIds") or [])]
+    return ready, len(checks) - len(ready)
+
+
 def conflict_queue(questions, authored):
     """Спорные ключи автора (keyConflict в разборе) без его решения."""
     return [q for q in questions
@@ -144,21 +154,59 @@ def decide_conflict(qid, decision, authored_dir=AUTHORED):
     return False
 
 
+def reopen(kind, item_id, authored_dir=AUTHORED, checks_path=RULE_CHECKS):
+    """Принятое — снова черновик: задание или вопрос уходит с сайта до исправления, а новый
+    разбор Claude пишет волной и автор принимает его заново. True — статус сменён."""
+    if kind == "task":
+        for path in sorted(Path(authored_dir).glob("task-*.json")):
+            entries = read_json(path)
+            if item_id in entries:
+                if entries[item_id].get("status") != "accepted":
+                    return False
+                entries[item_id]["status"] = "draft"
+                write_json(path, entries)
+                return True
+        return False
+    if kind == "check":
+        checks = read_json(checks_path)
+        for c in checks:
+            if c["id"] == item_id and c.get("status") == "accepted":
+                c["status"] = "draft"
+                write_json(checks_path, checks)
+                return True
+        return False
+    raise ValueError(f"неизвестный вид {kind!r}")
+
+
+def unchanged(kind, shown):
+    """Пункт на диске тот же, что автор видел: иначе Claude успел переписать черновик, и
+    принять можно только новый текст — после того как автор его увидит."""
+    if kind == "task":
+        entry = build_bank.load_authored().get(shown["id"]) or {}
+        return (entry.get("status") == "draft"
+                and entry.get("explanation") == shown.get("explanation")
+                and list(entry.get("topicIds") or []) == list(shown.get("topicIds") or [])
+                and list(entry.get("ruleIds") or []) == list(shown.get("ruleIds") or [])
+                and entry.get("contrast") == shown.get("contrast"))
+    source = RULE_CHECKS if kind == "check" else RULES
+    return next((x for x in read_json(source) if x["id"] == shown["id"]), None) == shown
+
+
 # ---------- сообщения учеников (gh) ----------
 
 def repo_slug(url=ISSUES_URL):
     return re.search(r"github\.com/([^/]+/[^/]+)/issues", url).group(1)
 
 
-def run_gh(args):
+def run_gh(args, timeout=60):
     """(получилось, вывод, ошибка для автора). Путь к gh подменяется переменной REVIEW_GH."""
     command = shlex.split(os.environ.get("REVIEW_GH", "gh"))
     try:
-        done = subprocess.run(command + list(args), capture_output=True, text=True, timeout=60)
+        done = subprocess.run(command + list(args), capture_output=True, text=True, timeout=timeout)
     except FileNotFoundError:
         return False, "", "Не найден gh. Установить: brew install gh, затем gh auth login."
     except subprocess.TimeoutExpired:
-        return False, "", "GitHub не ответил за минуту — проверьте сеть."
+        return False, "", f"GitHub не ответил за {timeout} с — проверьте сеть."
     if done.returncode != 0:
         first = (done.stderr or done.stdout or "").strip().splitlines()[:1]
         reason = first[0] if first else f"код {done.returncode}"
@@ -169,7 +217,7 @@ def run_gh(args):
 def list_reports():
     """Открытые сообщения «Ошибка: …»: ([{number, title, body, createdAt}], "") или (None, ошибка)."""
     ok, out, error = run_gh(["issue", "list", "--repo", repo_slug(), "--state", "open", "--limit", "100",
-                             "--json", "number,title,body,createdAt"])
+                             "--json", "number,title,body,createdAt"], timeout=20)
     if not ok:
         return None, error
     try:
@@ -195,6 +243,12 @@ def student_text(body):
     body = str(body or "")
     marker = "Что не так:"
     return (body.split(marker, 1)[1] if marker in body else body).strip()
+
+
+def student_choice(body):
+    """Какой ответ выбрал ученик — строка «Выбранный ответ: …» из сообщения."""
+    match = re.search(r"^Выбранный ответ: (.*)$", str(body or ""), re.M)
+    return match.group(1).strip() if match else None
 
 
 def find_item(item_id, questions, checks):

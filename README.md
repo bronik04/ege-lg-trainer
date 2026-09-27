@@ -56,7 +56,8 @@ Alegreya, Golos Text) подгружаются из сети; без неё ст
 4. Проверить: двойной клик по `Проверка.command` в корне проекта. В Терминале по страницам
    идут разборы заданий, правила и вопросы к ним, спорные ключи ФИПИ и сообщения учеников;
    «в» — все верны, номера — какие не так. Верное принимается сразу, «не так» уходит в
-   `data/review/fixes.md` для Claude, банк пересобирается сам. Без кнопки — прочитать
+   `data/review/fixes.md` для Claude, банк пересобирается сам. Для сообщений учеников нужен
+   GitHub CLI: `brew install gh`, затем `gh auth login`. Без кнопки — прочитать
    `data/review/queue.md` или страницу `python3 scripts/build_site.py --drafts` →
    `review-build/review.html` и принять `python3 scripts/accept.py ID …` (или `--task 20`),
    затем `npm run data`.

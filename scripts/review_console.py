@@ -16,6 +16,7 @@ import accept  # noqa: E402
 import console_ui as ui  # noqa: E402
 import review_queue as rq  # noqa: E402
 from build_bank import BuildError  # noqa: E402
+from common import RULES, read_json  # noqa: E402
 
 PAGE = 4
 ORIGIN = {"fipi": "Банк ФИПИ", "generated": "Новое задание"}
@@ -26,9 +27,16 @@ CANCEL_HINT = "(Enter — без пояснения, 0 — отменить вы
 class Tally:
     def __init__(self):
         self.accepted = self.fixes = self.conflicts = self.replies = 0
+        self.rebuilt = False
+        self.errors = []
 
     def wrote_data(self):
         return bool(self.accepted or self.fixes or self.conflicts)
+
+    def rebuild(self):
+        """Банк — сразу после каждой записи в данные: закроют окно крестиком — он не отстанет."""
+        self.errors = rq.rebuild()
+        self.rebuilt = True
 
 
 # ---------- как выглядит пункт ----------
@@ -45,7 +53,10 @@ def stem_lines(q):
 
 
 def check_lines(c):
-    return [s for s in (c.get("prompt"), c.get("sentence")) if s]
+    lines = [s for s in (c.get("prompt"), c.get("sentence")) if s]
+    if c.get("sentenceRu"):
+        lines.append(f"({c['sentenceRu']})")
+    return lines
 
 
 def task_header(q):
@@ -90,6 +101,10 @@ def show_item(number, header, lines, item, footer=None, mark="✓"):
     for o in item["options"]:
         if o["id"] != item["correctOptionId"]:
             print(f"{indent}✗ {o['id']} {o['text']} — {wrong.get(o['id'], 'разбора нет')}")
+    contrast = item.get("contrast")
+    if contrast:
+        text = f"{contrast.get('zh', '')} — {contrast.get('ru', '')}" if isinstance(contrast, dict) else contrast
+        print(f"{indent}Сравните: {text}")
     if footer:
         ui.line(indent + footer)
 
@@ -172,9 +187,12 @@ def ask_choice(ask, allowed, hint):
         print(f"  Не понял ответ. {hint}")
 
 
-def record_page(marks, tally, section, accept_id, fix_id, brief):
-    good = [accept_id(item) for item, wrong, _ in marks if not wrong]
-    accepted = accept.accept(good) if good else []
+def record_page(marks, tally, kind, section, accept_id, fix_id, brief):
+    good = [item for item, wrong, _ in marks if not wrong]
+    fresh = [item for item in good if rq.unchanged(kind, item)]
+    accepted = accept.accept([accept_id(item) for item in fresh]) if fresh else []
+    if len(fresh) < len(good):
+        print(f"\n  Изменились, пока вы смотрели: {len(good) - len(fresh)} — не приняты, покажутся заново.")
     fixes = 0
     for item, wrong, note in marks:
         if wrong:
@@ -182,6 +200,8 @@ def record_page(marks, tally, section, accept_id, fix_id, brief):
             fixes += 1
     tally.accepted += len(accepted)
     tally.fixes += fixes
+    if accepted:
+        tally.rebuild()
     print(f"\n  Записано: принято {len(accepted)}" + (f" · на правку {fixes} — в {FIXES_NAME}" if fixes else ""))
 
 
@@ -190,7 +210,7 @@ def load():
         return rq.load_state()
     except BuildError as error:
         print(f"\n  Данные не собираются: {error}")
-        print("  Кнопка ничего не записала — покажите это Claude.")
+        print("  Раздел не открыт — покажите это Claude.")
         return None
 
 
@@ -217,7 +237,7 @@ def review_tasks(ask, tally):
         if result == "exit":
             return "menu"
         if result == "done":
-            record_page(marks, tally, "tasks", lambda q: q["id"], lambda q: q["id"], task_brief)
+            record_page(marks, tally, "task", "tasks", lambda q: q["id"], lambda q: q["id"], task_brief)
     print("\n  Разборы кончились.")
     return "menu"
 
@@ -251,13 +271,20 @@ def review_rules(ask, tally):
             if choice == "0":
                 return "menu"
             if choice == "в":
-                tally.accepted += len(accept.accept([rule["id"]]))
-                print("\n  Правило принято.")
+                if rq.unchanged("rule", rule):
+                    tally.accepted += len(accept.accept([rule["id"]]))
+                    tally.rebuild()
+                    print("\n  Правило принято.")
+                else:
+                    print("\n  Правило изменилось, пока вы смотрели, — не принято, покажется заново.")
             if choice == "н":
                 rq.add_fix("rules", f"rule:{rule['id']}", rule["title"] + (f" — {note.strip()}" if note.strip() else ""))
                 tally.fixes += 1
                 print(f"\n  На правку — в {FIXES_NAME}.")
-        pages = ui.pages(group["checks"], PAGE, key=lambda c: 0)
+        checks, blocked = rq.checks_ready(group["checks"], read_json(RULES))
+        if blocked:
+            print(f"\n  Вопросы к правилу «{rule['title']}» ({blocked}) ждут, пока правило не принято.")
+        pages = ui.pages(checks, PAGE, key=lambda c: 0)
         for i, page in enumerate(pages):
             print("\n" + ui.RULE)
             ui.line(f"  Вопросы к правилу «{rule['title']}» · страница {i + 1} из {len(pages)}")
@@ -270,7 +297,7 @@ def review_rules(ask, tally):
             if result == "exit":
                 return "menu"
             if result == "done":
-                record_page(marks, tally, "rules", lambda c: c["id"], lambda c: f"check:{c['id']}", check_brief)
+                record_page(marks, tally, "check", "rules", lambda c: c["id"], lambda c: f"check:{c['id']}", check_brief)
     print("\n  Правила и вопросы кончились.")
     return "menu"
 
@@ -297,18 +324,23 @@ def review_conflicts(ask, tally):
         if choice == "1":
             rq.decide_conflict(q["id"], "hidden")
             tally.conflicts += 1
+            tally.rebuild()
             print("\n  Оставлено скрытым.")
         if choice == "2":
             rq.decide_conflict(q["id"], "restore")
+            rq.reopen("task", q["id"])
             rq.add_fix("conflicts", q["id"], task_brief(q))
             tally.conflicts += 1
             tally.fixes += 1
-            print(f"\n  Вернуть с ключом ФИПИ: разбор перепишет Claude (строка в {FIXES_NAME}).")
+            tally.rebuild()
+            print(f"\n  Вернуть с ключом ФИПИ: разбор перепишет Claude (строка в {FIXES_NAME}),"
+                  " новый разбор придёт к вам в раздел 1.")
     print("\n  Спорные ключи кончились.")
     return "menu"
 
 
 def show_report(issue, state):
+    """Показывает сообщение и пункт банка; возвращает (вид, ID пункта или None)."""
     title = ui.clean(issue.get("title", ""))
     item_id = rq.report_item_id(title)
     kind, item = rq.find_item(item_id, state["questions"], state["checks"])
@@ -319,11 +351,13 @@ def show_report(issue, state):
         show_item(0, f"Вопрос к правилу · {item['id']}", check_lines(item), item)
     else:
         print(f"\n  {item_id or 'ID в заголовке нет'} — такого пункта в банке нет.")
+    choice = rq.student_choice(issue.get("body"))
+    if choice:
+        print(f"\n  Ученик выбрал: {ui.clean(choice)}")
     print("\n  Ученик пишет:")
     for text in ui.clean(rq.student_text(issue.get("body"))).splitlines() or ["(пусто)"]:
         print("    " + text)
-    fix_id = item["id"] if kind == "task" else f"check:{item['id']}" if kind == "check" else f"issue:{issue['number']}"
-    return fix_id
+    return kind, (item["id"] if item else None)
 
 
 def review_reports(ask, tally):
@@ -342,8 +376,8 @@ def review_reports(ask, tally):
     for k, issue in enumerate(queue, 1):
         number = issue["number"]
         print("\n" + ui.RULE)
-        ui.line(f"  Сообщения учеников · {k} из {len(queue)} · #{number} · {str(issue.get('createdAt', ''))[:10]}")
-        fix_id = show_report(issue, state)
+        ui.line(f"  Сообщения учеников · {k} из {len(queue)} · #{number} · {ui.clean(issue.get('createdAt', ''))[:10]}")
+        kind, item_id = show_report(issue, state)
         print("\n  1) ученик прав — на правку   2) не прав — закрыть с ответом   3) пропустить   0) в меню")
         while True:
             choice = ask_choice(ask, {"1", "2", "3", "0"}, "1, 2, 3 или 0.")
@@ -356,9 +390,15 @@ def review_reports(ask, tally):
                 if note.strip() == "0":
                     print("  Выбор отменён — ответьте заново.")
                     continue
-                rq.add_fix("reports", fix_id, f"issue #{number} — ученик прав" + (f": {note.strip()}" if note.strip() else ""))
+                rq.add_fix("reports", f"issue:{number}", f"{item_id or 'нет в банке'} — ученик прав"
+                           + (f": {note.strip()}" if note.strip() else ""))
                 tally.fixes += 1
-                print(f"\n  На правку — в {FIXES_NAME}. Сообщение закроет Claude, когда исправление выйдет.")
+                if kind and rq.reopen(kind, item_id):
+                    tally.rebuild()
+                    print("\n  Снято с сайта до исправления: Claude перепишет разбор, вы примете его в разделе 1,"
+                          " после публикации Claude закроет сообщение.")
+                else:
+                    print(f"\n  На правку — в {FIXES_NAME}. Сообщение закроет Claude, когда исправление выйдет.")
             if choice == "2":
                 reply = ""
                 while not reply:
@@ -390,15 +430,13 @@ SECTIONS = (review_tasks, review_rules, review_conflicts, review_reports)
 
 
 def finish(tally):
-    if tally.wrote_data():
-        print("\n  Пересобираю банк…")
-        errors = rq.rebuild()
-        if errors:
-            print("  Банк не прошёл проверку — покажите это Claude:")
-            for error in errors[:10]:
+    if tally.rebuilt:
+        if tally.errors:
+            print("\n  Банк не прошёл проверку — покажите это Claude:")
+            for error in tally.errors[:10]:
                 print("   - " + error)
         else:
-            print("  Банк пересобран и проверен.")
+            print("\n  Банк пересобран и проверен.")
     print(f"\n  Принято {tally.accepted} · на правку {tally.fixes} · решено спорных {tally.conflicts}"
           f" · ответов ученикам {tally.replies}")
     if tally.wrote_data():
@@ -432,7 +470,7 @@ def main():
                 ("Разборы заданий", f"ждут {len(ready)}"),
                 ("Правила и вопросы", f"ждут {rules_waiting}"),
                 ("Спорные ключи", f"ждут {len(conflicts)} · решено {rq.decided_conflicts(state['authored'])}"),
-                ("Сообщения учеников", "gh не настроен — раздел подскажет" if issues is None else f"открыто {open_reports}"),
+                ("Сообщения учеников", "GitHub недоступен — раздел подскажет" if issues is None else f"открыто {open_reports}"),
             ]
             footer = [f"Не готовы к проверке: {len(not_ready)} — покажите Claude."] if not_ready else []
             choice = ui.menu(ask, "Проверка — что ждёт вашего решения", items,
@@ -442,7 +480,12 @@ def main():
             if choice == "enter":
                 choice = next((i for i, n in enumerate(counts) if n), None)
                 if choice is None:
-                    print("\n  Всё проверено.")
+                    if not_ready:
+                        print("\n  Проверять нечего: остальное не готово — покажите Claude.")
+                    elif issues is None:
+                        print("\n  Проверять нечего. Сообщения учеников не видны — GitHub недоступен.")
+                    else:
+                        print("\n  Всё проверено.")
                     break
             result = SECTIONS[choice](ask, tally)
             if choice == 3:

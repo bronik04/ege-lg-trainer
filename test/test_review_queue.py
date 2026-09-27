@@ -36,8 +36,10 @@ class FixesTest(unittest.TestCase):
         self.assertEqual(rq.pending_ids(text), {"q20-a", "q20-b", "rule:aspect"})
 
     def test_pending_issues(self):
-        text = "## Сообщения учеников\n- `q22-a` issue #12 — ученик прав (27.09.2026)\n"
-        self.assertEqual(rq.pending_issues(text), {12})
+        text = ("## Разборы заданий\n- `q20-a` №20 · 他___去。 — см. issue #6 (27.09.2026)\n"
+                "## Сообщения учеников\n- `issue:12` q22-a — ученик прав (27.09.2026)\n")
+        self.assertEqual(rq.pending_issues(text), {12}, "упоминание в пояснении — не строка сообщения")
+        self.assertNotIn("q22-a", rq.pending_ids(text), "задание по сообщению не блокируется")
 
     def test_missing_file_reads_empty(self):
         self.assertEqual(rq.read_fixes(Path(tempfile.gettempdir()) / "нет-такого-файла.md"), "")
@@ -87,6 +89,32 @@ class RuleQueueTest(unittest.TestCase):
                          "jiu-cai")
 
 
+class ChecksReadyTest(unittest.TestCase):
+    def test_check_waits_for_all_its_rules(self):
+        rules = [rule("aspect-suffixes"), rule("jiu-cai", status="draft")]
+        checks = [check("c1"), check("c2", "jiu-cai"), dict(check("c3"), ruleIds=["aspect-suffixes", "jiu-cai"])]
+        ready, blocked = rq.checks_ready(checks, rules)
+        self.assertEqual([c["id"] for c in ready], ["c1"])
+        self.assertEqual(blocked, 2)
+
+
+class ReopenTest(unittest.TestCase):
+    def test_accepted_task_and_check_become_drafts(self):
+        rec = record(qid="q20-aaaaaaaa")
+        with tempfile.TemporaryDirectory() as tmp:
+            authored = Path(tmp) / "task-20.json"
+            entry = {k: v for k, v in authored_for(rec).items() if k != "_file"}
+            authored.write_text(json.dumps({rec["id"]: entry}, ensure_ascii=False), encoding="utf-8")
+            checks = Path(tmp) / "rule-checks.json"
+            checks.write_text(json.dumps([check("c1", status="accepted")], ensure_ascii=False), encoding="utf-8")
+            self.assertTrue(rq.reopen("task", rec["id"], authored_dir=tmp, checks_path=checks))
+            self.assertFalse(rq.reopen("task", rec["id"], authored_dir=tmp, checks_path=checks), "уже черновик")
+            self.assertTrue(rq.reopen("check", "c1", authored_dir=tmp, checks_path=checks))
+            self.assertFalse(rq.reopen("check", "gone", authored_dir=tmp, checks_path=checks))
+            self.assertEqual(json.loads(authored.read_text(encoding="utf-8"))[rec["id"]]["status"], "draft")
+            self.assertEqual(json.loads(checks.read_text(encoding="utf-8"))[0]["status"], "draft")
+
+
 class ConflictTest(unittest.TestCase):
     def test_queue_and_decision(self):
         rec = record(qid="q23-aaaaaaaa")
@@ -131,6 +159,8 @@ class ReportsTest(unittest.TestCase):
         self.assertIsNone(rq.report_item_id("Вопрос про сайт"))
         self.assertEqual(rq.student_text("ID\nЧто не так:\n  Ключ не тот  "), "Ключ не тот")
         self.assertEqual(rq.student_text("просто текст"), "просто текст")
+        self.assertEqual(rq.student_choice("ID\nВыбранный ответ: 就 \nОтвет по ключу: 才"), "就")
+        self.assertIsNone(rq.student_choice("без строки"))
         self.assertEqual(rq.repo_slug("https://github.com/owner/repo/issues/new"), "owner/repo")
         q, c = {"id": "q22-a"}, {"id": "check-x"}
         self.assertEqual(rq.find_item("q22-a", [q], [c]), ("task", q))
