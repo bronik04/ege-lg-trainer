@@ -405,7 +405,11 @@ test('время варианта: табло, остаток из 40 минут
   const old = L.finishVariant({ ...L.emptyProgress(), variant: L.startSession(['a'], 't0') }, byId, 't1');
   assert.equal('timeMs' in old.variant.result, false);
   assert.equal('timeMs' in old.history[0], false);
-  // Время переживает сохранение и загрузку.
+  // Время переживает сохранение и загрузку; мусор вместо числа отбрасывается.
   assert.equal(L.parseProgress(JSON.stringify(timed)).variant.elapsedMs, 1_234_567.8);
+  const broken = { ...timed, variant: { ...timed.variant, elapsedMs: '1000' } };
+  assert.equal('elapsedMs' in L.parseProgress(JSON.stringify(broken)).variant, false);
+  // Новый вариант ведёт время с нуля.
+  assert.equal(L.startVariant(['a'], 't0').elapsedMs, 0);
 });
 

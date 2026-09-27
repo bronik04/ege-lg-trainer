@@ -55,7 +55,9 @@
   // не съедает минуты. clock — текущий отрезок: с какого момента и для какого варианта.
   let clock = null;
   let clockSaved = 0;
-  const isCurrent = (v) => v && !v.finishedAt && clock && v.startedAt === clock.startedAt;
+  let lastTick = 0;
+  const timed = (v) => v && !v.finishedAt && Number.isFinite(v.elapsedMs);
+  const isCurrent = (v) => timed(v) && clock && v.startedAt === clock.startedAt;
 
   function variantElapsed() {
     const v = progress.variant;
@@ -63,24 +65,44 @@
     return (v.elapsedMs || 0) + (isCurrent(v) ? Date.now() - clock.since : 0);
   }
 
-  // Переносит набежавшее время в сессию варианта — перед каждым сохранением.
-  function commitClock() {
+  // Переносит набежавшее до момента t время в сессию варианта — перед каждым сохранением.
+  function commitClock(t = Date.now()) {
     if (!clock) return;
     const v = progress.variant;
-    const t = Date.now();
-    if (isCurrent(v)) progress = { ...progress, variant: { ...v, elapsedMs: (v.elapsedMs || 0) + (t - clock.since) } };
-    clock = { ...clock, since: t };
+    if (isCurrent(v) && t > clock.since) progress = { ...progress, variant: { ...v, elapsedMs: v.elapsedMs + (t - clock.since) } };
+    clock = { ...clock, since: Math.max(clock.since, t) };
+  }
+
+  // Запись без действия ученика (табло, скрытие, закрытие): только время варианта поверх
+  // того, что лежит в хранилище, — ответы из другой вкладки не затираются.
+  function saveClock() {
+    commitClock();
+    clockSaved = Date.now();
+    const v = progress.variant;
+    if (progressLocked || !timed(v)) return;
+    let raw;
+    try {
+      raw = JSON.parse(storage.get(PROGRESS_KEY));
+    } catch {
+      return;
+    }
+    const stored = raw && raw.version === PROGRESS_VERSION ? raw.variant : null;
+    if (!stored || stored.finishedAt || stored.startedAt !== v.startedAt) return;
+    stored.elapsedMs = Math.max(Number.isFinite(stored.elapsedMs) ? stored.elapsedMs : 0, v.elapsedMs);
+    storage.set(PROGRESS_KEY, JSON.stringify(raw));
   }
 
   function syncClock() {
     const v = progress.variant;
-    const running = route().name === 'variant' && v && !v.finishedAt && !pendingVariant
+    const running = route().name === 'variant' && timed(v) && !pendingVariant
       && document.visibilityState === 'visible';
-    if (running && !isCurrent(v)) clock = { since: Date.now(), startedAt: v.startedAt };
+    if (running && !isCurrent(v)) {
+      clock = { since: Date.now(), startedAt: v.startedAt };
+      clockSaved = Date.now();
+    }
     if (!running && clock) {
-      commitClock();
+      saveClock();
       clock = null;
-      save();
     }
   }
 
@@ -265,7 +287,7 @@
   }
 
   function startLinkedVariant(ids) {
-    progress = { ...progress, variant: startSession(ids, now()) };
+    progress = { ...progress, variant: startVariant(ids, now()) };
     variantConfirm = false;
     save();
   }
@@ -871,7 +893,7 @@
         class: 'button', type: 'button', id: 'buildVariant', dataset: v && v.finishedAt ? {} : { enter: '1' },
         onclick: () => {
           const fresh = buildVariant(questions);
-          progress = { ...progress, variant: startSession(fresh.ids, now()) };
+          progress = { ...progress, variant: startVariant(fresh.ids, now()) };
           variantConfirm = false;
           save();
           render();
@@ -898,9 +920,12 @@
     const q = byId.get(id);
     const answered = v.ids.filter((x) => v.answers[x] != null).length;
     // role="timer" не зачитывается диктором каждую секунду; подпись — рекомендованное время.
-    const clockNode = el('span', { class: 'clock', id: 'variantClock', role: 'timer', title: `Рекомендовано ${VARIANT_MINUTES} минут на раздел 3` });
+    const clockNode = Number.isFinite(v.elapsedMs)
+      ? el('span', { class: 'clock', id: 'variantClock', role: 'timer', title: `Рекомендовано ${VARIANT_MINUTES} минут на раздел 3` })
+      : null;
     view.append(el('h2', { class: 'sr-title', tabindex: '-1', text: 'Полный вариант' }),
-      progressLine(`Позиция ${q.taskNumber} · ${v.index + 1} из ${v.ids.length}`, [`отвечено: ${answered} · `, clockNode]),
+      progressLine(`Позиция ${q.taskNumber} · ${v.index + 1} из ${v.ids.length}`,
+        [el('span', { class: 'nowrap', text: `отвечено: ${answered}` }), clockNode ? ' · ' : '', clockNode]),
       sheet(v, { reveal: false, onPick: (i) => { progress = { ...progress, variant: moveSession(progress.variant, i) }; save(); render(); } }),
       questionCard(q, {
         kind: 'exam',
@@ -944,8 +969,9 @@
           el('button', { class: 'button ghost', type: 'button', onclick: () => { variantConfirm = false; render(false); } }, 'Вернуться к заданиям'))));
     }
     view.append(el('div', { class: 'actions dock' },
-      el('button', { class: 'button ghost', type: 'button', disabled: v.index === 0, onclick: () => { progress = { ...progress, variant: moveSession(v, v.index - 1) }; save(); render(); } }, '← Назад'),
-      last ? finishButton : el('button', { class: 'button', type: 'button', dataset: { enter: '1' }, onclick: () => { progress = { ...progress, variant: moveSession(v, v.index + 1) }; save(); render(); } }, 'Дальше →')));
+      // Сессия — из progress, а не v с прошлой отрисовки: табло между ними дописывает время.
+      el('button', { class: 'button ghost', type: 'button', disabled: v.index === 0, onclick: () => { progress = { ...progress, variant: moveSession(progress.variant, progress.variant.index - 1) }; save(); render(); } }, '← Назад'),
+      last ? finishButton : el('button', { class: 'button', type: 'button', dataset: { enter: '1' }, onclick: () => { progress = { ...progress, variant: moveSession(progress.variant, progress.variant.index + 1) }; save(); render(); } }, 'Дальше →')));
     function finish() {
       commitClock();
       progress = finishVariant(progress, byId, now());
@@ -1173,17 +1199,36 @@
   });
   // Часы варианта: пауза, пока страница скрыта; раз в секунду — табло, раз в полминуты — запись.
   document.addEventListener('visibilitychange', syncClock);
-  // Только если часы идут: иначе закрытие вкладки записало бы её устаревший прогресс
-  // поверх ответов из другой вкладки.
-  window.addEventListener('pagehide', () => { if (clock) save(); });
+  window.addEventListener('pagehide', () => { if (clock) saveClock(); });
   setInterval(() => {
+    const t = Date.now();
+    // Тик пропал больше чем на 5 с (сон, перевод часов) — это пауза, а не время варианта.
+    if (clock && lastTick && t - lastTick > 5000) {
+      commitClock(lastTick);
+      clock = { ...clock, since: t };
+    }
+    lastTick = t;
     if (!clock) return;
     const node = document.getElementById('variantClock');
     if (node) paintClock(node);
-    if (Date.now() - clockSaved > 30000) {
-      clockSaved = Date.now();
-      save();
-    }
+    if (t - clockSaved > 30000) saveClock();
   }, 1000);
+
+  // Другая вкладка записала прогресс — берём его: иначе следующее действие здесь вернуло бы
+  // старое. Время того же варианта не убывает.
+  window.addEventListener('storage', (event) => {
+    if (event.key !== PROGRESS_KEY || progressLocked) return;
+    const version = progressVersion(event.newValue);
+    if (version !== null && version > PROGRESS_VERSION) return;
+    commitClock();
+    let incoming = pruneProgress(parseProgress(event.newValue), questions.map((q) => q.id));
+    const mine = progress.variant;
+    const theirs = incoming.variant;
+    if (timed(mine) && theirs && theirs.startedAt === mine.startedAt && !(theirs.elapsedMs >= mine.elapsedMs)) {
+      incoming = { ...incoming, variant: { ...theirs, elapsedMs: mine.elapsedMs } };
+    }
+    progress = incoming;
+    render(false);
+  });
   render(false);
 })();

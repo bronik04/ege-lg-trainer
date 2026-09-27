@@ -442,6 +442,42 @@ test('полный вариант: часы идут, пока страница 
   await context.close();
 });
 
+test('часы варианта: переход по позициям не теряет время, вкладки не затирают ответы', { skip }, async () => {
+  // Пять минут на одной позиции (часы страницы подменены), затем «Дальше».
+  const context = await browser.newContext({ viewport: { width: 1100, height: 900 } });
+  const errors = [];
+  const a = await context.newPage();
+  a.on('pageerror', (e) => errors.push(e.message));
+  await a.clock.install();
+  await a.goto(`${mainUrl}#/variant`);
+  await a.locator('#buildVariant').click();
+  await see(a, '#variantClock', /осталось 40:00/);
+  await a.clock.runFor(5 * 60_000);
+  await see(a, '#variantClock', /осталось 35:00/);
+  await a.getByRole('button', { name: 'Дальше →' }).click();
+  await see(a, '.progress', /Позиция 16/);
+  assert.ok((await storedProgress(a)).variant.elapsedMs >= 5 * 60_000, 'время после перехода сохранено');
+
+  // Вторая вкладка отвечает — первая подхватывает ответ и своим таймером его не затирает.
+  const b = await context.newPage();
+  b.on('pageerror', (e) => errors.push(e.message));
+  await b.goto(`${mainUrl}#/variant`);
+  await see(b, '.progress', /отвечено: 0/);
+  await b.keyboard.press('1');
+  await see(b, '.progress', /отвечено: 1/);
+  await see(a, '.progress', /отвечено: 1/);
+  await a.clock.runFor(31_000);
+  await a.evaluate(() => {
+    Object.defineProperty(document, 'visibilityState', { value: 'hidden', configurable: true });
+    document.dispatchEvent(new Event('visibilitychange'));
+  });
+  const stored = await storedProgress(b);
+  assert.equal(Object.keys(stored.variant.answers).length, 1, 'ответ второй вкладки на месте');
+  assert.ok(stored.variant.elapsedMs >= 5 * 60_000 + 31_000, 'время первой вкладки дописано');
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
 test('телефон: без горизонтальной прокрутки во всех режимах', { skip }, async () => {
   for (const width of [390, 375, 320]) {
     const { page, context } = await open(mainUrl, { width, height: 812 });

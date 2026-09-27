@@ -78,12 +78,15 @@ function cleanAnswers(map) {
 function cleanSession(session) {
   if (!isRecord(session) || !Array.isArray(session.ids) || session.ids.length === 0) return null;
   const index = Number.isInteger(session.index) ? session.index : 0;
-  return {
+  const out = {
     ...session,
     ids: session.ids.map(String),
     answers: isRecord(session.answers) ? { ...session.answers } : {},
     index: Math.max(0, Math.min(session.ids.length - 1, index)),
   };
+  // Время варианта — только число: строка из испорченного файла склеилась бы, а не сложилась.
+  if ('elapsedMs' in out && !(Number.isFinite(out.elapsedMs) && out.elapsedMs >= 0)) delete out.elapsedMs;
+  return out;
 }
 
 // Разбирает сохранённый прогресс. Повреждённые или чужие данные не роняют страницу:
@@ -461,6 +464,12 @@ export function startSession(ids, at) {
   return { ids: ids.slice(), answers: {}, index: 0, startedAt: at, finishedAt: null };
 }
 
+// Полный вариант ведёт время с нуля. У варианта, начатого до появления часов, поля нет —
+// сколько он шёл, неизвестно, и часы для него не идут.
+export function startVariant(ids, at) {
+  return { ...startSession(ids, at), elapsedMs: 0 };
+}
+
 export function answerSession(session, id, optionId) {
   return { ...session, answers: { ...session.answers, [id]: optionId } };
 }
@@ -488,7 +497,7 @@ export function finishVariant(progress, byId, at) {
   for (const item of result.items) {
     if (item.chosen !== null) next = recordAnswer(next, 'questions', item.id, item.chosen, item.correct, at);
   }
-  // Время есть только у вариантов, начатых после появления таймера.
+  // Время есть только у вариантов, начатых с часами (startVariant).
   const time = Number.isFinite(variant.elapsedMs) ? { timeMs: Math.round(variant.elapsedMs) } : {};
   return {
     ...next,
