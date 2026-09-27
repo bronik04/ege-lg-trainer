@@ -259,10 +259,19 @@
   function mistakeWork(items, { id, open = true }) {
     const groups = groupMistakesByRule(items, byId, new Set(rulesById.keys()));
     if (!groups.length) return document.createDocumentFragment();
-    const total = groups.reduce((n, g) => n + g.entries.length, 0);
+    const entries = groups.flatMap((g) => g.entries);
+    const skipped = entries.filter((e) => e.chosen == null).length;
+    // Иероглифы — шрифтом кайшу; буквы порядка (№26), тоны (№15) и числа (№19) — обычным.
+    const answer = (text) => (/[\u3400-\u9fff]/.test(text) ? el('span', { class: 'zh', lang: 'zh', text }) : el('b', { text }));
     const zh = (text) => el('span', { class: 'zh', lang: 'zh', text });
+    // №26: верный порядок собранным предложением — буквы сами по себе ничего не объясняют.
+    const assembled = (q) => {
+      const parts = new Map((q.fragments || []).map((f) => [f.id, f.text]));
+      const order = optionText(q, q.correctOptionId).split('').map((id) => parts.get(id));
+      return order.every(Boolean) ? order.join('，') : '';
+    };
     return el('details', { class: 'mistakes', id, open },
-      el('summary', { text: `Работа над ошибками · ${total}` }),
+      el('summary', { text: `Работа над ошибками · ${entries.length - skipped}` + (skipped ? ` · без ответа ${skipped}` : '') }),
       groups.map((g) => {
         const rule = g.ruleId ? rulesById.get(g.ruleId) : null;
         return el('section', { class: 'mistake-group' },
@@ -272,14 +281,20 @@
           el('ul', { class: 'mistake-list' }, g.entries.map((entry) => {
             const q = byId.get(entry.id);
             const e = explainChoice(q, entry.chosen);
+            const why = entry.chosen == null ? e.correctExplanation : e.chosenExplanation;
+            const sentence = q.fragments ? assembled(q) : '';
             return el('li', {},
-              zh(`${q.taskNumber}. ${q.stem.replace(/\s+/g, ' ')}`),
-              el('span', { class: 'small' }, entry.chosen == null ? 'без ответа' : ['ваш ответ: ', zh(e.chosenText)],
-                ' → верно: ', zh(e.correctText)),
-              el('span', { class: 'small muted', text: entry.chosen == null ? e.correctExplanation : e.chosenExplanation }));
+              zh(`${q.taskNumber}. ${q.stem.replace(/\s+/g, ' ')}` + (q.taskNumber === 15 ? ' — тоны' : '')),
+              el('span', { class: 'small' }, entry.chosen == null ? 'без ответа' : ['ваш ответ: ', answer(e.chosenText)],
+                ' → верно: ', answer(e.correctText)),
+              sentence ? el('span', { class: 'small' }, 'верный порядок: ', zh(sentence)) : null,
+              why ? el('span', { class: 'small muted', text: why }) : null);
           })),
-          el('button', { class: 'button ghost', type: 'button', onclick: () => startRound(shuffle(g.entries.map((x) => x.id))) },
-            `Повторить задания этого правила · ${g.entries.length}`));
+          el('button', {
+            class: 'button ghost', type: 'button',
+            'aria-label': `Повторить задания правила «${rule ? rule.title : 'без правила'}» · ${g.entries.length}`,
+            onclick: () => startRound(shuffle(g.entries.map((x) => x.id))),
+          }, `Повторить задания этого правила · ${g.entries.length}`));
       }));
   }
 
