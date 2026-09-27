@@ -427,3 +427,43 @@ test('работа над ошибками: группы по правилу, ч
   assert.deepEqual(L.groupMistakesByRule([{ id: 'e', chosen: '2', correct: true }], byId), []);
 });
 
+test('отчёт учителю: код читается обратно, мусор и повторы отбрасываются', () => {
+  const report = { kind: 'variant', name: 'Иванова Аня', at: '2026-09-27T15:40:00.000Z', timeMs: 2_050_000,
+    ids: ['q20-a', 'q21-a'], answers: ['2', null] };
+  const code = L.encodeReport(report);
+  assert.match(code, /^EGELG1:[A-Za-z0-9_-]+$/);
+  const text = `Привет!\n${code}\nещё раз ${code}\nEGELG1:испорчено EGELG1:e30`;
+  const { reports, broken } = L.decodeReports(text);
+  assert.deepEqual(reports, [{ ...report, v: 1 }], 'повтор того же сообщения считается один раз');
+  assert.equal(broken, 1, 'e30 — {} без полей; «испорчено» не похоже на код и не считается');
+});
+
+test('отчёт учителю: текст для мессенджера', () => {
+  const bank = [q('q20-a', 20, { topicIds: ['aspect'] }), q('q21-a', 21, { topicIds: ['aspect'] }), q('q22-a', 22)];
+  const byId = new Map(bank.map((x) => [x.id, x]));
+  const report = { kind: 'variant', name: 'Аня', at: '2026-09-27T15:40:00.000Z', timeMs: 2_050_000,
+    ids: ['q20-a', 'q21-a', 'q22-a'], answers: ['2', null, '1'] };
+  const text = L.reportText(report, byId, (id) => ({ aspect: 'Суффиксы' })[id] || id);
+  assert.match(text, /^Отчёт: ЕГЭ, китайский, задания 15–27/);
+  assert.match(text, /Ученик: Аня/);
+  assert.match(text, /Полный вариант/);
+  assert.match(text, /Результат: 1 из 3 · время 34:10/);
+  assert.match(text, /Ошибки: 22 · без ответа: 21/);
+  assert.match(text, /Темы с ошибками: Суффиксы \(1\), aspect|Темы с ошибками: Суффиксы/);
+  assert.ok(text.trim().endsWith(L.encodeReport(report)), 'код — последней строкой');
+});
+
+test('сводка по классу: ученики, номера и темы, где ошибаются', () => {
+  const bank = [q('q20-a', 20), q('q22-a', 22, { topicIds: ['adverbs'] }), q('q22-b', 22, { topicIds: ['adverbs'] })];
+  const byId = new Map(bank.map((x) => [x.id, x]));
+  const reports = [
+    { kind: 'round', name: 'Боря', at: 't2', ids: ['q20-a', 'q22-a'], answers: ['1', '1'] },
+    { kind: 'round', name: 'Аня', at: 't1', ids: ['q22-b', 'gone'], answers: ['2', '1'] },
+  ];
+  const s = L.classSummary(reports, byId);
+  assert.deepEqual(s.rows.map((r) => [r.name, r.score, r.total, r.wrongTasks]), [['Аня', 1, 1, []], ['Боря', 0, 2, [20, 22]]]);
+  assert.deepEqual(s.byTask, [{ taskNumber: 20, wrong: 1, total: 1 }, { taskNumber: 22, wrong: 1, total: 2 }]);
+  assert.deepEqual(s.byTopic, [{ topicId: 'adverbs', wrong: 1 }, { topicId: 'aspect', wrong: 1 }]);
+  assert.equal(s.unknown, 1, 'задания нет в банке — не считается');
+});
+

@@ -216,6 +216,7 @@
     else if (name === 'practice') renderPractice();
     else if (name === 'variant') renderVariant();
     else if (name === 'bank') renderBank();
+    else if (name === 'teacher') renderTeacher();
     else renderRules();
     if (shareNotice) {
       const node = el('p', { class: shareNotice.warn ? 'notice warn' : 'notice', id: 'shareNotice', role: 'status', text: shareNotice.text });
@@ -366,6 +367,64 @@
       status);
     return { button, box };
   }
+
+  // Отчёт учителю: имя, читаемый текст и код для страницы учителя. Имя хранится только в этом
+  // браузере и уходит лишь в сообщение, которое ученик отправит сам.
+  const STUDENT_KEY = 'ege-lg-trainer:student';
+  const topicTitle = (id) => (topicsById.get(id) || {}).title || id;
+
+  function reportToggle(key, report) {
+    const open = `report-${key}`;
+    const button = el('button', {
+      class: 'button ghost', type: 'button', id: `report-${key}`, 'aria-expanded': String(shareOpen === open),
+      dataset: { key: `share:${open}` },
+      onclick: () => { shareOpen = shareOpen === open ? null : open; render(false); },
+    }, 'Отчёт учителю');
+    if (shareOpen !== open) return { button, box: null };
+    const name = el('input', { class: 'share-url', type: 'text', id: 'studentName', autocomplete: 'name', value: storage.get(STUDENT_KEY) || '' });
+    const text = el('textarea', { class: 'report-text', id: 'reportText', readonly: true, rows: 8, 'aria-label': 'Текст отчёта' });
+    const status = el('span', { class: 'small muted', 'aria-live': 'polite' });
+    const fill = () => { text.value = reportText({ ...report, name: name.value.trim() }, byId, topicTitle); };
+    name.addEventListener('input', () => { storage.set(STUDENT_KEY, name.value.trim()); fill(); });
+    fill();
+    const named = () => {
+      if (name.value.trim()) return true;
+      status.textContent = 'Впишите имя — иначе учитель не поймёт, чей это отчёт.';
+      name.focus();
+      return false;
+    };
+    const copy = el('button', {
+      class: 'button', type: 'button', id: 'copyReport',
+      onclick: async () => {
+        if (!named()) return;
+        try {
+          await navigator.clipboard.writeText(text.value);
+          status.textContent = 'Отчёт скопирован — вставьте его в сообщение учителю.';
+        } catch {
+          text.focus();
+          text.select();
+          status.textContent = 'Скопируйте выделенный текст вручную.';
+        }
+      },
+    }, 'Скопировать');
+    // На телефоне — сразу в мессенджер через меню «Поделиться».
+    const share = navigator.share ? el('button', {
+      class: 'button ghost', type: 'button',
+      onclick: async () => {
+        if (!named()) return;
+        try { await navigator.share({ text: text.value }); } catch { /* отменили отправку */ }
+      },
+    }, 'Поделиться') : null;
+    const box = el('div', { class: 'share', id: 'reportBox' },
+      el('p', { class: 'small', text: 'Отправьте этот текст учителю в мессенджере. Имя видит только тот, кому вы его пошлёте; на сайте оно хранится лишь в этом браузере.' }),
+      el('label', { class: 'field' }, 'Имя и фамилия', name),
+      text,
+      el('div', { class: 'share-row' }, copy, share),
+      status);
+    return { button, box };
+  }
+
+  const sessionAnswers = (session) => session.ids.map((id) => session.answers[id] ?? null);
 
   function originLabel(q) {
     if (q.origin === 'fipi') return q.sourceRef && q.sourceRef.fipiId ? `Банк ФИПИ · ${q.sourceRef.fipiId}` : 'Банк ФИПИ';
@@ -884,10 +943,13 @@
       resultList(round.ids, round.answers));
     const share = shareToggle('round', 'Ссылка на эти задания', pageUrl(`#/practice?${idsQuery(round.ids)}`),
       `По ссылке откроется раунд из этих же заданий (${round.ids.length}) в том же порядке — одинаковый для всех, кто её получит.`);
+    const report = reportToggle('round', { kind: 'round', at: round.finishedAt || now(), ids: round.ids, answers: sessionAnswers(round) });
     view.append(el('div', { class: 'actions' },
       wrong.length ? el('button', { class: 'button', type: 'button', onclick: () => startRound(shuffle(wrong)) }, `Повторить ошибки раунда · ${wrong.length}`) : null,
       el('a', { class: wrong.length ? 'button alt' : 'button', href: '#/practice/setup', text: 'Новый раунд' }),
+      report.button,
       share.button));
+    if (report.box) view.append(report.box);
     if (share.box) view.append(share.box);
   }
 
@@ -1034,7 +1096,8 @@
     }
     const share = shareToggle('variant', 'Ссылка на этот вариант', pageUrl(`#/variant?${idsQuery(v.ids)}`),
       'По ссылке откроется этот же вариант — те же 13 заданий. Удобно, чтобы весь класс решал одно и то же.');
-    actions.append(share.button);
+    const report = reportToggle('variant', { kind: 'variant', at: v.finishedAt, timeMs: (v.result || {}).timeMs, ids: v.ids, answers: sessionAnswers(v) });
+    actions.append(report.button, share.button);
     view.append(el('p', { class: 'section-title', text: 'Результат последнего варианта' }),
       el('p', { class: 'score' }, el('b', { text: `${result.score} из ${result.total}` }), el('span', { class: 'muted', text: 'первичных баллов за раздел 3' })),
       Number.isFinite(v.result && v.result.timeMs)
@@ -1049,9 +1112,61 @@
       } }),
       actions);
     // Закрытый блок ссылки — null: штатный append напечатал бы его словом «null».
+    if (report.box) view.append(report.box);
     if (share.box) view.append(share.box);
     view.append(el('p', { class: 'section-title', text: 'Разбор по позициям' }),
       resultList(v.ids, v.answers));
+  }
+
+  // ---------- учителю: сводка отчётов ----------
+
+  let teacherText = ''; // вставленные отчёты — только в памяти страницы, никуда не уходят
+
+  function classNodes(text) {
+    const { reports, broken } = decodeReports(text);
+    if (!reports.length) {
+      return [el('p', { class: 'small muted', id: 'classEmpty', text: broken
+        ? `Кодов не прочитано: ${broken}. Попросите ученика прислать отчёт заново.`
+        : 'Отчётов пока нет: вставьте сообщения учеников выше.' })];
+    }
+    const s = classSummary(reports, byId);
+    const when = (at) => (Number.isNaN(Date.parse(at)) ? '' : new Date(at).toLocaleString('ru-RU', { dateStyle: 'short', timeStyle: 'short' }));
+    const table = el('table', { class: 'class-table', id: 'classTable' },
+      el('thead', {}, el('tr', {}, ['Ученик', 'Что', 'Когда', 'Результат', 'Время', 'Ошибки (номера)'].map((h) => el('th', { scope: 'col', text: h })))),
+      el('tbody', {}, s.rows.map((r) => el('tr', {},
+        el('td', { text: r.name || '(без имени)' }),
+        el('td', { text: r.kind === 'variant' ? 'Вариант' : 'Раунд' }),
+        el('td', { text: when(r.at) }),
+        el('td', { text: `${r.score} из ${r.total}` }),
+        el('td', { text: Number.isFinite(r.timeMs) ? formatClock(r.timeMs) : '—' }),
+        el('td', { text: r.wrongTasks.join(', ') || '—' })))));
+    return [
+      el('p', { class: 'score' }, el('b', { text: String(reports.length) }),
+        el('span', { class: 'muted', text: plural(reports.length, 'отчёт', 'отчёта', 'отчётов') + (broken ? ` · не прочитано ${broken}` : '') })),
+      el('div', { class: 'table-wrap' }, table),
+      s.byTask.length ? el('p', { class: 'section-title', text: 'Где ошибаются' }) : null,
+      s.byTask.length ? el('ul', { class: 'usage', id: 'classByTask' }, s.byTask.map((t) => el('li', { text: `№${t.taskNumber} — ошибок ${t.wrong} из ${t.total}` }))) : null,
+      s.byTopic.length ? el('p', { class: 'section-title', text: 'Темы с ошибками' }) : null,
+      s.byTopic.length ? el('ul', { class: 'usage', id: 'classByTopic' }, s.byTopic.slice(0, 8).map((t) => {
+        const topicRules = rules.filter((r) => r.topicIds.includes(t.topicId));
+        return el('li', {}, el('b', { text: topicTitle(t.topicId) }), ` — ошибок ${t.wrong}`,
+          topicRules.length ? ' · правило: ' : '',
+          topicRules.flatMap((r, i) => [i ? ', ' : '', el('a', { href: `#/rules/${encodeURIComponent(r.id)}`, text: r.title })]));
+      })) : null,
+      s.unknown ? el('p', { class: 'small muted', text: `Заданий нет в нынешнем банке: ${s.unknown} — они не посчитаны.` }) : null,
+    ].filter(Boolean);
+  }
+
+  function renderTeacher() {
+    view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Результаты класса' }),
+      el('p', { class: 'lead', text: 'Вставьте сюда сообщения учеников с отчётами — можно все сразу, как есть из мессенджера. Страница найдёт в них коды и сведёт результаты. Ничего никуда не отправляется.' }));
+    const input = el('textarea', { class: 'report-text', id: 'reportsInput', rows: 8, placeholder: 'Отчёт: ЕГЭ, китайский, задания 15–27…' });
+    input.value = teacherText;
+    const out = el('div', { id: 'classSummary', 'aria-live': 'polite' });
+    const update = () => { teacherText = input.value; out.replaceChildren(...classNodes(teacherText)); };
+    input.addEventListener('input', update);
+    view.append(el('label', { class: 'field' }, 'Сообщения учеников', input), out);
+    update();
   }
 
   // ---------- банк и ошибки ----------

@@ -373,6 +373,140 @@ export function isVariant(ids, byId) {
     && ids.every((id, i) => byId.has(id) && byId.get(id).taskNumber === TASK_NUMBERS[i]);
 }
 
+// ---------- отчёт учителю ----------
+
+// Код в конце сообщения ученика: по нему страница учителя сводит результаты класса.
+// Префикс — версия формата: меняете поля — новый префикс, а страница учителя читает и старые.
+export const REPORT_PREFIX = 'EGELG1:';
+const REPORT_CODE = /EGELG1:([A-Za-z0-9_-]+)/g;
+const REPORT_KINDS = ['round', 'variant'];
+
+function toBase64Url(text) {
+  let binary = '';
+  for (const byte of new TextEncoder().encode(text)) binary += String.fromCharCode(byte);
+  return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+function fromBase64Url(code) {
+  const binary = atob(code.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((code.length + 3) % 4));
+  return new TextDecoder().decode(Uint8Array.from(binary, (ch) => ch.charCodeAt(0)));
+}
+
+// Отчёт: kind — round | variant, name — как ученик себя назвал, ids и answers — по порядку сессии.
+export function encodeReport(report) {
+  const payload = { v: 1, kind: report.kind, name: report.name, at: report.at, ids: report.ids, answers: report.answers };
+  if (Number.isFinite(report.timeMs)) payload.timeMs = Math.round(report.timeMs);
+  return REPORT_PREFIX + toBase64Url(JSON.stringify(payload));
+}
+
+function cleanReport(raw) {
+  if (!isRecord(raw) || raw.v !== 1 || !REPORT_KINDS.includes(raw.kind)) return null;
+  if (typeof raw.name !== 'string' || typeof raw.at !== 'string') return null;
+  if (!Array.isArray(raw.ids) || !Array.isArray(raw.answers) || raw.ids.length !== raw.answers.length || !raw.ids.length) return null;
+  if (!raw.ids.every((id) => typeof id === 'string') || !raw.answers.every((a) => a === null || typeof a === 'string')) return null;
+  const out = { v: 1, kind: raw.kind, name: raw.name.trim().slice(0, 80), at: raw.at, ids: raw.ids, answers: raw.answers };
+  if (Number.isFinite(raw.timeMs) && raw.timeMs >= 0) out.timeMs = raw.timeMs;
+  return out;
+}
+
+// Все коды из вставленного текста (сообщения можно вставлять пачкой). Одинаковые — один раз:
+// ученик мог прислать отчёт дважды.
+export function decodeReports(text) {
+  const seen = new Set();
+  const reports = [];
+  let broken = 0;
+  for (const match of String(text || '').matchAll(REPORT_CODE)) {
+    if (seen.has(match[1])) continue;
+    seen.add(match[1]);
+    let report = null;
+    try {
+      report = cleanReport(JSON.parse(fromBase64Url(match[1])));
+    } catch {
+      report = null;
+    }
+    if (report) reports.push(report);
+    else broken += 1;
+  }
+  return { reports, broken };
+}
+
+// Итог одного отчёта по банку: счёт, номера с ошибками и без ответа, темы ошибок.
+function reportScore(report, byId) {
+  let score = 0;
+  let total = 0;
+  let unknown = 0;
+  const wrong = [];
+  const skipped = [];
+  const topics = new Map();
+  report.ids.forEach((id, i) => {
+    const q = byId.get(id);
+    if (!q) { unknown += 1; return; }
+    total += 1;
+    const chosen = report.answers[i];
+    if (chosen !== null && chosen === q.correctOptionId) { score += 1; return; }
+    (chosen === null ? skipped : wrong).push(q.taskNumber);
+    for (const t of q.topicIds || []) topics.set(t, (topics.get(t) || 0) + 1);
+  });
+  return { score, total, unknown, wrong, skipped, topics };
+}
+
+function numbersLine(numbers) {
+  const counts = new Map();
+  for (const n of numbers) counts.set(n, (counts.get(n) || 0) + 1);
+  return [...counts].sort((a, b) => a[0] - b[0]).map(([n, c]) => (c > 1 ? `${n} ×${c}` : String(n))).join(', ');
+}
+
+// Сообщение ученика: читаемый текст для мессенджера и код последней строкой.
+export function reportText(report, byId, topicTitle = (id) => id) {
+  const r = reportScore(report, byId);
+  const when = Number.isNaN(Date.parse(report.at)) ? ''
+    : ` · ${new Date(report.at).toLocaleString('ru-RU', { dateStyle: 'short', timeStyle: 'short' })}`;
+  const what = report.kind === 'variant' ? 'Полный вариант' : `Раунд практики · заданий: ${report.ids.length}`;
+  const time = Number.isFinite(report.timeMs) ? ` · время ${formatClock(report.timeMs)}` : '';
+  const mistakes = [r.wrong.length ? numbersLine(r.wrong) : '', r.skipped.length ? `без ответа: ${numbersLine(r.skipped)}` : '']
+    .filter(Boolean).join(' · ');
+  const topics = [...r.topics].sort((a, b) => b[1] - a[1]).map(([t, n]) => `${topicTitle(t)} (${n})`).join(', ');
+  return [
+    'Отчёт: ЕГЭ, китайский, задания 15–27',
+    `Ученик: ${report.name || '(имя не указано)'}`,
+    what + when,
+    `Результат: ${r.score} из ${r.total}${time}`,
+    mistakes ? `Ошибки: ${mistakes}` : 'Ошибок нет',
+    topics ? `Темы с ошибками: ${topics}` : '',
+    encodeReport(report),
+  ].filter(Boolean).join('\n');
+}
+
+// Сводка по классу: строка на отчёт (по имени), номера и темы — где ошибок больше.
+export function classSummary(reports, byId) {
+  const byTask = new Map();
+  const byTopic = new Map();
+  let unknown = 0;
+  const rows = reports.map((report) => {
+    const r = reportScore(report, byId);
+    unknown += r.unknown;
+    report.ids.forEach((id, i) => {
+      const q = byId.get(id);
+      if (!q) return;
+      const entry = byTask.get(q.taskNumber) || { taskNumber: q.taskNumber, wrong: 0, total: 0 };
+      entry.total += 1;
+      if (report.answers[i] === null || report.answers[i] !== q.correctOptionId) entry.wrong += 1;
+      byTask.set(q.taskNumber, entry);
+    });
+    for (const [t, n] of r.topics) byTopic.set(t, (byTopic.get(t) || 0) + n);
+    return { name: report.name, kind: report.kind, at: report.at, timeMs: report.timeMs, score: r.score, total: r.total,
+      wrongTasks: [...new Set([...r.wrong, ...r.skipped])].sort((a, b) => a - b) };
+  }).sort((a, b) => a.name.localeCompare(b.name, 'ru') || String(a.at).localeCompare(String(b.at)));
+  return {
+    rows,
+    byTask: [...byTask.values()].filter((t) => t.wrong)
+      .sort((a, b) => b.wrong - a.wrong || b.wrong / b.total - a.wrong / a.total || a.taskNumber - b.taskNumber),
+    byTopic: [...byTopic].map(([topicId, wrong]) => ({ topicId, wrong }))
+      .sort((a, b) => b.wrong - a.wrong || a.topicId.localeCompare(b.topicId)),
+    unknown,
+  };
+}
+
 // ---------- ответ и разбор ----------
 
 export function optionText(item, optionId) {
