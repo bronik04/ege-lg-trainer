@@ -53,10 +53,14 @@ Alegreya, Golos Text) подгружаются из сети; без неё ст
    `sources/generated/` (формат — в `sources/generated/README.md`).
 2. Пересобрать банк: `npm run data` (импорт → сборка банка → проверка).
 3. Написать разборы волной: `python3 scripts/add_explanations.py wave.json`.
-4. Прочитать `data/review/queue.md` или открыть страницу проверки
-   `python3 scripts/build_site.py --drafts` → `review-build/review.html`.
-5. Принять проверенное: `python3 scripts/accept.py ID …` (или `--task 20`), затем
-   снова `npm run data`. Сколько готово по позициям и темам — `data/review/coverage.md`.
+4. Проверить: двойной клик по `Проверка.command` в корне проекта. В Терминале по страницам
+   идут разборы заданий, правила и вопросы к ним, спорные ключи ФИПИ и сообщения учеников;
+   «в» — все верны, номера — какие не так. Верное принимается сразу, «не так» уходит в
+   `data/review/fixes.md` для Claude, банк пересобирается сам. Без кнопки — прочитать
+   `data/review/queue.md` или страницу `python3 scripts/build_site.py --drafts` →
+   `review-build/review.html` и принять `python3 scripts/accept.py ID …` (или `--task 20`),
+   затем `npm run data`.
+5. Сколько готово по позициям и темам — `data/review/coverage.md`.
 
 Под каждым разбором есть ссылка «Сообщить на GitHub»: она
 открывает новый issue в этом репозитории с ID задания, условием, выбранным ответом и
