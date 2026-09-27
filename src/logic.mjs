@@ -417,7 +417,14 @@ export function stemSegments(stem) {
 
 // ---------- пропуск-клетка: что вписать и сколько клеток ----------
 
-const HANZI = /[㐀-鿿]/;
+const HANZI = /[㐀-鿿]/; // U+3400–U+9FFF: иероглифы, включая расширение A
+const CYRILLIC = /[Ѐ-ӿ]/; // U+0400–U+04FF
+
+// Китайский текст: есть иероглифы и нет кириллицы («感觉 нельзя…» — русский текст).
+export function isChinese(text) {
+  return HANZI.test(text) && !CYRILLIC.test(text);
+}
+
 const PUNCT = '\\s，,、；;。：:';
 const EDGE_PUNCT = new RegExp(`^[${PUNCT}]+|[${PUNCT}]+$`, 'g');
 const INNER_PUNCT = new RegExp(`[${PUNCT}]`);
@@ -429,7 +436,7 @@ const charCount = (text) => [...text.replace(/\s+/g, '')].length;
 export function blankFill(item, optionId) {
   const k = blankCount(item);
   const option = item.options.find((o) => o.id === optionId);
-  if (!k || !option || !HANZI.test(option.text)) return null;
+  if (!k || !option || !isChinese(option.text)) return null;
   if (k === 1) return [option.text.trim()];
   const parts = option.text.split(/…+|\.{3,}/).map((p) => p.replace(EDGE_PUNCT, '')).filter(Boolean);
   if (parts.length !== k || parts.some((p) => INNER_PUNCT.test(p))) return null;

@@ -8,12 +8,13 @@
 <meta name="theme-color" content="#F2F4EF" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1B2338" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%23C23A2C'/%3E%3Ctext x='32' y='46' font-family='Kaiti SC,STKaiti,KaiTi,PingFang SC,Noto Sans SC,serif' font-size='40' fill='%23FFF6F2' text-anchor='middle'%3E%E8%AF%AD%3C/text%3E%3C/svg%3E">
-<!-- Шрифты из сети: без неё страница работает на системных. -->
+<!-- Шрифты из сети, не блокируя страницу: стиль «для печати» не задерживает ни отрисовку,
+     ни скрипты, а после загрузки включается для экрана. Нет сети или хост висит — системные. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500..800&amp;family=Golos+Text:wght@400..800&amp;display=swap">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/lxgwwenkaigbscreen.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500..800&amp;family=Golos+Text:wght@400..800&amp;display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/lxgwwenkaigbscreen.css" media="print" onload="this.media='all'">
 <script>
   // Тема до первой отрисовки, чтобы не мигал светлый фон.
   (function () {
@@ -31,13 +32,13 @@
 <a class="skip" href="#view">К содержимому</a>
 <div class="shell">
   <header class="top">
-    <a class="brand" href="#/rules">
+    <div class="brand">
       <span class="seal" aria-hidden="true">语</span>
-      <span class="brand-text">
-        <strong>Лексика и грамматика</strong>
-        <small>ЕГЭ · китайский · задания 15–27</small>
-      </span>
-    </a>
+      <div class="brand-text">
+        <h1><a href="#/rules">Лексика и грамматика</a></h1>
+        <small>ЕГЭ · китайский · <span class="nowrap">задания 15–27</span></small>
+      </div>
+    </div>
     <button class="theme" id="themeToggle" type="button" aria-pressed="false">
       <span aria-hidden="true">◐</span><span class="sr" id="themeLabel">Тёмная тема</span>
     </button>

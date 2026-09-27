@@ -17,7 +17,8 @@
   --jade-bg: #E4F1E9;
   --warn-ink: #8A5A12;
   --warn-bg: #FBF1DC;
-  --focus: #6F8FE0;
+  --focus: #5577D6;
+  --cell-line: #5E977C;
   --seal-ink: #FFF6F2;
   /* Иероглифы в русском тексте берут кайшу: у системных шрифтов перед ним их нет. */
   --zh: "LXGW WenKai Screen", "Kaiti SC", STKaiti, KaiTi, "Songti SC", "Noto Serif CJK SC", serif;
@@ -45,6 +46,7 @@
   --warn-ink: #F0C987;
   --warn-bg: #3F3726;
   --focus: #9FB7FF;
+  --cell-line: #6F92C0;
   --seal-ink: #1B2338;
   color-scheme: dark;
 }
@@ -86,7 +88,10 @@ a { color: var(--pen); text-underline-offset: 3px; }
   background: var(--red); color: var(--seal-ink); font: 24px/1 var(--zh);
 }
 .brand-text { min-width: 0; }
-.brand strong { display: block; font: 700 1.15rem/1.15 var(--disp); }
+.brand h1 { margin: 0; font: 700 1.15rem/1.15 var(--disp); }
+.brand h1 a { color: inherit; text-decoration: none; }
+.brand h1 a:hover { color: var(--pen); }
+.nowrap { white-space: nowrap; }
 .brand small { display: block; color: var(--muted); font-size: .76rem; font-weight: 600; line-height: 1.3; }
 .theme {
   flex: none; display: grid; place-items: center; width: 44px; height: 44px; border: 1.5px solid var(--line);
@@ -143,7 +148,7 @@ h3 { margin: 0 0 6px; font-size: 1rem; }
 .chip { position: relative; display: inline-flex; cursor: pointer; max-width: 100%; }
 .chip input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; }
 .chip span {
-  display: inline-flex; align-items: baseline; gap: 7px; min-height: 42px; padding: 9px 12px;
+  display: inline-flex; align-items: baseline; gap: 7px; min-height: 44px; padding: 10px 12px;
   border: 1.5px solid var(--line); border-radius: 6px; background: var(--sheet); color: var(--ink);
   font-size: .9rem; font-weight: 600; line-height: 1.3;
 }
@@ -217,7 +222,7 @@ kbd {
 .tz { position: relative; display: inline-flex; margin: 0 .12em; vertical-align: -.36em; line-height: 1; }
 .tz .c {
   position: relative; display: grid; place-items: center; width: 1.42em; height: 1.42em;
-  border: 1.5px solid var(--grid); background: var(--sheet);
+  border: 1.5px solid var(--cell-line); background: var(--sheet);
 }
 .tz .c + .c { border-left-width: 0; }
 .tz .c::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; border-left: 1px dashed var(--guide); }
@@ -271,7 +276,7 @@ kbd {
 .keys { display: none; margin: 12px 0 0; color: var(--muted); font-size: .8rem; }
 @media (hover: hover) and (pointer: fine) { .keys { display: block; } }
 
-.feedback { display: grid; gap: 16px; margin-top: 22px; scroll-margin: 16px 0 104px; }
+.feedback { display: grid; gap: 16px; margin-top: 22px; }
 .verdict { padding: 2px 0 2px 14px; border-left: 3px solid var(--line); }
 .verdict.ok { border-color: var(--jade); }
 .verdict.bad { border-color: var(--red); }
@@ -283,7 +288,7 @@ kbd {
 .rule-note { padding: 14px 16px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--sheet); }
 .rule-note p { margin: 6px 0 0; }
 .rule-note p:first-child { margin-top: 0; }
-.others summary { padding: 6px 0; color: var(--muted); font-weight: 650; cursor: pointer; }
+.others summary { display: flex; align-items: center; min-height: 44px; color: var(--muted); font-weight: 650; cursor: pointer; }
 .others ul { margin: 6px 0 0; padding-left: 20px; }
 .report { margin: 0; color: var(--muted); font-size: .88rem; }
 .share { display: grid; gap: 8px; margin-top: 14px; padding: 14px 16px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--sheet); }
@@ -305,12 +310,14 @@ kbd {
   padding: 2px 0; border-bottom: 1px solid var(--guide); color: var(--muted);
   font: 700 .7rem/1.3 var(--ui); font-variant-numeric: tabular-nums; text-align: center;
 }
-.cell .mark { display: grid; place-items: center; min-height: 1.75em; font: 1.3rem/1 var(--zh); }
+.cell .mark { display: flex; align-items: center; justify-content: center; gap: 1px; min-height: 1.75em; font: 1.3rem/1 var(--zh); }
 .cell.current { border-color: var(--pen); box-shadow: inset 0 0 0 1.5px var(--pen); }
+/* Итог: ответ ученика синим, пометка учителя — не только цветом, но и знаком. */
 .cell.good { border-color: var(--jade); background: var(--jade-bg); }
-.cell.good .mark { color: var(--jade); }
 .cell.bad { border-color: var(--red); background: var(--red-bg); }
-.cell.bad .mark { color: var(--red); }
+.cell.good .mark::after, .cell.bad .mark::after { font: 800 .62em/1 var(--ui); }
+.cell.good .mark::after { content: "✓"; color: var(--jade); }
+.cell.bad .mark::after { content: "✗"; color: var(--red); }
 
 /* ---------- итог ---------- */
 
@@ -340,12 +347,12 @@ kbd {
 .all-checks:hover { border-style: solid; background: var(--sheet); }
 .index { margin: 18px 0 0; padding: 0; list-style: none; columns: 2 300px; column-gap: 40px; }
 .index > li {
-  display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 12px; padding: 14px 0;
+  display: grid; grid-template-columns: minmax(44px, auto) minmax(0, 1fr); gap: 12px; padding: 14px 0;
   border-top: 1.5px solid var(--line); break-inside: avoid;
 }
 .index .cellnum { min-width: 40px; height: 40px; font-size: 1rem; }
-.index h3 { margin: 2px 0 4px; color: var(--muted); font-size: .74rem; font-weight: 650; letter-spacing: .07em; line-height: 1.35; text-transform: uppercase; }
-.rule-card { display: block; padding: 5px 0; color: var(--ink); font-weight: 650; text-decoration: none; }
+.index h3 { margin: 2px 0 0; color: var(--muted); font-size: .74rem; font-weight: 650; letter-spacing: .07em; line-height: 1.35; text-transform: uppercase; }
+.rule-card { display: block; padding: 10px 0; color: var(--ink); font-weight: 650; text-decoration: none; }
 .rule-card:hover { color: var(--pen); text-decoration: underline; }
 .rule-card .pill.draft { margin-left: 6px; }
 
@@ -394,6 +401,8 @@ kbd {
 /* ---------- телефон ---------- */
 
 @media (max-width: 720px) {
+  /* Фокус и прокрутка не прячут элементы под панелью внизу. */
+  html { scroll-padding-bottom: 96px; }
   .shell { width: calc(100% - 32px); padding-top: 8px; }
   .tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin-bottom: 20px; }
   .tab { min-width: 0; padding-inline: 2px; font-size: .9rem; }
@@ -410,7 +419,6 @@ kbd {
     border-top: 1.5px solid var(--line); background: var(--paper);
   }
   .actions.dock .button { flex: 1 1 0; min-width: 0; }
-  .actions.dock .button.icon { flex: 0 0 56px; }
 }
 
 @media (max-width: 360px) {

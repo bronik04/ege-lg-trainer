@@ -121,7 +121,21 @@ test('blankFill: без пропуска и без иероглифов — null
   assert.deepEqual(L.blankFill({ sentence: '他十点___来。', options: opts('就', '才') }, '2'), ['才']);
 });
 
+test('blankFill: один пропуск с многоточием — целиком; два пропуска без многоточия — null', () => {
+  assert.deepEqual(L.blankFill({ stem: '___我看来，这不对。', options: opts('在……看来', '对') }, '1'), ['在……看来']);
+  assert.equal(L.blankFill({ stem: '___他，___我。', options: opts('因为所以') }, '1'), null);
+});
+
+test('isChinese: иероглифы без кириллицы', () => {
+  assert.equal(L.isChinese('上来'), true);
+  assert.equal(L.isChinese('要是……，就……'), true);
+  assert.equal(L.isChinese('2-4-2'), false);
+  assert.equal(L.isChinese('CAB'), false);
+  assert.equal(L.isChinese('感觉 нельзя употреблять о прошлом'), false);
+});
+
 test('blankCells: по самому длинному варианту, от 1 до 4, длинный — 0', () => {
+  assert.deepEqual(L.blankCells({ stem: '拿___本书。', options: opts('上 来', '回去') }), [2], 'пробел внутри варианта — не знак');
   assert.deepEqual(L.blankCells({ stem: '拿___本书。', options: opts('上来', '回去', '出') }), [2]);
   assert.deepEqual(L.blankCells({ stem: '他说___是将来的事。', options: opts('的', '地', '得') }), [1]);
   assert.deepEqual(L.blankCells({ stem: '___我看来', options: opts('在……看来', '对') }), [0]);

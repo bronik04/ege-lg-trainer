@@ -16,7 +16,6 @@
   const origins = [...new Set(questions.map((q) => q.origin))];
   const ORIGIN_NAMES = { fipi: 'Банк ФИПИ', generated: 'Новые задания' };
   const SOLO_STEM = new Set([15, 19]);
-  const HANZI_RE = /[㐀-鿿]/;
   const FILTERS_KEY = 'ege-lg-trainer:filters';
   const THEME_KEY = 'ege-lg-trainer:theme';
 
@@ -295,14 +294,15 @@
     else if (state === 'wrong' && fix) label = `пропуск: верно ${fix}`;
     else if (state === 'wrong' && written) label = `пропуск: выбрано ${written}, неверно`;
     else if (written) label = `пропуск, вписано: ${written}`;
-    const box = el('span', { class: ['tz', written ? 'written' : '', state || ''].filter(Boolean).join(' '), role: 'img', 'aria-label': label });
+    // Подпись русская внутри китайского предложения — lang='ru', вписанное — снова zh.
+    const box = el('span', { class: ['tz', written ? 'written' : '', state || ''].filter(Boolean).join(' '), role: 'img', lang: 'ru', 'aria-label': label });
     if (cells === 0 || chars.length > cells) {
-      box.append(el('span', { class: 'c long' }, written ? el('span', { class: 'ink', text: written }) : null));
+      box.append(el('span', { class: 'c long' }, written ? el('span', { class: 'ink', lang: 'zh', text: written }) : null));
     } else {
-      for (let i = 0; i < cells; i += 1) box.append(el('span', { class: 'c' }, chars[i] ? el('span', { class: 'ink', text: chars[i] }) : null));
+      for (let i = 0; i < cells; i += 1) box.append(el('span', { class: 'c' }, chars[i] ? el('span', { class: 'ink', lang: 'zh', text: chars[i] }) : null));
     }
     if (state === 'right' && written) box.append(tickMark());
-    if (fix) box.append(el('span', { class: 'fix', 'aria-hidden': 'true', text: fix }));
+    if (fix) box.append(el('span', { class: 'fix', lang: 'zh', 'aria-hidden': 'true', text: fix }));
     return box;
   }
 
@@ -334,7 +334,8 @@
   }
 
   // Карточка вопроса: задание ЕГЭ или вопрос по правилу. reveal — показать верный/неверный.
-  // hint — что делает Enter (подсказка клавиш видна только при мыши и клавиатуре).
+  // hint — что делает Enter; null — Enter ничего не делает, undefined — без подсказки клавиш
+  // (она видна только при мыши и клавиатуре).
   function questionCard(item, { kind, selected, reveal, onChoose, heading, hint }) {
     const card = el('article', { class: 'question', dataset: { card: '1' } });
     if (kind === 'exam') card.append(questionPills(item));
@@ -349,7 +350,8 @@
       card.append(sentenceNode(item, item.sentence, 'stem', { selected, reveal }));
       if (item.sentenceRu) card.append(el('p', { class: 'stem-ru', text: item.sentenceRu }));
     }
-    const short = item.options.every((o) => o.text.length <= 12);
+    // В ряд — только короткие варианты; союзы №27 с «……» в узкой колонке рвались бы посередине.
+    const short = item.options.every((o) => o.text.length <= 12 && !o.text.includes('…'));
     const list = el('div', { class: short ? 'options row' : 'options', role: 'group', 'aria-label': 'Варианты ответа' });
     item.options.forEach((o, i) => {
       let cls = 'option';
@@ -365,12 +367,12 @@
         onclick: () => onChoose(o.id),
       }, el('span', { class: 'num', text: String(i + 1) }),
       // Тоны «2-4-2», числа и «CAB» — не китайский текст: свой шрифт и lang.
-      HANZI_RE.test(o.text) ? el('span', { class: 'text', lang: 'zh', text: o.text }) : el('span', { class: 'text plain', lang: 'ru', text: o.text })));
+      isChinese(o.text) ? el('span', { class: 'text', lang: 'zh', text: o.text }) : el('span', { class: 'text plain', lang: 'ru', text: o.text })));
     });
     card.append(list);
-    if (hint) {
-      card.append(el('p', { class: 'keys' }, 'Клавиши: ', el('kbd', { text: '1' }), '–', el('kbd', { text: String(item.options.length) }),
-        ' — ответ, ', el('kbd', { text: 'Enter' }), ` — ${hint}`));
+    if (hint !== undefined) {
+      card.append(el('p', { class: 'keys' }, 'Клавиши: ', el('kbd', { text: '1' }), '–', el('kbd', { text: String(item.options.length) }), ' — ответ',
+        hint ? [', ', el('kbd', { text: 'Enter' }), ` — ${hint}`] : null));
     }
     return card;
   }
@@ -452,18 +454,25 @@
   const markOf = (answer, correctId) => (answer === undefined || answer === null ? null : answer === correctId ? 'ok' : 'bad');
   const reducedMotion = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // После ответа: если разбор ниже экрана (телефон), предложение с исправлением — к верху,
-  // под ним начало разбора. Фокус — на «Дальше»: панель внизу видна и так.
+  // После ответа на телефоне (панель внизу липкая): предложение с исправлением — к верху экрана,
+  // под ним отмеченные варианты и начало разбора. Не помещается — докручиваем до начала разбора.
+  // Фокус — на «Дальше»: на телефоне она видна в панели, на компьютере фокус сам покажет кнопку.
   function afterAnswer() {
+    const card = view.querySelector('[data-card]');
     const box = view.querySelector('.feedback');
-    const anchor = view.querySelector('[data-card] .stem, [data-card] .fragments, [data-card] .instruction');
     const dock = view.querySelector('.dock');
-    const bottom = window.innerHeight - (dock ? dock.getBoundingClientRect().height : 0);
-    if (box && anchor && box.getBoundingClientRect().top + 48 > bottom) {
-      anchor.scrollIntoView({ block: 'start', behavior: reducedMotion() ? 'auto' : 'smooth' });
+    const sticky = Boolean(dock) && getComputedStyle(dock).position === 'sticky';
+    if (card && box && sticky) {
+      const anchor = card.querySelector('.stem') || card.querySelector('.fragments') || card.querySelector('.instruction');
+      const visibleBottom = window.innerHeight - dock.getBoundingClientRect().height;
+      const head = box.getBoundingClientRect().top + 56; // заголовок разбора и первая строка
+      if (head > visibleBottom) {
+        const delta = Math.max(anchor.getBoundingClientRect().top - 12, head - visibleBottom);
+        window.scrollBy({ top: delta, behavior: reducedMotion() ? 'auto' : 'smooth' });
+      }
     }
     const next = view.querySelector('[data-enter]');
-    if (next) next.focus({ preventScroll: true });
+    if (next) next.focus({ preventScroll: sticky });
   }
 
   function emptyBank() {
@@ -851,15 +860,17 @@
         kind: 'exam',
         selected: v.answers[id],
         reveal: false,
-        hint: 'следующая позиция',
+        hint: v.index === v.ids.length - 1 ? null : 'следующая позиция',
         onChoose: (optionId) => {
           progress = { ...progress, variant: answerSession(progress.variant, id, optionId) };
           variantConfirm = false;
           save();
           render(false);
           // Фокус на «Дальше»: Enter ведёт к следующей позиции, цифры по-прежнему меняют ответ.
+          // В липкой панели (телефон) кнопка видна — страницу не двигаем.
           const next = view.querySelector('[data-enter]') || view.querySelector('#finishVariant');
-          if (next) next.focus({ preventScroll: true });
+          const dock = view.querySelector('.dock');
+          if (next) next.focus({ preventScroll: Boolean(dock) && getComputedStyle(dock).position === 'sticky' });
         },
       }));
     const last = v.index === v.ids.length - 1;
@@ -1079,6 +1090,8 @@
     themeLabel.textContent = 'Тёмная тема';
     toggle.setAttribute('aria-pressed', String(dark));
     toggle.title = dark ? 'Включить светлую тему' : 'Включить тёмную тему';
+    // Строка браузера — цвета бумаги выбранной темы, а не темы системы.
+    document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => meta.setAttribute('content', dark ? '#1B2338' : '#F2F4EF'));
   }
   document.getElementById('themeToggle').addEventListener('click', () => {
     const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';

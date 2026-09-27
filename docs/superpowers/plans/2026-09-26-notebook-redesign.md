@@ -181,8 +181,9 @@ export function blankCells(item) {
 - [ ] **Step 5:** действия сессии — `div.actions.dock`: раунд/проверка — «Дальше» / «Итог»
   после ответа; вариант — «← Назад», «Дальше →» (на последней позиции — «Завершить
   вариант» `#finishVariant`), на остальных — `#finishVariant` обычной кнопкой вне панели.
-- [ ] **Step 6:** после ответа — `feedback.scrollIntoView({ block: 'nearest', behavior })`
-  (`auto` при `prefers-reduced-motion`), фокус на `[data-enter]` с `preventScroll: true`.
+- [ ] **Step 6:** после ответа, если панель липкая (телефон) и начало разбора под ней, —
+  прокрутка так, чтобы `.stem` (или `.fragments`) был у верха, но начало разбора всё равно
+  видно; фокус на `[data-enter]` с `preventScroll` только при липкой панели.
 - [ ] **Step 7:** `renderVariantResult` — `share.box` в `view.append` только если не `null`.
 - [ ] **Step 8:** тесты — PASS; снимки 390/1280; commit.
 
