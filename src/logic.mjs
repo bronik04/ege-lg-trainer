@@ -415,6 +415,46 @@ export function stemSegments(stem) {
   return parts;
 }
 
+// ---------- пропуск-клетка: что вписать и сколько клеток ----------
+
+const HANZI = /[㐀-鿿]/; // U+3400–U+9FFF: иероглифы, включая расширение A
+const CYRILLIC = /[Ѐ-ӿ]/; // U+0400–U+04FF
+
+// Китайский текст: есть иероглифы и нет кириллицы («感觉 нельзя…» — русский текст).
+export function isChinese(text) {
+  return HANZI.test(text) && !CYRILLIC.test(text);
+}
+
+const PUNCT = '\\s，,、；;。：:';
+const EDGE_PUNCT = new RegExp(`^[${PUNCT}]+|[${PUNCT}]+$`, 'g');
+const INNER_PUNCT = new RegExp(`[${PUNCT}]`);
+const blankCount = (item) => stemSegments(item.stem ?? item.sentence ?? '').filter((p) => p.blank).length;
+const charCount = (text) => [...text.replace(/\s+/g, '')].length;
+
+// Что вписать в пропуски для варианта: один пропуск — весь текст, несколько — части союза
+// («要是……，就……» → 要是 и 就). Не раскладывается или без иероглифов — null.
+export function blankFill(item, optionId) {
+  const k = blankCount(item);
+  const option = item.options.find((o) => o.id === optionId);
+  if (!k || !option || !isChinese(option.text)) return null;
+  if (k === 1) return [option.text.trim()];
+  const parts = option.text.split(/…+|\.{3,}/).map((p) => p.replace(EDGE_PUNCT, '')).filter(Boolean);
+  if (parts.length !== k || parts.some((p) => INNER_PUNCT.test(p))) return null;
+  return parts;
+}
+
+// Сколько клеток в каждом пропуске: по самому длинному варианту, чтобы ширина не подсказывала
+// ответ. Больше четырёх знаков — 0: одна вытянутая клетка.
+export function blankCells(item) {
+  const k = blankCount(item);
+  const fills = item.options.map((o) => blankFill(item, o.id)).filter(Boolean);
+  return Array.from({ length: k }, (_, i) => {
+    if (!fills.length) return 2;
+    const longest = Math.max(...fills.map((f) => charCount(f[i])));
+    return longest > 4 ? 0 : Math.max(1, longest);
+  });
+}
+
 // ---------- сессии: раунд тренировки и полный вариант ----------
 
 export function startSession(ids, at) {

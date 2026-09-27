@@ -58,8 +58,11 @@ after(async () => {
   rmSync(work, { recursive: true, force: true });
 });
 
-async function open(url, { width = 1100, height = 900, hash = '' } = {}) {
-  const context = await browser.newContext({ viewport: { width, height } });
+async function open(url, { width = 1100, height = 900, hash = '', reducedMotion = 'no-preference' } = {}) {
+  const context = await browser.newContext({ viewport: { width, height }, reducedMotion });
+  // Шрифты из сети тесту не нужны: без них страница работает на системных. Что страница
+  // ходит в сеть только за ними и не ждёт их, проверяет отдельный тест.
+  await context.route(/^https?:\/\//, (route) => route.abort());
   const page = await context.newPage();
   const errors = [];
   page.on('pageerror', (e) => errors.push(e.message));
@@ -401,16 +404,159 @@ test('прогресс более новой версии страница не 
 });
 
 test('телефон: без горизонтальной прокрутки во всех режимах', { skip }, async () => {
-  for (const width of [375, 320]) {
+  for (const width of [390, 375, 320]) {
     const { page, context } = await open(mainUrl, { width, height: 812 });
+    const noOverflow = async (where) => {
+      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+      assert.ok(overflow <= 0, `${width}px ${where}: горизонтальная прокрутка ${overflow}px`);
+    };
     for (const hash of ['#/rules', '#/rules/jiu-cai', '#/practice', '#/variant', '#/bank']) {
       await page.goto(mainUrl + hash);
       if (hash === '#/variant' && await page.locator('#buildVariant').count()) await page.locator('#buildVariant').click();
-      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-      assert.ok(overflow <= 0, `${width}px ${hash}: горизонтальная прокрутка ${overflow}px`);
+      await noOverflow(hash);
     }
+    // Раунд с разбором и итог варианта: длинные предложения в одну строку не распирают страницу.
+    await page.goto(`${mainUrl}#/practice?ids=q21-a`);
+    await page.locator('[data-card]').waitFor();
+    await page.keyboard.press('2');
+    await page.locator('.feedback').waitFor();
+    await noOverflow('раунд с разбором');
+    await page.goto(`${mainUrl}#/variant`);
+    await page.locator('#finishVariant').click();
+    await page.locator('#confirmFinish').click();
+    await see(page, '.score', /из 13/);
+    await noOverflow('итог варианта');
     await context.close();
   }
+});
+
+test('тетрадь: пропуск-клетка, исправление красной ручкой, панель на телефоне', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { width: 390, height: 844, hash: '#/practice?ids=q25-a' });
+  await page.locator('[data-card]').waitFor();
+  // Два знака в самом длинном варианте — две клетки; пустая клетка ничего не подсказывает.
+  assert.equal(await page.locator('.stem .tz .c').count(), 2);
+  assert.equal(await page.locator('.stem .tz').getAttribute('aria-label'), 'пропуск');
+  // Неверно: выбранное вписано и зачёркнуто, сверху верный ответ.
+  await page.keyboard.press('3');
+  await page.locator('.feedback').waitFor();
+  assert.deepEqual(await page.locator('.stem .tz .ink').allInnerTexts(), ['下', '去']);
+  assert.equal(await page.locator('.stem .tz.wrong .fix').innerText(), '过来');
+  assert.equal(await page.locator('.stem .tz').getAttribute('aria-label'), 'пропуск: выбрано 下去, верно 过来');
+  // «Дальше» — в панели внизу экрана, видна без прокрутки.
+  const next = await page.locator('.dock [data-enter]').boundingBox();
+  assert.ok(next && next.y + next.height <= 844, `«Дальше» за краем экрана: ${JSON.stringify(next)}`);
+  await page.keyboard.press('Enter');
+  await see(page, 'h2', /Раунд окончен/);
+  assert.doesNotMatch(await page.locator('#view').innerText(), /\bnull\b/);
+
+  // Верно: галочка у клетки, исправления нет; итог без ошибок — без «null».
+  await page.goto(`${mainUrl}#/practice?ids=q21-a`);
+  await page.locator('[data-card]').waitFor();
+  await page.keyboard.press('1');
+  await page.locator('.stem .tz.right .tick').waitFor();
+  assert.equal(await page.locator('.stem .fix').count(), 0);
+  await page.keyboard.press('Enter');
+  await see(page, 'h2', /Раунд окончен/);
+  assert.doesNotMatch(await page.locator('#view').innerText(), /\bnull\b/);
+
+  // Вариант: ответ вписан без пометок; союз задания 27 разложен по двум пропускам.
+  const ids = [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27].map((n) => `q${n}-a`);
+  await page.goto(`${mainUrl}#/variant?ids=${ids.join(',')}`);
+  await page.locator('.sheet .cell').nth(1).click();
+  await page.keyboard.press('2');
+  assert.deepEqual(await page.locator('.stem .tz .ink').allInnerTexts(), ['场']);
+  assert.equal(await page.locator('.stem .tz.right, .stem .tz.wrong, .stem .fix').count(), 0);
+  await page.locator('.sheet .cell').nth(12).click();
+  await page.keyboard.press('4');
+  assert.equal(await page.locator('.stem .tz').count(), 2);
+  assert.deepEqual(await page.locator('.stem .tz .ink').allInnerTexts(), ['不', '但', '而', '且']);
+  await page.locator('#finishVariant').click();
+  await page.locator('#confirmFinish').click();
+  await see(page, '.score', /из 13/);
+  assert.doesNotMatch(await page.locator('#view').innerText(), /\bnull\b/);
+  // Бланк итога: верно и неверно различаются не только цветом, но и знаком.
+  const signs = await page.evaluate(() => [...document.querySelectorAll('.sheet .cell')]
+    .map((cell) => getComputedStyle(cell.querySelector('.mark'), '::after').content));
+  assert.ok(signs.every((s) => s === '"✓"' || s === '"✗"'), signs.join(' '));
+  assert.ok(signs.includes('"✓"') && signs.includes('"✗"'));
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('шрифты из сети не задерживают страницу, других внешних запросов нет', { skip }, async () => {
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  const hosts = new Set();
+  // Хост шрифтов «висит»: школьный фильтр или медленный CDN. Страница не должна его ждать.
+  await context.route(/^https?:\/\//, async (route) => {
+    hosts.add(new URL(route.request().url()).host);
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+    await route.abort().catch(() => {});
+  });
+  const page = await context.newPage();
+  const errors = [];
+  page.on('pageerror', (e) => errors.push(e.message));
+  const started = Date.now();
+  await page.goto(`${mainUrl}#/rules`, { waitUntil: 'commit' });
+  await page.locator('#view h2').waitFor({ timeout: 2500 });
+  assert.ok(Date.now() - started < 2500, `страница ждала шрифты: ${Date.now() - started} мс`);
+  assert.deepEqual([...hosts].sort(), ['cdn.jsdelivr.net', 'fonts.googleapis.com']);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('телефон: после ответа видно начало разбора, новый экран — с начала', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { width: 320, height: 568, reducedMotion: 'reduce', hash: '#/practice?ids=q26-a,q27-a' });
+  // Неверные ответы: в №26 (фрагменты) и №27 (два пропуска) разбор длинный.
+  for (const key of ['2', '1']) {
+    await page.locator('[data-card]').waitFor();
+    assert.equal(await page.evaluate(() => window.scrollY), 0, 'задание открывается с начала страницы');
+    await page.keyboard.press(key);
+    await page.locator('.feedback').waitFor();
+    const at = await page.evaluate(() => ({
+      feedback: document.querySelector('.feedback').getBoundingClientRect().top,
+      dock: document.querySelector('.dock').getBoundingClientRect().top,
+    }));
+    assert.ok(at.feedback + 40 <= at.dock, `начало разбора под панелью: ${JSON.stringify(at)}`);
+    await page.keyboard.press('Enter');
+  }
+  await see(page, 'h2', /Раунд окончен/);
+  assert.equal(await page.evaluate(() => window.scrollY), 0);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('шапка: заголовок страницы, кнопка темы — переключатель', { skip }, async () => {
+  const { page, context } = await open(mainUrl, { hash: '#/rules' });
+  assert.equal(await page.locator('h1').count(), 1);
+  const toggle = page.locator('#themeToggle');
+  const themeColors = () => page.evaluate(() => [...document.querySelectorAll('meta[name="theme-color"]')].map((m) => m.content));
+  assert.equal(await toggle.getAttribute('aria-pressed'), 'false');
+  assert.deepEqual(await themeColors(), ['#F2F4EF', '#F2F4EF']);
+  await toggle.click();
+  assert.equal(await page.evaluate(() => document.documentElement.dataset.theme), 'dark');
+  assert.equal(await toggle.getAttribute('aria-pressed'), 'true');
+  assert.deepEqual(await themeColors(), ['#1B2338', '#1B2338']);
+  await page.reload();
+  assert.equal(await page.locator('#themeToggle').getAttribute('aria-pressed'), 'true', 'тема запомнилась');
+  await context.close();
+});
+
+test('правила: оглавление по номерам заданий, клетка номера не наезжает на тему', { skip }, async () => {
+  const { page, context } = await open(buildPage('rules-index', { drafts: true }), { width: 390, hash: '#/rules' });
+  const rows = await page.evaluate(() => [...document.querySelectorAll('.index > li')].map((li) => {
+    const num = li.querySelector('.cellnum').getBoundingClientRect();
+    const title = li.querySelector('h3').getBoundingClientRect();
+    return {
+      numbers: li.querySelector('.cellnum').textContent.replace('Задание ', ''),
+      rules: [...li.querySelectorAll('.rule-card')].map((a) => a.getAttribute('href')),
+      overlap: num.right > title.left,
+    };
+  }));
+  // Строки идут по первому номеру; у темы «прочее» номеров много — клетка шире, но не наезжает.
+  assert.deepEqual(rows.map((r) => r.numbers), ['15·16·17·18·19·21·23·24·25·26·27', '20', '22']);
+  assert.deepEqual(rows.map((r) => r.overlap), [false, false, false]);
+  for (const row of rows) assert.equal(new Set(row.rules).size, row.rules.length, 'правило в строке — один раз');
+  await context.close();
 });
 
 test('публикация без черновиков, проверка — с пометкой', { skip }, async () => {

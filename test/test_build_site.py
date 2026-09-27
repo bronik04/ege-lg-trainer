@@ -1,4 +1,5 @@
 import json
+import re
 import unittest
 
 from test.helpers import ready_question, rule
@@ -66,7 +67,17 @@ class RenderTest(unittest.TestCase):
         for marker in ("/*APP_CSS*/", "/*APP_JS*/", "/*DATA_JSON*/", "/*DESCRIPTION*/"):
             self.assertNotIn(marker, html)
         self.assertNotIn("export ", html.split('id="trainer-data"')[1])
-        self.assertNotIn("<link rel=\"stylesheet\"", html)
+        # Из сети — только стили шрифтов, и они не блокируют страницу: подключены «для печати»
+        # и включаются после загрузки. Висящий хост не должен оставлять ученика с пустым экраном.
+        tags = re.findall(r"<link[^>]+stylesheet[^>]*>", html)
+        self.assertTrue(tags, "стили шрифтов подключены")
+        for tag in tags:
+            href = re.search(r'href="([^"]+)"', tag).group(1)
+            self.assertTrue(href.startswith(("https://fonts.googleapis.com/css2?",
+                                             "https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/")), href)
+            self.assertIn('media="print"', tag)
+            self.assertIn("onload=\"this.media='all'\"", tag)
+        self.assertNotRegex(html, r"<script[^>]+src=")
         self.assertNotIn("src=\"http", html)
 
 
