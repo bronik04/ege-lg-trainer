@@ -167,6 +167,15 @@ test('тренировка: разбор выбранного неверного
   await see(page, 'h2', /Раунд окончен/);
   // Ошибки были в задании 22 — страница советует его правило.
   await see(page, '#ruleAdvice', /Перечитайте правило: 就 и 才/);
+  // Работа над ошибками: оба задания 22 под своим правилом, повтор — только они.
+  await see(page, '#roundMistakes summary', /Работа над ошибками · 2/);
+  await see(page, '#roundMistakes .mistake-group h3', /就 и 才 · 2/);
+  assert.equal(await page.locator('#roundMistakes .mistake-list li').count(), 2);
+  await see(page, '#roundMistakes .mistake-list', /ваш ответ: .* → верно: /);
+  await page.getByRole('button', { name: 'Повторить задания правила «就 и 才» · 2' }).click();
+  await see(page, '.progress', /Задание 1 из 2/);
+  const repeat = await page.evaluate(() => JSON.parse(localStorage.getItem('ege-lg-trainer:progress')).round.ids);
+  assert.deepEqual([...repeat].sort(), ['q22-a', 'q22-b'], 'повтор — именно ошибки этого правила');
   assert.deepEqual(errors, []);
   await context.close();
 });
@@ -242,6 +251,8 @@ test('банк и ошибки: повтор ошибок, сброс прогр
   await page.goto(`${mainUrl}#/bank`);
   await see(page, '#repeatMistakes', /Повторить ошибки · 1/);
   await see(page, '#weakTopics', /Прочие темы — ошибок: 1/);
+  await see(page, '#bankMistakes summary', /Работа над ошибками · 1/);
+  assert.equal(await page.locator('#bankMistakes').getAttribute('open'), null, 'в банке свёрнуто');
   await page.locator('#repeatMistakes').click();
   await page.locator('[data-card]').waitFor();
   await see(page, '.progress', /Задание 1 из 1/);
@@ -490,6 +501,20 @@ test('телефон: без горизонтальной прокрутки в�
       if (hash === '#/variant' && await page.locator('#buildVariant').count()) await page.locator('#buildVariant').click();
       await noOverflow(hash);
     }
+    // Работа над ошибками на итоге раунда и в банке: №15, №22 и собранный порядок №26.
+    await page.goto(`${mainUrl}#/practice?ids=q15-a,q22-a,q26-a`);
+    for (let i = 0; i < 3; i += 1) {
+      await page.locator('[data-card]').waitFor();
+      await page.locator('.option').nth(2).click();
+      await page.locator('[data-enter]').click();
+    }
+    await see(page, '#roundMistakes summary', /Работа над ошибками · 3/);
+    await see(page, '#roundMistakes', /верный порядок: /);
+    await see(page, '#roundMistakes', /— тоны/);
+    await noOverflow('итог раунда с работой над ошибками');
+    await page.goto(`${mainUrl}#/bank`);
+    await page.locator('#bankMistakes summary').click();
+    await noOverflow('банк с работой над ошибками');
     // Раунд с разбором и итог варианта: длинные предложения в одну строку не распирают страницу.
     await page.goto(`${mainUrl}#/practice?ids=q21-a`);
     await page.locator('[data-card]').waitFor();

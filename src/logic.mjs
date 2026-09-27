@@ -250,6 +250,24 @@ export function weakTopics(questions, progress, limit = 3) {
     .sort((a, b) => b.count - a.count).slice(0, limit);
 }
 
+// Работа над ошибками: неверные и пропущенные задания, сгруппированные по правилу (первому из
+// ruleIds, которое есть на странице). Порядок групп — как в rulesForMistakes: сначала больше
+// неверных ответов (пропуск — не ошибка понимания), потом больше заданий; без правила — в конце.
+export function groupMistakesByRule(items, byId, known = null) {
+  const groups = new Map();
+  for (const item of items) {
+    if (item.correct) continue;
+    const q = byId.get(item.id);
+    if (!q) continue;
+    const ruleId = (q.ruleIds || []).find((r) => !known || known.has(r)) || null;
+    if (!groups.has(ruleId)) groups.set(ruleId, []);
+    groups.get(ruleId).push({ id: item.id, chosen: item.chosen ?? null });
+  }
+  const answered = (g) => g.entries.filter((e) => e.chosen !== null).length;
+  return [...groups].map(([ruleId, entries]) => ({ ruleId, entries }))
+    .sort((a, b) => (a.ruleId === null) - (b.ruleId === null) || answered(b) - answered(a) || b.entries.length - a.entries.length);
+}
+
 // Правила к ошибкам раунда или варианта — чаще встретившиеся первыми. Пропущенная позиция
 // варианта (chosen === null) не ошибка понимания; known — правила, которые есть на странице.
 export function rulesForMistakes(items, byId, known = null, limit = 2) {

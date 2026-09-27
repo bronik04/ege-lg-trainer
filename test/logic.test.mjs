@@ -413,3 +413,17 @@ test('время варианта: табло, остаток из 40 минут
   assert.equal(L.startVariant(['a'], 't0').elapsedMs, 0);
 });
 
+test('работа над ошибками: группы по правилу, частые первыми, без правила — в конце', () => {
+  const bank = [q('a', 20, { ruleIds: ['aspect'] }), q('b', 22, { ruleIds: ['gone', 'jiu-cai'] }),
+    q('c', 22, { ruleIds: ['jiu-cai'] }), q('d', 21, { ruleIds: [] }), q('e', 20, { ruleIds: ['aspect'] })];
+  const byId = new Map(bank.map((x) => [x.id, x]));
+  const items = [{ id: 'a', chosen: '1', correct: false }, { id: 'b', chosen: null, correct: false },
+    { id: 'c', chosen: '3', correct: false }, { id: 'd', chosen: '1', correct: false }, { id: 'e', chosen: '2', correct: true }];
+  assert.deepEqual(L.groupMistakesByRule(items, byId, new Set(['aspect', 'jiu-cai'])), [
+    { ruleId: 'jiu-cai', entries: [{ id: 'b', chosen: null }, { id: 'c', chosen: '3' }] },
+    { ruleId: 'aspect', entries: [{ id: 'a', chosen: '1' }] },
+    { ruleId: null, entries: [{ id: 'd', chosen: '1' }] },
+  ]);
+  assert.deepEqual(L.groupMistakesByRule([{ id: 'e', chosen: '2', correct: true }], byId), []);
+});
+
