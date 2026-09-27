@@ -729,7 +729,8 @@
         "4": "住"
       },
       "correctOptionId": "2"
-    }
+    },
+    "keyDecision": "hidden"
   },
   "q23-ef09bd2a": {
     "status": "accepted",

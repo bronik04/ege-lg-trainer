@@ -19,7 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from build_bank import load_records  # noqa: E402
 from common import AUTHORED, read_json, write_json  # noqa: E402
 
-FIELDS = ("topicIds", "ruleIds", "explanation", "contrast", "keyConflict", "note")
+FIELDS = ("topicIds", "ruleIds", "explanation", "contrast", "keyConflict", "keyDecision", "note")
 
 
 def add(wave):
