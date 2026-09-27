@@ -167,6 +167,13 @@ test('тренировка: разбор выбранного неверного
   await see(page, 'h2', /Раунд окончен/);
   // Ошибки были в задании 22 — страница советует его правило.
   await see(page, '#ruleAdvice', /Перечитайте правило: 就 и 才/);
+  // Работа над ошибками: оба задания 22 под своим правилом, повтор — только они.
+  await see(page, '#roundMistakes summary', /Работа над ошибками · 2/);
+  await see(page, '#roundMistakes .mistake-group h3', /就 и 才 · 2/);
+  assert.equal(await page.locator('#roundMistakes .mistake-list li').count(), 2);
+  await see(page, '#roundMistakes .mistake-list', /ваш ответ: .* → верно: /);
+  await page.getByRole('button', { name: 'Повторить задания этого правила · 2' }).click();
+  await see(page, '.progress', /Задание 1 из 2/);
   assert.deepEqual(errors, []);
   await context.close();
 });
@@ -242,6 +249,8 @@ test('банк и ошибки: повтор ошибок, сброс прогр
   await page.goto(`${mainUrl}#/bank`);
   await see(page, '#repeatMistakes', /Повторить ошибки · 1/);
   await see(page, '#weakTopics', /Прочие темы — ошибок: 1/);
+  await see(page, '#bankMistakes summary', /Работа над ошибками · 1/);
+  assert.equal(await page.locator('#bankMistakes').getAttribute('open'), null, 'в банке свёрнуто');
   await page.locator('#repeatMistakes').click();
   await page.locator('[data-card]').waitFor();
   await see(page, '.progress', /Задание 1 из 1/);

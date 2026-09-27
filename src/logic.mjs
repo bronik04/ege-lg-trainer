@@ -252,6 +252,22 @@ export function weakTopics(questions, progress, limit = 3) {
 
 // Правила к ошибкам раунда или варианта — чаще встретившиеся первыми. Пропущенная позиция
 // варианта (chosen === null) не ошибка понимания; known — правила, которые есть на странице.
+// Работа над ошибками: неверные и пропущенные задания, сгруппированные по правилу (первому из
+// ruleIds, которое есть на странице). Группы — от самой частой ошибки; без правила — в конце.
+export function groupMistakesByRule(items, byId, known = null) {
+  const groups = new Map();
+  for (const item of items) {
+    if (item.correct) continue;
+    const q = byId.get(item.id);
+    if (!q) continue;
+    const ruleId = (q.ruleIds || []).find((r) => !known || known.has(r)) || null;
+    if (!groups.has(ruleId)) groups.set(ruleId, []);
+    groups.get(ruleId).push({ id: item.id, chosen: item.chosen ?? null });
+  }
+  return [...groups].map(([ruleId, entries]) => ({ ruleId, entries }))
+    .sort((a, b) => (a.ruleId === null) - (b.ruleId === null) || b.entries.length - a.entries.length);
+}
+
 export function rulesForMistakes(items, byId, known = null, limit = 2) {
   const counts = new Map();
   for (const item of items) {

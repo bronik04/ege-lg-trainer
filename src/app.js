@@ -254,6 +254,35 @@
     return el('p', { class: 'notice advice', id: 'ruleAdvice' }, 'Перечитайте правило: ', ...links, '.');
   }
 
+  // Работа над ошибками: правило коротко, под ним задания — ваш ответ, верный и почему.
+  // Повтор — только ошибки этого правила.
+  function mistakeWork(items, { id, open = true }) {
+    const groups = groupMistakesByRule(items, byId, new Set(rulesById.keys()));
+    if (!groups.length) return document.createDocumentFragment();
+    const total = groups.reduce((n, g) => n + g.entries.length, 0);
+    const zh = (text) => el('span', { class: 'zh', lang: 'zh', text });
+    return el('details', { class: 'mistakes', id, open },
+      el('summary', { text: `Работа над ошибками · ${total}` }),
+      groups.map((g) => {
+        const rule = g.ruleId ? rulesById.get(g.ruleId) : null;
+        return el('section', { class: 'mistake-group' },
+          el('h3', {}, rule ? el('a', { href: `#/rules/${encodeURIComponent(rule.id)}`, text: rule.title }) : 'Без правила',
+            ` · ${g.entries.length}`),
+          rule && rule.summary ? el('p', { class: 'small muted', text: rule.summary }) : null,
+          el('ul', { class: 'mistake-list' }, g.entries.map((entry) => {
+            const q = byId.get(entry.id);
+            const e = explainChoice(q, entry.chosen);
+            return el('li', {},
+              zh(`${q.taskNumber}. ${q.stem.replace(/\s+/g, ' ')}`),
+              el('span', { class: 'small' }, entry.chosen == null ? 'без ответа' : ['ваш ответ: ', zh(e.chosenText)],
+                ' → верно: ', zh(e.correctText)),
+              el('span', { class: 'small muted', text: entry.chosen == null ? e.correctExplanation : e.chosenExplanation }));
+          })),
+          el('button', { class: 'button ghost', type: 'button', onclick: () => startRound(shuffle(g.entries.map((x) => x.id))) },
+            `Повторить задания этого правила · ${g.entries.length}`));
+      }));
+  }
+
   // Ссылка учителя: открыть подборку, раунд из тех же заданий или тот же вариант.
   // Адрес сразу заменяется обычным, чтобы перезагрузка не открывала ссылку повторно.
   function openShared(name, query) {
@@ -836,6 +865,7 @@
     view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Раунд окончен' }),
       el('p', { class: 'score' }, el('b', { text: `${result.score} из ${result.total}` }), el('span', { class: 'muted', text: 'верных ответов' })),
       ruleAdvice(result.items),
+      mistakeWork(result.items, { id: 'roundMistakes' }),
       resultList(round.ids, round.answers));
     const share = shareToggle('round', 'Ссылка на эти задания', pageUrl(`#/practice?${idsQuery(round.ids)}`),
       `По ссылке откроется раунд из этих же заданий (${round.ids.length}) в том же порядке — одинаковый для всех, кто её получит.`);
@@ -996,6 +1026,7 @@
         ? el('p', { class: v.result.timeMs > VARIANT_MINUTES * 60000 ? 'small variant-time over' : 'small variant-time', id: 'variantTime', text: `Время: ${formatClock(v.result.timeMs)} · рекомендовано ${VARIANT_MINUTES}:00` })
         : document.createDocumentFragment(),
       ruleAdvice(result.items),
+      mistakeWork(result.items, { id: 'variantMistakes' }),
       sheet(v, { reveal: true, onPick: (i) => {
         // Только позиции варианта: у раскрытого разбора есть свой вложенный details.
         const items = view.querySelectorAll('.results > li > details');
@@ -1043,6 +1074,9 @@
             topicRules.flatMap((r, i) => [i ? ', ' : '', el('a', { href: `#/rules/${encodeURIComponent(r.id)}`, text: r.title })]));
         })));
     }
+    // Все текущие ошибки по правилам — свёрнуто: список бывает длинным.
+    view.append(mistakeWork(mistakes.map((q) => ({ id: q.id, chosen: progress.questions[q.id].last.optionId, correct: false })),
+      { id: 'bankMistakes', open: false }));
 
     const select = (label, key, items) => el('label', { class: 'field' }, label,
       el('select', { dataset: { key: `bank:${key}` }, onchange: (e) => { bankFilters = { ...bankFilters, [key]: e.target.value }; render(false); } },
