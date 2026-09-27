@@ -44,10 +44,73 @@
   let progress = pruneProgress(parseProgress(storedText), questions.map((q) => q.id));
   let storageOk = !progressLocked;
   function save() {
+    commitClock();
     if (progressLocked) return;
     storageOk = storage.set(PROGRESS_KEY, JSON.stringify(progress));
   }
   const now = () => new Date().toISOString();
+
+  // ---------- время варианта ----------
+  // Часы идут, только пока открыт незавершённый вариант и страница видна: перерыв на день
+  // не съедает минуты. clock — текущий отрезок: с какого момента и для какого варианта.
+  let clock = null;
+  let clockSaved = 0;
+  let lastTick = 0;
+  const timed = (v) => v && !v.finishedAt && Number.isFinite(v.elapsedMs);
+  const isCurrent = (v) => timed(v) && clock && v.startedAt === clock.startedAt;
+
+  function variantElapsed() {
+    const v = progress.variant;
+    if (!v) return 0;
+    return (v.elapsedMs || 0) + (isCurrent(v) ? Date.now() - clock.since : 0);
+  }
+
+  // Переносит набежавшее до момента t время в сессию варианта — перед каждым сохранением.
+  function commitClock(t = Date.now()) {
+    if (!clock) return;
+    const v = progress.variant;
+    if (isCurrent(v) && t > clock.since) progress = { ...progress, variant: { ...v, elapsedMs: v.elapsedMs + (t - clock.since) } };
+    clock = { ...clock, since: Math.max(clock.since, t) };
+  }
+
+  // Запись без действия ученика (табло, скрытие, закрытие): только время варианта поверх
+  // того, что лежит в хранилище, — ответы из другой вкладки не затираются.
+  function saveClock() {
+    commitClock();
+    clockSaved = Date.now();
+    const v = progress.variant;
+    if (progressLocked || !timed(v)) return;
+    let raw;
+    try {
+      raw = JSON.parse(storage.get(PROGRESS_KEY));
+    } catch {
+      return;
+    }
+    const stored = raw && raw.version === PROGRESS_VERSION ? raw.variant : null;
+    if (!stored || stored.finishedAt || stored.startedAt !== v.startedAt) return;
+    stored.elapsedMs = Math.max(Number.isFinite(stored.elapsedMs) ? stored.elapsedMs : 0, v.elapsedMs);
+    storage.set(PROGRESS_KEY, JSON.stringify(raw));
+  }
+
+  function syncClock() {
+    const v = progress.variant;
+    const running = route().name === 'variant' && timed(v) && !pendingVariant
+      && document.visibilityState === 'visible';
+    if (running && !isCurrent(v)) {
+      clock = { since: Date.now(), startedAt: v.startedAt };
+      clockSaved = Date.now();
+    }
+    if (!running && clock) {
+      saveClock();
+      clock = null;
+    }
+  }
+
+  function paintClock(node) {
+    const state = clockState(variantElapsed());
+    node.textContent = state.over ? `время вышло · ${state.text}` : `осталось ${state.text}`;
+    node.classList.toggle('over', state.over);
+  }
 
   function loadFilters() {
     const empty = { topics: [], tasks: [], origins: [], state: 'all', size: '10' };
@@ -175,6 +238,9 @@
       const same = [...view.querySelectorAll('[data-key]')].find((node) => node.dataset.key === activeKey);
       if (same) same.focus();
     }
+    syncClock();
+    const clockNode = document.getElementById('variantClock');
+    if (clockNode) paintClock(clockNode);
   }
 
   // ---------- общие части ----------
@@ -221,7 +287,7 @@
   }
 
   function startLinkedVariant(ids) {
-    progress = { ...progress, variant: startSession(ids, now()) };
+    progress = { ...progress, variant: startVariant(ids, now()) };
     variantConfirm = false;
     save();
   }
@@ -432,7 +498,7 @@
   }
 
   function progressLine(label, right) {
-    return el('div', { class: 'progress' }, el('span', { text: label }), el('span', { text: right }));
+    return el('div', { class: 'progress' }, el('span', { text: label }), el('span', {}, right));
   }
 
   // Верх раунда и проверки правила: выход, деления по заданиям (нефрит — верно, красное —
@@ -818,7 +884,7 @@
       return;
     }
     view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Полный вариант' }),
-      el('p', { class: 'lead', text: 'Тринадцать заданий, по одному на каждую позицию 15–27, в порядке раздела 3 экзамена. Ответы можно менять до конца; разбор — после завершения.' }));
+      el('p', { class: 'lead', text: `Тринадцать заданий, по одному на каждую позицию 15–27, в порядке раздела 3 экзамена. Ответы можно менять до конца; разбор — после завершения. На раздел рекомендовано ${VARIANT_MINUTES} минут: часы идут, только пока вариант открыт.` }));
     const attempt = buildVariant(questions);
     const actions = el('div', { class: 'actions' });
     if (attempt.ok) {
@@ -827,7 +893,7 @@
         class: 'button', type: 'button', id: 'buildVariant', dataset: v && v.finishedAt ? {} : { enter: '1' },
         onclick: () => {
           const fresh = buildVariant(questions);
-          progress = { ...progress, variant: startSession(fresh.ids, now()) };
+          progress = { ...progress, variant: startVariant(fresh.ids, now()) };
           variantConfirm = false;
           save();
           render();
@@ -844,7 +910,7 @@
     const history = progress.history.filter((h) => h.kind === 'variant').slice(-5).reverse();
     if (history.length > 1) {
       view.append(el('p', { class: 'section-title', text: 'Прошлые варианты' }),
-        el('ul', { class: 'usage' }, history.map((h) => el('li', { text: `${new Date(h.at).toLocaleString('ru-RU', { dateStyle: 'short', timeStyle: 'short' })} — ${h.score} из ${h.total}` }))));
+        el('ul', { class: 'usage' }, history.map((h) => el('li', { text: `${new Date(h.at).toLocaleString('ru-RU', { dateStyle: 'short', timeStyle: 'short' })} — ${h.score} из ${h.total}${Number.isFinite(h.timeMs) ? ` · ${formatClock(h.timeMs)}` : ''}` }))));
     }
   }
 
@@ -853,8 +919,13 @@
     const id = v.ids[v.index];
     const q = byId.get(id);
     const answered = v.ids.filter((x) => v.answers[x] != null).length;
+    // role="timer" не зачитывается диктором каждую секунду; подпись — рекомендованное время.
+    const clockNode = Number.isFinite(v.elapsedMs)
+      ? el('span', { class: 'clock', id: 'variantClock', role: 'timer', title: `Рекомендовано ${VARIANT_MINUTES} минут на раздел 3` })
+      : null;
     view.append(el('h2', { class: 'sr-title', tabindex: '-1', text: 'Полный вариант' }),
-      progressLine(`Позиция ${q.taskNumber} · ${v.index + 1} из ${v.ids.length}`, `отвечено: ${answered}`),
+      progressLine(`Позиция ${q.taskNumber} · ${v.index + 1} из ${v.ids.length}`,
+        [el('span', { class: 'nowrap', text: `отвечено: ${answered}` }), clockNode ? ' · ' : '', clockNode]),
       sheet(v, { reveal: false, onPick: (i) => { progress = { ...progress, variant: moveSession(progress.variant, i) }; save(); render(); } }),
       questionCard(q, {
         kind: 'exam',
@@ -898,9 +969,11 @@
           el('button', { class: 'button ghost', type: 'button', onclick: () => { variantConfirm = false; render(false); } }, 'Вернуться к заданиям'))));
     }
     view.append(el('div', { class: 'actions dock' },
-      el('button', { class: 'button ghost', type: 'button', disabled: v.index === 0, onclick: () => { progress = { ...progress, variant: moveSession(v, v.index - 1) }; save(); render(); } }, '← Назад'),
-      last ? finishButton : el('button', { class: 'button', type: 'button', dataset: { enter: '1' }, onclick: () => { progress = { ...progress, variant: moveSession(v, v.index + 1) }; save(); render(); } }, 'Дальше →')));
+      // Сессия — из progress, а не v с прошлой отрисовки: табло между ними дописывает время.
+      el('button', { class: 'button ghost', type: 'button', disabled: v.index === 0, onclick: () => { progress = { ...progress, variant: moveSession(progress.variant, progress.variant.index - 1) }; save(); render(); } }, '← Назад'),
+      last ? finishButton : el('button', { class: 'button', type: 'button', dataset: { enter: '1' }, onclick: () => { progress = { ...progress, variant: moveSession(progress.variant, progress.variant.index + 1) }; save(); render(); } }, 'Дальше →')));
     function finish() {
+      commitClock();
       progress = finishVariant(progress, byId, now());
       variantConfirm = false;
       save();
@@ -919,6 +992,9 @@
     actions.append(share.button);
     view.append(el('p', { class: 'section-title', text: 'Результат последнего варианта' }),
       el('p', { class: 'score' }, el('b', { text: `${result.score} из ${result.total}` }), el('span', { class: 'muted', text: 'первичных баллов за раздел 3' })),
+      Number.isFinite(v.result && v.result.timeMs)
+        ? el('p', { class: v.result.timeMs > VARIANT_MINUTES * 60000 ? 'small variant-time over' : 'small variant-time', id: 'variantTime', text: `Время: ${formatClock(v.result.timeMs)} · рекомендовано ${VARIANT_MINUTES}:00` })
+        : document.createDocumentFragment(),
       ruleAdvice(result.items),
       sheet(v, { reveal: true, onPick: (i) => {
         // Только позиции варианта: у раскрытого разбора есть свой вложенный details.
@@ -1120,6 +1196,39 @@
     if (location.hash && !location.hash.startsWith('#/')) return;
     shareOpen = null;
     render();
+  });
+  // Часы варианта: пауза, пока страница скрыта; раз в секунду — табло, раз в полминуты — запись.
+  document.addEventListener('visibilitychange', syncClock);
+  window.addEventListener('pagehide', () => { if (clock) saveClock(); });
+  setInterval(() => {
+    const t = Date.now();
+    // Тик пропал больше чем на 5 с (сон, перевод часов) — это пауза, а не время варианта.
+    if (clock && lastTick && t - lastTick > 5000) {
+      commitClock(lastTick);
+      clock = { ...clock, since: t };
+    }
+    lastTick = t;
+    if (!clock) return;
+    const node = document.getElementById('variantClock');
+    if (node) paintClock(node);
+    if (t - clockSaved > 30000) saveClock();
+  }, 1000);
+
+  // Другая вкладка записала прогресс — берём его: иначе следующее действие здесь вернуло бы
+  // старое. Время того же варианта не убывает.
+  window.addEventListener('storage', (event) => {
+    if (event.key !== PROGRESS_KEY || progressLocked) return;
+    const version = progressVersion(event.newValue);
+    if (version !== null && version > PROGRESS_VERSION) return;
+    commitClock();
+    let incoming = pruneProgress(parseProgress(event.newValue), questions.map((q) => q.id));
+    const mine = progress.variant;
+    const theirs = incoming.variant;
+    if (timed(mine) && theirs && theirs.startedAt === mine.startedAt && !(theirs.elapsedMs >= mine.elapsedMs)) {
+      incoming = { ...incoming, variant: { ...theirs, elapsedMs: mine.elapsedMs } };
+    }
+    progress = incoming;
+    render(false);
   });
   render(false);
 })();

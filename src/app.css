@@ -199,6 +199,10 @@ kbd {
   display: flex; justify-content: space-between; gap: 12px; margin: 6px 0 18px; color: var(--muted);
   font-size: .85rem; font-weight: 600; font-variant-numeric: tabular-nums;
 }
+.progress { flex-wrap: wrap; row-gap: 2px; }
+.progress > span:first-child, .progress .nowrap, .clock { white-space: nowrap; }
+.clock.over, .variant-time.over { color: var(--warn-ink); font-weight: 700; }
+.variant-time { margin: -6px 0 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
 
 /* ---------- задание ---------- */
 

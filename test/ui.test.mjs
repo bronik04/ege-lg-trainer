@@ -403,6 +403,81 @@ test('прогресс более новой версии страница не 
   await context.close();
 });
 
+test('полный вариант: часы идут, пока страница видна, время — в итоге', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { hash: '#/variant' });
+  await page.locator('#buildVariant').click();
+  await see(page, '#variantClock', /осталось (40:00|39:5\d)/);
+  assert.equal(await page.locator('#variantClock').getAttribute('role'), 'timer');
+  // Ушли в банк — часы остановились и записали время.
+  await page.goto(`${mainUrl}#/bank`);
+  const v = (await storedProgress(page)).variant;
+  assert.ok(v.elapsedMs > 0, 'время варианта записано при уходе с экрана');
+  // Вариант, где прошла 41 минута: время вышло, но вариант не обрывается.
+  await page.evaluate((variant) => {
+    const p = JSON.parse(localStorage.getItem('ege-lg-trainer:progress'));
+    localStorage.setItem('ege-lg-trainer:progress', JSON.stringify({ ...p, variant: { ...variant, elapsedMs: 41 * 60000 } }));
+  }, v);
+  await page.reload();
+  await page.goto(`${mainUrl}#/variant`);
+  await see(page, '#variantClock', /время вышло · \+01:0\d/);
+  assert.match(await page.locator('#variantClock').getAttribute('class'), /over/);
+  // Страница скрыта — часы стоят и ничего не пишут.
+  await page.evaluate(() => {
+    Object.defineProperty(document, 'visibilityState', { value: 'hidden', configurable: true });
+    document.dispatchEvent(new Event('visibilitychange'));
+  });
+  const paused = (await storedProgress(page)).variant.elapsedMs;
+  assert.ok(paused >= 41 * 60000, 'при скрытии набежавшее время записано');
+  await page.waitForTimeout(1500);
+  assert.equal((await storedProgress(page)).variant.elapsedMs, paused, 'пока скрыто — время не идёт');
+  await page.evaluate(() => {
+    Object.defineProperty(document, 'visibilityState', { value: 'visible', configurable: true });
+    document.dispatchEvent(new Event('visibilitychange'));
+  });
+  await page.locator('#finishVariant').click();
+  await page.locator('#confirmFinish').click();
+  await see(page, '#variantTime', /Время: 41:\d\d · рекомендовано 40:00/);
+  assert.equal((await storedProgress(page)).history.at(-1).timeMs >= 41 * 60000, true);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('часы варианта: переход по позициям не теряет время, вкладки не затирают ответы', { skip }, async () => {
+  // Пять минут на одной позиции (часы страницы подменены), затем «Дальше».
+  const context = await browser.newContext({ viewport: { width: 1100, height: 900 } });
+  const errors = [];
+  const a = await context.newPage();
+  a.on('pageerror', (e) => errors.push(e.message));
+  await a.clock.install();
+  await a.goto(`${mainUrl}#/variant`);
+  await a.locator('#buildVariant').click();
+  await see(a, '#variantClock', /осталось 40:00/);
+  await a.clock.runFor(5 * 60_000);
+  await see(a, '#variantClock', /осталось 35:00/);
+  await a.getByRole('button', { name: 'Дальше →' }).click();
+  await see(a, '.progress', /Позиция 16/);
+  assert.ok((await storedProgress(a)).variant.elapsedMs >= 5 * 60_000, 'время после перехода сохранено');
+
+  // Вторая вкладка отвечает — первая подхватывает ответ и своим таймером его не затирает.
+  const b = await context.newPage();
+  b.on('pageerror', (e) => errors.push(e.message));
+  await b.goto(`${mainUrl}#/variant`);
+  await see(b, '.progress', /отвечено: 0/);
+  await b.keyboard.press('1');
+  await see(b, '.progress', /отвечено: 1/);
+  await see(a, '.progress', /отвечено: 1/);
+  await a.clock.runFor(31_000);
+  await a.evaluate(() => {
+    Object.defineProperty(document, 'visibilityState', { value: 'hidden', configurable: true });
+    document.dispatchEvent(new Event('visibilitychange'));
+  });
+  const stored = await storedProgress(b);
+  assert.equal(Object.keys(stored.variant.answers).length, 1, 'ответ второй вкладки на месте');
+  assert.ok(stored.variant.elapsedMs >= 5 * 60_000 + 31_000, 'время первой вкладки дописано');
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
 test('телефон: без горизонтальной прокрутки во всех режимах', { skip }, async () => {
   for (const width of [390, 375, 320]) {
     const { page, context } = await open(mainUrl, { width, height: 812 });

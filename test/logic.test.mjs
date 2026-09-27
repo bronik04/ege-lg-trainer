@@ -385,3 +385,31 @@ test('фильтр «на повторение», слабые темы и пр�
   assert.deepEqual(L.rulesForMistakes([{ id: 'b', correct: false, chosen: null }], byId), []);
 });
 
+test('время варианта: табло, остаток из 40 минут и время в итоге', () => {
+  assert.equal(L.VARIANT_MINUTES, 40, 'спецификация ЕГЭ 2026: 40 минут на раздел 3');
+  assert.equal(L.formatClock(0), '00:00');
+  assert.equal(L.formatClock(61_500), '01:01');
+  assert.equal(L.formatClock(3_723_000), '1:02:03');
+  assert.deepEqual(L.clockState(0), { over: false, text: '40:00' });
+  assert.deepEqual(L.clockState(500), { over: false, text: '40:00' }, 'первая секунда ещё не прошла');
+  assert.deepEqual(L.clockState(39 * 60000 + 30_500), { over: false, text: '00:30' });
+  assert.deepEqual(L.clockState(40 * 60000 + 5_000), { over: true, text: '+00:05' });
+
+  const bank = [q('a', 20), q('b', 21)];
+  const byId = new Map(bank.map((x) => [x.id, x]));
+  const timed = { ...L.emptyProgress(), variant: { ...L.startSession(['a', 'b'], 't0'), elapsedMs: 1_234_567.8 } };
+  const done = L.finishVariant(timed, byId, 't1');
+  assert.equal(done.variant.result.timeMs, 1_234_568);
+  assert.equal(done.history[0].timeMs, 1_234_568);
+  // Вариант, начатый до таймера, времени не получает.
+  const old = L.finishVariant({ ...L.emptyProgress(), variant: L.startSession(['a'], 't0') }, byId, 't1');
+  assert.equal('timeMs' in old.variant.result, false);
+  assert.equal('timeMs' in old.history[0], false);
+  // Время переживает сохранение и загрузку; мусор вместо числа отбрасывается.
+  assert.equal(L.parseProgress(JSON.stringify(timed)).variant.elapsedMs, 1_234_567.8);
+  const broken = { ...timed, variant: { ...timed.variant, elapsedMs: '1000' } };
+  assert.equal('elapsedMs' in L.parseProgress(JSON.stringify(broken)).variant, false);
+  // Новый вариант ведёт время с нуля.
+  assert.equal(L.startVariant(['a'], 't0').elapsedMs, 0);
+});
+
