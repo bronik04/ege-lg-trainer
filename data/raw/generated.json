@@ -591,6 +591,39 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g18-32985259",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "我的雨伞___同学借走了，今天只好淋雨回家。",
+    "options": [
+      {
+        "id": "1",
+        "text": "对"
+      },
+      {
+        "id": "2",
+        "text": "被"
+      },
+      {
+        "id": "3",
+        "text": "把"
+      },
+      {
+        "id": "4",
+        "text": "跟"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g18-38fcabdc",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -927,6 +960,39 @@
     "correctOptionId": "4"
   },
   {
+    "id": "g18-8e0a5c27",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "这个菜是___牛肉和西红柿做成的。",
+    "options": [
+      {
+        "id": "1",
+        "text": "往"
+      },
+      {
+        "id": "2",
+        "text": "替"
+      },
+      {
+        "id": "3",
+        "text": "由"
+      },
+      {
+        "id": "4",
+        "text": "对"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g18-8f0a53ee",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -957,6 +1023,72 @@
       {
         "id": "4",
         "text": "向"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g18-92ef69a9",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "这个老师___学生非常耐心。",
+    "options": [
+      {
+        "id": "1",
+        "text": "把"
+      },
+      {
+        "id": "2",
+        "text": "替"
+      },
+      {
+        "id": "3",
+        "text": "给"
+      },
+      {
+        "id": "4",
+        "text": "对"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g18-98fe601e",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "请你___这本书还给图书馆。",
+    "options": [
+      {
+        "id": "1",
+        "text": "把"
+      },
+      {
+        "id": "2",
+        "text": "被"
+      },
+      {
+        "id": "3",
+        "text": "给"
+      },
+      {
+        "id": "4",
+        "text": "对"
       }
     ],
     "correctOptionId": "1"
@@ -993,6 +1125,39 @@
       }
     ],
     "correctOptionId": "2"
+  },
+  {
+    "id": "g18-a4fca329",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "你见到王老师的时候，___我向他问个好。",
+    "options": [
+      {
+        "id": "1",
+        "text": "替"
+      },
+      {
+        "id": "2",
+        "text": "往"
+      },
+      {
+        "id": "3",
+        "text": "被"
+      },
+      {
+        "id": "4",
+        "text": "从"
+      }
+    ],
+    "correctOptionId": "1"
   },
   {
     "id": "g18-b2acfd46",
@@ -1096,6 +1261,39 @@
       }
     ],
     "correctOptionId": "3"
+  },
+  {
+    "id": "g18-b840765d",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "书包已经满了，别再___里面放东西了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "由"
+      },
+      {
+        "id": "2",
+        "text": "替"
+      },
+      {
+        "id": "3",
+        "text": "把"
+      },
+      {
+        "id": "4",
+        "text": "往"
+      }
+    ],
+    "correctOptionId": "4"
   },
   {
     "id": "g18-b9dd2f22",
@@ -1300,6 +1498,39 @@
     "correctOptionId": "4"
   },
   {
+    "id": "g18-e4d426f2",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "我昨天___老王聊了一个多小时。",
+    "options": [
+      {
+        "id": "1",
+        "text": "往"
+      },
+      {
+        "id": "2",
+        "text": "被"
+      },
+      {
+        "id": "3",
+        "text": "跟"
+      },
+      {
+        "id": "4",
+        "text": "由"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g18-eeb39985",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -1331,6 +1562,534 @@
       }
     ],
     "correctOptionId": "1"
+  },
+  {
+    "id": "g22-094aba04",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "你来晚了，会议___开了半个小时了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "刚"
+      },
+      {
+        "id": "2",
+        "text": "先"
+      },
+      {
+        "id": "3",
+        "text": "只"
+      },
+      {
+        "id": "4",
+        "text": "已经"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g22-0f92a686",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "我___到家，外面就下起了大雨。",
+    "options": [
+      {
+        "id": "1",
+        "text": "已经"
+      },
+      {
+        "id": "2",
+        "text": "刚"
+      },
+      {
+        "id": "3",
+        "text": "一直"
+      },
+      {
+        "id": "4",
+        "text": "都"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g22-3b227a02",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "从早上到现在，电话___响个不停。",
+    "options": [
+      {
+        "id": "1",
+        "text": "只"
+      },
+      {
+        "id": "2",
+        "text": "刚"
+      },
+      {
+        "id": "3",
+        "text": "一直"
+      },
+      {
+        "id": "4",
+        "text": "先"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g22-764109c9",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "这件事我___告诉了你一个人，别告诉别人。",
+    "options": [
+      {
+        "id": "1",
+        "text": "也"
+      },
+      {
+        "id": "2",
+        "text": "只"
+      },
+      {
+        "id": "3",
+        "text": "都"
+      },
+      {
+        "id": "4",
+        "text": "已经"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g22-a6847a8d",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "我们班的同学___喜欢这位新老师，没有一个人不喜欢他。",
+    "options": [
+      {
+        "id": "1",
+        "text": "都"
+      },
+      {
+        "id": "2",
+        "text": "刚"
+      },
+      {
+        "id": "3",
+        "text": "又"
+      },
+      {
+        "id": "4",
+        "text": "才"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g22-c988ded7",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "这道题很难，我想了半个小时___想出来。",
+    "options": [
+      {
+        "id": "1",
+        "text": "已经"
+      },
+      {
+        "id": "2",
+        "text": "都"
+      },
+      {
+        "id": "3",
+        "text": "只"
+      },
+      {
+        "id": "4",
+        "text": "才"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g22-cac19890",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "哥哥会说英语，我___会说英语。",
+    "options": [
+      {
+        "id": "1",
+        "text": "也"
+      },
+      {
+        "id": "2",
+        "text": "都"
+      },
+      {
+        "id": "3",
+        "text": "一直"
+      },
+      {
+        "id": "4",
+        "text": "先"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g22-ec63aa4b",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "今天下课以后，我___去操场跑步，然后回家写作业。",
+    "options": [
+      {
+        "id": "1",
+        "text": "刚"
+      },
+      {
+        "id": "2",
+        "text": "都"
+      },
+      {
+        "id": "3",
+        "text": "先"
+      },
+      {
+        "id": "4",
+        "text": "已经"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g23-0731cdea",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "你的钥匙我挂___门后面了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "在"
+      },
+      {
+        "id": "2",
+        "text": "给"
+      },
+      {
+        "id": "3",
+        "text": "成"
+      },
+      {
+        "id": "4",
+        "text": "坏"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g23-41ef3682",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "他走的时候留___了一封信。",
+    "options": [
+      {
+        "id": "1",
+        "text": "坏"
+      },
+      {
+        "id": "2",
+        "text": "光"
+      },
+      {
+        "id": "3",
+        "text": "成"
+      },
+      {
+        "id": "4",
+        "text": "下"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g23-4e2bae43",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "弟弟不小心把我的眼镜坐___了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "成"
+      },
+      {
+        "id": "2",
+        "text": "坏"
+      },
+      {
+        "id": "3",
+        "text": "在"
+      },
+      {
+        "id": "4",
+        "text": "光"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g23-8e89f69f",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "这些面包放了一个星期，已经不能吃了，你把它们扔___吧。",
+    "options": [
+      {
+        "id": "1",
+        "text": "上"
+      },
+      {
+        "id": "2",
+        "text": "给"
+      },
+      {
+        "id": "3",
+        "text": "在"
+      },
+      {
+        "id": "4",
+        "text": "掉"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g23-c0a6ddf4",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "老师让我们把这段话改___一个问句。",
+    "options": [
+      {
+        "id": "1",
+        "text": "光"
+      },
+      {
+        "id": "2",
+        "text": "掉"
+      },
+      {
+        "id": "3",
+        "text": "成"
+      },
+      {
+        "id": "4",
+        "text": "上"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g23-cc970b36",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "他太渴了，一口气把一瓶水喝___了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "在"
+      },
+      {
+        "id": "2",
+        "text": "坏"
+      },
+      {
+        "id": "3",
+        "text": "光"
+      },
+      {
+        "id": "4",
+        "text": "成"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g23-cdd6784a",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "天冷了，出门前记得戴___帽子。",
+    "options": [
+      {
+        "id": "1",
+        "text": "上"
+      },
+      {
+        "id": "2",
+        "text": "掉"
+      },
+      {
+        "id": "3",
+        "text": "成"
+      },
+      {
+        "id": "4",
+        "text": "给"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g23-d11f2d43",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "他把自己的旧自行车送___了邻居家的孩子。",
+    "options": [
+      {
+        "id": "1",
+        "text": "下"
+      },
+      {
+        "id": "2",
+        "text": "给"
+      },
+      {
+        "id": "3",
+        "text": "掉"
+      },
+      {
+        "id": "4",
+        "text": "在"
+      }
+    ],
+    "correctOptionId": "2"
   },
   {
     "id": "g26-005a10f4",
@@ -2066,5 +2825,269 @@
         "text": "我们正在上课的时候"
       }
     ]
+  },
+  {
+    "id": "g27-082da165",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "他最近太忙了，___吃饭的时间___没有。",
+    "options": [
+      {
+        "id": "1",
+        "text": "连……，都……"
+      },
+      {
+        "id": "2",
+        "text": "既然……，就……"
+      },
+      {
+        "id": "3",
+        "text": "不是……，而是……"
+      },
+      {
+        "id": "4",
+        "text": "不是……，就是……"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g27-28afc5b1",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "他___跑___快，最后得了第一名。",
+    "options": [
+      {
+        "id": "1",
+        "text": "一边……，一边……"
+      },
+      {
+        "id": "2",
+        "text": "即使……，也……"
+      },
+      {
+        "id": "3",
+        "text": "越……，越……"
+      },
+      {
+        "id": "4",
+        "text": "先……，然后……"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g27-63fb4af3",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "___天气不好，运动会___照常举行。",
+    "options": [
+      {
+        "id": "1",
+        "text": "即使……，也……"
+      },
+      {
+        "id": "2",
+        "text": "如果……，就……"
+      },
+      {
+        "id": "3",
+        "text": "连……，都……"
+      },
+      {
+        "id": "4",
+        "text": "一边……，一边……"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g27-afa50163",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "放假的时候，她___在家画画儿，___出去骑车，从来不觉得无聊。",
+    "options": [
+      {
+        "id": "1",
+        "text": "越……，越……"
+      },
+      {
+        "id": "2",
+        "text": "不是……，就是……"
+      },
+      {
+        "id": "3",
+        "text": "即使……，也……"
+      },
+      {
+        "id": "4",
+        "text": "连……，都……"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g27-c9ae1c38",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "我们___坐地铁到市中心，___换公共汽车。",
+    "options": [
+      {
+        "id": "1",
+        "text": "既然……，就……"
+      },
+      {
+        "id": "2",
+        "text": "不是……，就是……"
+      },
+      {
+        "id": "3",
+        "text": "一边……，一边……"
+      },
+      {
+        "id": "4",
+        "text": "先……，然后……"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g27-e4cd0ae2",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "他___不想帮你，___实在太忙了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "即使……，也……"
+      },
+      {
+        "id": "2",
+        "text": "越……，越……"
+      },
+      {
+        "id": "3",
+        "text": "不是……，而是……"
+      },
+      {
+        "id": "4",
+        "text": "一边……，一边……"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g27-e60e96e3",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "他常常___喝咖啡，___看报纸。",
+    "options": [
+      {
+        "id": "1",
+        "text": "既然……，就……"
+      },
+      {
+        "id": "2",
+        "text": "越……，越……"
+      },
+      {
+        "id": "3",
+        "text": "连……，都……"
+      },
+      {
+        "id": "4",
+        "text": "一边……，一边……"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g27-f19a27db",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "___外面下雨了，你___别出去了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "虽然……，但是……"
+      },
+      {
+        "id": "2",
+        "text": "既然……，就……"
+      },
+      {
+        "id": "3",
+        "text": "不是……，而是……"
+      },
+      {
+        "id": "4",
+        "text": "即使……，也……"
+      }
+    ],
+    "correctOptionId": "2"
   }
 ]
