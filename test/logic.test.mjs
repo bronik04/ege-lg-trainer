@@ -144,7 +144,9 @@ test('blankCells: разная длина вариантов — вытянут�
   assert.deepEqual(L.blankCells({ stem: '他___走了。', options: opts('已经', '才', '就', '刚') }), [0], 'три по одному знаку и один из двух');
   assert.deepEqual(L.blankCells({ stem: '拿___本书。', options: opts('上来', '回去', '出') }), [0]);
   assert.deepEqual(L.blankCells({ stem: '___我看来', options: opts('在……看来', '对') }), [0]);
-  assert.deepEqual(L.blankCells({ stem: '他___走了。', options: opts('马上就要', '一下子就要') }), [0], 'длиннее четырёх');
+  assert.deepEqual(L.blankCells({ stem: '他___走了。', options: opts('马上就要', '一下子就要') }), [0], 'разной длины, один длиннее четырёх');
+  assert.deepEqual(L.blankCells({ stem: '他___走了。', options: opts('一下子就要', '马上就要了') }), [0], 'у всех поровну, но длиннее четырёх');
+  assert.deepEqual(L.blankCells({ stem: '他___走了。', options: opts('马上就要', '一下子要') }), [4], 'у всех по четыре');
 });
 
 test('blankCells: вариант не вписывается — вытянутая клетка', () => {
