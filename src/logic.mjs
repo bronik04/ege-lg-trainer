@@ -615,15 +615,18 @@ export function blankFill(item, optionId) {
   return parts;
 }
 
-// Сколько клеток в каждом пропуске: по самому длинному варианту, чтобы ширина не подсказывала
-// ответ. Больше четырёх знаков — 0: одна вытянутая клетка.
+// Сколько клеток в каждом пропуске. Клетки по числу знаков — только когда у всех вариантов
+// в этом пропуске поровну знаков (от 1 до 4): тогда число клеток ничего не подсказывает.
+// Разная длина, длиннее четырёх или вариант не вписывается — 0: одна вытянутая клетка без
+// деления, по ней не видно, сколько знаков вписать (иначе ученик выбирает вариант по ширине).
 export function blankCells(item) {
   const k = blankCount(item);
-  const fills = item.options.map((o) => blankFill(item, o.id)).filter(Boolean);
+  const fills = item.options.map((o) => blankFill(item, o.id));
   return Array.from({ length: k }, (_, i) => {
-    if (!fills.length) return 2;
-    const longest = Math.max(...fills.map((f) => charCount(f[i])));
-    return longest > 4 ? 0 : Math.max(1, longest);
+    if (!fills.length || fills.some((f) => !f)) return 0;
+    const lengths = new Set(fills.map((f) => charCount(f[i])));
+    const [n] = lengths;
+    return lengths.size === 1 && n <= 4 ? Math.max(1, n) : 0;
   });
 }
 

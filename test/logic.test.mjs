@@ -134,14 +134,23 @@ test('isChinese: иероглифы без кириллицы', () => {
   assert.equal(L.isChinese('感觉 нельзя употреблять о прошлом'), false);
 });
 
-test('blankCells: по самому длинному варианту, от 1 до 4, длинный — 0', () => {
+test('blankCells: клетки по числу знаков, только если у всех вариантов оно одно', () => {
   assert.deepEqual(L.blankCells({ stem: '拿___本书。', options: opts('上 来', '回去') }), [2], 'пробел внутри варианта — не знак');
-  assert.deepEqual(L.blankCells({ stem: '拿___本书。', options: opts('上来', '回去', '出') }), [2]);
   assert.deepEqual(L.blankCells({ stem: '他说___是将来的事。', options: opts('的', '地', '得') }), [1]);
+  assert.deepEqual(L.blankCells({ stem: '___他，___我。', options: opts('因为……，所以……', '要是……，就……') }), [2, 0], 'пропуски считаются отдельно');
+});
+
+test('blankCells: разная длина вариантов — вытянутая клетка, ширина не подсказывает', () => {
+  assert.deepEqual(L.blankCells({ stem: '他___走了。', options: opts('已经', '才', '就', '刚') }), [0], 'три по одному знаку и один из двух');
+  assert.deepEqual(L.blankCells({ stem: '拿___本书。', options: opts('上来', '回去', '出') }), [0]);
   assert.deepEqual(L.blankCells({ stem: '___我看来', options: opts('在……看来', '对') }), [0]);
-  assert.deepEqual(L.blankCells({ stem: '___他，___我。', options: opts('因为……，所以……', '要是……，就……') }), [2, 2]);
-  assert.deepEqual(L.blankCells({ stem: '___他，___我。', options: opts('一……就……一……', '除了……以外，还……') }), [2, 2], 'не раскладывается — по две');
-  assert.deepEqual(L.blankCells({ sentence: '他十点___来。', options: opts('Раньше', 'Позже') }), [2]);
+  assert.deepEqual(L.blankCells({ stem: '他___走了。', options: opts('马上就要', '一下子就要') }), [0], 'длиннее четырёх');
+});
+
+test('blankCells: вариант не вписывается — вытянутая клетка', () => {
+  assert.deepEqual(L.blankCells({ stem: '___他，___我。', options: opts('一……就……一……', '除了……以外，还……') }), [0, 0], 'не раскладывается');
+  assert.deepEqual(L.blankCells({ stem: '___他，___我。', options: opts('因为……，所以……', '一……就……一……') }), [0, 0], 'один из вариантов не раскладывается');
+  assert.deepEqual(L.blankCells({ sentence: '他十点___来。', options: opts('Раньше', 'Позже') }), [0], 'варианты по-русски');
   assert.deepEqual(L.blankCells({ stem: '整齐.', options: opts('2-3') }), []);
 });
 
