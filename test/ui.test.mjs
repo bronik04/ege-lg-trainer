@@ -489,6 +489,50 @@ test('часы варианта: переход по позициям не те�
   await context.close();
 });
 
+test('отчёт учителю: ученик отправляет текст, учитель сводит класс', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl);
+  const finishRound = async (ids, pick) => {
+    await page.goto(`${mainUrl}#/practice?ids=${ids}`);
+    for (let i = 0; i < ids.split(',').length; i += 1) {
+      await page.locator('[data-card]').waitFor();
+      await page.locator('.option').nth(pick).click();
+      await page.locator('[data-enter]').click();
+    }
+    await see(page, 'h2', /Раунд окончен/);
+    await page.locator('#report-round').click();
+  };
+  // Без имени отчёт не копируется: учитель не поймёт, чей он.
+  await finishRound('q20-a,q22-a', 1);
+  await page.locator('#copyReport').click();
+  await see(page, '#reportBox', /Впишите имя/);
+  await page.locator('#studentName').fill('Иванова Аня');
+  const first = await page.locator('#reportText').inputValue();
+  assert.match(first, /Ученик: Иванова Аня/);
+  assert.match(first, /Результат: 1 из 2/);
+  assert.match(first, /Ошибки: 22/);
+  assert.match(first, /EGELG1:[A-Za-z0-9_-]+$/);
+  // Имя запоминается в этом браузере.
+  await finishRound('q22-b', 0);
+  assert.equal(await page.locator('#studentName').inputValue(), 'Иванова Аня');
+  await page.locator('#studentName').fill('Петров Боря');
+  const second = await page.locator('#reportText').inputValue();
+
+  await page.goto(`${mainUrl}#/teacher`);
+  await page.locator('#reportsInput').fill(`${first}\n\nЕщё раз: ${first}\n\n${second}\nEGELG1:e30`);
+  await see(page, '#classStatus', /2 отчёта, не прочитано 1/);
+  await see(page, '#classSummary .score', /2\s*отчёта · не прочитано 1/);
+  const rows = await page.locator('#classTable tbody tr').allInnerTexts();
+  assert.equal(rows.length, 2, 'повтор одного отчёта считается один раз');
+  assert.match(rows[0], /Иванова Аня\s+Раунд.*1 из 2.*22/);
+  assert.match(rows[1], /Петров Боря\s+Раунд.*1 из 1/);
+  await see(page, '#classByTask', /№22 — ошибок 1 из 2/);
+  // Вставленное живёт только на странице: после перезагрузки поле пустое.
+  await page.reload();
+  assert.equal(await page.locator('#reportsInput').inputValue(), '');
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
 test('телефон: без горизонтальной прокрутки во всех режимах', { skip }, async () => {
   for (const width of [390, 375, 320]) {
     const { page, context } = await open(mainUrl, { width, height: 812 });
@@ -496,11 +540,18 @@ test('телефон: без горизонтальной прокрутки в�
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
       assert.ok(overflow <= 0, `${width}px ${where}: горизонтальная прокрутка ${overflow}px`);
     };
-    for (const hash of ['#/rules', '#/rules/jiu-cai', '#/practice', '#/variant', '#/bank']) {
+    for (const hash of ['#/rules', '#/rules/jiu-cai', '#/practice', '#/variant', '#/bank', '#/teacher']) {
       await page.goto(mainUrl + hash);
       if (hash === '#/variant' && await page.locator('#buildVariant').count()) await page.locator('#buildVariant').click();
       await noOverflow(hash);
     }
+    // Страница учителя с заполненной таблицей: широкая таблица прокручивается внутри рамки.
+    const sample = await page.evaluate(() => encodeReport({ kind: 'variant', name: 'Константинопольская Александра',
+      at: new Date().toISOString(), timeMs: 2_000_000, ids: ['q20-a', 'q21-a', 'q22-a'], answers: ['1', null, '2'], score: 0, total: 3 }));
+    await page.goto(`${mainUrl}#/teacher`);
+    await page.locator('#reportsInput').fill(sample);
+    await page.locator('#classTable').waitFor();
+    await noOverflow('#/teacher с таблицей');
     // Работа над ошибками на итоге раунда и в банке: №15, №22 и собранный порядок №26.
     await page.goto(`${mainUrl}#/practice?ids=q15-a,q22-a,q26-a`);
     for (let i = 0; i < 3; i += 1) {
