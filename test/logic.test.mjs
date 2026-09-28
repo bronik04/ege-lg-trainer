@@ -431,7 +431,7 @@ test('отчёт учителю: код читается обратно, мус�
   const report = { kind: 'variant', name: 'Иванова Аня', at: '2026-09-27T15:40:00.000Z', timeMs: 2_050_000,
     ids: ['q20-a', 'q21-a'], answers: ['2', null] };
   const code = L.encodeReport(report);
-  assert.match(code, /^EGELG1:[A-Za-z0-9_-]+$/);
+  assert.match(code, /^EGELG1:[A-Za-z0-9+/]+$/, 'без «_», «-» и «=» — мессенджеры их не портят');
   const text = `Привет!\n${code}\nещё раз ${code}\nEGELG1:испорчено EGELG1:e30`;
   const { reports, broken } = L.decodeReports(text);
   assert.deepEqual(reports, [{ ...report, v: 1 }], 'повтор того же сообщения считается один раз');
@@ -449,7 +449,7 @@ test('отчёт учителю: текст для мессенджера', () =
   assert.match(text, /Полный вариант/);
   assert.match(text, /Результат: 1 из 3 · время 34:10/);
   assert.match(text, /Ошибки: 22 · без ответа: 21/);
-  assert.match(text, /Темы с ошибками: Суффиксы \(1\), aspect|Темы с ошибками: Суффиксы/);
+  assert.match(text, /^Темы с ошибками: Суффиксы \(2\)$/m);
   assert.ok(text.trim().endsWith(L.encodeReport(report)), 'код — последней строкой');
 });
 
@@ -465,5 +465,34 @@ test('сводка по классу: ученики, номера и темы, 
   assert.deepEqual(s.byTask, [{ taskNumber: 20, wrong: 1, total: 1 }, { taskNumber: 22, wrong: 1, total: 2 }]);
   assert.deepEqual(s.byTopic, [{ topicId: 'adverbs', wrong: 1 }, { topicId: 'aspect', wrong: 1 }]);
   assert.equal(s.unknown, 1, 'задания нет в банке — не считается');
+});
+
+test('отчёт учителю: чужой код — только известные поля в пределах', () => {
+  const code = (payload) => `EGELG1:${btoa(unescape(encodeURIComponent(JSON.stringify(payload)))).replace(/=+$/, '')}`;
+  const base = { v: 1, kind: 'round', name: 'Аня 😀', at: 't', ids: ['q20-a'], answers: ['1'] };
+  const read = (payload) => L.decodeReports(code(payload));
+  assert.equal(read(base).reports[0].name, 'Аня 😀', 'эмодзи и кириллица без искажений');
+  assert.equal(read({ ...base, __proto__: { polluted: true }, extra: 1 }).reports[0].extra, undefined);
+  assert.equal(({}).polluted, undefined);
+  for (const bad of [
+    { ...base, ids: [] }, { ...base, answers: [] }, { ...base, ids: [1], answers: ['1'] },
+    { ...base, ids: ['q20-a', 'q20-a'], answers: ['1', '1'] }, { ...base, ids: ['x'.repeat(41)] },
+    { ...base, ids: Array.from({ length: 101 }, (_, i) => `q${i}`), answers: Array(101).fill(null) },
+    { ...base, kind: 'exam' }, { ...base, name: 5 },
+  ]) assert.equal(read(bad).broken, 1, JSON.stringify(bad).slice(0, 60));
+  assert.equal('timeMs' in read({ ...base, timeMs: 1e300 }).reports[0], false, 'время больше суток отбрасывается');
+  assert.equal('score' in read({ ...base, score: 5, total: 1 }).reports[0], false);
+});
+
+test('отчёт учителю: та же работа с исправленным именем — одна строка, последняя', () => {
+  const work = { kind: 'variant', at: '2026-09-27T15:40:00.000Z', ids: ['q20-a'], answers: ['1'] };
+  const { reports } = L.decodeReports(`${L.encodeReport({ ...work, name: 'Аня' })}\n${L.encodeReport({ ...work, name: 'Аня Иванова' })}`);
+  assert.deepEqual(reports.map((r) => r.name), ['Аня Иванова']);
+});
+
+test('сводка по классу: счёт ученика, если банк с тех пор изменился', () => {
+  const byId = new Map([q('q20-a', 20)].map((x) => [x.id, x]));
+  const s = L.classSummary([{ kind: 'round', name: 'Аня', at: 't', ids: ['q20-a', 'gone'], answers: ['2', '1'], score: 2, total: 2 }], byId);
+  assert.deepEqual([s.rows[0].score, s.rows[0].total, s.rows[0].reported], [1, 1, { score: 2, total: 2 }]);
 });
 

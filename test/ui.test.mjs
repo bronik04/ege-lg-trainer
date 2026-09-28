@@ -519,6 +519,7 @@ test('отчёт учителю: ученик отправляет текст, �
 
   await page.goto(`${mainUrl}#/teacher`);
   await page.locator('#reportsInput').fill(`${first}\n\nЕщё раз: ${first}\n\n${second}\nEGELG1:e30`);
+  await see(page, '#classStatus', /2 отчёта, не прочитано 1/);
   await see(page, '#classSummary .score', /2\s*отчёта · не прочитано 1/);
   const rows = await page.locator('#classTable tbody tr').allInnerTexts();
   assert.equal(rows.length, 2, 'повтор одного отчёта считается один раз');
@@ -544,6 +545,13 @@ test('телефон: без горизонтальной прокрутки в�
       if (hash === '#/variant' && await page.locator('#buildVariant').count()) await page.locator('#buildVariant').click();
       await noOverflow(hash);
     }
+    // Страница учителя с заполненной таблицей: широкая таблица прокручивается внутри рамки.
+    const sample = await page.evaluate(() => encodeReport({ kind: 'variant', name: 'Константинопольская Александра',
+      at: new Date().toISOString(), timeMs: 2_000_000, ids: ['q20-a', 'q21-a', 'q22-a'], answers: ['1', null, '2'], score: 0, total: 3 }));
+    await page.goto(`${mainUrl}#/teacher`);
+    await page.locator('#reportsInput').fill(sample);
+    await page.locator('#classTable').waitFor();
+    await noOverflow('#/teacher с таблицей');
     // Работа над ошибками на итоге раунда и в банке: №15, №22 и собранный порядок №26.
     await page.goto(`${mainUrl}#/practice?ids=q15-a,q22-a,q26-a`);
     for (let i = 0; i < 3; i += 1) {

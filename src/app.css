@@ -305,6 +305,7 @@ kbd {
 .class-table { width: 100%; border-collapse: collapse; font-size: .86rem; font-variant-numeric: tabular-nums; }
 .class-table th, .class-table td { padding: 8px 10px; border-bottom: 1.5px solid var(--line); text-align: left; white-space: nowrap; }
 .class-table th { color: var(--muted); font-weight: 650; }
+.foot-link { display: inline-flex; align-items: center; min-height: 44px; }
 .share-row { display: flex; flex-wrap: wrap; gap: 10px; }
 .share-url {
   flex: 1 1 240px; min-width: 0; min-height: 46px; padding: 8px 10px; border: 1.5px solid var(--line); border-radius: 8px;

@@ -377,57 +377,71 @@ export function isVariant(ids, byId) {
 
 // Код в конце сообщения ученика: по нему страница учителя сводит результаты класса.
 // Префикс — версия формата: меняете поля — новый префикс, а страница учителя читает и старые.
+// Обычный base64 без «=»: в нём нет «_» и «-», которые мессенджеры превращают в разметку.
 export const REPORT_PREFIX = 'EGELG1:';
-const REPORT_CODE = /EGELG1:([A-Za-z0-9_-]+)/g;
+const REPORT_CODE = /EGELG1:([A-Za-z0-9+/]+)/g;
 const REPORT_KINDS = ['round', 'variant'];
+const REPORT_LIMITS = { ids: 100, id: 40, name: 80, day: 86_400_000 };
 
-function toBase64Url(text) {
+function toBase64(text) {
   let binary = '';
   for (const byte of new TextEncoder().encode(text)) binary += String.fromCharCode(byte);
-  return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  return btoa(binary).replace(/=+$/, '');
 }
 
-function fromBase64Url(code) {
-  const binary = atob(code.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((code.length + 3) % 4));
+function fromBase64(code) {
+  const binary = atob(code + '==='.slice((code.length + 3) % 4));
   return new TextDecoder().decode(Uint8Array.from(binary, (ch) => ch.charCodeAt(0)));
 }
 
-// Отчёт: kind — round | variant, name — как ученик себя назвал, ids и answers — по порядку сессии.
+// Отчёт: kind — round | variant, name — как ученик себя назвал, ids и answers — по порядку сессии,
+// score и total — счёт, который ученик видел у себя (банк у учителя мог с тех пор измениться).
 export function encodeReport(report) {
   const payload = { v: 1, kind: report.kind, name: report.name, at: report.at, ids: report.ids, answers: report.answers };
+  if (Number.isInteger(report.score) && Number.isInteger(report.total)) Object.assign(payload, { score: report.score, total: report.total });
   if (Number.isFinite(report.timeMs)) payload.timeMs = Math.round(report.timeMs);
-  return REPORT_PREFIX + toBase64Url(JSON.stringify(payload));
+  return REPORT_PREFIX + toBase64(JSON.stringify(payload));
 }
 
+// Код приходит из чужого сообщения: только известные поля, типы и пределы проверены.
 function cleanReport(raw) {
   if (!isRecord(raw) || raw.v !== 1 || !REPORT_KINDS.includes(raw.kind)) return null;
   if (typeof raw.name !== 'string' || typeof raw.at !== 'string') return null;
-  if (!Array.isArray(raw.ids) || !Array.isArray(raw.answers) || raw.ids.length !== raw.answers.length || !raw.ids.length) return null;
-  if (!raw.ids.every((id) => typeof id === 'string') || !raw.answers.every((a) => a === null || typeof a === 'string')) return null;
-  const out = { v: 1, kind: raw.kind, name: raw.name.trim().slice(0, 80), at: raw.at, ids: raw.ids, answers: raw.answers };
-  if (Number.isFinite(raw.timeMs) && raw.timeMs >= 0) out.timeMs = raw.timeMs;
+  const { ids, answers } = raw;
+  if (!Array.isArray(ids) || !Array.isArray(answers) || ids.length !== answers.length) return null;
+  if (!ids.length || ids.length > REPORT_LIMITS.ids || new Set(ids).size !== ids.length) return null;
+  if (!ids.every((id) => typeof id === 'string' && id.length <= REPORT_LIMITS.id)) return null;
+  if (!answers.every((a) => a === null || (typeof a === 'string' && a.length <= REPORT_LIMITS.id))) return null;
+  const out = { v: 1, kind: raw.kind, name: raw.name.trim().slice(0, REPORT_LIMITS.name), at: raw.at.slice(0, 40), ids, answers };
+  if (Number.isInteger(raw.score) && Number.isInteger(raw.total) && raw.score >= 0 && raw.score <= raw.total && raw.total <= ids.length) {
+    out.score = raw.score;
+    out.total = raw.total;
+  }
+  if (Number.isFinite(raw.timeMs) && raw.timeMs >= 0 && raw.timeMs < REPORT_LIMITS.day) out.timeMs = raw.timeMs;
   return out;
 }
 
-// Все коды из вставленного текста (сообщения можно вставлять пачкой). Одинаковые — один раз:
-// ученик мог прислать отчёт дважды.
+// Все коды из вставленного текста (сообщения можно вставлять пачкой). Одна и та же работа —
+// один раз, по последнему сообщению: ученик мог прислать её дважды, поправив имя.
 export function decodeReports(text) {
-  const seen = new Set();
-  const reports = [];
+  const byWork = new Map();
   let broken = 0;
   for (const match of String(text || '').matchAll(REPORT_CODE)) {
-    if (seen.has(match[1])) continue;
-    seen.add(match[1]);
     let report = null;
     try {
-      report = cleanReport(JSON.parse(fromBase64Url(match[1])));
+      report = cleanReport(JSON.parse(fromBase64(match[1])));
     } catch {
       report = null;
     }
-    if (report) reports.push(report);
-    else broken += 1;
+    if (!report) {
+      broken += 1;
+      continue;
+    }
+    const work = [report.kind, report.at, report.ids.join(',')].join('|');
+    byWork.delete(work);
+    byWork.set(work, report);
   }
-  return { reports, broken };
+  return { reports: [...byWork.values()], broken };
 }
 
 // Итог одного отчёта по банку: счёт, номера с ошибками и без ответа, темы ошибок.
@@ -494,8 +508,11 @@ export function classSummary(reports, byId) {
       byTask.set(q.taskNumber, entry);
     });
     for (const [t, n] of r.topics) byTopic.set(t, (byTopic.get(t) || 0) + n);
+    // Счёт у ученика и по нынешнему банку разошёлся — задание сняли или поправили ключ.
+    const reported = Number.isInteger(report.score) && (report.score !== r.score || report.total !== r.total)
+      ? { score: report.score, total: report.total } : null;
     return { name: report.name, kind: report.kind, at: report.at, timeMs: report.timeMs, score: r.score, total: r.total,
-      wrongTasks: [...new Set([...r.wrong, ...r.skipped])].sort((a, b) => a - b) };
+      reported, wrongTasks: [...new Set([...r.wrong, ...r.skipped])].sort((a, b) => a - b) };
   }).sort((a, b) => a.name.localeCompare(b.name, 'ru') || String(a.at).localeCompare(String(b.at)));
   return {
     rows,

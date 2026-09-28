@@ -381,7 +381,7 @@
       onclick: () => { shareOpen = shareOpen === open ? null : open; render(false); },
     }, 'Отчёт учителю');
     if (shareOpen !== open) return { button, box: null };
-    const name = el('input', { class: 'share-url', type: 'text', id: 'studentName', autocomplete: 'name', value: storage.get(STUDENT_KEY) || '' });
+    const name = el('input', { class: 'share-url', type: 'text', id: 'studentName', autocomplete: 'name', value: storage.get(STUDENT_KEY) || '', dataset: { key: 'report:name' } });
     const text = el('textarea', { class: 'report-text', id: 'reportText', readonly: true, rows: 8, 'aria-label': 'Текст отчёта' });
     const status = el('span', { class: 'small muted', 'aria-live': 'polite' });
     const fill = () => { text.value = reportText({ ...report, name: name.value.trim() }, byId, topicTitle); };
@@ -412,7 +412,11 @@
       class: 'button ghost', type: 'button',
       onclick: async () => {
         if (!named()) return;
-        try { await navigator.share({ text: text.value }); } catch { /* отменили отправку */ }
+        try {
+          await navigator.share({ text: text.value });
+        } catch (error) {
+          if (error && error.name !== 'AbortError') status.textContent = 'Не удалось поделиться — нажмите «Скопировать».';
+        }
       },
     }, 'Поделиться') : null;
     const box = el('div', { class: 'share', id: 'reportBox' },
@@ -865,6 +869,7 @@
 
   function startRound(ids) {
     if (!ids.length) return;
+    shareOpen = null; // блок ссылки или отчёта прошлого итога в новом раунде не открывается сам
     progress = { ...progress, round: startSession(ids, now()) };
     save();
     go('#/practice');
@@ -943,7 +948,8 @@
       resultList(round.ids, round.answers));
     const share = shareToggle('round', 'Ссылка на эти задания', pageUrl(`#/practice?${idsQuery(round.ids)}`),
       `По ссылке откроется раунд из этих же заданий (${round.ids.length}) в том же порядке — одинаковый для всех, кто её получит.`);
-    const report = reportToggle('round', { kind: 'round', at: round.finishedAt || now(), ids: round.ids, answers: sessionAnswers(round) });
+    const report = reportToggle('round', { kind: 'round', at: round.finishedAt || now(), ids: round.ids, answers: sessionAnswers(round),
+      score: result.score, total: result.total });
     view.append(el('div', { class: 'actions' },
       wrong.length ? el('button', { class: 'button', type: 'button', onclick: () => startRound(shuffle(wrong)) }, `Повторить ошибки раунда · ${wrong.length}`) : null,
       el('a', { class: wrong.length ? 'button alt' : 'button', href: '#/practice/setup', text: 'Новый раунд' }),
@@ -1096,7 +1102,8 @@
     }
     const share = shareToggle('variant', 'Ссылка на этот вариант', pageUrl(`#/variant?${idsQuery(v.ids)}`),
       'По ссылке откроется этот же вариант — те же 13 заданий. Удобно, чтобы весь класс решал одно и то же.');
-    const report = reportToggle('variant', { kind: 'variant', at: v.finishedAt, timeMs: (v.result || {}).timeMs, ids: v.ids, answers: sessionAnswers(v) });
+    const report = reportToggle('variant', { kind: 'variant', at: v.finishedAt, timeMs: (v.result || {}).timeMs, ids: v.ids, answers: sessionAnswers(v),
+      score: result.score, total: result.total });
     actions.append(report.button, share.button);
     view.append(el('p', { class: 'section-title', text: 'Результат последнего варианта' }),
       el('p', { class: 'score' }, el('b', { text: `${result.score} из ${result.total}` }), el('span', { class: 'muted', text: 'первичных баллов за раздел 3' })),
@@ -1137,13 +1144,15 @@
         el('td', { text: r.name || '(без имени)' }),
         el('td', { text: r.kind === 'variant' ? 'Вариант' : 'Раунд' }),
         el('td', { text: when(r.at) }),
-        el('td', { text: `${r.score} из ${r.total}` }),
+        el('td', { text: `${r.score} из ${r.total}` + (r.reported ? ` (у ученика ${r.reported.score} из ${r.reported.total})` : '') }),
         el('td', { text: Number.isFinite(r.timeMs) ? formatClock(r.timeMs) : '—' }),
         el('td', { text: r.wrongTasks.join(', ') || '—' })))));
     return [
       el('p', { class: 'score' }, el('b', { text: String(reports.length) }),
         el('span', { class: 'muted', text: plural(reports.length, 'отчёт', 'отчёта', 'отчётов') + (broken ? ` · не прочитано ${broken}` : '') })),
-      el('div', { class: 'table-wrap' }, table),
+      // Таблица шире телефона прокручивается внутри рамки — и с клавиатуры тоже.
+      el('div', { class: 'table-wrap', tabindex: '0', role: 'region', 'aria-label': 'Таблица класса' }, table),
+      s.rows.some((r) => r.reported) ? el('p', { class: 'small muted', text: 'Счёт в скобках — как видел ученик: с тех пор в банке сняли задание или поправили ключ.' }) : null,
       s.byTask.length ? el('p', { class: 'section-title', text: 'Где ошибаются' }) : null,
       s.byTask.length ? el('ul', { class: 'usage', id: 'classByTask' }, s.byTask.map((t) => el('li', { text: `№${t.taskNumber} — ошибок ${t.wrong} из ${t.total}` }))) : null,
       s.byTopic.length ? el('p', { class: 'section-title', text: 'Темы с ошибками' }) : null,
@@ -1160,12 +1169,19 @@
   function renderTeacher() {
     view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Результаты класса' }),
       el('p', { class: 'lead', text: 'Вставьте сюда сообщения учеников с отчётами — можно все сразу, как есть из мессенджера. Страница найдёт в них коды и сведёт результаты. Ничего никуда не отправляется.' }));
-    const input = el('textarea', { class: 'report-text', id: 'reportsInput', rows: 8, placeholder: 'Отчёт: ЕГЭ, китайский, задания 15–27…' });
+    const input = el('textarea', { class: 'report-text', id: 'reportsInput', rows: 8, placeholder: 'Отчёт: ЕГЭ, китайский, задания 15–27…', dataset: { key: 'teacher:input' } });
     input.value = teacherText;
-    const out = el('div', { id: 'classSummary', 'aria-live': 'polite' });
-    const update = () => { teacherText = input.value; out.replaceChildren(...classNodes(teacherText)); };
+    // Диктору — только короткая строка итога, а не вся таблица на каждое нажатие клавиши.
+    const status = el('p', { class: 'sr-title', role: 'status', id: 'classStatus' });
+    const out = el('div', { id: 'classSummary' });
+    const update = () => {
+      teacherText = input.value;
+      const { reports, broken } = decodeReports(teacherText);
+      status.textContent = `${reports.length} ${plural(reports.length, 'отчёт', 'отчёта', 'отчётов')}` + (broken ? `, не прочитано ${broken}` : '');
+      out.replaceChildren(...classNodes(teacherText));
+    };
     input.addEventListener('input', update);
-    view.append(el('label', { class: 'field' }, 'Сообщения учеников', input), out);
+    view.append(el('label', { class: 'field' }, 'Сообщения учеников', input), status, out);
     update();
   }
 
