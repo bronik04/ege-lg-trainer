@@ -650,7 +650,7 @@ test('телефон: без горизонтальной прокрутки в�
 test('тетрадь: пропуск-клетка, исправление красной ручкой, панель на телефоне', { skip }, async () => {
   const { page, context, errors } = await open(mainUrl, { width: 390, height: 844, hash: '#/practice?ids=q25-a' });
   await page.locator('[data-card]').waitFor();
-  // Два знака в самом длинном варианте — две клетки; пустая клетка ничего не подсказывает.
+  // У всех вариантов по два знака — две клетки; пустая клетка ничего не подсказывает.
   assert.equal(await page.locator('.stem .tz .c').count(), 2);
   assert.equal(await page.locator('.stem .tz').getAttribute('aria-label'), 'пропуск');
   // Неверно: выбранное вписано и зачёркнуто, сверху верный ответ.
@@ -684,9 +684,15 @@ test('тетрадь: пропуск-клетка, исправление кра
   assert.deepEqual(await page.locator('.stem .tz .ink').allInnerTexts(), ['场']);
   assert.equal(await page.locator('.stem .tz.right, .stem .tz.wrong, .stem .fix').count(), 0);
   await page.locator('.sheet .cell').nth(12).click();
+  // До ответа: в первом пропуске у всех вариантов по два знака — две клетки; во втором
+  // варианты разной длины (才 и 而且) — одна вытянутая клетка, а не две по самому длинному.
+  const gaps = page.locator('.stem .tz');
+  assert.equal(await gaps.count(), 2);
+  assert.equal(await gaps.nth(0).locator('.c').count(), 2);
+  assert.equal(await gaps.nth(1).locator('.c').count(), 1);
+  assert.equal(await gaps.nth(1).locator('.c.long').count(), 1);
   await page.keyboard.press('4');
-  assert.equal(await page.locator('.stem .tz').count(), 2);
-  assert.deepEqual(await page.locator('.stem .tz .ink').allInnerTexts(), ['不', '但', '而', '且']);
+  assert.deepEqual(await page.locator('.stem .tz .ink').allInnerTexts(), ['不', '但', '而且']);
   await page.locator('#finishVariant').click();
   await page.locator('#confirmFinish').click();
   await see(page, '.score', /из 13/);
