@@ -120,6 +120,27 @@ class OfflineTest(unittest.TestCase):
         self.assertFalse((drafts_dir / "sw.js").exists(), "сборка для проверки не кэшируется")
         self.assertFalse((drafts_dir / "manifest.webmanifest").exists())
 
+    def test_published_page_has_link_preview(self):
+        tmp, html = self.build()
+        meta = dict(re.findall(r'<meta (?:property|name)="((?:og|twitter):[\w:]+)" content="([^"]*)">', html))
+        self.assertEqual(meta["og:url"], bs.SITE_URL)
+        self.assertEqual(meta["og:title"], bs.TITLE)
+        self.assertIn("Тренажёр заданий 15–27", meta["og:description"])
+        self.assertEqual(meta["twitter:card"], "summary_large_image")
+        self.assertRegex(meta["og:image"], "^" + re.escape(bs.SITE_URL) + r"og-image\.jpg\?v=[0-9a-f]{8}$")
+        self.assertEqual(meta["twitter:image"], meta["og:image"])
+        self.assertEqual((tmp / "og-image.jpg").read_bytes(), bs.OG_IMAGE.read_bytes())
+        worker = (tmp / "sw.js").read_text(encoding="utf-8")
+        self.assertNotIn("og-image", worker, "картинка превью странице не нужна — в кэш не идёт")
+
+    def test_link_preview_only_on_published_page(self):
+        drafts_dir, html = self.build("--drafts")
+        self.assertNotIn("og:", html)
+        self.assertFalse((drafts_dir / "og-image.jpg").exists())
+        off_dir, html = self.build("--no-offline")
+        self.assertIn('property="og:image"', html, "аварийная сборка — всё та же публикация")
+        self.assertTrue((off_dir / "og-image.jpg").exists())
+
     def test_kill_switch_removes_offline(self):
         tmp, html = self.build("--no-offline")
         self.assertNotIn("manifest.webmanifest", html)
