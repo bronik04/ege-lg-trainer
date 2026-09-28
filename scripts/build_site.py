@@ -12,13 +12,19 @@ import json
 import re
 import shutil
 import sys
+from html import escape
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import DATA, FORMAT_YEAR, ISSUES_URL, ROOT, read_json, write_text  # noqa: E402
+from common import DATA, FORMAT_YEAR, ISSUES_URL, ROOT, SITE_URL, read_json, write_text  # noqa: E402
 
 SRC = ROOT / "src"
 PWA = SRC / "pwa"
+# Превью ссылки в мессенджерах (Open Graph): только у опубликованной страницы, в том числе при
+# аварийном выключении работы без сети. Картинка — src/og/og-image.jpg (перерисовать:
+# node scripts/render_og_image.mjs); странице она не нужна, поэтому в кэш sw.js не входит.
+OG_IMAGE = SRC / "og" / "og-image.jpg"
+TITLE = "Лексика и грамматика ЕГЭ — китайский язык"
 # Работа без сети — только у опубликованной страницы: сборка для проверки не кэшируется.
 PWA_HEAD = ('<link rel="manifest" href="manifest.webmanifest">\n'
             '<link rel="apple-touch-icon" href="apple-touch-icon.png">\n'
@@ -85,6 +91,30 @@ def description(data):
             "каждого неверного варианта, правила и полный вариант.")
 
 
+def og_image_url():
+    # ?v= — отпечаток картинки: мессенджеры кэшируют превью по URL и иначе не увидят новую.
+    return f"{SITE_URL}og-image.jpg?v={hashlib.sha256(OG_IMAGE.read_bytes()).hexdigest()[:8]}"
+
+
+def share_head(data):
+    text = escape(description(data))
+    image = og_image_url()
+    return "\n".join((
+        '<meta property="og:type" content="website">',
+        '<meta property="og:locale" content="ru_RU">',
+        f'<meta property="og:title" content="{TITLE}">',
+        f'<meta property="og:description" content="{text}">',
+        f'<meta property="og:url" content="{SITE_URL}">',
+        f'<meta property="og:image" content="{image}">',
+        '<meta property="og:image:width" content="1200">',
+        '<meta property="og:image:height" content="630">',
+        '<meta name="twitter:card" content="summary_large_image">',
+        f'<meta name="twitter:title" content="{TITLE}">',
+        f'<meta name="twitter:description" content="{text}">',
+        f'<meta name="twitter:image" content="{image}">',
+    ))
+
+
 def render(data):
     template = (SRC / "template.html").read_text(encoding="utf-8")
     script = inline_logic((SRC / "logic.mjs").read_text(encoding="utf-8")) + "\n" + (SRC / "app.js").read_text(encoding="utf-8")
@@ -92,7 +122,8 @@ def render(data):
     html = template
     for marker, value in (("/*APP_CSS*/", css), ("/*APP_JS*/", script),
                           ("/*DATA_JSON*/", embed_json(data)), ("/*DESCRIPTION*/", description(data)),
-                          ("/*PWA_HEAD*/", PWA_HEAD if data["meta"]["offline"] else "")):
+                          ("/*PWA_HEAD*/", PWA_HEAD if data["meta"]["offline"] else ""),
+                          ("/*SHARE_HEAD*/", "" if data["meta"]["drafts"] else share_head(data))):
         if marker not in html:
             raise SystemExit(f"В шаблоне нет метки {marker}")
         html = html.replace(marker, value)
@@ -134,6 +165,8 @@ def main():
         data["meta"]["offline"] = False
     html = render(data)
     write_text(out, html)
+    if not args.drafts:
+        shutil.copyfile(OG_IMAGE, out.parent / OG_IMAGE.name)
     if data["meta"]["offline"]:
         write_offline(out.parent, html)
     elif args.no_offline:

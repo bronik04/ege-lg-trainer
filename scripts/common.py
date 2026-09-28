@@ -20,6 +20,8 @@ TASK_NUMBERS = tuple(range(15, 28))
 FORMAT_YEAR = 2026
 # Сообщения об ошибках в заданиях ученик оставляет в issues этого репозитория.
 ISSUES_URL = "https://github.com/bronik04/ege-lg-trainer/issues/new"
+# Постоянный адрес сайта: превью ссылок в мессенджерах берёт картинку только по полному URL.
+SITE_URL = "https://bronik04.github.io/ege-lg-trainer/"
 
 # Формулировки заданий дословно по демоверсии ЕГЭ 2026 (стр. 12–15).
 INSTRUCTIONS = {
