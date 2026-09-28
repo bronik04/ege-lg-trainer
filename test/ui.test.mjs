@@ -537,6 +537,8 @@ test('без сети: после первого визита страница �
     server.closeAllConnections();
     server.close();
   }
+});
+
 test('отчёт учителю: ученик отправляет текст, учитель сводит класс', { skip }, async () => {
   const { page, context, errors } = await open(mainUrl);
   const finishRound = async (ids, pick) => {
