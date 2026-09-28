@@ -1,5 +1,6 @@
 import json
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -84,17 +85,13 @@ class RenderTest(unittest.TestCase):
         self.assertNotRegex(html, r"<script[^>]+src=")
         self.assertNotIn("src=\"http", html)
 
-
-if __name__ == "__main__":
-    unittest.main()
-
-
 class OfflineTest(unittest.TestCase):
     """Работа без сети: манифест, иконки и service worker — только у опубликованной страницы."""
 
     def build(self, *args):
         root = Path(__file__).resolve().parent.parent
         tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp, ignore_errors=True)
         out = tmp / "index.html"
         subprocess.run([sys.executable, str(root / "scripts" / "build_site.py"), "--data-dir",
                         str(root / "test" / "fixtures"), "--out", str(out), *args], check=True, capture_output=True)
@@ -123,3 +120,13 @@ class OfflineTest(unittest.TestCase):
         self.assertFalse((drafts_dir / "sw.js").exists(), "сборка для проверки не кэшируется")
         self.assertFalse((drafts_dir / "manifest.webmanifest").exists())
 
+    def test_kill_switch_removes_offline(self):
+        tmp, html = self.build("--no-offline")
+        self.assertNotIn("manifest.webmanifest", html)
+        self.assertFalse(json.loads(re.search(r'id="trainer-data">(.*?)</script>', html, re.S).group(1))["meta"]["offline"])
+        worker = (tmp / "sw.js").read_text(encoding="utf-8")
+        self.assertIn("unregister()", worker, "под именем sw.js — выключатель")
+        self.assertNotIn("VERSION", worker)
+
+if __name__ == "__main__":
+    unittest.main()

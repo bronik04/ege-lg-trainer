@@ -100,13 +100,22 @@ def render(data):
 
 
 def write_offline(directory, html):
-    """Рядом со страницей: манифест, иконки и service worker с версией — отпечатком страницы."""
+    """Рядом со страницей: манифест, иконки и service worker с версией — отпечатком страницы,
+    файлов рядом и самого worker: сменили только иконку — у учеников всё равно новая версия."""
+    digest = hashlib.sha256(html.encode("utf-8"))
     for name in PWA_FILES:
         shutil.copyfile(PWA / name, directory / name)
-    version = hashlib.sha256(html.encode("utf-8")).hexdigest()[:12]
-    worker = (PWA / "sw.js").read_text(encoding="utf-8").replace("/*VERSION*/", version)
-    write_text(directory / "sw.js", worker)
+        digest.update((PWA / name).read_bytes())
+    template = (PWA / "sw.js").read_text(encoding="utf-8")
+    digest.update(template.encode("utf-8"))
+    version = digest.hexdigest()[:12]
+    write_text(directory / "sw.js", template.replace("/*VERSION*/", version))
     return version
+
+
+def write_offline_off(directory):
+    """Аварийное выключение: под именем sw.js — worker, который удаляет кэши и снимает себя."""
+    shutil.copyfile(PWA / "sw-off.js", directory / "sw.js")
 
 
 def main():
@@ -114,15 +123,21 @@ def main():
     parser.add_argument("--drafts", action="store_true", help="показать черновики (страница для проверки)")
     parser.add_argument("--data-dir", type=Path, default=DATA)
     parser.add_argument("--out", type=Path)
+    parser.add_argument("--no-offline", action="store_true",
+                        help="аварийно выключить работу без сети у всех, кто открывал сайт (кладёт sw-off.js как sw.js)")
     args = parser.parse_args()
     out = args.out or (ROOT / ("review-build/review.html" if args.drafts else "dist/index.html"))
     d = args.data_dir
     data = payload(read_json(d / "questions.json"), read_json(d / "topics.json"),
                    read_json(d / "rules.json"), read_json(d / "rule-checks.json"), drafts=args.drafts)
+    if args.no_offline:
+        data["meta"]["offline"] = False
     html = render(data)
     write_text(out, html)
     if data["meta"]["offline"]:
         write_offline(out.parent, html)
+    elif args.no_offline:
+        write_offline_off(out.parent)
     print(f"Страница: {out} — заданий {len(data['questions'])}, правил {len(data['rules'])}, "
           f"вопросов по правилам {len(data['ruleChecks'])}")
 

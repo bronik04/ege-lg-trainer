@@ -36,7 +36,7 @@ function fixture(name) {
 }
 
 // Собирает страницу из набора данных; change(data) может его поменять.
-function buildPage(name, { change, drafts = false } = {}) {
+function buildPage(name, { change, drafts = false, args: extra = [] } = {}) {
   const data = {
     topics: fixture('topics'), rules: fixture('rules'), 'rule-checks': fixture('rule-checks'), questions: fixture('questions'),
   };
@@ -47,6 +47,7 @@ function buildPage(name, { change, drafts = false } = {}) {
   const out = join(dir, 'index.html');
   const args = [join(ROOT, 'scripts', 'build_site.py'), '--data-dir', dir, '--out', out];
   if (drafts) args.push('--drafts');
+  args.push(...extra);
   const result = spawnSync('python3', args, { encoding: 'utf8' });
   assert.equal(result.status, 0, result.stderr || result.stdout);
   return pathToFileURL(out).href;
@@ -530,6 +531,21 @@ test('без сети: после первого визита страница �
     await see(page, 'h2', /Практика ЕГЭ/);
     await page.goto(`${url}#/rules/jiu-cai`);
     await see(page, 'h2', /就 и 才/);
+    // Новая выкладка: новый кэш, старый удалён, страница — новая.
+    const version = () => readFileSync(join(dir, 'sw.js'), 'utf8').match(/VERSION = '(\w+)'/)[1];
+    const before = version();
+    await context.setOffline(false);
+    buildPage('offline', { change: (d) => { d.topics[0].title = 'Тема после выкладки'; } });
+    const after = version();
+    assert.notEqual(after, before);
+    await page.evaluate(() => navigator.serviceWorker.getRegistration().then((r) => r.update()));
+    await page.waitForFunction((v) => caches.keys().then((k) => k.includes(`ege-lg-trainer-${v}`)), after, { timeout: 15000 });
+    await page.waitForFunction((v) => caches.keys().then((k) => !k.includes(`ege-lg-trainer-${v}`)), before, { timeout: 15000 });
+    // Аварийное выключение: кэши удалены, регистрация снята.
+    buildPage('offline', { args: ['--no-offline'] });
+    await page.evaluate(() => navigator.serviceWorker.getRegistration().then((r) => r && r.update()));
+    await page.waitForFunction(() => navigator.serviceWorker.getRegistration().then((r) => !r), null, { timeout: 15000 });
+    await page.waitForFunction(() => caches.keys().then((k) => !k.some((x) => x.startsWith('ege-lg-trainer-'))), null, { timeout: 15000 });
     assert.deepEqual(errors, []);
   } finally {
     await context.close();
