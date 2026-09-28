@@ -1241,6 +1241,10 @@
     event.preventDefault();
     view.focus();
   });
+  // Работа без сети (только опубликованная страница по http): кэш страницы и шрифтов.
+  if (DATA.meta.offline && 'serviceWorker' in navigator && location.protocol.startsWith('http')) {
+    window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
+  }
   window.addEventListener('hashchange', () => {
     if (location.hash && !location.hash.startsWith('#/')) return;
     shareOpen = null;

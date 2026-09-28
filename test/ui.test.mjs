@@ -4,6 +4,7 @@
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
+import { createServer } from 'node:http';
 import { mkdtempSync, readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
@@ -487,6 +488,55 @@ test('часы варианта: переход по позициям не те�
   assert.ok(stored.variant.elapsedMs >= 5 * 60_000 + 31_000, 'время первой вкладки дописано');
   assert.deepEqual(errors, []);
   await context.close();
+});
+
+// Каталог со сборкой по http: service worker на file:// не работает.
+function serve(dir) {
+  const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.png': 'image/png',
+    '.svg': 'image/svg+xml', '.webmanifest': 'application/manifest+json' };
+  const server = createServer((req, res) => {
+    const path = decodeURIComponent(new URL(req.url, 'http://x').pathname);
+    const file = join(dir, path.endsWith('/') ? 'index.html' : path);
+    try {
+      const body = readFileSync(file);
+      res.writeHead(200, { 'Content-Type': types[file.slice(file.lastIndexOf('.'))] || 'application/octet-stream' });
+      res.end(body);
+    } catch {
+      res.writeHead(404);
+      res.end();
+    }
+  });
+  return new Promise((resolve) => server.listen(0, '127.0.0.1', () => resolve(server)));
+}
+
+test('без сети: после первого визита страница открывается из кэша', { skip }, async () => {
+  const dir = dirname(fileURLToPath(buildPage('offline')));
+  const server = await serve(dir);
+  const url = `http://127.0.0.1:${server.address().port}/`;
+  // Свой контекст: open() режет все http-запросы, а здесь нужен локальный сервер. Внешняя сеть
+  // (шрифты) по-прежнему закрыта.
+  const context = await browser.newContext();
+  await context.route(/^https?:\/\/(?!127\.0\.0\.1[:/])/, (route) => route.abort());
+  const page = await context.newPage();
+  const errors = [];
+  page.on('pageerror', (e) => errors.push(e.message));
+  try {
+    await page.goto(`${url}#/rules`);
+    await page.waitForFunction(() => navigator.serviceWorker.controller !== null, null, { timeout: 15000 })
+      .catch(async () => { await page.reload(); await page.waitForFunction(() => navigator.serviceWorker.controller !== null, null, { timeout: 15000 }); });
+    assert.equal(await page.evaluate(() => document.querySelector('link[rel="manifest"]').getAttribute('href')), 'manifest.webmanifest');
+    await context.setOffline(true);
+    await page.goto(`${url}?nocache=1#/practice/setup`);
+    await see(page, 'h2', /Практика ЕГЭ/);
+    await page.goto(`${url}#/rules/jiu-cai`);
+    await see(page, 'h2', /就 и 才/);
+    assert.deepEqual(errors, []);
+  } finally {
+    await context.close();
+    // Иначе открытые keep-alive соединения держат процесс тестов живым.
+    server.closeAllConnections();
+    server.close();
+  }
 });
 
 test('телефон: без горизонтальной прокрутки во всех режимах', { skip }, async () => {
