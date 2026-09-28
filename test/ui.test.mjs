@@ -837,7 +837,8 @@ test('настоящие данные: сборка для проверки от
   const { page, context, errors } = await open(url, { hash: '#/rules' });
   const ruleLinks = await page.locator('.rule-card').count();
   assert.ok(ruleLinks >= 13, `карточек правил: ${ruleLinks}`);
-  await page.locator('.rule-card').first().click();
+  // У карточки тонов вопросов нет (тоны — не грамматика), берём первую с вопросами.
+  await page.locator('.rule-card', { hasNotText: 'Тоны' }).first().click();
   await page.getByRole('button', { name: /Проверить правило/ }).click();
   await page.locator('[data-card]').waitFor();
   await page.keyboard.press('1');
