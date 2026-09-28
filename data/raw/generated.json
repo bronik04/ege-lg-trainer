@@ -525,7 +525,7 @@
     "correctOptionId": "2"
   },
   {
-    "id": "g18-0ae0bf03",
+    "id": "g18-291aa664",
     "taskNumber": 18,
     "formatYear": 2026,
     "origin": "generated",
@@ -536,73 +536,7 @@
     },
     "codifierCodes": [],
     "prompt": "Укажите, какой предлог пропущен в данном предложении.",
-    "stem": "这个房间___那个房间那么大。",
-    "options": [
-      {
-        "id": "1",
-        "text": "比"
-      },
-      {
-        "id": "2",
-        "text": "离"
-      },
-      {
-        "id": "3",
-        "text": "跟"
-      },
-      {
-        "id": "4",
-        "text": "没有"
-      }
-    ],
-    "correctOptionId": "4"
-  },
-  {
-    "id": "g18-1497764d",
-    "taskNumber": 18,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "навык ege-chinese",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-09-28-ege-chinese-18"
-    },
-    "codifierCodes": [],
-    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
-    "stem": "今年夏天___去年还热。",
-    "options": [
-      {
-        "id": "1",
-        "text": "跟"
-      },
-      {
-        "id": "2",
-        "text": "对"
-      },
-      {
-        "id": "3",
-        "text": "比"
-      },
-      {
-        "id": "4",
-        "text": "没有"
-      }
-    ],
-    "correctOptionId": "3"
-  },
-  {
-    "id": "g18-20d1bf35",
-    "taskNumber": 18,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "навык ege-chinese",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-09-28-ege-chinese-18"
-    },
-    "codifierCodes": [],
-    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
-    "stem": "我们明天早上八点___学校出发。",
+    "stem": "火车慢慢地___北开去。",
     "options": [
       {
         "id": "1",
@@ -610,7 +544,7 @@
       },
       {
         "id": "2",
-        "text": "在"
+        "text": "向"
       },
       {
         "id": "3",
@@ -618,10 +552,10 @@
       },
       {
         "id": "4",
-        "text": "从"
+        "text": "到"
       }
     ],
-    "correctOptionId": "4"
+    "correctOptionId": "2"
   },
   {
     "id": "g18-31aa1a26",
@@ -690,39 +624,6 @@
       }
     ],
     "correctOptionId": "3"
-  },
-  {
-    "id": "g18-3e065ba5",
-    "taskNumber": 18,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "навык ege-chinese",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-09-28-ege-chinese-18"
-    },
-    "codifierCodes": [],
-    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
-    "stem": "遇到不懂的问题，要多___老师请教。",
-    "options": [
-      {
-        "id": "1",
-        "text": "从"
-      },
-      {
-        "id": "2",
-        "text": "向"
-      },
-      {
-        "id": "3",
-        "text": "比"
-      },
-      {
-        "id": "4",
-        "text": "到"
-      }
-    ],
-    "correctOptionId": "2"
   },
   {
     "id": "g18-4d1eca29",
@@ -826,39 +727,6 @@
     "correctOptionId": "2"
   },
   {
-    "id": "g18-57757922",
-    "taskNumber": 18,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "навык ege-chinese",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-09-28-ege-chinese-18"
-    },
-    "codifierCodes": [],
-    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
-    "stem": "___其他同学相比，他的汉语说得最流利。",
-    "options": [
-      {
-        "id": "1",
-        "text": "跟"
-      },
-      {
-        "id": "2",
-        "text": "比"
-      },
-      {
-        "id": "3",
-        "text": "对"
-      },
-      {
-        "id": "4",
-        "text": "向"
-      }
-    ],
-    "correctOptionId": "1"
-  },
-  {
     "id": "g18-687b17c2",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -920,6 +788,39 @@
       {
         "id": "4",
         "text": "在"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g18-7b3af771",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "周末我常常___朋友一起去爬山。",
+    "options": [
+      {
+        "id": "1",
+        "text": "跟"
+      },
+      {
+        "id": "2",
+        "text": "比"
+      },
+      {
+        "id": "3",
+        "text": "对"
+      },
+      {
+        "id": "4",
+        "text": "向"
       }
     ],
     "correctOptionId": "1"
@@ -1094,6 +995,39 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g18-b2acfd46",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "今年夏天___去年还热。",
+    "options": [
+      {
+        "id": "1",
+        "text": "跟"
+      },
+      {
+        "id": "2",
+        "text": "对"
+      },
+      {
+        "id": "3",
+        "text": "比"
+      },
+      {
+        "id": "4",
+        "text": "离"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g18-b4d4eb85",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -1164,6 +1098,39 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g18-b9dd2f22",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "我打算___下个月开始学游泳。",
+    "options": [
+      {
+        "id": "1",
+        "text": "比"
+      },
+      {
+        "id": "2",
+        "text": "从"
+      },
+      {
+        "id": "3",
+        "text": "向"
+      },
+      {
+        "id": "4",
+        "text": "对"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g18-bc136cc3",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -1232,6 +1199,39 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g18-c8278173",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "我们明天早上八点___学校出发。",
+    "options": [
+      {
+        "id": "1",
+        "text": "对"
+      },
+      {
+        "id": "2",
+        "text": "离"
+      },
+      {
+        "id": "3",
+        "text": "比"
+      },
+      {
+        "id": "4",
+        "text": "从"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
     "id": "g18-d7083fb6",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -1267,6 +1267,39 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g18-d7a7e4f8",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "听说他考上了大学，大家都___他高兴。",
+    "options": [
+      {
+        "id": "1",
+        "text": "比"
+      },
+      {
+        "id": "2",
+        "text": "对"
+      },
+      {
+        "id": "3",
+        "text": "离"
+      },
+      {
+        "id": "4",
+        "text": "为"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
     "id": "g18-eeb39985",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -1298,39 +1331,6 @@
       }
     ],
     "correctOptionId": "1"
-  },
-  {
-    "id": "g18-f9a51eca",
-    "taskNumber": 18,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "навык ege-chinese",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-09-28-ege-chinese-18"
-    },
-    "codifierCodes": [],
-    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
-    "stem": "他说的___书上写的不一样。",
-    "options": [
-      {
-        "id": "1",
-        "text": "比"
-      },
-      {
-        "id": "2",
-        "text": "和"
-      },
-      {
-        "id": "3",
-        "text": "向"
-      },
-      {
-        "id": "4",
-        "text": "对"
-      }
-    ],
-    "correctOptionId": "2"
   },
   {
     "id": "g26-005a10f4",
