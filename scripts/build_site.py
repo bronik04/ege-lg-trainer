@@ -7,8 +7,10 @@
 """
 
 import argparse
+import hashlib
 import json
 import re
+import shutil
 import sys
 from pathlib import Path
 
@@ -16,6 +18,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import DATA, FORMAT_YEAR, ISSUES_URL, ROOT, read_json, write_text  # noqa: E402
 
 SRC = ROOT / "src"
+PWA = SRC / "pwa"
+# Работа без сети — только у опубликованной страницы: сборка для проверки не кэшируется.
+PWA_HEAD = ('<link rel="manifest" href="manifest.webmanifest">\n'
+            '<link rel="apple-touch-icon" href="apple-touch-icon.png">\n'
+            '<meta name="apple-mobile-web-app-title" content="ЕГЭ 15–27">')
+PWA_FILES = ("manifest.webmanifest", "icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-512.png",
+             "apple-touch-icon.png")
 QUESTION_FIELDS = ("id", "taskNumber", "formatYear", "origin", "prompt", "stem", "fragments", "options",
                    "correctOptionId", "topicIds", "ruleIds", "explanation", "contrast")
 SOURCE_FIELDS = ("collection", "fipiId", "specVersion")
@@ -48,7 +57,7 @@ def payload(questions, topics, rules, rule_checks, drafts=False):
         return out
 
     return {
-        "meta": {"formatYear": FORMAT_YEAR, "drafts": drafts, "issuesUrl": ISSUES_URL},
+        "meta": {"formatYear": FORMAT_YEAR, "drafts": drafts, "issuesUrl": ISSUES_URL, "offline": not drafts},
         "topics": topics,
         "rules": [content(r) for r in shown_rules],
         "ruleChecks": [content(c) for c in shown_checks],
@@ -82,11 +91,31 @@ def render(data):
     css = (SRC / "app.css").read_text(encoding="utf-8")
     html = template
     for marker, value in (("/*APP_CSS*/", css), ("/*APP_JS*/", script),
-                          ("/*DATA_JSON*/", embed_json(data)), ("/*DESCRIPTION*/", description(data))):
+                          ("/*DATA_JSON*/", embed_json(data)), ("/*DESCRIPTION*/", description(data)),
+                          ("/*PWA_HEAD*/", PWA_HEAD if data["meta"]["offline"] else "")):
         if marker not in html:
             raise SystemExit(f"В шаблоне нет метки {marker}")
         html = html.replace(marker, value)
     return html
+
+
+def write_offline(directory, html):
+    """Рядом со страницей: манифест, иконки и service worker с версией — отпечатком страницы,
+    файлов рядом и самого worker: сменили только иконку — у учеников всё равно новая версия."""
+    digest = hashlib.sha256(html.encode("utf-8"))
+    for name in PWA_FILES:
+        shutil.copyfile(PWA / name, directory / name)
+        digest.update((PWA / name).read_bytes())
+    template = (PWA / "sw.js").read_text(encoding="utf-8")
+    digest.update(template.encode("utf-8"))
+    version = digest.hexdigest()[:12]
+    write_text(directory / "sw.js", template.replace("/*VERSION*/", version))
+    return version
+
+
+def write_offline_off(directory):
+    """Аварийное выключение: под именем sw.js — worker, который удаляет кэши и снимает себя."""
+    shutil.copyfile(PWA / "sw-off.js", directory / "sw.js")
 
 
 def main():
@@ -94,12 +123,21 @@ def main():
     parser.add_argument("--drafts", action="store_true", help="показать черновики (страница для проверки)")
     parser.add_argument("--data-dir", type=Path, default=DATA)
     parser.add_argument("--out", type=Path)
+    parser.add_argument("--no-offline", action="store_true",
+                        help="аварийно выключить работу без сети у всех, кто открывал сайт (кладёт sw-off.js как sw.js)")
     args = parser.parse_args()
     out = args.out or (ROOT / ("review-build/review.html" if args.drafts else "dist/index.html"))
     d = args.data_dir
     data = payload(read_json(d / "questions.json"), read_json(d / "topics.json"),
                    read_json(d / "rules.json"), read_json(d / "rule-checks.json"), drafts=args.drafts)
-    write_text(out, render(data))
+    if args.no_offline:
+        data["meta"]["offline"] = False
+    html = render(data)
+    write_text(out, html)
+    if data["meta"]["offline"]:
+        write_offline(out.parent, html)
+    elif args.no_offline:
+        write_offline_off(out.parent)
     print(f"Страница: {out} — заданий {len(data['questions'])}, правил {len(data['rules'])}, "
           f"вопросов по правилам {len(data['ruleChecks'])}")
 

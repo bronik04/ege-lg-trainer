@@ -1,6 +1,11 @@
 import json
 import re
+import shutil
+import subprocess
+import sys
+import tempfile
 import unittest
+from pathlib import Path
 
 from test.helpers import ready_question, rule
 
@@ -80,6 +85,48 @@ class RenderTest(unittest.TestCase):
         self.assertNotRegex(html, r"<script[^>]+src=")
         self.assertNotIn("src=\"http", html)
 
+class OfflineTest(unittest.TestCase):
+    """Работа без сети: манифест, иконки и service worker — только у опубликованной страницы."""
+
+    def build(self, *args):
+        root = Path(__file__).resolve().parent.parent
+        tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp, ignore_errors=True)
+        out = tmp / "index.html"
+        subprocess.run([sys.executable, str(root / "scripts" / "build_site.py"), "--data-dir",
+                        str(root / "test" / "fixtures"), "--out", str(out), *args], check=True, capture_output=True)
+        return tmp, out.read_text(encoding="utf-8")
+
+    def test_published_page_works_offline(self):
+        tmp, html = self.build()
+        self.assertIn('<link rel="manifest" href="manifest.webmanifest">', html)
+        manifest = json.loads((tmp / "manifest.webmanifest").read_text(encoding="utf-8"))
+        for icon in manifest["icons"]:
+            self.assertTrue((tmp / icon["src"]).exists(), icon["src"])
+        self.assertTrue((tmp / "apple-touch-icon.png").exists())
+        worker = (tmp / "sw.js").read_text(encoding="utf-8")
+        version = re.search(r"const VERSION = '([0-9a-f]{12})';", worker)
+        self.assertIsNotNone(version, "версия подставлена")
+        for name in re.findall(r"'([\w.-]+\.(?:png|svg|webmanifest|html))'", worker):
+            self.assertTrue((tmp / name).exists(), f"в кэше несуществующий файл {name}")
+        self.assertTrue(json.loads(re.search(r'id="trainer-data">(.*?)</script>', html, re.S).group(1))["meta"]["offline"])
+
+    def test_same_page_same_version_new_page_new_version(self):
+        first, _ = self.build()
+        again, _ = self.build()
+        drafts_dir, _ = self.build("--drafts")
+        read = lambda d: re.search(r"VERSION = '(\w+)'", (d / "sw.js").read_text(encoding="utf-8")).group(1)
+        self.assertEqual(read(first), read(again), "сборка детерминирована — кэш не сбрасывается зря")
+        self.assertFalse((drafts_dir / "sw.js").exists(), "сборка для проверки не кэшируется")
+        self.assertFalse((drafts_dir / "manifest.webmanifest").exists())
+
+    def test_kill_switch_removes_offline(self):
+        tmp, html = self.build("--no-offline")
+        self.assertNotIn("manifest.webmanifest", html)
+        self.assertFalse(json.loads(re.search(r'id="trainer-data">(.*?)</script>', html, re.S).group(1))["meta"]["offline"])
+        worker = (tmp / "sw.js").read_text(encoding="utf-8")
+        self.assertIn("unregister()", worker, "под именем sw.js — выключатель")
+        self.assertNotIn("VERSION", worker)
 
 if __name__ == "__main__":
     unittest.main()
