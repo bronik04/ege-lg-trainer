@@ -210,16 +210,18 @@ def _strings(value):
 
 
 def bank_overlap_problems(item, bank_texts, n=OVERLAP):
-    """Китайский текст правила или вопроса к нему, повторяющий задание банка."""
+    """Китайский текст правила или вопроса к нему, повторяющий задание банка. Иероглифы строки
+    склеиваются через знаки препинания, как и условие задания в filled_stem: иначе «如果明天下雨，
+    我们就不去» не совпало бы с «如果明天不下雨，我们就去爬山» из-за запятой."""
     problems = []
     for text in _strings({k: v for k, v in item.items() if k not in ("id", "status", "ruleIds", "topicIds")}):
-        for segment in HAN.findall(text):
-            for i in range(len(segment) - n + 1):
-                gram = segment[i:i + n]
-                hit = next((qid for qid, filled in bank_texts if gram in filled), None)
-                if hit:
-                    problems.append(f"«{segment}» повторяет задание {hit} ({gram}) — возьмите пример на другой лексике")
-                    break
+        joined = "".join(HAN.findall(text))
+        for i in range(len(joined) - n + 1):
+            gram = joined[i:i + n]
+            hit = next((qid for qid, filled in bank_texts if gram in filled), None)
+            if hit:
+                problems.append(f"«{text}» повторяет задание {hit} ({gram}) — возьмите пример на другой лексике")
+                break
     return sorted(set(problems))
 
 

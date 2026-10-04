@@ -385,41 +385,6 @@
     "correctOptionId": "1"
   },
   {
-    "id": "g17-be646e45",
-    "taskNumber": 17,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-09-26-claude-17-18-26"
-    },
-    "codifierCodes": [
-      "2.3.1"
-    ],
-    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
-    "stem": "这件衣服的颜色很漂亮，可是___太高了，我买不起。",
-    "options": [
-      {
-        "id": "1",
-        "text": "表格"
-      },
-      {
-        "id": "2",
-        "text": "价格"
-      },
-      {
-        "id": "3",
-        "text": "性格"
-      },
-      {
-        "id": "4",
-        "text": "风格"
-      }
-    ],
-    "correctOptionId": "2"
-  },
-  {
     "id": "g17-bfd43ff4",
     "taskNumber": 17,
     "formatYear": 2026,
@@ -453,6 +418,41 @@
       }
     ],
     "correctOptionId": "3"
+  },
+  {
+    "id": "g17-c84ed73f",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-26-claude-17-18-26"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "这件衣服的颜色很漂亮，可是___太高了，我只好不买了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "表格"
+      },
+      {
+        "id": "2",
+        "text": "价格"
+      },
+      {
+        "id": "3",
+        "text": "性格"
+      },
+      {
+        "id": "4",
+        "text": "风格"
+      }
+    ],
+    "correctOptionId": "2"
   },
   {
     "id": "g17-c8ff056c",
@@ -2026,6 +2026,39 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g22-32275447",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-29-ege-chinese-18-22"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "他在中国住了两年，可是___不习惯这里的冬天。",
+    "options": [
+      {
+        "id": "1",
+        "text": "还"
+      },
+      {
+        "id": "2",
+        "text": "先"
+      },
+      {
+        "id": "3",
+        "text": "就"
+      },
+      {
+        "id": "4",
+        "text": "刚"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
     "id": "g22-3b227a02",
     "taskNumber": 22,
     "formatYear": 2026,
@@ -2354,39 +2387,6 @@
       }
     ],
     "correctOptionId": "4"
-  },
-  {
-    "id": "g22-bf76effe",
-    "taskNumber": 22,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "навык ege-chinese",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-09-29-ege-chinese-18-22"
-    },
-    "codifierCodes": [],
-    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
-    "stem": "他学了三年汉语，可是___看不懂中文报纸。",
-    "options": [
-      {
-        "id": "1",
-        "text": "还"
-      },
-      {
-        "id": "2",
-        "text": "先"
-      },
-      {
-        "id": "3",
-        "text": "就"
-      },
-      {
-        "id": "4",
-        "text": "刚"
-      }
-    ],
-    "correctOptionId": "1"
   },
   {
     "id": "g22-cac19890",

@@ -1,11 +1,11 @@
 {
   "q16-02da78dd": {
-    "status": "accepted",
+    "status": "draft",
     "topicIds": [
       "measure-words"
     ],
     "ruleIds": [
-      "measure-words"
+      "measure-words-more"
     ],
     "explanation": {
       "correct": "Комнаты считают на 间: 一间房间, 五间教室. 这套房子 «эта квартира» уже названа через 套, а внутри неё — пять комнат.",
@@ -24,8 +24,7 @@
         "4": "只"
       },
       "correctOptionId": "2"
-    },
-    "acceptedHash": "f2e12594eba4"
+    }
   },
   "q16-072c7244": {
     "status": "accepted",
@@ -140,21 +139,22 @@
     "acceptedHash": "d62b39ce9eae"
   },
   "q16-15173f0c": {
-    "status": "accepted",
+    "status": "draft",
     "topicIds": [
       "measure-words"
     ],
     "ruleIds": [
-      "measure-words"
+      "measure-words-more"
     ],
     "explanation": {
       "correct": "一大束玫瑰花 — «большой букет роз». 束 — счётное слово для связанного пучка, букета; 大 перед ним подчёркивает размер букета.",
       "options": {
-        "1": "支 — для одного цветка на стебле (一支玫瑰). 一大支 о розе не говорят; размер подчёркивают у букета — 一大束.",
-        "3": "朵 считает отдельные цветки (一朵花). 一大朵玫瑰花 «одна крупная роза» грамматично, но подарок на День влюблённых, да ещё «большой», — это букет: 一大束.",
-        "4": "个 — общее счётное слово; у букета есть своё — 束, и в задании нужно именно оно."
+        "1": "支 — для одного цветка на стебле (一支玫瑰). Сочетание 一大支 для розы необычно: величину цветка передают через 朵 (一大朵), величину букета — через 束 (一大束).",
+        "3": "朵 считает отдельные цветки: 一朵花. 一大朵玫瑰花 «одна крупная роза» — правильное сочетание, и одну розу на День влюблённых тоже дарят. Ключ ФИПИ — 束 (букет), но из предложения не видно, букет это или один цветок.",
+        "4": "个 — общее счётное слово. У цветов есть свои — 朵 и 支 (один цветок), 束 (букет), и задание 16 проверяет именно их."
       }
     },
+    "keyConflict": "一大朵玫瑰花 «одна крупная роза» тоже грамматично и по смыслу возможно: 大 ставится и перед 朵 (一大朵花), а одну розу на День влюблённых тоже дарят. Что подарок — именно букет, из предложения не следует.",
     "sourceSnapshot": {
       "stem": "情人节那天小王送给女朋友一大 ___ 玫瑰花。",
       "options": {
@@ -164,8 +164,7 @@
         "4": "个"
       },
       "correctOptionId": "2"
-    },
-    "acceptedHash": "db52da64367d"
+    }
   },
   "q16-151eca47": {
     "status": "accepted",
@@ -196,7 +195,7 @@
     "acceptedHash": "751f317c4c87"
   },
   "q16-153f9be8": {
-    "status": "accepted",
+    "status": "draft",
     "topicIds": [
       "measure-words"
     ],
@@ -207,7 +206,7 @@
       "correct": "Юбки и брюки считают на 条: 一条裙子, 一条裤子.",
       "options": {
         "1": "个 — общее счётное слово; у юбки есть своё — 条.",
-        "2": "件 — для одежды на верх тела (一件衬衫, 一件大衣). Юбку считают на 条.",
+        "2": "件 — для одежды в целом и для вещей вроде пальто или платья: 一件衣服, 一件大衣, 一件连衣裙. Юбки и брюки считают на 条. В речи 一件裙子 о платье встречается, но норма — 一条裙子.",
         "4": "只 считает животных и один предмет из пары: 一只猫, 一只鞋. 裙子 — юбка, длинная полоса ткани, поэтому 一条裙子, как 一条裤子."
       }
     },
@@ -220,16 +219,15 @@
         "4": "只"
       },
       "correctOptionId": "3"
-    },
-    "acceptedHash": "630466a18449"
+    }
   },
   "q16-1a77e4ec": {
-    "status": "accepted",
+    "status": "draft",
     "topicIds": [
       "measure-words"
     ],
     "ruleIds": [
-      "measure-words"
+      "measure-words-more"
     ],
     "explanation": {
       "correct": "种 — «вид, разновидность»: 三种拳式 «три вида (комплекса) движений тайцзи».",
@@ -248,8 +246,7 @@
         "4": "把"
       },
       "correctOptionId": "3"
-    },
-    "acceptedHash": "eecb6cba2efd"
+    }
   },
   "q16-1dcde8be": {
     "status": "accepted",
@@ -280,12 +277,12 @@
     "acceptedHash": "a0d73ca0fa11"
   },
   "q16-2a9b389a": {
-    "status": "accepted",
+    "status": "draft",
     "topicIds": [
       "measure-words"
     ],
     "ruleIds": [
-      "measure-words"
+      "measure-words-more"
     ],
     "explanation": {
       "correct": "Самолёты считают на 架: 一架飞机.",
@@ -304,16 +301,15 @@
         "4": "艘"
       },
       "correctOptionId": "3"
-    },
-    "acceptedHash": "d625571c20da"
+    }
   },
   "q16-2e0d86a4": {
-    "status": "accepted",
+    "status": "draft",
     "topicIds": [
       "measure-words"
     ],
     "ruleIds": [
-      "measure-words"
+      "measure-words-more"
     ],
     "explanation": {
       "correct": "些 — «некоторые, несколько»: 有些路口 «на некоторых перекрёстках». Это счётное слово для неопределённого множества.",
@@ -332,8 +328,7 @@
         "4": "块"
       },
       "correctOptionId": "2"
-    },
-    "acceptedHash": "d596d9f4cba8"
+    }
   },
   "q16-3d336552": {
     "status": "accepted",
@@ -364,19 +359,19 @@
     "acceptedHash": "28ca2e2c63f9"
   },
   "q16-4b2ffc87": {
-    "status": "accepted",
+    "status": "draft",
     "topicIds": [
       "measure-words"
     ],
     "ruleIds": [
-      "measure-words"
+      "measure-words-more"
     ],
     "explanation": {
       "correct": "Головные уборы считают на 顶: 一顶帽子.",
       "options": {
         "1": "支 — для ручек, карандашей и цветов на стебле (一支笔). Шапку так не считают.",
         "3": "条 — для длинных предметов, брюк, юбок, шарфов (一条围巾). Для шапки есть своё слово — 顶.",
-        "4": "件 — для одежды на верх тела (一件衬衫). Головной убор считают на 顶."
+        "4": "件 — для одежды (一件衬衫, 一件大衣) и для дел. Головные уборы считают на 顶: 一顶帽子."
       }
     },
     "sourceSnapshot": {
@@ -388,16 +383,15 @@
         "4": "件"
       },
       "correctOptionId": "2"
-    },
-    "acceptedHash": "c76c476754ce"
+    }
   },
   "q16-50502d3d": {
-    "status": "accepted",
+    "status": "draft",
     "topicIds": [
       "measure-words"
     ],
     "ruleIds": [
-      "measure-words"
+      "measure-words-more"
     ],
     "explanation": {
       "correct": "Лекарство в таблетках считают на 片 «пластинка, таблетка»: 吃一片药.",
@@ -416,8 +410,7 @@
         "4": "张"
       },
       "correctOptionId": "1"
-    },
-    "acceptedHash": "356e40ab88e6"
+    }
   },
   "q16-5250d2b8": {
     "status": "accepted",
@@ -476,12 +469,12 @@
     "acceptedHash": "3a267ac2ad70"
   },
   "q16-6cfa621a": {
-    "status": "accepted",
+    "status": "draft",
     "topicIds": [
       "measure-words"
     ],
     "ruleIds": [
-      "measure-words"
+      "measure-words-more"
     ],
     "explanation": {
       "correct": "Цветы, подаренные учителю, — букет: 一束玫瑰花. 束 — счётное слово для связанного пучка.",
@@ -500,8 +493,7 @@
         "4": "条"
       },
       "correctOptionId": "1"
-    },
-    "acceptedHash": "492e25dcad94"
+    }
   },
   "q16-7973ed72": {
     "status": "accepted",
@@ -644,7 +636,7 @@
     "acceptedHash": "8255413ce07f"
   },
   "q16-b93fb601": {
-    "status": "accepted",
+    "status": "draft",
     "topicIds": [
       "measure-words"
     ],
@@ -654,7 +646,7 @@
     "explanation": {
       "correct": "Новости считают на 条: 一条新闻. 出了一条新闻 — «появилась новость».",
       "options": {
-        "2": "件 — для дел и происшествий: 出了一件事 «случилось происшествие». Но у 新闻 «новость» своё счётное слово — 条.",
+        "2": "件 — для дел и происшествий: 出了一件事 «кое-что случилось». О новости-событии в речи можно услышать и 出了一件大新闻, но норма для 新闻 — 条: 一条新闻.",
         "3": "张 — для плоских предметов, например газеты (一张报纸), но не для новости.",
         "4": "块 — для кусков (一块面包). Новость так не считают."
       }
@@ -668,16 +660,15 @@
         "4": "块"
       },
       "correctOptionId": "1"
-    },
-    "acceptedHash": "b3c2f41246a9"
+    }
   },
   "q16-c469d69b": {
-    "status": "accepted",
+    "status": "draft",
     "topicIds": [
       "measure-words"
     ],
     "ruleIds": [
-      "measure-words"
+      "measure-words-more"
     ],
     "explanation": {
       "correct": "块 — «кусок»: 这块蛋糕 «этот кусок торта». 块 считает куски и предметы в форме плитки или бруска: 一块面包, 一块肥皂.",
@@ -696,8 +687,7 @@
         "4": "只"
       },
       "correctOptionId": "3"
-    },
-    "acceptedHash": "122deb4cd66c"
+    }
   },
   "q16-d8f3a39e": {
     "status": "accepted",
@@ -728,12 +718,12 @@
     "acceptedHash": "e458b822d09b"
   },
   "q16-e73c58d2": {
-    "status": "accepted",
+    "status": "draft",
     "topicIds": [
       "measure-words"
     ],
     "ruleIds": [
-      "measure-words"
+      "measure-words-more"
     ],
     "explanation": {
       "correct": "Фильмы считают на 部: 一部电影.",
@@ -752,16 +742,15 @@
         "4": "块"
       },
       "correctOptionId": "3"
-    },
-    "acceptedHash": "aed5d33c4e30"
+    }
   },
   "q16-fff46d4a": {
-    "status": "accepted",
+    "status": "draft",
     "topicIds": [
       "measure-words"
     ],
     "ruleIds": [
-      "measure-words"
+      "measure-words-more"
     ],
     "explanation": {
       "correct": "Языки и учебные дисциплины считают на 门: 一门外语, 一门课.",
@@ -780,7 +769,6 @@
         "4": "套"
       },
       "correctOptionId": "3"
-    },
-    "acceptedHash": "067c65aa426e"
+    }
   }
 }

@@ -951,12 +951,12 @@
     "acceptedHash": "9f77d70f9e3a"
   },
   "q27-f8bae1de": {
-    "status": "accepted",
+    "status": "draft",
     "topicIds": [
       "constructions"
     ],
     "ruleIds": [
-      "constructions"
+      "constructions-more"
     ],
     "explanation": {
       "correct": "既然…就… — «раз уж ты выбрал свой путь, иди по нему смело»: вывод и совет из уже известного факта.",
@@ -975,7 +975,6 @@
         "4": "不管……都……"
       },
       "correctOptionId": "3"
-    },
-    "acceptedHash": "494297bae42d"
+    }
   }
 }
