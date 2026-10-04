@@ -141,41 +141,6 @@
     "correctOptionId": "4"
   },
   {
-    "id": "g17-37b686bf",
-    "taskNumber": 17,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-09-26-claude-17-18-26"
-    },
-    "codifierCodes": [
-      "2.3.1"
-    ],
-    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
-    "stem": "他每天早上都去公园___身体。",
-    "options": [
-      {
-        "id": "1",
-        "text": "联系"
-      },
-      {
-        "id": "2",
-        "text": "练习"
-      },
-      {
-        "id": "3",
-        "text": "运动"
-      },
-      {
-        "id": "4",
-        "text": "锻炼"
-      }
-    ],
-    "correctOptionId": "4"
-  },
-  {
     "id": "g17-4f7df0c0",
     "taskNumber": 17,
     "formatYear": 2026,
@@ -211,7 +176,7 @@
     "correctOptionId": "4"
   },
   {
-    "id": "g17-63e74320",
+    "id": "g17-54af6298",
     "taskNumber": 17,
     "formatYear": 2026,
     "origin": "generated",
@@ -224,7 +189,7 @@
       "2.3.1"
     ],
     "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
-    "stem": "这个城市的交通很___，去哪儿都很快。",
+    "stem": "这条街上有好几家超市，买东西十分___。",
     "options": [
       {
         "id": "1",
@@ -454,6 +419,41 @@
       }
     ],
     "correctOptionId": "3"
+  },
+  {
+    "id": "g17-c3cc16e5",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-26-claude-17-18-26"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "在农村住了一年，他的身体___得非常结实。",
+    "options": [
+      {
+        "id": "1",
+        "text": "联系"
+      },
+      {
+        "id": "2",
+        "text": "练习"
+      },
+      {
+        "id": "3",
+        "text": "运动"
+      },
+      {
+        "id": "4",
+        "text": "锻炼"
+      }
+    ],
+    "correctOptionId": "4"
   },
   {
     "id": "g17-c84ed73f",
@@ -1930,39 +1930,6 @@
     "correctOptionId": "4"
   },
   {
-    "id": "g22-094aba04",
-    "taskNumber": 22,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "навык ege-chinese",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-09-28-ege-chinese-18-22-23-27"
-    },
-    "codifierCodes": [],
-    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
-    "stem": "你来晚了，会议___开了半个小时了。",
-    "options": [
-      {
-        "id": "1",
-        "text": "刚"
-      },
-      {
-        "id": "2",
-        "text": "先"
-      },
-      {
-        "id": "3",
-        "text": "只"
-      },
-      {
-        "id": "4",
-        "text": "已经"
-      }
-    ],
-    "correctOptionId": "4"
-  },
-  {
     "id": "g22-0efff49d",
     "taskNumber": 22,
     "formatYear": 2026,
@@ -2293,6 +2260,39 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g22-606ec566",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-29-ege-chinese-18-22"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "如果明天不下雨，爷爷___带我去钓鱼。",
+    "options": [
+      {
+        "id": "1",
+        "text": "才"
+      },
+      {
+        "id": "2",
+        "text": "刚"
+      },
+      {
+        "id": "3",
+        "text": "只"
+      },
+      {
+        "id": "4",
+        "text": "就"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
     "id": "g22-6fd140a6",
     "taskNumber": 22,
     "formatYear": 2026,
@@ -2359,6 +2359,39 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g22-9890ec71",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "你来晚了，电影___演了二十分钟了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "刚"
+      },
+      {
+        "id": "2",
+        "text": "先"
+      },
+      {
+        "id": "3",
+        "text": "只"
+      },
+      {
+        "id": "4",
+        "text": "已经"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
     "id": "g22-9e68f70e",
     "taskNumber": 22,
     "formatYear": 2026,
@@ -2423,39 +2456,6 @@
       }
     ],
     "correctOptionId": "3"
-  },
-  {
-    "id": "g22-b83d66c1",
-    "taskNumber": 22,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "навык ege-chinese",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-09-29-ege-chinese-18-22"
-    },
-    "codifierCodes": [],
-    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
-    "stem": "如果明天不下雨，我们___去爬山。",
-    "options": [
-      {
-        "id": "1",
-        "text": "才"
-      },
-      {
-        "id": "2",
-        "text": "刚"
-      },
-      {
-        "id": "3",
-        "text": "只"
-      },
-      {
-        "id": "4",
-        "text": "就"
-      }
-    ],
-    "correctOptionId": "4"
   },
   {
     "id": "g22-cac19890",
@@ -2788,7 +2788,7 @@
     "correctOptionId": "4"
   },
   {
-    "id": "g23-c0a6ddf4",
+    "id": "g23-b08ea360",
     "taskNumber": 23,
     "formatYear": 2026,
     "origin": "generated",
@@ -2799,7 +2799,7 @@
     },
     "codifierCodes": [],
     "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
-    "stem": "老师让我们把这段话改___一个问句。",
+    "stem": "请把这些拼音写___汉字。",
     "options": [
       {
         "id": "1",
