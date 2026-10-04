@@ -182,6 +182,20 @@ class ConflictTest(unittest.TestCase):
             rq.decide_conflict(rec["id"], "maybe")
 
 
+class RestoredKeyTest(unittest.TestCase):
+    def test_restored_key_returns_to_review(self):
+        # Автор решил «вернуть с ключом ФИПИ»: спорным задание больше не считается — переписанный разбор
+        # приходит в раздел 1, даже если пометка keyConflict осталась в записи.
+        rec = record(qid="q23-aaaaaaaa")
+        entry = dict(authored_for(rec, status="draft"), keyConflict="好 тоже естественно.", keyDecision="restore")
+        questions, pending = bb.merge([rec], {rec["id"]: entry}, TOPICS, [rule()])
+        self.assertEqual(questions[0]["reviewStatus"], "draft")
+        ready, _ = rq.task_queue(questions, pending, {rec["id"]: entry}, "")
+        self.assertEqual([q["id"] for q in ready], [rec["id"]])
+        hidden = dict(entry, keyDecision="hidden")
+        self.assertEqual(bb.merge([rec], {rec["id"]: hidden}, TOPICS, [rule()])[0][0]["reviewStatus"], "conflict")
+
+
 FAKE_GH = textwrap.dedent("""
     import json, sys
     if sys.argv[1:3] == ["issue", "list"]:

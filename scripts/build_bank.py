@@ -23,13 +23,14 @@ from common import (  # noqa: E402
     AUTHORED, DATA, QUESTIONS, REVIEW, ROOT, RULE_CHECKS, RULES, TASK_NUMBERS, TOPICS,
     read_json, write_json, write_text,
 )
-from validate import explanation_problems  # noqa: E402
+from validate import BLANK, _strings, explanation_problems  # noqa: E402
 
 RAW_DIR = DATA / "raw"
 NOISE = re.compile(r"[\s_.,。，、!?！？\"“”'‘’:：;；()（）…—-]+")
 ZH_DIGITS = {"零": 0, "〇": 0, "一": 1, "二": 2, "两": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9}
 ZH_SMALL = {"十": 10, "百": 100, "千": 1000}
 HAN = re.compile(r"[\u4e00-\u9fff]")
+HAN_RUN = re.compile(r"[\u4e00-\u9fff]+")
 # Сгенерированное задание с условием, похожим на задание ФИПИ хотя бы на столько, — повтор.
 NEAR_DUPLICATE = 0.8
 
@@ -233,7 +234,9 @@ def merge(records, authored, topics, rules):
         conflict = conflicts.get(record["id"])
         if record["taskNumber"] == 19 and not conflict:
             conflict = check_numeral_key(record)
-        if entry and entry.get("keyConflict"):
+        # «Вернуть с ключом ФИПИ» — решение автора: задание больше не спорное и идёт обычной
+        # дорогой (черновик → раздел 1 → принятие), даже если пометка keyConflict осталась.
+        if entry and entry.get("keyConflict") and entry.get("keyDecision") != "restore":
             conflict = entry["keyConflict"]
 
         if record["id"] in excluded:
@@ -304,7 +307,45 @@ def coverage_report(questions, topics):
     return "\n".join(lines) + "\n"
 
 
-def duplicates_report(records, questions):
+def key_hints(q):
+    """Ключ вместе с соседними иероглифами (до двух с каждой стороны): встретится такое в другом
+    тексте — тот текст подсказывает ответ. Только задания с одним пропуском в предложении."""
+    if q["taskNumber"] in (15, 19, 26):
+        return []
+    parts = BLANK.split(q["stem"])
+    key = "".join(HAN_RUN.findall(correct_text(q) or ""))
+    if len(parts) != 2 or not key:
+        return []
+    before, after = ("".join(HAN_RUN.findall(part)) for part in parts)
+    hints = {before[len(before) - b:] + key + after[:a]
+             for b in range(min(2, len(before)) + 1) for a in range(min(2, len(after)) + 1) if b or a}
+    hints = {h for h in hints if len(h) >= 3}
+    return sorted(h for h in hints if not any(o != h and o in h for o in hints))
+
+
+def hint_pairs(questions, rules, rule_checks):
+    """(задание, подсказка, где встретилась): ключ с соседями — в условии или фрагменте другого задания,
+    в карточке правила, в вопросе к правилу, то есть в том, что ученик видит до ответа. Пары, где
+    оба задания из ФИПИ, не нужны: банк ФИПИ не правят."""
+    shown = [q for q in questions if q["reviewStatus"] in ("ready", "draft")]
+    texts = [(q["id"], q["origin"], text) for q in shown
+             for text in [q["stem"]] + [f["text"] for f in q.get("fragments") or []]]
+    texts += [(f"правило {r['id']}", None, text)
+              for r in rules for text in _strings({k: v for k, v in r.items() if k not in ("id", "status", "topicIds")})]
+    texts += [(f"вопрос {c['id']}", None, text) for c in rule_checks for text in (c.get("prompt"), c.get("sentence")) if text]
+    runs = [(label, origin, HAN_RUN.findall(BLANK.sub(" ", text))) for label, origin, text in texts]
+    pairs = set()
+    for q in shown:
+        for hint in key_hints(q):
+            for label, origin, found in runs:
+                if label == q["id"] or (origin == "fipi" and q["origin"] == "fipi"):
+                    continue
+                if any(hint in run for run in found):
+                    pairs.add((q["id"], hint, label))
+    return sorted(pairs)
+
+
+def duplicates_report(records, questions, rules=(), rule_checks=()):
     _, _, groups, similar = find_duplicates(records)
     status = {q["id"]: q for q in questions}
     lines = ["# Дубликаты и спорные ключи", ""]
@@ -336,6 +377,17 @@ def duplicates_report(records, questions):
     for members in similar:
         lines.append(f"- №{members[0]['taskNumber']} «{members[0]['stem']}»: "
                      + ", ".join(f"`{m['id']}`" for m in members))
+    lines += ["", "## Подсказки между заданиями и правилами (проверить вручную)", "",
+              "Ключ задания вместе с соседним иероглифом встречается там, где ученик видит его до ответа: в другом",
+              "задании, в карточке правила, в вопросе к правилу. Пары, где оба задания из ФИПИ, не показаны:",
+              "банк ФИПИ не правят.", ""]
+    grouped = defaultdict(list)
+    for qid, hint, label in hint_pairs(questions, rules, rule_checks):
+        grouped[(qid, hint)].append(label if " " in label else f"`{label}`")
+    if not grouped:
+        lines.append("Нет.")
+    for (qid, hint), labels in sorted(grouped.items()):
+        lines.append(f"- `{qid}` «{hint}»: " + ", ".join(labels))
     return "\n".join(lines) + "\n"
 
 
@@ -385,7 +437,7 @@ def build():
     questions, pending = merge(records, load_authored(), topics, rules)
     write_json(QUESTIONS, questions)
     write_text(REVIEW / "coverage.md", coverage_report(questions, topics))
-    write_text(REVIEW / "duplicates.md", duplicates_report(records, questions))
+    write_text(REVIEW / "duplicates.md", duplicates_report(records, questions, rules, rule_checks))
     write_text(REVIEW / "queue.md", queue_report(questions, pending, rules, rule_checks))
     return questions
 

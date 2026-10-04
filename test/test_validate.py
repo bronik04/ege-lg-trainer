@@ -20,13 +20,25 @@ class QuestionInvariantsTest(unittest.TestCase):
             "номер вне 15–27": dict(ready_question(), taskNumber=14),
             "пять вариантов": ready_question(options=("1", "2", "3", "4", "5")),
             "два варианта": ready_question(options=("了", "着")),
-            "ключ мимо": dict(ready_question(), correctOptionId="7"),
             "нет года": dict(ready_question(), formatYear=None),
             "чужое происхождение": dict(ready_question(), origin="internet"),
             "повтор текста варианта": ready_question(options=("了", "了", "过")),
         }
         for name, q in broken.items():
             self.assertTrue(problems(q), name)
+
+    def test_key_must_be_an_option(self):
+        # Только ключ мимо — без других ошибок, иначе проверка ключа могла бы пропасть незамеченной.
+        q = dict(ready_question(), correctOptionId="7")
+        q["explanation"]["options"]["2"] = "Разбор варианта 2 достаточной длины для проверки."
+        self.assertIn("задание q20-00000001: ключ '7' не совпадает ни с одним вариантом", problems(q))
+        check = {"id": "check-a", "kind": "identify-rule", "ruleIds": ["aspect-suffixes"], "status": "accepted",
+                 "prompt": "Какой суффикс?", "options": [{"id": "a", "text": "了"}, {"id": "b", "text": "过"}],
+                 "correctOptionId": "z", "explanation": {"correct": "Разбор верного варианта достаточной длины.",
+                                                         "options": {"a": "Разбор варианта a достаточной длины.",
+                                                                     "b": "Разбор варианта b достаточной длины."}}}
+        self.assertIn("вопрос по правилу check-a: ключ 'z' не совпадает ни с одним вариантом",
+                      v.check_all([], TOPICS, [rule()], [check]))
 
     def test_ready_needs_explanation_for_each_wrong_option(self):
         q = ready_question()
@@ -37,6 +49,11 @@ class QuestionInvariantsTest(unittest.TestCase):
         q = ready_question()
         q["explanation"]["options"]["1"] = "Повторите правило."
         self.assertIn("задание q20-00000001: разбор варианта 1: общая фраза вместо разбора", problems(q))
+
+    def test_reference_to_rule_inside_text_is_not_enough(self):
+        q = ready_question()
+        q["explanation"]["options"]["1"] = "Так не говорят, повторите правило о суффиксах 了, 过 и 着."
+        self.assertIn("задание q20-00000001: разбор варианта 1: отсылка к правилу вместо разбора", problems(q))
 
     def test_same_explanation_for_two_options_is_rejected(self):
         q = ready_question(options=("了", "着", "过", "的"))
@@ -106,6 +123,19 @@ class IdTest(unittest.TestCase):
                                                         "options": {"b": "Разбор неверного варианта достаточной длины."}}}
         errors = v.check_all([], TOPICS, [rule()], [same])
         self.assertIn("ID 'aspect-suffixes' есть и у правила, и у вопроса по правилу", errors)
+
+
+class CheckKeyOrderTest(unittest.TestCase):
+    def test_key_in_one_place_three_times_in_a_row_is_rejected(self):
+        # Страница варианты не перемешивает: ключ на одном месте три раза подряд у одного правила — подсказка.
+        def check(check_id, key):
+            return {"id": check_id, "kind": "identify-rule", "ruleIds": ["aspect-suffixes"], "status": "accepted",
+                    "prompt": f"Вопрос {check_id}?", "options": [{"id": "a", "text": "了"}, {"id": "b", "text": "过"}],
+                    "correctOptionId": key, "explanation": {"correct": "Разбор верного варианта достаточной длины.",
+                                                            "options": {"b" if key == "a" else "a": "Разбор неверного варианта достаточной длины."}}}
+        errors = v.check_all([], TOPICS, [rule()], [check("c1", "a"), check("c2", "a"), check("c3", "a")])
+        self.assertIn("правило aspect-suffixes: у вопросов c1, c2, c3 ключ на одном месте три раза подряд", errors)
+        self.assertEqual(v.check_all([], TOPICS, [rule()], [check("c1", "a"), check("c2", "b"), check("c3", "a")]), [])
 
 
 class BankOverlapTest(unittest.TestCase):
