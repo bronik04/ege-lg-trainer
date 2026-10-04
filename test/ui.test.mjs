@@ -486,6 +486,8 @@ test('полный вариант: часы идут, пока страница 
 test('часы варианта: переход по позициям не теряет время, вкладки не затирают ответы', { skip }, async () => {
   // Пять минут на одной позиции (часы страницы подменены), затем «Дальше».
   const context = await browser.newContext({ viewport: { width: 1100, height: 900 } });
+  // Как в open(): шрифты из сети тесту не нужны, а зависшая сеть не должна держать загрузку.
+  await context.route(/^https?:\/\//, (route) => route.abort());
   const errors = [];
   const a = await context.newPage();
   a.on('pageerror', (e) => errors.push(e.message));
