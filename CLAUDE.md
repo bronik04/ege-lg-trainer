@@ -13,6 +13,9 @@
   содержания). После публикации задание партии меняют, только чтобы исправить его (ревью,
   сообщение ученика): новое условие или варианты — новый ID, ответы учеников на старое и
   разосланные ссылки с ним пропадут; это пишется в `CHANGELOG.md`.
+- `sources/hsk4/` не редактировать: это снимок файла автора с заданиями №26 из материалов HSK 4.
+  Обновление — только `scripts/snapshot_hsk.py`, затем `scripts/import_hsk.py`. Blue book не
+  берётся (решение автора 04.10.2026). Тексты HSK, как и ФИПИ, не правятся.
 - `data/raw/*.json` и `data/questions.json` пишутся только скриптами, руками — никогда.
   Тесты сверяют их с пересборкой.
 - Формулировки, варианты и их порядок из источника не правятся. Спорный ключ — не
@@ -55,6 +58,7 @@
 
     python3 scripts/import_constructor.py   # sources/constructor-bank → data/raw/fipi.json
     python3 scripts/import_generated.py     # sources/generated → data/raw/generated.json
+    python3 scripts/snapshot_hsk.py         # файл автора с заданиями HSK 4 → sources/hsk4/
     python3 scripts/build_bank.py           # data/raw + data/authored → data/questions.json + отчёты
     python3 scripts/validate.py             # инварианты банка, правил и вопросов
     python3 scripts/build_site.py           # dist/index.html — только принятое
