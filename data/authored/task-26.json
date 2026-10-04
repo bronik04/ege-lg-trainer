@@ -696,7 +696,8 @@
         "4": "BAC"
       },
       "correctOptionId": "2"
-    }
+    },
+    "keyDecision": "hidden"
   },
   "q26-033bbce7": {
     "status": "accepted",
