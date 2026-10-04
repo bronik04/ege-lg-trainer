@@ -91,6 +91,12 @@ class QuestionInvariantsTest(unittest.TestCase):
         q["sourceRef"] = dict(q["sourceRef"], specVersion="ЕГЭ 2026")
         self.assertEqual(problems(q), [])
 
+    def test_hsk_needs_paper_and_number(self):
+        q = dict(ready_question(), origin="hsk")
+        self.assertTrue(any("задания HSK" in p for p in problems(q)))
+        q["sourceRef"] = {"collection": "HSK 4", "paper": "H41001", "number": 56}
+        self.assertEqual(problems(q), [])
+
     def test_duplicate_ids(self):
         q = ready_question()
         self.assertIn("банк: повторяется ID 'q20-00000001'", v.check_all([q, clone(q)], TOPICS, [rule()], []))
@@ -163,6 +169,14 @@ class BankOverlapTest(unittest.TestCase):
         bank = [("q16-x", "父亲给我女儿送了一条裙子")]
         item = dict(rule(), usage=["条 — 一条裙子, 一条河"])
         self.assertEqual(v.bank_overlap_problems(item, bank), [])
+
+    def test_excluded_task_is_not_compared_with_rules(self):
+        # Исключённое (повтор, задание HSK с подсказкой ключа ФИПИ) ученик не видит.
+        q = ready_question(stem="老板正开___会，不方便接电话。")
+        copied = stamped(dict(rule(), examples=[{"zh": "老板正开着会呢。", "ru": "…"}, {"zh": "我吃过。", "ru": "…"}]))
+        self.assertTrue(any("повторяет задание" in e for e in v.check_all([q], TOPICS, [copied], [])))
+        q["reviewStatus"] = "excluded"
+        self.assertFalse(any("повторяет задание" in e for e in v.check_all([q], TOPICS, [copied], [])))
 
 
 class RealDataTest(unittest.TestCase):

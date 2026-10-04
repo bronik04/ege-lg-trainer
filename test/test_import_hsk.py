@@ -10,8 +10,10 @@ from unittest import mock
 
 from test import helpers  # noqa: F401  (добавляет scripts/ в sys.path)
 
+import build_bank as bb
 import import_hsk as imp
 from common import HSK_MANIFEST, HSK_SOURCE, INSTRUCTIONS, read_json
+from test.helpers import TOPICS, authored_for, record as fipi_record, rule
 
 
 def block(source="样卷 H40000 №56", fragments=("他就给我打了电话", "说明天不来了", "我刚到家"),
@@ -126,6 +128,48 @@ class LoadTest(unittest.TestCase):
         self.assertIn("Не берутся по решению автора: Blue book — 1.", text)
         self.assertIn("| 样卷 H40000 | 1 |", text)
         self.assertIn("## Замечания\n\nНет.", text)
+
+
+
+def hsk(**kw):
+    rec, problems = parse(block(**kw))
+    assert not problems, problems
+    return rec
+
+
+class BankTest(unittest.TestCase):
+    def test_hsk_task_goes_through_pipeline(self):
+        rec = hsk()
+        entry = authored_for(rec, topic_ids=("sentence-order",))
+        questions, _ = bb.merge([rec], {rec["id"]: entry}, TOPICS, [rule()])
+        self.assertEqual(questions[0]["reviewStatus"], "ready")
+        self.assertEqual(bb.merge([rec], {}, TOPICS, [rule()])[0][0]["reviewStatus"], "imported")
+
+    def test_near_copy_of_fipi_is_a_repeat(self):
+        fipi = fipi_record(task=26, qid="q26-aaaaaaaa", stem="A) 他就给我打了电话\nB) 说明天不来了\nC) 我刚到家",
+                           options=("ABC", "ACB", "CAB", "BCA"), correct="3")
+        rec = hsk()
+        status = {q["id"]: q for q in bb.merge([fipi, rec], {}, TOPICS, [rule()])[0]}
+        self.assertEqual(status[rec["id"]]["reviewStatus"], "excluded")
+        self.assertEqual(status[rec["id"]]["duplicateOf"], "q26-aaaaaaaa")
+
+    def test_hsk_task_with_fipi_key_hint_is_excluded(self):
+        # Ключ 才 задания ФИПИ с соседними иероглифами («小时才», «才能到») стоит во фрагменте задания HSK:
+        # ученик увидит его до ответа. Ни то, ни другое не правят — задание HSK не публикуется.
+        fipi = fipi_record(task=22, qid="q22-cccccccc", stem="坐地铁要坐一个多小时___能到。",
+                           options=("才", "只", "就", "再"), correct="1")
+        leaking = hsk(fragments=("走路要一个多小时才能到", "所以我们打车去吧", "学校离这儿很远"))
+        clean = hsk(source="H41001 №57")
+        records = [fipi, leaking, clean]
+        questions, _ = bb.merge(records, {}, TOPICS, [rule()])
+        status = {q["id"]: q for q in questions}
+        self.assertEqual(status[leaking["id"]]["reviewStatus"], "excluded")
+        self.assertEqual(status[leaking["id"]]["hintsKeyOf"], ["q22-cccccccc"])
+        self.assertNotIn("duplicateOf", status[leaking["id"]])
+        self.assertEqual(status[clean["id"]]["reviewStatus"], "imported")
+        report = bb.duplicates_report(records, questions)
+        self.assertIn("## Задания HSK с подсказкой ключа ФИПИ (не публикуются)", report)
+        self.assertIn(f"- `{leaking['id']}` (样卷 H40000, №56): `q22-cccccccc`", report)
 
 
 if __name__ == "__main__":

@@ -12,7 +12,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import QUESTIONS, RULE_CHECKS, RULES, TASK_NUMBERS, TOPICS, content_hash, read_json  # noqa: E402
 
-ORIGINS = {"fipi", "generated"}
+ORIGINS = {"fipi", "generated", "hsk"}
 REVIEW_STATUSES = {"imported", "draft", "ready", "conflict", "excluded"}
 CONTENT_STATUSES = {"draft", "accepted"}
 RULE_CHECK_KINDS = {"choose-form", "identify-rule"}
@@ -101,6 +101,8 @@ def question_problems(q, topic_ids, rules_by_id):
         problems.append("нет реквизитов источника")
     if q.get("origin") == "generated" and not (q.get("sourceRef") or {}).get("specVersion"):
         problems.append("у сгенерированного задания нет версии спецификации")
+    if q.get("origin") == "hsk" and not ((q.get("sourceRef") or {}).get("paper") and (q.get("sourceRef") or {}).get("number")):
+        problems.append("у задания HSK нет варианта или номера в источнике")
     for field in ("prompt", "stem"):
         if not isinstance(q.get(field), str) or not q[field].strip():
             problems.append(f"пустое поле {field}")
@@ -270,7 +272,8 @@ def check_all(questions, topics, rules, rule_checks):
             errors.append(f"тема {t.get('id')}: нет названия")
         if any(n not in TASK_NUMBERS for n in t.get("taskNumbers", [])):
             errors.append(f"тема {t.get('id')}: номер задания вне 15–27")
-    bank_texts = [(q.get("id"), filled_stem(q)) for q in questions]
+    # Исключённое (повтор, задание HSK с подсказкой ключа ФИПИ) ученик не видит — с ним не сверяем.
+    bank_texts = [(q.get("id"), filled_stem(q)) for q in questions if q.get("reviewStatus") != "excluded"]
     for r in rules:
         errors += [f"правило {r.get('id')}: {p}" for p in rule_problems(r, topic_ids)]
         errors += [f"правило {r.get('id')}: {p}" for p in bank_overlap_problems(r, bank_texts)]
