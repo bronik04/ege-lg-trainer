@@ -118,7 +118,7 @@ if __name__ == "__main__":
     unittest.main()
 
 
-class SnapshotTest(unittest.TestCase):
+class SnapshotFilterTest(unittest.TestCase):
     def test_only_fipi_blocks_are_copied(self):
         import snapshot_constructor as snap
         with tempfile.TemporaryDirectory() as tmp:
