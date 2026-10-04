@@ -141,7 +141,7 @@ export function pruneProgress(progress, questions) {
         ids.push(id);
         return;
       }
-      const swap = refill && questions.find((q) => q.taskNumber === idTaskNumber(id) && !taken.has(q.id));
+      const swap = refill && questions.find((q) => q.taskNumber === idTaskNumber(id) && q.origin !== 'hsk' && !taken.has(q.id));
       if (swap) {
         taken.add(swap.id);
         ids.push(swap.id);
@@ -327,17 +327,35 @@ export function filterQuestions(questions, filters, progress, now = null) {
   });
 }
 
+// Раунд из отобранного: номера по кругу (номера в случайном порядке, внутри номера — задания в
+// случайном порядке), чтобы один большой номер не занимал всю подборку; итог перемешан.
+// «Все» — всё отобранное вперемешку.
 export function pickRound(list, size, rng = Math.random) {
   const shuffled = shuffle(list, rng);
   if (size === 'all') return shuffled;
-  return shuffled.slice(0, Number(size));
+  const groups = new Map();
+  for (const item of shuffled) {
+    const key = item && typeof item === 'object' ? item.taskNumber : undefined;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(item);
+  }
+  const queues = shuffle([...groups.values()], rng);
+  const limit = Math.min(Number(size), list.length);
+  const picked = [];
+  while (picked.length < limit) {
+    for (const queue of queues) {
+      if (queue.length && picked.length < limit) picked.push(queue.shift());
+    }
+  }
+  return shuffle(picked, rng);
 }
 
-// Одно задание на каждую позицию 15–27. Если позиция пуста — вариант не собирается.
+// Одно задание на каждую позицию 15–27, только формата ЕГЭ: задания HSK (origin 'hsk') — для
+// практики. Если позиция пуста — вариант не собирается.
 export function buildVariant(questions, rng = Math.random) {
   const byTask = new Map(TASK_NUMBERS.map((n) => [n, []]));
   for (const q of questions) {
-    if (byTask.has(q.taskNumber)) byTask.get(q.taskNumber).push(q);
+    if (q.origin !== 'hsk' && byTask.has(q.taskNumber)) byTask.get(q.taskNumber).push(q);
   }
   const missing = TASK_NUMBERS.filter((n) => byTask.get(n).length === 0);
   if (missing.length) return { ok: false, missing };
