@@ -56,7 +56,7 @@
     "acceptedHash": "0a1830ef9e68"
   },
   "g27-7d4f1164": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -80,7 +80,8 @@
         "4": "先……，然后……"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "367d4e0a58f5"
   },
   "g27-afa50163": {
     "status": "accepted",
@@ -951,7 +952,7 @@
     "acceptedHash": "9f77d70f9e3a"
   },
   "q27-f8bae1de": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -975,6 +976,7 @@
         "4": "不管……都……"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "f5907f88577c"
   }
 }

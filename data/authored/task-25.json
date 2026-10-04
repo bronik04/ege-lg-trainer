@@ -84,7 +84,7 @@
     "acceptedHash": "e7ba1841d262"
   },
   "q25-2e11d7f0": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -108,7 +108,8 @@
         "4": "进来"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "31c0a43254ae"
   },
   "q25-3991756d": {
     "status": "accepted",
@@ -419,7 +420,7 @@
     "acceptedHash": "0e9bc167dd2b"
   },
   "q25-84c7f7cd": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -443,7 +444,8 @@
         "4": "进来"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "07cb3aa56093"
   },
   "q25-88ef4f36": {
     "status": "accepted",
@@ -502,7 +504,7 @@
     "acceptedHash": "23648d34c114"
   },
   "q25-9b2c0674": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -526,10 +528,11 @@
         "4": "进来"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "2054bf1d29ac"
   },
   "q25-a3579576": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -553,7 +556,8 @@
         "4": "起来"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "92e5b2f659a0"
   },
   "q25-a3749f53": {
     "status": "accepted",

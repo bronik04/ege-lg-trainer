@@ -1,5 +1,41 @@
 [
   {
+    "id": "g16-56406db2",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-04-claude-16"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "情人节那天小王送给女朋友一大___玫瑰花。",
+    "options": [
+      {
+        "id": "1",
+        "text": "支"
+      },
+      {
+        "id": "2",
+        "text": "束"
+      },
+      {
+        "id": "3",
+        "text": "件"
+      },
+      {
+        "id": "4",
+        "text": "个"
+      }
+    ],
+    "correctOptionId": "2",
+    "replaces": "q16-15173f0c"
+  },
+  {
     "id": "g17-15dffc05",
     "taskNumber": 17,
     "formatYear": 2026,

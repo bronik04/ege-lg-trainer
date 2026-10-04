@@ -28,7 +28,7 @@
     "acceptedHash": "9d55553b956c"
   },
   "g22-0efff49d": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "adverbs"
     ],
@@ -52,10 +52,11 @@
         "4": "再"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "1b56b28b39dd"
   },
   "g22-0f92a686": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "adverbs"
     ],
@@ -79,10 +80,11 @@
         "4": "都"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "36915b2dd3a4"
   },
   "g22-28358953": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "adverbs"
     ],
@@ -106,10 +108,11 @@
         "4": "先"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "6932b791e294"
   },
   "g22-32275447": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "adverbs"
     ],
@@ -133,7 +136,8 @@
         "4": "刚"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "7a28d4739deb"
   },
   "g22-3b227a02": {
     "status": "accepted",
@@ -276,7 +280,7 @@
     "acceptedHash": "9bda34b48932"
   },
   "g22-6fd140a6": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "adverbs"
     ],
@@ -300,10 +304,11 @@
         "4": "才"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "c3bc6cb43a6a"
   },
   "g22-8e0d6e04": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "adverbs"
     ],
@@ -327,7 +332,8 @@
         "4": "再"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "c09cb67ab11a"
   },
   "g22-9e68f70e": {
     "status": "accepted",
@@ -358,7 +364,7 @@
     "acceptedHash": "b9542d6e7bba"
   },
   "g22-b7a65c53": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "adverbs"
     ],
@@ -382,7 +388,8 @@
         "4": "才"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "95ec6ebc5321"
   },
   "g22-b83d66c1": {
     "status": "accepted",
@@ -413,7 +420,7 @@
     "acceptedHash": "2d8dba8c1df0"
   },
   "g22-cac19890": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "adverbs"
     ],
@@ -437,7 +444,8 @@
         "4": "先"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "9b62126922bc"
   },
   "g22-d3b7a722": {
     "status": "accepted",
@@ -468,7 +476,7 @@
     "acceptedHash": "c8b4b3b20add"
   },
   "g22-dd72ab9f": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "adverbs"
     ],
@@ -492,7 +500,8 @@
         "4": "一共"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "c7d454dfd4ae"
   },
   "g22-ec63aa4b": {
     "status": "accepted",
@@ -999,7 +1008,7 @@
     "acceptedHash": "82021bebfce7"
   },
   "q22-bd920829": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "adverbs"
     ],
@@ -1023,7 +1032,8 @@
         "4": "才"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "ee9e768ceebb"
   },
   "q22-bee8f831": {
     "status": "accepted",

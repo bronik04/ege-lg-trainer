@@ -1,6 +1,6 @@
 {
   "g26-005a10f4": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "sentence-order"
     ],
@@ -25,10 +25,11 @@
         "4": "CBA"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "b4af6dc43683"
   },
   "g26-0e697d3f": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "sentence-order"
     ],
@@ -53,7 +54,8 @@
         "4": "CAB"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "fd29a5db10f6"
   },
   "g26-2ccff01f": {
     "status": "accepted",
@@ -84,7 +86,7 @@
     "acceptedHash": "debb50e0f9c9"
   },
   "g26-3e124cf0": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "sentence-order"
     ],
@@ -108,7 +110,8 @@
         "4": "CBA"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "eb2625f36627"
   },
   "g26-41bf9400": {
     "status": "accepted",
@@ -139,7 +142,7 @@
     "acceptedHash": "be5421ccfcd9"
   },
   "g26-42d81f83": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "sentence-order"
     ],
@@ -164,10 +167,11 @@
         "4": "CBA"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "72486bb1212d"
   },
   "g26-53945946": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "sentence-order"
     ],
@@ -192,7 +196,8 @@
         "4": "ACB"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "fe21cc373deb"
   },
   "g26-856c75e8": {
     "status": "accepted",
@@ -223,7 +228,7 @@
     "acceptedHash": "d14f190976c7"
   },
   "g26-8c385c1d": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "sentence-order"
     ],
@@ -248,7 +253,8 @@
         "4": "BCA"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "e51406ade455"
   },
   "g26-a362751e": {
     "status": "accepted",
@@ -279,7 +285,7 @@
     "acceptedHash": "0a7bcba77bed"
   },
   "g26-a7b1969a": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "sentence-order"
     ],
@@ -304,10 +310,11 @@
         "4": "BCA"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "d7a80315ac50"
   },
   "g26-b97b6012": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "sentence-order"
     ],
@@ -332,10 +339,11 @@
         "4": "BAC"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "21111eaba2d9"
   },
   "g26-c8de257e": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "sentence-order"
     ],
@@ -359,10 +367,11 @@
         "4": "CAB"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "814f92cd153b"
   },
   "g26-e8d0f342": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "sentence-order"
     ],
@@ -387,10 +396,11 @@
         "4": "ABC"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "77aa686ff460"
   },
   "g26-efa1b2c7": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "sentence-order"
     ],
@@ -414,7 +424,8 @@
         "4": "BAC"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "de785f9349bb"
   },
   "q26-033bbce7": {
     "status": "accepted",
@@ -585,7 +596,7 @@
     "acceptedHash": "680b57037e96"
   },
   "q26-8c54e1bd": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "sentence-order"
     ],
@@ -609,7 +620,8 @@
         "4": "CAB"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "3503348b6453"
   },
   "q26-90ae9ac5": {
     "status": "accepted",

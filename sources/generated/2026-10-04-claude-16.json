@@ -1,0 +1,21 @@
+{
+  "generator": "Claude (Opus 5.5) по заданию автора тренажёра",
+  "specVersion": "ЕГЭ 2026",
+  "tasks": [
+    {
+      "taskNumber": 16,
+      "stem": "情人节那天小王送给女朋友一大___玫瑰花。",
+      "options": [
+        "支",
+        "束",
+        "件",
+        "个"
+      ],
+      "key": 2,
+      "codifierCodes": [
+        "2.4.33"
+      ],
+      "replaces": "q16-15173f0c"
+    }
+  ]
+}

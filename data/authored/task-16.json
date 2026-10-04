@@ -1,6 +1,33 @@
 {
-  "q16-02da78dd": {
+  "g16-56406db2": {
     "status": "draft",
+    "topicIds": [
+      "measure-words"
+    ],
+    "ruleIds": [
+      "measure-words-more"
+    ],
+    "explanation": {
+      "correct": "一大束玫瑰花 — «большой букет роз». 束 — счётное слово для связанного пучка, букета: 一束花. 大 между 一 и 束 подчёркивает, что букет большой.",
+      "options": {
+        "1": "支 — для одного цветка на стебле: 一支玫瑰. Сочетание 一大支 для розы необычно: размер одного цветка передают через 朵 (一大朵), размер букета — через 束 (一大束).",
+        "3": "件 — для одежды на верх тела и для дел: 一件衬衫, 一件事; так считают и подарки: 一件礼物. Но здесь счётное слово стоит перед 玫瑰花, а цветы через 件 не считают.",
+        "4": "个 — общее счётное слово. У цветов есть свои — 朵 и 支 (один цветок), 束 (букет), и задание 16 проверяет именно их."
+      }
+    },
+    "sourceSnapshot": {
+      "stem": "情人节那天小王送给女朋友一大___玫瑰花。",
+      "options": {
+        "1": "支",
+        "2": "束",
+        "3": "件",
+        "4": "个"
+      },
+      "correctOptionId": "2"
+    }
+  },
+  "q16-02da78dd": {
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -24,7 +51,8 @@
         "4": "只"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "7048f6b929ac"
   },
   "q16-072c7244": {
     "status": "accepted",
@@ -164,7 +192,8 @@
         "4": "个"
       },
       "correctOptionId": "2"
-    }
+    },
+    "keyDecision": "hidden"
   },
   "q16-151eca47": {
     "status": "accepted",
@@ -195,7 +224,7 @@
     "acceptedHash": "751f317c4c87"
   },
   "q16-153f9be8": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -219,10 +248,11 @@
         "4": "只"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "0cda05071ca6"
   },
   "q16-1a77e4ec": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -246,7 +276,8 @@
         "4": "把"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "130a78560ed1"
   },
   "q16-1dcde8be": {
     "status": "accepted",
@@ -277,7 +308,7 @@
     "acceptedHash": "a0d73ca0fa11"
   },
   "q16-2a9b389a": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -301,10 +332,11 @@
         "4": "艘"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "1e08d2d7608a"
   },
   "q16-2e0d86a4": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -328,7 +360,8 @@
         "4": "块"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "a4a154684540"
   },
   "q16-3d336552": {
     "status": "accepted",
@@ -359,7 +392,7 @@
     "acceptedHash": "28ca2e2c63f9"
   },
   "q16-4b2ffc87": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -383,10 +416,11 @@
         "4": "件"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "b01bc888bb96"
   },
   "q16-50502d3d": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -410,7 +444,8 @@
         "4": "张"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "cb0b30a94148"
   },
   "q16-5250d2b8": {
     "status": "accepted",
@@ -469,7 +504,7 @@
     "acceptedHash": "3a267ac2ad70"
   },
   "q16-6cfa621a": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -493,7 +528,8 @@
         "4": "条"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "72a40678c90d"
   },
   "q16-7973ed72": {
     "status": "accepted",
@@ -636,7 +672,7 @@
     "acceptedHash": "8255413ce07f"
   },
   "q16-b93fb601": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -660,10 +696,11 @@
         "4": "块"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "05f8382e429a"
   },
   "q16-c469d69b": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -687,7 +724,8 @@
         "4": "只"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "3bcd18867508"
   },
   "q16-d8f3a39e": {
     "status": "accepted",
@@ -718,7 +756,7 @@
     "acceptedHash": "e458b822d09b"
   },
   "q16-e73c58d2": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -742,10 +780,11 @@
         "4": "块"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "b2b8fc7213a2"
   },
   "q16-fff46d4a": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -769,6 +808,7 @@
         "4": "套"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "8c835ca918ea"
   }
 }

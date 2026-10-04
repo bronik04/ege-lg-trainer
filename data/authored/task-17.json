@@ -56,7 +56,7 @@
     "acceptedHash": "ce3038efb0d4"
   },
   "g17-281bfd85": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "word-choice"
     ],
@@ -80,7 +80,8 @@
         "4": "谈论"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "987f3a38e944"
   },
   "g17-37b686bf": {
     "status": "accepted",
@@ -335,7 +336,7 @@
     "acceptedHash": "fe403d3921d7"
   },
   "g17-c84ed73f": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "word-choice"
     ],
@@ -359,7 +360,8 @@
         "4": "风格"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "45a9ea36af9c"
   },
   "g17-c8ff056c": {
     "status": "accepted",
@@ -474,7 +476,7 @@
     "acceptedHash": "014ce3116524"
   },
   "q17-415afdf5": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "word-choice"
     ],
@@ -498,7 +500,8 @@
         "4": "形成"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "4c82705fad78"
   },
   "q17-65d17b32": {
     "status": "accepted",

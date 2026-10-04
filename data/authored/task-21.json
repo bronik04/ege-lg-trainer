@@ -26,7 +26,7 @@
     "acceptedHash": "7cec1753344d"
   },
   "q21-0258c21a": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "de-particles"
     ],
@@ -48,7 +48,8 @@
         "3": "地"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "eb3a465d9cc4"
   },
   "q21-0404c641": {
     "status": "accepted",
@@ -103,7 +104,7 @@
     "acceptedHash": "809f38b4deaf"
   },
   "q21-10b7e7cc": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "de-particles"
     ],
@@ -125,7 +126,8 @@
         "3": "地"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "e518ed700774"
   },
   "q21-11cf69ee": {
     "status": "accepted",
@@ -180,7 +182,7 @@
     "acceptedHash": "6a5044e0b1b2"
   },
   "q21-2981e158": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "de-particles"
     ],
@@ -202,7 +204,8 @@
         "3": "地"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "ba0fd51f1c0f"
   },
   "q21-3a719e45": {
     "status": "accepted",
@@ -231,7 +234,7 @@
     "acceptedHash": "ba615cde1869"
   },
   "q21-4ea5000e": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "de-particles"
     ],
@@ -253,7 +256,8 @@
         "3": "地"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "2b43b436e21d"
   },
   "q21-5760054d": {
     "status": "accepted",
@@ -282,7 +286,7 @@
     "acceptedHash": "830c3a31736e"
   },
   "q21-59adb08f": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "de-particles"
     ],
@@ -304,7 +308,8 @@
         "3": "地"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "2aec719633eb"
   },
   "q21-5e626885": {
     "status": "accepted",
@@ -437,7 +442,7 @@
     "acceptedHash": "7ce8c29d3417"
   },
   "q21-93912c96": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "de-particles"
     ],
@@ -459,7 +464,8 @@
         "3": "地"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "7df869537baf"
   },
   "q21-ae5362db": {
     "status": "accepted",
@@ -618,7 +624,7 @@
     "acceptedHash": "32940037b91d"
   },
   "q21-d6ff20d2": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "de-particles"
     ],
@@ -640,10 +646,11 @@
         "3": "地"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "0ac57e8449ac"
   },
   "q21-da9ba3fd": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "de-particles"
     ],
@@ -665,10 +672,11 @@
         "3": "地"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "d6a8462e0878"
   },
   "q21-de3eadec": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "de-particles"
     ],
@@ -690,7 +698,8 @@
         "3": "地"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "5d3f4a7350e6"
   },
   "q21-ff0b145c": {
     "status": "accepted",

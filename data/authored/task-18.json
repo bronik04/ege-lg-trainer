@@ -28,7 +28,7 @@
     "acceptedHash": "f74c2313aadc"
   },
   "g18-046ee71e": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "prepositions"
     ],
@@ -52,10 +52,11 @@
         "4": "在"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "48c2a70dee98"
   },
   "g18-0dd158dc": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "comparison"
     ],
@@ -79,10 +80,11 @@
         "4": "比"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "95a82b4e1833"
   },
   "g18-0f80b99e": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "prepositions"
     ],
@@ -106,7 +108,8 @@
         "4": "对"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "1368e68b3aaa"
   },
   "g18-1b609183": {
     "status": "accepted",
@@ -193,7 +196,7 @@
     "acceptedHash": "ee69a94c27ae"
   },
   "g18-38fcabdc": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "comparison"
     ],
@@ -217,10 +220,11 @@
         "4": "为"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "4d1c0cfc6899"
   },
   "g18-48f20e74": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "prepositions"
     ],
@@ -244,7 +248,8 @@
         "4": "被"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "8941964c9f87"
   },
   "g18-4d1eca29": {
     "status": "accepted",
@@ -275,7 +280,7 @@
     "acceptedHash": "77ebd1d708cc"
   },
   "g18-5027f45b": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "comparison"
     ],
@@ -299,7 +304,8 @@
         "4": "从"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "8db60e503c9f"
   },
   "g18-5431fa02": {
     "status": "accepted",
@@ -358,7 +364,7 @@
     "acceptedHash": "7f4ffcc9d2e6"
   },
   "g18-6dc5d521": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "prepositions"
     ],
@@ -382,10 +388,11 @@
         "4": "离"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "d899fa472018"
   },
   "g18-76a15c80": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "prepositions"
     ],
@@ -409,10 +416,11 @@
         "4": "在"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "fa852776a321"
   },
   "g18-7b3af771": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "prepositions"
     ],
@@ -436,7 +444,8 @@
         "4": "向"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "decdfa17e42e"
   },
   "g18-87d79fc9": {
     "status": "accepted",
@@ -523,7 +532,7 @@
     "acceptedHash": "468876ad2d4c"
   },
   "g18-9619165c": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "comparison"
     ],
@@ -547,7 +556,8 @@
         "4": "从"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "63037e51d33c"
   },
   "g18-98fe601e": {
     "status": "accepted",
@@ -690,7 +700,7 @@
     "acceptedHash": "2329d245faf4"
   },
   "g18-b2acfd46": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "comparison"
     ],
@@ -714,7 +724,8 @@
         "4": "离"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "cf5c9c9c35cf"
   },
   "g18-b4d4eb85": {
     "status": "accepted",
@@ -941,7 +952,7 @@
     "acceptedHash": "563509eb1ffc"
   },
   "g18-d7a7e4f8": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "prepositions"
     ],
@@ -965,10 +976,11 @@
         "4": "为"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "171fa42a9e94"
   },
   "g18-d7c712b6": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "prepositions"
     ],
@@ -992,7 +1004,8 @@
         "4": "为"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "d27c19bdd0c3"
   },
   "g18-e112996e": {
     "status": "accepted",
@@ -1023,7 +1036,7 @@
     "acceptedHash": "a07105e10fb2"
   },
   "g18-e1498403": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "comparison"
     ],
@@ -1047,7 +1060,8 @@
         "4": "从"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "d4e76004f160"
   },
   "g18-e4d426f2": {
     "status": "accepted",
@@ -1444,7 +1458,7 @@
     "acceptedHash": "58210af3acd9"
   },
   "q18-6088fbb2": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "comparison"
     ],
@@ -1468,10 +1482,11 @@
         "4": "从"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "adece05e9c59"
   },
   "q18-78eafd0d": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "comparison"
     ],
@@ -1495,7 +1510,8 @@
         "4": "和"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "c7ab8e96fba2"
   },
   "q18-867dbad3": {
     "status": "accepted",
@@ -1638,7 +1654,7 @@
     "acceptedHash": "ad758e4e8c44"
   },
   "q18-a871794b": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "comparison"
     ],
@@ -1662,7 +1678,8 @@
         "4": "为"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "66690f55bd2d"
   },
   "q18-a91f14b7": {
     "status": "accepted",
@@ -1861,7 +1878,7 @@
     "acceptedHash": "52f172a42389"
   },
   "q18-fefb3ab2": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "comparison"
     ],
@@ -1885,6 +1902,7 @@
         "4": "在"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "d258d844ed40"
   }
 }

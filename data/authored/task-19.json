@@ -224,7 +224,7 @@
     "acceptedHash": "9bbf84edbb18"
   },
   "q19-5b8bfdb4": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "numerals"
     ],
@@ -248,7 +248,8 @@
         "4": "10 057 112"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "4b094fb3ca92"
   },
   "q19-62df1bf6": {
     "status": "accepted",
@@ -279,7 +280,7 @@
     "acceptedHash": "04240e89d4f4"
   },
   "q19-6f04df90": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "numerals"
     ],
@@ -303,7 +304,8 @@
         "4": "32 105 010"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "d5a742d6d799"
   },
   "q19-74f8ff92": {
     "status": "accepted",
@@ -334,7 +336,7 @@
     "acceptedHash": "7605947f1894"
   },
   "q19-8c240aa3": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "numerals"
     ],
@@ -358,7 +360,8 @@
         "4": "753400 267"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "5ced0362e439"
   },
   "q19-90effd32": {
     "status": "accepted",
@@ -473,7 +476,7 @@
     "acceptedHash": "ee9128f6abd7"
   },
   "q19-a1b27998": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "numerals"
     ],
@@ -497,10 +500,11 @@
         "4": "723 000 659"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "4777ed4b072c"
   },
   "q19-b7f468e7": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "numerals"
     ],
@@ -524,7 +528,8 @@
         "4": "7 304 876"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "91f1b44e5fab"
   },
   "q19-bc0c1dbb": {
     "status": "accepted",
@@ -583,7 +588,7 @@
     "acceptedHash": "15c599ff26cb"
   },
   "q19-d2417962": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "numerals"
     ],
@@ -607,7 +612,8 @@
         "4": "82 549 621723"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "335e8279d226"
   },
   "q19-e1d330df": {
     "status": "accepted",
@@ -638,7 +644,7 @@
     "acceptedHash": "6eebcf1a0ea9"
   },
   "q19-e607a0dc": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "numerals"
     ],
@@ -662,7 +668,8 @@
         "4": "60300 013"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "aad7688294f6"
   },
   "q19-e693feca": {
     "status": "accepted",
@@ -721,7 +728,7 @@
     "acceptedHash": "c399ac6a035d"
   },
   "q19-f433d0c0": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "numerals"
     ],
@@ -745,7 +752,8 @@
         "4": "78 500 002"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "9e2696290e6b"
   },
   "q19-fb6523d0": {
     "status": "accepted",
