@@ -115,6 +115,11 @@ def fipi_twin(record, fipi_records):
     return best
 
 
+def hidden_conflict(entry):
+    """Спорный ключ в разборе, и автор не вернул задание с ключом ФИПИ: задание скрыто."""
+    return bool(entry and entry.get("keyConflict") and entry.get("keyDecision") != "restore")
+
+
 def correct_text(record):
     return next((o["text"] for o in record["options"] if o["id"] == record["correctOptionId"]), None)
 
@@ -183,12 +188,14 @@ def merge(records, authored, topics, rules):
 
     excluded, conflicts, _, _ = find_duplicates(records)
     # Сгенерированное задание, повторяющее или почти повторяющее задание ФИПИ, в банк не идёт.
+    # Кроме исправленной копии (replaces) спорного задания, пока автор держит оригинал скрытым:
+    # ученик его не видит. Вернёт оригинал с ключом ФИПИ — копия снова повтор.
     fipi_records = [r for r in records if r["origin"] == "fipi"]
     for r in records:
         if r["origin"] != "generated" or r["id"] in excluded:
             continue
         twin, ratio = fipi_twin(r, fipi_records)
-        if twin and ratio >= NEAR_DUPLICATE:
+        if twin and ratio >= NEAR_DUPLICATE and not (r.get("replaces") == twin and hidden_conflict(authored.get(twin))):
             excluded[r["id"]] = twin
     pending = {}
     questions = []
@@ -239,7 +246,7 @@ def merge(records, authored, topics, rules):
             conflict = check_numeral_key(record)
         # «Вернуть с ключом ФИПИ» — решение автора: задание больше не спорное и идёт обычной
         # дорогой (черновик → раздел 1 → принятие), даже если пометка keyConflict осталась.
-        if entry and entry.get("keyConflict") and entry.get("keyDecision") != "restore":
+        if hidden_conflict(entry):
             conflict = entry["keyConflict"]
 
         if record["id"] in excluded:
@@ -372,7 +379,12 @@ def duplicates_report(records, questions, rules=(), rule_checks=()):
     if not near:
         lines.append("Нет.")
     for r, twin, ratio in near:
-        verdict = "исключено как повтор" if ratio >= NEAR_DUPLICATE else "проверить вручную"
+        if ratio < NEAR_DUPLICATE:
+            verdict = "проверить вручную"
+        elif status[r["id"]]["reviewStatus"] == "excluded":
+            verdict = "исключено как повтор"
+        else:
+            verdict = "исправленная копия скрытого спорного задания"
         lines.append(f"- `{r['id']}` ~ `{twin}`: сходство {round(ratio * 100)}% — {verdict}")
     lines += ["", "## То же условие, другие варианты (проверить вручную)", ""]
     if not similar:

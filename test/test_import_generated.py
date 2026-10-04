@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from test.helpers import TOPICS, record as fipi_record, rule
+from test.helpers import TOPICS, authored_for, record as fipi_record, rule
 
 import build_bank as bb
 import import_generated as ig
@@ -81,6 +81,22 @@ class RecordTest(unittest.TestCase):
             rec, problems = ig.record(task, "b", "g", "ЕГЭ 2026")
             self.assertIsNone(rec)
             self.assertTrue(problems, task)
+
+    def test_replacement_names_fipi_task(self):
+        task = {"taskNumber": 16, "stem": "他送给我一大___花。", "options": ["支", "束", "条", "个"], "key": 2,
+                "replaces": "q16-15173f0c"}
+        rec, problems = ig.record(task, "b", "g", "ЕГЭ 2026")
+        self.assertEqual(problems, [])
+        self.assertEqual(rec["replaces"], "q16-15173f0c")
+        plain, _ = ig.record({k: v for k, v in task.items() if k != "replaces"}, "b", "g", "ЕГЭ 2026")
+        self.assertNotIn("replaces", plain)
+
+    def test_replacement_of_something_else_is_reported(self):
+        for replaces in ("q20-15173f0c", "g16-15173f0c", "15173f0c", 16, ""):
+            rec, problems = ig.record({"taskNumber": 16, "stem": "他送给我一大___花。", "options": ["支", "束", "条", "个"],
+                                       "key": 2, "replaces": replaces}, "b", "g", "ЕГЭ 2026")
+            self.assertIsNone(rec, replaces)
+            self.assertTrue(problems, replaces)
 
 
 class MarkdownTest(unittest.TestCase):
@@ -180,6 +196,40 @@ class GeneratedInBankTest(unittest.TestCase):
         status = {q["id"]: q["reviewStatus"] for q in questions}
         self.assertEqual(status[near["id"]], "excluded")
         self.assertEqual(status[other["id"]], "imported")
+
+    def disputed_with_replacement(self, decision, replaces="q20-aaaaaaaa"):
+        """Спорное задание ФИПИ с решением автора и копия, где спорный вариант заменён."""
+        fipi = fipi_record(qid="q20-aaaaaaaa")
+        entry = authored_for(fipi, status="draft")
+        entry.update(keyConflict="Подходят два варианта.", keyDecision=decision)
+        task = {"taskNumber": 20, "stem": fipi["stem"], "options": ["了", "着", "地"], "key": 2}
+        if replaces:
+            task["replaces"] = replaces
+        replacement, _ = ig.record(task, "b", "g", "ЕГЭ 2026")
+        records = [fipi, replacement]
+        questions, _ = bb.merge(records, {"q20-aaaaaaaa": entry}, TOPICS, [rule()])
+        return records, questions, replacement["id"]
+
+    def test_replacement_of_hidden_disputed_fipi_task_is_kept(self):
+        records, questions, copy_id = self.disputed_with_replacement("hidden")
+        status = {q["id"]: q["reviewStatus"] for q in questions}
+        self.assertEqual(status["q20-aaaaaaaa"], "conflict")
+        self.assertEqual(status[copy_id], "imported")
+        report = bb.duplicates_report(records, questions)
+        self.assertIn(f"`{copy_id}` ~ `q20-aaaaaaaa`: сходство 100% — исправленная копия скрытого спорного задания",
+                      report)
+
+    def test_replacement_is_a_repeat_once_fipi_key_is_restored(self):
+        records, questions, copy_id = self.disputed_with_replacement("restore")
+        status = {q["id"]: q for q in questions}
+        self.assertEqual(status[copy_id]["reviewStatus"], "excluded")
+        self.assertEqual(status[copy_id]["duplicateOf"], "q20-aaaaaaaa")
+        self.assertIn(f"`{copy_id}` ~ `q20-aaaaaaaa`: сходство 100% — исключено как повтор",
+                      bb.duplicates_report(records, questions))
+
+    def test_copy_of_hidden_task_without_replaces_is_a_repeat(self):
+        _, questions, copy_id = self.disputed_with_replacement("hidden", replaces=None)
+        self.assertEqual({q["id"]: q["reviewStatus"] for q in questions}[copy_id], "excluded")
 
 
 if __name__ == "__main__":
