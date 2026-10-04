@@ -4,6 +4,8 @@
 
 Задания условные: по одному на позицию 15–27, у 20 и 21 три варианта, у остальных четыре;
 плюс второе задание 22 (тема «наречия» встречается и в 27), одно сгенерированное и один черновик.
+Формы как в настоящих данных: своё «Сравните» у задания (q22-a), вопросы к правилам с двумя,
+тремя и четырьмя вариантами, вопрос «назовите правило» без предложения.
 """
 
 import json
@@ -41,12 +43,22 @@ RULES = [
 CHECKS = [
     {"id": "check-jiu", "kind": "choose-form", "ruleIds": ["jiu-cai"], "status": "accepted",
      "prompt": "Какое наречие показывает, что действие произошло раньше, чем ожидалось?",
-     "options": [{"id": "a", "text": "就"}, {"id": "b", "text": "才"}], "correctOptionId": "a",
-     "explanation": {"correct": "就 подчёркивает, что всё случилось рано и легко.", "options": {"b": "才 говорит об обратном: поздно или с трудом."}}},
+     "options": [{"id": "a", "text": "就"}, {"id": "b", "text": "才"}, {"id": "c", "text": "再"}], "correctOptionId": "a",
+     "explanation": {"correct": "就 подчёркивает, что всё случилось рано и легко.",
+                     "options": {"b": "才 говорит об обратном: поздно или с трудом.", "c": "再 — «ещё раз» или «потом», о сроке оно не судит."}}},
     {"id": "check-cai", "kind": "identify-rule", "ruleIds": ["jiu-cai"], "status": "accepted",
      "prompt": "Что выражает наречие в этом предложении?", "sentence": "他十点才来。", "sentenceRu": "Он пришёл только в десять.",
      "options": [{"id": "a", "text": "Раньше ожидаемого"}, {"id": "b", "text": "Позже ожидаемого"}], "correctOptionId": "b",
      "explanation": {"correct": "才 после указания времени: говорящий считает, что это поздно.", "options": {"a": "Раньше ожидаемого выражает 就, а не 才."}}},
+    {"id": "check-guo", "kind": "identify-rule", "ruleIds": ["aspect-suffixes"], "status": "accepted",
+     "prompt": "Что выражает 过 после глагола?",
+     "options": [{"id": "a", "text": "Действие длится сейчас"}, {"id": "b", "text": "Такое уже бывало когда-то"},
+                 {"id": "c", "text": "Действие только что закончилось"}, {"id": "d", "text": "Действие будет потом"}],
+     "correctOptionId": "b",
+     "explanation": {"correct": "过 — опыт: «когда-то уже было» (我去过北京).",
+                     "options": {"a": "Длящееся действие выражает 着 или 在, а не 过.",
+                                 "c": "Только что закончившееся — 刚 с 了, 过 говорит об опыте.",
+                                 "d": "О будущем 过 не говорит: оно смотрит в прошлое."}}},
 ]
 
 STEMS = {
@@ -92,6 +104,8 @@ def question(n, suffix="a", status="ready", origin="fipi", **extra):
 
 def main():
     questions = [question(n) for n in range(15, 28)]
+    # Своё «Сравните» у задания — его разбор показывает вместо примера из карточки правила.
+    questions[22 - 15]["contrast"] = {"zh": "他一会儿就回来。", "ru": "Он скоро вернётся."}
     questions.append(question(22, "b", stem="他八点___来了。", options=[{"id": "1", "text": "就"}, {"id": "2", "text": "才"}, {"id": "3", "text": "再"}, {"id": "4", "text": "又"}],
                               correctOptionId="1", explanation={"correct": f"就: {LONG}", "options": {"2": f"才: {LONG}", "3": f"再: {LONG}", "4": f"又: {LONG}"}}))
     questions.append(question(27, "gen", origin="generated", topicIds=["adverbs", "other"]))

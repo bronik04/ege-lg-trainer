@@ -9,6 +9,7 @@ import { mkdtempSync, readFileSync, writeFileSync, mkdirSync, rmSync } from 'nod
 import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import * as L from '../src/logic.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const FIXTURES = join(ROOT, 'test', 'fixtures');
@@ -140,10 +141,14 @@ test('тренировка: разбор выбранного неверного
     const texts = await page.evaluate(() => [...document.querySelectorAll('.option .text')].map((n) => n.textContent));
     await page.keyboard.press('2');
     await page.locator('.feedback').waitFor();
-    const verdicts = await page.locator('.verdict').count();
-    if (verdicts === 2) {
-      // Сначала — почему не подходит выбранный вариант, потом — верный ответ.
-      const order = await page.evaluate(() => [...document.querySelectorAll('.verdict')].map((n) => (n.classList.contains('bad') ? 'bad' : 'ok')));
+    const order = await page.evaluate(() => [...document.querySelectorAll('.verdict')].map((n) => (n.classList.contains('bad') ? 'bad' : 'ok')));
+    if (task === 'Задание 20') {
+      // В задании 20 второй вариант верен: один вердикт «Верно».
+      assert.deepEqual(order, ['ok']);
+      assert.match(await text(page, '.verdict.ok h3'), /^Верно/);
+    } else {
+      // В заданиях 22 — неверен: сначала почему не подходит выбранный вариант, потом верный ответ.
+      assert.equal(task, 'Задание 22');
       assert.deepEqual(order, ['bad', 'ok']);
       assert.match(await text(page, '.verdict.bad h3'), new RegExp(`Почему не ${texts[1]}`));
       assert.match(await text(page, '.verdict.bad p'), new RegExp(`Вариант ${texts[1]}|${texts[1]}:`));
@@ -227,6 +232,15 @@ test('полный вариант: 13 позиций, разбор только 
   assert.match(skippedBody, /задание 27/);
   await page.getByRole('button', { name: /Повторить ошибки варианта/ }).click();
   await see(page, '.progress', /Задание 1 из/);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('разбор: своё «Сравните» у задания вместо примера из карточки', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { hash: '#/practice?ids=q22-a' });
+  await page.locator('[data-card]').waitFor();
+  await page.keyboard.press('2');
+  await see(page, '.rule-note', /他一会儿就回来。 — Он скоро вернётся\./);
   assert.deepEqual(errors, []);
   await context.close();
 });
@@ -535,6 +549,13 @@ test('без сети: после первого визита страница �
     await see(page, 'h2', /Практика ЕГЭ/);
     await page.goto(`${url}#/rules/jiu-cai`);
     await see(page, 'h2', /就 и 才/);
+    // Сначала сеть: на сервере страница новее, чем в кэше (worker тот же) — ученик видит новую.
+    await context.setOffline(false);
+    const index = join(dir, 'index.html');
+    writeFileSync(index, readFileSync(index, 'utf8').replace('"title":"Глагольные суффиксы 了, 过, 着"', '"title":"Свежая страница из сети"'));
+    await page.goto(`${url}#/rules`);
+    await page.reload();
+    await see(page, '.index h3', /Свежая страница из сети/);
     // Новая выкладка: новый кэш, старый удалён, страница — новая.
     const version = () => readFileSync(join(dir, 'sw.js'), 'utf8').match(/VERSION = '(\w+)'/)[1];
     const before = version();
@@ -580,7 +601,7 @@ test('отчёт учителю: ученик отправляет текст, �
   assert.match(first, /Ученик: Иванова Аня/);
   assert.match(first, /Результат: 1 из 2/);
   assert.match(first, /Ошибки: 22/);
-  assert.match(first, /EGELG1:[A-Za-z0-9_-]+$/);
+  assert.match(first, /EGELG1:[A-Za-z0-9+/]+$/);
   // Имя запоминается в этом браузере.
   await finishRound('q22-b', 0);
   assert.equal(await page.locator('#studentName').inputValue(), 'Иванова Аня');
@@ -599,6 +620,14 @@ test('отчёт учителю: ученик отправляет текст, �
   // Вставленное живёт только на странице: после перезагрузки поле пустое.
   await page.reload();
   assert.equal(await page.locator('#reportsInput').inputValue(), '');
+  // Чужой код с разметкой в имени: имя показывается текстом, ничего не исполняется.
+  const hostile = L.encodeReport({ kind: 'round', name: '<img src=x onerror="window.__xss=1">',
+    at: '2026-10-01T10:00:00.000Z', ids: ['q20-a'], answers: ['1'] });
+  await page.locator('#reportsInput').fill(`Отчёт\n${hostile}`);
+  await see(page, '#classStatus', /1 отчёт/);
+  assert.equal(await page.locator('#classSummary img').count(), 0);
+  assert.match(await text(page, '#classTable tbody'), /<img src=x onerror=/);
+  assert.equal(await page.evaluate(() => window.__xss), undefined);
   assert.deepEqual(errors, []);
   await context.close();
 });
@@ -1025,6 +1054,35 @@ test('вариант по ссылке: свой вариант сбросили
   await b.evaluate(() => localStorage.removeItem('ege-lg-trainer:progress'));
   await see(a, '.progress', /Позиция 15/);
   assert.deepEqual((await storedProgress(a)).variant.ids, linked);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('часы варианта: время старого варианта не пишется в новый', { skip }, async () => {
+  const context = await browser.newContext({ viewport: { width: 1100, height: 900 } });
+  await context.route(/^https?:\/\//, (route) => route.abort());
+  const errors = [];
+  const a = await context.newPage();
+  a.on('pageerror', (e) => errors.push(e.message));
+  await a.clock.install();
+  await a.goto(`${mainUrl}#/variant`);
+  await a.locator('#buildVariant').click();
+  await a.clock.runFor(3 * 60_000);
+  // Другая вкладка завершила этот вариант и начала новый, а событие storage сюда не дошло
+  // (например, вкладка спала в bfcache): в памяти у неё всё ещё старый вариант.
+  const fresh = await a.evaluate(() => {
+    const p = JSON.parse(localStorage.getItem('ege-lg-trainer:progress'));
+    p.variant = { ...p.variant, startedAt: '2099-01-01T00:00:00.000Z', answers: {}, index: 0, elapsedMs: 0, finishedAt: null };
+    localStorage.setItem('ege-lg-trainer:progress', JSON.stringify(p));
+    return p.variant.startedAt;
+  });
+  await a.evaluate(() => {
+    Object.defineProperty(document, 'visibilityState', { value: 'hidden', configurable: true });
+    document.dispatchEvent(new Event('visibilitychange'));
+  });
+  const stored = (await storedProgress(a)).variant;
+  assert.equal(stored.startedAt, fresh);
+  assert.equal(stored.elapsedMs, 0, 'время старого варианта не дописано в новый');
   assert.deepEqual(errors, []);
   await context.close();
 });
