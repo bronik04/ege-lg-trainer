@@ -61,6 +61,8 @@ function cleanAnswers(map) {
   const out = {};
   if (!isRecord(map)) return out;
   for (const [id, entry] of Object.entries(map)) {
+    // «constructor», «__proto__» и т. п. из чужого файла подменили бы свойства самой карты ответов.
+    if (Object.hasOwn(Object.prototype, id)) continue;
     if (!isRecord(entry) || !isRecord(entry.last)) continue;
     const last = { optionId: String(entry.last.optionId), correct: entry.last.correct === true, at: String(entry.last.at || '') };
     out[id] = {
@@ -121,13 +123,38 @@ export function parseProgress(text) {
   };
 }
 
-// Удаляет из сохранённых сессий ID, которых больше нет в банке (задание сняли с публикации).
-export function pruneProgress(progress, questionIds) {
-  const known = new Set(questionIds);
-  const out = { ...progress };
-  if (out.round && !out.round.ids.every((id) => known.has(id))) out.round = null;
-  if (out.variant && !out.variant.ids.every((id) => known.has(id))) out.variant = null;
-  return out;
+// Номер задания по ID банка (q20-…, g18-…): записи снятого задания в банке уже нет.
+const idTaskNumber = (id) => Number((/^[a-z](\d{2})-/.exec(id) || [])[1]) || null;
+
+// Задание сняли с публикации (например, на исправление): из сессий оно уходит вместе с ответом,
+// текущее задание остаётся текущим. В начатом варианте место снятого занимает другое задание
+// того же номера — вариант остаётся полным. Сессия, от которой ничего не осталось, сбрасывается.
+export function pruneProgress(progress, questions) {
+  const known = new Map(questions.map((q) => [q.id, q]));
+  const prune = (session, refill) => {
+    if (!session || session.ids.every((id) => known.has(id))) return session;
+    const taken = new Set(session.ids.filter((id) => known.has(id)));
+    const ids = [];
+    let index = session.index;
+    session.ids.forEach((id, i) => {
+      if (known.has(id)) {
+        ids.push(id);
+        return;
+      }
+      const swap = refill && questions.find((q) => q.taskNumber === idTaskNumber(id) && !taken.has(q.id));
+      if (swap) {
+        taken.add(swap.id);
+        ids.push(swap.id);
+      } else if (i < session.index) {
+        index -= 1;
+      }
+    });
+    if (!ids.length) return null;
+    const answers = Object.fromEntries(Object.entries(session.answers).filter(([id]) => known.has(id) && ids.includes(id)));
+    return { ...session, ids, answers, index: Math.max(0, Math.min(ids.length - 1, index)) };
+  };
+  const variant = progress.variant;
+  return { ...progress, round: prune(progress.round, false), variant: prune(variant, Boolean(variant && !variant.finishedAt)) };
 }
 
 // ---------- перенос прогресса файлом ----------
@@ -347,7 +374,8 @@ export function idsQuery(ids) {
 }
 
 // Разбор ссылки. known: { topicIds: Set, origins: [], questionIds: Set } — незнакомое
-// отбрасывается: ссылка могла пережить снятое с публикации задание или тему.
+// отбрасывается: ссылка могла пережить снятое с публикации задание или тему. missing — сколько
+// отброшено (заданий или тем): ученик должен знать, что подборка не та, что прислал учитель.
 export function parseShareQuery(text, known) {
   const params = new URLSearchParams(text);
   const list = (key) => (params.get(key) || '').split(',').map((s) => s.trim()).filter(Boolean);
@@ -356,10 +384,13 @@ export function parseShareQuery(text, known) {
     const ids = asked.filter((id) => known.questionIds.has(id));
     return { kind: 'ids', ids, missing: asked.length - ids.length };
   }
+  const asked = [...new Set(list('topics'))];
+  const topics = asked.filter((t) => known.topicIds.has(t));
   return {
     kind: 'filters',
+    missing: asked.length - topics.length,
     filters: {
-      topics: list('topics').filter((t) => known.topicIds.has(t)),
+      topics,
       tasks: list('tasks').map(Number).filter((n) => TASK_NUMBERS.includes(n)),
       origins: list('origins').filter((o) => known.origins.includes(o)),
       size: ROUND_SIZES.includes(params.get('size')) ? params.get('size') : '10',
@@ -373,6 +404,15 @@ export function isVariant(ids, byId) {
     && ids.every((id, i) => byId.has(id) && byId.get(id).taskNumber === TASK_NUMBERS[i]);
 }
 
+// Ссылка на задания поверх своей сессии. Те же задания в том же порядке — ученик вернулся по
+// ссылке из чата: начатое продолжается, решённое показывает итог. Своя начатая работа с
+// ответами — сначала вопрос. Иначе — новая сессия.
+export function linkAction(session, ids) {
+  if (session && session.ids.join() === ids.join()) return session.finishedAt ? 'result' : 'continue';
+  if (session && !session.finishedAt && Object.keys(session.answers).length > 0) return 'ask';
+  return 'start';
+}
+
 // ---------- отчёт учителю ----------
 
 // Код в конце сообщения ученика: по нему страница учителя сводит результаты класса.
@@ -381,7 +421,10 @@ export function isVariant(ids, byId) {
 export const REPORT_PREFIX = 'EGELG1:';
 const REPORT_CODE = /EGELG1:([A-Za-z0-9+/]+)/g;
 const REPORT_KINDS = ['round', 'variant'];
-const REPORT_LIMITS = { ids: 100, id: 40, name: 80, day: 86_400_000 };
+// Больше заданий в коде не бывает: иначе сообщение не влезет в мессенджер (у Telegram 4096
+// знаков), а страница учителя такой код не примет. Раунд больше — без отчёта.
+export const REPORT_MAX_TASKS = 100;
+const REPORT_LIMITS = { ids: REPORT_MAX_TASKS, id: 40, name: 80, day: 86_400_000 };
 
 function toBase64(text) {
   let binary = '';
@@ -570,6 +613,14 @@ export function explainChoice(item, optionId) {
       .filter((o) => o.id !== item.correctOptionId && o.id !== optionId)
       .map((o) => ({ id: o.id, text: o.text, explanation: (explanation.options || {})[o.id] || '' })),
   };
+}
+
+// №26: верный порядок одним предложением. У части фрагментов в источнике точка на конце —
+// посреди собранного предложения её быть не должно, а в конце ставится «。».
+export function assembledOrder(item) {
+  const parts = new Map((item.fragments || []).map((f) => [f.id, f.text.trim().replace(/[.。]+$/, '')]));
+  const order = optionText(item, item.correctOptionId).split('').map((id) => parts.get(id));
+  return order.length && order.every(Boolean) ? `${order.join('，')}。` : '';
 }
 
 // Условие с пропусками: «老板正开___会» → [текст, пропуск, текст].

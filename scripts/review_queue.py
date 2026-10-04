@@ -16,8 +16,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_bank  # noqa: E402
 import validate  # noqa: E402
-from common import (AUTHORED, ISSUES_URL, QUESTIONS, REVIEW, RULE_CHECKS, RULES, TOPICS,  # noqa: E402
-                    read_json, write_json)
+from common import (AUTHORED, ISSUES_URL, QUESTIONS, REVIEW, RULE_CHECKS, RULES, TASK_CONTENT, TOPICS,  # noqa: E402
+                    content_hash, read_json, write_json, write_text)
 
 FIXES = REVIEW / "fixes.md"
 FIXES_HEADER = ("# На правку\n\n"
@@ -71,8 +71,7 @@ def add_fix(section, item_id, text, path=FIXES, when=None):
         content = content.rstrip("\n") + "\n" + entry
     else:
         content = content[:following].rstrip("\n") + "\n" + entry + content[following:]
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(content, encoding="utf-8")
+    write_text(path, content)
 
 
 # ---------- очереди ----------
@@ -148,7 +147,11 @@ def decide_conflict(qid, decision, authored_dir=AUTHORED):
     for path in sorted(Path(authored_dir).glob("task-*.json")):
         entries = read_json(path)
         if qid in entries:
-            entries[qid]["keyDecision"] = decision
+            entry = entries[qid]
+            entry["keyDecision"] = decision
+            # Решение — автора: у принятого разбора отпечаток пересчитывается вместе с ним.
+            if entry.get("status") == "accepted":
+                entry["acceptedHash"] = content_hash(entry, TASK_CONTENT)
             write_json(path, entries)
             return True
     return False
@@ -164,6 +167,7 @@ def reopen(kind, item_id, authored_dir=AUTHORED, checks_path=RULE_CHECKS):
                 if entries[item_id].get("status") != "accepted":
                     return False
                 entries[item_id]["status"] = "draft"
+                entries[item_id].pop("acceptedHash", None)
                 write_json(path, entries)
                 return True
         return False
@@ -172,6 +176,7 @@ def reopen(kind, item_id, authored_dir=AUTHORED, checks_path=RULE_CHECKS):
         for c in checks:
             if c["id"] == item_id and c.get("status") == "accepted":
                 c["status"] = "draft"
+                c.pop("acceptedHash", None)
                 write_json(checks_path, checks)
                 return True
         return False
@@ -187,7 +192,7 @@ def unchanged(kind, shown):
                 and entry.get("explanation") == shown.get("explanation")
                 and list(entry.get("topicIds") or []) == list(shown.get("topicIds") or [])
                 and list(entry.get("ruleIds") or []) == list(shown.get("ruleIds") or [])
-                and entry.get("contrast") == shown.get("contrast"))
+                and (entry.get("contrast") or None) == (shown.get("contrast") or None))
     source = RULE_CHECKS if kind == "check" else RULES
     return next((x for x in read_json(source) if x["id"] == shown["id"]), None) == shown
 
@@ -216,7 +221,7 @@ def run_gh(args, timeout=60):
 
 def list_reports():
     """Открытые сообщения «Ошибка: …»: ([{number, title, body, createdAt}], "") или (None, ошибка)."""
-    ok, out, error = run_gh(["issue", "list", "--repo", repo_slug(), "--state", "open", "--limit", "100",
+    ok, out, error = run_gh(["issue", "list", "--repo", repo_slug(), "--state", "open", "--limit", "1000",
                              "--json", "number,title,body,createdAt"], timeout=20)
     if not ok:
         return None, error

@@ -24,7 +24,8 @@
         "4": "坏"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "ee69798baf6d"
   },
   "g23-41ef3682": {
     "status": "accepted",
@@ -51,7 +52,8 @@
         "4": "下"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "e899507eddfd"
   },
   "g23-4e2bae43": {
     "status": "accepted",
@@ -78,7 +80,8 @@
         "4": "光"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "f881989738db"
   },
   "g23-8e89f69f": {
     "status": "accepted",
@@ -105,7 +108,8 @@
         "4": "掉"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "f03f94287520"
   },
   "g23-c0a6ddf4": {
     "status": "accepted",
@@ -132,7 +136,8 @@
         "4": "上"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "c397069dd47d"
   },
   "g23-cc970b36": {
     "status": "accepted",
@@ -159,7 +164,8 @@
         "4": "成"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "a69990ca175b"
   },
   "g23-cdd6784a": {
     "status": "accepted",
@@ -186,7 +192,8 @@
         "4": "给"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "06f72edad34c"
   },
   "g23-d11f2d43": {
     "status": "accepted",
@@ -213,7 +220,8 @@
         "4": "在"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "53a99f4c29e2"
   },
   "q23-02a1aa09": {
     "status": "accepted",
@@ -240,7 +248,8 @@
         "4": "到"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "dfa08bb8bf30"
   },
   "q23-0b823312": {
     "status": "accepted",
@@ -267,7 +276,8 @@
         "4": "住"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "cab41ded8eeb"
   },
   "q23-0c18725b": {
     "status": "accepted",
@@ -294,7 +304,8 @@
         "4": "到"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "f35bf9ff3e8b"
   },
   "q23-0d04662a": {
     "status": "accepted",
@@ -321,7 +332,8 @@
         "4": "完"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "afd47e2cbf32"
   },
   "q23-147437cc": {
     "status": "accepted",
@@ -348,7 +360,8 @@
         "4": "上"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "733d194b291a"
   },
   "q23-1f12e577": {
     "status": "accepted",
@@ -375,7 +388,8 @@
         "4": "好"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "b8d14bce524b"
   },
   "q23-2943365c": {
     "status": "accepted",
@@ -402,7 +416,8 @@
         "4": "错"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "89084a2ad80e"
   },
   "q23-34e594a7": {
     "status": "accepted",
@@ -429,7 +444,8 @@
         "4": "好"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "4c2dd56af0dc"
   },
   "q23-36c12e7a": {
     "status": "accepted",
@@ -456,7 +472,8 @@
         "4": "住"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "6ab038f75e6a"
   },
   "q23-3953bb84": {
     "status": "accepted",
@@ -483,7 +500,8 @@
         "4": "光"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "6a4fbbbde525"
   },
   "q23-41cf12d9": {
     "status": "accepted",
@@ -512,7 +530,8 @@
         "4": "到"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "19241da3f05e"
   },
   "q23-48914b54": {
     "status": "accepted",
@@ -539,7 +558,8 @@
         "4": "住"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "5d55952e4e26"
   },
   "q23-4ab544e5": {
     "status": "accepted",
@@ -566,7 +586,8 @@
         "4": "错"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "a72ec97fc0de"
   },
   "q23-5651f377": {
     "status": "accepted",
@@ -593,7 +614,8 @@
         "4": "懂"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "a74dce257a76"
   },
   "q23-6b415e47": {
     "status": "accepted",
@@ -620,7 +642,8 @@
         "4": "好"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "f51067dc896a"
   },
   "q23-80ccbf22": {
     "status": "accepted",
@@ -647,7 +670,8 @@
         "4": "成"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "98efae2a6763"
   },
   "q23-a9a661ba": {
     "status": "accepted",
@@ -674,7 +698,8 @@
         "4": "错"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "d0b6bac05e27"
   },
   "q23-bde8da7e": {
     "status": "accepted",
@@ -701,7 +726,8 @@
         "4": "错"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "a5ef48cfef56"
   },
   "q23-c43c799f": {
     "status": "accepted",
@@ -728,7 +754,8 @@
         "4": "住"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "4a4ace7dafd1"
   },
   "q23-c5d0307e": {
     "status": "accepted",
@@ -755,7 +782,8 @@
         "4": "到"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "d3201d6f62aa"
   },
   "q23-c9e70717": {
     "status": "accepted",
@@ -782,7 +810,8 @@
         "4": "光"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "55cf74a6b42f"
   },
   "q23-d03b91d2": {
     "status": "accepted",
@@ -809,7 +838,8 @@
         "4": "到"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "7bf32eef09f8"
   },
   "q23-dc04342b": {
     "status": "accepted",
@@ -836,7 +866,8 @@
         "4": "好"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "107f87fcb813"
   },
   "q23-dc0b000e": {
     "status": "accepted",
@@ -863,7 +894,8 @@
         "4": "完"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "132ca5541a3a"
   },
   "q23-e487da43": {
     "status": "accepted",
@@ -890,7 +922,8 @@
         "4": "错"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "019818b2e70a"
   },
   "q23-ebf85257": {
     "status": "accepted",
@@ -917,7 +950,8 @@
         "4": "对"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "ab6280ddb98c"
   },
   "q23-ed5be886": {
     "status": "accepted",
@@ -946,7 +980,8 @@
       },
       "correctOptionId": "2"
     },
-    "keyDecision": "hidden"
+    "keyDecision": "hidden",
+    "acceptedHash": "ecfbe17bec1e"
   },
   "q23-ef09bd2a": {
     "status": "accepted",
@@ -973,7 +1008,8 @@
         "4": "往"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "62b50eb3425d"
   },
   "q23-f723a5c1": {
     "status": "accepted",
@@ -1001,6 +1037,7 @@
         "4": "懂"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "785a1974d016"
   }
 }

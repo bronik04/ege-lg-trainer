@@ -186,11 +186,30 @@ test('прогресс: несогласованные сессии не вос�
   assert.equal(negative.round.index, 0);
 });
 
-test('прогресс: сессии с исчезнувшими заданиями сбрасываются', () => {
-  const p = { ...L.emptyProgress(), round: L.startSession(['a', 'gone'], 't'), variant: L.startSession(['a'], 't') };
-  const pruned = L.pruneProgress(p, ['a']);
-  assert.equal(pruned.round, null);
-  assert.deepEqual(pruned.variant.ids, ['a']);
+test('прогресс: снятое с публикации задание уходит из сессий, начатый вариант остаётся полным', () => {
+  const bank = [q('q20-a', 20), q('q20-b', 20), q('q21-a', 21), q('q22-a', 22)];
+  // Раунд: снятое задание уходит вместе с ответом, текущее задание остаётся текущим.
+  let round = L.startSession(['q20-a', 'q20-gone', 'q21-a'], 't');
+  round = L.moveSession(L.answerSession(L.answerSession(round, 'q20-a', '1'), 'q20-gone', '2'), 2);
+  // Вариант: позицию снятого занимает другое задание того же номера, ответ на снятое не переносится.
+  let variant = L.startVariant(['q20-gone', 'q21-a', 'q22-a'], 't');
+  variant = L.answerSession(L.answerSession(variant, 'q20-gone', '1'), 'q21-a', '2');
+  const pruned = L.pruneProgress({ ...L.emptyProgress(), round, variant }, bank);
+  assert.deepEqual(pruned.round.ids, ['q20-a', 'q21-a']);
+  assert.deepEqual(pruned.round.answers, { 'q20-a': '1' });
+  assert.equal(pruned.round.index, 1);
+  assert.deepEqual(pruned.variant.ids, ['q20-a', 'q21-a', 'q22-a']);
+  assert.deepEqual(pruned.variant.answers, { 'q21-a': '2' });
+  assert.equal(pruned.variant.elapsedMs, 0);
+  // Ничего не снято — сессия та же.
+  assert.equal(L.pruneProgress(pruned, bank).round, pruned.round);
+  // Заменить нечем — позиция уходит; от сессии ничего не осталось — она сбрасывается.
+  const lone = L.pruneProgress({ ...L.emptyProgress(), variant: L.startVariant(['q23-gone', 'q21-a'], 't') }, bank);
+  assert.deepEqual(lone.variant.ids, ['q21-a']);
+  assert.equal(L.pruneProgress({ ...L.emptyProgress(), round: L.startSession(['gone'], 't') }, bank).round, null);
+  // Решённый вариант чужим заданием не дополняется: его ответы уже засчитаны.
+  const done = { ...L.startVariant(['q20-gone', 'q21-a'], 't'), finishedAt: 't2' };
+  assert.deepEqual(L.pruneProgress({ ...L.emptyProgress(), variant: done }, bank).variant.ids, ['q21-a']);
 });
 
 test('завершение варианта: результат в истории, ответы в прогрессе', () => {
@@ -292,7 +311,7 @@ test('ссылка на подборку: читается обратно, не�
   const text = L.shareQuery(filters);
   assert.equal(text, 'topics=aspect,adverbs&tasks=20,22&origins=fipi&size=5', 'личное состояние в ссылку не входит');
   assert.deepEqual(L.parseShareQuery(text, known), {
-    kind: 'filters', filters: { topics: ['aspect', 'adverbs'], tasks: [20, 22], origins: ['fipi'], size: '5' },
+    kind: 'filters', missing: 0, filters: { topics: ['aspect', 'adverbs'], tasks: [20, 22], origins: ['fipi'], size: '5' },
   });
   assert.deepEqual(L.parseShareQuery('topics=gone,aspect&tasks=14,20,x&origins=other&size=1000', known).filters,
     { topics: ['aspect'], tasks: [20], origins: [], size: '10' });
@@ -507,3 +526,51 @@ test('сводка по классу: счёт ученика, если банк
   assert.deepEqual([s.rows[0].score, s.rows[0].total, s.rows[0].reported], [1, 1, { score: 2, total: 2 }]);
 });
 
+
+test('ссылка на те же задания: начатое продолжается, решённое показывает итог', () => {
+  const ids = ['a', 'b'];
+  const fresh = L.startSession(ids, 't0');
+  assert.equal(L.linkAction(null, ids), 'start');
+  assert.equal(L.linkAction(fresh, ids), 'continue');
+  assert.equal(L.linkAction(L.answerSession(fresh, 'a', '1'), ids), 'continue');
+  assert.equal(L.linkAction({ ...fresh, finishedAt: 't1' }, ids), 'result');
+  // Те же задания в другом порядке — другая работа.
+  assert.equal(L.linkAction(L.answerSession(L.startSession(['b', 'a'], 't0'), 'a', '1'), ids), 'ask');
+  // Своя начатая работа с ответами — сначала вопрос; без ответов или решённая — новая сессия.
+  const other = L.answerSession(L.startSession(['c'], 't0'), 'c', '1');
+  assert.equal(L.linkAction(other, ids), 'ask');
+  assert.equal(L.linkAction(L.startSession(['c'], 't0'), ids), 'start');
+  assert.equal(L.linkAction({ ...other, finishedAt: 't1' }, ids), 'start');
+});
+
+test('№26: верный порядок — одно предложение, без точки посередине', () => {
+  const item = {
+    fragments: [{ id: 'A', text: '有一些歌词是很久以前的，但我还是用了' }, { id: 'B', text: '这首歌是我寒假时写出来的' },
+      { id: 'C', text: '我想用这些词来表达我的感受.' }],
+    options: [{ id: '1', text: 'BCA' }, { id: '2', text: 'BAC' }], correctOptionId: '1',
+  };
+  assert.equal(L.assembledOrder(item), '这首歌是我寒假时写出来的，我想用这些词来表达我的感受，有一些歌词是很久以前的，但我还是用了。');
+  assert.equal(L.assembledOrder({ ...item, correctOptionId: '2' }), '这首歌是我寒假时写出来的，有一些歌词是很久以前的，但我还是用了，我想用这些词来表达我的感受。');
+  // Фрагмента нет — собирать нечего.
+  assert.equal(L.assembledOrder({ ...item, fragments: item.fragments.slice(0, 2) }), '');
+});
+
+test('файл прогресса: ключи вроде constructor и __proto__ не ломают загрузку и объединение', () => {
+  const entry = JSON.stringify({ attempts: 1, correctCount: 1, last: { optionId: '1', correct: true, at: 't1' } });
+  const text = `{"app":"ege-lg-trainer","version":2,"questions":{"constructor":${entry},"__proto__":${entry},`
+    + `"toString":${entry},"q20-a":${entry}},"checks":{},"round":null,"variant":null,"history":[]}`;
+  const file = L.readProgressFile(text);
+  assert.equal(file.ok, true);
+  assert.deepEqual(Object.keys(file.progress.questions), ['q20-a']);
+  assert.equal(Object.getPrototypeOf(file.progress.questions), Object.prototype);
+  const merged = L.mergeProgress(L.emptyProgress(), file.progress);
+  assert.deepEqual(Object.keys(merged.questions), ['q20-a']);
+});
+
+test('ссылка на подборку: исчезнувшие темы считаются', () => {
+  const known = { topicIds: new Set(['aspect']), origins: ['fipi'], questionIds: new Set() };
+  const link = L.parseShareQuery('topics=renamed-topic,aspect&size=5', known);
+  assert.deepEqual(link.filters.topics, ['aspect']);
+  assert.equal(link.missing, 1);
+  assert.equal(L.parseShareQuery('topics=aspect&size=5', known).missing, 0);
+});

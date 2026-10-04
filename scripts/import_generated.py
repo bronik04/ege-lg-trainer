@@ -31,8 +31,13 @@ GENERATED = SOURCES / "generated"
 RAW_GENERATED = DATA / "raw" / "generated.json"
 TASK_HEAD = re.compile(r"^\*\*(\d{2})\.\*\*\s*(.*)$")
 KEY_LINE = re.compile(r"^\*\*(\d{2})\s*[—–-]\s*ответ:\s*(\d)\*\*")
-OPTION = re.compile(r"(\d)\)\s*(.+?)(?=\s{2,}\d\)|\s*$)")
+# Номер варианта «N)» — в начале строки или после пробела: варианты читаются по номерам, а не по
+# двойным пробелам между ними (один пробел склеил бы два варианта, и ключ указал бы на другой).
+OPTION_MARK = re.compile(r"(?:^|(?<=\s))(\d)\)\s*")
 SPEC = re.compile(r"^Спецификация:\s*(.+)$", re.M)
+# Как в ЕГЭ и в банке ФИПИ: у заданий 20 и 21 три варианта, у остальных — четыре.
+OPTION_COUNT = {20: 3, 21: 3}
+CYRILLIC = re.compile(r"[А-Яа-яЁё]")
 
 
 def generated_id(task_number, stem, options):
@@ -51,8 +56,11 @@ def record(task, batch_name, generator, spec_version):
     key = task.get("key")
     if not stem:
         problems.append("пустое условие")
-    if len(options) not in (3, 4):
-        problems.append(f"вариантов {len(options)}, нужно 3 или 4")
+    if CYRILLIC.search(stem):
+        problems.append("в условии русский текст — инструкция попала в условие?")
+    expected = OPTION_COUNT.get(n, 4)
+    if len(options) != expected:
+        problems.append(f"вариантов {len(options)}, у задания {n} их {expected}")
     if any(not o for o in options):
         problems.append("пустой вариант")
     if len(set(options)) != len(options):
@@ -86,6 +94,19 @@ def record(task, batch_name, generator, spec_version):
     return rec, []
 
 
+def split_options(line):
+    """Варианты по их номерам: «1) 还  2) 再 3) 又» → (["还", "再", "又"], None) или (None, причина)."""
+    marks = list(OPTION_MARK.finditer(line))
+    numbers = [int(m.group(1)) for m in marks]
+    if numbers != list(range(1, len(numbers) + 1)):
+        return None, "варианты пронумерованы не по порядку: " + " ".join(f"{n})" for n in numbers)
+    ends = [m.start() for m in marks[1:]] + [len(line)]
+    options = [line[m.end():end].strip() for m, end in zip(marks, ends)]
+    if any(not o for o in options):
+        return None, "пустой вариант в строке «" + line + "»"
+    return options, None
+
+
 def parse_markdown(text):
     """Задания и ключи из ответа навыка. Возвращает (spec, tasks, problems)."""
     spec_match = SPEC.search(text)
@@ -114,9 +135,11 @@ def parse_markdown(text):
         if not option_lines:
             problems.append(f"№{n}: нет строки вариантов «1) … 2) …»")
             continue
-        options = [m.group(2).strip() for m in OPTION.finditer(option_lines[0])]
+        options, problem = split_options(option_lines[0])
         stem_lines = body[:body.index(option_lines[0])]
-        tasks.append({"taskNumber": n, "stem": "\n".join(stem_lines), "options": options})
+        # Задание со сломанными вариантами остаётся в списке до раздачи ключей: ключи идут по
+        # порядку внутри номера, и соседние задания не должны получить чужой ключ.
+        tasks.append({"taskNumber": n, "stem": "\n".join(stem_lines), "options": options or [], "problem": problem})
     for n in sorted({t["taskNumber"] for t in tasks}):
         group = [t for t in tasks if t["taskNumber"] == n]
         found = keys.get(n, [])
@@ -126,6 +149,8 @@ def parse_markdown(text):
             continue
         for task, key in zip(group, found):
             task["key"] = key
+    problems += [f"№{t['taskNumber']}: {t['problem']}" for t in tasks if t["problem"]]
+    tasks = [{k: v for k, v in t.items() if k != "problem"} for t in tasks if not t["problem"]]
     if not tasks and not problems:
         problems.append("в партии нет заданий 15–27")
     return spec, tasks, problems
@@ -156,16 +181,18 @@ def load_batches(directory=GENERATED):
                 report.append(f"{path.name}, задание {index}: " + "; ".join(errors))
             else:
                 records.append(rec)
-    ids = [r["id"] for r in records]
-    duplicates = sorted({x for x in ids if ids.count(x) > 1})
+    by_id = {}
+    for r in records:
+        by_id.setdefault(r["id"], []).append(r)
+    duplicates = sorted(qid for qid, same in by_id.items() if len(same) > 1)
     if duplicates:
         report.append("одинаковые задания в партиях (оставлено одно): " + ", ".join(duplicates))
-        seen, unique = set(), []
-        for r in records:
-            if r["id"] not in seen:
-                seen.add(r["id"])
-                unique.append(r)
-        records = unique
+        # ID не зависит от ключа: одно задание с разными ключами — спорный ключ, а не повтор.
+        conflicting = [qid for qid in duplicates if len({r["correctOptionId"] for r in by_id[qid]}) > 1]
+        if conflicting:
+            report.append("у одинаковых заданий разные ключи (оставлен ключ первой партии — проверьте): "
+                          + ", ".join(conflicting))
+        records = [same[0] for same in by_id.values()]
     records.sort(key=lambda r: (r["taskNumber"], r["id"]))
     return records, report
 

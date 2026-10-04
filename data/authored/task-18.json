@@ -24,7 +24,8 @@
         "4": "把"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "f74c2313aadc"
   },
   "g18-046ee71e": {
     "status": "accepted",
@@ -51,7 +52,8 @@
         "4": "在"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "766f962555e4"
   },
   "g18-1b609183": {
     "status": "accepted",
@@ -78,7 +80,8 @@
         "4": "到"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "02fcf8e61cbc"
   },
   "g18-291aa664": {
     "status": "accepted",
@@ -105,7 +108,8 @@
         "4": "到"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "d81e73b7bd46"
   },
   "g18-31aa1a26": {
     "status": "accepted",
@@ -132,7 +136,8 @@
         "4": "为"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "f53b0fcaea5e"
   },
   "g18-32985259": {
     "status": "accepted",
@@ -159,7 +164,8 @@
         "4": "跟"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "ee69a94c27ae"
   },
   "g18-38fcabdc": {
     "status": "accepted",
@@ -186,7 +192,8 @@
         "4": "为"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "99f056c353a0"
   },
   "g18-4d1eca29": {
     "status": "accepted",
@@ -213,7 +220,8 @@
         "4": "跟"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "77ebd1d708cc"
   },
   "g18-5027f45b": {
     "status": "accepted",
@@ -240,7 +248,8 @@
         "4": "从"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "86b14b8e719e"
   },
   "g18-5431fa02": {
     "status": "accepted",
@@ -267,7 +276,8 @@
         "4": "在"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "c913361f48d9"
   },
   "g18-569751e2": {
     "status": "accepted",
@@ -294,7 +304,8 @@
         "4": "关于"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "12bd6bd011b8"
   },
   "g18-687b17c2": {
     "status": "accepted",
@@ -321,7 +332,8 @@
         "4": "离"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "7f4ffcc9d2e6"
   },
   "g18-76a15c80": {
     "status": "accepted",
@@ -348,7 +360,8 @@
         "4": "在"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "3806173faa2f"
   },
   "g18-7b3af771": {
     "status": "accepted",
@@ -375,7 +388,8 @@
         "4": "向"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "29e741e90450"
   },
   "g18-7f2cb2d9": {
     "status": "accepted",
@@ -402,7 +416,8 @@
         "4": "离"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "a35b99428dc0"
   },
   "g18-87d79fc9": {
     "status": "accepted",
@@ -429,7 +444,8 @@
         "4": "从"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "2e17f04898b5"
   },
   "g18-88b7885d": {
     "status": "accepted",
@@ -456,7 +472,8 @@
         "4": "比"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "8eb9ab022353"
   },
   "g18-8e0a5c27": {
     "status": "accepted",
@@ -483,7 +500,8 @@
         "4": "对"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "8a7ddc511f8b"
   },
   "g18-8f0a53ee": {
     "status": "accepted",
@@ -510,7 +528,8 @@
         "4": "向"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "4847d7ce720a"
   },
   "g18-92ef69a9": {
     "status": "accepted",
@@ -537,7 +556,8 @@
         "4": "对"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "468876ad2d4c"
   },
   "g18-98fe601e": {
     "status": "accepted",
@@ -564,7 +584,8 @@
         "4": "对"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "dd0c0d4bf579"
   },
   "g18-a0ee7aad": {
     "status": "accepted",
@@ -591,7 +612,8 @@
         "4": "为"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "2823daced8d3"
   },
   "g18-a43c475e": {
     "status": "accepted",
@@ -618,7 +640,8 @@
         "4": "对"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "053efe0dfe3e"
   },
   "g18-a4fca329": {
     "status": "accepted",
@@ -645,7 +668,8 @@
         "4": "从"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "3c3e0b6b3e2b"
   },
   "g18-a63ab52a": {
     "status": "accepted",
@@ -672,7 +696,8 @@
         "4": "给"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "2329d245faf4"
   },
   "g18-b2acfd46": {
     "status": "accepted",
@@ -699,7 +724,8 @@
         "4": "离"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "ee9dd2078aac"
   },
   "g18-b4d4eb85": {
     "status": "accepted",
@@ -726,7 +752,8 @@
         "4": "跟"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "fe4af4f10fdc"
   },
   "g18-b758adee": {
     "status": "accepted",
@@ -753,7 +780,8 @@
         "4": "向"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "02b9c2519866"
   },
   "g18-b840765d": {
     "status": "accepted",
@@ -780,7 +808,8 @@
         "4": "往"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "364fba6c3e50"
   },
   "g18-b90ae7d7": {
     "status": "accepted",
@@ -807,7 +836,8 @@
         "4": "对"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "22dd775efa8c"
   },
   "g18-b9dd2f22": {
     "status": "accepted",
@@ -834,7 +864,8 @@
         "4": "对"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "c6a847bbbd7b"
   },
   "g18-bc136cc3": {
     "status": "accepted",
@@ -861,7 +892,8 @@
         "4": "为"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "3257d235c1f6"
   },
   "g18-bf00285a": {
     "status": "accepted",
@@ -888,7 +920,8 @@
         "4": "给"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "af5c265a627c"
   },
   "g18-c8278173": {
     "status": "accepted",
@@ -915,7 +948,8 @@
         "4": "从"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "b3dcbb6d07db"
   },
   "g18-d7083fb6": {
     "status": "accepted",
@@ -942,7 +976,8 @@
         "4": "往"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "563509eb1ffc"
   },
   "g18-d7a7e4f8": {
     "status": "accepted",
@@ -969,7 +1004,8 @@
         "4": "为"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "aa3986230ee4"
   },
   "g18-e112996e": {
     "status": "accepted",
@@ -996,7 +1032,8 @@
         "4": "向"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "a07105e10fb2"
   },
   "g18-e4d426f2": {
     "status": "accepted",
@@ -1023,7 +1060,8 @@
         "4": "由"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "44b7f93ebd78"
   },
   "g18-e9edfbd6": {
     "status": "accepted",
@@ -1050,7 +1088,8 @@
         "4": "在"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "7d05692b234f"
   },
   "g18-eeb39985": {
     "status": "accepted",
@@ -1077,7 +1116,8 @@
         "4": "从"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "7469bec30fad"
   },
   "g18-f76bc336": {
     "status": "accepted",
@@ -1104,7 +1144,8 @@
         "4": "在"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "ff96d4fa7937"
   },
   "q18-04fa2fdc": {
     "status": "accepted",
@@ -1131,7 +1172,8 @@
         "4": "对"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "3d87bcd6359d"
   },
   "q18-06302dc2": {
     "status": "accepted",
@@ -1158,7 +1200,8 @@
         "4": "从"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "4d4324e2b8cd"
   },
   "q18-2e149659": {
     "status": "accepted",
@@ -1185,7 +1228,8 @@
         "4": "由"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "8890bd5e3a0d"
   },
   "q18-320f44dc": {
     "status": "accepted",
@@ -1212,7 +1256,8 @@
         "4": "到"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "993239d563c7"
   },
   "q18-3343db6a": {
     "status": "accepted",
@@ -1241,7 +1286,8 @@
       "correctOptionId": "1"
     },
     "keyConflict": "为小张介绍 «рассказать Сяо Чжану» так же естественно, как 给小张介绍 (ср. 为大家介绍一下) — ключ 给 не единственный.",
-    "keyDecision": "hidden"
+    "keyDecision": "hidden",
+    "acceptedHash": "5119c58373f4"
   },
   "q18-35c114d1": {
     "status": "accepted",
@@ -1268,7 +1314,8 @@
         "4": "向"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "afa76e9a8a0e"
   },
   "q18-3e26113a": {
     "status": "accepted",
@@ -1295,7 +1342,8 @@
         "4": "到"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "272ab65ca666"
   },
   "q18-44502a82": {
     "status": "accepted",
@@ -1322,7 +1370,8 @@
         "4": "被"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "2bd07ca6e919"
   },
   "q18-46a08ca2": {
     "status": "accepted",
@@ -1349,7 +1398,8 @@
         "4": "到"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "4763c65246dd"
   },
   "q18-4caa7fa9": {
     "status": "accepted",
@@ -1376,7 +1426,8 @@
         "4": "为"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "4d8141167824"
   },
   "q18-5695945c": {
     "status": "accepted",
@@ -1403,7 +1454,8 @@
         "4": "跟"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "58210af3acd9"
   },
   "q18-6088fbb2": {
     "status": "accepted",
@@ -1430,7 +1482,8 @@
         "4": "从"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "8ca87548ea67"
   },
   "q18-78eafd0d": {
     "status": "accepted",
@@ -1457,7 +1510,8 @@
         "4": "和"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "f3e3bf99b8a3"
   },
   "q18-867dbad3": {
     "status": "accepted",
@@ -1484,7 +1538,8 @@
         "4": "被"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "a3b0ce07a44b"
   },
   "q18-8d7a9d5d": {
     "status": "accepted",
@@ -1511,7 +1566,8 @@
         "4": "向"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "65d323ff9c19"
   },
   "q18-94caf77f": {
     "status": "accepted",
@@ -1538,7 +1594,8 @@
         "4": "从"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "ad9dfb35bcdc"
   },
   "q18-9804289d": {
     "status": "accepted",
@@ -1565,7 +1622,8 @@
         "4": "给"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "dab564749555"
   },
   "q18-a24fe7a9": {
     "status": "accepted",
@@ -1592,7 +1650,8 @@
         "4": "为"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "ad758e4e8c44"
   },
   "q18-a871794b": {
     "status": "accepted",
@@ -1619,7 +1678,8 @@
         "4": "为"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "bb5005bc147b"
   },
   "q18-a91f14b7": {
     "status": "accepted",
@@ -1646,7 +1706,8 @@
         "4": "从"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "716e0335d31e"
   },
   "q18-ade0ea08": {
     "status": "accepted",
@@ -1673,7 +1734,8 @@
         "4": "向"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "93f157056269"
   },
   "q18-c23ce114": {
     "status": "accepted",
@@ -1700,7 +1762,8 @@
         "4": "给"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "f6cb31c83756"
   },
   "q18-d1b4e15f": {
     "status": "accepted",
@@ -1727,7 +1790,8 @@
         "4": "在"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "a707dc7dc763"
   },
   "q18-d32d6683": {
     "status": "accepted",
@@ -1754,7 +1818,8 @@
         "4": "在"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "b669544c8b3a"
   },
   "q18-f41d1001": {
     "status": "accepted",
@@ -1781,7 +1846,8 @@
         "4": "给"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "4d2fb93a2f68"
   },
   "q18-f503163a": {
     "status": "accepted",
@@ -1808,7 +1874,8 @@
         "4": "从"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "52f172a42389"
   },
   "q18-fefb3ab2": {
     "status": "accepted",
@@ -1835,6 +1902,7 @@
         "4": "在"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "6e0e360a34a5"
   }
 }

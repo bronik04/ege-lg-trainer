@@ -116,6 +116,8 @@ a { color: var(--pen); text-underline-offset: 3px; }
 
 h2 { margin: 0 0 8px; font: 800 clamp(1.75rem, 4.6vw, 2.3rem)/1.1 var(--disp); }
 h3 { margin: 0 0 6px; font-size: 1rem; }
+/* Длинное слово («Последовательность») на системном шрифте шире телефона: переносится. */
+h2, h3 { overflow-wrap: break-word; hyphens: auto; }
 .lead { max-width: 640px; margin: 0 0 20px; color: var(--muted); }
 .muted { color: var(--muted); }
 .small { font-size: .86rem; }

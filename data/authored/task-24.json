@@ -24,7 +24,8 @@
         "4": "不懂"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "28237426b693"
   },
   "q24-084fe7dd": {
     "status": "accepted",
@@ -51,7 +52,8 @@
         "4": "不出来"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "75144fc5cada"
   },
   "q24-1a4b9f68": {
     "status": "accepted",
@@ -78,7 +80,8 @@
         "4": "不了"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "ecd301c7c652"
   },
   "q24-2cc625ff": {
     "status": "accepted",
@@ -105,7 +108,8 @@
         "4": "得下"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "0baa059f278b"
   },
   "q24-3384981a": {
     "status": "accepted",
@@ -132,7 +136,8 @@
         "4": "得了"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "7eb70bec51de"
   },
   "q24-41d3f9f2": {
     "status": "accepted",
@@ -161,7 +166,8 @@
       "correctOptionId": "3"
     },
     "keyConflict": "你们都坐得上 «места всем достанется» так же естественно после 还有座位, как 坐得下 — ключ 下 не единственный.",
-    "keyDecision": "hidden"
+    "keyDecision": "hidden",
+    "acceptedHash": "fbb720f96cd0"
   },
   "q24-4587b6d7": {
     "status": "accepted",
@@ -188,7 +194,8 @@
         "4": "不了"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "83992db41b32"
   },
   "q24-4f92102f": {
     "status": "accepted",
@@ -215,7 +222,8 @@
         "4": "不对"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "be2935bb40d0"
   },
   "q24-7262a17a": {
     "status": "accepted",
@@ -242,7 +250,8 @@
         "4": "得懂"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "f1c4e3d4b68b"
   },
   "q24-75d69e8a": {
     "status": "accepted",
@@ -269,7 +278,8 @@
         "4": "不懂"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "391d66994abf"
   },
   "q24-7673c50a": {
     "status": "accepted",
@@ -296,7 +306,8 @@
         "4": "不到"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "4fb4aef4be59"
   },
   "q24-78efb52c": {
     "status": "accepted",
@@ -323,7 +334,8 @@
         "4": "得了"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "bc034e55d3ef"
   },
   "q24-79ba2836": {
     "status": "accepted",
@@ -350,7 +362,8 @@
         "4": "得完"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "e55677d244cc"
   },
   "q24-7fa71f26": {
     "status": "accepted",
@@ -377,7 +390,8 @@
         "4": "得完"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "f5060c655a25"
   },
   "q24-8893d9bb": {
     "status": "accepted",
@@ -404,7 +418,8 @@
         "4": "不到"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "4a425bc1b540"
   },
   "q24-8ddfec5f": {
     "status": "accepted",
@@ -431,7 +446,8 @@
         "4": "不下"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "15f41892a14e"
   },
   "q24-947d56e3": {
     "status": "accepted",
@@ -458,7 +474,8 @@
         "4": "得了"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "0aed97ee37f3"
   },
   "q24-aa2afa29": {
     "status": "accepted",
@@ -485,7 +502,8 @@
         "4": "不下"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "263f1c5adfca"
   },
   "q24-ab94dea5": {
     "status": "accepted",
@@ -512,7 +530,8 @@
         "4": "得了"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "d95c2e1891a0"
   },
   "q24-ace61747": {
     "status": "accepted",
@@ -539,7 +558,8 @@
         "4": "不动"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "43e7514a9d71"
   },
   "q24-bcefc885": {
     "status": "accepted",
@@ -566,7 +586,8 @@
         "4": "不了"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "ca16a1663c25"
   },
   "q24-d3504820": {
     "status": "accepted",
@@ -593,7 +614,8 @@
         "4": "得到"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "bb394542ce0d"
   },
   "q24-d75b803e": {
     "status": "accepted",
@@ -620,7 +642,8 @@
         "4": "不动"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "ec90cf6897dd"
   },
   "q24-e12e1902": {
     "status": "accepted",
@@ -647,7 +670,8 @@
         "4": "得了"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "eb3a4cdbd120"
   },
   "q24-ef772303": {
     "status": "accepted",
@@ -674,7 +698,8 @@
         "4": "得了"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "c384ded88d99"
   },
   "q24-f07097ba": {
     "status": "accepted",
@@ -701,7 +726,8 @@
         "4": "不下"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "c6dfd245c6e1"
   },
   "q24-f20f220e": {
     "status": "accepted",
@@ -728,7 +754,8 @@
         "4": "起"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "6c68433d7bcf"
   },
   "q24-fe970e0f": {
     "status": "accepted",
@@ -755,6 +782,7 @@
         "4": "不上"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "e5c52ccdfca7"
   }
 }

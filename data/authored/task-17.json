@@ -24,7 +24,8 @@
         "4": "真正"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "50296ea2ab18"
   },
   "g17-17ca1b9f": {
     "status": "accepted",
@@ -51,7 +52,8 @@
         "4": "收到"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "ce3038efb0d4"
   },
   "g17-37b686bf": {
     "status": "accepted",
@@ -78,7 +80,8 @@
         "4": "锻炼"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "86c588dddf99"
   },
   "g17-4f7df0c0": {
     "status": "accepted",
@@ -105,7 +108,8 @@
         "4": "推迟"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "d1020d03124e"
   },
   "g17-63e74320": {
     "status": "accepted",
@@ -132,7 +136,8 @@
         "4": "方向"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "adfd63622e3c"
   },
   "g17-7209409d": {
     "status": "accepted",
@@ -159,7 +164,8 @@
         "4": "广告"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "83e6e65dd549"
   },
   "g17-743c287c": {
     "status": "accepted",
@@ -186,7 +192,8 @@
         "4": "谈论"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "e528fd372a9b"
   },
   "g17-859128a1": {
     "status": "accepted",
@@ -213,7 +220,8 @@
         "4": "愿望"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "d59ceb3cc738"
   },
   "g17-9308127b": {
     "status": "accepted",
@@ -240,7 +248,8 @@
         "4": "标准"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "c0c03bf45829"
   },
   "g17-b38d2b21": {
     "status": "accepted",
@@ -267,7 +276,8 @@
         "4": "注意"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "e0cf99ccb7a9"
   },
   "g17-bc273e2b": {
     "status": "accepted",
@@ -294,7 +304,8 @@
         "4": "明星"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "0a27a01cc6a9"
   },
   "g17-be646e45": {
     "status": "accepted",
@@ -321,7 +332,8 @@
         "4": "风格"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "2bce187e1a3b"
   },
   "g17-bfd43ff4": {
     "status": "accepted",
@@ -348,7 +360,8 @@
         "4": "冷淡"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "fe403d3921d7"
   },
   "g17-c8ff056c": {
     "status": "accepted",
@@ -375,7 +388,8 @@
         "4": "高兴"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "e739e4832fc3"
   },
   "g17-f1496562": {
     "status": "accepted",
@@ -402,7 +416,8 @@
         "4": "生气"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "39c665821957"
   },
   "q17-22430935": {
     "status": "accepted",
@@ -429,7 +444,8 @@
         "4": "时间"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "555e12be0f1c"
   },
   "q17-35cf9543": {
     "status": "accepted",
@@ -456,7 +472,8 @@
         "4": "决心"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "014ce3116524"
   },
   "q17-415afdf5": {
     "status": "accepted",
@@ -483,7 +500,8 @@
         "4": "形成"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "f96f32a4d49d"
   },
   "q17-65d17b32": {
     "status": "accepted",
@@ -510,7 +528,8 @@
         "4": "舒服"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "873c94cb1d5d"
   },
   "q17-870095c1": {
     "status": "accepted",
@@ -537,7 +556,8 @@
         "4": "出现"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "44d16d7ce4e8"
   },
   "q17-8f834401": {
     "status": "accepted",
@@ -564,7 +584,8 @@
         "4": "热心"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "9aa73f8ad104"
   },
   "q17-a462f9eb": {
     "status": "accepted",
@@ -591,7 +612,8 @@
         "4": "新法"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "9f6469f1cf2e"
   },
   "q17-ad6b0c79": {
     "status": "accepted",
@@ -618,7 +640,8 @@
         "4": "礼拜"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "e12063a843d2"
   },
   "q17-b5227ed7": {
     "status": "accepted",
@@ -645,7 +668,8 @@
         "4": "感动"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "4f68838949cb"
   },
   "q17-c5548cfe": {
     "status": "accepted",
@@ -672,7 +696,8 @@
         "4": "练武"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "53da81162f49"
   },
   "q17-ea8f12b4": {
     "status": "accepted",
@@ -699,7 +724,8 @@
         "4": "成本"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "c233441a8d7e"
   },
   "q17-efdbaa16": {
     "status": "accepted",
@@ -726,7 +752,8 @@
         "4": "游览"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "d102e6c3ed61"
   },
   "q17-f50e90ef": {
     "status": "accepted",
@@ -753,6 +780,7 @@
         "4": "打包"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "f07ef4912d84"
   }
 }

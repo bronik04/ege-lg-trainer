@@ -12,6 +12,8 @@ import textwrap
 import unittest
 from pathlib import Path
 
+from test.helpers import stamped
+
 ROOT = Path(__file__).resolve().parent.parent
 
 FAKE_GH = textwrap.dedent("""
@@ -48,6 +50,7 @@ class ReviewConsoleTest(unittest.TestCase):
             for entry in entries.values():
                 if entry.get("keyConflict"):
                     entry["keyDecision"] = "hidden"
+                    stamped(entry)  # решение «скрыто» автор принял вместе с разбором
             write(path, entries)
             self.authored[path.name] = entries
         checks = [c for c in read(data / "rule-checks.json") if c.get("status") != "draft"]
@@ -75,6 +78,7 @@ class ReviewConsoleTest(unittest.TestCase):
             for qid, e in sorted(entries.items()) if e.get("keyConflict"))
         entries = self.authored[self.conflict_file]
         entries[self.conflict].pop("keyDecision")
+        stamped(entries[self.conflict])
         write(data / "authored" / self.conflict_file, entries)
         self.log = self.tmp / "gh.log"
         (self.tmp / "gh.py").write_text(FAKE_GH, encoding="utf-8")
@@ -104,6 +108,7 @@ class ReviewConsoleTest(unittest.TestCase):
         answers += ["2", "в"] + ["в"] * check_pages                    # правило и вопросы к нему
         answers += ["3", "2"]                                           # спорный ключ — вернуть с ключом ФИПИ
         answers += ["4", "2", "", "Ключ верный: 才 здесь значит «только».", "1", ""]  # сообщения учеников
+        answers += ["1"]                                                # снова разборы — снятого там нет
         answers += ["0"]
         done = self.run_button(answers, issues)
         out = done.stdout
@@ -132,9 +137,15 @@ class ReviewConsoleTest(unittest.TestCase):
         self.assertRegex(fixes, rf"- `{self.drafts[1]}` №20 · .* — ключ не тот \(\d\d\.\d\d\.\d{{4}}\)")
         self.assertIn(f"## Спорные ключи — вернуть с ключом ФИПИ\n- `{self.conflict}` №", fixes)
         self.assertIn(f"- `issue:8` {self.other20} — ученик прав", fixes)
+        # Задание по сообщению ждёт правки: со старым разбором его не принять, пока Claude не исправит.
+        self.assertRegex(fixes, rf"- `{self.other20}` .*сообщени\w* #8")
+        self.assertIn("Разборов на проверку нет", out.split("Сообщения кончились")[-1])
+        self.assertIn("уйдёт с сайта", out)
         self.assertNotIn("issue:7", fixes)
 
         calls = [json.loads(line) for line in self.log.read_text(encoding="utf-8").splitlines()]
+        listing = next(c for c in calls if c[:2] == ["issue", "list"])
+        self.assertEqual(listing[listing.index("--limit") + 1], "1000", "сообщений может быть больше сотни")
         self.assertIn(["issue", "close", "7", "--repo", "bronik04/ege-lg-trainer",
                        "--comment", "Ключ верный: 才 здесь значит «только»."], calls)
 

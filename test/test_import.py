@@ -1,7 +1,10 @@
+import contextlib
 import hashlib
+import io
 import json
 import tempfile
 import unittest
+import unittest.mock
 from pathlib import Path
 
 from test import helpers  # noqa: F401  (добавляет scripts/ в sys.path)
@@ -40,6 +43,14 @@ class ConvertTest(unittest.TestCase):
         rec = imp.convert(block(tags=("Банк ФИПИ", "ФИПИ 3872A5", "КЭС ФИПИ 2.1.4")), "x.json")
         self.assertEqual(rec["sourceRef"]["fipiId"], "3872A5")
         self.assertEqual(rec["sourceRef"]["kes"], ["2.1.4"])
+
+    def test_block_without_fipi_tag_or_with_stimulus_is_reported(self):
+        # Не из банка ФИПИ — не «Открытый банк заданий ФИПИ»; стимул (текст, картинка) не переносится.
+        rec = imp.convert(block(tags=("Мои задания",)), "x.json")
+        self.assertIn("в блоке нет тега «Банк ФИПИ»", rec["issues"])
+        rec = imp.convert(dict(block(), stimulus={"kind": "text", "text": "Прочитайте текст."}), "x.json")
+        self.assertIn("у блока есть стимул (text) — он не переносится", rec["issues"])
+        self.assertNotIn("issues", imp.convert(dict(block(), stimulus={"kind": "none"}), "x.json"))
 
     def test_missing_key_is_reported_not_fixed(self):
         rec = imp.convert(block(correct="9"), "x.json")
@@ -105,3 +116,19 @@ class SnapshotTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SnapshotFilterTest(unittest.TestCase):
+    def test_only_fipi_blocks_are_copied(self):
+        import snapshot_constructor as snap
+        with tempfile.TemporaryDirectory() as tmp:
+            bank, out = Path(tmp) / "blocks", Path(tmp) / "sources"
+            bank.mkdir()
+            (bank / "a.json").write_text(json.dumps(block(), ensure_ascii=False), encoding="utf-8")
+            (bank / "b.json").write_text(json.dumps(dict(block(tags=("Мои задания",)), id="b")), encoding="utf-8")
+            (bank / "c.json").write_text(json.dumps(dict(block(kind="reading-5"), id="c")), encoding="utf-8")
+            with unittest.mock.patch.multiple(snap, SNAPSHOT=out / "constructor-bank", MANIFEST=out / "manifest.json"), \
+                    contextlib.redirect_stdout(io.StringIO()):
+                snap.main(["snapshot", str(bank)])
+            self.assertEqual(sorted(p.name for p in (out / "constructor-bank").iterdir()), ["a.json"])
+            self.assertEqual(list(read_json(out / "manifest.json")["files"]), ["a.json"])

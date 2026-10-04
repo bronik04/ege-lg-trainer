@@ -1,6 +1,6 @@
 """Снимок заданий 15–27 из банка «ЕГЭ Конструктора» в sources/.
 
-Копирует блоки grammar-15 … grammar-27 байт в байт и пишет sources/manifest.json
+Копирует блоки grammar-15 … grammar-27 с тегом «Банк ФИПИ» байт в байт и пишет sources/manifest.json
 с контрольными суммами. Сам банк Конструктора не изменяется. Запускается вручную,
 когда в Конструкторе появились новые задания; дальше конвейер читает только снимок.
 
@@ -34,7 +34,8 @@ def main(argv):
     picked = []
     for path in sorted(bank.glob("*.json")):
         block = json.loads(path.read_text(encoding="utf-8"))
-        if block.get("type") in GRAMMAR_TYPES:
+        # Свои задания Конструктора — не банк ФИПИ: в снимок они не идут.
+        if block.get("type") in GRAMMAR_TYPES and "Банк ФИПИ" in block.get("tags", []):
             picked.append((path, block["type"]))
 
     if SNAPSHOT.exists():

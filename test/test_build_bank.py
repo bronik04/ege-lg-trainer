@@ -1,6 +1,6 @@
 import unittest
 
-from test.helpers import TOPICS, authored_for, clone, record, rule
+from test.helpers import TOPICS, authored_for, clone, record, rule, stamped
 
 import build_bank as bb
 from common import QUESTIONS, read_json
@@ -98,6 +98,7 @@ class MergeTest(unittest.TestCase):
         rec = record()
         entry = authored_for(rec)
         del entry["explanation"]["options"]["3"]
+        stamped(entry)  # автор принял именно такой разбор — без разбора варианта 3
         with self.assertRaisesRegex(bb.BuildError, "разбор варианта 3: пусто"):
             self.merge([rec], {rec["id"]: entry})
 
@@ -116,7 +117,7 @@ class MergeTest(unittest.TestCase):
 
     def test_author_key_conflict(self):
         rec = record()
-        entry = dict(authored_for(rec), keyConflict="по смыслу подходит и 了")
+        entry = stamped(dict(authored_for(rec), keyConflict="по смыслу подходит и 了"))  # принято с пометкой
         (q,), _ = self.merge([rec], {rec["id"]: entry})
         self.assertEqual(q["reviewStatus"], "conflict")
         self.assertEqual(q["conflict"], "по смыслу подходит и 了")
@@ -131,6 +132,29 @@ class MergeTest(unittest.TestCase):
         rec = record(issues=["не удалось выделить фрагменты A, B, C"])
         (q,), _ = self.merge([rec], {rec["id"]: authored_for(rec)})
         self.assertEqual(q["reviewStatus"], "draft")
+
+
+class HintReportTest(unittest.TestCase):
+    """Ключ задания вместе с соседним иероглифом в другом тексте, который ученик видит до ответа."""
+
+    def test_key_with_neighbour_elsewhere_is_reported(self):
+        g17 = dict(record(task=17, qid="g17-aaaaaaaa", stem="下雨了，比赛只好___到明天下午。",
+                          options=("迟到", "推广", "退出", "推迟"), correct="4", origin="generated"), reviewStatus="ready")
+        g26 = dict(record(task=26, qid="g26-bbbbbbbb", stem="A) 听说明天有大雨\nB) 学校决定把运动会\nC) 推迟到下个星期",
+                          options=("ABC", "ACB", "CAB", "BCA"), correct="1", origin="generated"), reviewStatus="draft",
+                   fragments=[{"id": "A", "text": "听说明天有大雨"}, {"id": "B", "text": "学校决定把运动会"},
+                              {"id": "C", "text": "推迟到下个星期"}])
+        q22 = dict(record(task=22, qid="q22-cccccccc", stem="如果明天不下雨，我们___去爬山。",
+                          options=("才", "刚", "只", "就"), correct="4"), reviewStatus="ready")
+        q27 = dict(record(task=27, qid="q27-dddddddd", stem="要是天气好，我们就去公园。",
+                          options=("要是", "虽然", "因为", "所以"), correct="1"), reviewStatus="ready")
+        r = rule("constructions-more")
+        r["examples"][0] = {"zh": "如果明天下雨，我们就不去。", "ru": "…"}
+        hints = bb.hint_pairs([g17, g26, q22, q27], [r], [])
+        self.assertIn(("g17-aaaaaaaa", "推迟到", "g26-bbbbbbbb"), hints)
+        self.assertIn(("q22-cccccccc", "我们就", "правило constructions-more"), hints)
+        # Оба задания из ФИПИ — их не правят, такая пара не показывается.
+        self.assertNotIn(("q22-cccccccc", "我们就", "q27-dddddddd"), hints)
 
 
 class CommittedBankTest(unittest.TestCase):
@@ -149,7 +173,7 @@ class CommittedBankTest(unittest.TestCase):
         expected = {
             "queue.md": bb.queue_report(self.questions, self.pending, self.rules, self.checks),
             "coverage.md": bb.coverage_report(self.questions, self.topics),
-            "duplicates.md": bb.duplicates_report(self.records, self.questions),
+            "duplicates.md": bb.duplicates_report(self.records, self.questions, self.rules, self.checks),
         }
         for name, text in expected.items():
             self.assertEqual((bb.REVIEW / name).read_text(encoding="utf-8"), text,

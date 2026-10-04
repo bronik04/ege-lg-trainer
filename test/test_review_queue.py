@@ -8,7 +8,7 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-from test.helpers import TOPICS, authored_for, record, rule
+from test.helpers import TOPICS, authored_for, record, rule, stamped
 
 import build_bank as bb
 import review_queue as rq
@@ -115,11 +115,54 @@ class ReopenTest(unittest.TestCase):
             self.assertEqual(json.loads(checks.read_text(encoding="utf-8"))[0]["status"], "draft")
 
 
+class UnchangedTest(unittest.TestCase):
+    """Принимается только то, что автор видел: Claude мог переписать пункт, пока автор смотрел."""
+
+    def test_task(self):
+        rec = record()
+        entry = authored_for(rec, status="draft")
+        questions, _ = bb.merge([rec], {rec["id"]: entry}, TOPICS, [rule()])
+        shown = questions[0]
+        on_disk = lambda value: mock.patch.object(bb, "load_authored", return_value={rec["id"]: value})
+        with on_disk(entry):
+            self.assertTrue(rq.unchanged("task", shown))
+        rewritten = json.loads(json.dumps(entry))
+        rewritten["explanation"]["correct"] = "Claude переписал разбор, пока автор смотрел на старый."
+        with on_disk(rewritten):
+            self.assertFalse(rq.unchanged("task", shown))
+        with on_disk(dict(entry, status="accepted")):
+            self.assertFalse(rq.unchanged("task", shown), "уже принято")
+        with on_disk(dict(entry, ruleIds=["jiu-cai"])):
+            self.assertFalse(rq.unchanged("task", shown))
+
+    def test_task_with_empty_contrast(self):
+        rec = record()
+        entry = dict(authored_for(rec, status="draft"), contrast={})
+        questions, _ = bb.merge([rec], {rec["id"]: entry}, TOPICS, [rule()])
+        with mock.patch.object(bb, "load_authored", return_value={rec["id"]: entry}):
+            self.assertTrue(rq.unchanged("task", questions[0]), "пустой «Сравните» — не изменение")
+
+    def test_rule_and_check(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            rules, checks = Path(tmp) / "rules.json", Path(tmp) / "rule-checks.json"
+            shown_rule, shown_check = rule(status="draft"), check("c1")
+            rules.write_text(json.dumps([shown_rule], ensure_ascii=False), encoding="utf-8")
+            checks.write_text(json.dumps([shown_check], ensure_ascii=False), encoding="utf-8")
+            with mock.patch.multiple(rq, RULES=rules, RULE_CHECKS=checks):
+                self.assertTrue(rq.unchanged("rule", shown_rule))
+                self.assertTrue(rq.unchanged("check", shown_check))
+                rules.write_text(json.dumps([dict(shown_rule, summary="Новая суть.")], ensure_ascii=False), encoding="utf-8")
+                checks.write_text(json.dumps([dict(shown_check, prompt="Другой вопрос?")], ensure_ascii=False), encoding="utf-8")
+                self.assertFalse(rq.unchanged("rule", shown_rule))
+                self.assertFalse(rq.unchanged("check", shown_check))
+
+
 class ConflictTest(unittest.TestCase):
     def test_queue_and_decision(self):
         rec = record(qid="q23-aaaaaaaa")
         entry = authored_for(rec)
         entry["keyConflict"] = "好 тоже естественно."
+        stamped(entry)  # принято вместе с пометкой
         authored = {rec["id"]: entry}
         questions, _ = bb.merge([rec], authored, TOPICS, [rule()])
         self.assertEqual([q["id"] for q in rq.conflict_queue(questions, authored)], [rec["id"]])
@@ -138,6 +181,20 @@ class ConflictTest(unittest.TestCase):
         self.assertEqual(rq.decided_conflicts(authored), 1)
         with self.assertRaises(ValueError):
             rq.decide_conflict(rec["id"], "maybe")
+
+
+class RestoredKeyTest(unittest.TestCase):
+    def test_restored_key_returns_to_review(self):
+        # Автор решил «вернуть с ключом ФИПИ»: спорным задание больше не считается — переписанный разбор
+        # приходит в раздел 1, даже если пометка keyConflict осталась в записи.
+        rec = record(qid="q23-aaaaaaaa")
+        entry = dict(authored_for(rec, status="draft"), keyConflict="好 тоже естественно.", keyDecision="restore")
+        questions, pending = bb.merge([rec], {rec["id"]: entry}, TOPICS, [rule()])
+        self.assertEqual(questions[0]["reviewStatus"], "draft")
+        ready, _ = rq.task_queue(questions, pending, {rec["id"]: entry}, "")
+        self.assertEqual([q["id"] for q in ready], [rec["id"]])
+        hidden = dict(entry, keyDecision="hidden")
+        self.assertEqual(bb.merge([rec], {rec["id"]: hidden}, TOPICS, [rule()])[0][0]["reviewStatus"], "conflict")
 
 
 FAKE_GH = textwrap.dedent("""

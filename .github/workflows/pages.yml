@@ -3,7 +3,16 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # Запуск вручную (Actions → Deploy to GitHub Pages → Run workflow). Снятая галочка «offline» —
+  # аварийное выключение работы без сети на одну выкладку: под именем sw.js выйдет sw-off.js.
+  # Чтобы выключатель держался и после следующих push, — переменная репозитория OFFLINE = false
+  # (Settings → Secrets and variables → Actions → Variables); удалить её, когда починено.
   workflow_dispatch:
+    inputs:
+      offline:
+        description: 'Работа без сети (снимите — аварийное выключение у всех учеников)'
+        type: boolean
+        default: true
 
 permissions:
   contents: read
@@ -19,6 +28,8 @@ jobs:
   # с 19.10.2026 переходит на Ubuntu 26 — переезд делать отдельно, проверив Chrome.
   build:
     runs-on: ubuntu-24.04
+    env:
+      OFFLINE: ${{ ((github.event_name == 'workflow_dispatch' && !inputs.offline) || vars.OFFLINE == 'false') && 'false' || 'true' }}
     steps:
       - uses: actions/checkout@v7
 
@@ -34,6 +45,7 @@ jobs:
       # playwright-core для браузерного теста; браузер свой не качает —
       # берёт Google Chrome, который уже стоит на раннере
       - name: Установить зависимости тестов
+        if: env.OFFLINE != 'false'
         run: npm ci
 
       # Банк пересобирается из снимка источников. Закоммиченные данные и отчёты
@@ -45,18 +57,24 @@ jobs:
           python3 scripts/import_generated.py
           python3 scripts/build_bank.py
           python3 scripts/validate.py
-          git diff --exit-code -- data/ || { echo "::error::данные в репозитории устарели: запустите npm run data и закоммитьте"; exit 1; }
+          # status, а не diff: новый файл, которого нет в репозитории, тоже расхождение.
+          test -z "$(git status --porcelain -- data/)" || { git status --short -- data/; echo "::error::данные в репозитории устарели: запустите npm run data и закоммитьте"; exit 1; }
 
+      # Аварийный выключатель не ждёт тестов: упавший по внешней причине браузерный тест не должен
+      # держать сломанную работу без сети у учеников.
       - name: Тесты данных
+        if: env.OFFLINE != 'false'
         run: python3 -m unittest discover -s test -t . -v
 
       - name: Тесты логики и интерфейса
+        if: env.OFFLINE != 'false'
         env:
           CI: '1'
         run: node --test test/*.test.mjs
 
       - name: Собрать страницу
-        run: python3 scripts/build_site.py
+        run: |
+          if [ "$OFFLINE" = "false" ]; then python3 scripts/build_site.py --no-offline; else python3 scripts/build_site.py; fi
 
       - uses: actions/upload-pages-artifact@v5
         with:

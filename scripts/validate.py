@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import QUESTIONS, RULE_CHECKS, RULES, TASK_NUMBERS, TOPICS, read_json  # noqa: E402
+from common import QUESTIONS, RULE_CHECKS, RULES, TASK_NUMBERS, TOPICS, content_hash, read_json  # noqa: E402
 
 ORIGINS = {"fipi", "generated"}
 REVIEW_STATUSES = {"imported", "draft", "ready", "conflict", "excluded"}
@@ -19,6 +19,8 @@ RULE_CHECK_KINDS = {"choose-form", "identify-rule"}
 FRAGMENT_IDS = ["A", "B", "C"]
 # Разбор, который ничего не объясняет про конкретный вариант, готовым не считается.
 GENERIC = re.compile(r"^(неверно|не подходит|повторите правило|см\. правило)[.!]?$", re.I)
+# Отсылка к правилу внутри разбора («Так не говорят, повторите правило о …») — тоже не разбор.
+RULE_REFERENCE = re.compile(r"(повторите|перечитайте|см\.|смотрите)\s+правил", re.I)
 MIN_EXPLANATION = 25
 HAN = re.compile(r"[\u4e00-\u9fff]+")
 BLANK = re.compile(r"\s*_{2,}\s*")
@@ -32,6 +34,8 @@ def _text_problem(label, text):
         return f"{label}: пусто"
     if GENERIC.match(text.strip()):
         return f"{label}: общая фраза вместо разбора"
+    if RULE_REFERENCE.search(text):
+        return f"{label}: отсылка к правилу вместо разбора"
     if len(text.strip()) < MIN_EXPLANATION:
         return f"{label}: слишком коротко для разбора ({len(text.strip())} зн.)"
     return None
@@ -219,6 +223,24 @@ def bank_overlap_problems(item, bank_texts, n=OVERLAP):
     return sorted(set(problems))
 
 
+def check_key_order(rule_checks):
+    """Страница варианты не перемешивает: у вопросов одного правила ключ не стоит на одном месте
+    три раза подряд (вопрос относится к первому правилу из своих ruleIds)."""
+    by_rule = {}
+    for c in rule_checks:
+        ids = [o.get("id") for o in c.get("options") or []]
+        if c.get("ruleIds") and c.get("correctOptionId") in ids:
+            by_rule.setdefault(c["ruleIds"][0], []).append((c.get("id"), ids.index(c["correctOptionId"])))
+    problems = []
+    for rule_id, items in by_rule.items():
+        for i in range(len(items) - 2):
+            run = items[i:i + 3]
+            if len({place for _, place in run}) == 1:
+                problems.append(f"правило {rule_id}: у вопросов {', '.join(cid for cid, _ in run)} "
+                                "ключ на одном месте три раза подряд")
+    return problems
+
+
 def _duplicates(items, label):
     seen, problems = set(), []
     for item in items:
@@ -237,6 +259,10 @@ def check_all(questions, topics, rules, rule_checks):
     errors += _duplicates(rules, "правила")
     errors += _duplicates(rule_checks, "вопросы по правилам")
     errors += _duplicates(questions, "банк")
+    # Принимают по ID: общий ID у правила и вопроса принял бы заодно и непоказанный пункт.
+    rule_ids = {r.get("id") for r in rules}
+    errors += [f"ID {c.get('id')!r} есть и у правила, и у вопроса по правилу" for c in rule_checks
+               if c.get("id") in rule_ids]
     for t in topics:
         if not t.get("title"):
             errors.append(f"тема {t.get('id')}: нет названия")
@@ -249,6 +275,12 @@ def check_all(questions, topics, rules, rule_checks):
     for c in rule_checks:
         errors += [f"вопрос по правилу {c.get('id')}: {p}" for p in rule_check_problems(c, rules_by_id)]
         errors += [f"вопрос по правилу {c.get('id')}: {p}" for p in bank_overlap_problems(c, bank_texts)]
+    errors += check_key_order(rule_checks)
+    # Принятое — ровно то, что принял автор: правка после принятия возвращает пункт автору.
+    for kind, items in (("правило", rules), ("вопрос по правилу", rule_checks)):
+        errors += [f"{kind} {item.get('id')}: изменено после принятия — верните в черновик "
+                   f"(python3 scripts/reopen.py {item.get('id')}), автор примет заново"
+                   for item in items if item.get("status") == "accepted" and item.get("acceptedHash") != content_hash(item)]
     for q in questions:
         errors += [f"задание {q.get('id')}: {p}" for p in question_problems(q, topic_ids, rules_by_id)]
     return errors
