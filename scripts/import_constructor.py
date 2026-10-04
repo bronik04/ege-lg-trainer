@@ -49,6 +49,11 @@ def convert(block, snapshot_name):
         issues.append(f"ключ {correct!r} не совпадает ни с одним вариантом")
 
     tags = block.get("tags", [])
+    if "Банк ФИПИ" not in tags:
+        issues.append("в блоке нет тега «Банк ФИПИ»")
+    stimulus = (block.get("stimulus") or {}).get("kind", "none")
+    if stimulus != "none":
+        issues.append(f"у блока есть стимул ({stimulus}) — он не переносится")
     fipi_ids = [m.group(1) for m in map(FIPI_ID.match, tags) if m]
     kes = [m.group(1) for m in map(KES.match, tags) if m]
 

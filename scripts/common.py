@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -62,13 +63,16 @@ def read_json(path):
 
 def write_json(path, value):
     """Пишет JSON детерминированно: повторный прогон даёт тот же байтовый результат."""
-    path = Path(path)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    text = json.dumps(value, ensure_ascii=False, indent=2) + "\n"
-    path.write_text(text, encoding="utf-8")
+    write_text(path, json.dumps(value, ensure_ascii=False, indent=2) + "\n")
 
 
 def write_text(path, text):
+    """Через временный файл рядом: закрытое посреди записи окно «Проверки» не оставит пустой файл."""
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text, encoding="utf-8")
+    temp = path.with_name(f".{path.name}.tmp")
+    try:
+        temp.write_text(text, encoding="utf-8")
+        os.replace(temp, path)
+    finally:
+        temp.unlink(missing_ok=True)
