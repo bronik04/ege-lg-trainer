@@ -5,7 +5,8 @@
     python3 scripts/accept.py --task 20              # принять все разборы задания 20
 
 Запускает только автор после чтения data/review/queue.md: это и есть отметка
-«проверено». После принятия — пересобрать банк (build_bank.py).
+«проверено». После принятия — пересобрать банк (build_bank.py). Пункт из списка на правку
+(data/review/fixes.md) не принимается: он ждёт исправления Claude.
 """
 
 import argparse
@@ -14,6 +15,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import AUTHORED, RULE_CHECKS, RULES, read_json, write_json  # noqa: E402
+from review_queue import pending_ids, read_fixes  # noqa: E402
 
 
 def drafts():
@@ -25,7 +27,8 @@ def drafts():
     return found
 
 
-def accept(ids, task=None):
+def accept(ids, task=None, fixes_text=None):
+    waiting = pending_ids(read_fixes() if fixes_text is None else fixes_text)
     ids = set(ids)
     accepted = []
     for path in sorted(AUTHORED.glob("task-*.json")):
@@ -33,17 +36,17 @@ def accept(ids, task=None):
         whole_file = task is not None and path.stem == f"task-{task}"
         changed = False
         for qid, entry in entries.items():
-            if (qid in ids or whole_file) and entry.get("status") == "draft":
+            if (qid in ids or whole_file) and entry.get("status") == "draft" and qid not in waiting:
                 entry["status"] = "accepted"
                 accepted.append(qid)
                 changed = True
         if changed:
             write_json(path, entries)
-    for path in (RULES, RULE_CHECKS):
+    for path, prefix in ((RULES, "rule:"), (RULE_CHECKS, "check:")):
         items = read_json(path)
         changed = False
         for item in items:
-            if item["id"] in ids and item.get("status") == "draft":
+            if item["id"] in ids and item.get("status") == "draft" and prefix + item["id"] not in waiting:
                 item["status"] = "accepted"
                 accepted.append(item["id"])
                 changed = True
@@ -65,8 +68,12 @@ def main():
     if not args.ids and args.task is None:
         parser.error("укажите ID или --task")
     accepted = accept(args.ids, args.task)
-    missing = sorted(set(args.ids) - set(accepted))
+    waiting = pending_ids(read_fixes())
+    held = sorted(i for i in set(args.ids) - set(accepted) if {i, f"rule:{i}", f"check:{i}"} & waiting)
+    missing = sorted(set(args.ids) - set(accepted) - set(held))
     print(f"Принято: {len(accepted)}")
+    if held:
+        print("Ждут правки (data/review/fixes.md), не приняты: " + ", ".join(held))
     if missing:
         print("Не найдено среди черновиков: " + ", ".join(missing))
 

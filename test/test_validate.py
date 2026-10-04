@@ -97,6 +97,17 @@ class RuleTest(unittest.TestCase):
         self.assertTrue(v.rule_check_problems(check, {"aspect-suffixes": rule(status="draft")}))
 
 
+class IdTest(unittest.TestCase):
+    def test_rule_and_check_ids_do_not_overlap(self):
+        # accept.py и «Проверка» принимают по ID: общий ID принял бы заодно и другой пункт.
+        same = {"id": "aspect-suffixes", "kind": "identify-rule", "ruleIds": ["aspect-suffixes"], "status": "accepted",
+                "prompt": "Какой суффикс?", "options": [{"id": "a", "text": "了"}, {"id": "b", "text": "过"}],
+                "correctOptionId": "a", "explanation": {"correct": "Разбор верного варианта достаточной длины.",
+                                                        "options": {"b": "Разбор неверного варианта достаточной длины."}}}
+        errors = v.check_all([], TOPICS, [rule()], [same])
+        self.assertIn("ID 'aspect-suffixes' есть и у правила, и у вопроса по правилу", errors)
+
+
 class BankOverlapTest(unittest.TestCase):
     def test_filled_stem_puts_key_into_blank(self):
         q = ready_question(stem="老板正开___会。")

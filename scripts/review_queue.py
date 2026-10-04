@@ -187,7 +187,7 @@ def unchanged(kind, shown):
                 and entry.get("explanation") == shown.get("explanation")
                 and list(entry.get("topicIds") or []) == list(shown.get("topicIds") or [])
                 and list(entry.get("ruleIds") or []) == list(shown.get("ruleIds") or [])
-                and entry.get("contrast") == shown.get("contrast"))
+                and (entry.get("contrast") or None) == (shown.get("contrast") or None))
     source = RULE_CHECKS if kind == "check" else RULES
     return next((x for x in read_json(source) if x["id"] == shown["id"]), None) == shown
 
@@ -216,7 +216,7 @@ def run_gh(args, timeout=60):
 
 def list_reports():
     """Открытые сообщения «Ошибка: …»: ([{number, title, body, createdAt}], "") или (None, ошибка)."""
-    ok, out, error = run_gh(["issue", "list", "--repo", repo_slug(), "--state", "open", "--limit", "100",
+    ok, out, error = run_gh(["issue", "list", "--repo", repo_slug(), "--state", "open", "--limit", "1000",
                              "--json", "number,title,body,createdAt"], timeout=20)
     if not ok:
         return None, error

@@ -237,6 +237,10 @@ def check_all(questions, topics, rules, rule_checks):
     errors += _duplicates(rules, "правила")
     errors += _duplicates(rule_checks, "вопросы по правилам")
     errors += _duplicates(questions, "банк")
+    # Принимают по ID: общий ID у правила и вопроса принял бы заодно и непоказанный пункт.
+    rule_ids = {r.get("id") for r in rules}
+    errors += [f"ID {c.get('id')!r} есть и у правила, и у вопроса по правилу" for c in rule_checks
+               if c.get("id") in rule_ids]
     for t in topics:
         if not t.get("title"):
             errors.append(f"тема {t.get('id')}: нет названия")

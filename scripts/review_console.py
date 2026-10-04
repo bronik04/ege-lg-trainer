@@ -390,13 +390,19 @@ def review_reports(ask, tally):
                 if note.strip() == "0":
                     print("  Выбор отменён — ответьте заново.")
                     continue
-                rq.add_fix("reports", f"issue:{number}", f"{item_id or 'нет в банке'} — ученик прав"
-                           + (f": {note.strip()}" if note.strip() else ""))
+                said = f": {note.strip()}" if note.strip() else ""
+                rq.add_fix("reports", f"issue:{number}", f"{item_id or 'нет в банке'} — ученик прав" + said)
                 tally.fixes += 1
+                if kind:
+                    # Строка с ID пункта держит его до исправления: старый разбор не принять заново.
+                    # Claude удалит её, когда перепишет разбор; строку issue:N — после публикации.
+                    rq.add_fix("reports", item_id if kind == "task" else f"check:{item_id}",
+                               f"по сообщению #{number}" + said)
                 if kind and rq.reopen(kind, item_id):
                     tally.rebuild()
-                    print("\n  Снято с сайта до исправления: Claude перепишет разбор, вы примете его в разделе 1,"
-                          " после публикации Claude закроет сообщение.")
+                    section = 1 if kind == "task" else 2
+                    print(f"\n  Станет черновиком и уйдёт с сайта со следующей публикацией. Claude перепишет разбор,"
+                          f" вы примете его в разделе {section}; после публикации Claude закроет сообщение.")
                 else:
                     print(f"\n  На правку — в {FIXES_NAME}. Сообщение закроет Claude, когда исправление выйдет.")
             if choice == "2":

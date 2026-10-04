@@ -104,6 +104,7 @@ class ReviewConsoleTest(unittest.TestCase):
         answers += ["2", "в"] + ["в"] * check_pages                    # правило и вопросы к нему
         answers += ["3", "2"]                                           # спорный ключ — вернуть с ключом ФИПИ
         answers += ["4", "2", "", "Ключ верный: 才 здесь значит «только».", "1", ""]  # сообщения учеников
+        answers += ["1"]                                                # снова разборы — снятого там нет
         answers += ["0"]
         done = self.run_button(answers, issues)
         out = done.stdout
@@ -132,9 +133,15 @@ class ReviewConsoleTest(unittest.TestCase):
         self.assertRegex(fixes, rf"- `{self.drafts[1]}` №20 · .* — ключ не тот \(\d\d\.\d\d\.\d{{4}}\)")
         self.assertIn(f"## Спорные ключи — вернуть с ключом ФИПИ\n- `{self.conflict}` №", fixes)
         self.assertIn(f"- `issue:8` {self.other20} — ученик прав", fixes)
+        # Задание по сообщению ждёт правки: со старым разбором его не принять, пока Claude не исправит.
+        self.assertRegex(fixes, rf"- `{self.other20}` .*сообщени\w* #8")
+        self.assertIn("Разборов на проверку нет", out.split("Сообщения кончились")[-1])
+        self.assertIn("уйдёт с сайта", out)
         self.assertNotIn("issue:7", fixes)
 
         calls = [json.loads(line) for line in self.log.read_text(encoding="utf-8").splitlines()]
+        listing = next(c for c in calls if c[:2] == ["issue", "list"])
+        self.assertEqual(listing[listing.index("--limit") + 1], "1000", "сообщений может быть больше сотни")
         self.assertIn(["issue", "close", "7", "--repo", "bronik04/ege-lg-trainer",
                        "--comment", "Ключ верный: 才 здесь значит «только»."], calls)
 
