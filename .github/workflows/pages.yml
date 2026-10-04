@@ -3,7 +3,15 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # Запуск вручную (Actions → Deploy to GitHub Pages → Run workflow). Снятая галочка «offline» —
+  # аварийное выключение работы без сети: под именем sw.js выйдет sw-off.js. Следующий push
+  # публикует обычную сборку — до исправления в main ничего не пушить.
   workflow_dispatch:
+    inputs:
+      offline:
+        description: 'Работа без сети (снимите — аварийное выключение у всех учеников)'
+        type: boolean
+        default: true
 
 permissions:
   contents: read
@@ -45,7 +53,8 @@ jobs:
           python3 scripts/import_generated.py
           python3 scripts/build_bank.py
           python3 scripts/validate.py
-          git diff --exit-code -- data/ || { echo "::error::данные в репозитории устарели: запустите npm run data и закоммитьте"; exit 1; }
+          # status, а не diff: новый файл, которого нет в репозитории, тоже расхождение.
+          test -z "$(git status --porcelain -- data/)" || { git status --short -- data/; echo "::error::данные в репозитории устарели: запустите npm run data и закоммитьте"; exit 1; }
 
       - name: Тесты данных
         run: python3 -m unittest discover -s test -t . -v
@@ -56,7 +65,10 @@ jobs:
         run: node --test test/*.test.mjs
 
       - name: Собрать страницу
-        run: python3 scripts/build_site.py
+        env:
+          OFFLINE: ${{ github.event_name != 'workflow_dispatch' || inputs.offline }}
+        run: |
+          if [ "$OFFLINE" = "false" ]; then python3 scripts/build_site.py --no-offline; else python3 scripts/build_site.py; fi
 
       - uses: actions/upload-pages-artifact@v5
         with:

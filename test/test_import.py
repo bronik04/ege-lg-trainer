@@ -1,4 +1,6 @@
+import contextlib
 import hashlib
+import io
 import json
 import tempfile
 import unittest
@@ -125,7 +127,8 @@ class SnapshotTest(unittest.TestCase):
             (bank / "a.json").write_text(json.dumps(block(), ensure_ascii=False), encoding="utf-8")
             (bank / "b.json").write_text(json.dumps(dict(block(tags=("Мои задания",)), id="b")), encoding="utf-8")
             (bank / "c.json").write_text(json.dumps(dict(block(kind="reading-5"), id="c")), encoding="utf-8")
-            with unittest.mock.patch.multiple(snap, SNAPSHOT=out / "constructor-bank", MANIFEST=out / "manifest.json"):
+            with unittest.mock.patch.multiple(snap, SNAPSHOT=out / "constructor-bank", MANIFEST=out / "manifest.json"), \
+                    contextlib.redirect_stdout(io.StringIO()):
                 snap.main(["snapshot", str(bank)])
             self.assertEqual(sorted(p.name for p in (out / "constructor-bank").iterdir()), ["a.json"])
             self.assertEqual(list(read_json(out / "manifest.json")["files"]), ["a.json"])
