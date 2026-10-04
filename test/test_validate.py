@@ -152,6 +152,13 @@ class BankOverlapTest(unittest.TestCase):
         self.assertTrue(v.bank_overlap_problems(copied, bank))
         self.assertEqual(v.bank_overlap_problems(rule(), bank), [])
 
+    def test_overlap_across_punctuation_is_caught(self):
+        q = ready_question(task=22, stem="如果明天不下雨，我们___去爬山。", options=("才", "刚", "只", "就"), correct="4")
+        r = rule()
+        r["examples"][0] = {"zh": "如果明天下雨，我们就不去。", "ru": "Если завтра будет дождь, мы не пойдём."}
+        errors = v.check_all([q], TOPICS, [r], [])
+        self.assertTrue(any("(下雨我们就)" in e for e in errors), errors)
+
     def test_short_collocation_is_allowed(self):
         bank = [("q16-x", "父亲给我女儿送了一条裙子")]
         item = dict(rule(), usage=["条 — 一条裙子, 一条河"])

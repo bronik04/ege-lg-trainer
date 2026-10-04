@@ -13,6 +13,10 @@
    «**22 — ответ: 3**» во второй части. Если заданий одного номера несколько, ключи
    сопоставляются по порядку. Версия спецификации — строка «Спецификация: ЕГЭ 2026».
 
+Необязательное поле JSON-партии "replaces": "q16-15173f0c" — задание исправляет спорное задание
+ФИПИ: то же условие, спорный вариант заменён. Пока автор держит оригинал скрытым, а разбор
+оригинала принят, сборка не считает копию повтором (build_bank.py).
+
 ID задания вычисляется из номера, условия и вариантов: повторный импорт даёт тот же ID,
 и прогресс учеников не теряется. Всё, что не удалось прочитать, — в отчёт, а не в банк.
 Разборы добавляются потом волной через add_explanations.py, как и для заданий ФИПИ.
@@ -38,6 +42,8 @@ SPEC = re.compile(r"^Спецификация:\s*(.+)$", re.M)
 # Как в ЕГЭ и в банке ФИПИ: у заданий 20 и 21 три варианта, у остальных — четыре.
 OPTION_COUNT = {20: 3, 21: 3}
 CYRILLIC = re.compile(r"[А-Яа-яЁё]")
+# ID задания ФИПИ, которое исправляет копия: q + номер + 8 знаков блока конструктора.
+FIPI_ID = re.compile(r"^q(\d{2})-[0-9a-f]{8}$")
 
 
 def generated_id(task_number, stem, options):
@@ -67,6 +73,11 @@ def record(task, batch_name, generator, spec_version):
         problems.append("повторяются варианты")
     if not isinstance(key, int) or not 1 <= key <= len(options):
         problems.append(f"ключ {key!r} не номер варианта")
+    replaces = task.get("replaces")
+    if "replaces" in task:
+        match = FIPI_ID.match(replaces) if isinstance(replaces, str) else None
+        if not match or int(match.group(1)) != n:
+            problems.append(f"replaces {replaces!r} — нужен ID задания ФИПИ того же номера (q{n}-…)")
     if problems:
         return None, problems
     rec = {
@@ -85,6 +96,8 @@ def record(task, batch_name, generator, spec_version):
         "options": [{"id": str(i), "text": text} for i, text in enumerate(options, 1)],
         "correctOptionId": str(key),
     }
+    if replaces:
+        rec["replaces"] = replaces
     if n == 26:
         fragments = parse_fragments(stem)
         if fragments is None:

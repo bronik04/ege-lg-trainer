@@ -54,7 +54,7 @@ class ReviewConsoleTest(unittest.TestCase):
             write(path, entries)
             self.authored[path.name] = entries
         checks = [c for c in read(data / "rule-checks.json") if c.get("status") != "draft"]
-        rules = [dict(r, status="accepted") for r in read(data / "rules.json")]
+        rules = [stamped(dict(r, status="accepted")) for r in read(data / "rules.json")]
         # Правило с вопросами — снова черновик, его вопросы тоже.
         self.rule = next(r["id"] for r in rules if any(c["ruleIds"][0] == r["id"] for c in checks))
         next(r for r in rules if r["id"] == self.rule)["status"] = "draft"

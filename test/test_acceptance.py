@@ -131,6 +131,17 @@ class ReopenImpactTest(unittest.TestCase):
             self.assertEqual(reopen.impact(["aspect-suffixes"], path), (2, [20]))
             self.assertEqual(reopen.impact(["jiu-cai"], path), (1, []))
 
+    def test_reopened_original_takes_its_replacement_off_the_site(self):
+        # Исправленная копия выходит, пока разбор скрытого оригинала принят: открыли оригинал — копия уходит.
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "questions.json"
+            write(path, [{"id": "q16-aaaaaaaa", "taskNumber": 16, "reviewStatus": "conflict"},
+                         {"id": "g16-bbbbbbbb", "taskNumber": 16, "reviewStatus": "ready", "replaces": "q16-aaaaaaaa"},
+                         {"id": "g16-cccccccc", "taskNumber": 16, "reviewStatus": "ready"},
+                         {"id": "g16-dddddddd", "taskNumber": 16, "reviewStatus": "excluded", "replaces": "q16-aaaaaaaa"}])
+            self.assertEqual(reopen.replacements(["q16-aaaaaaaa", "q20-dddddddd"], path), ["g16-bbbbbbbb"])
+            self.assertEqual(reopen.replacements(["q20-dddddddd"], path), [])
+
 
 class AddExplanationsTest(unittest.TestCase):
     """Claude пишет только черновики: волна не принимает и не перезаписывает принятое."""

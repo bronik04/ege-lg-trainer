@@ -137,7 +137,9 @@ def conflict_queue(questions, authored):
 
 
 def decided_conflicts(authored):
-    return sum(1 for e in authored.values() if e.get("keyConflict") and e.get("keyDecision"))
+    """Решения автора по спорным ключам. Разбор, возвращённый с ключом ФИПИ, переписан без
+    keyConflict, но решение в нём осталось — оно тоже считается."""
+    return sum(1 for e in authored.values() if e.get("keyDecision"))
 
 
 def decide_conflict(qid, decision, authored_dir=AUTHORED):
