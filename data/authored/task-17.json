@@ -112,7 +112,7 @@
     "acceptedHash": "d1020d03124e"
   },
   "g17-54af6298": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "word-choice"
     ],
@@ -136,7 +136,8 @@
         "4": "方向"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "67f8f0609e50"
   },
   "g17-8308a185": {
     "status": "accepted",
@@ -307,7 +308,7 @@
     "acceptedHash": "fe403d3921d7"
   },
   "g17-c3cc16e5": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "word-choice"
     ],
@@ -331,7 +332,8 @@
         "4": "锻炼"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "74ad42a58e47"
   },
   "g17-c84ed73f": {
     "status": "accepted",

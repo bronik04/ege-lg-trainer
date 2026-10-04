@@ -168,7 +168,7 @@
     "acceptedHash": "f03f94287520"
   },
   "g23-b08ea360": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "result-complements"
     ],
@@ -192,7 +192,8 @@
         "4": "上"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "a5aaa61193b5"
   },
   "g23-cc970b36": {
     "status": "accepted",

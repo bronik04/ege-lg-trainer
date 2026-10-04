@@ -280,7 +280,7 @@
     "acceptedHash": "fef7641b523c"
   },
   "g22-606ec566": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "adverbs"
     ],
@@ -304,7 +304,8 @@
         "4": "就"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "39ad98758baa"
   },
   "g22-6fd140a6": {
     "status": "accepted",
@@ -363,7 +364,7 @@
     "acceptedHash": "c09cb67ab11a"
   },
   "g22-9890ec71": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "adverbs"
     ],
@@ -387,7 +388,8 @@
         "4": "已经"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "489ba2025ec4"
   },
   "g22-9e68f70e": {
     "status": "accepted",
