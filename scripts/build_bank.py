@@ -188,14 +188,17 @@ def merge(records, authored, topics, rules):
 
     excluded, conflicts, _, _ = find_duplicates(records)
     # Сгенерированное задание, повторяющее или почти повторяющее задание ФИПИ, в банк не идёт.
-    # Кроме исправленной копии (replaces) спорного задания, пока автор держит оригинал скрытым:
-    # ученик его не видит. Вернёт оригинал с ключом ФИПИ — копия снова повтор.
+    # Кроме исправленной копии (replaces) спорного задания, пока автор держит оригинал скрытым, а
+    # разбор оригинала принят — решение закреплено отпечатком: ученик оригинал не видит. Вернёт
+    # автор оригинал с ключом ФИПИ или разбор оригинала откроют — копия снова повтор.
     fipi_records = [r for r in records if r["origin"] == "fipi"]
     for r in records:
         if r["origin"] != "generated" or r["id"] in excluded:
             continue
         twin, ratio = fipi_twin(r, fipi_records)
-        if twin and ratio >= NEAR_DUPLICATE and not (r.get("replaces") == twin and hidden_conflict(authored.get(twin))):
+        original = authored.get(twin)
+        replacement = r.get("replaces") == twin and hidden_conflict(original) and original["status"] == "accepted"
+        if twin and ratio >= NEAR_DUPLICATE and not replacement:
             excluded[r["id"]] = twin
     pending = {}
     questions = []
@@ -383,6 +386,8 @@ def duplicates_report(records, questions, rules=(), rule_checks=()):
             verdict = "проверить вручную"
         elif status[r["id"]]["reviewStatus"] == "excluded":
             verdict = "исключено как повтор"
+            if r.get("replaces") == twin:
+                verdict += " (оригинал не скрыт или его разбор не принят)"
         else:
             verdict = "исправленная копия скрытого спорного задания"
         lines.append(f"- `{r['id']}` ~ `{twin}`: сходство {round(ratio * 100)}% — {verdict}")

@@ -196,6 +196,13 @@ class RestoredKeyTest(unittest.TestCase):
         hidden = dict(entry, keyDecision="hidden")
         self.assertEqual(bb.merge([rec], {rec["id"]: hidden}, TOPICS, [rule()])[0][0]["reviewStatus"], "conflict")
 
+    def test_decision_counts_after_rewrite(self):
+        # Переписанный разбор теряет keyConflict (так велит CLAUDE.md), но решение автора было: «решено» его считает.
+        authored = {"q23-aaaaaaaa": {"status": "draft", "keyDecision": "restore"},
+                    "q24-bbbbbbbb": {"status": "accepted", "keyConflict": "Спорно.", "keyDecision": "hidden"},
+                    "q20-cccccccc": {"status": "accepted", "keyConflict": "Спорно."}}
+        self.assertEqual(rq.decided_conflicts(authored), 2)
+
 
 FAKE_GH = textwrap.dedent("""
     import json, sys

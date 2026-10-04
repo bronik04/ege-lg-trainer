@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from test.helpers import TOPICS, authored_for, record as fipi_record, rule
+from test.helpers import TOPICS, authored_for, record as fipi_record, rule, stamped
 
 import build_bank as bb
 import import_generated as ig
@@ -197,11 +197,12 @@ class GeneratedInBankTest(unittest.TestCase):
         self.assertEqual(status[near["id"]], "excluded")
         self.assertEqual(status[other["id"]], "imported")
 
-    def disputed_with_replacement(self, decision, replaces="q20-aaaaaaaa"):
+    def disputed_with_replacement(self, decision, replaces="q20-aaaaaaaa", original="accepted"):
         """Спорное задание ФИПИ с решением автора и копия, где спорный вариант заменён."""
         fipi = fipi_record(qid="q20-aaaaaaaa")
-        entry = authored_for(fipi, status="draft")
+        entry = authored_for(fipi, status=original)
         entry.update(keyConflict="Подходят два варианта.", keyDecision=decision)
+        stamped(entry)  # решение закреплено отпечатком вместе с разбором
         task = {"taskNumber": 20, "stem": fipi["stem"], "options": ["了", "着", "地"], "key": 2}
         if replaces:
             task["replaces"] = replaces
@@ -226,6 +227,14 @@ class GeneratedInBankTest(unittest.TestCase):
         self.assertEqual(status[copy_id]["duplicateOf"], "q20-aaaaaaaa")
         self.assertIn(f"`{copy_id}` ~ `q20-aaaaaaaa`: сходство 100% — исключено как повтор",
                       bb.duplicates_report(records, questions))
+
+    def test_replacement_waits_for_accepted_original(self):
+        # Пока разбор оригинала — черновик, решение «оставить скрытым» не закреплено отпечатком: волна
+        # могла бы снять пометку, и копия ушла бы незаметно. Поэтому копия выходит после принятия оригинала.
+        records, questions, copy_id = self.disputed_with_replacement("hidden", original="draft")
+        self.assertEqual({q["id"]: q["reviewStatus"] for q in questions}[copy_id], "excluded")
+        self.assertIn(f"`{copy_id}` ~ `q20-aaaaaaaa`: сходство 100% — исключено как повтор "
+                      "(оригинал не скрыт или его разбор не принят)", bb.duplicates_report(records, questions))
 
     def test_copy_of_hidden_task_without_replaces_is_a_repeat(self):
         _, questions, copy_id = self.disputed_with_replacement("hidden", replaces=None)

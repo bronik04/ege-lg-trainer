@@ -7,6 +7,8 @@
 свои принятые вопросы (принятый вопрос к непринятому правилу validate.py не пропустит) и все
 задания с ним: задание с непринятым правилом не публикуется. Скрипт говорит, сколько заданий
 уйдёт и какие позиции полного варианта опустеют, — такую ветку сливать только после принятия.
+Скрытое спорное задание уводит свою исправленную копию (replaces): она выходит, только пока
+разбор оригинала принят.
 """
 
 import sys
@@ -61,6 +63,13 @@ def impact(rule_ids, questions_path=QUESTIONS):
     return len(gone), sorted({q["taskNumber"] for q in gone} - left)
 
 
+def replacements(ids, questions_path=QUESTIONS):
+    """Опубликованные исправленные копии (replaces) заданий из ids: уйдут с сайта до нового принятия."""
+    ids = set(ids)
+    return sorted(q["id"] for q in read_json(questions_path)
+                  if q.get("replaces") in ids and q.get("reviewStatus") == "ready")
+
+
 def main():
     if len(sys.argv) < 2:
         raise SystemExit(__doc__)
@@ -73,6 +82,10 @@ def main():
         print(f"Внимание: пока правила ({', '.join(rules)}) не приняты, с сайта уходят их задания: {count}."
               + (f" Полный вариант не соберётся — пустые позиции: {', '.join(map(str, empty))}." if empty else "")
               + " Сливать в main только после принятия автором.")
+    copies = replacements(done)
+    if copies:
+        print(f"Внимание: исправленные копии ({', '.join(copies)}) уходят с сайта, пока автор не примет "
+              "оригинал заново. Сливать в main только после принятия автором.")
     missing = sorted(set(sys.argv[1:]) - set(done))
     if missing:
         print("Не найдено среди принятого: " + ", ".join(missing))
