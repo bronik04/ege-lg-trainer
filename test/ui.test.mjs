@@ -105,31 +105,40 @@ test('правило → проверка правила → задания по
   assert.equal(page.url().endsWith('#/practice'), true);
   // Тема «наречия» встречается в задании 22 (два) и в сгенерированном задании 27.
   await see(page, '#available', /Доступно: 3 задания/);
+  // Тема с карточки правила только сужает оглавление: номера без неё не нажимаются.
+  await see(page, '#topicFocus', /Только тема: Наречия/);
+  assert.equal(await page.locator('input[data-key="Задания:20"]').isDisabled(), true);
+  assert.equal(await page.locator('input[data-key="Задания:27"]').isDisabled(), false);
+  await see(page, '.task-row', /27\s*Прочие темы\s*1/);
+  await page.getByRole('button', { name: 'Снять тему' }).click();
+  assert.equal(await page.locator('#topicFocus').count(), 0);
+  await see(page, '#available', /Доступно: 15 заданий/);
   assert.deepEqual(errors, []);
   await context.close();
 });
 
-test('фильтры по теме и номеру независимы, источник виден', { skip }, async () => {
-  const { page, context } = await open(mainUrl, { hash: '#/practice' });
-  const chip = (group, value) => page.locator(`input[data-key="${group}:${value}"]`);
-  await chip('Номер задания', 27).check();
+test('оглавление по номерам: тема — подпись номера, источник виден', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { hash: '#/practice' });
+  const row = (n) => page.locator(`input[data-key="Задания:${n}"]`);
+  // Отдельного выбора темы и номера нет: одна строка на номер.
+  assert.equal(await page.locator('input[data-key^="Темы:"]').count(), 0);
+  assert.equal(await page.locator('input[data-key^="Номер задания:"]').count(), 0);
+  await see(page, '.task-row', /22\s*Наречия\s*2/);
+  await row(27).check();
   await see(page, '#available', /Доступно: 2 задания/);
-  await chip('Темы', 'adverbs').check();
-  await see(page, '#available', /Доступно: 1 задание/);
-  await chip('Номер задания', 27).uncheck();
-  await chip('Номер задания', 20).check();
-  await see(page, '#available', /заданий нет/);
-  assert.equal(await page.locator('#startRound').isDisabled(), true);
+  await row(22).check();
+  await see(page, '#available', /Доступно: 4 задания/);
   await page.getByRole('button', { name: 'Сбросить фильтры' }).click();
-  await chip('Источник', 'generated').check();
+  await page.locator('input[data-key="Источник:generated"]').check();
   await see(page, '#available', /Доступно: 1 задание/);
+  assert.deepEqual(errors, []);
   await context.close();
 });
 
 test('тренировка: разбор выбранного неверного варианта, три и четыре варианта', { skip }, async () => {
   const { page, context, errors } = await open(mainUrl, { hash: '#/practice' });
-  await page.locator('input[data-key="Номер задания:20"]').check();
-  await page.locator('input[data-key="Номер задания:22"]').check();
+  await page.locator('input[data-key="Задания:20"]').check();
+  await page.locator('input[data-key="Задания:22"]').check();
   await page.locator('#roundSize').selectOption('all');
   await page.locator('#startRound').click();
   const seen = new Set();
@@ -320,14 +329,14 @@ test('ссылки учителя: подборка, те же задания, �
   const { page, context, errors } = await open(mainUrl, { hash: '#/practice?topics=adverbs&tasks=22&size=5' });
   await see(page, '#shareNotice', /Подборка открыта по ссылке/);
   assert.equal(new URL(page.url()).hash, '#/practice/setup');
-  assert.equal(await page.locator('input[data-key="Темы:adverbs"]').isChecked(), true);
-  assert.equal(await page.locator('input[data-key="Номер задания:22"]').isChecked(), true);
+  await see(page, '#topicFocus', /Только тема: Наречия/);
+  assert.equal(await page.locator('input[data-key="Задания:22"]').isChecked(), true);
   assert.equal(await page.locator('#roundSize').inputValue(), '5');
   await see(page, '#available', /Доступно: 2 задания/);
   // Темы, которой больше нет на сайте, из ссылки нет и в подборке — и ученик об этом знает.
   await page.goto(`${mainUrl}#/practice?topics=gone,adverbs&tasks=22&size=5`);
   await see(page, '#shareNotice', /одной темы из неё на сайте больше нет/);
-  assert.equal(await page.locator('input[data-key="Темы:adverbs"]').isChecked(), true);
+  await see(page, '#topicFocus', /Только тема: Наречия/);
   // Своя ссылка на подборку повторяет выбранные фильтры.
   await page.locator('#share-setup').click();
   const setupLink = new URL(await page.locator('#shareBox input').inputValue());
