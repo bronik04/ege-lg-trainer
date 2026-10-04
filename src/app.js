@@ -35,18 +35,30 @@
 
   const storedText = storage.get(PROGRESS_KEY);
   const storedVersion = progressVersion(storedText);
-  // Прогресс записан более новой страницей (например, выкладку откатили) — не трогаем его.
-  const progressLocked = storedVersion !== null && storedVersion > PROGRESS_VERSION;
+  // Прогресс записан более новой страницей (например, выкладку откатили или в другой вкладке уже
+  // новая выкладка) — не трогаем его: ни ответами, ни сбросом, ни загрузкой файла.
+  const newer = (text) => {
+    const version = progressVersion(text);
+    return version !== null && version > PROGRESS_VERSION;
+  };
+  let progressLocked = newer(storedText);
   // Перед переносом на новую структуру — копия как была, на случай ошибки в переносе.
   if (storedVersion !== null && storedVersion < PROGRESS_VERSION && !storage.get(`${PROGRESS_KEY}:v${storedVersion}`)) {
     storage.set(`${PROGRESS_KEY}:v${storedVersion}`, storedText);
   }
-  let progress = pruneProgress(parseProgress(storedText), questions.map((q) => q.id));
+  const loaded = parseProgress(storedText);
+  let progress = pruneProgress(loaded, questions);
   let storageOk = !progressLocked;
   function save() {
     commitClock();
+    if (!progressLocked && newer(storage.get(PROGRESS_KEY))) lockProgress();
     if (progressLocked) return;
     storageOk = storage.set(PROGRESS_KEY, JSON.stringify(progress));
+  }
+
+  function lockProgress() {
+    progressLocked = true;
+    storageOk = false;
   }
   const now = () => new Date().toISOString();
 
@@ -138,7 +150,7 @@
   let variantConfirm = false;
   let resetConfirm = false;
   let transferNotice = null; // итог загрузки файла прогресса, виден на экране банка
-  let shareNotice = null; // что открыто по ссылке учителя; показывается один раз
+  let shareNotice = prunedNotice(loaded, progress); // что открыто по ссылке учителя; показывается один раз
   let shareOpen = null; // какой блок «Ссылка…» раскрыт: setup, round или variant
   let pendingVariant = null; // вариант из ссылки ждёт решения: поверх незавершённого своего
   let bankFilters = { task: '', topic: '', state: 'all', origin: '' };
@@ -265,12 +277,6 @@
     // Иероглифы — шрифтом кайшу; буквы порядка (№26), тоны (№15) и числа (№19) — обычным.
     const answer = (text) => (/[\u3400-\u9fff]/.test(text) ? el('span', { class: 'zh', lang: 'zh', text }) : el('b', { text }));
     const zh = (text) => el('span', { class: 'zh', lang: 'zh', text });
-    // №26: верный порядок собранным предложением — буквы сами по себе ничего не объясняют.
-    const assembled = (q) => {
-      const parts = new Map((q.fragments || []).map((f) => [f.id, f.text]));
-      const order = optionText(q, q.correctOptionId).split('').map((id) => parts.get(id));
-      return order.every(Boolean) ? order.join('，') : '';
-    };
     return el('details', { class: 'mistakes', id, open },
       el('summary', { text: `Работа над ошибками · ${entries.length - skipped}` + (skipped ? ` · без ответа ${skipped}` : '') }),
       groups.map((g) => {
@@ -283,7 +289,8 @@
             const q = byId.get(entry.id);
             const e = explainChoice(q, entry.chosen);
             const why = entry.chosen == null ? e.correctExplanation : e.chosenExplanation;
-            const sentence = q.fragments ? assembled(q) : '';
+            // №26: верный порядок собранным предложением — буквы сами по себе ничего не объясняют.
+            const sentence = q.fragments ? assembledOrder(q) : '';
             return el('li', {},
               zh(`${q.taskNumber}. ${q.stem.replace(/\s+/g, ' ')}` + (q.taskNumber === 15 ? ' — тоны' : '')),
               el('span', { class: 'small' }, entry.chosen == null ? 'без ответа' : ['ваш ответ: ', answer(e.chosenText)],
@@ -306,15 +313,18 @@
     let target = `#/${name}`;
     if (name === 'variant') {
       if (link.kind === 'ids' && isVariant(link.ids, byId)) {
-        const v = progress.variant;
-        const own = v && !v.finishedAt && Object.keys(v.answers).length > 0 && v.ids.join() !== link.ids.join();
-        if (own) pendingVariant = link.ids;
-        else startLinkedVariant(link.ids);
+        const action = linkAction(progress.variant, link.ids);
+        if (action === 'ask') pendingVariant = link.ids;
+        else if (action === 'start') startLinkedVariant(link.ids);
+        else shareNotice = { warn: false, text: SAME_LINK.variant[action] };
       } else {
         shareNotice = { warn: true, text: 'Вариант из ссылки не открыть: части его заданий больше нет в банке. Соберите новый вариант.' };
       }
     } else if (link.kind === 'ids') {
-      if (link.ids.length) {
+      const action = link.ids.length ? linkAction(progress.round, link.ids) : null;
+      if (action === 'continue' || action === 'result') {
+        shareNotice = { warn: false, text: SAME_LINK.round[action] };
+      } else if (action) {
         progress = { ...progress, round: startSession(link.ids, now()) };
         save();
         if (link.missing) shareNotice = { warn: true, text: `Из ссылки не найдено в банке: ${tasksWord(link.missing)}. Раунд собран из остальных.` };
@@ -325,11 +335,25 @@
     } else {
       filters = { ...filters, ...link.filters, state: 'all' };
       saveFilters();
-      shareNotice = { warn: false, text: 'Подборка открыта по ссылке: темы, номера и размер раунда уже выбраны.' };
+      shareNotice = link.missing
+        ? { warn: true, text: `Подборка открыта по ссылке, но ${link.missing === 1 ? 'одной темы' : `${link.missing} тем`} из неё на сайте больше нет — выбраны остальные.` }
+        : { warn: false, text: 'Подборка открыта по ссылке: темы, номера и размер раунда уже выбраны.' };
       target = '#/practice/setup';
     }
     window.history.replaceState(null, '', target);
   }
+
+  // Ученик вернулся по той же ссылке: работа не начинается заново.
+  const SAME_LINK = {
+    variant: {
+      continue: 'Этот вариант вы уже начали — продолжайте с того же места.',
+      result: 'Этот вариант вы уже решили — ниже итог и отчёт учителю. Решить ещё раз — «Решить этот вариант заново».',
+    },
+    round: {
+      continue: 'Эти задания вы уже начали — продолжайте с того же места.',
+      result: 'Эти задания вы уже решили — ниже итог и отчёт учителю. Решить ещё раз — «Решить эти задания заново».',
+    },
+  };
 
   function startLinkedVariant(ids) {
     progress = { ...progress, variant: startVariant(ids, now()) };
@@ -429,6 +453,14 @@
   }
 
   const sessionAnswers = (session) => session.ids.map((id) => session.answers[id] ?? null);
+
+  // Из начатой сессии ушли снятые с публикации задания — ученик узнаёт об этом один раз.
+  function prunedNotice(before, after) {
+    const changed = (kind) => before[kind] && !before[kind].finishedAt && before[kind] !== after[kind];
+    if (changed('variant')) return { warn: true, text: 'Часть заданий сняли с сайта на исправление: в начатом варианте их места заняли другие задания тех же номеров.' };
+    if (changed('round')) return { warn: true, text: 'Часть заданий начатого раунда сняли с сайта на исправление — раунд продолжается без них.' };
+    return null;
+  }
 
   function originLabel(q) {
     if (q.origin === 'fipi') return q.sourceRef && q.sourceRef.fipiId ? `Банк ФИПИ · ${q.sourceRef.fipiId}` : 'Банк ФИПИ';
@@ -948,11 +980,15 @@
       resultList(round.ids, round.answers));
     const share = shareToggle('round', 'Ссылка на эти задания', pageUrl(`#/practice?${idsQuery(round.ids)}`),
       `По ссылке откроется раунд из этих же заданий (${round.ids.length}) в том же порядке — одинаковый для всех, кто её получит.`);
-    const report = reportToggle('round', { kind: 'round', at: round.finishedAt || now(), ids: round.ids, answers: sessionAnswers(round),
-      score: result.score, total: result.total });
+    // Код отчёта держит не больше REPORT_MAX_TASKS заданий: учитель большой раунд не прочитал бы.
+    const report = round.ids.length <= REPORT_MAX_TASKS
+      ? reportToggle('round', { kind: 'round', at: round.finishedAt || now(), ids: round.ids, answers: sessionAnswers(round),
+        score: result.score, total: result.total })
+      : { button: null, box: el('p', { class: 'small muted', id: 'reportTooBig', text: `Отчёт учителю — для раунда до ${REPORT_MAX_TASKS} заданий, а в этом ${round.ids.length}. Для отчёта соберите раунд поменьше.` }) };
     view.append(el('div', { class: 'actions' },
       wrong.length ? el('button', { class: 'button', type: 'button', onclick: () => startRound(shuffle(wrong)) }, `Повторить ошибки раунда · ${wrong.length}`) : null,
       el('a', { class: wrong.length ? 'button alt' : 'button', href: '#/practice/setup', text: 'Новый раунд' }),
+      el('button', { class: 'button ghost', type: 'button', id: 'restartRound', onclick: () => startRound(round.ids) }, 'Решить эти задания заново'),
       report.button,
       share.button));
     if (report.box) view.append(report.box);
@@ -979,6 +1015,11 @@
   }
 
   function renderVariant() {
+    // Свой вариант сбросили или завершили в другой вкладке — спрашивать больше не о чем.
+    if (pendingVariant && linkAction(progress.variant, pendingVariant) !== 'ask') {
+      startLinkedVariant(pendingVariant);
+      pendingVariant = null;
+    }
     const v = progress.variant;
     if (pendingVariant) {
       const answered = Object.values(v.answers).filter((x) => x != null).length;
@@ -1100,6 +1141,10 @@
     if (wrong.length) {
       actions.append(el('button', { class: 'button alt', type: 'button', onclick: () => startRound(wrong) }, `Повторить ошибки варианта · ${wrong.length}`));
     }
+    actions.append(el('button', {
+      class: 'button ghost', type: 'button', id: 'restartVariant',
+      onclick: () => { startLinkedVariant(v.ids); render(); },
+    }, 'Решить этот вариант заново'));
     const share = shareToggle('variant', 'Ссылка на этот вариант', pageUrl(`#/variant?${idsQuery(v.ids)}`),
       'По ссылке откроется этот же вариант — те же 13 заданий. Удобно, чтобы весь класс решал одно и то же.');
     const report = reportToggle('variant', { kind: 'variant', at: v.finishedAt, timeMs: (v.result || {}).timeMs, ids: v.ids, answers: sessionAnswers(v),
@@ -1257,18 +1302,19 @@
       onchange: (e) => importProgress(e.target.files[0]),
     });
     view.append(el('div', { class: 'actions' },
-      el('button', { class: 'button ghost', type: 'button', id: 'exportProgress', dataset: { key: 'progress:export' }, onclick: downloadProgress }, 'Сохранить в файл'),
-      el('button', { class: 'button ghost', type: 'button', id: 'importProgress', dataset: { key: 'progress:import' }, onclick: () => fileInput.click() }, 'Загрузить из файла'),
+      el('button', { class: 'button ghost', type: 'button', id: 'exportProgress', disabled: progressLocked, dataset: { key: 'progress:export' }, onclick: downloadProgress }, 'Сохранить в файл'),
+      el('button', { class: 'button ghost', type: 'button', id: 'importProgress', disabled: progressLocked, dataset: { key: 'progress:import' }, onclick: () => fileInput.click() }, 'Загрузить из файла'),
       fileInput));
     if (transferNotice) {
       view.append(el('p', { class: transferNotice.ok ? 'notice' : 'notice warn', role: 'status', id: 'transferNotice', text: transferNotice.text }));
     }
     const reset = el('div', { class: 'actions' });
     if (!resetConfirm) {
-      reset.append(el('button', { class: 'button ghost danger', type: 'button', onclick: () => { resetConfirm = true; render(false); } }, 'Сбросить прогресс'));
+      reset.append(el('button', { class: 'button ghost danger', type: 'button', id: 'resetProgress', disabled: progressLocked, onclick: () => { resetConfirm = true; render(false); } }, 'Сбросить прогресс'));
     } else {
       reset.append(el('span', { class: 'notice warn', text: 'Ответы, ошибки и результаты вариантов будут удалены.' }),
         el('button', { class: 'button danger ghost', type: 'button', id: 'confirmReset', onclick: () => {
+          if (progressLocked) return;
           progress = emptyProgress();
           storage.remove(PROGRESS_KEY);
           resetConfirm = false;
@@ -1281,6 +1327,7 @@
   }
 
   function downloadProgress() {
+    if (progressLocked) return; // прогресс новой версии страница не прочитала — выгружать нечего
     const at = now();
     const url = URL.createObjectURL(new Blob([exportProgress(progress, at)], { type: 'application/json' }));
     const link = el('a', { href: url, download: `ege-lg-trainer-progress-${at.slice(0, 10)}.json` });
@@ -1297,7 +1344,7 @@
   };
 
   async function importProgress(file) {
-    if (!file) return;
+    if (!file || progressLocked) return;
     let result;
     try {
       result = readProgressFile(await file.text());
@@ -1305,7 +1352,13 @@
       result = { ok: false, reason: 'not-json' };
     }
     if (result.ok) {
-      progress = pruneProgress(mergeProgress(progress, result.progress), questions.map((q) => q.id));
+      try {
+        progress = pruneProgress(mergeProgress(progress, result.progress), questions);
+      } catch {
+        result = { ok: false, reason: 'not-progress' };
+      }
+    }
+    if (result.ok) {
       save();
       const count = Object.keys(result.progress.questions).length;
       transferNotice = { ok: true, text: `Прогресс из файла объединён с этим браузером. В файле ответы на ${tasksWord(count)}.` };
@@ -1402,10 +1455,13 @@
   // старое. Время того же варианта не убывает.
   window.addEventListener('storage', (event) => {
     if (event.key !== PROGRESS_KEY || progressLocked) return;
-    const version = progressVersion(event.newValue);
-    if (version !== null && version > PROGRESS_VERSION) return;
+    if (newer(event.newValue)) {
+      lockProgress();
+      render(false);
+      return;
+    }
     commitClock();
-    let incoming = pruneProgress(parseProgress(event.newValue), questions.map((q) => q.id));
+    let incoming = pruneProgress(parseProgress(event.newValue), questions);
     const mine = progress.variant;
     const theirs = incoming.variant;
     if (timed(mine) && theirs && theirs.startedAt === mine.startedAt && !(theirs.elapsedMs >= mine.elapsedMs)) {
