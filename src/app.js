@@ -830,16 +830,64 @@
 
   // ---------- практика ----------
 
-  function chipGroup(legend, items, selected, onToggle, extraClass) {
+  function chipGroup(legend, items, selected, onToggle) {
     return el('fieldset', { class: 'filter' },
       el('legend', { text: legend }),
-      el('div', { class: 'chips' }, items.map((it) => el('label', { class: `chip ${extraClass || ''}` },
+      el('div', { class: 'chips' }, items.map((it) => el('label', { class: 'chip' },
         el('input', { type: 'checkbox', checked: selected.includes(it.value), dataset: { key: `${legend}:${it.value}` }, onchange: () => onToggle(it.value) }),
         el('span', {}, it.label, it.count !== undefined ? el('small', { text: String(it.count) }) : null)))));
   }
 
   function toggle(list, value) {
     return list.includes(value) ? list.filter((x) => x !== value) : [...list, value];
+  }
+
+  // Оглавление по номерам: номер в клетке, тема номера, число заданий. Тема с карточки
+  // правила или из старой ссылки (filters.topics) только сужает: номер без неё не нажать.
+  function taskContents() {
+    const rows = TASK_NUMBERS.map((n) => {
+      const own = questions.filter((q) => q.taskNumber === n);
+      const topic = topics.find((t) => t.taskNumbers.includes(n));
+      const count = filterQuestions(own, { topics: filters.topics }, progress).length;
+      return { n, title: topic ? topic.title : `Задание ${n}`, total: own.length, count };
+    }).filter((r) => r.total > 0);
+    const focus = filters.topics.length
+      ? el('p', { class: 'topic-focus', id: 'topicFocus' },
+        el('span', {}, filters.topics.length > 1 ? 'Только темы: ' : 'Только тема: ', el('b', { text: filters.topics.map(topicTitle).join(', ') })),
+        el('button', {
+          class: 'button ghost', type: 'button',
+          onclick: () => {
+            filters = { ...filters, topics: [] };
+            saveFilters();
+            render(false);
+            const first = view.querySelector('.task-row input');
+            if (first) first.focus();
+          },
+        }, el('span', { 'aria-hidden': 'true', text: '✕' }), ' Снять тему'))
+      : null;
+    return el('fieldset', { class: 'filter' },
+      el('legend', { text: 'Задания' }),
+      focus,
+      el('div', { class: 'contents' }, rows.map((r) => {
+        const checked = filters.tasks.includes(r.n);
+        return el('label', { class: 'task-row' },
+          el('input', {
+            type: 'checkbox', checked, disabled: !checked && !r.count, dataset: { key: `Задания:${r.n}` },
+            onchange: () => {
+              filters.tasks = toggle(filters.tasks, r.n);
+              saveFilters();
+              render(false);
+              // Снятый номер без заданий темы стал недоступен — фокус на «Снять тему», а не в никуда.
+              const same = view.querySelector(`input[data-key="Задания:${r.n}"]`);
+              const off = view.querySelector('#topicFocus button');
+              if (same && same.disabled && off) off.focus();
+            },
+          }),
+          el('span', {},
+            el('span', { class: 'cellnum' }, el('span', { class: 'sr', text: 'Задание ' }), String(r.n)),
+            el('span', { class: 'task-title', text: r.title }),
+            el('small', {}, String(r.count), el('span', { class: 'sr', text: ` ${plural(r.count, 'задание', 'задания', 'заданий')}` }))));
+      })));
   }
 
   function renderPractice() {
@@ -853,18 +901,12 @@
       return;
     }
     view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Практика ЕГЭ' }),
-      el('p', { class: 'lead', text: 'Задания из банка с разбором сразу после ответа. Тему и номер задания можно выбирать независимо: одна тема встречается в разных номерах.' }));
+      el('p', { class: 'lead', text: 'Задания из банка с разбором сразу после ответа. Отметьте номера — или ничего, чтобы взять все.' }));
     if (!questions.length) {
       view.append(emptyBank());
       return;
     }
-    const topicItems = topics.map((t) => ({
-      value: t.id, label: t.title, count: questions.filter((q) => q.topicIds.includes(t.id)).length,
-    })).filter((t) => t.count > 0);
-    view.append(chipGroup('Темы', topicItems, filters.topics, (v) => { filters.topics = toggle(filters.topics, v); saveFilters(); render(false); }));
-    const taskItems = TASK_NUMBERS.map((n) => ({ value: n, label: String(n), count: questions.filter((q) => q.taskNumber === n).length }))
-      .filter((t) => t.count > 0);
-    view.append(chipGroup('Номер задания', taskItems, filters.tasks, (v) => { filters.tasks = toggle(filters.tasks, v); saveFilters(); render(false); }, 'num'));
+    view.append(taskContents());
     if (origins.length > 1) {
       view.append(chipGroup('Источник', origins.map((o) => ({ value: o, label: ORIGIN_NAMES[o] || o, count: questions.filter((q) => q.origin === o).length })),
         filters.origins, (v) => { filters.origins = toggle(filters.origins, v); saveFilters(); render(false); }));
