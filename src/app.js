@@ -845,15 +845,15 @@
   // Оглавление по номерам: номер в клетке, тема номера, число заданий. Тема с карточки
   // правила или из старой ссылки (filters.topics) только сужает: номер без неё не нажать.
   function taskContents() {
-    const inTopics = (q) => !filters.topics.length || q.topicIds.some((t) => filters.topics.includes(t));
     const rows = TASK_NUMBERS.map((n) => {
       const own = questions.filter((q) => q.taskNumber === n);
       const topic = topics.find((t) => t.taskNumbers.includes(n));
-      return { n, title: topic ? topic.title : `Задание ${n}`, total: own.length, count: own.filter(inTopics).length };
+      const count = filterQuestions(own, { topics: filters.topics }, progress).length;
+      return { n, title: topic ? topic.title : `Задание ${n}`, total: own.length, count };
     }).filter((r) => r.total > 0);
     const focus = filters.topics.length
       ? el('p', { class: 'topic-focus', id: 'topicFocus' },
-        el('span', {}, 'Только тема: ', el('b', { text: filters.topics.map(topicTitle).join(', ') })),
+        el('span', {}, filters.topics.length > 1 ? 'Только темы: ' : 'Только тема: ', el('b', { text: filters.topics.map(topicTitle).join(', ') })),
         el('button', {
           class: 'button ghost', type: 'button',
           onclick: () => {
@@ -873,12 +873,20 @@
         return el('label', { class: 'task-row' },
           el('input', {
             type: 'checkbox', checked, disabled: !checked && !r.count, dataset: { key: `Задания:${r.n}` },
-            onchange: () => { filters.tasks = toggle(filters.tasks, r.n); saveFilters(); render(false); },
+            onchange: () => {
+              filters.tasks = toggle(filters.tasks, r.n);
+              saveFilters();
+              render(false);
+              // Снятый номер без заданий темы стал недоступен — фокус на «Снять тему», а не в никуда.
+              const same = view.querySelector(`input[data-key="Задания:${r.n}"]`);
+              const off = view.querySelector('#topicFocus button');
+              if (same && same.disabled && off) off.focus();
+            },
           }),
           el('span', {},
-            el('span', { class: 'cellnum', text: String(r.n) }),
+            el('span', { class: 'cellnum' }, el('span', { class: 'sr', text: 'Задание ' }), String(r.n)),
             el('span', { class: 'task-title', text: r.title }),
-            el('small', { text: String(r.count) })));
+            el('small', {}, String(r.count), el('span', { class: 'sr', text: ` ${plural(r.count, 'задание', 'задания', 'заданий')}` }))));
       })));
   }
 

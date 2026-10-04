@@ -109,13 +109,21 @@ test('правило → проверка правила → задания по
   await see(page, '#topicFocus', /Только тема: Наречия/);
   assert.equal(await page.locator('input[data-key="Задания:20"]').isDisabled(), true);
   assert.equal(await page.locator('input[data-key="Задания:27"]').isDisabled(), false);
-  await see(page, '.task-row', /27\s*Прочие темы\s*1/);
+  assert.deepEqual(await contentsRow(page, 27), ['Прочие темы', '1 задание']);
   await page.getByRole('button', { name: 'Снять тему' }).click();
   assert.equal(await page.locator('#topicFocus').count(), 0);
   await see(page, '#available', /Доступно: 15 заданий/);
+  // Кнопка исчезла — фокус на первой строке оглавления, а не в никуда.
+  assert.equal(await page.evaluate(() => document.activeElement.dataset.key), 'Задания:15');
   assert.deepEqual(errors, []);
   await context.close();
 });
+
+// Строка оглавления: тема и число заданий (у числа скрытое для глаз слово — для чтеца экрана).
+async function contentsRow(page, n) {
+  const row = page.locator('.task-row').filter({ has: page.locator(`input[data-key="Задания:${n}"]`) });
+  return [await row.locator('.task-title').textContent(), await row.locator('small').textContent()];
+}
 
 test('оглавление по номерам: тема — подпись номера, источник виден', { skip }, async () => {
   const { page, context, errors } = await open(mainUrl, { hash: '#/practice' });
@@ -123,7 +131,7 @@ test('оглавление по номерам: тема — подпись но
   // Отдельного выбора темы и номера нет: одна строка на номер.
   assert.equal(await page.locator('input[data-key^="Темы:"]').count(), 0);
   assert.equal(await page.locator('input[data-key^="Номер задания:"]').count(), 0);
-  await see(page, '.task-row', /22\s*Наречия\s*2/);
+  assert.deepEqual(await contentsRow(page, 22), ['Наречия', '2 задания']);
   await row(27).check();
   await see(page, '#available', /Доступно: 2 задания/);
   await row(22).check();
@@ -131,6 +139,47 @@ test('оглавление по номерам: тема — подпись но
   await page.getByRole('button', { name: 'Сбросить фильтры' }).click();
   await page.locator('input[data-key="Источник:generated"]').check();
   await see(page, '#available', /Доступно: 1 задание/);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('оглавление: отмеченный номер без заданий темы снимается, фокус не теряется', { skip }, async () => {
+  // Старая ссылка «наречия + 20»: у 20 наречий нет, но отметку можно снять.
+  const { page, context, errors } = await open(mainUrl, { hash: '#/practice?topics=adverbs&tasks=20&size=5' });
+  const row20 = page.locator('input[data-key="Задания:20"]');
+  await see(page, '#available', /заданий нет/);
+  assert.equal(await row20.isChecked(), true);
+  assert.equal(await row20.isDisabled(), false);
+  await row20.focus();
+  await page.keyboard.press('Space');
+  await see(page, '#available', /Доступно: 3 задания/);
+  assert.equal(await row20.isDisabled(), true);
+  // Строка стала недоступна — фокус на «Снять тему».
+  assert.equal(await page.evaluate(() => document.activeElement.textContent.trim()), '✕ Снять тему');
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('оглавление: у номера с двумя темами подпись первой, в счёте обе', { skip }, async () => {
+  // Как №18: «Предлоги» и «Сравнительные конструкции» в одном номере.
+  const url = buildPage('two-topics', {
+    change: (data) => {
+      const base = data.topics.find((t) => t.id === 'adverbs');
+      data.topics.push({ ...base, id: 'cmp', title: 'Сравнение', taskNumbers: [18] });
+      const q18 = data.questions.find((q) => q.id === 'q18-a');
+      data.questions.push({ ...q18, id: 'q18-cmp', topicIds: ['cmp'] });
+    },
+  });
+  const { page, context, errors } = await open(url, { hash: '#/practice' });
+  assert.deepEqual(await contentsRow(page, 18), ['Прочие темы', '2 задания']);
+  // Темы сравнения из ссылки: в №18 остаётся только оно.
+  await page.goto(`${url}#/practice?topics=cmp&size=5`);
+  await see(page, '#topicFocus', /Только тема: Сравнение/);
+  assert.deepEqual(await contentsRow(page, 18), ['Прочие темы', '1 задание']);
+  assert.equal(await page.locator('input[data-key="Задания:17"]').isDisabled(), true);
+  // Две темы из ссылки — «Только темы», в порядке ссылки.
+  await page.goto(`${url}#/practice?topics=cmp,adverbs&size=5`);
+  await see(page, '#topicFocus', /Только темы: Сравнение, Наречия/);
   assert.deepEqual(errors, []);
   await context.close();
 });

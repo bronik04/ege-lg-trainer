@@ -173,14 +173,14 @@ h2, h3 { overflow-wrap: break-word; hyphens: auto; }
 .task-title { display: flex; align-items: flex-end; gap: 8px; }
 .task-title::after { content: ""; flex: 1 0 0; margin-bottom: .3em; border-bottom: 2px dotted var(--line); }
 .task-row small { color: var(--muted); font-size: .9rem; font-weight: 650; font-variant-numeric: tabular-nums; }
-.task-row input:hover + span { border-color: var(--grid); }
+.task-row input:not(:disabled):hover + span { border-color: var(--grid); }
 .task-row input:checked + span { border-color: var(--pen); background: var(--pen-bg); color: var(--pen); }
 .task-row input:checked + span .cellnum { border-color: var(--pen); color: var(--pen); }
 .task-row input:checked + span .task-title::after { border-bottom-color: var(--pen); opacity: .35; }
 .task-row input:checked + span small { color: var(--pen); }
 .task-row input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 2px; }
-.task-row input:disabled { cursor: not-allowed; }
-.task-row input:disabled + span { opacity: .45; }
+/* Полупрозрачный span ложится поверх поля: курсор «нельзя» ставим ему. */
+.task-row input:disabled + span { opacity: .45; cursor: not-allowed; }
 /* Тема с карточки правила или из старой ссылки: сужает оглавление, снимается кнопкой. */
 .topic-focus {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px;
@@ -188,7 +188,7 @@ h2, h3 { overflow-wrap: break-word; hyphens: auto; }
   background: var(--pen-bg); color: var(--pen); font-weight: 600;
 }
 .topic-focus b { font-weight: 750; }
-.topic-focus .button { min-height: 40px; padding: 6px 12px; border-color: transparent; color: var(--pen); }
+.topic-focus .button { min-height: 44px; padding: 6px 12px; border-color: transparent; color: var(--pen); }
 .topic-focus .button:hover { border-color: var(--pen); }
 
 .notice { margin: 4px 0 0; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--sheet); }
