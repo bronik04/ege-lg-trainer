@@ -196,5 +196,10 @@ class SourceLabelTest(unittest.TestCase):
         self.assertEqual(rc.task_header(q), "№26 · HSK 4 · H41001, №56 · h26-aaaaaaaa")
         self.assertEqual(rc.task_header(dict(q, origin="generated", id="g26-b")), "№26 · Новое задание · g26-b")
 
+    def test_restore_names_the_key_source(self):
+        # Спорный ключ HSK возвращают с ключом HSK, а не ФИПИ.
+        self.assertEqual(rc.restore_label({"origin": "hsk"}), "вернуть с ключом HSK")
+        self.assertEqual(rc.restore_label({"origin": "fipi"}), "вернуть с ключом ФИПИ")
+
 if __name__ == "__main__":
     unittest.main()
