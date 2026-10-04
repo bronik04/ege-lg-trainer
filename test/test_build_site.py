@@ -6,6 +6,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 from test.helpers import ready_question, rule
 
@@ -85,6 +86,25 @@ class RenderTest(unittest.TestCase):
         self.assertNotRegex(html, r"<script[^>]+src=")
         self.assertNotIn("src=\"http", html)
 
+    def test_marker_text_in_bank_does_not_break_page(self):
+        # Метки шаблона подставляются один раз: такая же строка в тексте банка остаётся текстом.
+        r = rule()
+        r["mistake"] = "Путают /*PWA_HEAD*/, /*DESCRIPTION*/ и /*SHARE_HEAD*/."
+        html = bs.render(bs.payload([ready_question()], TOPICS, [r], []))
+        embedded = json.loads(re.search(r'id="trainer-data">(.*?)</script>', html, re.S).group(1))
+        self.assertEqual(embedded["rules"][0]["mistake"], r["mistake"])
+
+
+class DescriptionTest(unittest.TestCase):
+    def test_count_agrees_with_number(self):
+        def text(n):
+            return bs.description({"questions": [{"origin": "fipi"}] * n})
+        self.assertIn(": 431 задание банка", text(431))
+        self.assertIn(": 432 задания банка", text(432))
+        self.assertIn(": 435 заданий банка", text(435))
+        self.assertIn(": 411 заданий банка", text(411))
+
+
 class OfflineTest(unittest.TestCase):
     """Работа без сети: манифест, иконки и service worker — только у опубликованной страницы."""
 
@@ -111,6 +131,32 @@ class OfflineTest(unittest.TestCase):
             self.assertTrue((tmp / name).exists(), f"в кэше несуществующий файл {name}")
         self.assertTrue(json.loads(re.search(r'id="trainer-data">(.*?)</script>', html, re.S).group(1))["meta"]["offline"])
 
+    def test_cached_files_are_the_published_files(self):
+        # Файл рядом со страницей — и в PWA_FILES (сборка его кладёт), и в CORE (sw.js его кэширует).
+        worker = (bs.PWA / "sw.js").read_text(encoding="utf-8")
+        core = re.search(r"const CORE = \[(.*?)\];", worker, re.S).group(1)
+        self.assertEqual(set(re.findall(r"'([^']+)'", core)), set(bs.PWA_FILES))
+        self.assertIn("PAGE", core)
+        self.assertNotIn(bs.OG_IMAGE.name, bs.PWA_FILES)
+
+    def test_version_follows_page_and_files(self):
+        tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp, ignore_errors=True)
+        pwa = tmp / "pwa"
+        shutil.copytree(bs.PWA, pwa)
+
+        def version(html, name):
+            out = tmp / name
+            out.mkdir()
+            return bs.write_offline(out, html)
+
+        with mock.patch.object(bs, "PWA", pwa):
+            first = version("<p>1</p>", "a")
+            self.assertEqual(version("<p>1</p>", "b"), first)
+            self.assertNotEqual(version("<p>2</p>", "c"), first, "новая страница — новая версия")
+            (pwa / "icon-192.png").write_bytes(b"other icon")
+            self.assertNotEqual(version("<p>1</p>", "d"), first, "сменили только иконку — тоже новая версия")
+
     def test_same_page_same_version_new_page_new_version(self):
         first, _ = self.build()
         again, _ = self.build()
@@ -123,11 +169,12 @@ class OfflineTest(unittest.TestCase):
     def test_published_page_has_link_preview(self):
         tmp, html = self.build()
         meta = dict(re.findall(r'<meta (?:property|name)="((?:og|twitter):[\w:]+)" content="([^"]*)">', html))
-        self.assertEqual(meta["og:url"], bs.SITE_URL)
+        # Адрес — литералом: константа без «/» на конце дала бы …ege-lg-trainerog-image.jpg.
+        self.assertEqual(meta["og:url"], "https://bronik04.github.io/ege-lg-trainer/")
         self.assertEqual(meta["og:title"], bs.TITLE)
         self.assertIn("Тренажёр заданий 15–27", meta["og:description"])
         self.assertEqual(meta["twitter:card"], "summary_large_image")
-        self.assertRegex(meta["og:image"], "^" + re.escape(bs.SITE_URL) + r"og-image\.jpg\?v=[0-9a-f]{8}$")
+        self.assertRegex(meta["og:image"], r"^https://bronik04\.github\.io/ege-lg-trainer/og-image\.jpg\?v=[0-9a-f]{8}$")
         self.assertEqual(meta["twitter:image"], meta["og:image"])
         self.assertEqual((tmp / "og-image.jpg").read_bytes(), bs.OG_IMAGE.read_bytes())
         worker = (tmp / "sw.js").read_text(encoding="utf-8")

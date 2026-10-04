@@ -3,7 +3,9 @@
     python3 scripts/build_site.py            # dist/index.html — только принятое (для публикации)
     python3 scripts/build_site.py --drafts   # review-build/review.html — с черновиками, для проверки автором
 
-Страница не ходит в сеть: стили, скрипт и банк встроены в неё.
+Стили, скрипт и банк встроены в страницу. Из сети — только стили шрифтов (Google Fonts,
+jsDelivr), без них страница работает на системных; опубликованная страница кладёт рядом
+service worker для работы без сети.
 """
 
 import argparse
@@ -81,13 +83,22 @@ def embed_json(value):
     return json.dumps(value, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c")
 
 
+def plural(n, one, few, many):
+    if n % 10 == 1 and n % 100 != 11:
+        return one
+    if 2 <= n % 10 <= 4 and not 12 <= n % 100 <= 14:
+        return few
+    return many
+
+
 def description(data):
     count = len(data["questions"])
     if not count:
         return "Тренажёр заданий 15–27 ЕГЭ по китайскому языку: правила, проверка, практика и полный вариант."
     origin = ("банка ФИПИ и новых" if any(q["origin"] == "generated" for q in data["questions"])
               else "банка ФИПИ")
-    return (f"Тренажёр заданий 15–27 ЕГЭ по китайскому языку: {count} заданий {origin} с разбором "
+    tasks = plural(count, "задание", "задания", "заданий")
+    return (f"Тренажёр заданий 15–27 ЕГЭ по китайскому языку: {count} {tasks} {origin} с разбором "
             "каждого неверного варианта, правила и полный вариант.")
 
 
@@ -119,15 +130,16 @@ def render(data):
     template = (SRC / "template.html").read_text(encoding="utf-8")
     script = inline_logic((SRC / "logic.mjs").read_text(encoding="utf-8")) + "\n" + (SRC / "app.js").read_text(encoding="utf-8")
     css = (SRC / "app.css").read_text(encoding="utf-8")
-    html = template
-    for marker, value in (("/*APP_CSS*/", css), ("/*APP_JS*/", script),
-                          ("/*DATA_JSON*/", embed_json(data)), ("/*DESCRIPTION*/", description(data)),
-                          ("/*PWA_HEAD*/", PWA_HEAD if data["meta"]["offline"] else ""),
-                          ("/*SHARE_HEAD*/", "" if data["meta"]["drafts"] else share_head(data))):
-        if marker not in html:
+    values = {"/*APP_CSS*/": css, "/*APP_JS*/": script,
+              "/*DATA_JSON*/": embed_json(data), "/*DESCRIPTION*/": description(data),
+              "/*PWA_HEAD*/": PWA_HEAD if data["meta"]["offline"] else "",
+              "/*SHARE_HEAD*/": "" if data["meta"]["drafts"] else share_head(data)}
+    for marker in values:
+        if marker not in template:
             raise SystemExit(f"В шаблоне нет метки {marker}")
-        html = html.replace(marker, value)
-    return html
+    # Один проход по шаблону: такая же строка в тексте банка или в скрипте остаётся как есть.
+    pattern = "|".join(re.escape(marker) for marker in values)
+    return re.sub(pattern, lambda m: values[m.group(0)], template)
 
 
 def write_offline(directory, html):
