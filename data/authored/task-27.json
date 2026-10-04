@@ -24,7 +24,8 @@
         "4": "不是……，就是……"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "dccab1ad1a11"
   },
   "g27-28afc5b1": {
     "status": "accepted",
@@ -51,7 +52,8 @@
         "4": "先……，然后……"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "f8522bedbcc0"
   },
   "g27-63fb4af3": {
     "status": "accepted",
@@ -78,7 +80,8 @@
         "4": "一边……，一边……"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "0a1830ef9e68"
   },
   "g27-afa50163": {
     "status": "accepted",
@@ -105,7 +108,8 @@
         "4": "连……，都……"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "268e9c138e29"
   },
   "g27-c9ae1c38": {
     "status": "accepted",
@@ -132,7 +136,8 @@
         "4": "先……，然后……"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "80c253ccd0ba"
   },
   "g27-e4cd0ae2": {
     "status": "accepted",
@@ -159,7 +164,8 @@
         "4": "一边……，一边……"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "4c65a825afc4"
   },
   "g27-e60e96e3": {
     "status": "accepted",
@@ -186,7 +192,8 @@
         "4": "一边……，一边……"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "3a1ec8ba550e"
   },
   "g27-f19a27db": {
     "status": "accepted",
@@ -213,7 +220,8 @@
         "4": "即使……，也……"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "d2ca5cbf550d"
   },
   "q27-0ee06dd4": {
     "status": "accepted",
@@ -240,7 +248,8 @@
         "4": "除了……，还……"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "74206c2876b4"
   },
   "q27-1cd37d8c": {
     "status": "accepted",
@@ -267,7 +276,8 @@
         "4": "除了……，以外……"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "7a96c22156a9"
   },
   "q27-2291c105": {
     "status": "accepted",
@@ -294,7 +304,8 @@
         "4": "先……， 然后……"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "31fd70b4fdf7"
   },
   "q27-32e9e421": {
     "status": "accepted",
@@ -321,7 +332,8 @@
         "4": "除了……以外……"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "9e51902a6522"
   },
   "q27-41fac2da": {
     "status": "accepted",
@@ -348,7 +360,8 @@
         "4": "除了……以外，……"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "7fdd74763475"
   },
   "q27-50053dfe": {
     "status": "accepted",
@@ -375,7 +388,8 @@
         "4": "因为……，所以……"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "aa5b0d708d09"
   },
   "q27-5195ffde": {
     "status": "accepted",
@@ -402,7 +416,8 @@
         "4": "只有........, 才........"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "661689b586f3"
   },
   "q27-56c40b84": {
     "status": "accepted",
@@ -429,7 +444,8 @@
         "4": "尽管……，可是……"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "257261be9fcb"
   },
   "q27-63594ffc": {
     "status": "accepted",
@@ -456,7 +472,8 @@
         "4": "不管……，都……"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "515751b01c2f"
   },
   "q27-67bacd99": {
     "status": "accepted",
@@ -483,7 +500,8 @@
         "4": "不论……，都……"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "535090ad73c4"
   },
   "q27-6bf86432": {
     "status": "accepted",
@@ -510,7 +528,8 @@
         "4": "虽然……，但是……"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "080577939713"
   },
   "q27-9293c092": {
     "status": "accepted",
@@ -537,7 +556,8 @@
         "4": "一……，就……"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "6cff585c3192"
   },
   "q27-b4bcd93a": {
     "status": "accepted",
@@ -564,7 +584,8 @@
         "4": "不但……但是……"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "ec892f89e5e9"
   },
   "q27-bb848657": {
     "status": "accepted",
@@ -591,7 +612,8 @@
         "4": "既然……那么"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "c659e066a7a9"
   },
   "q27-c27b947c": {
     "status": "accepted",
@@ -618,7 +640,8 @@
         "4": "除了........以外,........"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "72b7d9373de4"
   },
   "q27-c4965315": {
     "status": "accepted",
@@ -645,7 +668,8 @@
         "4": "虽然........, 但是........"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "f3669ea5eba5"
   },
   "q27-d16688fd": {
     "status": "accepted",
@@ -672,7 +696,8 @@
         "4": "一边……一边……"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "91e07c846501"
   },
   "q27-d5132bf7": {
     "status": "accepted",
@@ -699,7 +724,8 @@
         "4": "先……， 然后……"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "af94b0038dd7"
   },
   "q27-e0d54ef3": {
     "status": "accepted",
@@ -726,7 +752,8 @@
         "4": "除了……以外，……"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "7243c2bdf69e"
   },
   "q27-e1a9963f": {
     "status": "accepted",
@@ -753,7 +780,8 @@
         "4": "除了……以外，……"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "cfd51672ae49"
   },
   "q27-e26c624d": {
     "status": "accepted",
@@ -780,7 +808,8 @@
         "4": "只要……就……"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "1d267482372b"
   },
   "q27-e40dec53": {
     "status": "accepted",
@@ -807,7 +836,8 @@
         "4": "虽然……，但是……"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "1aacf40854cf"
   },
   "q27-e4cbeb64": {
     "status": "accepted",
@@ -834,7 +864,8 @@
         "4": "除了……以外，……"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "06e9aaa1bb9b"
   },
   "q27-f002c9ed": {
     "status": "accepted",
@@ -861,7 +892,8 @@
         "4": "先……，然后……"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "dee0479f2628"
   },
   "q27-f58f6d40": {
     "status": "accepted",
@@ -888,7 +920,8 @@
         "4": "只有……，才……"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "27774b86fa46"
   },
   "q27-f6c6a1f0": {
     "status": "accepted",
@@ -915,7 +948,8 @@
         "4": "先……， 然后……"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "9f77d70f9e3a"
   },
   "q27-f8bae1de": {
     "status": "accepted",
@@ -942,6 +976,7 @@
         "4": "不管……都……"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "494297bae42d"
   }
 }

@@ -1,6 +1,6 @@
 import unittest
 
-from test.helpers import TOPICS, authored_for, clone, record, rule
+from test.helpers import TOPICS, authored_for, clone, record, rule, stamped
 
 import build_bank as bb
 from common import QUESTIONS, read_json
@@ -98,6 +98,7 @@ class MergeTest(unittest.TestCase):
         rec = record()
         entry = authored_for(rec)
         del entry["explanation"]["options"]["3"]
+        stamped(entry)  # автор принял именно такой разбор — без разбора варианта 3
         with self.assertRaisesRegex(bb.BuildError, "разбор варианта 3: пусто"):
             self.merge([rec], {rec["id"]: entry})
 

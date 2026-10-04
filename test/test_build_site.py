@@ -41,6 +41,7 @@ class PayloadTest(unittest.TestCase):
         self.assertRegex(data["meta"]["issuesUrl"], r"^https://github\.com/[^/]+/[^/]+/issues/new$")
         self.assertNotIn("draft", data["questions"][0])
         self.assertNotIn("status", data["rules"][0])
+        self.assertNotIn("acceptedHash", data["rules"][0], "служебный отпечаток принятия ученику не нужен")
 
     def test_review_build_marks_drafts(self):
         data = bs.payload(self.questions, TOPICS, self.rules, self.checks, drafts=True)

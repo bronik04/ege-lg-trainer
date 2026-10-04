@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import QUESTIONS, RULE_CHECKS, RULES, TASK_NUMBERS, TOPICS, read_json  # noqa: E402
+from common import QUESTIONS, RULE_CHECKS, RULES, TASK_NUMBERS, TOPICS, content_hash, read_json  # noqa: E402
 
 ORIGINS = {"fipi", "generated"}
 REVIEW_STATUSES = {"imported", "draft", "ready", "conflict", "excluded"}
@@ -276,6 +276,11 @@ def check_all(questions, topics, rules, rule_checks):
         errors += [f"вопрос по правилу {c.get('id')}: {p}" for p in rule_check_problems(c, rules_by_id)]
         errors += [f"вопрос по правилу {c.get('id')}: {p}" for p in bank_overlap_problems(c, bank_texts)]
     errors += check_key_order(rule_checks)
+    # Принятое — ровно то, что принял автор: правка после принятия возвращает пункт автору.
+    for kind, items in (("правило", rules), ("вопрос по правилу", rule_checks)):
+        errors += [f"{kind} {item.get('id')}: изменено после принятия — верните в черновик "
+                   f"(python3 scripts/reopen.py {item.get('id')}), автор примет заново"
+                   for item in items if item.get("status") == "accepted" and item.get("acceptedHash") != content_hash(item)]
     for q in questions:
         errors += [f"задание {q.get('id')}: {p}" for p in question_problems(q, topic_ids, rules_by_id)]
     return errors

@@ -59,7 +59,7 @@ def payload(questions, topics, rules, rule_checks, drafts=False):
         return out
 
     def content(item):
-        out = {k: v for k, v in item.items() if k != "status"}
+        out = {k: v for k, v in item.items() if k not in ("status", "acceptedHash")}
         if item["status"] != "accepted":
             out["draft"] = True
         return out

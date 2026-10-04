@@ -20,8 +20,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import (  # noqa: E402
-    AUTHORED, DATA, QUESTIONS, REVIEW, ROOT, RULE_CHECKS, RULES, TASK_NUMBERS, TOPICS,
-    read_json, write_json, write_text,
+    AUTHORED, DATA, QUESTIONS, REVIEW, ROOT, RULE_CHECKS, RULES, TASK_CONTENT, TASK_NUMBERS, TOPICS,
+    content_hash, read_json, write_json, write_text,
 )
 from validate import BLANK, _strings, explanation_problems  # noqa: E402
 
@@ -208,6 +208,9 @@ def merge(records, authored, topics, rules):
                                  "и обновите sourceSnapshot")
             if entry.get("status") not in ("draft", "accepted"):
                 raise BuildError(f"{entry['_file']}: {record['id']}: статус должен быть draft или accepted")
+            if entry["status"] == "accepted" and entry.get("acceptedHash") != content_hash(entry, TASK_CONTENT):
+                raise BuildError(f"{entry['_file']}: {record['id']}: разбор изменён после принятия — верните в черновик "
+                                 f"(python3 scripts/reopen.py {record['id']}), автор примет заново")
             q["topicIds"] = list(entry.get("topicIds") or [])
             q["ruleIds"] = list(entry.get("ruleIds") or [])
             q["explanation"] = entry.get("explanation")
@@ -395,8 +398,8 @@ def queue_report(questions, pending, rules, rule_checks):
     lines = [
         "# Очередь проверки",
         "",
-        "Здесь всё, что написано, но ещё не принято. Принять — `python3 scripts/accept.py ID …`",
-        "(или поменять `status` на `accepted` вручную), затем пересобрать банк.",
+        "Здесь всё, что написано, но ещё не принято. Принимает автор — кнопкой «Проверка»",
+        "или командой в чате (`python3 scripts/accept.py ID …`), затем банк пересобирается.",
         "",
     ]
     draft_rules = [r for r in rules if r["status"] != "accepted"]

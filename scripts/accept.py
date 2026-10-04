@@ -14,7 +14,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import AUTHORED, RULE_CHECKS, RULES, read_json, write_json  # noqa: E402
+from common import AUTHORED, RULE_CHECKS, RULES, TASK_CONTENT, content_hash, read_json, write_json  # noqa: E402
 from review_queue import pending_ids, read_fixes  # noqa: E402
 
 
@@ -38,6 +38,7 @@ def accept(ids, task=None, fixes_text=None):
         for qid, entry in entries.items():
             if (qid in ids or whole_file) and entry.get("status") == "draft" and qid not in waiting:
                 entry["status"] = "accepted"
+                entry["acceptedHash"] = content_hash(entry, TASK_CONTENT)
                 accepted.append(qid)
                 changed = True
         if changed:
@@ -48,6 +49,7 @@ def accept(ids, task=None, fixes_text=None):
         for item in items:
             if item["id"] in ids and item.get("status") == "draft" and prefix + item["id"] not in waiting:
                 item["status"] = "accepted"
+                item["acceptedHash"] = content_hash(item)
                 accepted.append(item["id"])
                 changed = True
         if changed:

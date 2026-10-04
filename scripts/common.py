@@ -1,5 +1,6 @@
 """Общие пути и константы конвейера данных."""
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -39,6 +40,19 @@ INSTRUCTIONS = {
     26: "Укажите, какая последовательность расположения фрагментов предложения является верной с точки зрения грамматики.",
     27: "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
 }
+
+
+# Что автор принимает в разборе задания: то, что видит ученик, и текст источника, к которому
+# разбор написан. Пометка спорного ключа и решение по нему не входят: они только прячут задание.
+TASK_CONTENT = ("topicIds", "ruleIds", "explanation", "contrast", "sourceSnapshot")
+
+
+def content_hash(item, fields=None):
+    """Отпечаток принятого: accept.py записывает его в acceptedHash. Изменилось после принятия —
+    сборка останавливается, пока пункт не вернут в черновик и автор не примет его заново."""
+    value = ({k: item[k] for k in fields if k in item} if fields
+             else {k: v for k, v in item.items() if k not in ("status", "acceptedHash")})
+    return hashlib.sha256(json.dumps(value, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()[:12]
 
 
 def read_json(path):

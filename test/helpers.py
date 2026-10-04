@@ -6,6 +6,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 
+from common import TASK_CONTENT, content_hash  # noqa: E402
+
 EXPLAIN = "Объяснение достаточной длины, чтобы пройти проверку на содержательность."
 
 
@@ -35,7 +37,7 @@ def explanation_for(rec):
 
 
 def authored_for(rec, status="accepted", rule_ids=("aspect-suffixes",), topic_ids=("aspect",)):
-    return {
+    entry = {
         "status": status,
         "topicIds": list(topic_ids),
         "ruleIds": list(rule_ids),
@@ -47,6 +49,16 @@ def authored_for(rec, status="accepted", rule_ids=("aspect-suffixes",), topic_id
         "explanation": explanation_for(rec),
         "_file": "task-test.json",
     }
+    return stamped(entry)
+
+
+def stamped(item):
+    """Принятое — с отпечатком, как после accept.py; черновик — без него."""
+    item.pop("acceptedHash", None)
+    if item.get("status") == "accepted":
+        fields = TASK_CONTENT if "sourceSnapshot" in item else None
+        item["acceptedHash"] = content_hash(item, fields)
+    return item
 
 
 def ready_question(**kw):
@@ -60,14 +72,14 @@ TOPICS = [{"id": "aspect", "title": "了, 过, 着", "taskNumbers": [20]},
 
 
 def rule(rule_id="aspect-suffixes", status="accepted"):
-    return {
+    return stamped({
         "id": rule_id, "title": "Суффиксы", "topicIds": ["aspect"], "status": status,
         "summary": "Кратко.", "usage": ["условие"],
         "examples": [{"zh": "我吃了饭。", "ru": "Я поел."}, {"zh": "我吃过。", "ru": "Я пробовал."}],
         "contrast": {"pair": [{"zh": "他去了。", "ru": "Он ушёл."}, {"zh": "他去过。", "ru": "Он бывал."}],
                      "note": "Разница."},
         "mistake": "Путают 了 и 过.",
-    }
+    })
 
 
 def clone(value):

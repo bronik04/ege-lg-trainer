@@ -1,6 +1,6 @@
 import unittest
 
-from test.helpers import TOPICS, clone, ready_question, rule
+from test.helpers import TOPICS, clone, ready_question, rule, stamped
 
 import validate as v
 from common import QUESTIONS, RULE_CHECKS, RULES, TOPICS as TOPICS_PATH, read_json
@@ -129,10 +129,10 @@ class CheckKeyOrderTest(unittest.TestCase):
     def test_key_in_one_place_three_times_in_a_row_is_rejected(self):
         # Страница варианты не перемешивает: ключ на одном месте три раза подряд у одного правила — подсказка.
         def check(check_id, key):
-            return {"id": check_id, "kind": "identify-rule", "ruleIds": ["aspect-suffixes"], "status": "accepted",
+            return stamped({"id": check_id, "kind": "identify-rule", "ruleIds": ["aspect-suffixes"], "status": "accepted",
                     "prompt": f"Вопрос {check_id}?", "options": [{"id": "a", "text": "了"}, {"id": "b", "text": "过"}],
                     "correctOptionId": key, "explanation": {"correct": "Разбор верного варианта достаточной длины.",
-                                                            "options": {"b" if key == "a" else "a": "Разбор неверного варианта достаточной длины."}}}
+                                                            "options": {"b" if key == "a" else "a": "Разбор неверного варианта достаточной длины."}}})
         errors = v.check_all([], TOPICS, [rule()], [check("c1", "a"), check("c2", "a"), check("c3", "a")])
         self.assertIn("правило aspect-suffixes: у вопросов c1, c2, c3 ключ на одном месте три раза подряд", errors)
         self.assertEqual(v.check_all([], TOPICS, [rule()], [check("c1", "a"), check("c2", "b"), check("c3", "a")]), [])

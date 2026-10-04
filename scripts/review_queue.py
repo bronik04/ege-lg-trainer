@@ -164,6 +164,7 @@ def reopen(kind, item_id, authored_dir=AUTHORED, checks_path=RULE_CHECKS):
                 if entries[item_id].get("status") != "accepted":
                     return False
                 entries[item_id]["status"] = "draft"
+                entries[item_id].pop("acceptedHash", None)
                 write_json(path, entries)
                 return True
         return False
@@ -172,6 +173,7 @@ def reopen(kind, item_id, authored_dir=AUTHORED, checks_path=RULE_CHECKS):
         for c in checks:
             if c["id"] == item_id and c.get("status") == "accepted":
                 c["status"] = "draft"
+                c.pop("acceptedHash", None)
                 write_json(checks_path, checks)
                 return True
         return False
