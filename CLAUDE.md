@@ -61,6 +61,7 @@
     python3 scripts/import_constructor.py   # sources/constructor-bank → data/raw/fipi.json
     python3 scripts/import_generated.py     # sources/generated → data/raw/generated.json
     python3 scripts/snapshot_hsk.py         # файл автора с заданиями HSK 4 → sources/hsk4/
+    python3 scripts/import_hsk.py           # sources/hsk4 → data/raw/hsk.json
     python3 scripts/build_bank.py           # data/raw + data/authored → data/questions.json + отчёты
     python3 scripts/validate.py             # инварианты банка, правил и вопросов
     python3 scripts/build_site.py           # dist/index.html — только принятое

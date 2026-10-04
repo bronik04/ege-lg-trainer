@@ -55,6 +55,7 @@ jobs:
         run: |
           python3 scripts/import_constructor.py
           python3 scripts/import_generated.py
+          python3 scripts/import_hsk.py
           python3 scripts/build_bank.py
           python3 scripts/validate.py
           # status, а не diff: новый файл, которого нет в репозитории, тоже расхождение.

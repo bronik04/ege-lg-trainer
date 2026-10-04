@@ -44,6 +44,7 @@ Alegreya, Golos Text) подгружаются из сети; без неё ст
 
     sources/constructor-bank/   снимок банка ФИПИ из «ЕГЭ Конструктора» (не редактируется)
     sources/generated/          партии новых заданий (навык ege-chinese или Claude)
+    sources/hsk4/               снимок файла автора: задания №26 из материалов HSK 4 (не редактируется)
     data/raw/                   импорт без правки текста
     data/authored/task-NN.json  разборы, темы и правила заданий (черновик → принято)
     data/topics.json            темы; номер задания и тема — разные признаки
@@ -61,6 +62,8 @@ HSK, подсказывающее ключ заданию ФИПИ.
 1. Новые задания ФИПИ — в Конструктор, затем `python3 scripts/snapshot_constructor.py`.
    Новые задания (от навыка или написанные Claude по команде автора) — файлом в
    `sources/generated/` (формат — в `sources/generated/README.md`).
+   Задания HSK 4 — в файле автора на Яндекс.Диске, затем `python3 scripts/snapshot_hsk.py`
+   (подробности — в `sources/hsk4/README.md`).
 2. Пересобрать банк: `npm run data` (импорт → сборка банка → проверка).
 3. Написать разборы волной: `python3 scripts/add_explanations.py wave.json`. Поправить уже
    принятое — сначала `python3 scripts/reopen.py ID …`: принятое привязано к тексту, и правка

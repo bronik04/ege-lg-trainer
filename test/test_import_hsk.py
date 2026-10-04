@@ -12,7 +12,7 @@ from test import helpers  # noqa: F401  (добавляет scripts/ в sys.path
 
 import build_bank as bb
 import import_hsk as imp
-from common import HSK_MANIFEST, HSK_SOURCE, INSTRUCTIONS, read_json
+from common import HSK_MANIFEST, HSK_SOURCE, INSTRUCTIONS, RAW_HSK, read_json
 from test.helpers import TOPICS, authored_for, record as fipi_record, rule
 
 
@@ -171,6 +171,15 @@ class BankTest(unittest.TestCase):
         self.assertIn("## Задания HSK с подсказкой ключа ФИПИ (не публикуются)", report)
         self.assertIn(f"- `{leaking['id']}` (样卷 H40000, №56): `q22-cccccccc`", report)
 
+
+
+class CommittedTest(unittest.TestCase):
+    def test_raw_hsk_is_up_to_date(self):
+        records, problems, skipped = imp.load()
+        self.assertEqual(problems, [])
+        self.assertEqual(skipped, {"Blue book": 100})
+        self.assertEqual(len(records), 338)
+        self.assertEqual(records, read_json(RAW_HSK), "data/raw/hsk.json устарел: запустите import_hsk.py")
 
 if __name__ == "__main__":
     unittest.main()
