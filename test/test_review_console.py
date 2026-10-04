@@ -12,6 +12,8 @@ import textwrap
 import unittest
 from pathlib import Path
 
+from test.helpers import stamped
+
 ROOT = Path(__file__).resolve().parent.parent
 
 FAKE_GH = textwrap.dedent("""
@@ -48,6 +50,7 @@ class ReviewConsoleTest(unittest.TestCase):
             for entry in entries.values():
                 if entry.get("keyConflict"):
                     entry["keyDecision"] = "hidden"
+                    stamped(entry)  # решение «скрыто» автор принял вместе с разбором
             write(path, entries)
             self.authored[path.name] = entries
         checks = [c for c in read(data / "rule-checks.json") if c.get("status") != "draft"]
@@ -75,6 +78,7 @@ class ReviewConsoleTest(unittest.TestCase):
             for qid, e in sorted(entries.items()) if e.get("keyConflict"))
         entries = self.authored[self.conflict_file]
         entries[self.conflict].pop("keyDecision")
+        stamped(entries[self.conflict])
         write(data / "authored" / self.conflict_file, entries)
         self.log = self.tmp / "gh.log"
         (self.tmp / "gh.py").write_text(FAKE_GH, encoding="utf-8")

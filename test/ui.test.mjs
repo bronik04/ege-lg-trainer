@@ -1086,3 +1086,86 @@ test('часы варианта: время старого варианта не
   assert.deepEqual(errors, []);
   await context.close();
 });
+
+test('вариант по ссылке: свой вариант завершили в другой вкладке — итог не пропадает, вопрос остаётся', { skip }, async () => {
+  const context = await browser.newContext({ viewport: { width: 1100, height: 900 } });
+  await context.route(/^https?:\/\//, (route) => route.abort());
+  const errors = [];
+  const a = await context.newPage();
+  a.on('pageerror', (e) => errors.push(e.message));
+  const own = [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27].map((n) => `q${n}-a`);
+  await a.goto(`${mainUrl}#/variant?ids=${own.join(',')}`);
+  await see(a, '.progress', /Позиция 15/);
+  await a.keyboard.press('1');
+  await see(a, '.progress', /отвечено: 1/);
+  const linked = own.map((id) => (id === 'q22-a' ? 'q22-b' : id === 'q27-a' ? 'q27-gen' : id));
+  await a.goto(`${mainUrl}#/variant?ids=${linked.join(',')}`);
+  await see(a, '#pendingVariant', /незавершённый вариант/);
+  // Во второй вкладке ученик дорешал свой вариант и смотрит итог.
+  const b = await context.newPage();
+  b.on('pageerror', (e) => errors.push(e.message));
+  await b.goto(`${mainUrl}#/variant`);
+  await see(b, '.progress', /отвечено: 1/);
+  await b.locator('#finishVariant').click();
+  await b.locator('#confirmFinish').click();
+  await see(b, '.score', /из 13/);
+  // Первая вкладка узнала об этом, но сама вариант из ссылки не открывает: итог второй цел.
+  await see(a, '#pendingVariant', /уже завершили/);
+  await b.waitForTimeout(500);
+  const stored = (await storedProgress(b)).variant;
+  assert.deepEqual(stored.ids, own);
+  assert.notEqual(stored.finishedAt, null);
+  assert.equal(await b.locator('#report-variant').count(), 1);
+  // Открыть вариант из ссылки — только по кнопке.
+  await a.locator('#openLinkedVariant').click();
+  await see(a, '.progress', /Позиция 15/);
+  assert.deepEqual((await storedProgress(a)).variant.ids, linked);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('снятое задание без замены: позиция убрана и сказано об этом; у решённого варианта нет «заново» и ссылки', { skip }, async () => {
+  // Сборка без q23-a: других заданий №23 на сайте нет.
+  const url = buildPage('no23', { change: (d) => { d.questions = d.questions.filter((x) => x.id !== 'q23-a'); } });
+  const { page, context, errors } = await open(url, { hash: '#/variant' });
+  const ids = [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27].map((n) => `q${n}-a`);
+  const put = (variant) => page.evaluate((v) => localStorage.setItem('ege-lg-trainer:progress',
+    JSON.stringify({ version: 2, questions: {}, checks: {}, round: null, variant: v, history: [] })), variant);
+  await put({ ids, answers: { 'q15-a': '1' }, index: 0, startedAt: '2026-10-04T10:00:00.000Z', finishedAt: null, elapsedMs: 0 });
+  await page.reload();
+  await see(page, '#shareNotice', /других заданий тех же номеров на сайте нет/);
+  assert.equal(await page.locator('.sheet .cell').count(), 12);
+  // Решённый вариант с ушедшим заданием: итог виден, а решить заново и поделиться нечем — вариант неполный.
+  await put({ ids, answers: { 'q15-a': '2' }, index: 12, startedAt: '2026-10-04T10:00:00.000Z', finishedAt: '2026-10-04T10:30:00.000Z', elapsedMs: 60000 });
+  await page.reload();
+  await see(page, '.score', /из 12/);
+  assert.equal(await page.locator('#restartVariant').count(), 0);
+  assert.equal(await page.locator('#share-variant').count(), 0);
+  await see(page, '#variantIncomplete', /сняли с сайта/);
+  assert.doesNotMatch(await text(page, '#view'), /\bnull\b/, 'закрытая кнопка не печатается словом «null»');
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('прогресс новой версии появился незаметно для вкладки: сброс и загрузка файла его не трогают', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { hash: '#/bank' });
+  await page.locator('.bank-item').first().waitFor();
+  // Событие storage сюда не пришло (своя запись или вкладка спала в bfcache): страница о новой версии не знает.
+  const newer = JSON.stringify({ version: 99, questions: { 'q20-a': { future: true } } });
+  await page.evaluate((v) => localStorage.setItem('ege-lg-trainer:progress', v), newer);
+  const file = join(work, 'progress-v2.json');
+  writeFileSync(file, JSON.stringify({ app: 'ege-lg-trainer', exportedAt: 't', version: 2, questions: {}, checks: {}, round: null, variant: null, history: [] }));
+  await page.locator('#progressFile').setInputFiles(file);
+  await see(page, '#transferNotice', /не сохранён/);
+  assert.equal(await page.evaluate(() => localStorage.getItem('ege-lg-trainer:progress')), newer);
+  await page.reload();
+  await page.evaluate((v) => localStorage.setItem('ege-lg-trainer:progress', JSON.stringify({ version: 2, questions: {}, checks: {}, round: null, variant: null, history: [] })), newer);
+  await page.reload();
+  await page.locator('#resetProgress').click();
+  await page.evaluate((v) => localStorage.setItem('ege-lg-trainer:progress', v), newer);
+  await page.locator('#confirmReset').click();
+  await see(page, '#progressLocked', /более новой версией/);
+  assert.equal(await page.evaluate(() => localStorage.getItem('ege-lg-trainer:progress')), newer);
+  assert.deepEqual(errors, []);
+  await context.close();
+});

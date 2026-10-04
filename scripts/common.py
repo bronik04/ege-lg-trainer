@@ -43,9 +43,9 @@ INSTRUCTIONS = {
 }
 
 
-# Что автор принимает в разборе задания: то, что видит ученик, и текст источника, к которому
-# разбор написан. Пометка спорного ключа и решение по нему не входят: они только прячут задание.
-TASK_CONTENT = ("topicIds", "ruleIds", "explanation", "contrast", "sourceSnapshot")
+# Что автор принимает в разборе задания: то, что видит ученик, текст источника, к которому разбор
+# написан, и пометка спорного ключа с решением по ней — снять её значит открыть задание ученикам.
+TASK_CONTENT = ("topicIds", "ruleIds", "explanation", "contrast", "sourceSnapshot", "keyConflict", "keyDecision")
 
 
 def content_hash(item, fields=None):

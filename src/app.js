@@ -457,7 +457,12 @@
   // Из начатой сессии ушли снятые с публикации задания — ученик узнаёт об этом один раз.
   function prunedNotice(before, after) {
     const changed = (kind) => before[kind] && !before[kind].finishedAt && before[kind] !== after[kind];
-    if (changed('variant')) return { warn: true, text: 'Часть заданий сняли с сайта на исправление: в начатом варианте их места заняли другие задания тех же номеров.' };
+    if (changed('variant')) {
+      const replaced = after.variant && after.variant.ids.length === before.variant.ids.length;
+      return { warn: true, text: replaced
+        ? 'Часть заданий сняли с сайта на исправление: в начатом варианте их места заняли другие задания тех же номеров.'
+        : 'Часть заданий сняли с сайта на исправление, а других заданий тех же номеров на сайте нет — в начатом варианте этих позиций пока нет.' };
+    }
     if (changed('round')) return { warn: true, text: 'Часть заданий начатого раунда сняли с сайта на исправление — раунд продолжается без них.' };
     return null;
   }
@@ -1015,22 +1020,33 @@
   }
 
   function renderVariant() {
-    // Свой вариант сбросили или завершили в другой вкладке — спрашивать больше не о чем.
-    if (pendingVariant && linkAction(progress.variant, pendingVariant) !== 'ask') {
-      startLinkedVariant(pendingVariant);
-      pendingVariant = null;
+    // Пока висел вопрос, другая вкладка могла изменить свой вариант. Тот же вариант, что в ссылке, —
+    // спрашивать не о чем; свой стёрли (сброс) — открыть вариант из ссылки. Свой завершили —
+    // вопрос остаётся: сам вариант из ссылки поверх итога не открывается, итог и отчёт целы.
+    if (pendingVariant) {
+      const action = linkAction(progress.variant, pendingVariant);
+      if (action === 'continue' || action === 'result') {
+        pendingVariant = null;
+      } else if (!progress.variant) {
+        startLinkedVariant(pendingVariant);
+        pendingVariant = null;
+      }
     }
     const v = progress.variant;
     if (pendingVariant) {
       const answered = Object.values(v.answers).filter((x) => x != null).length;
+      const text = v.finishedAt
+        ? 'Свой вариант вы уже завершили. Если открыть вариант из ссылки, итог своего и отчёт по нему пропадут с этой страницы (счёт останется в «Прошлых вариантах»).'
+        : `У вас есть незавершённый вариант: отвечено ${answered} из ${v.ids.length}. Если открыть вариант из ссылки, эти ответы пропадут.`;
       view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Вариант по ссылке' }),
-        el('p', { class: 'notice warn', id: 'pendingVariant', text: `У вас есть незавершённый вариант: отвечено ${answered} из ${v.ids.length}. Если открыть вариант из ссылки, эти ответы пропадут.` }),
+        el('p', { class: 'notice warn', id: 'pendingVariant', text }),
         el('div', { class: 'actions' },
           el('button', {
             class: 'button', type: 'button', id: 'openLinkedVariant',
             onclick: () => { startLinkedVariant(pendingVariant); pendingVariant = null; render(); },
           }, 'Открыть вариант из ссылки'),
-          el('button', { class: 'button ghost', type: 'button', id: 'keepOwnVariant', onclick: () => { pendingVariant = null; render(); } }, 'Продолжить свой')));
+          el('button', { class: 'button ghost', type: 'button', id: 'keepOwnVariant', onclick: () => { pendingVariant = null; render(); } },
+            v.finishedAt ? 'Показать итог своего' : 'Продолжить свой')));
       return;
     }
     if (v && !v.finishedAt) {
@@ -1141,15 +1157,22 @@
     if (wrong.length) {
       actions.append(el('button', { class: 'button alt', type: 'button', onclick: () => startRound(wrong) }, `Повторить ошибки варианта · ${wrong.length}`));
     }
-    actions.append(el('button', {
-      class: 'button ghost', type: 'button', id: 'restartVariant',
-      onclick: () => { startLinkedVariant(v.ids); render(); },
-    }, 'Решить этот вариант заново'));
-    const share = shareToggle('variant', 'Ссылка на этот вариант', pageUrl(`#/variant?${idsQuery(v.ids)}`),
-      'По ссылке откроется этот же вариант — те же 13 заданий. Удобно, чтобы весь класс решал одно и то же.');
+    // Задание варианта сняли с сайта и заменить нечем: решить заново и поделиться можно только полным.
+    const complete = isVariant(v.ids, byId);
+    if (complete) {
+      actions.append(el('button', {
+        class: 'button ghost', type: 'button', id: 'restartVariant',
+        onclick: () => { startLinkedVariant(v.ids); render(); },
+      }, 'Решить этот вариант заново'));
+    }
+    const share = complete
+      ? shareToggle('variant', 'Ссылка на этот вариант', pageUrl(`#/variant?${idsQuery(v.ids)}`),
+        'По ссылке откроется этот же вариант — те же 13 заданий. Удобно, чтобы весь класс решал одно и то же.')
+      : { button: null, box: el('p', { class: 'small muted', id: 'variantIncomplete', text: 'Часть заданий этого варианта сняли с сайта на исправление: решить его заново и поделиться ссылкой нельзя — соберите новый.' }) };
     const report = reportToggle('variant', { kind: 'variant', at: v.finishedAt, timeMs: (v.result || {}).timeMs, ids: v.ids, answers: sessionAnswers(v),
       score: result.score, total: result.total });
-    actions.append(report.button, share.button);
+    // null — кнопки нет: штатный append напечатал бы его словом «null».
+    actions.append(...[report.button, share.button].filter(Boolean));
     view.append(el('p', { class: 'section-title', text: 'Результат последнего варианта' }),
       el('p', { class: 'score' }, el('b', { text: `${result.score} из ${result.total}` }), el('span', { class: 'muted', text: 'первичных баллов за раздел 3' })),
       Number.isFinite(v.result && v.result.timeMs)
@@ -1314,7 +1337,13 @@
     } else {
       reset.append(el('span', { class: 'notice warn', text: 'Ответы, ошибки и результаты вариантов будут удалены.' }),
         el('button', { class: 'button danger ghost', type: 'button', id: 'confirmReset', onclick: () => {
-          if (progressLocked) return;
+          // Вкладка могла пропустить запись новой версии (bfcache) — проверить хранилище перед удалением.
+          if (progressLocked || newer(storage.get(PROGRESS_KEY))) {
+            lockProgress();
+            resetConfirm = false;
+            render(false);
+            return;
+          }
           progress = emptyProgress();
           storage.remove(PROGRESS_KEY);
           resetConfirm = false;
@@ -1361,7 +1390,11 @@
     if (result.ok) {
       save();
       const count = Object.keys(result.progress.questions).length;
-      transferNotice = { ok: true, text: `Прогресс из файла объединён с этим браузером. В файле ответы на ${tasksWord(count)}.` };
+      transferNotice = storageOk
+        ? { ok: true, text: `Прогресс из файла объединён с этим браузером. В файле ответы на ${tasksWord(count)}.` }
+        : { ok: false, text: progressLocked
+          ? 'Прогресс из файла не сохранён: в этом браузере прогресс более новой версии тренажёра — обновите страницу.'
+          : 'Прогресс из файла не сохранён: браузер не даёт записать.' };
     } else {
       transferNotice = { ok: false, text: FILE_ERRORS[result.reason] };
     }

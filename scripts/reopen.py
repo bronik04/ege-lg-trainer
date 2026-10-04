@@ -4,14 +4,16 @@
 
 Принятое привязано к тексту (acceptedHash): правка принятого без этого шага остановит сборку.
 Черновик уходит с сайта и возвращается, когда автор примет его заново. Правило уводит с собой
-свои принятые вопросы: принятый вопрос к непринятому правилу validate.py не пропустит.
+свои принятые вопросы (принятый вопрос к непринятому правилу validate.py не пропустит) и все
+задания с ним: задание с непринятым правилом не публикуется. Скрипт говорит, сколько заданий
+уйдёт и какие позиции полного варианта опустеют, — такую ветку сливать только после принятия.
 """
 
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import AUTHORED, RULE_CHECKS, RULES, read_json, write_json  # noqa: E402
+from common import AUTHORED, QUESTIONS, RULE_CHECKS, RULES, read_json, write_json  # noqa: E402
 
 
 def to_draft(item):
@@ -49,11 +51,28 @@ def reopen(ids):
     return done
 
 
+def impact(rule_ids, questions_path=QUESTIONS):
+    """(сколько опубликованных заданий уйдёт с сайта, пока правила не приняты; номера, по которым
+    не останется ни одного задания, — полный вариант без них не соберётся)."""
+    ready = [q for q in read_json(questions_path) if q.get("reviewStatus") == "ready"]
+    gone = [q for q in ready if set(q.get("ruleIds") or []) & set(rule_ids)]
+    gone_ids = {q["id"] for q in gone}
+    left = {q["taskNumber"] for q in ready if q["id"] not in gone_ids}
+    return len(gone), sorted({q["taskNumber"] for q in gone} - left)
+
+
 def main():
     if len(sys.argv) < 2:
         raise SystemExit(__doc__)
+    rule_ids = {r["id"] for r in read_json(RULES)}
     done = reopen(sys.argv[1:])
     print(f"В черновики: {len(done)}" + (": " + ", ".join(done) if done else ""))
+    rules = [i for i in done if i in rule_ids]
+    if rules:
+        count, empty = impact(rules)
+        print(f"Внимание: пока правила ({', '.join(rules)}) не приняты, с сайта уходят их задания: {count}."
+              + (f" Полный вариант не соберётся — пустые позиции: {', '.join(map(str, empty))}." if empty else "")
+              + " Сливать в main только после принятия автором.")
     missing = sorted(set(sys.argv[1:]) - set(done))
     if missing:
         print("Не найдено среди принятого: " + ", ".join(missing))

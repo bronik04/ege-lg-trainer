@@ -327,8 +327,10 @@ def review_conflicts(ask, tally):
             tally.rebuild()
             print("\n  Оставлено скрытым.")
         if choice == "2":
-            rq.decide_conflict(q["id"], "restore")
+            # Сначала черновик, потом решение: закроют окно между записями — задание не выйдет
+            # на сайт со старым разбором.
             rq.reopen("task", q["id"])
+            rq.decide_conflict(q["id"], "restore")
             rq.add_fix("conflicts", q["id"], task_brief(q))
             tally.conflicts += 1
             tally.fixes += 1

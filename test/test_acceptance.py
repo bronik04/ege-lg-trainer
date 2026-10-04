@@ -7,12 +7,13 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-from test.helpers import TOPICS, authored_for, record, rule
+from test.helpers import TOPICS, authored_for, record, rule, stamped
 
 import accept
 import add_explanations as ae
 import build_bank as bb
 import reopen
+import review_queue as rq
 import validate as v
 from common import TASK_CONTENT, content_hash
 
@@ -70,11 +71,24 @@ class EditedAfterAcceptanceTest(unittest.TestCase):
         with self.assertRaisesRegex(bb.BuildError, r"изменён после принятия.*reopen\.py q20-aaaaaaaa"):
             bb.merge([self.rec_()], {"q20-aaaaaaaa": entry}, TOPICS, [rule()])
 
-    def test_key_conflict_mark_does_not_need_reacceptance(self):
-        # Пометка спорного ключа и решение по нему только прячут задание — непринятое на сайт не попадёт.
-        entry = dict(authored_for(self.rec_()), keyConflict="好 тоже естественно.", keyDecision="hidden")
-        questions, _ = bb.merge([self.rec_()], {"q20-aaaaaaaa": entry}, TOPICS, [rule()])
+    def test_conflict_mark_is_part_of_acceptance(self):
+        # Снять пометку спорного ключа или «вернуть с ключом» у принятого — открыть задание ученикам:
+        # это решение автора, без него сборка останавливается.
+        hidden = stamped(dict(authored_for(self.rec_()), keyConflict="好 тоже естественно.", keyDecision="hidden"))
+        questions, _ = bb.merge([self.rec_()], {"q20-aaaaaaaa": hidden}, TOPICS, [rule()])
         self.assertEqual(questions[0]["reviewStatus"], "conflict")
+        for changed in ({k: v for k, v in hidden.items() if k != "keyConflict"}, dict(hidden, keyDecision="restore")):
+            with self.assertRaisesRegex(bb.BuildError, "изменён после принятия"):
+                bb.merge([self.rec_()], {"q20-aaaaaaaa": changed}, TOPICS, [rule()])
+
+    def test_hidden_decision_keeps_acceptance(self):
+        # «Оставить скрытым» в «Проверке» — решение автора: принятое остаётся принятым.
+        with tempfile.TemporaryDirectory() as tmp:
+            entry = {k: v for k, v in stamped(dict(authored_for(self.rec_()), keyConflict="好 тоже.")).items() if k != "_file"}
+            write(Path(tmp) / "task-20.json", {"q20-aaaaaaaa": entry})
+            self.assertTrue(rq.decide_conflict("q20-aaaaaaaa", "hidden", authored_dir=tmp))
+            saved = read(Path(tmp) / "task-20.json")["q20-aaaaaaaa"]
+        self.assertEqual(saved["acceptedHash"], content_hash(saved, TASK_CONTENT))
 
     def test_edited_rule_and_check_are_reported(self):
         edited_rule = dict(rule(), summary="Новая суть, которую автор не видел.")
@@ -102,6 +116,20 @@ class ReopenTest(TempData):
                          {"aspect-suffixes": "accepted", "jiu-cai": "draft"})
         self.assertEqual({c["id"]: c["status"] for c in read(self.tmp / "rule-checks.json")}, {"c1": "draft", "c2": "draft"})
         self.assertEqual(reopen.reopen([self.rec["id"]]), [], "уже черновик")
+
+
+class ReopenImpactTest(unittest.TestCase):
+    def test_reopened_rule_takes_its_tasks_off_the_site(self):
+        # Задание с непринятым правилом не публикуется: правка карточки уводит с сайта её задания,
+        # а если других заданий того же номера нет — и позицию полного варианта.
+        def task(qid, number, rule_id):
+            return {"id": qid, "taskNumber": number, "ruleIds": [rule_id], "reviewStatus": "ready"}
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "questions.json"
+            write(path, [task("q20-a", 20, "aspect-suffixes"), task("q20-b", 20, "aspect-suffixes"),
+                         task("q22-a", 22, "jiu-cai"), task("q22-b", 22, "adverbs-common")])
+            self.assertEqual(reopen.impact(["aspect-suffixes"], path), (2, [20]))
+            self.assertEqual(reopen.impact(["jiu-cai"], path), (1, []))
 
 
 class AddExplanationsTest(unittest.TestCase):

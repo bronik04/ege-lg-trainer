@@ -117,7 +117,7 @@ class MergeTest(unittest.TestCase):
 
     def test_author_key_conflict(self):
         rec = record()
-        entry = dict(authored_for(rec), keyConflict="по смыслу подходит и 了")
+        entry = stamped(dict(authored_for(rec), keyConflict="по смыслу подходит и 了"))  # принято с пометкой
         (q,), _ = self.merge([rec], {rec["id"]: entry})
         self.assertEqual(q["reviewStatus"], "conflict")
         self.assertEqual(q["conflict"], "по смыслу подходит и 了")

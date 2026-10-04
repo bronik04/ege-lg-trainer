@@ -8,7 +8,7 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-from test.helpers import TOPICS, authored_for, record, rule
+from test.helpers import TOPICS, authored_for, record, rule, stamped
 
 import build_bank as bb
 import review_queue as rq
@@ -162,6 +162,7 @@ class ConflictTest(unittest.TestCase):
         rec = record(qid="q23-aaaaaaaa")
         entry = authored_for(rec)
         entry["keyConflict"] = "好 тоже естественно."
+        stamped(entry)  # принято вместе с пометкой
         authored = {rec["id"]: entry}
         questions, _ = bb.merge([rec], authored, TOPICS, [rule()])
         self.assertEqual([q["id"] for q in rq.conflict_queue(questions, authored)], [rec["id"]])

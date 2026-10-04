@@ -97,4 +97,6 @@ https://bronik04.github.io/ege-lg-trainer/. Если закоммиченные 
 
 Если у учеников сломалась работа без сети — Actions → Deploy to GitHub Pages → Run workflow
 со снятой галочкой «offline»: выйдет выключатель, он удалит кэши и снимет service worker.
-Следующий push публикует обычную сборку.
+Следующий push публикует обычную сборку; чтобы выключатель держался до исправления, задайте
+переменную репозитория `OFFLINE` = `false` (Settings → Secrets and variables → Actions →
+Variables) и удалите её, когда всё починено.

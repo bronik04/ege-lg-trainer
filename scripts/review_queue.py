@@ -16,8 +16,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_bank  # noqa: E402
 import validate  # noqa: E402
-from common import (AUTHORED, ISSUES_URL, QUESTIONS, REVIEW, RULE_CHECKS, RULES, TOPICS,  # noqa: E402
-                    read_json, write_json)
+from common import (AUTHORED, ISSUES_URL, QUESTIONS, REVIEW, RULE_CHECKS, RULES, TASK_CONTENT, TOPICS,  # noqa: E402
+                    content_hash, read_json, write_json, write_text)
 
 FIXES = REVIEW / "fixes.md"
 FIXES_HEADER = ("# На правку\n\n"
@@ -71,8 +71,7 @@ def add_fix(section, item_id, text, path=FIXES, when=None):
         content = content.rstrip("\n") + "\n" + entry
     else:
         content = content[:following].rstrip("\n") + "\n" + entry + content[following:]
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(content, encoding="utf-8")
+    write_text(path, content)
 
 
 # ---------- очереди ----------
@@ -148,7 +147,11 @@ def decide_conflict(qid, decision, authored_dir=AUTHORED):
     for path in sorted(Path(authored_dir).glob("task-*.json")):
         entries = read_json(path)
         if qid in entries:
-            entries[qid]["keyDecision"] = decision
+            entry = entries[qid]
+            entry["keyDecision"] = decision
+            # Решение — автора: у принятого разбора отпечаток пересчитывается вместе с ним.
+            if entry.get("status") == "accepted":
+                entry["acceptedHash"] = content_hash(entry, TASK_CONTENT)
             write_json(path, entries)
             return True
     return False
