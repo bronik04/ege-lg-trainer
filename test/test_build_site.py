@@ -58,6 +58,13 @@ class PayloadTest(unittest.TestCase):
         self.assertEqual(data["questions"][0]["sourceRef"],
                          {"collection": "Открытый банк заданий ФИПИ", "fipiId": "3872A5"})
 
+    def test_hsk_source_keeps_paper_and_number(self):
+        q = ready_question(qid="h26-src")
+        q.update(origin="hsk", sourceRef={"collection": "HSK 4", "paper": "H41001", "number": 56,
+                                          "file": "sources/hsk4/hsk4-task26.md"})
+        data = bs.payload([q], TOPICS, self.rules, [])
+        self.assertEqual(data["questions"][0]["sourceRef"], {"collection": "HSK 4", "paper": "H41001", "number": 56})
+
 
 class RenderTest(unittest.TestCase):
     def test_json_cannot_close_script(self):
@@ -104,6 +111,13 @@ class DescriptionTest(unittest.TestCase):
         self.assertIn(": 432 задания банка", text(432))
         self.assertIn(": 435 заданий банка", text(435))
         self.assertIn(": 411 заданий банка", text(411))
+
+    def test_sources_are_named(self):
+        def text(*origins):
+            return bs.description({"questions": [{"origin": o} for o in origins]})
+        self.assertIn("5 заданий банка ФИПИ с разбором", text(*["fipi"] * 5))
+        self.assertIn("банка ФИПИ и новых с разбором", text("fipi", "generated", "fipi", "fipi", "fipi"))
+        self.assertIn("банка ФИПИ, новых и HSK 4 с разбором", text("fipi", "generated", "hsk", "fipi", "fipi"))
 
 
 class OfflineTest(unittest.TestCase):

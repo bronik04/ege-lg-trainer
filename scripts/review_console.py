@@ -59,8 +59,16 @@ def check_lines(c):
     return lines
 
 
+def origin_label(q):
+    """Откуда задание — как на сайте: «Банк ФИПИ», «Новое задание», «HSK 4 · H41001, №56»."""
+    if q.get("origin") == "hsk":
+        ref = q.get("sourceRef") or {}
+        return f"HSK 4 · {ref.get('paper')}, №{ref.get('number')}"
+    return ORIGIN.get(q.get("origin"), q.get("origin"))
+
+
 def task_header(q):
-    return f"№{q['taskNumber']} · {ORIGIN.get(q.get('origin'), q.get('origin'))} · {q['id']}"
+    return f"№{q['taskNumber']} · {origin_label(q)} · {q['id']}"
 
 
 def task_brief(q):

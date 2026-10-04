@@ -35,7 +35,7 @@ PWA_FILES = ("manifest.webmanifest", "icon.svg", "icon-192.png", "icon-512.png",
              "apple-touch-icon.png")
 QUESTION_FIELDS = ("id", "taskNumber", "formatYear", "origin", "prompt", "stem", "fragments", "options",
                    "correctOptionId", "topicIds", "ruleIds", "explanation", "contrast")
-SOURCE_FIELDS = ("collection", "fipiId", "specVersion")
+SOURCE_FIELDS = ("collection", "fipiId", "specVersion", "paper", "number")
 
 
 def payload(questions, topics, rules, rule_checks, drafts=False):
@@ -95,8 +95,9 @@ def description(data):
     count = len(data["questions"])
     if not count:
         return "Тренажёр заданий 15–27 ЕГЭ по китайскому языку: правила, проверка, практика и полный вариант."
-    origin = ("банка ФИПИ и новых" if any(q["origin"] == "generated" for q in data["questions"])
-              else "банка ФИПИ")
+    kinds = {q["origin"] for q in data["questions"]}
+    names = ["банка ФИПИ"] + [name for origin, name in (("generated", "новых"), ("hsk", "HSK 4")) if origin in kinds]
+    origin = names[0] if len(names) == 1 else ", ".join(names[:-1]) + " и " + names[-1]
     tasks = plural(count, "задание", "задания", "заданий")
     return (f"Тренажёр заданий 15–27 ЕГЭ по китайскому языку: {count} {tasks} {origin} с разбором "
             "каждого неверного варианта, правила и полный вариант.")

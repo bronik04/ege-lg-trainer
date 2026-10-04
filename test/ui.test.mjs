@@ -126,6 +126,16 @@ test('фильтры по теме и номеру независимы, ист�
   await context.close();
 });
 
+test('задание HSK: подпись источника и фильтр', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { hash: '#/bank' });
+  await see(page, '.bank-list', /HSK 4 · 样卷 H40000, №56/);
+  await page.goto(`${mainUrl}#/practice`);
+  await page.locator('input[data-key="Источник:hsk"]').check();
+  await see(page, '#available', /Доступно: 1 задание/);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
 test('тренировка: разбор выбранного неверного варианта, три и четыре варианта', { skip }, async () => {
   const { page, context, errors } = await open(mainUrl, { hash: '#/practice' });
   await page.locator('input[data-key="Номер задания:20"]').check();
@@ -818,7 +828,8 @@ test('правила: оглавление по номерам заданий, �
 test('публикация без черновиков, проверка — с пометкой', { skip }, async () => {
   const pub = await open(mainUrl, { hash: '#/bank' });
   assert.equal(await pub.page.locator('.pill.draft').count(), 0);
-  assert.doesNotMatch(await text(pub.page, '#bankCount'), /16/);
+  // В фикстуре 17 заданий с черновиком; опубликовано 16 — черновик не считается.
+  assert.doesNotMatch(await text(pub.page, '#bankCount'), /17/);
   assert.equal(await pub.page.locator('#reviewBanner').isHidden(), true);
   await pub.page.goto(`${mainUrl}#/rules`);
   assert.equal(await pub.page.getByText('Черновое правило').count(), 0);
