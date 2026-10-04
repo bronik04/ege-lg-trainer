@@ -343,7 +343,7 @@
     "acceptedHash": "21111eaba2d9"
   },
   "g26-c8de257e": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "sentence-order"
     ],
@@ -367,7 +367,8 @@
         "4": "CAB"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "db9d734dc172"
   },
   "g26-e8d0f342": {
     "status": "accepted",

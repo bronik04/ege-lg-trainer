@@ -168,7 +168,7 @@
     "acceptedHash": "adfd63622e3c"
   },
   "g17-8308a185": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "word-choice"
     ],
@@ -192,7 +192,8 @@
         "4": "广告"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "754b00908be1"
   },
   "g17-859128a1": {
     "status": "accepted",

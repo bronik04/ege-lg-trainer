@@ -280,7 +280,7 @@
     "acceptedHash": "9bda34b48932"
   },
   "g22-5fc40188": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "adverbs"
     ],
@@ -304,7 +304,8 @@
         "4": "已经"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "fef7641b523c"
   },
   "g22-6fd140a6": {
     "status": "accepted",

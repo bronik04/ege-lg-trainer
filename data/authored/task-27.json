@@ -28,7 +28,7 @@
     "acceptedHash": "0a1830ef9e68"
   },
   "g27-7c9193db": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -52,7 +52,8 @@
         "4": "不是……，就是……"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "465321900e55"
   },
   "g27-7d4f1164": {
     "status": "accepted",

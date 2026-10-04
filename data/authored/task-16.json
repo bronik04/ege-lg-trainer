@@ -168,7 +168,7 @@
     "acceptedHash": "d62b39ce9eae"
   },
   "q16-15173f0c": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -194,7 +194,8 @@
       },
       "correctOptionId": "2"
     },
-    "keyDecision": "hidden"
+    "keyDecision": "hidden",
+    "acceptedHash": "293f37247c9a"
   },
   "q16-151eca47": {
     "status": "accepted",
