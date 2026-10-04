@@ -246,7 +246,7 @@
     "correctOptionId": "2"
   },
   {
-    "id": "g17-7209409d",
+    "id": "g17-8308a185",
     "taskNumber": 17,
     "formatYear": 2026,
     "origin": "generated",
@@ -259,7 +259,7 @@
       "2.3.1"
     ],
     "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
-    "stem": "这件事我已经___他了，他说今天晚上来找你。",
+    "stem": "这个消息我已经___他了，他说今天晚上来找你。",
     "options": [
       {
         "id": "1",
@@ -728,37 +728,37 @@
     "correctOptionId": "4"
   },
   {
-    "id": "g18-291aa664",
+    "id": "g18-27084e94",
     "taskNumber": 18,
     "formatYear": 2026,
     "origin": "generated",
     "sourceRef": {
       "collection": "навык ege-chinese",
       "specVersion": "ЕГЭ 2026",
-      "batch": "2026-09-28-ege-chinese-18"
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
     },
     "codifierCodes": [],
     "prompt": "Укажите, какой предлог пропущен в данном предложении.",
-    "stem": "火车慢慢地___北开去。",
+    "stem": "我已经___借的书还给图书馆了。",
     "options": [
       {
         "id": "1",
-        "text": "对"
+        "text": "把"
       },
       {
         "id": "2",
-        "text": "向"
+        "text": "被"
       },
       {
         "id": "3",
-        "text": "比"
+        "text": "给"
       },
       {
         "id": "4",
-        "text": "到"
+        "text": "对"
       }
     ],
-    "correctOptionId": "2"
+    "correctOptionId": "1"
   },
   {
     "id": "g18-32985259",
@@ -860,6 +860,39 @@
       }
     ],
     "correctOptionId": "1"
+  },
+  {
+    "id": "g18-4c86bc50",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "图书馆___我们宿舍很近，走路只要五分钟。",
+    "options": [
+      {
+        "id": "1",
+        "text": "从"
+      },
+      {
+        "id": "2",
+        "text": "离"
+      },
+      {
+        "id": "3",
+        "text": "在"
+      },
+      {
+        "id": "4",
+        "text": "对"
+      }
+    ],
+    "correctOptionId": "2"
   },
   {
     "id": "g18-4d1eca29",
@@ -1229,39 +1262,6 @@
     "correctOptionId": "1"
   },
   {
-    "id": "g18-98fe601e",
-    "taskNumber": 18,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "навык ege-chinese",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-09-28-ege-chinese-18-22-23-27"
-    },
-    "codifierCodes": [],
-    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
-    "stem": "请你___这本书还给图书馆。",
-    "options": [
-      {
-        "id": "1",
-        "text": "把"
-      },
-      {
-        "id": "2",
-        "text": "被"
-      },
-      {
-        "id": "3",
-        "text": "给"
-      },
-      {
-        "id": "4",
-        "text": "对"
-      }
-    ],
-    "correctOptionId": "1"
-  },
-  {
     "id": "g18-a0ee7aad",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -1290,39 +1290,6 @@
       {
         "id": "4",
         "text": "为"
-      }
-    ],
-    "correctOptionId": "2"
-  },
-  {
-    "id": "g18-a43c475e",
-    "taskNumber": 18,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "навык ege-chinese",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-09-28-ege-chinese-18"
-    },
-    "codifierCodes": [],
-    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
-    "stem": "图书馆___我们宿舍很近，走路五分钟就到了。",
-    "options": [
-      {
-        "id": "1",
-        "text": "从"
-      },
-      {
-        "id": "2",
-        "text": "离"
-      },
-      {
-        "id": "3",
-        "text": "在"
-      },
-      {
-        "id": "4",
-        "text": "对"
       }
     ],
     "correctOptionId": "2"
@@ -1561,6 +1528,39 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g18-ba309e09",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "火车正___北开去。",
+    "options": [
+      {
+        "id": "1",
+        "text": "对"
+      },
+      {
+        "id": "2",
+        "text": "向"
+      },
+      {
+        "id": "3",
+        "text": "比"
+      },
+      {
+        "id": "4",
+        "text": "到"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g18-bc136cc3",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -1592,41 +1592,6 @@
       }
     ],
     "correctOptionId": "4"
-  },
-  {
-    "id": "g18-bf00285a",
-    "taskNumber": 18,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-09-26-claude-17-18-26"
-    },
-    "codifierCodes": [
-      "2.4.45"
-    ],
-    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
-    "stem": "___去年相比，今年来这里旅游的人多了不少。",
-    "options": [
-      {
-        "id": "1",
-        "text": "和"
-      },
-      {
-        "id": "2",
-        "text": "比"
-      },
-      {
-        "id": "3",
-        "text": "向"
-      },
-      {
-        "id": "4",
-        "text": "给"
-      }
-    ],
-    "correctOptionId": "1"
   },
   {
     "id": "g18-c8278173",
@@ -1892,6 +1857,41 @@
       {
         "id": "4",
         "text": "在"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g18-f6f186c5",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-26-claude-17-18-26"
+    },
+    "codifierCodes": [
+      "2.4.45"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "___去年相比，今年来这里的游客多了不少。",
+    "options": [
+      {
+        "id": "1",
+        "text": "和"
+      },
+      {
+        "id": "2",
+        "text": "比"
+      },
+      {
+        "id": "3",
+        "text": "向"
+      },
+      {
+        "id": "4",
+        "text": "给"
       }
     ],
     "correctOptionId": "1"
@@ -2260,6 +2260,39 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g22-5fc40188",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "你___走吧，我马上就来。",
+    "options": [
+      {
+        "id": "1",
+        "text": "刚"
+      },
+      {
+        "id": "2",
+        "text": "都"
+      },
+      {
+        "id": "3",
+        "text": "先"
+      },
+      {
+        "id": "4",
+        "text": "已经"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g22-6fd140a6",
     "taskNumber": 22,
     "formatYear": 2026,
@@ -2522,39 +2555,6 @@
       }
     ],
     "correctOptionId": "1"
-  },
-  {
-    "id": "g22-ec63aa4b",
-    "taskNumber": 22,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "навык ege-chinese",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-09-28-ege-chinese-18-22-23-27"
-    },
-    "codifierCodes": [],
-    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
-    "stem": "今天下课以后，我___去操场跑步，然后回家写作业。",
-    "options": [
-      {
-        "id": "1",
-        "text": "刚"
-      },
-      {
-        "id": "2",
-        "text": "都"
-      },
-      {
-        "id": "3",
-        "text": "先"
-      },
-      {
-        "id": "4",
-        "text": "已经"
-      }
-    ],
-    "correctOptionId": "3"
   },
   {
     "id": "g22-f84c9dc2",
@@ -3589,39 +3589,6 @@
     ]
   },
   {
-    "id": "g27-082da165",
-    "taskNumber": 27,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "навык ege-chinese",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-09-28-ege-chinese-18-22-23-27"
-    },
-    "codifierCodes": [],
-    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
-    "stem": "他最近太忙了，___吃饭的时间___没有。",
-    "options": [
-      {
-        "id": "1",
-        "text": "连……，都……"
-      },
-      {
-        "id": "2",
-        "text": "既然……，就……"
-      },
-      {
-        "id": "3",
-        "text": "不是……，而是……"
-      },
-      {
-        "id": "4",
-        "text": "不是……，就是……"
-      }
-    ],
-    "correctOptionId": "1"
-  },
-  {
     "id": "g27-63fb4af3",
     "taskNumber": 27,
     "formatYear": 2026,
@@ -3650,6 +3617,39 @@
       {
         "id": "4",
         "text": "一边……，一边……"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g27-7c9193db",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-09-28-ege-chinese-18-22-23-27"
+    },
+    "codifierCodes": [],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "他最近太忙了，___周末___要加班。",
+    "options": [
+      {
+        "id": "1",
+        "text": "连……，都……"
+      },
+      {
+        "id": "2",
+        "text": "既然……，就……"
+      },
+      {
+        "id": "3",
+        "text": "不是……，而是……"
+      },
+      {
+        "id": "4",
+        "text": "不是……，就是……"
       }
     ],
     "correctOptionId": "1"
