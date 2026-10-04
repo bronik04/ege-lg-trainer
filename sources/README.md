@@ -29,6 +29,7 @@
   задания 23 перенесены в `grammar-23` (код 2.4.64); подробности — в
   `data/review/reading-notes.md`. Исходные версии блоков — в истории git этого каталога.
 
-## generated/ — задания, подготовленные навыком ege-chinese
+## generated/ — новые задания (навык ege-chinese или Claude по команде автора)
 
-Пока пусто. Формат партий описан в `generated/README.md`.
+Партии JSON и Markdown, по одной на волну; формат — в `generated/README.md`. Правило правки
+партий — в `CLAUDE.md` (раздел «Данные»).
