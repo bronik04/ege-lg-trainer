@@ -312,7 +312,7 @@
     "acceptedHash": "4fb4aef4be59"
   },
   "q24-78efb52c": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -337,7 +337,8 @@
         "4": "得了"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "40347f3704fe"
   },
   "q24-79ba2836": {
     "status": "accepted",

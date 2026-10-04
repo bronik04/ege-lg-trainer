@@ -618,7 +618,7 @@
     "acceptedHash": "a74dce257a76"
   },
   "q23-6b415e47": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "result-complements"
     ],
@@ -643,7 +643,8 @@
         "4": "好"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "a483ade37413"
   },
   "q23-80ccbf22": {
     "status": "accepted",

@@ -1,6 +1,6 @@
 {
   "g16-56406db2": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -24,7 +24,8 @@
         "4": "个"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "49bd885be143"
   },
   "q16-02da78dd": {
     "status": "accepted",

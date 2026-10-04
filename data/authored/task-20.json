@@ -26,7 +26,7 @@
     "acceptedHash": "dec369d98a2f"
   },
   "q20-16926dc2": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "aspect"
     ],
@@ -49,7 +49,8 @@
         "3": "着"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "0ea26ca4807a"
   },
   "q20-16bcbcec": {
     "status": "accepted",
