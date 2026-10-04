@@ -24,25 +24,17 @@
 задании, в карточке правила, в вопросе к правилу. Пары, где оба задания из ФИПИ, не показаны:
 банк ФИПИ не правят.
 
-- `g17-4f7df0c0` «推迟到»: `g26-b4de539e`
 - `g17-be646e45` «是价格»: `q24-e12e1902`
-- `g18-31aa1a26` «对身体»: `q27-f58f6d40`
 - `g18-38fcabdc` «个子比»: `q27-c27b947c`
-- `g18-569751e2` «是为了»: `q20-971bce04`
 - `g18-7b3af771` «跟朋友»: правило prepositions-gen
-- `g18-7f2cb2d9` «给妈妈»: `q16-09b9d0cb`, правило ba-bei, правило prepositions, правило result-more
 - `g18-98fe601e` «把这本»: правило result-more
 - `g18-98fe601e` «请你把»: `q25-61e5d3fd`
 - `g18-a63ab52a` «关于中»: правило prepositions-more
-- `g18-b758adee` «跟你的»: вопрос check-cmp-same
 - `g18-f76bc336` «我们在»: `q25-06e87779`, `q25-fe11f817`
 - `g22-094aba04` «已经开»: `g26-2ccff01f`, вопрос check-adv-yijing
-- `g22-a6847a8d` «都喜欢»: `q21-4ea5000e`, правило adverbs-common
-- `g22-b83d66c1` «们就去»: `g26-49e7aca7`
-- `g22-b83d66c1` «我们就»: `g26-49e7aca7`, правило constructions-more
-- `g22-bf76effe` «可是还»: `g26-8b74890b`
+- `g22-b83d66c1` «我们就»: правило constructions-more
 - `g22-ec63aa4b` «我先去»: `g26-8c385c1d`
-- `q16-072c7244` «这件事»: `g17-7209409d`, `g22-764109c9`, правило prepositions-gen, правило prepositions-more
+- `q16-072c7244` «这件事»: `g17-7209409d`, правило prepositions-gen, правило prepositions-more
 - `q16-153f9be8` «一条裙»: правило measure-words
 - `q16-153f9be8` «条裙子»: правило measure-words
 - `q16-2a9b389a` «一架飞»: правило measure-words-more
@@ -58,7 +50,6 @@
 - `q16-fff46d4a` «门外语»: правило measure-words-more
 - `q17-22430935` «的时间»: `g27-082da165`
 - `q17-b5227ed7` «感动了»: вопрос check-wc-move, правило word-choice
-- `q18-44502a82` «把自己»: `g23-d11f2d43`
 - `q18-867dbad3` «向老师»: правило prepositions, правило prepositions-gen
 - `q18-ade0ea08` «把房间»: правило ba-bei
 - `q20-28bdad81` «迟到了»: правило you-zai-hai
@@ -78,16 +69,16 @@
 - `q23-6b415e47` «做完了»: правило ba-bei, правило jiu-cai
 - `q23-bde8da7e` «没看完»: правило result-complements
 - `q23-d03b91d2` «工作到»: правило adverbs-common
-- `q23-f723a5c1` «看不懂»: `g22-bf76effe`, `g26-8b74890b`, правило potential-complements
+- `q23-f723a5c1` «看不懂»: `g22-bf76effe`, правило potential-complements
 - `q24-1a4b9f68` «听不见»: вопрос check-pot-bu, правило potential-complements
 - `q24-3384981a` «买不起»: `g17-be646e45`, правило potential-complements
 - `q24-4f92102f` «做不完»: правило potential-complements
 - `q24-8ddfec5f` «坐不下»: правило potential-complements
 - `q24-947d56e3` «去不了»: правило potential-complements
-- `q24-ab94dea5` «看不懂»: `g22-bf76effe`, `g26-8b74890b`, правило potential-complements
+- `q24-ab94dea5` «看不懂»: `g22-bf76effe`, правило potential-complements
 - `q24-ace61747` «装不下»: правило potential-complements
 - `q24-d75b803e` «拿不动»: правило potential-complements
-- `q24-ef772303` «看不懂»: `g22-bf76effe`, `g26-8b74890b`, правило potential-complements
+- `q24-ef772303` «看不懂»: `g22-bf76effe`, правило potential-complements
 - `q24-fe970e0f` «放不下»: правило potential-complements
 - `q25-06e87779` «走下来»: вопрос check-dir-lai
 - `q25-1e9f98db` «看起来»: правило direction-complements
