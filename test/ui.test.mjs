@@ -112,7 +112,8 @@ test('правило → проверка правила → задания по
   assert.deepEqual(await contentsRow(page, 27), ['Прочие темы', '1 задание']);
   await page.getByRole('button', { name: 'Снять тему' }).click();
   assert.equal(await page.locator('#topicFocus').count(), 0);
-  await see(page, '#available', /Доступно: 15 заданий/);
+  // Все опубликованные задания фикстуры, вместе с заданием HSK.
+  await see(page, '#available', /Доступно: 16 заданий/);
   // Кнопка исчезла — фокус на первой строке оглавления, а не в никуда.
   assert.equal(await page.evaluate(() => document.activeElement.dataset.key), 'Задания:15');
   assert.deepEqual(errors, []);
@@ -180,6 +181,16 @@ test('оглавление: у номера с двумя темами подп�
   // Две темы из ссылки — «Только темы», в порядке ссылки.
   await page.goto(`${url}#/practice?topics=cmp,adverbs&size=5`);
   await see(page, '#topicFocus', /Только темы: Сравнение, Наречия/);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('задание HSK: подпись источника и фильтр', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { hash: '#/bank' });
+  await see(page, '.bank-list', /HSK 4 · 样卷 H40000, №56/);
+  await page.goto(`${mainUrl}#/practice`);
+  await page.locator('input[data-key="Источник:hsk"]').check();
+  await see(page, '#available', /Доступно: 1 задание/);
   assert.deepEqual(errors, []);
   await context.close();
 });
@@ -534,6 +545,8 @@ test('полный вариант: часы идут, пока страница 
 test('часы варианта: переход по позициям не теряет время, вкладки не затирают ответы', { skip }, async () => {
   // Пять минут на одной позиции (часы страницы подменены), затем «Дальше».
   const context = await browser.newContext({ viewport: { width: 1100, height: 900 } });
+  // Как в open(): шрифты из сети тесту не нужны, а зависшая сеть не должна держать загрузку.
+  await context.route(/^https?:\/\//, (route) => route.abort());
   const errors = [];
   const a = await context.newPage();
   a.on('pageerror', (e) => errors.push(e.message));
@@ -876,7 +889,8 @@ test('правила: оглавление по номерам заданий, �
 test('публикация без черновиков, проверка — с пометкой', { skip }, async () => {
   const pub = await open(mainUrl, { hash: '#/bank' });
   assert.equal(await pub.page.locator('.pill.draft').count(), 0);
-  assert.doesNotMatch(await text(pub.page, '#bankCount'), /16/);
+  // В фикстуре 17 заданий с черновиком; опубликовано 16 — черновик не считается.
+  assert.doesNotMatch(await text(pub.page, '#bankCount'), /17/);
   assert.equal(await pub.page.locator('#reviewBanner').isHidden(), true);
   await pub.page.goto(`${mainUrl}#/rules`);
   assert.equal(await pub.page.getByText('Черновое правило').count(), 0);

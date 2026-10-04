@@ -14,7 +14,7 @@
   const rulesById = new Map(rules.map((r) => [r.id, r]));
   const checksById = new Map(checks.map((c) => [c.id, c]));
   const origins = [...new Set(questions.map((q) => q.origin))];
-  const ORIGIN_NAMES = { fipi: 'Банк ФИПИ', generated: 'Новые задания' };
+  const ORIGIN_NAMES = { fipi: 'Банк ФИПИ', generated: 'Новые задания', hsk: 'HSK 4' };
   const SOLO_STEM = new Set([15, 19]);
   const FILTERS_KEY = 'ege-lg-trainer:filters';
   const THEME_KEY = 'ege-lg-trainer:theme';
@@ -469,6 +469,10 @@
 
   function originLabel(q) {
     if (q.origin === 'fipi') return q.sourceRef && q.sourceRef.fipiId ? `Банк ФИПИ · ${q.sourceRef.fipiId}` : 'Банк ФИПИ';
+    if (q.origin === 'hsk') {
+      const ref = q.sourceRef || {};
+      return ref.paper && ref.number ? `HSK 4 · ${ref.paper}, №${ref.number}` : 'HSK 4';
+    }
     return 'Новое задание';
   }
 
@@ -1489,9 +1493,10 @@
     ? `${tasksWord(questions.length)} · ${rules.length} ${plural(rules.length, 'правило', 'правила', 'правил')}`
     : 'Банк готовится';
   document.getElementById('reviewBanner').hidden = !DATA.meta.drafts;
-  const sourceNote = origins.includes('generated')
-    ? 'Задания — открытый банк ФИПИ и новые задания в том же формате'
-    : 'Задания — открытый банк ФИПИ';
+  const sources = ['открытый банк ФИПИ'];
+  if (origins.includes('generated')) sources.push('новые задания в том же формате');
+  if (origins.includes('hsk')) sources.push('задания HSK 4 (источник указан у задания)');
+  const sourceNote = `Задания — ${sources.length > 1 ? `${sources.slice(0, -1).join(', ')} и ${sources[sources.length - 1]}` : sources[0]}`;
   document.getElementById('footNote').textContent =
     `${sourceNote}, формат ЕГЭ ${DATA.meta.formatYear}. Разборы и правила проверены автором тренажёра. Прогресс хранится в этом браузере.`;
 

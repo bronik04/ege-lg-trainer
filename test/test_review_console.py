@@ -14,6 +14,8 @@ from pathlib import Path
 
 from test.helpers import stamped
 
+import review_console as rc
+
 ROOT = Path(__file__).resolve().parent.parent
 
 FAKE_GH = textwrap.dedent("""
@@ -186,6 +188,18 @@ class ReviewConsoleTest(unittest.TestCase):
         task20 = read(self.tmp / "data" / "authored" / "task-20.json")
         self.assertTrue(all(task20[q]["status"] == "draft" for q in self.drafts), "страница не записана")
 
+
+
+class SourceLabelTest(unittest.TestCase):
+    def test_header_names_source(self):
+        q = {"taskNumber": 26, "id": "h26-aaaaaaaa", "origin": "hsk", "sourceRef": {"paper": "H41001", "number": 56}}
+        self.assertEqual(rc.task_header(q), "№26 · HSK 4 · H41001, №56 · h26-aaaaaaaa")
+        self.assertEqual(rc.task_header(dict(q, origin="generated", id="g26-b")), "№26 · Новое задание · g26-b")
+
+    def test_restore_names_the_key_source(self):
+        # Спорный ключ HSK возвращают с ключом HSK, а не ФИПИ.
+        self.assertEqual(rc.restore_label({"origin": "hsk"}), "вернуть с ключом HSK")
+        self.assertEqual(rc.restore_label({"origin": "fipi"}), "вернуть с ключом ФИПИ")
 
 if __name__ == "__main__":
     unittest.main()

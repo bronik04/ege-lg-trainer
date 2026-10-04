@@ -17,6 +17,9 @@ RULE_CHECKS = DATA / "rule-checks.json"
 AUTHORED = DATA / "authored"
 QUESTIONS = DATA / "questions.json"
 REVIEW = DATA / "review"
+HSK_SOURCE = SOURCES / "hsk4"
+HSK_MANIFEST = HSK_SOURCE / "manifest.json"
+RAW_HSK = DATA / "raw" / "hsk.json"
 
 TASK_NUMBERS = tuple(range(15, 28))
 FORMAT_YEAR = 2026

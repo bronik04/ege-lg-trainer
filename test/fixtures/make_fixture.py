@@ -3,7 +3,8 @@
     python3 test/fixtures/make_fixture.py
 
 Задания условные: по одному на позицию 15–27, у 20 и 21 три варианта, у остальных четыре;
-плюс второе задание 22 (тема «наречия» встречается и в 27), одно сгенерированное и один черновик.
+плюс второе задание 22 (тема «наречия» встречается и в 27), одно сгенерированное, один черновик
+и одно задание HSK.
 Формы как в настоящих данных: своё «Сравните» у задания (q22-a), вопросы к правилам с двумя,
 тремя и четырьмя вариантами, вопрос «назовите правило» без предложения.
 """
@@ -110,6 +111,9 @@ def main():
                               correctOptionId="1", explanation={"correct": f"就: {LONG}", "options": {"2": f"才: {LONG}", "3": f"再: {LONG}", "4": f"又: {LONG}"}}))
     questions.append(question(27, "gen", origin="generated", topicIds=["adverbs", "other"]))
     questions.append(question(20, "draft", status="draft"))
+    # Задание HSK: подпись источника и фильтр «HSK 4»; в полный вариант оно не входит.
+    questions.append(question(26, "hsk", origin="hsk", id="h26-fixture",
+                              sourceRef={"collection": "HSK 4", "paper": "样卷 H40000", "number": 56}))
     for name, value in (("topics", TOPICS), ("rules", RULES), ("rule-checks", CHECKS), ("questions", questions)):
         (HERE / f"{name}.json").write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 

@@ -59,8 +59,21 @@ def check_lines(c):
     return lines
 
 
+def origin_label(q):
+    """Откуда задание — как на сайте: «Банк ФИПИ», «Новое задание», «HSK 4 · H41001, №56»."""
+    if q.get("origin") == "hsk":
+        ref = q.get("sourceRef") or {}
+        return f"HSK 4 · {ref.get('paper')}, №{ref.get('number')}"
+    return ORIGIN.get(q.get("origin"), q.get("origin"))
+
+
+def restore_label(q):
+    """Второй выбор в спорных ключах: ключ возвращают тот, что дал источник задания."""
+    return "вернуть с ключом HSK" if q.get("origin") == "hsk" else "вернуть с ключом ФИПИ"
+
+
 def task_header(q):
-    return f"№{q['taskNumber']} · {ORIGIN.get(q.get('origin'), q.get('origin'))} · {q['id']}"
+    return f"№{q['taskNumber']} · {origin_label(q)} · {q['id']}"
 
 
 def task_brief(q):
@@ -315,7 +328,7 @@ def review_conflicts(ask, tally):
         ui.line(f"  Спорные ключи · {i} из {len(queue)}")
         show_item(0, task_header(q), stem_lines(q), q, mark="✓ по ключу")
         print(f"\n  Спорно: {q.get('conflict', '')}")
-        print("\n  1) оставить скрытым   2) вернуть с ключом ФИПИ   3) пропустить   0) в меню")
+        print(f"\n  1) оставить скрытым   2) {restore_label(q)}   3) пропустить   0) в меню")
         choice = ask_choice(ask, {"1", "2", "3", "0"}, "1, 2, 3 или 0.")
         if choice is None:
             return "end"
@@ -335,7 +348,7 @@ def review_conflicts(ask, tally):
             tally.conflicts += 1
             tally.fixes += 1
             tally.rebuild()
-            print(f"\n  Вернуть с ключом ФИПИ: разбор перепишет Claude (строка в {FIXES_NAME}),"
+            print(f"\n  {restore_label(q).capitalize()}: разбор перепишет Claude (строка в {FIXES_NAME}),"
                   " новый разбор придёт к вам в раздел 1.")
     print("\n  Спорные ключи кончились.")
     return "menu"

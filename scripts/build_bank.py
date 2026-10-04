@@ -8,7 +8,8 @@
 Статус задания:
   imported — разбора нет;  draft — разбор написан, но не принят автором;
   ready — разбор принят, правила приняты, всё заполнено;
-  conflict — спорный ключ;  excluded — повтор другого задания.
+  conflict — спорный ключ;  excluded — повтор другого задания или задание HSK, подсказывающее
+  ключ заданию ФИПИ (hintsKeyOf).
 В тренажёр попадают только ready. Отчёты — в data/review/.
 """
 
@@ -120,6 +121,13 @@ def hidden_conflict(entry):
     return bool(entry and entry.get("keyConflict") and entry.get("keyDecision") != "restore")
 
 
+def hints_to_fipi(record, fipi_hints):
+    """ID заданий ФИПИ, чей ключ с соседним иероглифом есть во фрагментах задания HSK."""
+    texts = [f["text"] for f in record.get("fragments") or []] or [record["stem"]]
+    runs = [run for text in texts for run in HAN_RUN.findall(BLANK.sub(" ", text))]
+    return sorted({qid for qid, hint in fipi_hints if any(hint in run for run in runs)})
+
+
 def correct_text(record):
     return next((o["text"] for o in record["options"] if o["id"] == record["correctOptionId"]), None)
 
@@ -193,13 +201,23 @@ def merge(records, authored, topics, rules):
     # автор оригинал с ключом ФИПИ или разбор оригинала откроют — копия снова повтор.
     fipi_records = [r for r in records if r["origin"] == "fipi"]
     for r in records:
-        if r["origin"] != "generated" or r["id"] in excluded:
+        if r["origin"] not in ("generated", "hsk") or r["id"] in excluded:
             continue
         twin, ratio = fipi_twin(r, fipi_records)
         original = authored.get(twin)
         replacement = r.get("replaces") == twin and hidden_conflict(original) and original["status"] == "accepted"
         if twin and ratio >= NEAR_DUPLICATE and not replacement:
             excluded[r["id"]] = twin
+    # Задание HSK, во фрагментах которого есть ключ задания ФИПИ с соседним иероглифом, не
+    # публикуется (решение автора 04.10.2026): ни то, ни другое не правят. Сверка — со всеми
+    # заданиями ФИПИ, и со скрытыми: их могут вернуть.
+    fipi_hints = [(r["id"], hint) for r in fipi_records for hint in key_hints(r)]
+    hints_key_of = {}
+    for r in records:
+        if r["origin"] == "hsk" and r["id"] not in excluded:
+            found = hints_to_fipi(r, fipi_hints)
+            if found:
+                hints_key_of[r["id"]] = found
     pending = {}
     questions = []
     for record in records:
@@ -255,6 +273,9 @@ def merge(records, authored, topics, rules):
         if record["id"] in excluded:
             q["reviewStatus"] = "excluded"
             q["duplicateOf"] = excluded[record["id"]]
+        elif record["id"] in hints_key_of:
+            q["reviewStatus"] = "excluded"
+            q["hintsKeyOf"] = hints_key_of[record["id"]]
         elif conflict:
             q["reviewStatus"] = "conflict"
             q["conflict"] = conflict
@@ -375,9 +396,9 @@ def duplicates_report(records, questions, rules=(), rule_checks=()):
         lines.append("Нет.")
     for q in conflicted:
         lines.append(f"- `{q['id']}` (№{q['taskNumber']}) «{q['stem']}»: {q['conflict']}")
-    lines += ["", "## Сгенерированные задания, похожие на ФИПИ", ""]
+    lines += ["", "## Новые задания и задания HSK, похожие на ФИПИ", ""]
     fipi_records = [r for r in records if r["origin"] == "fipi"]
-    near = [(r, *fipi_twin(r, fipi_records)) for r in records if r["origin"] == "generated"]
+    near = [(r, *fipi_twin(r, fipi_records)) for r in records if r["origin"] in ("generated", "hsk")]
     near = [(r, twin, ratio) for r, twin, ratio in near if twin and ratio >= 0.6]
     if not near:
         lines.append("Нет.")
@@ -391,6 +412,16 @@ def duplicates_report(records, questions, rules=(), rule_checks=()):
         else:
             verdict = "исправленная копия скрытого спорного задания"
         lines.append(f"- `{r['id']}` ~ `{twin}`: сходство {round(ratio * 100)}% — {verdict}")
+    lines += ["", "## Задания HSK с подсказкой ключа ФИПИ (не публикуются)", "",
+              "Во фрагментах — ключ задания ФИПИ с соседним иероглифом. Ни то, ни другое не правят,",
+              "поэтому задание HSK не публикуется (решение автора 04.10.2026).", ""]
+    hinting = [q for q in questions if q.get("hintsKeyOf")]
+    if not hinting:
+        lines.append("Нет.")
+    for q in hinting:
+        ref = q["sourceRef"]
+        lines.append(f"- `{q['id']}` ({ref.get('paper')}, №{ref.get('number')}): "
+                     + ", ".join(f"`{qid}`" for qid in q["hintsKeyOf"]))
     lines += ["", "## То же условие, другие варианты (проверить вручную)", ""]
     if not similar:
         lines.append("Нет.")

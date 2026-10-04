@@ -574,3 +574,32 @@ test('ссылка на подборку: исчезнувшие темы счи
   assert.equal(link.missing, 1);
   assert.equal(L.parseShareQuery('topics=aspect&size=5', known).missing, 0);
 });
+
+test('раунд: номера поровну, внутри номера — случайно', () => {
+  const big = Array.from({ length: 40 }, (_, i) => q(`h26-${i}`, 26, { origin: 'hsk' }));
+  const small = L.TASK_NUMBERS.filter((n) => n !== 26).map((n) => q(`q${n}-a`, n));
+  const ten = L.pickRound([...big, ...small], '10', L.mulberry32(5));
+  assert.equal(ten.length, 10);
+  assert.equal(new Set(ten.map((x) => x.taskNumber)).size, 10, '10 заданий — 10 разных номеров');
+  const twenty = L.pickRound([...big, ...small], '20', L.mulberry32(5));
+  assert.equal(new Set(twenty.map((x) => x.taskNumber)).size, 13, 'сначала все номера, потом повторы');
+  assert.equal(twenty.filter((x) => x.taskNumber === 26).length, 8, 'остаток — из номера, где задания ещё есть');
+  assert.equal(L.pickRound([...big, ...small], 'all', L.mulberry32(5)).length, 52);
+});
+
+test('вариант: задания HSK в него не входят', () => {
+  const withHsk = [...Array.from({ length: 20 }, (_, i) => q(`h26-${i}`, 26, { origin: 'hsk' })), ...fullBank];
+  for (let seed = 1; seed <= 20; seed += 1) {
+    assert.ok(L.buildVariant(withHsk, L.mulberry32(seed)).ids.every((id) => !id.startsWith('h26-')));
+  }
+  const onlyHsk26 = [...fullBank.filter((x) => x.taskNumber !== 26), q('h26-x', 26, { origin: 'hsk' })];
+  assert.deepEqual(L.buildVariant(onlyHsk26), { ok: false, missing: [26] });
+});
+
+test('вариант: снятое задание не заменяется заданием HSK', () => {
+  const questions = [q('q25-a', 25), q('h26-x', 26, { origin: 'hsk' }), q('q26-b', 26)];
+  const variant = { ids: ['q25-a', 'q26-gone'], answers: {}, index: 0, startedAt: 't', finishedAt: null };
+  assert.deepEqual(L.pruneProgress({ round: null, variant }, questions).variant.ids, ['q25-a', 'q26-b']);
+  const noEge26 = questions.filter((x) => x.id !== 'q26-b');
+  assert.deepEqual(L.pruneProgress({ round: null, variant }, noEge26).variant.ids, ['q25-a']);
+});
