@@ -1,6 +1,6 @@
 [
   {
-    "id": "g16-134bf6ba",
+    "id": "g16-14ab7588",
     "taskNumber": 16,
     "formatYear": 2026,
     "origin": "generated",
@@ -13,26 +13,26 @@
       "2.4.33"
     ],
     "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
-    "stem": "去朋友家做客，带一___葡萄酒是个不错的主意。",
+    "stem": "服务员，请给我们来两___果汁。",
     "options": [
       {
         "id": "1",
-        "text": "辆"
+        "text": "部"
       },
       {
         "id": "2",
-        "text": "瓶"
+        "text": "只"
       },
       {
         "id": "3",
-        "text": "个"
+        "text": "杯"
       },
       {
         "id": "4",
-        "text": "块"
+        "text": "把"
       }
     ],
-    "correctOptionId": "2"
+    "correctOptionId": "3"
   },
   {
     "id": "g16-163654d8",
@@ -70,7 +70,7 @@
     "correctOptionId": "1"
   },
   {
-    "id": "g16-25f8624c",
+    "id": "g16-17beafb0",
     "taskNumber": 16,
     "formatYear": 2026,
     "origin": "generated",
@@ -83,26 +83,26 @@
       "2.4.33"
     ],
     "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
-    "stem": "哈尔滨的冬天很冷，出门的时候最好戴上一___手套。",
+    "stem": "运动会那天，老师给每个同学发了一___矿泉水。",
     "options": [
       {
         "id": "1",
-        "text": "双"
+        "text": "辆"
       },
       {
         "id": "2",
-        "text": "套"
+        "text": "瓶"
       },
       {
         "id": "3",
-        "text": "部"
+        "text": "张"
       },
       {
         "id": "4",
-        "text": "把"
+        "text": "块"
       }
     ],
-    "correctOptionId": "1"
+    "correctOptionId": "2"
   },
   {
     "id": "g16-2b398368",
@@ -140,7 +140,7 @@
     "correctOptionId": "2"
   },
   {
-    "id": "g16-2d2fcf6d",
+    "id": "g16-2d6fe64c",
     "taskNumber": 16,
     "formatYear": 2026,
     "origin": "generated",
@@ -153,77 +153,7 @@
       "2.4.33"
     ],
     "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
-    "stem": "我的房间很小，只放得下一___单人床。",
-    "options": [
-      {
-        "id": "1",
-        "text": "间"
-      },
-      {
-        "id": "2",
-        "text": "张"
-      },
-      {
-        "id": "3",
-        "text": "把"
-      },
-      {
-        "id": "4",
-        "text": "件"
-      }
-    ],
-    "correctOptionId": "2"
-  },
-  {
-    "id": "g16-356a2bb9",
-    "taskNumber": 16,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-10-10-claude-16"
-    },
-    "codifierCodes": [
-      "2.4.33"
-    ],
-    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
-    "stem": "院子里那___桃树是我上小学那年种的，每年春天都开满了花。",
-    "options": [
-      {
-        "id": "1",
-        "text": "杯"
-      },
-      {
-        "id": "2",
-        "text": "间"
-      },
-      {
-        "id": "3",
-        "text": "套"
-      },
-      {
-        "id": "4",
-        "text": "棵"
-      }
-    ],
-    "correctOptionId": "4"
-  },
-  {
-    "id": "g16-3d81c54e",
-    "taskNumber": 16,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-10-10-claude-16"
-    },
-    "codifierCodes": [
-      "2.4.33"
-    ],
-    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
-    "stem": "今年我们一共要学五___专业课，所以作业特别多。",
+    "stem": "数学这___学科很有用，生活中处处都用得到。",
     "options": [
       {
         "id": "1",
@@ -313,6 +243,41 @@
       }
     ],
     "correctOptionId": "1"
+  },
+  {
+    "id": "g16-54f13acb",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-10-claude-16"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "这家宾馆只剩下一___双人房了，我们就住这儿吧。",
+    "options": [
+      {
+        "id": "1",
+        "text": "门"
+      },
+      {
+        "id": "2",
+        "text": "间"
+      },
+      {
+        "id": "3",
+        "text": "片"
+      },
+      {
+        "id": "4",
+        "text": "块"
+      }
+    ],
+    "correctOptionId": "2"
   },
   {
     "id": "g16-56406db2",
@@ -421,7 +386,7 @@
     "correctOptionId": "3"
   },
   {
-    "id": "g16-87e34c95",
+    "id": "g16-6d4e93c7",
     "taskNumber": 16,
     "formatYear": 2026,
     "origin": "generated",
@@ -434,26 +399,26 @@
       "2.4.33"
     ],
     "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
-    "stem": "昨天晚上我喝了两___咖啡，一直到半夜两点还很精神。",
+    "stem": "我的房间里只有一___单人床，没有别的家具。",
     "options": [
       {
         "id": "1",
-        "text": "部"
+        "text": "间"
       },
       {
         "id": "2",
-        "text": "只"
+        "text": "张"
       },
       {
         "id": "3",
-        "text": "杯"
+        "text": "把"
       },
       {
         "id": "4",
-        "text": "把"
+        "text": "件"
       }
     ],
-    "correctOptionId": "3"
+    "correctOptionId": "2"
   },
   {
     "id": "g16-8a7b5ffe",
@@ -491,7 +456,7 @@
     "correctOptionId": "3"
   },
   {
-    "id": "g16-9b6bcee6",
+    "id": "g16-8d7c9197",
     "taskNumber": 16,
     "formatYear": 2026,
     "origin": "generated",
@@ -504,11 +469,11 @@
       "2.4.33"
     ],
     "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
-    "stem": "我们的新家有一___很大的厨房，妈妈做饭方便多了。",
+    "stem": "奶奶从市场上买回来一___大白菜。",
     "options": [
       {
         "id": "1",
-        "text": "门"
+        "text": "杯"
       },
       {
         "id": "2",
@@ -516,14 +481,49 @@
       },
       {
         "id": "3",
-        "text": "片"
+        "text": "套"
+      },
+      {
+        "id": "4",
+        "text": "棵"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g16-a135e88d",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-10-claude-16"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "河边有一___大石头，我们坐在上面休息一下吧。",
+    "options": [
+      {
+        "id": "1",
+        "text": "张"
+      },
+      {
+        "id": "2",
+        "text": "场"
+      },
+      {
+        "id": "3",
+        "text": "双"
       },
       {
         "id": "4",
         "text": "块"
       }
     ],
-    "correctOptionId": "2"
+    "correctOptionId": "4"
   },
   {
     "id": "g16-ae767b94",
@@ -666,7 +666,7 @@
     "correctOptionId": "1"
   },
   {
-    "id": "g16-d9744b5e",
+    "id": "g16-f406b258",
     "taskNumber": 16,
     "formatYear": 2026,
     "origin": "generated",
@@ -679,26 +679,26 @@
       "2.4.33"
     ],
     "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
-    "stem": "这___手表是爷爷年轻时买的，到现在还走得很准。",
+    "stem": "这___手套是姐姐送给我的生日礼物。",
     "options": [
       {
         "id": "1",
-        "text": "张"
-      },
-      {
-        "id": "2",
-        "text": "场"
-      },
-      {
-        "id": "3",
         "text": "双"
       },
       {
+        "id": "2",
+        "text": "套"
+      },
+      {
+        "id": "3",
+        "text": "部"
+      },
+      {
         "id": "4",
-        "text": "块"
+        "text": "把"
       }
     ],
-    "correctOptionId": "4"
+    "correctOptionId": "1"
   },
   {
     "id": "g17-15dffc05",
