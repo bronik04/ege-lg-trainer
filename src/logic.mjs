@@ -311,17 +311,20 @@ export function rulesForMistakes(items, byId, known = null, limit = 2) {
 // ---------- отбор ----------
 
 // Пустой список в фильтре означает «без ограничения». Тема и номер задания — независимые признаки.
-// Правила (грамматика) — по ruleIds задания: задание без правила под такой фильтр не попадает.
+// Правила (грамматика) уточняют свой номер: в номере, где среди переданных заданий есть задания
+// выбранных правил, остаются только они; остальные отмеченные номера берутся целиком.
 export function filterQuestions(questions, filters, progress, now = null) {
   const topics = filters.topics || [];
   const tasks = filters.tasks || [];
   const rules = filters.rules || [];
   const origins = filters.origins || [];
   const state = filters.state || 'all';
+  const ruled = (q) => (q.ruleIds || []).some((r) => rules.includes(r));
+  const narrowed = new Set(rules.length ? questions.filter(ruled).map((q) => q.taskNumber) : []);
   return questions.filter((q) => {
     if (topics.length && !q.topicIds.some((t) => topics.includes(t))) return false;
     if (tasks.length && !tasks.includes(q.taskNumber)) return false;
-    if (rules.length && !(q.ruleIds || []).some((r) => rules.includes(r))) return false;
+    if (narrowed.has(q.taskNumber) && !ruled(q)) return false;
     if (origins.length && !origins.includes(q.origin)) return false;
     if (state === 'new') return answerState(progress, 'questions', q.id) === 'new';
     if (state === 'done') return answerState(progress, 'questions', q.id) !== 'new';
@@ -348,9 +351,13 @@ export function fitRules(filters, questions) {
   return kept.length === rules.length ? filters : { ...filters, rules: kept };
 }
 
-// Доля верных ответов в процентах, целым числом.
+// Доля верных ответов в процентах, целым числом. Не всё верно — не больше 99, хоть что-то
+// верно — не меньше 1: округление не должно рисовать «100 %» с ошибкой или «0 %» с верным.
 export function percent(score, total) {
-  return total ? Math.round((score / total) * 100) : 0;
+  if (!total) return 0;
+  const value = Math.round((score / total) * 100);
+  if (score > 0 && score < total) return Math.min(99, Math.max(1, value));
+  return value;
 }
 
 // Раунд из отобранного: номера по кругу (номера в случайном порядке, внутри номера — задания в
@@ -688,7 +695,7 @@ export function stemSegments(stem) {
   return parts;
 }
 
-// ---------- пропуск-клетка: что вписать и сколько клеток ----------
+// ---------- пропуск-клетка: что вписать ----------
 
 const HANZI = /[㐀-鿿]/; // U+3400–U+9FFF: иероглифы, включая расширение A
 const CYRILLIC = /[Ѐ-ӿ]/; // U+0400–U+04FF
@@ -702,7 +709,6 @@ const PUNCT = '\\s，,、；;。：:';
 const EDGE_PUNCT = new RegExp(`^[${PUNCT}]+|[${PUNCT}]+$`, 'g');
 const INNER_PUNCT = new RegExp(`[${PUNCT}]`);
 const blankCount = (item) => stemSegments(item.stem ?? item.sentence ?? '').filter((p) => p.blank).length;
-const charCount = (text) => [...text.replace(/\s+/g, '')].length;
 
 // Что вписать в пропуски для варианта: один пропуск — весь текст, несколько — части союза
 // («要是……，就……» → 要是 и 就). Не раскладывается или без иероглифов — null.
@@ -714,21 +720,6 @@ export function blankFill(item, optionId) {
   const parts = option.text.split(/…+|\.{3,}/).map((p) => p.replace(EDGE_PUNCT, '')).filter(Boolean);
   if (parts.length !== k || parts.some((p) => INNER_PUNCT.test(p))) return null;
   return parts;
-}
-
-// Сколько клеток в каждом пропуске. Клетки по числу знаков — только когда у всех вариантов
-// в этом пропуске поровну знаков (от 1 до 4): тогда число клеток ничего не подсказывает.
-// Разная длина, длиннее четырёх или вариант не вписывается — 0: одна вытянутая клетка без
-// деления, по ней не видно, сколько знаков вписать (иначе ученик выбирает вариант по ширине).
-export function blankCells(item) {
-  const k = blankCount(item);
-  const fills = item.options.map((o) => blankFill(item, o.id));
-  return Array.from({ length: k }, (_, i) => {
-    if (!fills.length || fills.some((f) => !f)) return 0;
-    const lengths = new Set(fills.map((f) => charCount(f[i])));
-    const [n] = lengths;
-    return lengths.size === 1 && n <= 4 ? Math.max(1, n) : 0;
-  });
 }
 
 // ---------- сессии: раунд тренировки и полный вариант ----------

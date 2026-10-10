@@ -430,7 +430,8 @@ kbd {
 .stat span { color: var(--muted); font-size: .82rem; font-weight: 600; }
 .filters-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr)); gap: 10px; margin-bottom: 14px; }
 .filters-row > * { min-width: 0; }
-.filters-row > .button { align-self: end; }
+/* Кнопка сброса в ряду полей — их высоты и в одну строку. */
+.filters-row > .button { align-self: end; min-height: 46px; padding: 8px 14px; white-space: nowrap; }
 .filter .hint { margin: 0; }
 .bank-list { margin: 0; padding: 0; list-style: none; border-top: 1.5px solid var(--line); }
 .bank-item {
@@ -468,14 +469,21 @@ kbd {
   .fragments li { grid-template-columns: 40px 1fr; font-size: 1.8rem; }
   .fragments b { width: 36px; height: 34px; font-size: 1rem; }
   .options.row { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+  /* Числа №19 и тоны №15 — два в ряд: «88 032 746» в узкой колонке разорвалось бы надвое. */
+  .options.row.plain { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .option { min-height: 68px; }
   .option .num { width: 30px; height: 30px; font-size: .95rem; }
   .option .text { font-size: 2rem; }
-  .option .text.plain { font-size: 1.45rem; }
+  .option .text.plain { font-size: 1.45rem; white-space: nowrap; }
   .keys { font-size: .9rem; }
   .feedback { font-size: 1.2rem; }
   .feedback h3 { font-size: 1.25rem; }
   .progress { font-size: .95rem; }
+}
+
+/* Планшет стоя: четыре варианта по 180 px не встают в ряд — два ряда по два, а не три и один. */
+@media (min-width: 721px) and (max-width: 899px) {
+  .options.row:has(> :nth-child(4)) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 /* ---------- телефон ---------- */
@@ -501,8 +509,13 @@ kbd {
   .actions.dock .button { flex: 1 1 0; min-width: 0; }
 }
 
+/* Узкий телефон: рядом с кнопками справки и темы подзаголовку места нет — шапка не растёт,
+   задание не сдвигается вниз. Что за тренажёр, сказано в справке. */
+@media (max-width: 400px) {
+  .brand small { display: none; }
+}
+
 @media (max-width: 360px) {
-  .brand small { font-size: .7rem; }
   .tab { font-size: .84rem; }
 }
 

@@ -208,6 +208,8 @@
     else location.hash = hash;
   }
 
+  let scrollReset = 0; // номер последнего сброса прокрутки нового экрана (render)
+
   function render(focus = true) {
     const active = document.activeElement;
     const activeKey = active && active.dataset ? active.dataset.key : null;
@@ -246,8 +248,12 @@
       view.append(el('p', { class: 'notice warn small', text: 'Браузер не даёт сохранить прогресс: он пропадёт после перезагрузки страницы.' }));
     }
     if (focus) {
-      // Новый экран — с начала страницы: на телефоне сверху выход и деления раунда.
+      // Новый экран — с начала страницы: на телефоне сверху выход и деления раунда. Ещё раз в
+      // следующем кадре: плавный сдвиг после ответа (Enter нажат, пока он шёл) иначе доезжает.
+      // Новый ответ до этого кадра отменяет повтор — его сдвиг важнее (afterAnswer).
       window.scrollTo(0, 0);
+      const reset = ++scrollReset;
+      requestAnimationFrame(() => { if (reset === scrollReset) window.scrollTo(0, 0); });
       const target = view.querySelector('[data-focus]') || view;
       target.focus({ preventScroll: true });
     } else if (activeKey) {
@@ -339,15 +345,18 @@
       filters = { ...filters, ...link.filters, state: 'all' };
       // Ссылка только с правилами: отмечаются их номера, иначе правила под оглавлением не видны.
       if (filters.rules.length && !filters.tasks.length) filters.tasks = ruleTasks(filters.rules, questions);
+      // Правило без заданий в номерах ссылки (их сняли с сайта) тоже не выбрано — ученик узнает.
+      const asked = filters.rules.length;
       filters = fitRules(filters, questions);
+      const missingRules = link.missingRules + asked - filters.rules.length;
       saveFilters();
       const gone = [
         link.missing ? (link.missing === 1 ? 'одной темы' : `${link.missing} тем`) : '',
-        link.missingRules ? (link.missingRules === 1 ? 'одного правила' : `${link.missingRules} правил`) : '',
+        missingRules ? (missingRules === 1 ? 'одного правила' : `${missingRules} правил`) : '',
       ].filter(Boolean).join(' и ');
       shareNotice = gone
         ? { warn: true, text: `Подборка открыта по ссылке, но ${gone} из неё на сайте больше нет — выбраны остальные.` }
-        : { warn: false, text: 'Подборка открыта по ссылке: темы, номера и размер раунда уже выбраны.' };
+        : { warn: false, text: 'Подборка открыта по ссылке: фильтры и размер раунда уже выбраны.' };
       target = '#/practice/setup';
     }
     window.history.replaceState(null, '', target);
@@ -508,9 +517,10 @@
     return svg;
   }
 
-  // Пропуск — клетка 田字格. Ответ ученика вписан синим; после проверки — галочка
-  // или зачёркнутое и верный ответ над клеткой красной ручкой.
-  function blankNode(cells, { written, state, fix }) {
+  // Пропуск — клетка 田字格. До ответа — всегда одна клетка: ширина не подсказывает, сколько
+  // знаков вписать. Ответ ученика вписан синим и раздвигает пропуск по числу знаков; после
+  // проверки — галочка или зачёркнутое и верный ответ над клеткой красной ручкой.
+  function blankNode({ written, state, fix }) {
     const chars = written ? [...written.replace(/\s+/g, '')] : [];
     let label = 'пропуск';
     if (state === 'right' && written) label = `пропуск: верно, ${written}`;
@@ -520,10 +530,11 @@
     else if (written) label = `пропуск, вписано: ${written}`;
     // Подпись русская внутри китайского предложения — lang='ru', вписанное — снова zh.
     const box = el('span', { class: ['tz', written ? 'written' : '', state || ''].filter(Boolean).join(' '), role: 'img', lang: 'ru', 'aria-label': label });
-    if (cells === 0 || chars.length > cells) {
-      box.append(el('span', { class: 'c long' }, written ? el('span', { class: 'ink', lang: 'zh', text: written }) : null));
+    // Ответы в банке — до трёх знаков; что длиннее четырёх, вписывается в одну вытянутую клетку.
+    if (chars.length > 4) {
+      box.append(el('span', { class: 'c long' }, el('span', { class: 'ink', lang: 'zh', text: written })));
     } else {
-      for (let i = 0; i < cells; i += 1) box.append(el('span', { class: 'c' }, chars[i] ? el('span', { class: 'ink', lang: 'zh', text: chars[i] }) : null));
+      for (let i = 0; i < Math.max(1, chars.length); i += 1) box.append(el('span', { class: 'c' }, chars[i] ? el('span', { class: 'ink', lang: 'zh', text: chars[i] }) : null));
     }
     if (state === 'right' && written) box.append(tickMark());
     if (fix) box.append(el('span', { class: 'fix', lang: 'zh', 'aria-hidden': 'true', text: fix }));
@@ -532,7 +543,6 @@
 
   // Предложение с пропусками-клетками. selected — выбранный вариант, reveal — после проверки.
   function sentenceNode(item, text, cls, { selected, reveal }) {
-    const cells = blankCells(item);
     const chosen = selected == null ? null : blankFill(item, selected);
     const right = reveal ? blankFill(item, item.correctOptionId) : null;
     const correct = selected != null && selected === item.correctOptionId;
@@ -541,7 +551,7 @@
       if (!part.blank) return part.text;
       const i = index;
       index += 1;
-      return blankNode(cells[i], {
+      return blankNode({
         written: chosen ? chosen[i] : null,
         state: reveal ? (correct ? 'right' : 'wrong') : null,
         fix: reveal && !correct && right ? right[i] : null,
@@ -576,7 +586,9 @@
     }
     // В ряд — только короткие варианты; союзы №27 с «……» в узкой колонке рвались бы посередине.
     const short = item.options.every((o) => o.text.length <= 12 && !o.text.includes('…'));
-    const list = el('div', { class: short ? 'options row' : 'options', role: 'group', 'aria-label': 'Варианты ответа' });
+    // Числа и тоны — не китайский текст: свой ряд, без переноса внутри варианта.
+    const plain = item.options.every((o) => !isChinese(o.text));
+    const list = el('div', { class: ['options', short ? 'row' : '', short && plain ? 'plain' : ''].filter(Boolean).join(' '), role: 'group', 'aria-label': 'Варианты ответа' });
     item.options.forEach((o, i) => {
       let cls = 'option';
       if (reveal && o.id === item.correctOptionId) cls += ' correct';
@@ -622,7 +634,8 @@
   // Разбор: сначала почему выбранный вариант не подходит, потом верный ответ, правило и контраст.
   function feedback(item, optionId) {
     const e = explainChoice(item, optionId);
-    const box = el('section', { class: 'feedback', 'aria-live': 'polite' });
+    // tabindex — фокус после ответа, когда «Дальше» за краем экрана (focusAfterAnswer).
+    const box = el('section', { class: 'feedback', 'aria-live': 'polite', tabindex: '-1' });
     if (optionId == null) {
       box.append(el('div', { class: 'verdict ok' },
         el('h3', {}, 'Верный ответ: ', el('span', { class: 'zh', lang: 'zh', text: e.correctText })),
@@ -685,24 +698,47 @@
   const markOf = (answer, correctId) => (answer === undefined || answer === null ? null : answer === correctId ? 'ok' : 'bad');
   const reducedMotion = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Панель с «Дальше» липкая (телефон) — или null.
+  function stickyDock() {
+    const dock = view.querySelector('.dock');
+    return dock && getComputedStyle(dock).position === 'sticky' ? dock : null;
+  }
+
   // После ответа предложение с исправлением красной ручкой не уходит с экрана: ученик видит, что
   // не так. Начало разбора не помещается под вариантами — страница сдвигается ровно настолько,
-  // чтобы его показать, но не дальше, чем до предложения у верхнего края. Остальное разбора
-  // ученик прокрутит сам. Фокус — на «Дальше» без прокрутки к ней: Enter ведёт дальше.
+  // чтобы его показать, но не дальше, чем до предложения у верхнего края. Предложение уже за
+  // верхним краем (ученик докрутил до вариантов) — страница возвращает его. Остальное разбора
+  // ученик прокрутит сам.
   function afterAnswer() {
     const card = view.querySelector('[data-card]');
     const box = view.querySelector('.feedback');
-    const dock = view.querySelector('.dock');
-    const sticky = Boolean(dock) && getComputedStyle(dock).position === 'sticky';
+    const dock = stickyDock();
+    let delta = 0;
+    scrollReset += 1; // отложенный сброс прокрутки прошлого экрана больше не нужен
     if (card && box) {
       const anchor = card.querySelector('.stem') || card.querySelector('.fragments') || card.querySelector('.instruction');
-      const visibleBottom = window.innerHeight - (sticky ? dock.getBoundingClientRect().height : 0);
-      const head = box.getBoundingClientRect().top + 56; // заголовок разбора и первая строка
-      const delta = Math.min(anchor.getBoundingClientRect().top - 12, head - visibleBottom);
-      if (delta > 0) window.scrollBy({ top: delta, behavior: reducedMotion() ? 'auto' : 'smooth' });
+      const visibleBottom = window.innerHeight - (dock ? dock.getBoundingClientRect().height : 0);
+      // Заголовок разбора и первая строка — около трёх с половиной строк шрифта разбора.
+      const head = box.getBoundingClientRect().top + 3.5 * parseFloat(getComputedStyle(box).fontSize);
+      const top = anchor.getBoundingClientRect().top - 12;
+      delta = top < 0 ? top : Math.max(0, Math.min(top, head - visibleBottom));
+      if (delta) window.scrollBy({ top: delta, behavior: reducedMotion() ? 'auto' : 'smooth' });
     }
-    const next = view.querySelector('[data-enter]');
-    if (next) next.focus({ preventScroll: true });
+    focusAfterAnswer(box, delta);
+  }
+
+  // Фокус после ответа — без прокрутки. На «Дальше» — только если её видно (липкая панель на
+  // телефоне или кнопка на экране после сдвига на delta): невидимую кнопку нажал бы пробел,
+  // которым листают разбор, и разбор пропал бы. Иначе фокус на разборе или на условии — Enter
+  // всё равно ведёт дальше: его ловит общий обработчик клавиш.
+  function focusAfterAnswer(fallback, delta = 0) {
+    const next = view.querySelector('[data-enter]') || view.querySelector('#finishVariant');
+    const seen = (node) => {
+      const r = node.getBoundingClientRect();
+      return r.top - delta >= 0 && r.bottom - delta <= window.innerHeight;
+    };
+    const target = next && (stickyDock() || seen(next)) ? next : fallback;
+    if (target) target.focus({ preventScroll: true });
   }
 
   function emptyBank() {
@@ -783,7 +819,7 @@
       class: 'button alt', type: 'button', disabled: !ruleQuestions.length,
       // Задания именно этого правила: его номера отмечены, правило выбрано под оглавлением.
       onclick: () => {
-        filters = { ...filters, topics: [], tasks: ruleTasks([id], questions), rules: [id], state: 'all' };
+        filters = { ...filters, topics: [], tasks: ruleTasks([id], questions), rules: [id], origins: [], state: 'all' };
         saveFilters();
         go('#/practice');
       },
@@ -921,14 +957,16 @@
         if (!shown.includes(r) && questions.some((q) => q.taskNumber === n && (q.ruleIds || []).includes(r.id))) shown.push(r);
       }
     }
+    // Счёт — задания правила в отмеченных номерах (и в теме из старой ссылки), как счёт оглавления.
+    const base = filterQuestions(questions, { topics: filters.topics, tasks: filters.tasks }, progress);
     const items = shown
-      .map((r) => ({ value: r.id, label: r.title, count: filterQuestions(questions, { topics: filters.topics, tasks: filters.tasks, rules: [r.id] }, progress).length }))
+      .map((r) => ({ value: r.id, label: r.title, count: base.filter((q) => (q.ruleIds || []).includes(r.id)).length }))
       .filter((it) => it.count || filters.rules.includes(it.value));
     if (!items.length) {
+      let hint = 'Отметьте номер — здесь появятся его правила, чтобы взять задания только на одно из них.';
+      if (numbers.length) hint = filters.topics.length ? 'В выбранной теме у отмеченных номеров правил нет.' : 'У отмеченных номеров правил пока нет.';
       return el('fieldset', { class: 'filter', id: 'grammar' }, el('legend', { text: 'Грамматика' }),
-        el('p', { class: 'small muted hint', text: numbers.length
-          ? 'У отмеченных номеров правил пока нет.'
-          : 'Отметьте номер — здесь появятся его правила, чтобы взять задания только на одно из них.' }));
+        el('p', { class: 'small muted hint', text: hint }));
     }
     return chipGroup('Грамматика', items, filters.rules, (v) => { filters.rules = toggle(filters.rules, v); saveFilters(); render(false); }, 'grammar');
   }
@@ -1193,10 +1231,9 @@
           variantConfirm = false;
           save();
           render(false);
-          // Фокус на «Дальше»: Enter ведёт к следующей позиции, цифры по-прежнему меняют ответ.
-          // Страницу к кнопке не двигаем: задание с выбранным ответом остаётся на экране.
-          const next = view.querySelector('[data-enter]') || view.querySelector('#finishVariant');
-          if (next) next.focus({ preventScroll: true });
+          // Enter ведёт к следующей позиции, цифры по-прежнему меняют ответ. Страницу к кнопке
+          // не двигаем: задание с выбранным ответом остаётся на экране.
+          focusAfterAnswer(view.querySelector('[data-card] .instruction'));
         },
       }));
     const last = v.index === v.ids.length - 1;
