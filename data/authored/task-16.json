@@ -1,6 +1,6 @@
 {
   "g16-134bf6ba": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -24,10 +24,11 @@
         "4": "块"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "cc12f9457262"
   },
   "g16-163654d8": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -51,10 +52,11 @@
         "4": "只"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "33dfe71bde4b"
   },
   "g16-25f8624c": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -78,10 +80,11 @@
         "4": "把"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "cbf360e5995e"
   },
   "g16-2b398368": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -105,10 +108,11 @@
         "4": "张"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "2d8146c7f139"
   },
   "g16-2d2fcf6d": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -132,10 +136,11 @@
         "4": "件"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "697bcbf4bd25"
   },
   "g16-356a2bb9": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -159,10 +164,11 @@
         "4": "棵"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "64e2d6311c59"
   },
   "g16-3d81c54e": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -186,10 +192,11 @@
         "4": "本"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "4fac1d3e389d"
   },
   "g16-42af8625": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -213,10 +220,11 @@
         "4": "碗"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "6a0af1b8ed50"
   },
   "g16-4acbebb8": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -240,7 +248,8 @@
         "4": "瓶"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "8130d1b8614e"
   },
   "g16-56406db2": {
     "status": "accepted",
@@ -271,7 +280,7 @@
     "acceptedHash": "49bd885be143"
   },
   "g16-593ab481": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -295,10 +304,11 @@
         "4": "双"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "f6e71dddf83e"
   },
   "g16-632642d9": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -322,10 +332,11 @@
         "4": "双"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "7a42df510bb4"
   },
   "g16-840ee5d8": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -349,10 +360,11 @@
         "4": "个"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "3446d5c26240"
   },
   "g16-87e34c95": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -376,10 +388,11 @@
         "4": "把"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "5b047444575f"
   },
   "g16-8a7b5ffe": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -403,10 +416,11 @@
         "4": "碗"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "8b1bbd6bc9ef"
   },
   "g16-9b6bcee6": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -430,10 +444,11 @@
         "4": "块"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "08ceea32d720"
   },
   "g16-ae767b94": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -457,10 +472,11 @@
         "4": "杯"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "323273142dc4"
   },
   "g16-ba865543": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -484,10 +500,11 @@
         "4": "辆"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "3894d3a24729"
   },
   "g16-bd67ab19": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -511,10 +528,11 @@
         "4": "片"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "cde011c5e116"
   },
   "g16-cbbd46c0": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -538,10 +556,11 @@
         "4": "块"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "e2f15c76fbc2"
   },
   "g16-d9744b5e": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -565,7 +584,8 @@
         "4": "块"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "dd80cd8b27d0"
   },
   "q16-02da78dd": {
     "status": "accepted",
