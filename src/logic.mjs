@@ -311,20 +311,46 @@ export function rulesForMistakes(items, byId, known = null, limit = 2) {
 // ---------- отбор ----------
 
 // Пустой список в фильтре означает «без ограничения». Тема и номер задания — независимые признаки.
+// Правила (грамматика) — по ruleIds задания: задание без правила под такой фильтр не попадает.
 export function filterQuestions(questions, filters, progress, now = null) {
   const topics = filters.topics || [];
   const tasks = filters.tasks || [];
+  const rules = filters.rules || [];
   const origins = filters.origins || [];
   const state = filters.state || 'all';
   return questions.filter((q) => {
     if (topics.length && !q.topicIds.some((t) => topics.includes(t))) return false;
     if (tasks.length && !tasks.includes(q.taskNumber)) return false;
+    if (rules.length && !(q.ruleIds || []).some((r) => rules.includes(r))) return false;
     if (origins.length && !origins.includes(q.origin)) return false;
     if (state === 'new') return answerState(progress, 'questions', q.id) === 'new';
+    if (state === 'done') return answerState(progress, 'questions', q.id) !== 'new';
     if (state === 'mistakes') return answerState(progress, 'questions', q.id) === 'mistake';
     if (state === 'review') return ['mistake', 'due'].includes(answerState(progress, 'questions', q.id, now));
     return true;
   });
+}
+
+// Номера, в которых есть задания этих правил: кнопка карточки правила и ссылка только с правилами
+// отмечают их, чтобы выбранное правило было видно под оглавлением.
+export function ruleTasks(ruleIds, questions) {
+  const numbers = questions.filter((q) => (q.ruleIds || []).some((r) => ruleIds.includes(r))).map((q) => q.taskNumber);
+  return [...new Set(numbers)].sort((a, b) => a - b);
+}
+
+// Правило уточняет отмеченные номера: снят номер — уходят и правила, у которых в остальных
+// номерах заданий нет, иначе фильтр сужал бы подборку невидимо. Без номеров правил нет.
+export function fitRules(filters, questions) {
+  const rules = filters.rules || [];
+  const tasks = filters.tasks || [];
+  const kept = rules.filter((r) => tasks.length
+    && questions.some((q) => tasks.includes(q.taskNumber) && (q.ruleIds || []).includes(r)));
+  return kept.length === rules.length ? filters : { ...filters, rules: kept };
+}
+
+// Доля верных ответов в процентах, целым числом.
+export function percent(score, total) {
+  return total ? Math.round((score / total) * 100) : 0;
 }
 
 // Раунд из отобранного: номера по кругу (номера в случайном порядке, внутри номера — задания в
@@ -375,12 +401,13 @@ function query(pairs) {
   return pairs.map(([k, v]) => `${k}=${encodeURIComponent(v).replace(/%2C/g, ',')}`).join('&');
 }
 
-// Подборка: темы, номера, источник и размер раунда. «Новые» и «ошибки» — личное
+// Подборка: темы, номера, правила, источник и размер раунда. «Новые» и «ошибки» — личное
 // состояние ученика, в ссылку оно не входит.
 export function shareQuery(filters) {
   const pairs = [];
   if (filters.topics.length) pairs.push(['topics', filters.topics.join(',')]);
   if (filters.tasks.length) pairs.push(['tasks', filters.tasks.join(',')]);
+  if ((filters.rules || []).length) pairs.push(['rules', filters.rules.join(',')]);
   if (filters.origins.length) pairs.push(['origins', filters.origins.join(',')]);
   pairs.push(['size', filters.size]);
   return query(pairs);
@@ -391,9 +418,10 @@ export function idsQuery(ids) {
   return query([['ids', ids.join(',')]]);
 }
 
-// Разбор ссылки. known: { topicIds: Set, origins: [], questionIds: Set } — незнакомое
-// отбрасывается: ссылка могла пережить снятое с публикации задание или тему. missing — сколько
-// отброшено (заданий или тем): ученик должен знать, что подборка не та, что прислал учитель.
+// Разбор ссылки. known: { topicIds: Set, origins: [], questionIds: Set, ruleIds: Set } — незнакомое
+// отбрасывается: ссылка могла пережить снятое с публикации задание, тему или правило. missing —
+// сколько отброшено заданий или тем, missingRules — правил: ученик должен знать, что подборка
+// не та, что прислал учитель.
 export function parseShareQuery(text, known) {
   const params = new URLSearchParams(text);
   const list = (key) => (params.get(key) || '').split(',').map((s) => s.trim()).filter(Boolean);
@@ -404,12 +432,16 @@ export function parseShareQuery(text, known) {
   }
   const asked = [...new Set(list('topics'))];
   const topics = asked.filter((t) => known.topicIds.has(t));
+  const askedRules = [...new Set(list('rules'))];
+  const rules = askedRules.filter((r) => (known.ruleIds || new Set()).has(r));
   return {
     kind: 'filters',
     missing: asked.length - topics.length,
+    missingRules: askedRules.length - rules.length,
     filters: {
       topics,
       tasks: list('tasks').map(Number).filter((n) => TASK_NUMBERS.includes(n)),
+      rules,
       origins: list('origins').filter((o) => known.origins.includes(o)),
       size: ROUND_SIZES.includes(params.get('size')) ? params.get('size') : '10',
     },

@@ -93,11 +93,14 @@ a { color: var(--pen); text-underline-offset: 3px; }
 .brand h1 a:hover { color: var(--pen); }
 .nowrap { white-space: nowrap; }
 .brand small { display: block; color: var(--muted); font-size: .76rem; font-weight: 600; line-height: 1.3; }
-.theme {
+.top-actions { flex: none; display: flex; gap: 8px; }
+/* Круглые кнопки шапки: справка и тема. */
+.round {
   flex: none; display: grid; place-items: center; width: 44px; height: 44px; border: 1.5px solid var(--line);
-  border-radius: 50%; background: var(--sheet); color: var(--muted); font-size: 1.1rem;
+  border-radius: 50%; background: var(--sheet); color: var(--muted); font-size: 1.1rem; font-weight: 700; text-decoration: none;
 }
-.theme:hover { border-color: var(--grid); color: var(--ink); }
+.round:hover { border-color: var(--grid); color: var(--ink); }
+.round[aria-current="page"] { border-color: var(--pen); color: var(--pen); }
 
 .tabs { display: flex; gap: 8px; margin: 0 0 24px; border-bottom: 1.5px solid var(--line); }
 .tab {
@@ -332,7 +335,6 @@ kbd {
 .class-table { width: 100%; border-collapse: collapse; font-size: .86rem; font-variant-numeric: tabular-nums; }
 .class-table th, .class-table td { padding: 8px 10px; border-bottom: 1.5px solid var(--line); text-align: left; white-space: nowrap; }
 .class-table th { color: var(--muted); font-weight: 650; }
-.foot-link { display: inline-flex; align-items: center; min-height: 44px; }
 .share-row { display: flex; flex-wrap: wrap; gap: 10px; }
 .share-url {
   flex: 1 1 240px; min-width: 0; min-height: 46px; padding: 8px 10px; border: 1.5px solid var(--line); border-radius: 8px;
@@ -363,6 +365,7 @@ kbd {
 
 .score { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 4px 0 16px; }
 .score b { font: 800 clamp(2.6rem, 9vw, 3.4rem)/1 var(--disp); white-space: nowrap; }
+.score .percent { color: var(--pen); font-size: clamp(1.9rem, 6.5vw, 2.5rem); }
 .advice { margin: 0 0 16px; }
 .mistakes { margin: 0 0 18px; padding: 10px 14px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--sheet); }
 .mistakes > summary { font-weight: 700; cursor: pointer; min-height: 44px; display: flex; align-items: center; }
@@ -427,6 +430,8 @@ kbd {
 .stat span { color: var(--muted); font-size: .82rem; font-weight: 600; }
 .filters-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr)); gap: 10px; margin-bottom: 14px; }
 .filters-row > * { min-width: 0; }
+.filters-row > .button { align-self: end; }
+.filter .hint { margin: 0; }
 .bank-list { margin: 0; padding: 0; list-style: none; border-top: 1.5px solid var(--line); }
 .bank-item {
   display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; align-items: center; gap: 12px; width: 100%;
@@ -443,8 +448,35 @@ kbd {
 .state.mistake { color: var(--red); }
 .state.due { color: var(--warn-ink); }
 
-.foot { margin-top: 44px; padding-top: 16px; border-top: 1.5px solid var(--line); color: var(--muted); font-size: .84rem; }
-.foot p { max-width: 680px; margin: 0 0 6px; }
+/* ---------- справка ---------- */
+
+.help { max-width: 680px; }
+.help p { margin: 0 0 8px; }
+.help .section-title { margin-top: 22px; }
+.help a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 650; }
+
+/* ---------- ноутбук и проектор ---------- */
+
+/* Задание читают издалека: крупнее условие, предложение, варианты и разбор. Телефон — как был. */
+@media (min-width: 721px) {
+  .shell { width: min(100% - 48px, 960px); }
+  .pills { font-size: .92rem; }
+  .instruction { font-size: 1.25rem; }
+  .stem { font-size: 2.4rem; }
+  .stem.solo { font-size: 3.4rem; }
+  .stem-ru { font-size: 1.1rem; }
+  .fragments li { grid-template-columns: 40px 1fr; font-size: 1.8rem; }
+  .fragments b { width: 36px; height: 34px; font-size: 1rem; }
+  .options.row { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+  .option { min-height: 68px; }
+  .option .num { width: 30px; height: 30px; font-size: .95rem; }
+  .option .text { font-size: 2rem; }
+  .option .text.plain { font-size: 1.45rem; }
+  .keys { font-size: .9rem; }
+  .feedback { font-size: 1.2rem; }
+  .feedback h3 { font-size: 1.25rem; }
+  .progress { font-size: .95rem; }
+}
 
 /* ---------- телефон ---------- */
 

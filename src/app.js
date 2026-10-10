@@ -125,17 +125,18 @@
   }
 
   function loadFilters() {
-    const empty = { topics: [], tasks: [], origins: [], state: 'all', size: '10' };
+    const empty = { topics: [], tasks: [], rules: [], origins: [], state: 'all', size: '10' };
     try {
       const raw = JSON.parse(storage.get(FILTERS_KEY) || 'null');
       if (!raw || typeof raw !== 'object') return empty;
-      return {
+      return fitRules({
         topics: Array.isArray(raw.topics) ? raw.topics.filter((t) => topicsById.has(t)) : [],
         tasks: Array.isArray(raw.tasks) ? raw.tasks.filter((n) => TASK_NUMBERS.includes(n)) : [],
+        rules: Array.isArray(raw.rules) ? raw.rules.filter((r) => rulesById.has(r)) : [],
         origins: Array.isArray(raw.origins) ? raw.origins.filter((o) => origins.includes(o)) : [],
-        state: ['all', 'new', 'review', 'mistakes'].includes(raw.state) ? raw.state : 'all',
+        state: ['all', 'new', 'done', 'review', 'mistakes'].includes(raw.state) ? raw.state : 'all',
         size: ['5', '10', '20', 'all'].includes(raw.size) ? raw.size : '10',
-      };
+      }, questions);
     } catch {
       return empty;
     }
@@ -153,7 +154,8 @@
   let shareNotice = prunedNotice(loaded, progress); // что открыто по ссылке учителя; показывается один раз
   let shareOpen = null; // какой блок «Ссылка…» раскрыт: setup, round или variant
   let pendingVariant = null; // вариант из ссылки ждёт решения: поверх незавершённого своего
-  let bankFilters = { task: '', topic: '', state: 'all', origin: '' };
+  const BANK_FILTERS = { task: '', topic: '', state: 'all', origin: '' };
+  let bankFilters = { ...BANK_FILTERS };
 
   // ---------- DOM ----------
 
@@ -214,7 +216,7 @@
       openShared(name, query);
       ({ name, arg } = route());
     }
-    document.querySelectorAll('.tab').forEach((tab) => {
+    document.querySelectorAll('[data-tab]').forEach((tab) => {
       const active = tab.dataset.tab === name;
       if (active) tab.setAttribute('aria-current', 'page');
       else tab.removeAttribute('aria-current');
@@ -229,6 +231,7 @@
     else if (name === 'variant') renderVariant();
     else if (name === 'bank') renderBank();
     else if (name === 'teacher') renderTeacher();
+    else if (name === 'help') renderHelp();
     else renderRules();
     if (shareNotice) {
       const node = el('p', { class: shareNotice.warn ? 'notice warn' : 'notice', id: 'shareNotice', role: 'status', text: shareNotice.text });
@@ -309,7 +312,7 @@
   // Ссылка учителя: открыть подборку, раунд из тех же заданий или тот же вариант.
   // Адрес сразу заменяется обычным, чтобы перезагрузка не открывала ссылку повторно.
   function openShared(name, query) {
-    const link = parseShareQuery(query, { topicIds: new Set(topicsById.keys()), origins, questionIds: new Set(byId.keys()) });
+    const link = parseShareQuery(query, { topicIds: new Set(topicsById.keys()), origins, questionIds: new Set(byId.keys()), ruleIds: new Set(rulesById.keys()) });
     let target = `#/${name}`;
     if (name === 'variant') {
       if (link.kind === 'ids' && isVariant(link.ids, byId)) {
@@ -334,9 +337,16 @@
       }
     } else {
       filters = { ...filters, ...link.filters, state: 'all' };
+      // Ссылка только с правилами: отмечаются их номера, иначе правила под оглавлением не видны.
+      if (filters.rules.length && !filters.tasks.length) filters.tasks = ruleTasks(filters.rules, questions);
+      filters = fitRules(filters, questions);
       saveFilters();
-      shareNotice = link.missing
-        ? { warn: true, text: `Подборка открыта по ссылке, но ${link.missing === 1 ? 'одной темы' : `${link.missing} тем`} из неё на сайте больше нет — выбраны остальные.` }
+      const gone = [
+        link.missing ? (link.missing === 1 ? 'одной темы' : `${link.missing} тем`) : '',
+        link.missingRules ? (link.missingRules === 1 ? 'одного правила' : `${link.missingRules} правил`) : '',
+      ].filter(Boolean).join(' и ');
+      shareNotice = gone
+        ? { warn: true, text: `Подборка открыта по ссылке, но ${gone} из неё на сайте больше нет — выбраны остальные.` }
         : { warn: false, text: 'Подборка открыта по ссылке: темы, номера и размер раунда уже выбраны.' };
       target = '#/practice/setup';
     }
@@ -645,6 +655,13 @@
     return box;
   }
 
+  // Счёт на итоге: «7 из 10», процент выполнения и подпись. Запятая — для чтеца экрана.
+  function scoreLine(score, total, caption) {
+    return el('p', { class: 'score' }, el('b', { text: `${score} из ${total}` }),
+      el('b', { class: 'percent' }, el('span', { class: 'sr', text: ', ' }), `${percent(score, total)} %`),
+      el('span', { class: 'muted', text: caption }));
+  }
+
   function progressLine(label, right) {
     return el('div', { class: 'progress' }, el('span', { text: label }), el('span', {}, right));
   }
@@ -668,25 +685,24 @@
   const markOf = (answer, correctId) => (answer === undefined || answer === null ? null : answer === correctId ? 'ok' : 'bad');
   const reducedMotion = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // После ответа на телефоне (панель внизу липкая): предложение с исправлением — к верху экрана,
-  // под ним отмеченные варианты и начало разбора. Не помещается — докручиваем до начала разбора.
-  // Фокус — на «Дальше»: на телефоне она видна в панели, на компьютере фокус сам покажет кнопку.
+  // После ответа предложение с исправлением красной ручкой не уходит с экрана: ученик видит, что
+  // не так. Начало разбора не помещается под вариантами — страница сдвигается ровно настолько,
+  // чтобы его показать, но не дальше, чем до предложения у верхнего края. Остальное разбора
+  // ученик прокрутит сам. Фокус — на «Дальше» без прокрутки к ней: Enter ведёт дальше.
   function afterAnswer() {
     const card = view.querySelector('[data-card]');
     const box = view.querySelector('.feedback');
     const dock = view.querySelector('.dock');
     const sticky = Boolean(dock) && getComputedStyle(dock).position === 'sticky';
-    if (card && box && sticky) {
+    if (card && box) {
       const anchor = card.querySelector('.stem') || card.querySelector('.fragments') || card.querySelector('.instruction');
-      const visibleBottom = window.innerHeight - dock.getBoundingClientRect().height;
+      const visibleBottom = window.innerHeight - (sticky ? dock.getBoundingClientRect().height : 0);
       const head = box.getBoundingClientRect().top + 56; // заголовок разбора и первая строка
-      if (head > visibleBottom) {
-        const delta = Math.max(anchor.getBoundingClientRect().top - 12, head - visibleBottom);
-        window.scrollBy({ top: delta, behavior: reducedMotion() ? 'auto' : 'smooth' });
-      }
+      const delta = Math.min(anchor.getBoundingClientRect().top - 12, head - visibleBottom);
+      if (delta > 0) window.scrollBy({ top: delta, behavior: reducedMotion() ? 'auto' : 'smooth' });
     }
     const next = view.querySelector('[data-enter]');
-    if (next) next.focus({ preventScroll: sticky });
+    if (next) next.focus({ preventScroll: true });
   }
 
   function emptyBank() {
@@ -737,7 +753,7 @@
       return;
     }
     const ruleChecks = checks.filter((c) => c.ruleIds.includes(id));
-    const ruleQuestions = questions.filter((q) => q.topicIds.some((t) => rule.topicIds.includes(t)));
+    const ruleQuestions = questions.filter((q) => (q.ruleIds || []).includes(id));
     const taskNumbers = [...new Set(rule.topicIds.flatMap((t) => (topicsById.get(t) || { taskNumbers: [] }).taskNumbers))];
     const detail = el('article', { class: 'rule-detail' },
       el('a', { class: 'back', href: '#/rules', text: '← Все правила' }),
@@ -765,12 +781,13 @@
     }
     actions.append(el('button', {
       class: 'button alt', type: 'button', disabled: !ruleQuestions.length,
+      // Задания именно этого правила: его номера отмечены, правило выбрано под оглавлением.
       onclick: () => {
-        filters = { ...filters, topics: rule.topicIds.slice(), tasks: [], state: 'all' };
+        filters = { ...filters, topics: [], tasks: ruleTasks([id], questions), rules: [id], state: 'all' };
         saveFilters();
         go('#/practice');
       },
-    }, ruleQuestions.length ? `Задания ЕГЭ по теме · ${tasksWord(ruleQuestions.length)}` : 'Заданий ЕГЭ по теме пока нет'));
+    }, ruleQuestions.length ? `Задания ЕГЭ по правилу · ${tasksWord(ruleQuestions.length)}` : 'Заданий ЕГЭ по правилу пока нет'));
     detail.append(actions);
     view.append(detail);
   }
@@ -790,7 +807,7 @@
     const answered = Object.keys(s.answers).length;
     const correctCount = s.ids.filter((id) => s.answers[id] === checksById.get(id).correctOptionId).length;
     if (s.finishedAt) {
-      view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: `Проверка правила: ${correctCount} из ${s.ids.length}` }),
+      view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: `Проверка правила: ${correctCount} из ${s.ids.length} · ${percent(correctCount, s.ids.length)} %` }),
         el('p', { class: 'lead', text: correctCount === s.ids.length ? 'Правило усвоено — можно переходить к заданиям ЕГЭ.' : 'Перечитайте карточку правила и попробуйте ещё раз.' }),
         el('div', { class: 'actions' },
           el('a', { class: 'button', href: back, text: s.ruleId ? 'К правилу' : 'К правилам' }),
@@ -834,8 +851,8 @@
 
   // ---------- практика ----------
 
-  function chipGroup(legend, items, selected, onToggle) {
-    return el('fieldset', { class: 'filter' },
+  function chipGroup(legend, items, selected, onToggle, id) {
+    return el('fieldset', { class: 'filter', id },
       el('legend', { text: legend }),
       el('div', { class: 'chips' }, items.map((it) => el('label', { class: 'chip' },
         el('input', { type: 'checkbox', checked: selected.includes(it.value), dataset: { key: `${legend}:${it.value}` }, onchange: () => onToggle(it.value) }),
@@ -878,7 +895,7 @@
           el('input', {
             type: 'checkbox', checked, disabled: !checked && !r.count, dataset: { key: `Задания:${r.n}` },
             onchange: () => {
-              filters.tasks = toggle(filters.tasks, r.n);
+              filters = fitRules({ ...filters, tasks: toggle(filters.tasks, r.n) }, questions);
               saveFilters();
               render(false);
               // Снятый номер без заданий темы стал недоступен — фокус на «Снять тему», а не в никуда.
@@ -892,6 +909,28 @@
             el('span', { class: 'task-title', text: r.title }),
             el('small', {}, String(r.count), el('span', { class: 'sr', text: ` ${plural(r.count, 'задание', 'задания', 'заданий')}` }))));
       })));
+  }
+
+  // Грамматика: правила отмеченных номеров — по порядку номеров, с числом заданий. Правило
+  // уточняет номер (у №22 — 就/才, 又/再/还 и т. д.); без отмеченного номера — подсказка.
+  function grammarFilter() {
+    const numbers = [...filters.tasks].sort((a, b) => a - b);
+    const shown = [];
+    for (const n of numbers) {
+      for (const r of rules) {
+        if (!shown.includes(r) && questions.some((q) => q.taskNumber === n && (q.ruleIds || []).includes(r.id))) shown.push(r);
+      }
+    }
+    const items = shown
+      .map((r) => ({ value: r.id, label: r.title, count: filterQuestions(questions, { topics: filters.topics, tasks: filters.tasks, rules: [r.id] }, progress).length }))
+      .filter((it) => it.count || filters.rules.includes(it.value));
+    if (!items.length) {
+      return el('fieldset', { class: 'filter', id: 'grammar' }, el('legend', { text: 'Грамматика' }),
+        el('p', { class: 'small muted hint', text: numbers.length
+          ? 'У отмеченных номеров правил пока нет.'
+          : 'Отметьте номер — здесь появятся его правила, чтобы взять задания только на одно из них.' }));
+    }
+    return chipGroup('Грамматика', items, filters.rules, (v) => { filters.rules = toggle(filters.rules, v); saveFilters(); render(false); }, 'grammar');
   }
 
   function renderPractice() {
@@ -910,13 +949,13 @@
       view.append(emptyBank());
       return;
     }
-    view.append(taskContents());
+    view.append(taskContents(), grammarFilter());
     if (origins.length > 1) {
       view.append(chipGroup('Источник', origins.map((o) => ({ value: o, label: ORIGIN_NAMES[o] || o, count: questions.filter((q) => q.origin === o).length })),
         filters.origins, (v) => { filters.origins = toggle(filters.origins, v); saveFilters(); render(false); }));
     }
     const stateSelect = el('select', { id: 'stateFilter', dataset: { key: 'state' }, onchange: (e) => { filters.state = e.target.value; saveFilters(); render(false); } },
-      [['all', 'Все'], ['new', 'Новые'], ['review', 'На повторение'], ['mistakes', 'Ошибки']].map(([v, label]) => el('option', { value: v, selected: filters.state === v, text: label })));
+      [['all', 'Все'], ['new', 'Новые'], ['done', 'Уже решённые'], ['review', 'На повторение'], ['mistakes', 'Ошибки']].map(([v, label]) => el('option', { value: v, selected: filters.state === v, text: label })));
     const sizeSelect = el('select', { id: 'roundSize', dataset: { key: 'size' }, onchange: (e) => { filters.size = e.target.value; saveFilters(); render(false); } },
       [['5', '5 заданий'], ['10', '10 заданий'], ['20', '20 заданий'], ['all', 'Все доступные']].map(([v, label]) => el('option', { value: v, selected: filters.size === v, text: label })));
     view.append(el('div', { class: 'filters-row' },
@@ -928,8 +967,9 @@
       available.length
         ? `Доступно: ${tasksWord(available.length)}. В раунд попадёт ${roundSize}.`
         : filters.state === 'mistakes' ? 'Ошибок с такими фильтрами нет.'
-          : filters.state === 'review' ? 'Повторять пока нечего: ошибок нет, а исправленные ещё не подошли к сроку.'
-            : 'С такими фильтрами заданий нет — снимите часть фильтров.'));
+          : filters.state === 'done' ? 'Решённых с такими фильтрами пока нет.'
+            : filters.state === 'review' ? 'Повторять пока нечего: ошибок нет, а исправленные ещё не подошли к сроку.'
+              : 'С такими фильтрами заданий нет — снимите часть фильтров.'));
     const actions = el('div', { class: 'actions' },
       el('button', {
         class: 'button', type: 'button', id: 'startRound', disabled: !available.length, dataset: { enter: '1' },
@@ -937,13 +977,13 @@
       }, 'Начать раунд'),
       el('button', {
         class: 'button ghost', type: 'button',
-        onclick: () => { filters = { ...filters, topics: [], tasks: [], origins: [], state: 'all' }; saveFilters(); render(false); },
+        onclick: () => { filters = { ...filters, topics: [], tasks: [], rules: [], origins: [], state: 'all' }; saveFilters(); render(false); },
       }, 'Сбросить фильтры'));
     if (round && !round.finishedAt) {
       actions.append(el('a', { class: 'button alt', href: '#/practice', text: `Продолжить раунд · ${Object.keys(round.answers).length} из ${round.ids.length}` }));
     }
     const share = shareToggle('setup', 'Ссылка на подборку', pageUrl(`#/practice?${shareQuery(filters)}`),
-      'По ссылке откроется эта подборка: темы, номера, источник и размер раунда. Задания каждому выпадут свои. Чтобы у всех были одни и те же задания, пройдите раунд и возьмите ссылку на его итоге.',
+      'По ссылке откроется эта подборка: номера, правила, источник и размер раунда. Задания каждому выпадут свои. Чтобы у всех были одни и те же задания, пройдите раунд и возьмите ссылку на его итоге.',
       !available.length);
     actions.append(share.button);
     view.append(actions);
@@ -1025,7 +1065,7 @@
     const result = scoreSession(round, byId);
     const wrong = result.items.filter((i) => !i.correct).map((i) => i.id);
     view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Раунд окончен' }),
-      el('p', { class: 'score' }, el('b', { text: `${result.score} из ${result.total}` }), el('span', { class: 'muted', text: 'верных ответов' })),
+      scoreLine(result.score, result.total, 'верных ответов'),
       ruleAdvice(result.items),
       mistakeWork(result.items, { id: 'roundMistakes' }),
       resultList(round.ids, round.answers));
@@ -1154,10 +1194,9 @@
           save();
           render(false);
           // Фокус на «Дальше»: Enter ведёт к следующей позиции, цифры по-прежнему меняют ответ.
-          // В липкой панели (телефон) кнопка видна — страницу не двигаем.
+          // Страницу к кнопке не двигаем: задание с выбранным ответом остаётся на экране.
           const next = view.querySelector('[data-enter]') || view.querySelector('#finishVariant');
-          const dock = view.querySelector('.dock');
-          if (next) next.focus({ preventScroll: Boolean(dock) && getComputedStyle(dock).position === 'sticky' });
+          if (next) next.focus({ preventScroll: true });
         },
       }));
     const last = v.index === v.ids.length - 1;
@@ -1220,7 +1259,7 @@
     // null — кнопки нет: штатный append напечатал бы его словом «null».
     actions.append(...[report.button, share.button].filter(Boolean));
     view.append(el('p', { class: 'section-title', text: 'Результат последнего варианта' }),
-      el('p', { class: 'score' }, el('b', { text: `${result.score} из ${result.total}` }), el('span', { class: 'muted', text: 'первичных баллов за раздел 3' })),
+      scoreLine(result.score, result.total, 'первичных баллов за раздел 3'),
       Number.isFinite(v.result && v.result.timeMs)
         ? el('p', { class: v.result.timeMs > VARIANT_MINUTES * 60000 ? 'small variant-time over' : 'small variant-time', id: 'variantTime', text: `Время: ${formatClock(v.result.timeMs)} · рекомендовано ${VARIANT_MINUTES}:00` })
         : document.createDocumentFragment(),
@@ -1299,6 +1338,31 @@
     update();
   }
 
+  // ---------- справка ----------
+
+  function renderHelp() {
+    const sources = ['открытый банк ФИПИ'];
+    if (origins.includes('generated')) sources.push('новые задания в том же формате');
+    if (origins.includes('hsk')) sources.push('задания HSK 4 (источник указан у задания)');
+    const sourceNote = sources.length > 1 ? `${sources.slice(0, -1).join(', ')} и ${sources[sources.length - 1]}` : sources[0];
+    const count = questions.length
+      ? `${tasksWord(questions.length)} · ${rules.length} ${plural(rules.length, 'правило', 'правила', 'правил')}`
+      : 'Банк готовится';
+    view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Справка' }),
+      el('p', { class: 'lead', text: 'Правило, короткая проверка, задания из банка ФИПИ и полный вариант раздела 3. Ошибку здесь разбирают на том варианте, который вы выбрали.' }),
+      el('section', { class: 'help' },
+        el('p', { class: 'section-title', text: 'Задания' }),
+        el('p', {}, el('span', { id: 'bankCount', text: count }),
+          `. Задания — ${sourceNote}, формат ЕГЭ ${DATA.meta.formatYear}. Разборы и правила проверены автором тренажёра.`),
+        el('p', { class: 'section-title', text: 'Прогресс' }),
+        el('p', { text: 'Прогресс хранится только в этом браузере на этом устройстве. Перенести его на другое устройство можно файлом: «Банк» → «Сохранить в файл».' }),
+        el('p', { class: 'section-title', text: 'Клавиши' }),
+        el('p', {}, el('kbd', { text: '1' }), '–', el('kbd', { text: '4' }), ' — выбрать ответ, ', el('kbd', { text: 'Enter' }), ' — дальше.'),
+        el('p', { class: 'section-title', text: 'Учителю' }),
+        el('p', { text: 'Ссылку на подборку, на задания раунда или на вариант можно взять в практике и на итоге: по ней ученики получат то же самое. С итога ученик отправляет отчёт учителю, а отчёты всего класса сводятся в одну таблицу.' }),
+        el('p', {}, el('a', { href: '#/teacher', text: 'Учителю: сводка отчётов учеников' }))));
+  }
+
   // ---------- банк и ошибки ----------
 
   function renderBank() {
@@ -1346,6 +1410,16 @@
       select('Тема', 'topic', [['', 'Все темы'], ...topics.filter((t) => questions.some((q) => q.topicIds.includes(t.id))).map((t) => [t.id, t.title])]),
       select('Результат', 'state', [['all', 'Любой'], ['new', 'Не решались'], ['mistake', 'Ошибки'], ['due', 'Пора повторить'], ['solved', 'Решено верно']]));
     if (origins.length > 1) row.append(select('Источник', 'origin', [['', 'Все'], ...origins.map((o) => [o, ORIGIN_NAMES[o] || o])]));
+    const dirty = Object.keys(BANK_FILTERS).some((k) => bankFilters[k] !== BANK_FILTERS[k]);
+    row.append(el('button', {
+      class: 'button ghost', type: 'button', id: 'resetBankFilters', disabled: !dirty,
+      onclick: () => {
+        bankFilters = { ...BANK_FILTERS };
+        render(false);
+        // Кнопка стала недоступна — фокус на первом поле, а не в никуда.
+        view.querySelector('select[data-key="bank:task"]').focus();
+      },
+    }, 'Сбросить фильтры'));
     view.append(el('div', { class: 'section-title', text: 'Задания' }), row);
 
     const shown = questions.filter((q) => (!bankFilters.task || q.taskNumber === Number(bankFilters.task))
@@ -1489,16 +1563,7 @@
   });
   syncTheme();
 
-  document.getElementById('bankCount').textContent = questions.length
-    ? `${tasksWord(questions.length)} · ${rules.length} ${plural(rules.length, 'правило', 'правила', 'правил')}`
-    : 'Банк готовится';
   document.getElementById('reviewBanner').hidden = !DATA.meta.drafts;
-  const sources = ['открытый банк ФИПИ'];
-  if (origins.includes('generated')) sources.push('новые задания в том же формате');
-  if (origins.includes('hsk')) sources.push('задания HSK 4 (источник указан у задания)');
-  const sourceNote = `Задания — ${sources.length > 1 ? `${sources.slice(0, -1).join(', ')} и ${sources[sources.length - 1]}` : sources[0]}`;
-  document.getElementById('footNote').textContent =
-    `${sourceNote}, формат ЕГЭ ${DATA.meta.formatYear}. Разборы и правила проверены автором тренажёра. Прогресс хранится в этом браузере.`;
 
   // Ссылка «К содержимому» переводит фокус, а не меняет маршрут.
   document.querySelector('.skip').addEventListener('click', (event) => {

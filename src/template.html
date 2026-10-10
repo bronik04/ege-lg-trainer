@@ -41,9 +41,12 @@
         <small>ЕГЭ · китайский · <span class="nowrap">задания 15–27</span></small>
       </div>
     </div>
-    <button class="theme" id="themeToggle" type="button" aria-pressed="false">
-      <span aria-hidden="true">◐</span><span class="sr" id="themeLabel">Тёмная тема</span>
-    </button>
+    <div class="top-actions">
+      <a class="round" id="helpLink" href="#/help" data-tab="help" aria-label="Справка" title="Справка">?</a>
+      <button class="round" id="themeToggle" type="button" aria-pressed="false">
+        <span aria-hidden="true">◐</span><span class="sr" id="themeLabel">Тёмная тема</span>
+      </button>
+    </div>
   </header>
 
   <nav class="tabs" aria-label="Режимы">
@@ -57,13 +60,6 @@
     Эту страницу не публиковать.</p>
 
   <main class="view" id="view" tabindex="-1"></main>
-
-  <footer class="foot">
-    <p>Правило, короткая проверка, задания из банка ФИПИ и полный вариант раздела 3.
-      Ошибку здесь разбирают на том варианте, который вы выбрали.</p>
-    <p><span id="bankCount"></span>. <span id="footNote"></span></p>
-    <p><a class="foot-link" href="#/teacher">Учителю: сводка отчётов учеников</a></p>
-  </footer>
 </div>
 <script type="application/json" id="trainer-data">/*DATA_JSON*/</script>
 <script>

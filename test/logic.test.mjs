@@ -67,6 +67,54 @@ test('фильтр: новые и ошибки', () => {
   assert.equal(p.questions.a.correctCount, 1);
 });
 
+test('фильтр: уже решённые — с любым ответом, верным или нет', () => {
+  const bank = [q('a', 20), q('b', 20), q('c', 20)];
+  let p = L.emptyProgress();
+  p = L.recordAnswer(p, 'questions', 'a', '1', false, 't1');
+  p = L.recordAnswer(p, 'questions', 'b', '2', true, 't1');
+  assert.deepEqual(L.filterQuestions(bank, { state: 'done' }, p).map((x) => x.id), ['a', 'b']);
+});
+
+test('фильтр: грамматика — задания выбранных правил', () => {
+  const bank = [
+    q('a', 22, { ruleIds: ['jiu-cai'] }),
+    q('b', 22, { ruleIds: ['you-zai'] }),
+    q('c', 18, { ruleIds: ['ba-bei', 'jiu-cai'] }),
+    q('d', 26, { ruleIds: [] }),
+    q('e', 26),
+  ];
+  const p = L.emptyProgress();
+  const ids = (f) => L.filterQuestions(bank, f, p).map((x) => x.id);
+  assert.deepEqual(ids({ rules: ['jiu-cai'] }), ['a', 'c']);
+  assert.deepEqual(ids({ rules: ['jiu-cai'], tasks: [22] }), ['a']);
+  assert.deepEqual(ids({ rules: ['jiu-cai', 'you-zai'] }), ['a', 'b', 'c']);
+  assert.deepEqual(ids({ rules: [] }), ['a', 'b', 'c', 'd', 'e']);
+});
+
+test('грамматика: номера правил и правила, которых нет в отмеченных номерах', () => {
+  const bank = [
+    q('a', 22, { ruleIds: ['jiu-cai'] }),
+    q('b', 22, { ruleIds: ['you-zai'] }),
+    q('c', 18, { ruleIds: ['ba-bei'] }),
+    q('d', 26),
+  ];
+  assert.deepEqual(L.ruleTasks(['you-zai', 'ba-bei'], bank), [18, 22]);
+  assert.deepEqual(L.ruleTasks(['gone'], bank), []);
+  const fit = (f) => L.fitRules(f, bank).rules;
+  assert.deepEqual(fit({ tasks: [22], rules: ['jiu-cai', 'ba-bei'] }), ['jiu-cai'], 'номер 18 снят — его правило тоже');
+  assert.deepEqual(fit({ tasks: [], rules: ['jiu-cai'] }), [], 'номеров нет — правил нет');
+  assert.deepEqual(fit({ tasks: [18, 22], rules: ['ba-bei', 'you-zai'] }), ['ba-bei', 'you-zai']);
+  const same = { tasks: [22], rules: ['jiu-cai'] };
+  assert.equal(L.fitRules(same, bank), same, 'ничего не снято — тот же объект');
+});
+
+test('процент выполнения', () => {
+  assert.equal(L.percent(7, 10), 70);
+  assert.equal(L.percent(2, 3), 67);
+  assert.equal(L.percent(13, 13), 100);
+  assert.equal(L.percent(0, 0), 0);
+});
+
 test('оценка по ID варианта: три и четыре варианта', () => {
   const three = q('a', 20);
   const four = q('b', 22, { options: [{ id: '1', text: '才' }, { id: '2', text: '只' }, { id: '3', text: '就' }, { id: '4', text: '再' }], correctOptionId: '1' });
@@ -311,10 +359,23 @@ test('ссылка на подборку: читается обратно, не�
   const text = L.shareQuery(filters);
   assert.equal(text, 'topics=aspect,adverbs&tasks=20,22&origins=fipi&size=5', 'личное состояние в ссылку не входит');
   assert.deepEqual(L.parseShareQuery(text, known), {
-    kind: 'filters', missing: 0, filters: { topics: ['aspect', 'adverbs'], tasks: [20, 22], origins: ['fipi'], size: '5' },
+    kind: 'filters', missing: 0, missingRules: 0, filters: { topics: ['aspect', 'adverbs'], tasks: [20, 22], rules: [], origins: ['fipi'], size: '5' },
   });
   assert.deepEqual(L.parseShareQuery('topics=gone,aspect&tasks=14,20,x&origins=other&size=1000', known).filters,
-    { topics: ['aspect'], tasks: [20], origins: [], size: '10' });
+    { topics: ['aspect'], tasks: [20], rules: [], origins: [], size: '10' });
+});
+
+test('ссылка на подборку: правила грамматики читаются обратно, исчезнувшие считаются', () => {
+  const known = { topicIds: new Set(), origins: ['fipi'], questionIds: new Set(), ruleIds: new Set(['jiu-cai', 'you-zai']) };
+  const text = L.shareQuery({ topics: [], tasks: [22], rules: ['jiu-cai', 'you-zai'], origins: [], size: '10' });
+  assert.equal(text, 'tasks=22&rules=jiu-cai,you-zai&size=10');
+  const link = L.parseShareQuery(text, known);
+  assert.deepEqual(link.filters.rules, ['jiu-cai', 'you-zai']);
+  assert.equal(link.missingRules, 0);
+  const gone = L.parseShareQuery('tasks=22&rules=renamed,jiu-cai&size=10', known);
+  assert.deepEqual(gone.filters.rules, ['jiu-cai']);
+  assert.equal(gone.missingRules, 1);
+  assert.equal(gone.missing, 0, 'темы не пропали');
 });
 
 test('ссылка на задания: порядок сохраняется, пропавшие считаются', () => {
