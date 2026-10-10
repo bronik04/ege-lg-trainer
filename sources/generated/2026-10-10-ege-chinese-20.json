@@ -1,0 +1,269 @@
+{
+  "generator": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+  "specVersion": "ЕГЭ 2026",
+  "tasks": [
+    {
+      "taskNumber": 20,
+      "stem": "你到___广州就给我发个短信，别让妈妈担心。",
+      "options": [
+        "了",
+        "着",
+        "过"
+      ],
+      "key": 1,
+      "codifierCodes": [
+        "2.4.35"
+      ]
+    },
+    {
+      "taskNumber": 20,
+      "stem": "奶奶喜欢躺___看电视，这个习惯怎么也改不掉。",
+      "options": [
+        "了",
+        "着",
+        "过"
+      ],
+      "key": 2,
+      "codifierCodes": [
+        "2.4.35"
+      ]
+    },
+    {
+      "taskNumber": 20,
+      "stem": "我从来没听说___这家饭馆，它在哪儿？",
+      "options": [
+        "了",
+        "着",
+        "过"
+      ],
+      "key": 3,
+      "codifierCodes": [
+        "2.4.35"
+      ]
+    },
+    {
+      "taskNumber": 20,
+      "stem": "我们走___四个小时，终于到了山顶。",
+      "options": [
+        "了",
+        "着",
+        "过"
+      ],
+      "key": 1,
+      "codifierCodes": [
+        "2.4.35"
+      ]
+    },
+    {
+      "taskNumber": 20,
+      "stem": "孩子们正上___课呢，请您在外面等一下。",
+      "options": [
+        "了",
+        "过",
+        "着"
+      ],
+      "key": 3,
+      "codifierCodes": [
+        "2.4.35"
+      ]
+    },
+    {
+      "taskNumber": 20,
+      "stem": "水快开___，你把茶叶准备好。",
+      "options": [
+        "了",
+        "着",
+        "过"
+      ],
+      "key": 1,
+      "codifierCodes": [
+        "2.4.34",
+        "2.4.35"
+      ]
+    },
+    {
+      "taskNumber": 20,
+      "stem": "我还没到___南方，听说那里冬天也很暖和。",
+      "options": [
+        "了",
+        "着",
+        "过"
+      ],
+      "key": 3,
+      "codifierCodes": [
+        "2.4.35"
+      ]
+    },
+    {
+      "taskNumber": 20,
+      "stem": "你在门口等___，我进去拿一下东西就出来。",
+      "options": [
+        "了",
+        "着",
+        "过"
+      ],
+      "key": 2,
+      "codifierCodes": [
+        "2.4.35"
+      ]
+    },
+    {
+      "taskNumber": 20,
+      "stem": "我这个月胖___三公斤，得少吃点儿甜的。",
+      "options": [
+        "了",
+        "过",
+        "着"
+      ],
+      "key": 1,
+      "codifierCodes": [
+        "2.4.35"
+      ]
+    },
+    {
+      "taskNumber": 20,
+      "stem": "这首歌我好像在哪儿听___，你知道它叫什么吗？",
+      "options": [
+        "了",
+        "过",
+        "着"
+      ],
+      "key": 2,
+      "codifierCodes": [
+        "2.4.35"
+      ]
+    },
+    {
+      "taskNumber": 20,
+      "stem": "他喜欢听___音乐写作业。",
+      "options": [
+        "了",
+        "过",
+        "着"
+      ],
+      "key": 3,
+      "codifierCodes": [
+        "2.4.35"
+      ]
+    },
+    {
+      "taskNumber": 20,
+      "stem": "下午头疼得厉害，所以我不去游泳___。",
+      "options": [
+        "了",
+        "着",
+        "过"
+      ],
+      "key": 1,
+      "codifierCodes": [
+        "2.4.34",
+        "2.4.35"
+      ]
+    },
+    {
+      "taskNumber": 20,
+      "stem": "灯还亮___呢，他一定还没睡。",
+      "options": [
+        "了",
+        "过",
+        "着"
+      ],
+      "key": 3,
+      "codifierCodes": [
+        "2.4.35"
+      ]
+    },
+    {
+      "taskNumber": 20,
+      "stem": "我尝___尝妈妈做的汤，味道好极了。",
+      "options": [
+        "了",
+        "着",
+        "过"
+      ],
+      "key": 1,
+      "codifierCodes": [
+        "2.4.35"
+      ]
+    },
+    {
+      "taskNumber": 20,
+      "stem": "我从小身体就很好，从来没住___院。",
+      "options": [
+        "了",
+        "着",
+        "过"
+      ],
+      "key": 3,
+      "codifierCodes": [
+        "2.4.35"
+      ]
+    },
+    {
+      "taskNumber": 20,
+      "stem": "妹妹哭___跑进屋里，谁也不理。",
+      "options": [
+        "了",
+        "着",
+        "过"
+      ],
+      "key": 2,
+      "codifierCodes": [
+        "2.4.35"
+      ]
+    },
+    {
+      "taskNumber": 20,
+      "stem": "妈妈已经包好___饺子，快来吃吧。",
+      "options": [
+        "了",
+        "着",
+        "过"
+      ],
+      "key": 1,
+      "codifierCodes": [
+        "2.4.35"
+      ]
+    },
+    {
+      "taskNumber": 20,
+      "stem": "小明一直低___头，不敢看老师。",
+      "options": [
+        "了",
+        "着",
+        "过"
+      ],
+      "key": 2,
+      "codifierCodes": [
+        "2.4.35"
+      ]
+    },
+    {
+      "taskNumber": 20,
+      "stem": "他在北京住了十年，可是一次也没爬___长城。",
+      "options": [
+        "了",
+        "过",
+        "着"
+      ],
+      "key": 2,
+      "codifierCodes": [
+        "2.4.35"
+      ]
+    },
+    {
+      "taskNumber": 20,
+      "stem": "雨终于停___，孩子们又跑到院子里去玩。",
+      "options": [
+        "了",
+        "着",
+        "过"
+      ],
+      "key": 1,
+      "codifierCodes": [
+        "2.4.34",
+        "2.4.35"
+      ]
+    }
+  ]
+}
