@@ -421,41 +421,6 @@
     "correctOptionId": "3"
   },
   {
-    "id": "g16-840ee5d8",
-    "taskNumber": 16,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-10-10-claude-16"
-    },
-    "codifierCodes": [
-      "2.4.33"
-    ],
-    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
-    "stem": "这___汉字我不认识，你能告诉我怎么读吗？",
-    "options": [
-      {
-        "id": "1",
-        "text": "张"
-      },
-      {
-        "id": "2",
-        "text": "门"
-      },
-      {
-        "id": "3",
-        "text": "本"
-      },
-      {
-        "id": "4",
-        "text": "个"
-      }
-    ],
-    "correctOptionId": "4"
-  },
-  {
     "id": "g16-87e34c95",
     "taskNumber": 16,
     "formatYear": 2026,
