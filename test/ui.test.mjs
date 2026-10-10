@@ -61,6 +61,8 @@ after(async () => {
   rmSync(work, { recursive: true, force: true });
 });
 
+// В CI (ubuntu) китайских шрифтов нет: иероглифы — пустые квадраты, уже настоящих на 40–50 %.
+// Проверки вёрстки сравнивают со значениями самой страницы, а не с пикселями под один шрифт.
 async function open(url, { width = 1100, height = 900, hash = '', reducedMotion = 'no-preference' } = {}) {
   const context = await browser.newContext({ viewport: { width, height }, reducedMotion });
   // Шрифты из сети тесту не нужны: без них страница работает на системных. Что страница
@@ -987,6 +989,8 @@ const sentenceAt = (page) => page.evaluate(() => {
       const box = document.querySelector('.feedback');
       return Math.round(box.getBoundingClientRect().top + 3.5 * parseFloat(getComputedStyle(box).fontSize));
     })(),
+    y: Math.round(window.scrollY),
+    maxY: Math.round(document.documentElement.scrollHeight - window.innerHeight),
     enter: document.activeElement.dataset.enter === '1',
     // Что в фокусе — на экране: невидимую кнопку нажал бы пробел, которым листают разбор.
     focusSeen: (() => {
@@ -1007,18 +1011,24 @@ for (const [device, size] of [['ноутбук', { width: 1280, height: 720 }], 
       await page.locator('.verdict.bad').waitFor();
       const at = await sentenceAt(page);
       assert.ok(at.top >= 0 && at.top + 40 <= at.bottom, `предложение на экране: ${JSON.stringify(at)}`);
-      // Начало разбора видно — или страница сдвинута до предложения у верхнего края, не дальше.
-      assert.ok(at.head <= at.bottom + 1 || Math.abs(at.top - 12) <= 2, `начало разбора не показано: ${JSON.stringify(at)}`);
+      // Начало разбора видно, и страница сдвинута ровно настолько: не двигалась, если оно и так
+      // на экране; иначе встала ровно до него — или до предложения у верхнего края, не дальше.
+      const none = at.y === 0 && at.head <= at.bottom + 1;
+      const exact = Math.abs(at.head - at.bottom) <= 1 && at.top >= 11;
+      const atTop = Math.abs(at.top - 12) <= 1 && at.head >= at.bottom - 1;
+      const atEnd = at.y >= at.maxY - 1 && at.head <= at.bottom + 1 && at.top >= 11; // ниже страница не листается
+      assert.ok(none || exact || atTop || atEnd, `начало разбора не показано или сдвиг лишний: ${JSON.stringify(at)}`);
       assert.equal(at.focusSeen, true, `фокус за краем экрана: ${JSON.stringify(at)}`);
       if (device === 'телефон') assert.equal(at.enter, true, 'на телефоне фокус на «Дальше» в панели');
       if (device === 'ноутбук') {
         // Пробел листает разбор, а не переходит к следующему заданию.
         const before = await text(page, '.progress');
+        const start = await page.evaluate(() => window.scrollY);
         await page.keyboard.press('Space');
         assert.equal(await text(page, '.progress'), before);
         assert.equal(await page.locator('.feedback').count(), 1);
         // Пробел прокрутил разбор; ученик дочитывает — плавная прокрутка успевает закончиться.
-        await page.waitForFunction(() => window.scrollY > 0, null, { timeout: 5000 });
+        await page.waitForFunction((y) => window.scrollY !== y, start, { timeout: 5000 });
         await page.waitForFunction(() => new Promise((resolve) => {
           const y = window.scrollY;
           setTimeout(() => resolve(window.scrollY === y), 200);
@@ -1090,10 +1100,13 @@ test('шрифт задания: крупный на ноутбуке, на те
 test('№19 на ноутбуке: число в варианте не рвётся на две строки', { skip }, async () => {
   for (const width of [800, 1024, 1366]) {
     const { page, context } = await open(mainUrl, { width, height: 768, hash: '#/practice?ids=q19-a' });
+    // Сколько строк у числа и не вылезает ли оно за край варианта (nowrap не даёт переноса).
     const lines = () => page.evaluate(() => [...document.querySelectorAll('.option .text')].map((n) => {
       const r = document.createRange();
       r.selectNodeContents(n);
-      return new Set([...r.getClientRects()].map((x) => Math.round(x.top))).size;
+      const rects = [...r.getClientRects()];
+      const inside = rects.every((x) => x.right <= n.closest('.option').getBoundingClientRect().right);
+      return inside ? new Set(rects.map((x) => Math.round(x.top))).size : 'за краем';
     }));
     assert.deepEqual(await lines(), [1, 1, 1, 1], `${width}px до ответа`);
     await page.keyboard.press('1');
@@ -1104,7 +1117,7 @@ test('№19 на ноутбуке: число в варианте не рвёт�
 });
 
 test('шапка телефона: с кнопкой справки не выше прежней', { skip }, async () => {
-  for (const width of [320, 360, 375, 390]) {
+  for (const width of [320, 360, 375, 390, 402, 412, 414, 430]) {
     const { page, context } = await open(mainUrl, { width, height: 700, hash: '#/rules' });
     const height = await page.evaluate(() => document.querySelector('.top').getBoundingClientRect().height);
     // До кнопки справки — 56 px: задание на телефоне не должно сдвигаться ниже.
