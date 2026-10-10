@@ -982,6 +982,11 @@ const sentenceAt = (page) => page.evaluate(() => {
     top: Math.round(node.getBoundingClientRect().top),
     bottom: Math.round(sticky ? dock.getBoundingClientRect().top : window.innerHeight),
     feedback: Math.round(document.querySelector('.feedback').getBoundingClientRect().top),
+    // Низ заголовка и первой строки разбора — та же мерка, что в afterAnswer: 3,5 строки его шрифта.
+    head: (() => {
+      const box = document.querySelector('.feedback');
+      return Math.round(box.getBoundingClientRect().top + 3.5 * parseFloat(getComputedStyle(box).fontSize));
+    })(),
     enter: document.activeElement.dataset.enter === '1',
     // Что в фокусе — на экране: невидимую кнопку нажал бы пробел, которым листают разбор.
     focusSeen: (() => {
@@ -1003,7 +1008,7 @@ for (const [device, size] of [['ноутбук', { width: 1280, height: 720 }], 
       const at = await sentenceAt(page);
       assert.ok(at.top >= 0 && at.top + 40 <= at.bottom, `предложение на экране: ${JSON.stringify(at)}`);
       // Начало разбора видно — или страница сдвинута до предложения у верхнего края, не дальше.
-      assert.ok(at.feedback + 60 <= at.bottom || Math.abs(at.top - 12) <= 2, `начало разбора не показано: ${JSON.stringify(at)}`);
+      assert.ok(at.head <= at.bottom + 1 || Math.abs(at.top - 12) <= 2, `начало разбора не показано: ${JSON.stringify(at)}`);
       assert.equal(at.focusSeen, true, `фокус за краем экрана: ${JSON.stringify(at)}`);
       if (device === 'телефон') assert.equal(at.enter, true, 'на телефоне фокус на «Дальше» в панели');
       if (device === 'ноутбук') {
@@ -1012,11 +1017,12 @@ for (const [device, size] of [['ноутбук', { width: 1280, height: 720 }], 
         await page.keyboard.press('Space');
         assert.equal(await text(page, '.progress'), before);
         assert.equal(await page.locator('.feedback').count(), 1);
-        // Ученик дочитывает разбор: плавная прокрутка пробелом успевает закончиться.
+        // Пробел прокрутил разбор; ученик дочитывает — плавная прокрутка успевает закончиться.
+        await page.waitForFunction(() => window.scrollY > 0, null, { timeout: 5000 });
         await page.waitForFunction(() => new Promise((resolve) => {
           const y = window.scrollY;
-          requestAnimationFrame(() => requestAnimationFrame(() => resolve(window.scrollY === y)));
-        }));
+          setTimeout(() => resolve(window.scrollY === y), 200);
+        }), null, { timeout: 5000 });
       }
       await page.keyboard.press('Enter');
     }
