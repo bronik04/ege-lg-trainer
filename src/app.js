@@ -654,7 +654,8 @@
   // Разбор: сначала почему выбранный вариант не подходит, потом верный ответ, правило и контраст.
   function feedback(item, optionId) {
     const e = explainChoice(item, optionId);
-    // tabindex — фокус после ответа, когда «Дальше» за краем экрана (focusAfterAnswer).
+    // tabindex — фокус после ответа, когда «Дальше» за краем экрана, а начало разбора на нём
+    // (focusAfterAnswer).
     const box = el('section', { class: 'feedback', 'aria-live': 'polite', tabindex: '-1' });
     if (optionId == null) {
       box.append(el('div', { class: 'verdict ok' },
