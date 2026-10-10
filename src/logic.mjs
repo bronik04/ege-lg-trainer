@@ -311,20 +311,53 @@ export function rulesForMistakes(items, byId, known = null, limit = 2) {
 // ---------- отбор ----------
 
 // Пустой список в фильтре означает «без ограничения». Тема и номер задания — независимые признаки.
+// Правила (грамматика) уточняют свой номер: в номере, где среди переданных заданий есть задания
+// выбранных правил, остаются только они; остальные отмеченные номера берутся целиком.
 export function filterQuestions(questions, filters, progress, now = null) {
   const topics = filters.topics || [];
   const tasks = filters.tasks || [];
+  const rules = filters.rules || [];
   const origins = filters.origins || [];
   const state = filters.state || 'all';
+  const ruled = (q) => (q.ruleIds || []).some((r) => rules.includes(r));
+  const narrowed = new Set(rules.length ? questions.filter(ruled).map((q) => q.taskNumber) : []);
   return questions.filter((q) => {
     if (topics.length && !q.topicIds.some((t) => topics.includes(t))) return false;
     if (tasks.length && !tasks.includes(q.taskNumber)) return false;
+    if (narrowed.has(q.taskNumber) && !ruled(q)) return false;
     if (origins.length && !origins.includes(q.origin)) return false;
     if (state === 'new') return answerState(progress, 'questions', q.id) === 'new';
+    if (state === 'done') return answerState(progress, 'questions', q.id) !== 'new';
     if (state === 'mistakes') return answerState(progress, 'questions', q.id) === 'mistake';
     if (state === 'review') return ['mistake', 'due'].includes(answerState(progress, 'questions', q.id, now));
     return true;
   });
+}
+
+// Номера, в которых есть задания этих правил: кнопка карточки правила и ссылка только с правилами
+// отмечают их, чтобы выбранное правило было видно под оглавлением.
+export function ruleTasks(ruleIds, questions) {
+  const numbers = questions.filter((q) => (q.ruleIds || []).some((r) => ruleIds.includes(r))).map((q) => q.taskNumber);
+  return [...new Set(numbers)].sort((a, b) => a - b);
+}
+
+// Правило уточняет отмеченные номера: снят номер — уходят и правила, у которых в остальных
+// номерах заданий нет, иначе фильтр сужал бы подборку невидимо. Без номеров правил нет.
+export function fitRules(filters, questions) {
+  const rules = filters.rules || [];
+  const tasks = filters.tasks || [];
+  const kept = rules.filter((r) => tasks.length
+    && questions.some((q) => tasks.includes(q.taskNumber) && (q.ruleIds || []).includes(r)));
+  return kept.length === rules.length ? filters : { ...filters, rules: kept };
+}
+
+// Доля верных ответов в процентах, целым числом. Не всё верно — не больше 99, хоть что-то
+// верно — не меньше 1: округление не должно рисовать «100 %» с ошибкой или «0 %» с верным.
+export function percent(score, total) {
+  if (!total) return 0;
+  const value = Math.round((score / total) * 100);
+  if (score > 0 && score < total) return Math.min(99, Math.max(1, value));
+  return value;
 }
 
 // Раунд из отобранного: номера по кругу (номера в случайном порядке, внутри номера — задания в
@@ -375,12 +408,13 @@ function query(pairs) {
   return pairs.map(([k, v]) => `${k}=${encodeURIComponent(v).replace(/%2C/g, ',')}`).join('&');
 }
 
-// Подборка: темы, номера, источник и размер раунда. «Новые» и «ошибки» — личное
+// Подборка: темы, номера, правила, источник и размер раунда. «Новые» и «ошибки» — личное
 // состояние ученика, в ссылку оно не входит.
 export function shareQuery(filters) {
   const pairs = [];
   if (filters.topics.length) pairs.push(['topics', filters.topics.join(',')]);
   if (filters.tasks.length) pairs.push(['tasks', filters.tasks.join(',')]);
+  if ((filters.rules || []).length) pairs.push(['rules', filters.rules.join(',')]);
   if (filters.origins.length) pairs.push(['origins', filters.origins.join(',')]);
   pairs.push(['size', filters.size]);
   return query(pairs);
@@ -391,9 +425,10 @@ export function idsQuery(ids) {
   return query([['ids', ids.join(',')]]);
 }
 
-// Разбор ссылки. known: { topicIds: Set, origins: [], questionIds: Set } — незнакомое
-// отбрасывается: ссылка могла пережить снятое с публикации задание или тему. missing — сколько
-// отброшено (заданий или тем): ученик должен знать, что подборка не та, что прислал учитель.
+// Разбор ссылки. known: { topicIds: Set, origins: [], questionIds: Set, ruleIds: Set } — незнакомое
+// отбрасывается: ссылка могла пережить снятое с публикации задание, тему или правило. missing —
+// сколько отброшено заданий или тем, missingRules — правил: ученик должен знать, что подборка
+// не та, что прислал учитель.
 export function parseShareQuery(text, known) {
   const params = new URLSearchParams(text);
   const list = (key) => (params.get(key) || '').split(',').map((s) => s.trim()).filter(Boolean);
@@ -404,12 +439,16 @@ export function parseShareQuery(text, known) {
   }
   const asked = [...new Set(list('topics'))];
   const topics = asked.filter((t) => known.topicIds.has(t));
+  const askedRules = [...new Set(list('rules'))];
+  const rules = askedRules.filter((r) => (known.ruleIds || new Set()).has(r));
   return {
     kind: 'filters',
     missing: asked.length - topics.length,
+    missingRules: askedRules.length - rules.length,
     filters: {
       topics,
       tasks: list('tasks').map(Number).filter((n) => TASK_NUMBERS.includes(n)),
+      rules,
       origins: list('origins').filter((o) => known.origins.includes(o)),
       size: ROUND_SIZES.includes(params.get('size')) ? params.get('size') : '10',
     },
@@ -656,7 +695,7 @@ export function stemSegments(stem) {
   return parts;
 }
 
-// ---------- пропуск-клетка: что вписать и сколько клеток ----------
+// ---------- пропуск-клетка: что вписать ----------
 
 const HANZI = /[㐀-鿿]/; // U+3400–U+9FFF: иероглифы, включая расширение A
 const CYRILLIC = /[Ѐ-ӿ]/; // U+0400–U+04FF
@@ -670,7 +709,6 @@ const PUNCT = '\\s，,、；;。：:';
 const EDGE_PUNCT = new RegExp(`^[${PUNCT}]+|[${PUNCT}]+$`, 'g');
 const INNER_PUNCT = new RegExp(`[${PUNCT}]`);
 const blankCount = (item) => stemSegments(item.stem ?? item.sentence ?? '').filter((p) => p.blank).length;
-const charCount = (text) => [...text.replace(/\s+/g, '')].length;
 
 // Что вписать в пропуски для варианта: один пропуск — весь текст, несколько — части союза
 // («要是……，就……» → 要是 и 就). Не раскладывается или без иероглифов — null.
@@ -682,21 +720,6 @@ export function blankFill(item, optionId) {
   const parts = option.text.split(/…+|\.{3,}/).map((p) => p.replace(EDGE_PUNCT, '')).filter(Boolean);
   if (parts.length !== k || parts.some((p) => INNER_PUNCT.test(p))) return null;
   return parts;
-}
-
-// Сколько клеток в каждом пропуске. Клетки по числу знаков — только когда у всех вариантов
-// в этом пропуске поровну знаков (от 1 до 4): тогда число клеток ничего не подсказывает.
-// Разная длина, длиннее четырёх или вариант не вписывается — 0: одна вытянутая клетка без
-// деления, по ней не видно, сколько знаков вписать (иначе ученик выбирает вариант по ширине).
-export function blankCells(item) {
-  const k = blankCount(item);
-  const fills = item.options.map((o) => blankFill(item, o.id));
-  return Array.from({ length: k }, (_, i) => {
-    if (!fills.length || fills.some((f) => !f)) return 0;
-    const lengths = new Set(fills.map((f) => charCount(f[i])));
-    const [n] = lengths;
-    return lengths.size === 1 && n <= 4 ? Math.max(1, n) : 0;
-  });
 }
 
 // ---------- сессии: раунд тренировки и полный вариант ----------

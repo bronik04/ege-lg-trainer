@@ -125,17 +125,18 @@
   }
 
   function loadFilters() {
-    const empty = { topics: [], tasks: [], origins: [], state: 'all', size: '10' };
+    const empty = { topics: [], tasks: [], rules: [], origins: [], state: 'all', size: '10' };
     try {
       const raw = JSON.parse(storage.get(FILTERS_KEY) || 'null');
       if (!raw || typeof raw !== 'object') return empty;
-      return {
+      return fitRules({
         topics: Array.isArray(raw.topics) ? raw.topics.filter((t) => topicsById.has(t)) : [],
         tasks: Array.isArray(raw.tasks) ? raw.tasks.filter((n) => TASK_NUMBERS.includes(n)) : [],
+        rules: Array.isArray(raw.rules) ? raw.rules.filter((r) => rulesById.has(r)) : [],
         origins: Array.isArray(raw.origins) ? raw.origins.filter((o) => origins.includes(o)) : [],
-        state: ['all', 'new', 'review', 'mistakes'].includes(raw.state) ? raw.state : 'all',
+        state: ['all', 'new', 'done', 'review', 'mistakes'].includes(raw.state) ? raw.state : 'all',
         size: ['5', '10', '20', 'all'].includes(raw.size) ? raw.size : '10',
-      };
+      }, questions);
     } catch {
       return empty;
     }
@@ -153,7 +154,8 @@
   let shareNotice = prunedNotice(loaded, progress); // что открыто по ссылке учителя; показывается один раз
   let shareOpen = null; // какой блок «Ссылка…» раскрыт: setup, round или variant
   let pendingVariant = null; // вариант из ссылки ждёт решения: поверх незавершённого своего
-  let bankFilters = { task: '', topic: '', state: 'all', origin: '' };
+  const BANK_FILTERS = { task: '', topic: '', state: 'all', origin: '' };
+  let bankFilters = { ...BANK_FILTERS };
 
   // ---------- DOM ----------
 
@@ -206,6 +208,8 @@
     else location.hash = hash;
   }
 
+  let scrollReset = 0; // номер последнего сброса прокрутки нового экрана (render)
+
   function render(focus = true) {
     const active = document.activeElement;
     const activeKey = active && active.dataset ? active.dataset.key : null;
@@ -214,7 +218,7 @@
       openShared(name, query);
       ({ name, arg } = route());
     }
-    document.querySelectorAll('.tab').forEach((tab) => {
+    document.querySelectorAll('[data-tab]').forEach((tab) => {
       const active = tab.dataset.tab === name;
       if (active) tab.setAttribute('aria-current', 'page');
       else tab.removeAttribute('aria-current');
@@ -229,6 +233,7 @@
     else if (name === 'variant') renderVariant();
     else if (name === 'bank') renderBank();
     else if (name === 'teacher') renderTeacher();
+    else if (name === 'help') renderHelp();
     else renderRules();
     if (shareNotice) {
       const node = el('p', { class: shareNotice.warn ? 'notice warn' : 'notice', id: 'shareNotice', role: 'status', text: shareNotice.text });
@@ -243,8 +248,12 @@
       view.append(el('p', { class: 'notice warn small', text: 'Браузер не даёт сохранить прогресс: он пропадёт после перезагрузки страницы.' }));
     }
     if (focus) {
-      // Новый экран — с начала страницы: на телефоне сверху выход и деления раунда.
+      // Новый экран — с начала страницы: на телефоне сверху выход и деления раунда. Ещё раз в
+      // следующем кадре: плавный сдвиг после ответа (Enter нажат, пока он шёл) иначе доезжает.
+      // Новый ответ до этого кадра отменяет повтор — его сдвиг важнее (afterAnswer).
       window.scrollTo(0, 0);
+      const reset = ++scrollReset;
+      requestAnimationFrame(() => { if (reset === scrollReset) window.scrollTo(0, 0); });
       const target = view.querySelector('[data-focus]') || view;
       target.focus({ preventScroll: true });
     } else if (activeKey) {
@@ -309,7 +318,7 @@
   // Ссылка учителя: открыть подборку, раунд из тех же заданий или тот же вариант.
   // Адрес сразу заменяется обычным, чтобы перезагрузка не открывала ссылку повторно.
   function openShared(name, query) {
-    const link = parseShareQuery(query, { topicIds: new Set(topicsById.keys()), origins, questionIds: new Set(byId.keys()) });
+    const link = parseShareQuery(query, { topicIds: new Set(topicsById.keys()), origins, questionIds: new Set(byId.keys()), ruleIds: new Set(rulesById.keys()) });
     let target = `#/${name}`;
     if (name === 'variant') {
       if (link.kind === 'ids' && isVariant(link.ids, byId)) {
@@ -334,10 +343,20 @@
       }
     } else {
       filters = { ...filters, ...link.filters, state: 'all' };
+      // Ссылка только с правилами: отмечаются их номера, иначе правила под оглавлением не видны.
+      if (filters.rules.length && !filters.tasks.length) filters.tasks = ruleTasks(filters.rules, questions);
+      // Правило без заданий в номерах ссылки (их сняли с сайта) тоже не выбрано — ученик узнает.
+      const asked = filters.rules.length;
+      filters = fitRules(filters, questions);
+      const missingRules = link.missingRules + asked - filters.rules.length;
       saveFilters();
-      shareNotice = link.missing
-        ? { warn: true, text: `Подборка открыта по ссылке, но ${link.missing === 1 ? 'одной темы' : `${link.missing} тем`} из неё на сайте больше нет — выбраны остальные.` }
-        : { warn: false, text: 'Подборка открыта по ссылке: темы, номера и размер раунда уже выбраны.' };
+      const gone = [
+        link.missing ? (link.missing === 1 ? 'одной темы' : `${link.missing} тем`) : '',
+        missingRules ? (missingRules === 1 ? 'одного правила' : `${missingRules} правил`) : '',
+      ].filter(Boolean).join(' и ');
+      shareNotice = gone
+        ? { warn: true, text: `Подборка открыта по ссылке, но ${gone} из неё на сайте больше нет — выбраны остальные.` }
+        : { warn: false, text: 'Подборка открыта по ссылке: фильтры и размер раунда уже выбраны.' };
       target = '#/practice/setup';
     }
     window.history.replaceState(null, '', target);
@@ -498,9 +517,10 @@
     return svg;
   }
 
-  // Пропуск — клетка 田字格. Ответ ученика вписан синим; после проверки — галочка
-  // или зачёркнутое и верный ответ над клеткой красной ручкой.
-  function blankNode(cells, { written, state, fix }) {
+  // Пропуск — клетка 田字格. До ответа — всегда одна клетка: ширина не подсказывает, сколько
+  // знаков вписать. Ответ ученика вписан синим и раздвигает пропуск по числу знаков; после
+  // проверки — галочка или зачёркнутое и верный ответ над клеткой красной ручкой.
+  function blankNode({ written, state, fix }) {
     const chars = written ? [...written.replace(/\s+/g, '')] : [];
     let label = 'пропуск';
     if (state === 'right' && written) label = `пропуск: верно, ${written}`;
@@ -510,10 +530,11 @@
     else if (written) label = `пропуск, вписано: ${written}`;
     // Подпись русская внутри китайского предложения — lang='ru', вписанное — снова zh.
     const box = el('span', { class: ['tz', written ? 'written' : '', state || ''].filter(Boolean).join(' '), role: 'img', lang: 'ru', 'aria-label': label });
-    if (cells === 0 || chars.length > cells) {
-      box.append(el('span', { class: 'c long' }, written ? el('span', { class: 'ink', lang: 'zh', text: written }) : null));
+    // Ответы в банке — до трёх знаков; что длиннее четырёх, вписывается в одну вытянутую клетку.
+    if (chars.length > 4) {
+      box.append(el('span', { class: 'c long' }, el('span', { class: 'ink', lang: 'zh', text: written })));
     } else {
-      for (let i = 0; i < cells; i += 1) box.append(el('span', { class: 'c' }, chars[i] ? el('span', { class: 'ink', lang: 'zh', text: chars[i] }) : null));
+      for (let i = 0; i < Math.max(1, chars.length); i += 1) box.append(el('span', { class: 'c' }, chars[i] ? el('span', { class: 'ink', lang: 'zh', text: chars[i] }) : null));
     }
     if (state === 'right' && written) box.append(tickMark());
     if (fix) box.append(el('span', { class: 'fix', lang: 'zh', 'aria-hidden': 'true', text: fix }));
@@ -522,7 +543,6 @@
 
   // Предложение с пропусками-клетками. selected — выбранный вариант, reveal — после проверки.
   function sentenceNode(item, text, cls, { selected, reveal }) {
-    const cells = blankCells(item);
     const chosen = selected == null ? null : blankFill(item, selected);
     const right = reveal ? blankFill(item, item.correctOptionId) : null;
     const correct = selected != null && selected === item.correctOptionId;
@@ -531,7 +551,7 @@
       if (!part.blank) return part.text;
       const i = index;
       index += 1;
-      return blankNode(cells[i], {
+      return blankNode({
         written: chosen ? chosen[i] : null,
         state: reveal ? (correct ? 'right' : 'wrong') : null,
         fix: reveal && !correct && right ? right[i] : null,
@@ -566,7 +586,9 @@
     }
     // В ряд — только короткие варианты; союзы №27 с «……» в узкой колонке рвались бы посередине.
     const short = item.options.every((o) => o.text.length <= 12 && !o.text.includes('…'));
-    const list = el('div', { class: short ? 'options row' : 'options', role: 'group', 'aria-label': 'Варианты ответа' });
+    // Числа и тоны — не китайский текст: свой ряд, без переноса внутри варианта.
+    const plain = item.options.every((o) => !isChinese(o.text));
+    const list = el('div', { class: ['options', short ? 'row' : '', short && plain ? 'plain' : ''].filter(Boolean).join(' '), role: 'group', 'aria-label': 'Варианты ответа' });
     item.options.forEach((o, i) => {
       let cls = 'option';
       if (reveal && o.id === item.correctOptionId) cls += ' correct';
@@ -612,7 +634,8 @@
   // Разбор: сначала почему выбранный вариант не подходит, потом верный ответ, правило и контраст.
   function feedback(item, optionId) {
     const e = explainChoice(item, optionId);
-    const box = el('section', { class: 'feedback', 'aria-live': 'polite' });
+    // tabindex — фокус после ответа, когда «Дальше» за краем экрана (focusAfterAnswer).
+    const box = el('section', { class: 'feedback', 'aria-live': 'polite', tabindex: '-1' });
     if (optionId == null) {
       box.append(el('div', { class: 'verdict ok' },
         el('h3', {}, 'Верный ответ: ', el('span', { class: 'zh', lang: 'zh', text: e.correctText })),
@@ -645,6 +668,13 @@
     return box;
   }
 
+  // Счёт на итоге: «7 из 10», процент выполнения и подпись. Запятая — для чтеца экрана.
+  function scoreLine(score, total, caption) {
+    return el('p', { class: 'score' }, el('b', { text: `${score} из ${total}` }),
+      el('b', { class: 'percent' }, el('span', { class: 'sr', text: ', ' }), `${percent(score, total)} %`),
+      el('span', { class: 'muted', text: caption }));
+  }
+
   function progressLine(label, right) {
     return el('div', { class: 'progress' }, el('span', { text: label }), el('span', {}, right));
   }
@@ -668,25 +698,47 @@
   const markOf = (answer, correctId) => (answer === undefined || answer === null ? null : answer === correctId ? 'ok' : 'bad');
   const reducedMotion = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // После ответа на телефоне (панель внизу липкая): предложение с исправлением — к верху экрана,
-  // под ним отмеченные варианты и начало разбора. Не помещается — докручиваем до начала разбора.
-  // Фокус — на «Дальше»: на телефоне она видна в панели, на компьютере фокус сам покажет кнопку.
+  // Панель с «Дальше» липкая (телефон) — или null.
+  function stickyDock() {
+    const dock = view.querySelector('.dock');
+    return dock && getComputedStyle(dock).position === 'sticky' ? dock : null;
+  }
+
+  // После ответа предложение с исправлением красной ручкой не уходит с экрана: ученик видит, что
+  // не так. Начало разбора не помещается под вариантами — страница сдвигается ровно настолько,
+  // чтобы его показать, но не дальше, чем до предложения у верхнего края. Предложение уже за
+  // верхним краем (ученик докрутил до вариантов) — страница возвращает его. Остальное разбора
+  // ученик прокрутит сам.
   function afterAnswer() {
     const card = view.querySelector('[data-card]');
     const box = view.querySelector('.feedback');
-    const dock = view.querySelector('.dock');
-    const sticky = Boolean(dock) && getComputedStyle(dock).position === 'sticky';
-    if (card && box && sticky) {
+    const dock = stickyDock();
+    let delta = 0;
+    scrollReset += 1; // отложенный сброс прокрутки прошлого экрана больше не нужен
+    if (card && box) {
       const anchor = card.querySelector('.stem') || card.querySelector('.fragments') || card.querySelector('.instruction');
-      const visibleBottom = window.innerHeight - dock.getBoundingClientRect().height;
-      const head = box.getBoundingClientRect().top + 56; // заголовок разбора и первая строка
-      if (head > visibleBottom) {
-        const delta = Math.max(anchor.getBoundingClientRect().top - 12, head - visibleBottom);
-        window.scrollBy({ top: delta, behavior: reducedMotion() ? 'auto' : 'smooth' });
-      }
+      const visibleBottom = window.innerHeight - (dock ? dock.getBoundingClientRect().height : 0);
+      // Заголовок разбора и первая строка — около трёх с половиной строк шрифта разбора.
+      const head = box.getBoundingClientRect().top + 3.5 * parseFloat(getComputedStyle(box).fontSize);
+      const top = anchor.getBoundingClientRect().top - 12;
+      delta = top < 0 ? top : Math.max(0, Math.min(top, head - visibleBottom));
+      if (delta) window.scrollBy({ top: delta, behavior: reducedMotion() ? 'auto' : 'smooth' });
     }
-    const next = view.querySelector('[data-enter]');
-    if (next) next.focus({ preventScroll: sticky });
+    focusAfterAnswer(box, delta);
+  }
+
+  // Фокус после ответа — без прокрутки. На «Дальше» — только если её видно (липкая панель на
+  // телефоне или кнопка на экране после сдвига на delta): невидимую кнопку нажал бы пробел,
+  // которым листают разбор, и разбор пропал бы. Иначе фокус на разборе или на условии — Enter
+  // всё равно ведёт дальше: его ловит общий обработчик клавиш.
+  function focusAfterAnswer(fallback, delta = 0) {
+    const next = view.querySelector('[data-enter]') || view.querySelector('#finishVariant');
+    const seen = (node) => {
+      const r = node.getBoundingClientRect();
+      return r.top - delta >= 0 && r.bottom - delta <= window.innerHeight;
+    };
+    const target = next && (stickyDock() || seen(next)) ? next : fallback;
+    if (target) target.focus({ preventScroll: true });
   }
 
   function emptyBank() {
@@ -737,7 +789,7 @@
       return;
     }
     const ruleChecks = checks.filter((c) => c.ruleIds.includes(id));
-    const ruleQuestions = questions.filter((q) => q.topicIds.some((t) => rule.topicIds.includes(t)));
+    const ruleQuestions = questions.filter((q) => (q.ruleIds || []).includes(id));
     const taskNumbers = [...new Set(rule.topicIds.flatMap((t) => (topicsById.get(t) || { taskNumbers: [] }).taskNumbers))];
     const detail = el('article', { class: 'rule-detail' },
       el('a', { class: 'back', href: '#/rules', text: '← Все правила' }),
@@ -765,12 +817,13 @@
     }
     actions.append(el('button', {
       class: 'button alt', type: 'button', disabled: !ruleQuestions.length,
+      // Задания именно этого правила: его номера отмечены, правило выбрано под оглавлением.
       onclick: () => {
-        filters = { ...filters, topics: rule.topicIds.slice(), tasks: [], state: 'all' };
+        filters = { ...filters, topics: [], tasks: ruleTasks([id], questions), rules: [id], origins: [], state: 'all' };
         saveFilters();
         go('#/practice');
       },
-    }, ruleQuestions.length ? `Задания ЕГЭ по теме · ${tasksWord(ruleQuestions.length)}` : 'Заданий ЕГЭ по теме пока нет'));
+    }, ruleQuestions.length ? `Задания ЕГЭ по правилу · ${tasksWord(ruleQuestions.length)}` : 'Заданий ЕГЭ по правилу пока нет'));
     detail.append(actions);
     view.append(detail);
   }
@@ -790,7 +843,7 @@
     const answered = Object.keys(s.answers).length;
     const correctCount = s.ids.filter((id) => s.answers[id] === checksById.get(id).correctOptionId).length;
     if (s.finishedAt) {
-      view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: `Проверка правила: ${correctCount} из ${s.ids.length}` }),
+      view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: `Проверка правила: ${correctCount} из ${s.ids.length} · ${percent(correctCount, s.ids.length)} %` }),
         el('p', { class: 'lead', text: correctCount === s.ids.length ? 'Правило усвоено — можно переходить к заданиям ЕГЭ.' : 'Перечитайте карточку правила и попробуйте ещё раз.' }),
         el('div', { class: 'actions' },
           el('a', { class: 'button', href: back, text: s.ruleId ? 'К правилу' : 'К правилам' }),
@@ -834,8 +887,8 @@
 
   // ---------- практика ----------
 
-  function chipGroup(legend, items, selected, onToggle) {
-    return el('fieldset', { class: 'filter' },
+  function chipGroup(legend, items, selected, onToggle, id) {
+    return el('fieldset', { class: 'filter', id },
       el('legend', { text: legend }),
       el('div', { class: 'chips' }, items.map((it) => el('label', { class: 'chip' },
         el('input', { type: 'checkbox', checked: selected.includes(it.value), dataset: { key: `${legend}:${it.value}` }, onchange: () => onToggle(it.value) }),
@@ -878,7 +931,7 @@
           el('input', {
             type: 'checkbox', checked, disabled: !checked && !r.count, dataset: { key: `Задания:${r.n}` },
             onchange: () => {
-              filters.tasks = toggle(filters.tasks, r.n);
+              filters = fitRules({ ...filters, tasks: toggle(filters.tasks, r.n) }, questions);
               saveFilters();
               render(false);
               // Снятый номер без заданий темы стал недоступен — фокус на «Снять тему», а не в никуда.
@@ -892,6 +945,30 @@
             el('span', { class: 'task-title', text: r.title }),
             el('small', {}, String(r.count), el('span', { class: 'sr', text: ` ${plural(r.count, 'задание', 'задания', 'заданий')}` }))));
       })));
+  }
+
+  // Грамматика: правила отмеченных номеров — по порядку номеров, с числом заданий. Правило
+  // уточняет номер (у №22 — 就/才, 又/再/还 и т. д.); без отмеченного номера — подсказка.
+  function grammarFilter() {
+    const numbers = [...filters.tasks].sort((a, b) => a - b);
+    const shown = [];
+    for (const n of numbers) {
+      for (const r of rules) {
+        if (!shown.includes(r) && questions.some((q) => q.taskNumber === n && (q.ruleIds || []).includes(r.id))) shown.push(r);
+      }
+    }
+    // Счёт — задания правила в отмеченных номерах (и в теме из старой ссылки), как счёт оглавления.
+    const base = filterQuestions(questions, { topics: filters.topics, tasks: filters.tasks }, progress);
+    const items = shown
+      .map((r) => ({ value: r.id, label: r.title, count: base.filter((q) => (q.ruleIds || []).includes(r.id)).length }))
+      .filter((it) => it.count || filters.rules.includes(it.value));
+    if (!items.length) {
+      let hint = 'Отметьте номер — здесь появятся его правила, чтобы взять задания только на одно из них.';
+      if (numbers.length) hint = filters.topics.length ? 'В выбранной теме у отмеченных номеров правил нет.' : 'У отмеченных номеров правил пока нет.';
+      return el('fieldset', { class: 'filter', id: 'grammar' }, el('legend', { text: 'Грамматика' }),
+        el('p', { class: 'small muted hint', text: hint }));
+    }
+    return chipGroup('Грамматика', items, filters.rules, (v) => { filters.rules = toggle(filters.rules, v); saveFilters(); render(false); }, 'grammar');
   }
 
   function renderPractice() {
@@ -910,13 +987,13 @@
       view.append(emptyBank());
       return;
     }
-    view.append(taskContents());
+    view.append(taskContents(), grammarFilter());
     if (origins.length > 1) {
       view.append(chipGroup('Источник', origins.map((o) => ({ value: o, label: ORIGIN_NAMES[o] || o, count: questions.filter((q) => q.origin === o).length })),
         filters.origins, (v) => { filters.origins = toggle(filters.origins, v); saveFilters(); render(false); }));
     }
     const stateSelect = el('select', { id: 'stateFilter', dataset: { key: 'state' }, onchange: (e) => { filters.state = e.target.value; saveFilters(); render(false); } },
-      [['all', 'Все'], ['new', 'Новые'], ['review', 'На повторение'], ['mistakes', 'Ошибки']].map(([v, label]) => el('option', { value: v, selected: filters.state === v, text: label })));
+      [['all', 'Все'], ['new', 'Новые'], ['done', 'Уже решённые'], ['review', 'На повторение'], ['mistakes', 'Ошибки']].map(([v, label]) => el('option', { value: v, selected: filters.state === v, text: label })));
     const sizeSelect = el('select', { id: 'roundSize', dataset: { key: 'size' }, onchange: (e) => { filters.size = e.target.value; saveFilters(); render(false); } },
       [['5', '5 заданий'], ['10', '10 заданий'], ['20', '20 заданий'], ['all', 'Все доступные']].map(([v, label]) => el('option', { value: v, selected: filters.size === v, text: label })));
     view.append(el('div', { class: 'filters-row' },
@@ -928,8 +1005,9 @@
       available.length
         ? `Доступно: ${tasksWord(available.length)}. В раунд попадёт ${roundSize}.`
         : filters.state === 'mistakes' ? 'Ошибок с такими фильтрами нет.'
-          : filters.state === 'review' ? 'Повторять пока нечего: ошибок нет, а исправленные ещё не подошли к сроку.'
-            : 'С такими фильтрами заданий нет — снимите часть фильтров.'));
+          : filters.state === 'done' ? 'Решённых с такими фильтрами пока нет.'
+            : filters.state === 'review' ? 'Повторять пока нечего: ошибок нет, а исправленные ещё не подошли к сроку.'
+              : 'С такими фильтрами заданий нет — снимите часть фильтров.'));
     const actions = el('div', { class: 'actions' },
       el('button', {
         class: 'button', type: 'button', id: 'startRound', disabled: !available.length, dataset: { enter: '1' },
@@ -937,13 +1015,13 @@
       }, 'Начать раунд'),
       el('button', {
         class: 'button ghost', type: 'button',
-        onclick: () => { filters = { ...filters, topics: [], tasks: [], origins: [], state: 'all' }; saveFilters(); render(false); },
+        onclick: () => { filters = { ...filters, topics: [], tasks: [], rules: [], origins: [], state: 'all' }; saveFilters(); render(false); },
       }, 'Сбросить фильтры'));
     if (round && !round.finishedAt) {
       actions.append(el('a', { class: 'button alt', href: '#/practice', text: `Продолжить раунд · ${Object.keys(round.answers).length} из ${round.ids.length}` }));
     }
     const share = shareToggle('setup', 'Ссылка на подборку', pageUrl(`#/practice?${shareQuery(filters)}`),
-      'По ссылке откроется эта подборка: темы, номера, источник и размер раунда. Задания каждому выпадут свои. Чтобы у всех были одни и те же задания, пройдите раунд и возьмите ссылку на его итоге.',
+      'По ссылке откроется эта подборка: номера, правила, источник и размер раунда. Задания каждому выпадут свои. Чтобы у всех были одни и те же задания, пройдите раунд и возьмите ссылку на его итоге.',
       !available.length);
     actions.append(share.button);
     view.append(actions);
@@ -1025,7 +1103,7 @@
     const result = scoreSession(round, byId);
     const wrong = result.items.filter((i) => !i.correct).map((i) => i.id);
     view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Раунд окончен' }),
-      el('p', { class: 'score' }, el('b', { text: `${result.score} из ${result.total}` }), el('span', { class: 'muted', text: 'верных ответов' })),
+      scoreLine(result.score, result.total, 'верных ответов'),
       ruleAdvice(result.items),
       mistakeWork(result.items, { id: 'roundMistakes' }),
       resultList(round.ids, round.answers));
@@ -1153,11 +1231,9 @@
           variantConfirm = false;
           save();
           render(false);
-          // Фокус на «Дальше»: Enter ведёт к следующей позиции, цифры по-прежнему меняют ответ.
-          // В липкой панели (телефон) кнопка видна — страницу не двигаем.
-          const next = view.querySelector('[data-enter]') || view.querySelector('#finishVariant');
-          const dock = view.querySelector('.dock');
-          if (next) next.focus({ preventScroll: Boolean(dock) && getComputedStyle(dock).position === 'sticky' });
+          // Enter ведёт к следующей позиции, цифры по-прежнему меняют ответ. Страницу к кнопке
+          // не двигаем: задание с выбранным ответом остаётся на экране.
+          focusAfterAnswer(view.querySelector('[data-card] .instruction'));
         },
       }));
     const last = v.index === v.ids.length - 1;
@@ -1220,7 +1296,7 @@
     // null — кнопки нет: штатный append напечатал бы его словом «null».
     actions.append(...[report.button, share.button].filter(Boolean));
     view.append(el('p', { class: 'section-title', text: 'Результат последнего варианта' }),
-      el('p', { class: 'score' }, el('b', { text: `${result.score} из ${result.total}` }), el('span', { class: 'muted', text: 'первичных баллов за раздел 3' })),
+      scoreLine(result.score, result.total, 'первичных баллов за раздел 3'),
       Number.isFinite(v.result && v.result.timeMs)
         ? el('p', { class: v.result.timeMs > VARIANT_MINUTES * 60000 ? 'small variant-time over' : 'small variant-time', id: 'variantTime', text: `Время: ${formatClock(v.result.timeMs)} · рекомендовано ${VARIANT_MINUTES}:00` })
         : document.createDocumentFragment(),
@@ -1299,6 +1375,31 @@
     update();
   }
 
+  // ---------- справка ----------
+
+  function renderHelp() {
+    const sources = ['открытый банк ФИПИ'];
+    if (origins.includes('generated')) sources.push('новые задания в том же формате');
+    if (origins.includes('hsk')) sources.push('задания HSK 4 (источник указан у задания)');
+    const sourceNote = sources.length > 1 ? `${sources.slice(0, -1).join(', ')} и ${sources[sources.length - 1]}` : sources[0];
+    const count = questions.length
+      ? `${tasksWord(questions.length)} · ${rules.length} ${plural(rules.length, 'правило', 'правила', 'правил')}`
+      : 'Банк готовится';
+    view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Справка' }),
+      el('p', { class: 'lead', text: 'Правило, короткая проверка, задания из банка ФИПИ и полный вариант раздела 3. Ошибку здесь разбирают на том варианте, который вы выбрали.' }),
+      el('section', { class: 'help' },
+        el('p', { class: 'section-title', text: 'Задания' }),
+        el('p', {}, el('span', { id: 'bankCount', text: count }),
+          `. Задания — ${sourceNote}, формат ЕГЭ ${DATA.meta.formatYear}. Разборы и правила проверены автором тренажёра.`),
+        el('p', { class: 'section-title', text: 'Прогресс' }),
+        el('p', { text: 'Прогресс хранится только в этом браузере на этом устройстве. Перенести его на другое устройство можно файлом: «Банк» → «Сохранить в файл».' }),
+        el('p', { class: 'section-title', text: 'Клавиши' }),
+        el('p', {}, el('kbd', { text: '1' }), '–', el('kbd', { text: '4' }), ' — выбрать ответ, ', el('kbd', { text: 'Enter' }), ' — дальше.'),
+        el('p', { class: 'section-title', text: 'Учителю' }),
+        el('p', { text: 'Ссылку на подборку, на задания раунда или на вариант можно взять в практике и на итоге: по ней ученики получат то же самое. С итога ученик отправляет отчёт учителю, а отчёты всего класса сводятся в одну таблицу.' }),
+        el('p', {}, el('a', { href: '#/teacher', text: 'Учителю: сводка отчётов учеников' }))));
+  }
+
   // ---------- банк и ошибки ----------
 
   function renderBank() {
@@ -1346,6 +1447,16 @@
       select('Тема', 'topic', [['', 'Все темы'], ...topics.filter((t) => questions.some((q) => q.topicIds.includes(t.id))).map((t) => [t.id, t.title])]),
       select('Результат', 'state', [['all', 'Любой'], ['new', 'Не решались'], ['mistake', 'Ошибки'], ['due', 'Пора повторить'], ['solved', 'Решено верно']]));
     if (origins.length > 1) row.append(select('Источник', 'origin', [['', 'Все'], ...origins.map((o) => [o, ORIGIN_NAMES[o] || o])]));
+    const dirty = Object.keys(BANK_FILTERS).some((k) => bankFilters[k] !== BANK_FILTERS[k]);
+    row.append(el('button', {
+      class: 'button ghost', type: 'button', id: 'resetBankFilters', disabled: !dirty,
+      onclick: () => {
+        bankFilters = { ...BANK_FILTERS };
+        render(false);
+        // Кнопка стала недоступна — фокус на первом поле, а не в никуда.
+        view.querySelector('select[data-key="bank:task"]').focus();
+      },
+    }, 'Сбросить фильтры'));
     view.append(el('div', { class: 'section-title', text: 'Задания' }), row);
 
     const shown = questions.filter((q) => (!bankFilters.task || q.taskNumber === Number(bankFilters.task))
@@ -1489,16 +1600,7 @@
   });
   syncTheme();
 
-  document.getElementById('bankCount').textContent = questions.length
-    ? `${tasksWord(questions.length)} · ${rules.length} ${plural(rules.length, 'правило', 'правила', 'правил')}`
-    : 'Банк готовится';
   document.getElementById('reviewBanner').hidden = !DATA.meta.drafts;
-  const sources = ['открытый банк ФИПИ'];
-  if (origins.includes('generated')) sources.push('новые задания в том же формате');
-  if (origins.includes('hsk')) sources.push('задания HSK 4 (источник указан у задания)');
-  const sourceNote = `Задания — ${sources.length > 1 ? `${sources.slice(0, -1).join(', ')} и ${sources[sources.length - 1]}` : sources[0]}`;
-  document.getElementById('footNote').textContent =
-    `${sourceNote}, формат ЕГЭ ${DATA.meta.formatYear}. Разборы и правила проверены автором тренажёра. Прогресс хранится в этом браузере.`;
 
   // Ссылка «К содержимому» переводит фокус, а не меняет маршрут.
   document.querySelector('.skip').addEventListener('click', (event) => {

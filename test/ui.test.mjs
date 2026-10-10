@@ -80,7 +80,7 @@ async function see(page, selector, pattern) {
   await page.locator(selector).filter({ hasText: pattern }).first().waitFor({ timeout: 5000 });
 }
 
-test('правило → проверка правила → задания по теме', { skip }, async () => {
+test('правило → проверка правила → задания по правилу', { skip }, async () => {
   const { page, context, errors } = await open(mainUrl, { hash: '#/rules' });
   await page.getByRole('link', { name: /就 и 才/ }).click();
   await see(page, 'h2', /就 и 才/);
@@ -99,14 +99,20 @@ test('правило → проверка правила → задания по
     assert.match(report.searchParams.get('title'), /^Ошибка: вопрос к правилу · /);
     await page.keyboard.press('Enter');
   }
-  await see(page, 'h2', /0 из 2/);
+  await see(page, 'h2', /0 из 2 · 0\s%/);
   await page.getByRole('link', { name: 'К правилу' }).click();
-  await page.getByRole('button', { name: /Задания ЕГЭ по теме/ }).click();
+  // Задания именно этого правила: оба задания 22. Сгенерированное 27 с темой «наречия» — о другом правиле.
+  await page.getByRole('button', { name: 'Задания ЕГЭ по правилу · 2 задания' }).click();
   assert.equal(page.url().endsWith('#/practice'), true);
+  await see(page, '#available', /Доступно: 2 задания/);
+  assert.equal(await page.locator('input[data-key="Задания:22"]').isChecked(), true);
+  assert.equal(await page.locator('input[data-key="Грамматика:jiu-cai"]').isChecked(), true);
+  assert.equal(await page.locator('#topicFocus').count(), 0);
+  // Тема из старой ссылки только сужает оглавление: номера без неё не нажимаются.
+  await page.goto(`${mainUrl}#/practice?topics=adverbs&size=10`);
+  await see(page, '#topicFocus', /Только тема: Наречия/);
   // Тема «наречия» встречается в задании 22 (два) и в сгенерированном задании 27.
   await see(page, '#available', /Доступно: 3 задания/);
-  // Тема с карточки правила только сужает оглавление: номера без неё не нажимаются.
-  await see(page, '#topicFocus', /Только тема: Наречия/);
   assert.equal(await page.locator('input[data-key="Задания:20"]').isDisabled(), true);
   assert.equal(await page.locator('input[data-key="Задания:27"]').isDisabled(), false);
   assert.deepEqual(await contentsRow(page, 27), ['Прочие темы', '1 задание']);
@@ -181,6 +187,134 @@ test('оглавление: у номера с двумя темами подп�
   // Две темы из ссылки — «Только темы», в порядке ссылки.
   await page.goto(`${url}#/practice?topics=cmp,adverbs&size=5`);
   await see(page, '#topicFocus', /Только темы: Сравнение, Наречия/);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('грамматика: правила отмеченных номеров сужают подборку, ссылка их помнит', { skip }, async () => {
+  // Как №22 в банке: у номера два правила — 就 и 才 (q22-a) и 又, 再 и 还 (q22-b).
+  const url = buildPage('two-rules', {
+    change: (data) => {
+      const base = data.rules.find((r) => r.id === 'jiu-cai');
+      data.rules.push({ ...base, id: 'you-zai', title: '又, 再 и 还' });
+      data.questions.find((q) => q.id === 'q22-b').ruleIds = ['you-zai'];
+    },
+  });
+  const { page, context, errors } = await open(url, { hash: '#/practice' });
+  const chip = (id) => page.locator(`input[data-key="Грамматика:${id}"]`);
+  // Без номера правил не видно — подсказка, где они появятся.
+  assert.equal(await page.locator('input[data-key^="Грамматика:"]').count(), 0);
+  await see(page, '#grammar', /Отметьте номер/);
+  await page.locator('input[data-key="Задания:22"]').check();
+  await see(page, '#grammar', /就 и 才\s*1/);
+  await see(page, '#grammar', /又, 再 и 还\s*1/);
+  assert.equal(await chip('aspect-suffixes').count(), 0, 'правило без заданий в №22 не предлагается');
+  await chip('jiu-cai').check();
+  await see(page, '#available', /Доступно: 1 задание/);
+  // Правило уточняет только свой номер: отмеченный рядом №20 берётся целиком.
+  await page.locator('input[data-key="Задания:20"]').check();
+  await see(page, '#available', /Доступно: 2 задания/);
+  await page.locator('input[data-key="Задания:20"]').uncheck();
+  await see(page, '#available', /Доступно: 1 задание/);
+  await page.locator('#share-setup').click();
+  const link = new URL(await page.locator('#shareBox input').inputValue());
+  assert.equal(link.hash, '#/practice?tasks=22&rules=jiu-cai&size=10');
+  // Снятый номер уводит и свои правила: подборка не сужается невидимо.
+  await page.locator('input[data-key="Задания:22"]').uncheck();
+  await see(page, '#available', /Доступно: 16 заданий/);
+  assert.equal(await chip('jiu-cai').count(), 0);
+  // Ссылка только с правилом отмечает его номер.
+  await page.goto(`${url}#/practice?rules=you-zai&size=5`);
+  await see(page, '#shareNotice', /Подборка открыта по ссылке/);
+  assert.equal(await page.locator('input[data-key="Задания:22"]').isChecked(), true);
+  assert.equal(await chip('you-zai').isChecked(), true);
+  await see(page, '#available', /Доступно: 1 задание/);
+  // Правила, которого на сайте больше нет, в подборке нет — и ученик об этом знает.
+  await page.goto(`${url}#/practice?topics=gone&tasks=22&rules=gone,jiu-cai&size=5`);
+  await see(page, '#shareNotice', /одной темы и одного правила из неё на сайте больше нет/);
+  assert.equal(await chip('jiu-cai').isChecked(), true);
+  // Правило не из номеров ссылки тоже не выбрано — и об этом сказано.
+  await page.goto(`${url}#/practice?tasks=20&rules=jiu-cai&size=5`);
+  await see(page, '#shareNotice', /одного правила из неё на сайте больше нет/);
+  assert.equal(await chip('jiu-cai').count(), 0);
+  // Тема из старой ссылки: подсказка не говорит, что у номера нет правил.
+  await page.goto(`${url}#/practice?topics=adverbs&tasks=20&size=5`);
+  await see(page, '#grammar', /В выбранной теме/);
+  // «Сбросить фильтры» снимает и правила.
+  await page.getByRole('button', { name: 'Сбросить фильтры' }).click();
+  await see(page, '#available', /Доступно: 16 заданий/);
+  assert.equal(await chip('jiu-cai').count(), 0);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('кнопка карточки правила: задания правила при любом выбранном источнике', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { hash: '#/practice' });
+  await page.locator('input[data-key="Источник:hsk"]').check();
+  await see(page, '#available', /Доступно: 1 задание/);
+  await page.goto(`${mainUrl}#/rules/jiu-cai`);
+  await page.getByRole('button', { name: 'Задания ЕГЭ по правилу · 2 задания' }).click();
+  await see(page, '#available', /Доступно: 2 задания/);
+  assert.equal(await page.locator('input[data-key="Источник:hsk"]').isChecked(), false);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('сохранённые фильтры: старая версия без правил и правило не своего номера', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { hash: '#/rules' });
+  const put = (value) => page.evaluate((v) => localStorage.setItem('ege-lg-trainer:filters', JSON.stringify(v)), value);
+  await put({ topics: [], tasks: [22], origins: [], state: 'done', size: '5' });
+  await page.goto(`${mainUrl}#/practice/setup`);
+  await page.reload();
+  assert.equal(await page.locator('input[data-key="Задания:22"]').isChecked(), true);
+  assert.equal(await page.locator('#stateFilter').inputValue(), 'done', '«Уже решённые» переживают перезагрузку');
+  assert.equal(await page.locator('#roundSize').inputValue(), '5');
+  assert.equal(await page.locator('input[data-key="Грамматика:jiu-cai"]').isChecked(), false);
+  // Правило 就 и 才 у №20 заданий не имеет — подборку оно не сужает и не выбрано.
+  await put({ topics: [], tasks: [20], rules: ['jiu-cai'], origins: [], state: 'all', size: '10' });
+  await page.reload();
+  await see(page, '#available', /Доступно: 1 задание/);
+  assert.equal(await page.locator('input[data-key="Грамматика:jiu-cai"]').count(), 0);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('уже решённые в практике, сброс фильтров в банке', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { hash: '#/practice?ids=q20-a' });
+  await page.locator('[data-card]').waitFor();
+  await page.keyboard.press('1');
+  await page.locator('.feedback').waitFor();
+  await page.goto(`${mainUrl}#/practice/setup`);
+  await page.locator('#stateFilter').selectOption('done');
+  await see(page, '#available', /Доступно: 1 задание/);
+  await page.goto(`${mainUrl}#/bank`);
+  await page.setViewportSize({ width: 1366, height: 768 });
+  const heights = await page.evaluate(() => [document.querySelector('#resetBankFilters'), document.querySelector('select[data-key="bank:task"]')]
+    .map((n) => n.getBoundingClientRect().height));
+  assert.ok(heights[0] <= heights[1] + 4, `кнопка сброса выше полей: ${heights}`);
+  await page.locator('select[data-key="bank:state"]').selectOption('mistake');
+  await page.locator('select[data-key="bank:task"]').selectOption('20');
+  await see(page, '.small.muted', /Показано: 1 задание/);
+  await page.locator('#resetBankFilters').click();
+  await see(page, '.small.muted', /Показано: 16 заданий/);
+  assert.equal(await page.locator('select[data-key="bank:state"]').inputValue(), 'all');
+  assert.equal(await page.locator('select[data-key="bank:task"]').inputValue(), '');
+  assert.equal(await page.locator('#resetBankFilters').isDisabled(), true, 'сбрасывать нечего');
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('итог: процент выполнения рядом со счётом', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { hash: '#/practice?ids=q20-a,q22-a' });
+  // В задании 20 второй вариант верен, в задании 22 — нет.
+  for (let i = 0; i < 2; i += 1) {
+    await page.locator('[data-card]').waitFor();
+    await page.keyboard.press('2');
+    await page.locator('.feedback').waitFor();
+    await page.keyboard.press('Enter');
+  }
+  await see(page, 'h2', /Раунд окончен/);
+  await see(page, '.score', /1 из 2,?\s*50\s%/);
   assert.deepEqual(errors, []);
   await context.close();
 });
@@ -278,7 +412,7 @@ test('полный вариант: 13 позиций, разбор только 
   await page.locator('#finishVariant').click();
   await see(page, '.notice.warn', /Без ответа: 20, 21, 22, 23, 24, 25, 26, 27/);
   await page.locator('#confirmFinish').click();
-  await see(page, '.score', /из 13/);
+  await see(page, '.score', /из 13,?\s*\d{1,3}\s%/);
   // Enter после результата не собирает новый вариант: разбор по позициям остаётся.
   await page.keyboard.press('Enter');
   await see(page, '.score', /из 13/);
@@ -710,7 +844,7 @@ test('телефон: без горизонтальной прокрутки в�
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
       assert.ok(overflow <= 0, `${width}px ${where}: горизонтальная прокрутка ${overflow}px`);
     };
-    for (const hash of ['#/rules', '#/rules/jiu-cai', '#/practice', '#/variant', '#/bank', '#/teacher']) {
+    for (const hash of ['#/rules', '#/rules/jiu-cai', '#/practice', '#/variant', '#/bank', '#/teacher', '#/help']) {
       await page.goto(mainUrl + hash);
       if (hash === '#/variant' && await page.locator('#buildVariant').count()) await page.locator('#buildVariant').click();
       await noOverflow(hash);
@@ -754,12 +888,14 @@ test('телефон: без горизонтальной прокрутки в�
 test('тетрадь: пропуск-клетка, исправление красной ручкой, панель на телефоне', { skip }, async () => {
   const { page, context, errors } = await open(mainUrl, { width: 390, height: 844, hash: '#/practice?ids=q25-a' });
   await page.locator('[data-card]').waitFor();
-  // У всех вариантов по два знака — две клетки; пустая клетка ничего не подсказывает.
-  assert.equal(await page.locator('.stem .tz .c').count(), 2);
+  // До ответа — одна клетка, хотя у всех вариантов по два знака: ширина ничего не подсказывает.
+  assert.equal(await page.locator('.stem .tz .c').count(), 1);
   assert.equal(await page.locator('.stem .tz').getAttribute('aria-label'), 'пропуск');
   // Неверно: выбранное вписано и зачёркнуто, сверху верный ответ.
   await page.keyboard.press('3');
   await page.locator('.feedback').waitFor();
+  // Вписанный ответ раздвигает пропуск: две клетки на два знака.
+  assert.equal(await page.locator('.stem .tz .c').count(), 2);
   assert.deepEqual(await page.locator('.stem .tz .ink').allInnerTexts(), ['下', '去']);
   assert.equal(await page.locator('.stem .tz.wrong .fix').innerText(), '过来');
   assert.equal(await page.locator('.stem .tz').getAttribute('aria-label'), 'пропуск: выбрано 下去, верно 过来');
@@ -784,19 +920,25 @@ test('тетрадь: пропуск-клетка, исправление кра
   const ids = [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27].map((n) => `q${n}-a`);
   await page.goto(`${mainUrl}#/variant?ids=${ids.join(',')}`);
   await page.locator('.sheet .cell').nth(1).click();
+  // №24: у всех вариантов по два знака, а клетка до ответа одна.
+  await page.locator('.sheet .cell').nth(9).click();
+  assert.equal(await page.locator('.stem .tz .c').count(), 1);
+  await page.locator('.sheet .cell').nth(1).click();
   await page.keyboard.press('2');
   assert.deepEqual(await page.locator('.stem .tz .ink').allInnerTexts(), ['场']);
   assert.equal(await page.locator('.stem .tz.right, .stem .tz.wrong, .stem .fix').count(), 0);
   await page.locator('.sheet .cell').nth(12).click();
-  // До ответа: в первом пропуске у всех вариантов по два знака — две клетки; во втором
-  // варианты разной длины (才 и 而且) — одна вытянутая клетка, а не две по самому длинному.
+  // До ответа — по одной обычной клетке в каждом пропуске, без вытянутых.
   const gaps = page.locator('.stem .tz');
   assert.equal(await gaps.count(), 2);
-  assert.equal(await gaps.nth(0).locator('.c').count(), 2);
+  assert.equal(await gaps.nth(0).locator('.c').count(), 1);
   assert.equal(await gaps.nth(1).locator('.c').count(), 1);
-  assert.equal(await gaps.nth(1).locator('.c.long').count(), 1);
+  assert.equal(await page.locator('.stem .tz .c.long').count(), 0);
+  const cell = await gaps.nth(1).locator('.c').boundingBox();
+  assert.ok(Math.abs(cell.width - cell.height) <= 1, `клетка квадратная: ${JSON.stringify(cell)}`);
   await page.keyboard.press('4');
-  assert.deepEqual(await page.locator('.stem .tz .ink').allInnerTexts(), ['不', '但', '而且']);
+  assert.deepEqual(await page.locator('.stem .tz .ink').allInnerTexts(), ['不', '但', '而', '且']);
+  assert.equal(await gaps.nth(1).locator('.c').count(), 2);
   await page.locator('#finishVariant').click();
   await page.locator('#confirmFinish').click();
   await see(page, '.score', /из 13/);
@@ -831,23 +973,152 @@ test('шрифты из сети не задерживают страницу, �
   await context.close();
 });
 
-test('телефон: после ответа видно начало разбора, новый экран — с начала', { skip }, async () => {
-  const { page, context, errors } = await open(mainUrl, { width: 320, height: 568, reducedMotion: 'reduce', hash: '#/practice?ids=q26-a,q27-a' });
-  // Неверные ответы: в №26 (фрагменты) и №27 (два пропуска) разбор длинный.
-  for (const key of ['2', '1']) {
+// Где после ответа предложение задания (или фрагменты №26) и видна ли его верхняя строка над панелью.
+const sentenceAt = (page) => page.evaluate(() => {
+  const node = document.querySelector('[data-card] .stem, [data-card] .fragments');
+  const dock = document.querySelector('.dock');
+  const sticky = dock && getComputedStyle(dock).position === 'sticky';
+  return {
+    top: Math.round(node.getBoundingClientRect().top),
+    bottom: Math.round(sticky ? dock.getBoundingClientRect().top : window.innerHeight),
+    feedback: Math.round(document.querySelector('.feedback').getBoundingClientRect().top),
+    enter: document.activeElement.dataset.enter === '1',
+    // Что в фокусе — на экране: невидимую кнопку нажал бы пробел, которым листают разбор.
+    focusSeen: (() => {
+      const r = document.activeElement.getBoundingClientRect();
+      return r.bottom > 0 && r.top < window.innerHeight;
+    })(),
+  };
+});
+
+for (const [device, size] of [['ноутбук', { width: 1280, height: 720 }], ['телефон', { width: 320, height: 568 }]]) {
+  test(`${device}: после неверного ответа предложение не уезжает с экрана, новый экран — с начала`, { skip }, async () => {
+    const { page, context, errors } = await open(mainUrl, { ...size, reducedMotion: 'reduce', hash: '#/practice?ids=q26-a,q27-a,q22-a' });
+    // Неверные ответы: в №26 (фрагменты), №27 (два пропуска) и №22 разбор длинный.
+    for (const key of ['2', '1', '2']) {
+      await page.locator('[data-card]').waitFor();
+      assert.equal(await page.evaluate(() => window.scrollY), 0, 'задание открывается с начала страницы');
+      await page.keyboard.press(key);
+      await page.locator('.verdict.bad').waitFor();
+      const at = await sentenceAt(page);
+      assert.ok(at.top >= 0 && at.top + 40 <= at.bottom, `предложение на экране: ${JSON.stringify(at)}`);
+      // Начало разбора видно — или страница сдвинута до предложения у верхнего края, не дальше.
+      assert.ok(at.feedback + 60 <= at.bottom || Math.abs(at.top - 12) <= 2, `начало разбора не показано: ${JSON.stringify(at)}`);
+      assert.equal(at.focusSeen, true, `фокус за краем экрана: ${JSON.stringify(at)}`);
+      if (device === 'телефон') assert.equal(at.enter, true, 'на телефоне фокус на «Дальше» в панели');
+      if (device === 'ноутбук') {
+        // Пробел листает разбор, а не переходит к следующему заданию.
+        const before = await text(page, '.progress');
+        await page.keyboard.press('Space');
+        assert.equal(await text(page, '.progress'), before);
+        assert.equal(await page.locator('.feedback').count(), 1);
+        // Ученик дочитывает разбор: плавная прокрутка пробелом успевает закончиться.
+        await page.waitForFunction(() => new Promise((resolve) => {
+          const y = window.scrollY;
+          requestAnimationFrame(() => requestAnimationFrame(() => resolve(window.scrollY === y)));
+        }));
+      }
+      await page.keyboard.press('Enter');
+    }
+    await see(page, 'h2', /Раунд окончен/);
+    assert.equal(await page.evaluate(() => window.scrollY), 0);
+    assert.deepEqual(errors, []);
+    await context.close();
+  });
+}
+
+test('телефон: предложение ушло за верх, пока ученик выбирал, — после ответа оно снова на экране', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { width: 320, height: 360, reducedMotion: 'reduce', hash: '#/practice?ids=q26-a' });
+  await page.locator('[data-card]').waitFor();
+  await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+  assert.ok((await page.evaluate(() => document.querySelector('.fragments').getBoundingClientRect().top)) < 0, 'фрагменты ушли за верх');
+  await page.keyboard.press('2');
+  await page.locator('.verdict.bad').waitFor();
+  const at = await sentenceAt(page);
+  assert.ok(at.top >= 0 && at.top + 40 <= at.bottom, `предложение на экране: ${JSON.stringify(at)}`);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('полный вариант: ответ не прокручивает страницу к кнопке «Дальше»', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { width: 1280, height: 520, hash: '#/variant' });
+  await page.locator('#buildVariant').click();
+  for (let i = 0; i < 3; i += 1) {
     await page.locator('[data-card]').waitFor();
-    assert.equal(await page.evaluate(() => window.scrollY), 0, 'задание открывается с начала страницы');
-    await page.keyboard.press(key);
-    await page.locator('.feedback').waitFor();
-    const at = await page.evaluate(() => ({
-      feedback: document.querySelector('.feedback').getBoundingClientRect().top,
-      dock: document.querySelector('.dock').getBoundingClientRect().top,
+    await page.keyboard.press('1');
+    assert.equal(await page.evaluate(() => window.scrollY), 0);
+    // В фокусе — то, что видно: «Дальше →» на экране или условие задания. Enter ведёт дальше.
+    assert.ok(await page.evaluate(() => {
+      const r = document.activeElement.getBoundingClientRect();
+      return document.activeElement !== document.body && r.bottom > 0 && r.top < window.innerHeight;
     }));
-    assert.ok(at.feedback + 40 <= at.dock, `начало разбора под панелью: ${JSON.stringify(at)}`);
     await page.keyboard.press('Enter');
   }
-  await see(page, 'h2', /Раунд окончен/);
-  assert.equal(await page.evaluate(() => window.scrollY), 0);
+  await see(page, '.progress', /Позиция 18/);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('шрифт задания: крупный на ноутбуке, на телефоне прежний', { skip }, async () => {
+  const sizes = async (page) => page.evaluate(() => {
+    const px = (selector) => parseFloat(getComputedStyle(document.querySelector(selector)).fontSize);
+    return { instruction: px('.instruction'), stem: px('.stem'), option: px('.option .text'), verdict: px('.verdict p') };
+  });
+  const wide = await open(mainUrl, { width: 1366, height: 768, hash: '#/practice?ids=q22-a' });
+  await wide.page.keyboard.press('2');
+  await wide.page.locator('.verdict.bad').waitFor();
+  const big = await sizes(wide.page);
+  assert.ok(big.stem >= 36, `предложение: ${big.stem}px`);
+  assert.ok(big.option >= 30, `варианты: ${big.option}px`);
+  assert.ok(big.instruction >= 19, `условие: ${big.instruction}px`);
+  assert.ok(big.verdict >= 18, `разбор: ${big.verdict}px`);
+  await wide.context.close();
+  const phone = await open(mainUrl, { width: 390, height: 844, hash: '#/practice?ids=q22-a' });
+  await phone.page.keyboard.press('2');
+  await phone.page.locator('.verdict.bad').waitFor();
+  const small = await sizes(phone.page);
+  assert.ok(small.stem <= 28 && small.option <= 24, `телефон: ${JSON.stringify(small)}`);
+  await phone.context.close();
+});
+
+test('№19 на ноутбуке: число в варианте не рвётся на две строки', { skip }, async () => {
+  for (const width of [800, 1024, 1366]) {
+    const { page, context } = await open(mainUrl, { width, height: 768, hash: '#/practice?ids=q19-a' });
+    const lines = () => page.evaluate(() => [...document.querySelectorAll('.option .text')].map((n) => {
+      const r = document.createRange();
+      r.selectNodeContents(n);
+      return new Set([...r.getClientRects()].map((x) => Math.round(x.top))).size;
+    }));
+    assert.deepEqual(await lines(), [1, 1, 1, 1], `${width}px до ответа`);
+    await page.keyboard.press('1');
+    await page.locator('.feedback').waitFor();
+    assert.deepEqual(await lines(), [1, 1, 1, 1], `${width}px после ответа`);
+    await context.close();
+  }
+});
+
+test('шапка телефона: с кнопкой справки не выше прежней', { skip }, async () => {
+  for (const width of [320, 360, 375, 390]) {
+    const { page, context } = await open(mainUrl, { width, height: 700, hash: '#/rules' });
+    const height = await page.evaluate(() => document.querySelector('.top').getBoundingClientRect().height);
+    // До кнопки справки — 56 px: задание на телефоне не должно сдвигаться ниже.
+    assert.ok(height <= 57, `${width}px: шапка ${height}px`);
+    await context.close();
+  }
+});
+
+test('справка: кнопка в шапке, описание и ссылка учителю, подвала нет', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { hash: '#/rules' });
+  assert.equal(await page.locator('footer').count(), 0, 'описание переехало в справку');
+  await page.getByRole('link', { name: 'Справка' }).click();
+  await see(page, 'h2', /Справка/);
+  assert.equal(new URL(page.url()).hash, '#/help');
+  assert.equal(await page.getByRole('link', { name: 'Справка' }).getAttribute('aria-current'), 'page');
+  await see(page, '#view', /Ошибку здесь разбирают на том варианте, который вы выбрали/);
+  await see(page, '#bankCount', /16 заданий · 2 правила/);
+  await see(page, '#view', /Прогресс хранится/);
+  await page.getByRole('link', { name: /сводка отчётов/ }).click();
+  await see(page, 'h2', /Результаты класса/);
   assert.deepEqual(errors, []);
   await context.close();
 });
@@ -889,9 +1160,10 @@ test('правила: оглавление по номерам заданий, �
 test('публикация без черновиков, проверка — с пометкой', { skip }, async () => {
   const pub = await open(mainUrl, { hash: '#/bank' });
   assert.equal(await pub.page.locator('.pill.draft').count(), 0);
-  // В фикстуре 17 заданий с черновиком; опубликовано 16 — черновик не считается.
-  assert.doesNotMatch(await text(pub.page, '#bankCount'), /17/);
   assert.equal(await pub.page.locator('#reviewBanner').isHidden(), true);
+  // В фикстуре 17 заданий с черновиком; опубликовано 16 — черновик не считается.
+  await pub.page.goto(`${mainUrl}#/help`);
+  assert.doesNotMatch(await text(pub.page, '#bankCount'), /17/);
   await pub.page.goto(`${mainUrl}#/rules`);
   assert.equal(await pub.page.getByText('Черновое правило').count(), 0);
   await pub.context.close();
