@@ -1056,6 +1056,140 @@ test('телефон: предложение ушло за верх, пока у
   await context.close();
 });
 
+// Enter, пока ещё идёт плавная прокрутка прошлого экрана: пробел по разбору или сдвиг страницы
+// к разбору сразу после ответа. Новый экран всё равно открывается с начала.
+for (const [what, height, between] of [
+  ['пробел и сразу Enter', 720, (page) => page.keyboard.press('Space')],
+  ['Enter, пока страница едет к разбору', 560, (page) => page.waitForTimeout(30)],
+]) {
+  test(`ноутбук: ${what} — новый экран с начала`, { skip }, async () => {
+    const { page, context, errors } = await open(mainUrl, { width: 1280, height, hash: '#/practice?ids=q26-a,q27-a,q22-a' });
+    for (const [key, screen] of [['2', /Задание 2 из 3/], ['1', /Задание 3 из 3/], ['2', /Раунд окончен/]]) {
+      await page.locator('[data-card]').waitFor();
+      await page.keyboard.press(key);
+      await page.locator('.verdict.bad').waitFor();
+      await between(page);
+      await page.keyboard.press('Enter');
+      await see(page, '.progress, h2', screen);
+      // Плавная прокрутка в Chrome длится до 300 мс — ждём с запасом.
+      await page.waitForTimeout(700);
+      assert.equal(await page.evaluate(() => Math.round(window.scrollY)), 0, `${screen}: экран открылся не с начала`);
+    }
+    assert.deepEqual(errors, []);
+    await context.close();
+  });
+}
+
+test('ноутбук: сразу после Enter ученик листает сам — страница не возвращается к началу', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { width: 1280, height: 600, reducedMotion: 'reduce', hash: '#/practice?ids=q26-a,q27-a,q22-a' });
+  await page.mouse.move(640, 300);
+  // Третье задание до ответа помещается на экран — листать нечего.
+  for (const [key, screen, scroll] of [
+    ['2', /Задание 2 из 3/, () => page.keyboard.press('Space')],
+    ['1', /Задание 3 из 3/, null],
+    ['2', /Раунд окончен/, () => page.mouse.wheel(0, 200)],
+  ]) {
+    await page.locator('[data-card]').waitFor();
+    await page.keyboard.press(key);
+    await page.locator('.verdict.bad').waitFor();
+    await page.keyboard.press('Enter');
+    await see(page, '.progress, h2', screen);
+    if (!scroll) continue;
+    assert.ok(await page.evaluate(() => document.documentElement.scrollHeight > window.innerHeight), `${screen}: экран не листается`);
+    await scroll();
+    await page.waitForTimeout(700);
+    assert.ok(await page.evaluate(() => window.scrollY) > 0, `${screen}: прокрутку ученика сбросили`);
+  }
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('ответ сразу после открытия задания без клавиш и мыши (чтец экрана) — страница всё равно едет к разбору', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { width: 1280, height: 400, reducedMotion: 'reduce', hash: '#/practice?ids=q26-a,q27-a' });
+  await page.locator('[data-card]').waitFor();
+  await page.keyboard.press('2');
+  await page.keyboard.press('Enter');
+  await see(page, '.progress', /Задание 2 из 2/);
+  // Чтец экрана нажимает кнопку одним click — без pointerdown и keydown.
+  await page.evaluate(() => document.querySelector('[data-card] .option[data-option="1"]').click());
+  await page.locator('.verdict.bad').waitFor();
+  await page.waitForTimeout(500);
+  assert.ok(await page.evaluate(() => window.scrollY) > 0, 'сдвиг к разбору сброшен к началу страницы');
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+// Где после ответа (без анимации) начало предложения, разбор, его первые строки и низ «Дальше» —
+// в координатах страницы: от высоты окна они не зависят. sentence — край, до которого страница
+// сдвигается самое большее: предложение в 12 px от верха.
+async function layoutAfterAnswer(url, { width, hash, key }) {
+  const { page, context } = await open(url, { width, height: 400, reducedMotion: 'reduce', hash });
+  await page.locator('[data-card]').waitFor();
+  await page.keyboard.press(key);
+  await page.locator('.feedback').waitFor();
+  const at = await page.evaluate(() => {
+    const y = (node) => node.getBoundingClientRect().top + window.scrollY;
+    const box = document.querySelector('.feedback');
+    const next = document.querySelector('[data-enter]');
+    return {
+      sentence: y(document.querySelector('[data-card] .stem, [data-card] .fragments')) - 12,
+      feedback: y(box),
+      head: y(box) + 3.5 * parseFloat(getComputedStyle(box).fontSize),
+      next: next.getBoundingClientRect().bottom + window.scrollY,
+    };
+  });
+  await context.close();
+  return at;
+}
+
+test('ноутбук без анимации: «Дальше» после сдвига чуть ниже края — фокус на разборе', { skip }, async () => {
+  // Длинное условие опускает предложение: страница сдвигается к разбору дальше, чем от первых строк
+  // разбора до «Дальше». Окно — такое, что после сдвига кнопка за нижним краем, хотя ушла бы
+  // на экран, если сдвиг посчитать дважды (без анимации он уже сделан к проверке фокуса).
+  const url = buildPage('long-prompt', { change: (d) => {
+    const q = d.questions.find((x) => x.id === 'q22-a');
+    q.prompt = Array(8).fill('Выберите вариант, который грамматически верно заполняет пропуск в предложении.').join(' ');
+  } });
+  const hash = '#/practice?ids=q22-a';
+  const at = await layoutAfterAnswer(url, { width: 1280, hash, key: '2' });
+  // Сдвиг head − height (не больше предела sentence): height ≥ head − sentence. После него низ
+  // «Дальше» — next − head + height, за краем всегда; после двойного — на экране: height ≤ 2·head − next.
+  const low = at.head - at.sentence;
+  const high = Math.min(at.head - 1, 2 * at.head - at.next);
+  assert.ok(low + 8 < high, `условие не опустило предложение: ${JSON.stringify(at)}`);
+  const height = Math.round((low + high) / 2);
+  const { page, context, errors } = await open(url, { width: 1280, height, reducedMotion: 'reduce', hash });
+  await page.locator('[data-card]').waitFor();
+  await page.keyboard.press('2');
+  await page.locator('.verdict.bad').waitFor();
+  const state = await sentenceAt(page);
+  assert.ok(state.y > 0, `страница не сдвинулась: ${JSON.stringify(state)}`);
+  assert.ok(await page.evaluate(() => document.querySelector('[data-enter]').getBoundingClientRect().bottom > window.innerHeight),
+    `«Дальше» на экране — проверка ни о чём: ${JSON.stringify(state)}`);
+  assert.equal(state.enter, false, `фокус на «Дальше» за краем экрана: ${JSON.stringify(state)}`);
+  assert.equal(await page.evaluate(() => document.activeElement.matches('.feedback')), true);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('низкий экран ноутбука: разбор за нижним краем — фокус на условии задания', { skip }, async () => {
+  const hash = '#/practice?ids=q27-a';
+  const at = await layoutAfterAnswer(mainUrl, { width: 1280, hash, key: '1' });
+  // Страница сдвигается самое большее до предложения у верхнего края; окно ниже, чем от
+  // этого края до разбора, — разбор начинается за нижним краем (как 1366×768 при масштабе 125 %).
+  const height = Math.round(at.feedback - at.sentence - 30);
+  const { page, context, errors } = await open(mainUrl, { width: 1280, height, reducedMotion: 'reduce', hash });
+  await page.locator('[data-card]').waitFor();
+  await page.keyboard.press('1');
+  await page.locator('.verdict.bad').waitFor();
+  const state = await sentenceAt(page);
+  assert.ok(state.feedback >= height, `разбор на экране — проверка ни о чём: ${JSON.stringify(state)}`);
+  assert.equal(await page.evaluate(() => document.activeElement.matches('[data-card] .instruction')), true,
+    `фокус не на условии: ${await page.evaluate(() => document.activeElement.className)}`);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
 test('полный вариант: ответ не прокручивает страницу к кнопке «Дальше»', { skip }, async () => {
   const { page, context, errors } = await open(mainUrl, { width: 1280, height: 520, hash: '#/variant' });
   await page.locator('#buildVariant').click();

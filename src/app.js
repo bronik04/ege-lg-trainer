@@ -208,7 +208,32 @@
     else location.hash = hash;
   }
 
-  let scrollReset = 0; // номер последнего сброса прокрутки нового экрана (render)
+  // Новый экран — с начала страницы: на телефоне сверху выход и деления раунда. Плавная прокрутка
+  // прошлого экрана может ещё идти (пробел по разбору или сдвиг к нему после ответа, а сразу за
+  // ними Enter), и Chrome доводит её на новом экране: одного сброса мало. Поэтому ещё
+  // HOLD_TOP_MS страница на каждом шаге прокрутки возвращается к началу. Ученик сам листает,
+  // кликает, жмёт клавишу или отвечает — удержание снимается сразу, его прокрутку не перебиваем.
+  // Конец по scrollend не годится: Chrome шлёт его после каждого сброса, пока прокрутка идёт.
+  const HOLD_TOP_MS = 400;
+  let releaseTop = null; // снимает удержание начала страницы
+
+  function holdTop() {
+    if (releaseTop) releaseTop();
+    window.scrollTo(0, 0);
+    const keep = () => { if (window.scrollY) window.scrollTo(0, 0); };
+    const user = ['wheel', 'touchstart', 'pointerdown', 'keydown'];
+    const timer = setTimeout(release, HOLD_TOP_MS);
+    function release() {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', keep);
+      user.forEach((type) => window.removeEventListener(type, release, true));
+      releaseTop = null;
+    }
+    window.addEventListener('scroll', keep);
+    // В фазе перехвата: Enter, который открыл этот экран, её уже прошёл и удержание не снимет.
+    user.forEach((type) => window.addEventListener(type, release, { capture: true, passive: true }));
+    releaseTop = release;
+  }
 
   function render(focus = true) {
     const active = document.activeElement;
@@ -248,12 +273,7 @@
       view.append(el('p', { class: 'notice warn small', text: 'Браузер не даёт сохранить прогресс: он пропадёт после перезагрузки страницы.' }));
     }
     if (focus) {
-      // Новый экран — с начала страницы: на телефоне сверху выход и деления раунда. Ещё раз в
-      // следующем кадре: плавный сдвиг после ответа (Enter нажат, пока он шёл) иначе доезжает.
-      // Новый ответ до этого кадра отменяет повтор — его сдвиг важнее (afterAnswer).
-      window.scrollTo(0, 0);
-      const reset = ++scrollReset;
-      requestAnimationFrame(() => { if (reset === scrollReset) window.scrollTo(0, 0); });
+      holdTop();
       const target = view.querySelector('[data-focus]') || view;
       target.focus({ preventScroll: true });
     } else if (activeKey) {
@@ -714,7 +734,8 @@
     const box = view.querySelector('.feedback');
     const dock = stickyDock();
     let delta = 0;
-    scrollReset += 1; // отложенный сброс прокрутки прошлого экрана больше не нужен
+    const y0 = window.scrollY;
+    if (releaseTop) releaseTop(); // сдвиг к разбору важнее начала страницы (holdTop)
     if (card && box) {
       const anchor = card.querySelector('.stem') || card.querySelector('.fragments') || card.querySelector('.instruction');
       const visibleBottom = window.innerHeight - (dock ? dock.getBoundingClientRect().height : 0);
@@ -724,20 +745,24 @@
       delta = top < 0 ? top : Math.max(0, Math.min(top, head - visibleBottom));
       if (delta) window.scrollBy({ top: delta, behavior: reducedMotion() ? 'auto' : 'smooth' });
     }
-    focusAfterAnswer(box, delta);
+    // Без анимации сдвиг уже сделан, плавный ещё впереди: фокусу важен только оставшийся.
+    focusAfterAnswer(delta - (window.scrollY - y0));
   }
 
-  // Фокус после ответа — без прокрутки. На «Дальше» — только если её видно (липкая панель на
-  // телефоне или кнопка на экране после сдвига на delta): невидимую кнопку нажал бы пробел,
-  // которым листают разбор, и разбор пропал бы. Иначе фокус на разборе или на условии — Enter
-  // всё равно ведёт дальше: его ловит общий обработчик клавиш.
-  function focusAfterAnswer(fallback, delta = 0) {
+  // Фокус после ответа — без прокрутки; delta — сдвиг страницы, который ещё впереди. На «Дальше» —
+  // только если её видно (липкая панель на телефоне или кнопка на экране после сдвига):
+  // невидимую кнопку нажал бы пробел, которым листают разбор, и разбор пропал бы. Иначе фокус на
+  // разборе, если его начало на экране, а нет (низкий экран: сдвиг дошёл до предложения у
+  // верхнего края) или разбора нет (полный вариант) — на условии. Enter всё равно ведёт дальше:
+  // его ловит общий обработчик клавиш.
+  function focusAfterAnswer(delta = 0) {
     const next = view.querySelector('[data-enter]') || view.querySelector('#finishVariant');
-    const seen = (node) => {
-      const r = node.getBoundingClientRect();
-      return r.top - delta >= 0 && r.bottom - delta <= window.innerHeight;
-    };
-    const target = next && (stickyDock() || seen(next)) ? next : fallback;
+    const box = view.querySelector('.feedback');
+    const top = (node) => node.getBoundingClientRect().top - delta;
+    const seen = (node) => top(node) >= 0 && node.getBoundingClientRect().bottom - delta <= window.innerHeight;
+    let target = view.querySelector('[data-card] .instruction');
+    if (next && (stickyDock() || seen(next))) target = next;
+    else if (box && top(box) < window.innerHeight) target = box;
     if (target) target.focus({ preventScroll: true });
   }
 
@@ -1233,7 +1258,7 @@
           render(false);
           // Enter ведёт к следующей позиции, цифры по-прежнему меняют ответ. Страницу к кнопке
           // не двигаем: задание с выбранным ответом остаётся на экране.
-          focusAfterAnswer(view.querySelector('[data-card] .instruction'));
+          focusAfterAnswer();
         },
       }));
     const last = v.index === v.ids.length - 1;
