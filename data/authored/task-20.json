@@ -1,6 +1,6 @@
 {
   "g20-00d99f6c": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "aspect"
     ],
@@ -22,10 +22,11 @@
         "3": "过"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "1b4195811e79"
   },
   "g20-0307df33": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "aspect"
     ],
@@ -47,10 +48,11 @@
         "3": "着"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "b0d21c9504c7"
   },
   "g20-05f00f7a": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "aspect"
     ],
@@ -72,10 +74,11 @@
         "3": "着"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "604d7662838e"
   },
   "g20-127b6928": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "aspect"
     ],
@@ -97,10 +100,11 @@
         "3": "着"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "c2f9e37966c8"
   },
   "g20-1d4d5aa8": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "aspect"
     ],
@@ -122,10 +126,11 @@
         "3": "过"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "12037d7dab1c"
   },
   "g20-1f05c1ac": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "aspect"
     ],
@@ -147,10 +152,11 @@
         "3": "过"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "2992cb5974f6"
   },
   "g20-5112991c": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "aspect"
     ],
@@ -172,10 +178,11 @@
         "3": "着"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "fb43464f7cc6"
   },
   "g20-545c9b50": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "aspect"
     ],
@@ -197,10 +204,11 @@
         "3": "过"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "d02361ff06d8"
   },
   "g20-6bb451b2": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "aspect"
     ],
@@ -222,10 +230,11 @@
         "3": "过"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "a67e12052069"
   },
   "g20-7ef64a63": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "aspect"
     ],
@@ -247,10 +256,11 @@
         "3": "过"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "848df25da3b7"
   },
   "g20-839de541": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "aspect"
     ],
@@ -272,10 +282,11 @@
         "3": "过"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "bbbd66575347"
   },
   "g20-8965b061": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "aspect"
     ],
@@ -297,10 +308,11 @@
         "3": "过"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "3c48e20a85e1"
   },
   "g20-8c6e28f4": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "aspect"
     ],
@@ -322,10 +334,11 @@
         "3": "着"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "4d8b6edb6f3a"
   },
   "g20-a3e275ad": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "aspect"
     ],
@@ -347,10 +360,11 @@
         "3": "着"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "d24f1c330e26"
   },
   "g20-cc2c642c": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "aspect"
     ],
@@ -372,10 +386,11 @@
         "3": "过"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "3fcb2ea0c3c1"
   },
   "g20-e8baf9eb": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "aspect"
     ],
@@ -397,10 +412,11 @@
         "3": "过"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "6cab143dd98a"
   },
   "g20-f00aaad7": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "aspect"
     ],
@@ -422,10 +438,11 @@
         "3": "过"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "7edcb217229d"
   },
   "g20-f4409b4b": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "aspect"
     ],
@@ -447,10 +464,11 @@
         "3": "过"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "a439594ce3f6"
   },
   "g20-f4c0f330": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "aspect"
     ],
@@ -472,10 +490,11 @@
         "3": "过"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "06eb8b75ec1d"
   },
   "g20-f670d3b4": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "aspect"
     ],
@@ -497,7 +516,8 @@
         "3": "过"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "50fdfa5c65fb"
   },
   "q20-0fc63c9e": {
     "status": "accepted",
