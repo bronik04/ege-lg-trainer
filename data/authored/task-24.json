@@ -1,6 +1,6 @@
 {
   "g24-05f37b62": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -24,10 +24,11 @@
         "4": "不完"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "2e34f2f9ca39"
   },
   "g24-1766fb8d": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -51,10 +52,11 @@
         "4": "得懂"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "a3ed2f4e96c4"
   },
   "g24-1912bd42": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -78,10 +80,11 @@
         "4": "不出来"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "ef52c22f5cab"
   },
   "g24-28d2af0c": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -105,10 +108,11 @@
         "4": "得下"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "a9c3cebace97"
   },
   "g24-2a1c71d2": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -132,10 +136,38 @@
         "4": "不起来"
       },
       "correctOptionId": "3"
+    },
+    "acceptedHash": "768dc720fe04"
+  },
+  "g24-2a8c8726": {
+    "status": "draft",
+    "topicIds": [
+      "potential-complements"
+    ],
+    "ruleIds": [
+      "potential-complements"
+    ],
+    "explanation": {
+      "correct": "买得起 — «по карману купить». 起 — позволить себе по деньгам; 不贵 «недорогой» — значит, и студенты могут его купить.",
+      "options": {
+        "2": "住 — удержать: 记得住. С 买 и ценой телефона не сочетается; о деньгах говорит 起.",
+        "3": "动 — сдвинуть с места: 搬得动. Покупка телефона не про силу; 不贵 говорит о цене — 买得起.",
+        "4": "完 — довести до конца: 吃得完. Один телефон не «покупают до конца»; цена подсказывает 买得起."
+      }
+    },
+    "sourceSnapshot": {
+      "stem": "这个手机不贵，学生也买___。",
+      "options": {
+        "1": "得起",
+        "2": "得住",
+        "3": "得动",
+        "4": "得完"
+      },
+      "correctOptionId": "1"
     }
   },
   "g24-5fa6adb2": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -159,10 +191,11 @@
         "4": "不动"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "b38681420777"
   },
   "g24-73b98ae5": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -186,10 +219,11 @@
         "4": "不完"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "0699f5bd1578"
   },
   "g24-78d7c578": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -213,10 +247,11 @@
         "4": "得下"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "ae10e1fdf86a"
   },
   "g24-870c5579": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -240,10 +275,11 @@
         "4": "不完"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "ec5d87dfe05b"
   },
   "g24-8d6a9fa5": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -267,37 +303,11 @@
         "4": "不了"
       },
       "correctOptionId": "2"
-    }
-  },
-  "g24-8dade03e": {
-    "status": "draft",
-    "topicIds": [
-      "potential-complements"
-    ],
-    "ruleIds": [
-      "potential-complements"
-    ],
-    "explanation": {
-      "correct": "用得起 — «по карману пользоваться». 起 — позволить себе по деньгам; 不贵 «недорогой» — значит, и студентам по средствам.",
-      "options": {
-        "2": "住 — удержать: 记得住. С 用 и ценой телефона не сочетается; о деньгах говорит 起.",
-        "3": "动 — сдвинуть с места: 搬得动. Телефон не про силу; 不贵 говорит о цене — 用得起.",
-        "4": "完 — довести до конца: 吃得完. Телефон не «используют до конца»; цена подсказывает 用得起."
-      }
     },
-    "sourceSnapshot": {
-      "stem": "这个手机不贵，学生也用___。",
-      "options": {
-        "1": "得起",
-        "2": "得住",
-        "3": "得动",
-        "4": "得完"
-      },
-      "correctOptionId": "1"
-    }
+    "acceptedHash": "e1a171755267"
   },
   "g24-8f168f0a": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -321,10 +331,11 @@
         "4": "得懂"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "044c03719e22"
   },
   "g24-b02ed8a0": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -348,10 +359,11 @@
         "4": "得起"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "f949eb2d8abb"
   },
   "g24-b18e48f1": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -375,10 +387,11 @@
         "4": "不下"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "e58f3a79cd68"
   },
   "g24-bce59a09": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -402,10 +415,11 @@
         "4": "得动"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "388439bae906"
   },
   "g24-c0310d94": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -429,7 +443,8 @@
         "4": "得到"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "15f920e6e49c"
   },
   "g24-d2329cdf": {
     "status": "draft",

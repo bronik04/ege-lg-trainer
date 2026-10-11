@@ -1,4 +1,31 @@
 {
+  "g23-02759bdf": {
+    "status": "draft",
+    "topicIds": [
+      "result-complements"
+    ],
+    "ruleIds": [
+      "result-more"
+    ],
+    "explanation": {
+      "correct": "停在 — «ставить где-то». 在 + место показывает, где оказывается машина: каждый день — у здания, где он работает: 停在公司楼下.",
+      "options": {
+        "2": "掉 — избавиться, убрать. Машину не выбросили, а поставили в определённом месте — 停在.",
+        "3": "给 + человек — кому передано: 借给, 送给. 公司楼下 — место, а не получатель; нужно 停在.",
+        "4": "下 — остановить, закрепить: 停下 «остановиться». Но после 停下 место прямо не ставят: «поставить у здания» — 停在公司楼下."
+      }
+    },
+    "sourceSnapshot": {
+      "stem": "他每天都把车停___公司楼下。",
+      "options": {
+        "1": "在",
+        "2": "掉",
+        "3": "给",
+        "4": "下"
+      },
+      "correctOptionId": "1"
+    }
+  },
   "g23-0731cdea": {
     "status": "accepted",
     "topicIds": [
@@ -28,7 +55,7 @@
     "acceptedHash": "ee69798baf6d"
   },
   "g23-12f1c267": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "result-complements"
     ],
@@ -52,7 +79,8 @@
         "4": "光"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "eb279e5dde7b"
   },
   "g23-16e4501a": {
     "status": "accepted",
@@ -83,7 +111,7 @@
     "acceptedHash": "14afca25b3e4"
   },
   "g23-2291a646": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "result-complements"
     ],
@@ -107,7 +135,8 @@
         "4": "好"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "8cd4a646e934"
   },
   "g23-3efcb12c": {
     "status": "accepted",
@@ -166,7 +195,7 @@
     "acceptedHash": "258c382da6d0"
   },
   "g23-4da2b1b5": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "result-complements"
     ],
@@ -190,10 +219,11 @@
         "4": "好"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "96f7964a7e1b"
   },
   "g23-5381e5fc": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "result-complements"
     ],
@@ -217,7 +247,8 @@
         "4": "错"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "3bfcba355b4a"
   },
   "g23-5db944d0": {
     "status": "accepted",
@@ -248,7 +279,7 @@
     "acceptedHash": "a882c7629082"
   },
   "g23-68d02128": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "result-complements"
     ],
@@ -272,10 +303,11 @@
         "4": "懂"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "2767794c64e8"
   },
   "g23-7bc8f653": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "result-complements"
     ],
@@ -299,10 +331,11 @@
         "4": "光"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "28e4ead2e9e9"
   },
   "g23-7c2e43ce": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "result-complements"
     ],
@@ -326,10 +359,11 @@
         "4": "好"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "303daf0e7d77"
   },
   "g23-86f29999": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "result-complements"
     ],
@@ -353,10 +387,11 @@
         "4": "下"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "459017582cd6"
   },
   "g23-87225a54": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "result-complements"
     ],
@@ -380,7 +415,8 @@
         "4": "到"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "23fb8e42724c"
   },
   "g23-8e89f69f": {
     "status": "accepted",
@@ -410,35 +446,8 @@
     },
     "acceptedHash": "f03f94287520"
   },
-  "g23-948af315": {
-    "status": "draft",
-    "topicIds": [
-      "result-complements"
-    ],
-    "ruleIds": [
-      "result-more"
-    ],
-    "explanation": {
-      "correct": "停在 — «поставить где-то». 在 + место показывает, где в итоге оказалась машина: 停在学校门口.",
-      "options": {
-        "2": "掉 — избавиться, убрать. Машину не выбросили, а поставили в определённом месте — 停在.",
-        "3": "给 + человек — кому передано: 借给, 送给. 学校门口 — место, а не получатель; нужно 停在.",
-        "4": "下 — остановить, закрепить: 停下 «остановиться». Но после 停下 место прямо не ставят: «поставить у ворот» — 停在学校门口."
-      }
-    },
-    "sourceSnapshot": {
-      "stem": "他把车停___了学校门口。",
-      "options": {
-        "1": "在",
-        "2": "掉",
-        "3": "给",
-        "4": "下"
-      },
-      "correctOptionId": "1"
-    }
-  },
   "g23-975dd0f3": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "result-complements"
     ],
@@ -462,10 +471,11 @@
         "4": "好"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "d94fbb2a624c"
   },
   "g23-a53a8786": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "result-complements"
     ],
@@ -489,10 +499,11 @@
         "4": "到"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "83987efb0b8f"
   },
   "g23-afdc6deb": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "result-complements"
     ],
@@ -516,7 +527,8 @@
         "4": "成"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "bc8859866f9a"
   },
   "g23-b08ea360": {
     "status": "accepted",
@@ -547,7 +559,7 @@
     "acceptedHash": "a5aaa61193b5"
   },
   "g23-be26bb0f": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "result-complements"
     ],
@@ -571,10 +583,11 @@
         "4": "懂"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "dfea470f85ec"
   },
   "g23-c215c51a": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "result-complements"
     ],
@@ -598,7 +611,8 @@
         "4": "掉"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "2e0c98ccecd8"
   },
   "g23-cc970b36": {
     "status": "accepted",
@@ -629,7 +643,7 @@
     "acceptedHash": "a69990ca175b"
   },
   "g23-dffb5868": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "result-complements"
     ],
@@ -653,10 +667,11 @@
         "4": "坏"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "5487be575434"
   },
   "g23-e6330247": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "result-complements"
     ],
@@ -680,10 +695,11 @@
         "4": "住"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "47ab5d093da2"
   },
   "g23-e7241056": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "result-complements"
     ],
@@ -707,10 +723,11 @@
         "4": "上"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "e3e0929a6068"
   },
   "g23-e8db43b9": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "result-complements"
     ],
@@ -734,10 +751,11 @@
         "4": "好"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "b05fee677352"
   },
   "g23-fe0a4259": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "result-complements"
     ],
@@ -761,7 +779,8 @@
         "4": "懂"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "71d7e63bd44d"
   },
   "q23-02a1aa09": {
     "status": "accepted",

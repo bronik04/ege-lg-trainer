@@ -3877,6 +3877,41 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g23-02759bdf",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-23"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "他每天都把车停___公司楼下。",
+    "options": [
+      {
+        "id": "1",
+        "text": "在"
+      },
+      {
+        "id": "2",
+        "text": "掉"
+      },
+      {
+        "id": "3",
+        "text": "给"
+      },
+      {
+        "id": "4",
+        "text": "下"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
     "id": "g23-0731cdea",
     "taskNumber": 23,
     "formatYear": 2026,
@@ -4388,41 +4423,6 @@
       }
     ],
     "correctOptionId": "4"
-  },
-  {
-    "id": "g23-948af315",
-    "taskNumber": 23,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-10-11-ege-chinese-23"
-    },
-    "codifierCodes": [
-      "2.4.64"
-    ],
-    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
-    "stem": "他把车停___了学校门口。",
-    "options": [
-      {
-        "id": "1",
-        "text": "在"
-      },
-      {
-        "id": "2",
-        "text": "掉"
-      },
-      {
-        "id": "3",
-        "text": "给"
-      },
-      {
-        "id": "4",
-        "text": "下"
-      }
-    ],
-    "correctOptionId": "1"
   },
   {
     "id": "g23-975dd0f3",
@@ -5021,6 +5021,42 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g24-2a8c8726",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-24"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "这个手机不贵，学生也买___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得起"
+      },
+      {
+        "id": "2",
+        "text": "得住"
+      },
+      {
+        "id": "3",
+        "text": "得动"
+      },
+      {
+        "id": "4",
+        "text": "得完"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
     "id": "g24-5fa6adb2",
     "taskNumber": 24,
     "formatYear": 2026,
@@ -5199,42 +5235,6 @@
       }
     ],
     "correctOptionId": "2"
-  },
-  {
-    "id": "g24-8dade03e",
-    "taskNumber": 24,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-10-11-ege-chinese-24"
-    },
-    "codifierCodes": [
-      "2.4.49",
-      "2.4.61"
-    ],
-    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
-    "stem": "这个手机不贵，学生也用___。",
-    "options": [
-      {
-        "id": "1",
-        "text": "得起"
-      },
-      {
-        "id": "2",
-        "text": "得住"
-      },
-      {
-        "id": "3",
-        "text": "得动"
-      },
-      {
-        "id": "4",
-        "text": "得完"
-      }
-    ],
-    "correctOptionId": "1"
   },
   {
     "id": "g24-8f168f0a",
