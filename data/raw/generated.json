@@ -210,6 +210,41 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g16-3a64c3a1",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-10-claude-16"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "图书馆三楼有一___很安静的阅览室，我常去那儿看书。",
+    "options": [
+      {
+        "id": "1",
+        "text": "门"
+      },
+      {
+        "id": "2",
+        "text": "间"
+      },
+      {
+        "id": "3",
+        "text": "片"
+      },
+      {
+        "id": "4",
+        "text": "块"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g16-42af8625",
     "taskNumber": 16,
     "formatYear": 2026,
@@ -416,41 +451,6 @@
       {
         "id": "4",
         "text": "件"
-      }
-    ],
-    "correctOptionId": "2"
-  },
-  {
-    "id": "g16-6daa063a",
-    "taskNumber": 16,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-10-10-claude-16"
-    },
-    "codifierCodes": [
-      "2.4.33"
-    ],
-    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
-    "stem": "上大学以后，我和三个同学住一___宿舍。",
-    "options": [
-      {
-        "id": "1",
-        "text": "门"
-      },
-      {
-        "id": "2",
-        "text": "间"
-      },
-      {
-        "id": "3",
-        "text": "片"
-      },
-      {
-        "id": "4",
-        "text": "块"
       }
     ],
     "correctOptionId": "2"

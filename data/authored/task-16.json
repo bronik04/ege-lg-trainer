@@ -1,6 +1,6 @@
 {
   "g16-00c7b64b": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -24,10 +24,11 @@
         "4": "棵"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "d70fcb24523f"
   },
   "g16-14ab7588": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -51,7 +52,8 @@
         "4": "把"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "f41c0a9738e6"
   },
   "g16-163654d8": {
     "status": "accepted",
@@ -82,7 +84,7 @@
     "acceptedHash": "33dfe71bde4b"
   },
   "g16-17beafb0": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -106,7 +108,8 @@
         "4": "块"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "f26ab6222af7"
   },
   "g16-2b398368": {
     "status": "accepted",
@@ -137,7 +140,7 @@
     "acceptedHash": "2d8146c7f139"
   },
   "g16-2d6fe64c": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -161,10 +164,38 @@
         "4": "本"
       },
       "correctOptionId": "3"
+    },
+    "acceptedHash": "26a502ce4b2d"
+  },
+  "g16-3a64c3a1": {
+    "status": "draft",
+    "topicIds": [
+      "measure-words"
+    ],
+    "ruleIds": [
+      "measure-words-more"
+    ],
+    "explanation": {
+      "correct": "间 считает комнаты и помещения: 一间阅览室 «читальный зал», 一间卧室.",
+      "options": {
+        "1": "门 — для учебных предметов и языков: 一门课. В библиотеке читают книги по разным предметам, но считают здесь помещение — 一间阅览室.",
+        "3": "片 — для открытых пространств и тонких кусочков: 一片森林, 一片面包. Читальный зал — закрытое помещение, поэтому 间.",
+        "4": "块 — для кусков и участков: 一块肉, 一块地 «участок земли». Зал на третьем этаже — комната, а не участок; комнаты считают 间."
+      }
+    },
+    "sourceSnapshot": {
+      "stem": "图书馆三楼有一___很安静的阅览室，我常去那儿看书。",
+      "options": {
+        "1": "门",
+        "2": "间",
+        "3": "片",
+        "4": "块"
+      },
+      "correctOptionId": "2"
     }
   },
   "g16-42af8625": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -188,7 +219,8 @@
         "4": "碗"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "60be1dcbe799"
   },
   "g16-4acbebb8": {
     "status": "accepted",
@@ -303,7 +335,7 @@
     "acceptedHash": "7a42df510bb4"
   },
   "g16-6d4e93c7": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -327,37 +359,11 @@
         "4": "件"
       },
       "correctOptionId": "2"
-    }
-  },
-  "g16-6daa063a": {
-    "status": "draft",
-    "topicIds": [
-      "measure-words"
-    ],
-    "ruleIds": [
-      "measure-words-more"
-    ],
-    "explanation": {
-      "correct": "间 считает комнаты и помещения: 住一间宿舍 «жить в одной комнате общежития», 一间卧室.",
-      "options": {
-        "1": "门 — для учебных предметов и языков: 一门课. В университете много предметов, но здесь считают комнату, где живут, — 一间宿舍.",
-        "3": "片 — для открытых пространств и тонких кусочков: 一片森林, 一片面包. Комната в общежитии — закрытое помещение, поэтому 间.",
-        "4": "块 — для кусков и участков: 一块肉, 一块地 «участок земли». Комната — не участок; комнаты считают 间."
-      }
     },
-    "sourceSnapshot": {
-      "stem": "上大学以后，我和三个同学住一___宿舍。",
-      "options": {
-        "1": "门",
-        "2": "间",
-        "3": "片",
-        "4": "块"
-      },
-      "correctOptionId": "2"
-    }
+    "acceptedHash": "a0181b97f22e"
   },
   "g16-8a7b5ffe": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -381,10 +387,11 @@
         "4": "碗"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "884d6f705b57"
   },
   "g16-a135e88d": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -408,7 +415,8 @@
         "4": "块"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "5c22d06fe644"
   },
   "g16-ae767b94": {
     "status": "accepted",
@@ -495,7 +503,7 @@
     "acceptedHash": "cde011c5e116"
   },
   "g16-cbbd46c0": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -519,10 +527,11 @@
         "4": "块"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "06f7c8c04dae"
   },
   "g16-f406b258": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -546,7 +555,8 @@
         "4": "把"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "c8a931fecc1a"
   },
   "q16-02da78dd": {
     "status": "accepted",
