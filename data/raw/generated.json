@@ -2626,6 +2626,37 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g20-0307df33",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-10-ege-chinese-20"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "他来北京已经十年了，可是一次也没爬___香山。",
+    "options": [
+      {
+        "id": "1",
+        "text": "了"
+      },
+      {
+        "id": "2",
+        "text": "过"
+      },
+      {
+        "id": "3",
+        "text": "着"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g20-05f00f7a",
     "taskNumber": 20,
     "formatYear": 2026,
@@ -2688,7 +2719,7 @@
     "correctOptionId": "1"
   },
   {
-    "id": "g20-30a069bc",
+    "id": "g20-1d4d5aa8",
     "taskNumber": 20,
     "formatYear": 2026,
     "origin": "generated",
@@ -2701,7 +2732,7 @@
       "2.4.35"
     ],
     "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
-    "stem": "你到___广州就给我发个短信，别让妈妈担心。",
+    "stem": "哥哥大学毕___业就去上海工作了。",
     "options": [
       {
         "id": "1",
@@ -2717,6 +2748,68 @@
       }
     ],
     "correctOptionId": "1"
+  },
+  {
+    "id": "g20-1f05c1ac",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-10-ege-chinese-20"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "姐姐练___整整一个下午的钢琴，现在手指都疼了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "了"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "过"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g20-5112991c",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-10-ege-chinese-20"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "她闭___眼睛听音乐，一动也不动。",
+    "options": [
+      {
+        "id": "1",
+        "text": "了"
+      },
+      {
+        "id": "2",
+        "text": "过"
+      },
+      {
+        "id": "3",
+        "text": "着"
+      }
+    ],
+    "correctOptionId": "3"
   },
   {
     "id": "g20-545c9b50",
@@ -2812,37 +2905,6 @@
     "correctOptionId": "2"
   },
   {
-    "id": "g20-7fbbad73",
-    "taskNumber": 20,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-10-10-ege-chinese-20"
-    },
-    "codifierCodes": [
-      "2.4.35"
-    ],
-    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
-    "stem": "这部电影我好像在哪儿看___，你知道它叫什么吗？",
-    "options": [
-      {
-        "id": "1",
-        "text": "了"
-      },
-      {
-        "id": "2",
-        "text": "过"
-      },
-      {
-        "id": "3",
-        "text": "着"
-      }
-    ],
-    "correctOptionId": "2"
-  },
-  {
     "id": "g20-839de541",
     "taskNumber": 20,
     "formatYear": 2026,
@@ -2906,7 +2968,7 @@
     "correctOptionId": "1"
   },
   {
-    "id": "g20-98c78b3a",
+    "id": "g20-8c6e28f4",
     "taskNumber": 20,
     "formatYear": 2026,
     "origin": "generated",
@@ -2919,7 +2981,7 @@
       "2.4.35"
     ],
     "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
-    "stem": "他习惯听___音乐写作业。",
+    "stem": "这道题我好像在哪儿做___，可是忘了怎么做。",
     "options": [
       {
         "id": "1",
@@ -2934,7 +2996,7 @@
         "text": "着"
       }
     ],
-    "correctOptionId": "3"
+    "correctOptionId": "2"
   },
   {
     "id": "g20-a3e275ad",
@@ -2966,68 +3028,6 @@
       }
     ],
     "correctOptionId": "3"
-  },
-  {
-    "id": "g20-bce6c7ac",
-    "taskNumber": 20,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-10-10-ege-chinese-20"
-    },
-    "codifierCodes": [
-      "2.4.35"
-    ],
-    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
-    "stem": "他来北京已经十年了，可是一次也没爬___长城。",
-    "options": [
-      {
-        "id": "1",
-        "text": "了"
-      },
-      {
-        "id": "2",
-        "text": "过"
-      },
-      {
-        "id": "3",
-        "text": "着"
-      }
-    ],
-    "correctOptionId": "2"
-  },
-  {
-    "id": "g20-c52c1bdc",
-    "taskNumber": 20,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-10-10-ege-chinese-20"
-    },
-    "codifierCodes": [
-      "2.4.35"
-    ],
-    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
-    "stem": "孩子们玩___整整一个下午，现在都累了。",
-    "options": [
-      {
-        "id": "1",
-        "text": "了"
-      },
-      {
-        "id": "2",
-        "text": "着"
-      },
-      {
-        "id": "3",
-        "text": "过"
-      }
-    ],
-    "correctOptionId": "1"
   },
   {
     "id": "g20-cc2c642c",
