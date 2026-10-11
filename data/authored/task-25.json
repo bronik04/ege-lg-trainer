@@ -1,6 +1,6 @@
 {
   "g25-09aefac7": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -24,10 +24,11 @@
         "4": "出来"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "1229bc6b0acd"
   },
   "g25-10fac7ba": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -51,10 +52,11 @@
         "4": "出来"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "5b19136350b4"
   },
   "g25-16213053": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -78,10 +80,11 @@
         "4": "起来"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "80178112aaa4"
   },
   "g25-1be07687": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -105,10 +108,11 @@
         "4": "出来"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "a22b3bc50836"
   },
   "g25-1f8e0bb7": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -132,10 +136,11 @@
         "4": "进来"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "bf68033c8891"
   },
   "g25-3c3818ae": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -159,10 +164,11 @@
         "4": "上来"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "22655e957349"
   },
   "g25-49a71e85": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -186,10 +192,11 @@
         "4": "回来"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "6e2f351920f5"
   },
   "g25-644e97ce": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -213,10 +220,11 @@
         "4": "下去"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "dd2073def571"
   },
   "g25-73a9895b": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -240,10 +248,11 @@
         "4": "上去"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "3d216bf45a23"
   },
   "g25-7c37e176": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -267,10 +276,11 @@
         "4": "回去"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "dc5a7a31f552"
   },
   "g25-84b6294e": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -294,10 +304,11 @@
         "4": "回去"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "0a2e52ca6fc8"
   },
   "g25-87895ef6": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -321,10 +332,11 @@
         "4": "进来"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "9345f43c192a"
   },
   "g25-8c738c19": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -348,10 +360,11 @@
         "4": "出去"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "060b90dc2f2d"
   },
   "g25-a6a3cc69": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -375,10 +388,11 @@
         "4": "回来"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "81b8947a9dfd"
   },
   "g25-c4497b22": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -402,10 +416,11 @@
         "4": "上去"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "35bc27fd8897"
   },
   "g25-d50635e7": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -429,10 +444,11 @@
         "4": "下去"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "31e43edab78f"
   },
   "g25-da3335aa": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -456,10 +472,11 @@
         "4": "下去"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "18578336a8d1"
   },
   "g25-e175fb04": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -483,10 +500,11 @@
         "4": "过去"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "6e5587a9eed4"
   },
   "g25-fb5ab152": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -510,10 +528,11 @@
         "4": "过去"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "64f506af0d29"
   },
   "g25-ff8ba14c": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -537,7 +556,8 @@
         "4": "进来"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "4c3a2e11a14c"
   },
   "q25-06e87779": {
     "status": "accepted",

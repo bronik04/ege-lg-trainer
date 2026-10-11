@@ -1,6 +1,6 @@
 {
   "g27-089ae898": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -24,10 +24,11 @@
         "4": "不是……，而是……"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "7a2dce11f37d"
   },
   "g27-100243c4": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -51,10 +52,11 @@
         "4": "虽然……，但是……"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "fe59c8c132e2"
   },
   "g27-1dbe091e": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -78,10 +80,11 @@
         "4": "又……，又……"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "f3480d96ac65"
   },
   "g27-214acde3": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -105,10 +108,11 @@
         "4": "一……，就……"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "939848cf8cb2"
   },
   "g27-2dd40af9": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -132,10 +136,11 @@
         "4": "连……，都……"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "5a6a930d6c82"
   },
   "g27-4a61b10d": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -159,10 +164,11 @@
         "4": "只要……，就……"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "d6800fafa2c1"
   },
   "g27-50a4add5": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -186,10 +192,11 @@
         "4": "不管……，都……"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "abad0ab58925"
   },
   "g27-5c3258d7": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -213,10 +220,11 @@
         "4": "不但……，而且……"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "278917bc4956"
   },
   "g27-5ec1c1c4": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -240,7 +248,8 @@
         "4": "连……，都……"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "8abbb53a3e8a"
   },
   "g27-63fb4af3": {
     "status": "accepted",
@@ -327,7 +336,7 @@
     "acceptedHash": "367d4e0a58f5"
   },
   "g27-8bf3f91c": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -351,10 +360,11 @@
         "4": "即使……，也……"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "086d44171190"
   },
   "g27-a4d26a35": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -378,7 +388,8 @@
         "4": "因为……，所以……"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "0313df227cc8"
   },
   "g27-afa50163": {
     "status": "accepted",
@@ -409,7 +420,7 @@
     "acceptedHash": "268e9c138e29"
   },
   "g27-b495165e": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -433,10 +444,11 @@
         "4": "只有……，才……"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "170228c76031"
   },
   "g27-bc790d04": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -460,10 +472,11 @@
         "4": "虽然……，但是……"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "5f588f43ee7b"
   },
   "g27-c58c515b": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -487,7 +500,8 @@
         "4": "又……，又……"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "6357f102f572"
   },
   "g27-c9ae1c38": {
     "status": "accepted",
@@ -518,7 +532,7 @@
     "acceptedHash": "80c253ccd0ba"
   },
   "g27-cd38c9b1": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -542,10 +556,11 @@
         "4": "又……，又……"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "d345145c0284"
   },
   "g27-d55e6006": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -569,10 +584,11 @@
         "4": "一边……，一边……"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "4e4d64973da8"
   },
   "g27-e0f245fa": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -596,7 +612,8 @@
         "4": "连……，都……"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "383fe4f7ce8d"
   },
   "g27-e4cd0ae2": {
     "status": "accepted",
@@ -655,7 +672,7 @@
     "acceptedHash": "3a1ec8ba550e"
   },
   "g27-ede8b5d4": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -679,7 +696,8 @@
         "4": "一边……，一边……"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "3811ebd3c886"
   },
   "g27-f19a27db": {
     "status": "accepted",
@@ -710,7 +728,7 @@
     "acceptedHash": "d2ca5cbf550d"
   },
   "g27-f3efc2c8": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -734,10 +752,11 @@
         "4": "越……，越……"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "2b7ede23974f"
   },
   "g27-f8226abc": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -761,7 +780,8 @@
         "4": "虽然……，但是……"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "b9de1cee7753"
   },
   "q27-0ee06dd4": {
     "status": "accepted",

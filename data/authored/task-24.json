@@ -140,7 +140,7 @@
     "acceptedHash": "768dc720fe04"
   },
   "g24-2a8c8726": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -164,7 +164,8 @@
         "4": "得完"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "e20885de2e73"
   },
   "g24-5fa6adb2": {
     "status": "accepted",
@@ -447,7 +448,7 @@
     "acceptedHash": "15f920e6e49c"
   },
   "g24-d2329cdf": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -471,10 +472,11 @@
         "4": "得完"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "eeb56f71eade"
   },
   "g24-dd8c2ca8": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -498,10 +500,11 @@
         "4": "不下"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "9a82dc66df28"
   },
   "g24-e9ff531b": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -525,10 +528,11 @@
         "4": "不了"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "335657dc4f60"
   },
   "g24-f3469684": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -552,7 +556,8 @@
         "4": "不住"
       },
       "correctOptionId": "3"
-    }
+    },
+    "acceptedHash": "7dfe57e61b9a"
   },
   "q24-04dd2ec3": {
     "status": "accepted",

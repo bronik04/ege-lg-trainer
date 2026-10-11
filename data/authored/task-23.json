@@ -1,6 +1,6 @@
 {
   "g23-02759bdf": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "result-complements"
     ],
@@ -24,7 +24,8 @@
         "4": "下"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "b74c677c74dd"
   },
   "g23-0731cdea": {
     "status": "accepted",
