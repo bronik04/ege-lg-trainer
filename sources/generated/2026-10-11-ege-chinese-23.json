@@ -1,0 +1,286 @@
+{
+  "generator": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+  "specVersion": "ЕГЭ 2026",
+  "tasks": [
+    {
+      "taskNumber": 23,
+      "stem": "妈妈让我做的事，我一定办___。",
+      "options": [
+        "好",
+        "懂",
+        "坏",
+        "错"
+      ],
+      "key": 1,
+      "codifierCodes": [
+        "2.4.64"
+      ]
+    },
+    {
+      "taskNumber": 23,
+      "stem": "这篇课文我读了三遍才读___。",
+      "options": [
+        "掉",
+        "坏",
+        "懂",
+        "光"
+      ],
+      "key": 3,
+      "codifierCodes": [
+        "2.4.64"
+      ]
+    },
+    {
+      "taskNumber": 23,
+      "stem": "这个说明书非常简单，我一看就看___了。",
+      "options": [
+        "成",
+        "住",
+        "错",
+        "懂"
+      ],
+      "key": 4,
+      "codifierCodes": [
+        "2.4.64"
+      ]
+    },
+    {
+      "taskNumber": 23,
+      "stem": "门口的大树挡___了阳光，房间里很暗。",
+      "options": [
+        "坏",
+        "住",
+        "完",
+        "懂"
+      ],
+      "key": 2,
+      "codifierCodes": [
+        "2.4.64"
+      ]
+    },
+    {
+      "taskNumber": 23,
+      "stem": "他把“大”字写___了“太”字。",
+      "options": [
+        "完",
+        "成",
+        "上",
+        "好"
+      ],
+      "key": 2,
+      "codifierCodes": [
+        "2.4.64"
+      ]
+    },
+    {
+      "taskNumber": 23,
+      "stem": "这台旧电脑用了十年，终于用___了。",
+      "options": [
+        "成",
+        "错",
+        "住",
+        "坏"
+      ],
+      "key": 4,
+      "codifierCodes": [
+        "2.4.64"
+      ]
+    },
+    {
+      "taskNumber": 23,
+      "stem": "爸爸把阳台改___小花园了。",
+      "options": [
+        "掉",
+        "光",
+        "成",
+        "好"
+      ],
+      "key": 3,
+      "codifierCodes": [
+        "2.4.64"
+      ]
+    },
+    {
+      "taskNumber": 23,
+      "stem": "这道题你算___了，答案应该是十五。",
+      "options": [
+        "会",
+        "住",
+        "错",
+        "成"
+      ],
+      "key": 3,
+      "codifierCodes": [
+        "2.4.64"
+      ]
+    },
+    {
+      "taskNumber": 23,
+      "stem": "他跑得很快，没多久就追___了前面的同学。",
+      "options": [
+        "上",
+        "掉",
+        "好",
+        "光"
+      ],
+      "key": 1,
+      "codifierCodes": [
+        "2.4.64"
+      ]
+    },
+    {
+      "taskNumber": 23,
+      "stem": "商店里的面包一下子就卖___了。",
+      "options": [
+        "坏",
+        "错",
+        "光",
+        "到"
+      ],
+      "key": 3,
+      "codifierCodes": [
+        "2.4.64"
+      ]
+    },
+    {
+      "taskNumber": 23,
+      "stem": "我们一直走___河边，才停下来休息。",
+      "options": [
+        "完",
+        "好",
+        "给",
+        "到"
+      ],
+      "key": 4,
+      "codifierCodes": [
+        "2.4.64"
+      ]
+    },
+    {
+      "taskNumber": 23,
+      "stem": "这个孩子太淘气，把新买的玩具玩___了。",
+      "options": [
+        "成",
+        "坏",
+        "会",
+        "住"
+      ],
+      "key": 2,
+      "codifierCodes": [
+        "2.4.64"
+      ]
+    },
+    {
+      "taskNumber": 23,
+      "stem": "请大家坐___，我们马上就要出发了。",
+      "options": [
+        "到",
+        "懂",
+        "坏",
+        "好"
+      ],
+      "key": 4,
+      "codifierCodes": [
+        "2.4.64"
+      ]
+    },
+    {
+      "taskNumber": 23,
+      "stem": "电影演___了，人们都往外走。",
+      "options": [
+        "光",
+        "会",
+        "完",
+        "懂"
+      ],
+      "key": 3,
+      "codifierCodes": [
+        "2.4.64"
+      ]
+    },
+    {
+      "taskNumber": 23,
+      "stem": "孩子用小手紧紧地抓___妈妈的衣服，不让她走。",
+      "options": [
+        "住",
+        "会",
+        "完",
+        "懂"
+      ],
+      "key": 1,
+      "codifierCodes": [
+        "2.4.64"
+      ]
+    },
+    {
+      "taskNumber": 23,
+      "stem": "请把盐递___我，谢谢。",
+      "options": [
+        "下",
+        "给",
+        "在",
+        "掉"
+      ],
+      "key": 2,
+      "codifierCodes": [
+        "2.4.64"
+      ]
+    },
+    {
+      "taskNumber": 23,
+      "stem": "我想把这张旧照片从手机里删___。",
+      "options": [
+        "掉",
+        "成",
+        "到",
+        "上"
+      ],
+      "key": 1,
+      "codifierCodes": [
+        "2.4.64"
+      ]
+    },
+    {
+      "taskNumber": 23,
+      "stem": "他摘___眼镜，用手擦了擦眼睛。",
+      "options": [
+        "在",
+        "完",
+        "光",
+        "下"
+      ],
+      "key": 4,
+      "codifierCodes": [
+        "2.4.64"
+      ]
+    },
+    {
+      "taskNumber": 23,
+      "stem": "我在北京遇___了多年没见的老朋友。",
+      "options": [
+        "会",
+        "到",
+        "住",
+        "好"
+      ],
+      "key": 2,
+      "codifierCodes": [
+        "2.4.64"
+      ]
+    },
+    {
+      "taskNumber": 23,
+      "stem": "他把车停___了学校门口。",
+      "options": [
+        "在",
+        "掉",
+        "给",
+        "下"
+      ],
+      "key": 1,
+      "codifierCodes": [
+        "2.4.64"
+      ]
+    }
+  ]
+}

@@ -3910,6 +3910,76 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g23-119dd0c3",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-23"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "我在北京遇___了多年没见的老朋友。",
+    "options": [
+      {
+        "id": "1",
+        "text": "会"
+      },
+      {
+        "id": "2",
+        "text": "到"
+      },
+      {
+        "id": "3",
+        "text": "住"
+      },
+      {
+        "id": "4",
+        "text": "好"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g23-12f1c267",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-23"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "这篇课文我读了三遍才读___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "掉"
+      },
+      {
+        "id": "2",
+        "text": "坏"
+      },
+      {
+        "id": "3",
+        "text": "懂"
+      },
+      {
+        "id": "4",
+        "text": "光"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g23-16e4501a",
     "taskNumber": 23,
     "formatYear": 2026,
@@ -4009,6 +4079,76 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g23-49a0684c",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-23"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "他把“大”字写___了“太”字。",
+    "options": [
+      {
+        "id": "1",
+        "text": "完"
+      },
+      {
+        "id": "2",
+        "text": "成"
+      },
+      {
+        "id": "3",
+        "text": "上"
+      },
+      {
+        "id": "4",
+        "text": "好"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g23-5381e5fc",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-23"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "妈妈让我做的事，我一定办___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "好"
+      },
+      {
+        "id": "2",
+        "text": "懂"
+      },
+      {
+        "id": "3",
+        "text": "坏"
+      },
+      {
+        "id": "4",
+        "text": "错"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
     "id": "g23-5db944d0",
     "taskNumber": 23,
     "formatYear": 2026,
@@ -4037,6 +4177,111 @@
       {
         "id": "4",
         "text": "下"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g23-68d02128",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-23"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "孩子用小手紧紧地抓___妈妈的衣服，不让她走。",
+    "options": [
+      {
+        "id": "1",
+        "text": "住"
+      },
+      {
+        "id": "2",
+        "text": "会"
+      },
+      {
+        "id": "3",
+        "text": "完"
+      },
+      {
+        "id": "4",
+        "text": "懂"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g23-7bc8f653",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-23"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "他跑得很快，没多久就追___了前面的同学。",
+    "options": [
+      {
+        "id": "1",
+        "text": "上"
+      },
+      {
+        "id": "2",
+        "text": "掉"
+      },
+      {
+        "id": "3",
+        "text": "好"
+      },
+      {
+        "id": "4",
+        "text": "光"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g23-8dc0d5d0",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-23"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "这台旧电脑用了十年，终于用___了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "成"
+      },
+      {
+        "id": "2",
+        "text": "错"
+      },
+      {
+        "id": "3",
+        "text": "住"
+      },
+      {
+        "id": "4",
+        "text": "坏"
       }
     ],
     "correctOptionId": "4"
@@ -4075,6 +4320,181 @@
     "correctOptionId": "4"
   },
   {
+    "id": "g23-948af315",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-23"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "他把车停___了学校门口。",
+    "options": [
+      {
+        "id": "1",
+        "text": "在"
+      },
+      {
+        "id": "2",
+        "text": "掉"
+      },
+      {
+        "id": "3",
+        "text": "给"
+      },
+      {
+        "id": "4",
+        "text": "下"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g23-975dd0f3",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-23"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "请大家坐___，我们马上就要出发了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "到"
+      },
+      {
+        "id": "2",
+        "text": "懂"
+      },
+      {
+        "id": "3",
+        "text": "坏"
+      },
+      {
+        "id": "4",
+        "text": "好"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g23-a3968d97",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-23"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "他摘___眼镜，用手擦了擦眼睛。",
+    "options": [
+      {
+        "id": "1",
+        "text": "在"
+      },
+      {
+        "id": "2",
+        "text": "完"
+      },
+      {
+        "id": "3",
+        "text": "光"
+      },
+      {
+        "id": "4",
+        "text": "下"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g23-a53a8786",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-23"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "商店里的面包一下子就卖___了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "坏"
+      },
+      {
+        "id": "2",
+        "text": "错"
+      },
+      {
+        "id": "3",
+        "text": "光"
+      },
+      {
+        "id": "4",
+        "text": "到"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g23-afdc6deb",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-23"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "这道题你算___了，答案应该是十五。",
+    "options": [
+      {
+        "id": "1",
+        "text": "会"
+      },
+      {
+        "id": "2",
+        "text": "住"
+      },
+      {
+        "id": "3",
+        "text": "错"
+      },
+      {
+        "id": "4",
+        "text": "成"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g23-b08ea360",
     "taskNumber": 23,
     "formatYear": 2026,
@@ -4108,6 +4528,76 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g23-be26bb0f",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-23"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "门口的大树挡___了阳光，房间里很暗。",
+    "options": [
+      {
+        "id": "1",
+        "text": "坏"
+      },
+      {
+        "id": "2",
+        "text": "住"
+      },
+      {
+        "id": "3",
+        "text": "完"
+      },
+      {
+        "id": "4",
+        "text": "懂"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g23-c215c51a",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-23"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "请把盐递___我，谢谢。",
+    "options": [
+      {
+        "id": "1",
+        "text": "下"
+      },
+      {
+        "id": "2",
+        "text": "给"
+      },
+      {
+        "id": "3",
+        "text": "在"
+      },
+      {
+        "id": "4",
+        "text": "掉"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g23-cc970b36",
     "taskNumber": 23,
     "formatYear": 2026,
@@ -4139,6 +4629,1636 @@
       }
     ],
     "correctOptionId": "3"
+  },
+  {
+    "id": "g23-df6b091f",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-23"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "我们一直走___河边，才停下来休息。",
+    "options": [
+      {
+        "id": "1",
+        "text": "完"
+      },
+      {
+        "id": "2",
+        "text": "好"
+      },
+      {
+        "id": "3",
+        "text": "给"
+      },
+      {
+        "id": "4",
+        "text": "到"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g23-e6330247",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-23"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "这个孩子太淘气，把新买的玩具玩___了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "成"
+      },
+      {
+        "id": "2",
+        "text": "坏"
+      },
+      {
+        "id": "3",
+        "text": "会"
+      },
+      {
+        "id": "4",
+        "text": "住"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g23-e7241056",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-23"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "我想把这张旧照片从手机里删___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "掉"
+      },
+      {
+        "id": "2",
+        "text": "成"
+      },
+      {
+        "id": "3",
+        "text": "到"
+      },
+      {
+        "id": "4",
+        "text": "上"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g23-e8db43b9",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-23"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "爸爸把阳台改___小花园了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "掉"
+      },
+      {
+        "id": "2",
+        "text": "光"
+      },
+      {
+        "id": "3",
+        "text": "成"
+      },
+      {
+        "id": "4",
+        "text": "好"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g23-eba1cffb",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-23"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "这个说明书非常简单，我一看就看___了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "成"
+      },
+      {
+        "id": "2",
+        "text": "住"
+      },
+      {
+        "id": "3",
+        "text": "错"
+      },
+      {
+        "id": "4",
+        "text": "懂"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g23-fe0a4259",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-23"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "电影演___了，人们都往外走。",
+    "options": [
+      {
+        "id": "1",
+        "text": "光"
+      },
+      {
+        "id": "2",
+        "text": "会"
+      },
+      {
+        "id": "3",
+        "text": "完"
+      },
+      {
+        "id": "4",
+        "text": "懂"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g24-1766fb8d",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-24"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "这根绳子很结实，挂___这么重的东西。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得住"
+      },
+      {
+        "id": "2",
+        "text": "不住"
+      },
+      {
+        "id": "3",
+        "text": "得起"
+      },
+      {
+        "id": "4",
+        "text": "得懂"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g24-1912bd42",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-24"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "我们想把新买的冰箱搬进厨房，可是门太窄了，怎么也搬___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得进去"
+      },
+      {
+        "id": "2",
+        "text": "不进去"
+      },
+      {
+        "id": "3",
+        "text": "不起来"
+      },
+      {
+        "id": "4",
+        "text": "不出来"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g24-2d50be3f",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-24"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "这种水果现在很常见，在哪个超市都买___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得住"
+      },
+      {
+        "id": "2",
+        "text": "得见"
+      },
+      {
+        "id": "3",
+        "text": "得到"
+      },
+      {
+        "id": "4",
+        "text": "得动"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g24-397eeee5",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-24"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "国庆节快到了，去北京的火车票都订___了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不到"
+      },
+      {
+        "id": "2",
+        "text": "不动"
+      },
+      {
+        "id": "3",
+        "text": "不懂"
+      },
+      {
+        "id": "4",
+        "text": "不完"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g24-5fa6adb2",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-24"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "我累得一点儿力气也没有，连书包都背___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得动"
+      },
+      {
+        "id": "2",
+        "text": "不完"
+      },
+      {
+        "id": "3",
+        "text": "不懂"
+      },
+      {
+        "id": "4",
+        "text": "不动"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g24-78d7c578",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-24"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "我已经吃得很饱了，一口也吃___了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不懂"
+      },
+      {
+        "id": "2",
+        "text": "不住"
+      },
+      {
+        "id": "3",
+        "text": "不下"
+      },
+      {
+        "id": "4",
+        "text": "得下"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g24-8cc1f06b",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-24"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "这辆车很大，坐___七个人。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不动"
+      },
+      {
+        "id": "2",
+        "text": "得到"
+      },
+      {
+        "id": "3",
+        "text": "得见"
+      },
+      {
+        "id": "4",
+        "text": "得下"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g24-8dade03e",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-24"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "这个手机不贵，学生也用___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得起"
+      },
+      {
+        "id": "2",
+        "text": "得住"
+      },
+      {
+        "id": "3",
+        "text": "得动"
+      },
+      {
+        "id": "4",
+        "text": "得完"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g24-8f168f0a",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-24"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "你站在这儿，看___前面的山吗？",
+    "options": [
+      {
+        "id": "1",
+        "text": "得起"
+      },
+      {
+        "id": "2",
+        "text": "得见"
+      },
+      {
+        "id": "3",
+        "text": "得完"
+      },
+      {
+        "id": "4",
+        "text": "得懂"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g24-a7483188",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-24"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "这么多饺子，我们三个人包___，叫妹妹来帮忙吧。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不起"
+      },
+      {
+        "id": "2",
+        "text": "不到"
+      },
+      {
+        "id": "3",
+        "text": "不下"
+      },
+      {
+        "id": "4",
+        "text": "不完"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g24-add19066",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-24"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "我们家的冰箱很大，这么大的西瓜也放___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得下"
+      },
+      {
+        "id": "2",
+        "text": "不起"
+      },
+      {
+        "id": "3",
+        "text": "得完"
+      },
+      {
+        "id": "4",
+        "text": "得到"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g24-b02ed8a0",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-24"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "他家里很穷，差点儿上___大学，是老师帮了他。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不动"
+      },
+      {
+        "id": "2",
+        "text": "不起"
+      },
+      {
+        "id": "3",
+        "text": "不到"
+      },
+      {
+        "id": "4",
+        "text": "得起"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g24-bad89b05",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-24"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "这本小说写得很简单，学了一年汉语的学生也看___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得起"
+      },
+      {
+        "id": "2",
+        "text": "得下"
+      },
+      {
+        "id": "3",
+        "text": "得懂"
+      },
+      {
+        "id": "4",
+        "text": "不下"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g24-c375226c",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-24"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "这桶水不太重，我一个人提___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不了"
+      },
+      {
+        "id": "2",
+        "text": "得动"
+      },
+      {
+        "id": "3",
+        "text": "得完"
+      },
+      {
+        "id": "4",
+        "text": "得下"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g24-d2329cdf",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-24"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "这幅画不大，一个上午我画___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不了"
+      },
+      {
+        "id": "2",
+        "text": "得住"
+      },
+      {
+        "id": "3",
+        "text": "不完"
+      },
+      {
+        "id": "4",
+        "text": "得完"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g24-dafa8a68",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-24"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "他的病好多了，下个星期就出___院了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得动"
+      },
+      {
+        "id": "2",
+        "text": "得了"
+      },
+      {
+        "id": "3",
+        "text": "得下"
+      },
+      {
+        "id": "4",
+        "text": "不了"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g24-db76779e",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-24"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "这道菜里放了什么调料，我怎么也吃___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得出来"
+      },
+      {
+        "id": "2",
+        "text": "不进去"
+      },
+      {
+        "id": "3",
+        "text": "不出来"
+      },
+      {
+        "id": "4",
+        "text": "不起来"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g24-edc7e666",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-24"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "地上太滑了，我站___，差点儿摔倒。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不住"
+      },
+      {
+        "id": "2",
+        "text": "得住"
+      },
+      {
+        "id": "3",
+        "text": "不下"
+      },
+      {
+        "id": "4",
+        "text": "不到"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g24-f3469684",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-24"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "我的腿受伤了，这个星期踢___足球了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不起"
+      },
+      {
+        "id": "2",
+        "text": "得了"
+      },
+      {
+        "id": "3",
+        "text": "不了"
+      },
+      {
+        "id": "4",
+        "text": "不住"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g24-fca33b5b",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-24"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "外面雨太大了，比赛今天进行___了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不起"
+      },
+      {
+        "id": "2",
+        "text": "得了"
+      },
+      {
+        "id": "3",
+        "text": "不下"
+      },
+      {
+        "id": "4",
+        "text": "不了"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g25-09aefac7",
+    "taskNumber": 25,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-25"
+    },
+    "codifierCodes": [
+      "2.4.53"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "这个礼物是谁送的，大家很快就猜___了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "进去"
+      },
+      {
+        "id": "2",
+        "text": "过来"
+      },
+      {
+        "id": "3",
+        "text": "上来"
+      },
+      {
+        "id": "4",
+        "text": "出来"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g25-0b13e1b7",
+    "taskNumber": 25,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-25"
+    },
+    "codifierCodes": [
+      "2.4.53"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "进门以前，请把鞋脱___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "出来"
+      },
+      {
+        "id": "2",
+        "text": "起来"
+      },
+      {
+        "id": "3",
+        "text": "下来"
+      },
+      {
+        "id": "4",
+        "text": "下去"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g25-16213053",
+    "taskNumber": 25,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-25"
+    },
+    "codifierCodes": [
+      "2.4.53"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "小鸟从窗户飞___，再也没回来。",
+    "options": [
+      {
+        "id": "1",
+        "text": "进来"
+      },
+      {
+        "id": "2",
+        "text": "下来"
+      },
+      {
+        "id": "3",
+        "text": "出去"
+      },
+      {
+        "id": "4",
+        "text": "起来"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g25-3c3818ae",
+    "taskNumber": 25,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-25"
+    },
+    "codifierCodes": [
+      "2.4.53"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "门开着，外面的冷风一直吹___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "回去"
+      },
+      {
+        "id": "2",
+        "text": "进来"
+      },
+      {
+        "id": "3",
+        "text": "出去"
+      },
+      {
+        "id": "4",
+        "text": "上来"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g25-49a71e85",
+    "taskNumber": 25,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-25"
+    },
+    "codifierCodes": [
+      "2.4.53"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "山顶上的风景很美，你们爬___看看吧，我在山下等你们。",
+    "options": [
+      {
+        "id": "1",
+        "text": "上去"
+      },
+      {
+        "id": "2",
+        "text": "出去"
+      },
+      {
+        "id": "3",
+        "text": "上来"
+      },
+      {
+        "id": "4",
+        "text": "回来"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g25-644e97ce",
+    "taskNumber": 25,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-25"
+    },
+    "codifierCodes": [
+      "2.4.53"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "你在楼下等一会儿，我把书包给你拿___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "上来"
+      },
+      {
+        "id": "2",
+        "text": "进来"
+      },
+      {
+        "id": "3",
+        "text": "上去"
+      },
+      {
+        "id": "4",
+        "text": "下去"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g25-73a9895b",
+    "taskNumber": 25,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-25"
+    },
+    "codifierCodes": [
+      "2.4.53"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "这件衣服太小了，我想把它退___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "回去"
+      },
+      {
+        "id": "2",
+        "text": "下来"
+      },
+      {
+        "id": "3",
+        "text": "回来"
+      },
+      {
+        "id": "4",
+        "text": "上去"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g25-7964a40c",
+    "taskNumber": 25,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-25"
+    },
+    "codifierCodes": [
+      "2.4.53"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "这本书你看完了吗？看完了就带___吧，送给你了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "进来"
+      },
+      {
+        "id": "2",
+        "text": "回去"
+      },
+      {
+        "id": "3",
+        "text": "回来"
+      },
+      {
+        "id": "4",
+        "text": "出来"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g25-7c37e176",
+    "taskNumber": 25,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-25"
+    },
+    "codifierCodes": [
+      "2.4.53"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "箱子在楼下，我在三楼，你帮我把它搬___吧。",
+    "options": [
+      {
+        "id": "1",
+        "text": "下去"
+      },
+      {
+        "id": "2",
+        "text": "上来"
+      },
+      {
+        "id": "3",
+        "text": "下来"
+      },
+      {
+        "id": "4",
+        "text": "回去"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g25-84b6294e",
+    "taskNumber": 25,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-25"
+    },
+    "codifierCodes": [
+      "2.4.53"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "有人掉进河里了，大家快把他拉___！",
+    "options": [
+      {
+        "id": "1",
+        "text": "下来"
+      },
+      {
+        "id": "2",
+        "text": "上来"
+      },
+      {
+        "id": "3",
+        "text": "下去"
+      },
+      {
+        "id": "4",
+        "text": "回去"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g25-8635be8f",
+    "taskNumber": 25,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-25"
+    },
+    "codifierCodes": [
+      "2.4.53"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "他想把借出去的书都要___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "出去"
+      },
+      {
+        "id": "2",
+        "text": "起来"
+      },
+      {
+        "id": "3",
+        "text": "回来"
+      },
+      {
+        "id": "4",
+        "text": "进来"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g25-8c738c19",
+    "taskNumber": 25,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-25"
+    },
+    "codifierCodes": [
+      "2.4.53"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "我把垃圾拿___，马上就回来。",
+    "options": [
+      {
+        "id": "1",
+        "text": "回来"
+      },
+      {
+        "id": "2",
+        "text": "进去"
+      },
+      {
+        "id": "3",
+        "text": "过来"
+      },
+      {
+        "id": "4",
+        "text": "出去"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g25-972d3432",
+    "taskNumber": 25,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-25"
+    },
+    "codifierCodes": [
+      "2.4.53"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "球滚到马路对面去了，弟弟想冲___捡，被妈妈拉住了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过去"
+      },
+      {
+        "id": "2",
+        "text": "过来"
+      },
+      {
+        "id": "3",
+        "text": "进去"
+      },
+      {
+        "id": "4",
+        "text": "下去"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g25-a6a3cc69",
+    "taskNumber": 25,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-25"
+    },
+    "codifierCodes": [
+      "2.4.53"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "这几本书你不用的时候，就给我送___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "出去"
+      },
+      {
+        "id": "2",
+        "text": "进去"
+      },
+      {
+        "id": "3",
+        "text": "起来"
+      },
+      {
+        "id": "4",
+        "text": "回来"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g25-b93ff934",
+    "taskNumber": 25,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-25"
+    },
+    "codifierCodes": [
+      "2.4.53"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "小狗钻___了，大家在外面叫了半天它也不出来。",
+    "options": [
+      {
+        "id": "1",
+        "text": "出去"
+      },
+      {
+        "id": "2",
+        "text": "上去"
+      },
+      {
+        "id": "3",
+        "text": "进去"
+      },
+      {
+        "id": "4",
+        "text": "进来"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g25-c4497b22",
+    "taskNumber": 25,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-25"
+    },
+    "codifierCodes": [
+      "2.4.53"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "你个子高，帮我把这个箱子放___吧，放在柜子顶上。",
+    "options": [
+      {
+        "id": "1",
+        "text": "进去"
+      },
+      {
+        "id": "2",
+        "text": "下来"
+      },
+      {
+        "id": "3",
+        "text": "出来"
+      },
+      {
+        "id": "4",
+        "text": "上去"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g25-c6ab6ba5",
+    "taskNumber": 25,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-25"
+    },
+    "codifierCodes": [
+      "2.4.53"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "小河对面有一个人在叫我，我马上跑___了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过来"
+      },
+      {
+        "id": "2",
+        "text": "上来"
+      },
+      {
+        "id": "3",
+        "text": "过去"
+      },
+      {
+        "id": "4",
+        "text": "上去"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g25-e175fb04",
+    "taskNumber": 25,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-25"
+    },
+    "codifierCodes": [
+      "2.4.53"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "请你把桌上的词典拿___，我想查一个字。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过来"
+      },
+      {
+        "id": "2",
+        "text": "回去"
+      },
+      {
+        "id": "3",
+        "text": "下去"
+      },
+      {
+        "id": "4",
+        "text": "过去"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g25-edb680f3",
+    "taskNumber": 25,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-25"
+    },
+    "codifierCodes": [
+      "2.4.53"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "里面正在开会，我们别走___，在门外等一会儿吧。",
+    "options": [
+      {
+        "id": "1",
+        "text": "上去"
+      },
+      {
+        "id": "2",
+        "text": "进去"
+      },
+      {
+        "id": "3",
+        "text": "进来"
+      },
+      {
+        "id": "4",
+        "text": "出来"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g25-fb5ab152",
+    "taskNumber": 25,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-25"
+    },
+    "codifierCodes": [
+      "2.4.53"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "雨越来越大，比赛还能进行___吗？",
+    "options": [
+      {
+        "id": "1",
+        "text": "下去"
+      },
+      {
+        "id": "2",
+        "text": "出来"
+      },
+      {
+        "id": "3",
+        "text": "起来"
+      },
+      {
+        "id": "4",
+        "text": "过去"
+      }
+    ],
+    "correctOptionId": "1"
   },
   {
     "id": "g26-005a10f4",
@@ -4876,6 +6996,258 @@
     ]
   },
   {
+    "id": "g27-0addbd63",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-27"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "___天已经黑了，我们___在这儿住一晚吧。",
+    "options": [
+      {
+        "id": "1",
+        "text": "既然……，就……"
+      },
+      {
+        "id": "2",
+        "text": "不但……，而且……"
+      },
+      {
+        "id": "3",
+        "text": "连……，都……"
+      },
+      {
+        "id": "4",
+        "text": "虽然……，但是……"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g27-100243c4",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-27"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "他___少睡一会儿，___要把今天的作业做完。",
+    "options": [
+      {
+        "id": "1",
+        "text": "只要……，就……"
+      },
+      {
+        "id": "2",
+        "text": "因为……，所以……"
+      },
+      {
+        "id": "3",
+        "text": "宁可……，也……"
+      },
+      {
+        "id": "4",
+        "text": "虽然……，但是……"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g27-2062cfe6",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-27"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "___把作业做完，妈妈___让我出去玩。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不但……，而且……"
+      },
+      {
+        "id": "2",
+        "text": "只有……，才……"
+      },
+      {
+        "id": "3",
+        "text": "不管……，都……"
+      },
+      {
+        "id": "4",
+        "text": "连……，都……"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g27-2b055457",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-27"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "这个字太难了，___我们老师___不认识。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不是……，就是……"
+      },
+      {
+        "id": "2",
+        "text": "宁可……，也……"
+      },
+      {
+        "id": "3",
+        "text": "越……，越……"
+      },
+      {
+        "id": "4",
+        "text": "连……，都……"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g27-3bec58ab",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-27"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "___汉语___，他还会说日语和韩语。",
+    "options": [
+      {
+        "id": "1",
+        "text": "除了……以外，……"
+      },
+      {
+        "id": "2",
+        "text": "不但……，而且……"
+      },
+      {
+        "id": "3",
+        "text": "因为……，所以……"
+      },
+      {
+        "id": "4",
+        "text": "只有……，才……"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g27-4a61b10d",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-27"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "这个手机很好用，___按一下这个键，___能拍照。",
+    "options": [
+      {
+        "id": "1",
+        "text": "连……，都……"
+      },
+      {
+        "id": "2",
+        "text": "不管……，都……"
+      },
+      {
+        "id": "3",
+        "text": "即使……，也……"
+      },
+      {
+        "id": "4",
+        "text": "只要……，就……"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g27-5e6e7942",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-27"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "她___会唱中国歌，___会跳中国舞。",
+    "options": [
+      {
+        "id": "1",
+        "text": "一边……，一边……"
+      },
+      {
+        "id": "2",
+        "text": "越……，越……"
+      },
+      {
+        "id": "3",
+        "text": "除了……以外，……"
+      },
+      {
+        "id": "4",
+        "text": "不但……，而且……"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
     "id": "g27-63fb4af3",
     "taskNumber": 27,
     "formatYear": 2026,
@@ -4907,6 +7279,42 @@
       }
     ],
     "correctOptionId": "1"
+  },
+  {
+    "id": "g27-697a817d",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-27"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "这种药___在医院里___能买到，药店里没有卖的。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不但……，而且……"
+      },
+      {
+        "id": "2",
+        "text": "只有……，才……"
+      },
+      {
+        "id": "3",
+        "text": "即使……，也……"
+      },
+      {
+        "id": "4",
+        "text": "不是……，而是……"
+      }
+    ],
+    "correctOptionId": "2"
   },
   {
     "id": "g27-7c9193db",
@@ -4975,6 +7383,78 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g27-860dc15e",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-27"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "这个孩子很聪明，老师___教他___会了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "一……，就……"
+      },
+      {
+        "id": "2",
+        "text": "不是……，而是……"
+      },
+      {
+        "id": "3",
+        "text": "不是……，就是……"
+      },
+      {
+        "id": "4",
+        "text": "又……，又……"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g27-8bf3f91c",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-27"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "___你不说，我___知道是谁做的。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不但……，而且……"
+      },
+      {
+        "id": "2",
+        "text": "虽然……，但是……"
+      },
+      {
+        "id": "3",
+        "text": "只要……，就……"
+      },
+      {
+        "id": "4",
+        "text": "即使……，也……"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
     "id": "g27-afa50163",
     "taskNumber": 27,
     "formatYear": 2026,
@@ -5008,6 +7488,78 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g27-bb574163",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-27"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "他每次交作业，___忘了写名字，___写错几个字。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不是……，就是……"
+      },
+      {
+        "id": "2",
+        "text": "越……，越……"
+      },
+      {
+        "id": "3",
+        "text": "只有……，才……"
+      },
+      {
+        "id": "4",
+        "text": "一……，就……"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g27-c58c515b",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-27"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "他___说___激动，眼泪都流下来了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "先……，然后……"
+      },
+      {
+        "id": "2",
+        "text": "一边……，一边……"
+      },
+      {
+        "id": "3",
+        "text": "越……，越……"
+      },
+      {
+        "id": "4",
+        "text": "又……，又……"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g27-c9ae1c38",
     "taskNumber": 27,
     "formatYear": 2026,
@@ -5039,6 +7591,150 @@
       }
     ],
     "correctOptionId": "4"
+  },
+  {
+    "id": "g27-cd38c9b1",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-27"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "这次考试，同学们___考得很好，___考得不理想。",
+    "options": [
+      {
+        "id": "1",
+        "text": "宁可……，也……"
+      },
+      {
+        "id": "2",
+        "text": "越……，越……"
+      },
+      {
+        "id": "3",
+        "text": "有的……，有的……"
+      },
+      {
+        "id": "4",
+        "text": "又……，又……"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g27-da38c013",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-27"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "我们___做完作业，___出去踢球。",
+    "options": [
+      {
+        "id": "1",
+        "text": "先……，然后……"
+      },
+      {
+        "id": "2",
+        "text": "宁可……，也……"
+      },
+      {
+        "id": "3",
+        "text": "连……，都……"
+      },
+      {
+        "id": "4",
+        "text": "一边……，一边……"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g27-dad1063c",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-27"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "___多忙，妈妈___会给我们做早饭。",
+    "options": [
+      {
+        "id": "1",
+        "text": "既然……，就……"
+      },
+      {
+        "id": "2",
+        "text": "只要……，就……"
+      },
+      {
+        "id": "3",
+        "text": "不管……，都……"
+      },
+      {
+        "id": "4",
+        "text": "因为……，所以……"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g27-e268ec27",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-27"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "___再忙，你___要按时吃饭。",
+    "options": [
+      {
+        "id": "1",
+        "text": "虽然……，但是……"
+      },
+      {
+        "id": "2",
+        "text": "即使……，也……"
+      },
+      {
+        "id": "3",
+        "text": "因为……，所以……"
+      },
+      {
+        "id": "4",
+        "text": "连……，都……"
+      }
+    ],
+    "correctOptionId": "2"
   },
   {
     "id": "g27-e4cd0ae2",
@@ -5107,6 +7803,78 @@
     "correctOptionId": "4"
   },
   {
+    "id": "g27-ec2eb747",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-27"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "___是晴天还是下雨天，爷爷___要去公园散步。",
+    "options": [
+      {
+        "id": "1",
+        "text": "只要……，就……"
+      },
+      {
+        "id": "2",
+        "text": "因为……，所以……"
+      },
+      {
+        "id": "3",
+        "text": "即使……，也……"
+      },
+      {
+        "id": "4",
+        "text": "不管……，都……"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g27-ede8b5d4",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-27"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "他做作业___快___好，老师常常表扬他。",
+    "options": [
+      {
+        "id": "1",
+        "text": "只有……，才……"
+      },
+      {
+        "id": "2",
+        "text": "有的……，有的……"
+      },
+      {
+        "id": "3",
+        "text": "又……，又……"
+      },
+      {
+        "id": "4",
+        "text": "一边……，一边……"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g27-f19a27db",
     "taskNumber": 27,
     "formatYear": 2026,
@@ -5135,6 +7903,78 @@
       {
         "id": "4",
         "text": "即使……，也……"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g27-f3efc2c8",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-27"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "弟弟___躺下___睡着了，看来他真的很累。",
+    "options": [
+      {
+        "id": "1",
+        "text": "又……，又……"
+      },
+      {
+        "id": "2",
+        "text": "一……，就……"
+      },
+      {
+        "id": "3",
+        "text": "即使……，也……"
+      },
+      {
+        "id": "4",
+        "text": "越……，越……"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g27-f8226abc",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "навык ege-chinese (Claude Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-11-ege-chinese-27"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "这个包___我的，___我妹妹的。",
+    "options": [
+      {
+        "id": "1",
+        "text": "又……，又……"
+      },
+      {
+        "id": "2",
+        "text": "不是……，而是……"
+      },
+      {
+        "id": "3",
+        "text": "有的……，有的……"
+      },
+      {
+        "id": "4",
+        "text": "虽然……，但是……"
       }
     ],
     "correctOptionId": "2"
