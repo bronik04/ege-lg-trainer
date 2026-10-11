@@ -168,7 +168,7 @@
     "acceptedHash": "26a502ce4b2d"
   },
   "g16-3a64c3a1": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "measure-words"
     ],
@@ -192,7 +192,8 @@
         "4": "块"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "c323e29f99fc"
   },
   "g16-42af8625": {
     "status": "accepted",
