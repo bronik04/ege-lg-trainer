@@ -1,5 +1,40 @@
 [
   {
+    "id": "g16-00c7b64b",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-10-claude-16"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "这___白菜真大，够我们全家吃好几天。",
+    "options": [
+      {
+        "id": "1",
+        "text": "杯"
+      },
+      {
+        "id": "2",
+        "text": "间"
+      },
+      {
+        "id": "3",
+        "text": "套"
+      },
+      {
+        "id": "4",
+        "text": "棵"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
     "id": "g16-14ab7588",
     "taskNumber": 16,
     "formatYear": 2026,
@@ -245,41 +280,6 @@
     "correctOptionId": "1"
   },
   {
-    "id": "g16-54f13acb",
-    "taskNumber": 16,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-10-10-claude-16"
-    },
-    "codifierCodes": [
-      "2.4.33"
-    ],
-    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
-    "stem": "这家宾馆只剩下一___双人房了，我们就住这儿吧。",
-    "options": [
-      {
-        "id": "1",
-        "text": "门"
-      },
-      {
-        "id": "2",
-        "text": "间"
-      },
-      {
-        "id": "3",
-        "text": "片"
-      },
-      {
-        "id": "4",
-        "text": "块"
-      }
-    ],
-    "correctOptionId": "2"
-  },
-  {
     "id": "g16-56406db2",
     "taskNumber": 16,
     "formatYear": 2026,
@@ -421,6 +421,41 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g16-6daa063a",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-10-10-claude-16"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "上大学以后，我和三个同学住一___宿舍。",
+    "options": [
+      {
+        "id": "1",
+        "text": "门"
+      },
+      {
+        "id": "2",
+        "text": "间"
+      },
+      {
+        "id": "3",
+        "text": "片"
+      },
+      {
+        "id": "4",
+        "text": "块"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g16-8a7b5ffe",
     "taskNumber": 16,
     "formatYear": 2026,
@@ -454,41 +489,6 @@
       }
     ],
     "correctOptionId": "3"
-  },
-  {
-    "id": "g16-8d7c9197",
-    "taskNumber": 16,
-    "formatYear": 2026,
-    "origin": "generated",
-    "sourceRef": {
-      "collection": "Claude (Opus 5.5) по заданию автора тренажёра",
-      "specVersion": "ЕГЭ 2026",
-      "batch": "2026-10-10-claude-16"
-    },
-    "codifierCodes": [
-      "2.4.33"
-    ],
-    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
-    "stem": "奶奶从市场上买回来一___大白菜。",
-    "options": [
-      {
-        "id": "1",
-        "text": "杯"
-      },
-      {
-        "id": "2",
-        "text": "间"
-      },
-      {
-        "id": "3",
-        "text": "套"
-      },
-      {
-        "id": "4",
-        "text": "棵"
-      }
-    ],
-    "correctOptionId": "4"
   },
   {
     "id": "g16-a135e88d",
