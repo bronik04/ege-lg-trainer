@@ -135,7 +135,7 @@
         rules: Array.isArray(raw.rules) ? raw.rules.filter((r) => rulesById.has(r)) : [],
         origins: Array.isArray(raw.origins) ? raw.origins.filter((o) => origins.includes(o)) : [],
         state: ['all', 'new', 'done', 'review', 'mistakes'].includes(raw.state) ? raw.state : 'all',
-        size: ['5', '10', '20', 'all'].includes(raw.size) ? raw.size : '10',
+        size: roundSize(raw.size) || '10',
       }, questions);
     } catch {
       return empty;
@@ -419,7 +419,7 @@
           class: 'button', type: 'button', id: 'copyLink',
           onclick: async () => {
             try {
-              await navigator.clipboard.writeText(url);
+              await navigator.clipboard.writeText(input.value); // размер раунда меняет ссылку на месте
               status.textContent = 'Ссылка скопирована.';
             } catch {
               input.focus();
@@ -1020,20 +1020,11 @@
     }
     const stateSelect = el('select', { id: 'stateFilter', dataset: { key: 'state' }, onchange: (e) => { filters.state = e.target.value; saveFilters(); render(false); } },
       [['all', 'Все'], ['new', 'Новые'], ['done', 'Уже решённые'], ['review', 'На повторение'], ['mistakes', 'Ошибки']].map(([v, label]) => el('option', { value: v, selected: filters.state === v, text: label })));
-    const sizeSelect = el('select', { id: 'roundSize', dataset: { key: 'size' }, onchange: (e) => { filters.size = e.target.value; saveFilters(); render(false); } },
-      [['5', '5 заданий'], ['10', '10 заданий'], ['20', '20 заданий'], ['all', 'Все доступные']].map(([v, label]) => el('option', { value: v, selected: filters.size === v, text: label })));
+    const available = filterQuestions(questions, filters, progress, now());
     view.append(el('div', { class: 'filters-row' },
       el('label', { class: 'field' }, 'Какие задания', stateSelect),
-      el('label', { class: 'field' }, 'Размер раунда', sizeSelect)));
-    const available = filterQuestions(questions, filters, progress, now());
-    const roundSize = filters.size === 'all' ? available.length : Math.min(Number(filters.size), available.length);
-    view.append(el('p', { class: 'notice', id: 'available', 'aria-live': 'polite' },
-      available.length
-        ? `Доступно: ${tasksWord(available.length)}. В раунд попадёт ${roundSize}.`
-        : filters.state === 'mistakes' ? 'Ошибок с такими фильтрами нет.'
-          : filters.state === 'done' ? 'Решённых с такими фильтрами пока нет.'
-            : filters.state === 'review' ? 'Повторять пока нечего: ошибок нет, а исправленные ещё не подошли к сроку.'
-              : 'С такими фильтрами заданий нет — снимите часть фильтров.'));
+      roundSizeControl(available.length)),
+      el('p', { class: 'notice', id: 'available', 'aria-live': 'polite', text: availableText(available.length) }));
     const actions = el('div', { class: 'actions' },
       el('button', {
         class: 'button', type: 'button', id: 'startRound', disabled: !available.length, dataset: { enter: '1' },
@@ -1052,6 +1043,90 @@
     actions.append(share.button);
     view.append(actions);
     if (share.box) view.append(share.box);
+  }
+
+  function availableText(count) {
+    if (count) {
+      const size = filters.size === 'all' ? count : Math.min(Number(filters.size), count);
+      return `Доступно: ${tasksWord(count)}. В раунд попадёт ${size}.`;
+    }
+    if (filters.state === 'mistakes') return 'Ошибок с такими фильтрами нет.';
+    if (filters.state === 'done') return 'Решённых с такими фильтрами пока нет.';
+    if (filters.state === 'review') return 'Повторять пока нечего: ошибок нет, а исправленные ещё не подошли к сроку.';
+    return 'С такими фильтрами заданий нет — снимите часть фильтров.';
+  }
+
+  // Размер раунда: быстрые числа и своё число с клавиатуры (Enter, уход из поля, стрелки) или
+  // кнопками ±. Меняется на месте, без перерисовки: поле применяет число, когда фокус уходит, —
+  // щелчок, который его увёл («Начать раунд», «+»), не должен попасть в уже снятую кнопку.
+  const ROUND_PRESETS = [['5', '5'], ['10', '10'], ['15', '15'], ['20', '20'], ['30', '30'], ['all', 'все']];
+  function roundSizeControl(available) {
+    const field = el('input', {
+      id: 'roundSize', class: 'size-input', type: 'text', inputmode: 'numeric', autocomplete: 'off',
+      'aria-describedby': 'available', dataset: { key: 'size' },
+    });
+    const less = el('button', { class: 'button ghost size-step', type: 'button', id: 'roundLess', 'aria-label': 'На одно задание меньше', dataset: { key: 'size:less' }, text: '−' });
+    const more = el('button', { class: 'button ghost size-step', type: 'button', id: 'roundMore', 'aria-label': 'На одно задание больше', dataset: { key: 'size:more' }, text: '+' });
+    const presets = ROUND_PRESETS.map(([value]) => el('input', {
+      type: 'radio', name: 'roundPreset', value, dataset: { key: `Размер:${value}` }, onchange: () => set(value),
+    }));
+    let shown = '';
+    function sync() {
+      const count = filters.size === 'all' ? available : Math.min(Number(filters.size), available);
+      shown = filters.size === 'all' ? String(available) : filters.size;
+      field.value = shown;
+      for (const preset of presets) preset.checked = preset.value === filters.size;
+      less.disabled = count <= 1;
+      more.disabled = count >= Math.min(available, ROUND_SIZE_MAX);
+      // Нажатая кнопка стала недоступной — фокус в поле, а не в никуда.
+      if ((less.disabled && document.activeElement === less) || (more.disabled && document.activeElement === more)) field.focus();
+    }
+    function set(value) {
+      filters.size = value;
+      saveFilters();
+      sync();
+      const notice = document.getElementById('available');
+      if (notice) notice.textContent = availableText(available);
+      const link = document.querySelector('#shareBox .share-url');
+      if (link && shareOpen === 'setup') link.value = pageUrl(`#/practice?${shareQuery(filters)}`);
+    }
+    // Вписанное применяется; не число — в поле возвращается прежнее.
+    function commit() {
+      if (!field.isConnected) return;
+      const next = field.value.trim() === shown ? null : typedRoundSize(field.value);
+      if (next === null) field.value = shown;
+      else set(next);
+    }
+    function step(delta) {
+      commit();
+      if (!(delta > 0 ? more : less).disabled) set(stepRoundSize(filters.size, available, delta));
+    }
+    less.addEventListener('click', () => step(-1));
+    more.addEventListener('click', () => step(1));
+    // Щелчок или Tab выделяют число целиком: новое печатается поверх. Без preventDefault
+    // отпускание кнопки мыши снимает выделение.
+    let fresh = false;
+    field.addEventListener('focus', () => { field.select(); fresh = true; });
+    field.addEventListener('mouseup', (e) => { if (fresh) e.preventDefault(); fresh = false; });
+    field.addEventListener('blur', () => { fresh = false; commit(); });
+    field.addEventListener('keydown', (e) => {
+      fresh = false;
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        commit();
+        field.select();
+      } else if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        step(e.key === 'ArrowUp' ? 1 : -1);
+      }
+    });
+    sync();
+    return el('fieldset', { class: 'filter size-filter', id: 'roundSizeBox' },
+      el('legend', { text: 'Размер раунда' }),
+      el('div', { class: 'chips' }, presets.map((input, i) => el('label', { class: 'chip' }, input, el('span', { text: ROUND_PRESETS[i][1] })))),
+      el('div', { class: 'size-own' },
+        el('label', { for: 'roundSize', text: 'Своё число' }),
+        el('div', { class: 'stepper' }, less, field, more)));
   }
 
   function startRound(ids) {

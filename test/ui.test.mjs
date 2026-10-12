@@ -281,6 +281,70 @@ test('сохранённые фильтры: старая версия без п
   await context.close();
 });
 
+test('размер раунда: своё число с клавиатуры, кнопки ± и быстрые числа', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { hash: '#/practice' });
+  const size = page.locator('#roundSize');
+  const shareHash = async () => new URL(await page.locator('#shareBox input').inputValue()).hash;
+  assert.equal(await size.inputValue(), '10', 'по умолчанию 10');
+  assert.equal(await page.locator('input[data-key="Размер:10"]').isChecked(), true);
+  // Щелчок выделяет число целиком: напечатанное заменяет его, Enter применяет.
+  await size.click();
+  await page.keyboard.type('12');
+  await page.keyboard.press('Enter');
+  await see(page, '#available', /Доступно: 16 заданий\. В раунд попадёт 12\./);
+  assert.equal(await size.inputValue(), '12');
+  assert.equal(await page.locator('input[name="roundPreset"]:checked').count(), 0, 'своё число — быстрые не отмечены');
+  assert.equal(await page.evaluate(() => document.activeElement.id), 'roundSize', 'фокус остаётся в поле');
+  // Стрелки в поле и кнопки рядом — на одно задание.
+  await page.keyboard.press('ArrowDown');
+  await see(page, '#available', /В раунд попадёт 11\./);
+  await page.locator('#roundMore').click();
+  await page.locator('#roundMore').click();
+  await see(page, '#available', /В раунд попадёт 13\./);
+  // Вписанное применяется и при уходе из поля: щелчок, который увёл фокус, не теряется.
+  await size.fill('3');
+  await page.locator('#roundLess').click();
+  await see(page, '#available', /В раунд попадёт 2\./);
+  // Не число — прежнее значение; ноль — 1; больше доступного — все доступные, «+» не нажать.
+  await size.fill('abc');
+  await size.press('Enter');
+  assert.equal(await size.inputValue(), '2');
+  await size.fill('0');
+  await size.press('Enter');
+  await see(page, '#available', /В раунд попадёт 1\./);
+  assert.equal(await page.locator('#roundLess').isDisabled(), true);
+  await size.fill('40');
+  await size.press('Enter');
+  await see(page, '#available', /В раунд попадёт 16\./);
+  assert.equal(await size.inputValue(), '40');
+  assert.equal(await page.locator('#roundMore').isDisabled(), true);
+  // «Все»: в поле — число доступных.
+  await page.locator('input[data-key="Размер:all"]').check();
+  assert.equal(await size.inputValue(), '16');
+  await page.locator('input[data-key="Размер:15"]').check();
+  await see(page, '#available', /В раунд попадёт 15\./);
+  // Открытая ссылка на подборку меняется вместе с размером, размер переживает перезагрузку.
+  await page.locator('#share-setup').click();
+  assert.equal(await shareHash(), '#/practice?size=15');
+  await page.locator('#roundLess').click();
+  assert.equal(await shareHash(), '#/practice?size=14');
+  await page.reload();
+  assert.equal(await size.inputValue(), '14');
+  await page.locator('#startRound').click();
+  await see(page, '.progress', /Задание 1 из 14/);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('размер раунда: своё число из ссылки учителя', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { hash: '#/practice?tasks=20,22&size=3' });
+  await see(page, '#shareNotice', /Подборка открыта по ссылке/);
+  assert.equal(await page.locator('#roundSize').inputValue(), '3');
+  await see(page, '#available', /В раунд попадёт 3\./);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
 test('уже решённые в практике, сброс фильтров в банке', { skip }, async () => {
   const { page, context, errors } = await open(mainUrl, { hash: '#/practice?ids=q20-a' });
   await page.locator('[data-card]').waitFor();
@@ -335,7 +399,7 @@ test('тренировка: разбор выбранного неверного
   const { page, context, errors } = await open(mainUrl, { hash: '#/practice' });
   await page.locator('input[data-key="Задания:20"]').check();
   await page.locator('input[data-key="Задания:22"]').check();
-  await page.locator('#roundSize').selectOption('all');
+  await page.locator('input[data-key="Размер:all"]').check();
   await page.locator('#startRound').click();
   const seen = new Set();
   for (let i = 0; i < 3; i += 1) {
@@ -1374,7 +1438,7 @@ test('настоящие данные: сборка для проверки от
   await page.keyboard.press('1');
   await page.locator('.feedback').waitFor();
   await page.goto(`${url}#/practice`);
-  await page.locator('#roundSize').selectOption('all');
+  await page.locator('input[data-key="Размер:all"]').check();
   await page.locator('#startRound').click();
   await page.locator('[data-card]').waitFor();
   await page.keyboard.press('2');

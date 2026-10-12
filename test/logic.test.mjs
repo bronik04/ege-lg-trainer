@@ -350,6 +350,59 @@ test('ссылка на подборку: читается обратно, не�
     { topics: ['aspect'], tasks: [20], rules: [], origins: [], size: '10' });
 });
 
+test('размер раунда: «все» или целое 1–999, иначе null', () => {
+  assert.equal(L.roundSize('all'), 'all');
+  assert.equal(L.roundSize('12'), '12');
+  assert.equal(L.roundSize(12), '12');
+  assert.equal(L.roundSize('1'), '1');
+  assert.equal(L.roundSize(String(L.ROUND_SIZE_MAX)), '999');
+  assert.equal(L.roundSize('012'), '12', 'ведущий ноль не мешает');
+  for (const bad of ['0', '1000', '-3', '2.5', '1e2', '', ' ', 'abc', null, undefined, {}, '10 ']) {
+    assert.equal(L.roundSize(bad), null, JSON.stringify(bad));
+  }
+});
+
+test('размер раунда с клавиатуры: дробь вниз, края 1 и 999, не число — null', () => {
+  assert.equal(L.typedRoundSize('12'), '12');
+  assert.equal(L.typedRoundSize(' 7 '), '7');
+  assert.equal(L.typedRoundSize('2.5'), '2');
+  assert.equal(L.typedRoundSize('2,5'), '2', 'запятая — как точка');
+  assert.equal(L.typedRoundSize('0'), '1');
+  assert.equal(L.typedRoundSize('-3'), '1');
+  assert.equal(L.typedRoundSize('1000'), '999');
+  for (const bad of ['', '  ', 'abc', '12abc', 'Infinity']) {
+    assert.equal(L.typedRoundSize(bad), null, JSON.stringify(bad));
+  }
+});
+
+test('кнопки − и +: шаг от числа, которое попадёт в раунд', () => {
+  assert.equal(L.stepRoundSize('12', 40, 1), '13');
+  assert.equal(L.stepRoundSize('12', 40, -1), '11');
+  assert.equal(L.stepRoundSize('all', 40, -1), '39', '«все» — от числа доступных');
+  assert.equal(L.stepRoundSize('30', 16, -1), '15', 'больше доступного — от доступного');
+  assert.equal(L.stepRoundSize('1', 40, -1), '1', 'меньше 1 не бывает');
+  assert.equal(L.stepRoundSize('all', 0, -1), '1');
+  assert.equal(L.stepRoundSize('999', 2000, 1), '999');
+});
+
+test('ссылка на подборку: любой размер раунда 1–999, незнакомый — 10', () => {
+  const known = { topicIds: new Set(), origins: ['fipi'], questionIds: new Set() };
+  assert.equal(L.shareQuery({ topics: [], tasks: [22], origins: [], size: '12' }), 'tasks=22&size=12');
+  assert.equal(L.parseShareQuery('tasks=22&size=12', known).filters.size, '12');
+  assert.equal(L.parseShareQuery('tasks=22&size=999', known).filters.size, '999');
+  assert.equal(L.parseShareQuery('tasks=22&size=all', known).filters.size, 'all');
+  for (const bad of ['0', '1000', '-1', 'x']) {
+    assert.equal(L.parseShareQuery(`tasks=22&size=${bad}`, known).filters.size, '10', bad);
+  }
+  assert.equal(L.parseShareQuery('tasks=22', known).filters.size, '10', 'без размера — 10');
+});
+
+test('раунд: размер 12 берёт 12 заданий, больше доступного — все', () => {
+  const list = L.TASK_NUMBERS.flatMap((n) => [q(`q${n}-a`, n), q(`q${n}-b`, n)]);
+  assert.equal(L.pickRound(list, '12').length, 12);
+  assert.equal(L.pickRound(list, '999').length, list.length);
+});
+
 test('ссылка на подборку: правила грамматики читаются обратно, исчезнувшие считаются', () => {
   const known = { topicIds: new Set(), origins: ['fipi'], questionIds: new Set(), ruleIds: new Set(['jiu-cai', 'you-zai']) };
   const text = L.shareQuery({ topics: [], tasks: [22], rules: ['jiu-cai', 'you-zai'], origins: [], size: '10' });
