@@ -302,6 +302,9 @@
     return topic ? topic.title : `Задание ${n}`;
   }
 
+  // Номер в клетке бланка; чтец экрана слышит «Задание 22».
+  const cellnum = (n) => el('span', { class: 'cellnum' }, el('span', { class: 'sr', text: 'Задание ' }), String(n));
+
   // Сводка итога раунда по номерам: номер, его тема, сколько ошибок из скольких заданий.
   // Раунд одного номера — без сводки: она повторила бы общий счёт.
   function taskScore(items) {
@@ -310,9 +313,9 @@
     return el('section', { class: 'by-task', 'aria-labelledby': 'byTaskTitle' },
       el('h3', { id: 'byTaskTitle', text: 'По номерам' }),
       el('ul', { id: 'roundByTask' }, rows.map((r) => el('li', { class: r.wrong ? 'bad' : 'ok' },
-        el('span', { class: 'cellnum', text: String(r.taskNumber) }),
+        cellnum(r.taskNumber),
         el('span', { class: 'title', text: taskTitle(r.taskNumber) }),
-        el('span', { class: 'count', text: r.wrong ? `ошибок ${r.wrong} из ${r.total}` : `без ошибок · ${r.total}` })))));
+        el('span', { class: 'count', text: `ошибок ${r.wrong} из ${r.total}` })))));
   }
 
   // Работа над ошибками: по номерам в порядке экзамена; у задания — его правило, ваш ответ,
@@ -328,7 +331,7 @@
     return el('details', { class: 'mistakes', id, open },
       el('summary', { text: `Работа над ошибками · ${entries.length - skipped}` + (skipped ? ` · без ответа ${skipped}` : '') }),
       groups.map((g) => el('section', { class: 'mistake-group' },
-        el('h3', {}, el('span', { class: 'cellnum', text: String(g.taskNumber) }), ` ${taskTitle(g.taskNumber)} · ${g.entries.length}`),
+        el('h3', {}, cellnum(g.taskNumber), ` ${taskTitle(g.taskNumber)} · ${g.entries.length}`),
         el('ul', { class: 'mistake-list' }, g.entries.map((entry) => {
           const q = byId.get(entry.id);
           const e = explainChoice(q, entry.chosen);
@@ -982,7 +985,7 @@
             },
           }),
           el('span', {},
-            el('span', { class: 'cellnum' }, el('span', { class: 'sr', text: 'Задание ' }), String(r.n)),
+            cellnum(r.n),
             el('span', { class: 'task-title', text: r.title }),
             el('small', {}, String(r.count), el('span', { class: 'sr', text: ` ${plural(r.count, 'задание', 'задания', 'заданий')}` }))));
       })));
@@ -1558,7 +1561,7 @@
             topicRules.flatMap((r, i) => [i ? ', ' : '', el('a', { href: `#/rules/${encodeURIComponent(r.id)}`, text: r.title })]));
         })));
     }
-    // Все текущие ошибки по правилам — свёрнуто: список бывает длинным.
+    // Все текущие ошибки по номерам — свёрнуто: список бывает длинным.
     view.append(mistakeWork(mistakes.map((q) => ({ id: q.id, chosen: progress.questions[q.id].last.optionId, correct: false })),
       { id: 'bankMistakes', open: false }));
 

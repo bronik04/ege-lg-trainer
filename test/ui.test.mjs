@@ -478,14 +478,13 @@ test('тренировка: разбор выбранного неверного
   await see(page, 'h2', /Раунд окончен/);
   // Ошибки были в задании 22 — страница советует его правило.
   await see(page, '#ruleAdvice', /Перечитайте правило: 就 и 才/);
-  // Сводка по номерам: каждый номер раунда по порядку — сколько ошибок из скольких.
-  const rows = await page.locator('#roundByTask li').allInnerTexts();
-  assert.equal(rows.length, 2);
-  assert.match(rows[0], /^20\s+Глагольные суффиксы 了, 过, 着\s+без ошибок · 1$/);
-  assert.match(rows[1], /^22\s+Наречия\s+ошибок 2 из 2$/);
+  // Сводка по номерам: каждый номер раунда по порядку — сколько ошибок из скольких. Клетка
+  // номера для чтеца — «Задание 20».
+  const rows = (await page.locator('#roundByTask li').allTextContents()).map((t) => t.replace(/\s+/g, ' '));
+  assert.deepEqual(rows, ['Задание 20Глагольные суффиксы 了, 过, 着ошибок 0 из 1', 'Задание 22Наречияошибок 2 из 2']);
   // Работа над ошибками: оба задания 22 под своим номером, у каждого — его правило; повтор — только они.
   await see(page, '#roundMistakes summary', /Работа над ошибками · 2/);
-  assert.deepEqual(await page.locator('#roundMistakes .mistake-group h3').allInnerTexts(), ['22 Наречия · 2']);
+  assert.deepEqual(await page.locator('#roundMistakes .mistake-group h3').allTextContents(), ['Задание 22 Наречия · 2']);
   assert.equal(await page.locator('#roundMistakes .mistake-list li').count(), 2);
   await see(page, '#roundMistakes .mistake-list', /ваш ответ: .* → верно: /);
   assert.deepEqual(await page.locator('#roundMistakes .mistake-rule').allInnerTexts(), ['правило: 就 и 才', 'правило: 就 и 才']);
@@ -972,8 +971,8 @@ test('телефон: без горизонтальной прокрутки в�
       await page.locator('[data-enter]').click();
     }
     await see(page, '#roundMistakes summary', /Работа над ошибками · 3/);
-    assert.deepEqual(await page.locator('#roundMistakes .mistake-group h3').allInnerTexts(),
-      ['15 Прочие темы · 1', '22 Наречия · 1', '26 Прочие темы · 1'], 'номера по порядку');
+    assert.deepEqual(await page.locator('#roundMistakes .mistake-group h3').allTextContents(),
+      ['Задание 15 Прочие темы · 1', 'Задание 22 Наречия · 1', 'Задание 26 Прочие темы · 1']);
     await see(page, '#roundMistakes', /верный порядок: /);
     await see(page, '#roundMistakes', /— тоны/);
     await noOverflow('итог раунда с работой над ошибками');
