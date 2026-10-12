@@ -277,22 +277,33 @@ export function weakTopics(questions, progress, limit = 3) {
     .sort((a, b) => b.count - a.count).slice(0, limit);
 }
 
-// Работа над ошибками: неверные и пропущенные задания, сгруппированные по правилу (первому из
-// ruleIds, которое есть на странице). Порядок групп — как в rulesForMistakes: сначала больше
-// неверных ответов (пропуск — не ошибка понимания), потом больше заданий; без правила — в конце.
-export function groupMistakesByRule(items, byId, known = null) {
+// Работа над ошибками: неверные и пропущенные задания, сгруппированные по номеру — номера по
+// порядку экзамена, внутри — в порядке раунда. Правило показывается у каждого задания.
+export function groupMistakesByTask(items, byId) {
   const groups = new Map();
   for (const item of items) {
     if (item.correct) continue;
     const q = byId.get(item.id);
     if (!q) continue;
-    const ruleId = (q.ruleIds || []).find((r) => !known || known.has(r)) || null;
-    if (!groups.has(ruleId)) groups.set(ruleId, []);
-    groups.get(ruleId).push({ id: item.id, chosen: item.chosen ?? null });
+    if (!groups.has(q.taskNumber)) groups.set(q.taskNumber, []);
+    groups.get(q.taskNumber).push({ id: item.id, chosen: item.chosen ?? null });
   }
-  const answered = (g) => g.entries.filter((e) => e.chosen !== null).length;
-  return [...groups].map(([ruleId, entries]) => ({ ruleId, entries }))
-    .sort((a, b) => (a.ruleId === null) - (b.ruleId === null) || answered(b) - answered(a) || b.entries.length - a.entries.length);
+  return [...groups].map(([taskNumber, entries]) => ({ taskNumber, entries }))
+    .sort((a, b) => a.taskNumber - b.taskNumber);
+}
+
+// Сводка итога по номерам: сколько заданий номера было и сколько из них неверно или без ответа.
+export function scoreByTask(items, byId) {
+  const rows = new Map();
+  for (const item of items) {
+    const q = byId.get(item.id);
+    if (!q) continue;
+    if (!rows.has(q.taskNumber)) rows.set(q.taskNumber, { taskNumber: q.taskNumber, total: 0, wrong: 0 });
+    const row = rows.get(q.taskNumber);
+    row.total += 1;
+    if (!item.correct) row.wrong += 1;
+  }
+  return [...rows.values()].sort((a, b) => a.taskNumber - b.taskNumber);
 }
 
 // Правила к ошибкам раунда или варианта — чаще встретившиеся первыми. Пропущенная позиция

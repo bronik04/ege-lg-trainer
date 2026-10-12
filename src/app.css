@@ -369,8 +369,20 @@ kbd {
 .advice { margin: 0 0 16px; }
 .mistakes { margin: 0 0 18px; padding: 10px 14px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--sheet); }
 .mistakes > summary { font-weight: 700; cursor: pointer; min-height: 44px; display: flex; align-items: center; }
+/* Итог раунда по номерам: клетка номера, тема, сколько ошибок; номер без ошибок — приглушён. */
+.by-task { margin: 0 0 18px; }
+.by-task h3 { margin: 0 0 8px; color: var(--muted); font-size: .86rem; font-weight: 650; }
+.by-task ul { margin: 0; padding: 0; list-style: none; border-top: 1.5px solid var(--line); }
+.by-task li {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px;
+  min-height: 48px; padding: 6px 0; border-bottom: 1.5px solid var(--line); font-weight: 650;
+}
+.by-task .count { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.by-task li.bad .count { color: var(--red); }
+.by-task li.ok .count { color: var(--muted); font-weight: 600; }
 .mistake-group { margin-top: 12px; }
 .mistake-group h3 { margin: 0 0 4px; }
+.mistake-group h3 .cellnum { margin-right: 4px; vertical-align: middle; }
 .mistake-group p { margin: 0; }
 .mistake-list { margin: 8px 0 10px; padding: 0; list-style: none; }
 .mistake-list li { display: grid; gap: 2px; margin-bottom: 8px; min-width: 0; }
