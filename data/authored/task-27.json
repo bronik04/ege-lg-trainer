@@ -280,7 +280,7 @@
     "acceptedHash": "0a1830ef9e68"
   },
   "g27-6f632588": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -304,7 +304,8 @@
         "4": "只有……，才……"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "4109493faf62"
   },
   "g27-7c9193db": {
     "status": "accepted",
@@ -671,7 +672,7 @@
     "acceptedHash": "3a1ec8ba550e"
   },
   "g27-e6931c15": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "constructions"
     ],
@@ -695,7 +696,8 @@
         "4": "越……，越……"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "66cd1fd523b9"
   },
   "g27-ede8b5d4": {
     "status": "accepted",

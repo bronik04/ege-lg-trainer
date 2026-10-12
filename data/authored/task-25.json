@@ -112,7 +112,7 @@
     "acceptedHash": "bf68033c8891"
   },
   "g25-3b1fb0bb": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -136,7 +136,8 @@
         "4": "出来"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "00218d62f057"
   },
   "g25-3c3818ae": {
     "status": "accepted",
@@ -363,7 +364,7 @@
     "acceptedHash": "060b90dc2f2d"
   },
   "g25-a6a3cc69": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "direction-complements"
     ],
@@ -387,7 +388,8 @@
         "4": "回来"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "73778607283b"
   },
   "g25-c4497b22": {
     "status": "accepted",

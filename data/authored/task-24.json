@@ -28,7 +28,7 @@
     "acceptedHash": "2e34f2f9ca39"
   },
   "g24-1766fb8d": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -52,7 +52,8 @@
         "4": "得懂"
       },
       "correctOptionId": "1"
-    }
+    },
+    "acceptedHash": "f3d078395d5f"
   },
   "g24-1912bd42": {
     "status": "accepted",
@@ -335,7 +336,7 @@
     "acceptedHash": "044c03719e22"
   },
   "g24-b02ed8a0": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -359,7 +360,8 @@
         "4": "得起"
       },
       "correctOptionId": "2"
-    }
+    },
+    "acceptedHash": "5130da56d527"
   },
   "g24-b18e48f1": {
     "status": "accepted",
@@ -502,7 +504,7 @@
     "acceptedHash": "9a82dc66df28"
   },
   "g24-e9ff531b": {
-    "status": "draft",
+    "status": "accepted",
     "topicIds": [
       "potential-complements"
     ],
@@ -526,7 +528,8 @@
         "4": "不了"
       },
       "correctOptionId": "4"
-    }
+    },
+    "acceptedHash": "81452556cd1c"
   },
   "g24-f3469684": {
     "status": "accepted",
