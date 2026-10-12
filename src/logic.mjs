@@ -401,7 +401,37 @@ export function buildVariant(questions, rng = Math.random) {
 
 // ---------- ссылки для учителя ----------
 
-const ROUND_SIZES = ['5', '10', '20', 'all'];
+// Размер раунда — 'all' или целое 1–999 строкой (ученик вписывает своё число). Незнакомое — null:
+// ссылка или сохранённые фильтры тогда берут 10.
+export const ROUND_SIZE_MAX = 999;
+export function roundSize(value) {
+  if (value === 'all') return 'all';
+  if (typeof value !== 'string' && typeof value !== 'number') return null;
+  const text = String(value);
+  if (!/^\d+$/.test(text)) return null;
+  const n = Number(text);
+  return n >= 1 && n <= ROUND_SIZE_MAX ? String(n) : null;
+}
+
+// Число из поля «Своё число»: дробь — вниз, меньше 1 — 1, больше 999 — 999. Полноширинные цифры
+// китайской раскладки — как обычные. Не число (буквы, 0x10, 1e2) — null: поле вернёт прежнее.
+export function typedRoundSize(text) {
+  const trimmed = String(text).normalize('NFKC').trim();
+  if (!/^[+-]?(\d+([.,]\d*)?|[.,]\d+)$/.test(trimmed)) return null;
+  const n = Number(trimmed.replace(',', '.'));
+  return String(Math.min(ROUND_SIZE_MAX, Math.max(1, Math.floor(n))));
+}
+
+// Сколько заданий попадёт в раунд: размер, но не больше доступного.
+export function roundCount(size, available) {
+  return size === 'all' ? available : Math.min(Number(size), available);
+}
+
+// Кнопки − и +: шаг от числа, которое попадёт в раунд, — размер больше доступного «−» сразу
+// опускает ниже доступного.
+export function stepRoundSize(size, available, delta) {
+  return String(Math.min(ROUND_SIZE_MAX, Math.max(1, roundCount(size, available) + delta)));
+}
 
 // Запятая в адресе допустима: ссылка остаётся читаемой (topics=aspect,adverbs).
 function query(pairs) {
@@ -450,7 +480,7 @@ export function parseShareQuery(text, known) {
       tasks: list('tasks').map(Number).filter((n) => TASK_NUMBERS.includes(n)),
       rules,
       origins: list('origins').filter((o) => known.origins.includes(o)),
-      size: ROUND_SIZES.includes(params.get('size')) ? params.get('size') : '10',
+      size: roundSize(params.get('size')) || '10',
     },
   };
 }
