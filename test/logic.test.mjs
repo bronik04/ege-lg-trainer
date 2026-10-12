@@ -550,18 +550,32 @@ test('время варианта: табло, остаток из 40 минут
   assert.equal(L.startVariant(['a'], 't0').elapsedMs, 0);
 });
 
-test('работа над ошибками: группы по правилу, частые первыми, без правила — в конце', () => {
-  const bank = [q('a', 20, { ruleIds: ['aspect'] }), q('b', 22, { ruleIds: ['gone', 'jiu-cai'] }),
-    q('c', 22, { ruleIds: ['jiu-cai'] }), q('d', 21, { ruleIds: [] }), q('e', 20, { ruleIds: ['aspect'] })];
+test('работа над ошибками: группы по номерам по порядку, внутри — как в раунде', () => {
+  const bank = [q('a', 22), q('b', 20), q('c', 22), q('d', 18), q('e', 20)];
   const byId = new Map(bank.map((x) => [x.id, x]));
   const items = [{ id: 'a', chosen: '1', correct: false }, { id: 'b', chosen: null, correct: false },
-    { id: 'c', chosen: '3', correct: false }, { id: 'd', chosen: '1', correct: false }, { id: 'e', chosen: '2', correct: true }];
-  assert.deepEqual(L.groupMistakesByRule(items, byId, new Set(['aspect', 'jiu-cai'])), [
-    { ruleId: 'jiu-cai', entries: [{ id: 'b', chosen: null }, { id: 'c', chosen: '3' }] },
-    { ruleId: 'aspect', entries: [{ id: 'a', chosen: '1' }] },
-    { ruleId: null, entries: [{ id: 'd', chosen: '1' }] },
+    { id: 'c', chosen: '3', correct: false }, { id: 'd', chosen: '1', correct: false }, { id: 'e', chosen: '2', correct: true },
+    { id: 'gone', chosen: '1', correct: false }];
+  assert.deepEqual(L.groupMistakesByTask(items, byId), [
+    { taskNumber: 18, entries: [{ id: 'd', chosen: '1' }] },
+    { taskNumber: 20, entries: [{ id: 'b', chosen: null }] },
+    { taskNumber: 22, entries: [{ id: 'a', chosen: '1' }, { id: 'c', chosen: '3' }] },
   ]);
-  assert.deepEqual(L.groupMistakesByRule([{ id: 'e', chosen: '2', correct: true }], byId), []);
+  assert.deepEqual(L.groupMistakesByTask([{ id: 'e', chosen: '2', correct: true }], byId), []);
+});
+
+test('счёт по номерам: все номера раунда по порядку, ошибки и пропуски из скольких', () => {
+  const bank = [q('a', 22), q('b', 20), q('c', 22), q('d', 18), q('e', 20)];
+  const byId = new Map(bank.map((x) => [x.id, x]));
+  const items = [{ id: 'a', chosen: '1', correct: false }, { id: 'b', chosen: '2', correct: true },
+    { id: 'c', chosen: null, correct: false }, { id: 'd', chosen: '2', correct: true }, { id: 'e', chosen: '2', correct: true },
+    { id: 'gone', chosen: '1', correct: false }];
+  assert.deepEqual(L.scoreByTask(items, byId), [
+    { taskNumber: 18, total: 1, wrong: 0 },
+    { taskNumber: 20, total: 2, wrong: 0 },
+    { taskNumber: 22, total: 2, wrong: 2 },
+  ]);
+  assert.deepEqual(L.scoreByTask([], byId), []);
 });
 
 test('отчёт учителю: код читается обратно, мусор и повторы отбрасываются', () => {

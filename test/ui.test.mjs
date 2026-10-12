@@ -400,6 +400,22 @@ test('итог: процент выполнения рядом со счётом
   }
   await see(page, 'h2', /Раунд окончен/);
   await see(page, '.score', /1 из 2,?\s*50\s%/);
+  assert.equal(await page.locator('#roundByTask li').count(), 2, 'два номера — сводка по номерам');
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('итог раунда одного номера: сводки по номерам нет — она повторила бы счёт', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { hash: '#/practice?ids=q22-a,q22-b' });
+  for (let i = 0; i < 2; i += 1) {
+    await page.locator('[data-card]').waitFor();
+    await page.keyboard.press('2');
+    await page.locator('.feedback').waitFor();
+    await page.keyboard.press('Enter');
+  }
+  await see(page, 'h2', /Раунд окончен/);
+  assert.equal(await page.locator('#roundByTask').count(), 0);
+  await see(page, '#roundMistakes .mistake-group h3', /22 Наречия · 2/);
   assert.deepEqual(errors, []);
   await context.close();
 });
@@ -462,15 +478,21 @@ test('тренировка: разбор выбранного неверного
   await see(page, 'h2', /Раунд окончен/);
   // Ошибки были в задании 22 — страница советует его правило.
   await see(page, '#ruleAdvice', /Перечитайте правило: 就 и 才/);
-  // Работа над ошибками: оба задания 22 под своим правилом, повтор — только они.
+  // Сводка по номерам: каждый номер раунда по порядку — сколько ошибок из скольких. Клетка
+  // номера для чтеца — «Задание 20».
+  const rows = (await page.locator('#roundByTask li').allTextContents()).map((t) => t.replace(/\s+/g, ' '));
+  assert.deepEqual(rows, ['Задание 20Глагольные суффиксы 了, 过, 着ошибок 0 из 1', 'Задание 22Наречияошибок 2 из 2']);
+  // Работа над ошибками: оба задания 22 под своим номером, у каждого — его правило; повтор — только они.
   await see(page, '#roundMistakes summary', /Работа над ошибками · 2/);
-  await see(page, '#roundMistakes .mistake-group h3', /就 и 才 · 2/);
+  assert.deepEqual(await page.locator('#roundMistakes .mistake-group h3').allTextContents(), ['Задание 22 Наречия · 2']);
   assert.equal(await page.locator('#roundMistakes .mistake-list li').count(), 2);
   await see(page, '#roundMistakes .mistake-list', /ваш ответ: .* → верно: /);
-  await page.getByRole('button', { name: 'Повторить задания правила «就 и 才» · 2' }).click();
+  assert.deepEqual(await page.locator('#roundMistakes .mistake-rule').allInnerTexts(), ['правило: 就 и 才', 'правило: 就 и 才']);
+  assert.equal(await page.locator('#roundMistakes .mistake-rule a').first().getAttribute('href'), '#/rules/jiu-cai');
+  await page.getByRole('button', { name: 'Повторить ошибки №22 · 2' }).click();
   await see(page, '.progress', /Задание 1 из 2/);
   const repeat = await page.evaluate(() => JSON.parse(localStorage.getItem('ege-lg-trainer:progress')).round.ids);
-  assert.deepEqual([...repeat].sort(), ['q22-a', 'q22-b'], 'повтор — именно ошибки этого правила');
+  assert.deepEqual([...repeat].sort(), ['q22-a', 'q22-b'], 'повтор — именно ошибки этого номера');
   assert.deepEqual(errors, []);
   await context.close();
 });
@@ -949,6 +971,8 @@ test('телефон: без горизонтальной прокрутки в�
       await page.locator('[data-enter]').click();
     }
     await see(page, '#roundMistakes summary', /Работа над ошибками · 3/);
+    assert.deepEqual(await page.locator('#roundMistakes .mistake-group h3').allTextContents(),
+      ['Задание 15 Прочие темы · 1', 'Задание 22 Наречия · 1', 'Задание 26 Прочие темы · 1']);
     await see(page, '#roundMistakes', /верный порядок: /);
     await see(page, '#roundMistakes', /— тоны/);
     await noOverflow('итог раунда с работой над ошибками');

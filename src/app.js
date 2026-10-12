@@ -296,10 +296,32 @@
     return el('p', { class: 'notice advice', id: 'ruleAdvice' }, 'Перечитайте правило: ', ...links, '.');
   }
 
-  // Работа над ошибками: правило коротко, под ним задания — ваш ответ, верный и почему.
-  // Повтор — только ошибки этого правила.
+  // Название номера — тема из оглавления практики.
+  function taskTitle(n) {
+    const topic = topics.find((t) => t.taskNumbers.includes(n));
+    return topic ? topic.title : `Задание ${n}`;
+  }
+
+  // Номер в клетке бланка; чтец экрана слышит «Задание 22».
+  const cellnum = (n) => el('span', { class: 'cellnum' }, el('span', { class: 'sr', text: 'Задание ' }), String(n));
+
+  // Сводка итога раунда по номерам: номер, его тема, сколько ошибок из скольких заданий.
+  // Раунд одного номера — без сводки: она повторила бы общий счёт.
+  function taskScore(items) {
+    const rows = scoreByTask(items, byId);
+    if (rows.length < 2) return document.createDocumentFragment();
+    return el('section', { class: 'by-task', 'aria-labelledby': 'byTaskTitle' },
+      el('h3', { id: 'byTaskTitle', text: 'По номерам' }),
+      el('ul', { id: 'roundByTask' }, rows.map((r) => el('li', { class: r.wrong ? 'bad' : 'ok' },
+        cellnum(r.taskNumber),
+        el('span', { class: 'title', text: taskTitle(r.taskNumber) }),
+        el('span', { class: 'count', text: `ошибок ${r.wrong} из ${r.total}` })))));
+  }
+
+  // Работа над ошибками: по номерам в порядке экзамена; у задания — его правило, ваш ответ,
+  // верный и почему. Повтор — только ошибки этого номера.
   function mistakeWork(items, { id, open = true }) {
-    const groups = groupMistakesByRule(items, byId, new Set(rulesById.keys()));
+    const groups = groupMistakesByTask(items, byId);
     if (!groups.length) return document.createDocumentFragment();
     const entries = groups.flatMap((g) => g.entries);
     const skipped = entries.filter((e) => e.chosen == null).length;
@@ -308,31 +330,28 @@
     const zh = (text) => el('span', { class: 'zh', lang: 'zh', text });
     return el('details', { class: 'mistakes', id, open },
       el('summary', { text: `Работа над ошибками · ${entries.length - skipped}` + (skipped ? ` · без ответа ${skipped}` : '') }),
-      groups.map((g) => {
-        const rule = g.ruleId ? rulesById.get(g.ruleId) : null;
-        return el('section', { class: 'mistake-group' },
-          el('h3', {}, rule ? el('a', { href: `#/rules/${encodeURIComponent(rule.id)}`, text: rule.title }) : 'Без правила',
-            ` · ${g.entries.length}`),
-          rule && rule.summary ? el('p', { class: 'small muted', text: rule.summary }) : null,
-          el('ul', { class: 'mistake-list' }, g.entries.map((entry) => {
-            const q = byId.get(entry.id);
-            const e = explainChoice(q, entry.chosen);
-            const why = entry.chosen == null ? e.correctExplanation : e.chosenExplanation;
-            // №26: верный порядок собранным предложением — буквы сами по себе ничего не объясняют.
-            const sentence = q.fragments ? assembledOrder(q) : '';
-            return el('li', {},
-              zh(`${q.taskNumber}. ${q.stem.replace(/\s+/g, ' ')}` + (q.taskNumber === 15 ? ' — тоны' : '')),
-              el('span', { class: 'small' }, entry.chosen == null ? 'без ответа' : ['ваш ответ: ', answer(e.chosenText)],
-                ' → верно: ', answer(e.correctText)),
-              sentence ? el('span', { class: 'small' }, 'верный порядок: ', zh(sentence)) : null,
-              why ? el('span', { class: 'small muted', text: why }) : null);
-          })),
-          el('button', {
-            class: 'button ghost', type: 'button',
-            'aria-label': `Повторить задания правила «${rule ? rule.title : 'без правила'}» · ${g.entries.length}`,
-            onclick: () => startRound(shuffle(g.entries.map((x) => x.id))),
-          }, `Повторить задания этого правила · ${g.entries.length}`));
-      }));
+      groups.map((g) => el('section', { class: 'mistake-group' },
+        el('h3', {}, cellnum(g.taskNumber), ` ${taskTitle(g.taskNumber)} · ${g.entries.length}`),
+        el('ul', { class: 'mistake-list' }, g.entries.map((entry) => {
+          const q = byId.get(entry.id);
+          const e = explainChoice(q, entry.chosen);
+          const why = entry.chosen == null ? e.correctExplanation : e.chosenExplanation;
+          // №26: верный порядок собранным предложением — буквы сами по себе ничего не объясняют.
+          const sentence = q.fragments ? assembledOrder(q) : '';
+          const rules = (q.ruleIds || []).filter((r) => rulesById.has(r)).map((r) => rulesById.get(r));
+          return el('li', {},
+            zh(q.stem.replace(/\s+/g, ' ') + (q.taskNumber === 15 ? ' — тоны' : '')),
+            rules.length ? el('span', { class: 'small mistake-rule' }, rules.length > 1 ? 'правила: ' : 'правило: ',
+              rules.flatMap((r, i) => [i ? ', ' : '', el('a', { href: `#/rules/${encodeURIComponent(r.id)}`, text: r.title })])) : null,
+            el('span', { class: 'small' }, entry.chosen == null ? 'без ответа' : ['ваш ответ: ', answer(e.chosenText)],
+              ' → верно: ', answer(e.correctText)),
+            sentence ? el('span', { class: 'small' }, 'верный порядок: ', zh(sentence)) : null,
+            why ? el('span', { class: 'small muted', text: why }) : null);
+        })),
+        el('button', {
+          class: 'button ghost', type: 'button',
+          onclick: () => startRound(shuffle(g.entries.map((x) => x.id))),
+        }, `Повторить ошибки №${g.taskNumber} · ${g.entries.length}`))));
   }
 
   // Ссылка учителя: открыть подборку, раунд из тех же заданий или тот же вариант.
@@ -930,9 +949,8 @@
   function taskContents() {
     const rows = TASK_NUMBERS.map((n) => {
       const own = questions.filter((q) => q.taskNumber === n);
-      const topic = topics.find((t) => t.taskNumbers.includes(n));
       const count = filterQuestions(own, { topics: filters.topics }, progress).length;
-      return { n, title: topic ? topic.title : `Задание ${n}`, total: own.length, count };
+      return { n, title: taskTitle(n), total: own.length, count };
     }).filter((r) => r.total > 0);
     const focus = filters.topics.length
       ? el('p', { class: 'topic-focus', id: 'topicFocus' },
@@ -967,7 +985,7 @@
             },
           }),
           el('span', {},
-            el('span', { class: 'cellnum' }, el('span', { class: 'sr', text: 'Задание ' }), String(r.n)),
+            cellnum(r.n),
             el('span', { class: 'task-title', text: r.title }),
             el('small', {}, String(r.count), el('span', { class: 'sr', text: ` ${plural(r.count, 'задание', 'задания', 'заданий')}` }))));
       })));
@@ -1211,6 +1229,7 @@
     const wrong = result.items.filter((i) => !i.correct).map((i) => i.id);
     view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Раунд окончен' }),
       scoreLine(result.score, result.total, 'верных ответов'),
+      taskScore(result.items),
       ruleAdvice(result.items),
       mistakeWork(result.items, { id: 'roundMistakes' }),
       resultList(round.ids, round.answers));
@@ -1542,7 +1561,7 @@
             topicRules.flatMap((r, i) => [i ? ', ' : '', el('a', { href: `#/rules/${encodeURIComponent(r.id)}`, text: r.title })]));
         })));
     }
-    // Все текущие ошибки по правилам — свёрнуто: список бывает длинным.
+    // Все текущие ошибки по номерам — свёрнуто: список бывает длинным.
     view.append(mistakeWork(mistakes.map((q) => ({ id: q.id, chosen: progress.questions[q.id].last.optionId, correct: false })),
       { id: 'bankMistakes', open: false }));
 
