@@ -133,7 +133,7 @@ h2, h3 { overflow-wrap: break-word; hyphens: auto; }
   color: var(--on-pen); font-weight: 700; text-align: center; text-decoration: none;
 }
 .button:hover { filter: brightness(1.08); }
-.button:disabled { opacity: .4; cursor: not-allowed; filter: none; }
+.button:disabled, .button[aria-disabled="true"] { opacity: .4; cursor: not-allowed; filter: none; }
 .button.alt { border-color: transparent; background: var(--pen-bg); color: var(--pen); }
 .button.ghost { border-color: var(--line); background: transparent; color: var(--ink); font-weight: 650; }
 .button.ghost:hover { border-color: var(--grid); filter: none; }

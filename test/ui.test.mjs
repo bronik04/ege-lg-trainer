@@ -301,8 +301,10 @@ test('размер раунда: своё число с клавиатуры, к
   await page.locator('#roundMore').click();
   await page.locator('#roundMore').click();
   await see(page, '#available', /В раунд попадёт 13\./);
-  // Вписанное применяется и при уходе из поля: щелчок, который увёл фокус, не теряется.
+  // Вписанное применяется и при уходе из поля, без Enter.
   await size.fill('3');
+  await page.locator('#available').click();
+  await see(page, '#available', /В раунд попадёт 3\./);
   await page.locator('#roundLess').click();
   await see(page, '#available', /В раунд попадёт 2\./);
   // Не число — прежнее значение; ноль — 1; больше доступного — все доступные, «+» не нажать.
@@ -312,12 +314,22 @@ test('размер раунда: своё число с клавиатуры, к
   await size.fill('0');
   await size.press('Enter');
   await see(page, '#available', /В раунд попадёт 1\./);
-  assert.equal(await page.locator('#roundLess').isDisabled(), true);
+  assert.equal(await page.locator('#roundLess').getAttribute('aria-disabled'), 'true');
+  // Упёршаяся кнопка не срабатывает и держит фокус: пробел не уходит в поле, на телефоне
+  // не открывается клавиатура.
+  await size.fill('3');
+  await size.press('Enter');
+  await page.locator('#roundLess').focus();
+  for (let i = 0; i < 4; i += 1) await page.keyboard.press('Space');
+  assert.equal(await size.inputValue(), '1');
+  assert.equal(await page.evaluate(() => document.activeElement.id), 'roundLess');
   await size.fill('40');
   await size.press('Enter');
   await see(page, '#available', /В раунд попадёт 16\./);
   assert.equal(await size.inputValue(), '40');
-  assert.equal(await page.locator('#roundMore').isDisabled(), true);
+  assert.equal(await page.locator('#roundMore').getAttribute('aria-disabled'), 'true');
+  await page.locator('#roundMore').click({ force: true }); // Playwright сам не жмёт aria-disabled
+  assert.equal(await size.inputValue(), '40', '«+» больше доступного не прибавляет');
   // «Все»: в поле — число доступных.
   await page.locator('input[data-key="Размер:all"]').check();
   assert.equal(await size.inputValue(), '16');
@@ -330,8 +342,15 @@ test('размер раунда: своё число с клавиатуры, к
   assert.equal(await shareHash(), '#/practice?size=14');
   await page.reload();
   assert.equal(await size.inputValue(), '14');
+  // «Все» без доступных — поле пустое, а не «0».
+  await page.locator('#stateFilter').selectOption('mistakes');
+  await page.locator('input[data-key="Размер:all"]').check();
+  assert.equal(await size.inputValue(), '');
+  await page.locator('#stateFilter').selectOption('all');
+  // Вписал и сразу «Начать раунд», без Enter: раунд — из вписанного числа.
+  await size.fill('7');
   await page.locator('#startRound').click();
-  await see(page, '.progress', /Задание 1 из 14/);
+  await see(page, '.progress', /Задание 1 из 7/);
   assert.deepEqual(errors, []);
   await context.close();
 });

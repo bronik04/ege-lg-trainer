@@ -370,9 +370,17 @@ test('размер раунда с клавиатуры: дробь вниз, к
   assert.equal(L.typedRoundSize('0'), '1');
   assert.equal(L.typedRoundSize('-3'), '1');
   assert.equal(L.typedRoundSize('1000'), '999');
-  for (const bad of ['', '  ', 'abc', '12abc', 'Infinity']) {
+  assert.equal(L.typedRoundSize('１２'), '12', 'полноширинные цифры китайской раскладки');
+  for (const bad of ['', '  ', 'abc', '12abc', 'Infinity', '0x10', '0b11', '1e2', '1 2', '+', '.']) {
     assert.equal(L.typedRoundSize(bad), null, JSON.stringify(bad));
   }
+});
+
+test('сколько заданий попадёт в раунд: размер, но не больше доступного', () => {
+  assert.equal(L.roundCount('12', 40), 12);
+  assert.equal(L.roundCount('40', 16), 16);
+  assert.equal(L.roundCount('all', 16), 16);
+  assert.equal(L.roundCount('all', 0), 0);
 });
 
 test('кнопки − и +: шаг от числа, которое попадёт в раунд', () => {

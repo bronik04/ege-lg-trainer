@@ -413,20 +413,24 @@ export function roundSize(value) {
   return n >= 1 && n <= ROUND_SIZE_MAX ? String(n) : null;
 }
 
-// Число из поля «Своё число»: дробь — вниз, меньше 1 — 1, больше 999 — 999. Не число — null
-// (поле вернёт прежнее значение).
+// Число из поля «Своё число»: дробь — вниз, меньше 1 — 1, больше 999 — 999. Полноширинные цифры
+// китайской раскладки — как обычные. Не число (буквы, 0x10, 1e2) — null: поле вернёт прежнее.
 export function typedRoundSize(text) {
-  const trimmed = String(text).trim();
+  const trimmed = String(text).normalize('NFKC').trim();
+  if (!/^[+-]?(\d+([.,]\d*)?|[.,]\d+)$/.test(trimmed)) return null;
   const n = Number(trimmed.replace(',', '.'));
-  if (!trimmed || !Number.isFinite(n)) return null;
   return String(Math.min(ROUND_SIZE_MAX, Math.max(1, Math.floor(n))));
+}
+
+// Сколько заданий попадёт в раунд: размер, но не больше доступного.
+export function roundCount(size, available) {
+  return size === 'all' ? available : Math.min(Number(size), available);
 }
 
 // Кнопки − и +: шаг от числа, которое попадёт в раунд, — размер больше доступного «−» сразу
 // опускает ниже доступного.
 export function stepRoundSize(size, available, delta) {
-  const count = size === 'all' ? available : Math.min(Number(size), available);
-  return String(Math.min(ROUND_SIZE_MAX, Math.max(1, count + delta)));
+  return String(Math.min(ROUND_SIZE_MAX, Math.max(1, roundCount(size, available) + delta)));
 }
 
 // Запятая в адресе допустима: ссылка остаётся читаемой (topics=aspect,adverbs).

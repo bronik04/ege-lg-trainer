@@ -1021,14 +1021,16 @@
     const stateSelect = el('select', { id: 'stateFilter', dataset: { key: 'state' }, onchange: (e) => { filters.state = e.target.value; saveFilters(); render(false); } },
       [['all', 'Все'], ['new', 'Новые'], ['done', 'Уже решённые'], ['review', 'На повторение'], ['mistakes', 'Ошибки']].map(([v, label]) => el('option', { value: v, selected: filters.state === v, text: label })));
     const available = filterQuestions(questions, filters, progress, now());
+    const size = roundSizeControl(available.length);
     view.append(el('div', { class: 'filters-row' },
       el('label', { class: 'field' }, 'Какие задания', stateSelect),
-      roundSizeControl(available.length)),
+      size.node),
       el('p', { class: 'notice', id: 'available', 'aria-live': 'polite', text: availableText(available.length) }));
     const actions = el('div', { class: 'actions' },
       el('button', {
         class: 'button', type: 'button', id: 'startRound', disabled: !available.length, dataset: { enter: '1' },
-        onclick: () => startRound(pickRound(available, filters.size).map((q) => q.id)),
+        // Поле применяется и здесь: если касание кнопки не увело из него фокус (iPhone).
+        onclick: () => { size.commit(); startRound(pickRound(available, filters.size).map((q) => q.id)); },
       }, 'Начать раунд'),
       el('button', {
         class: 'button ghost', type: 'button',
@@ -1047,8 +1049,9 @@
 
   function availableText(count) {
     if (count) {
-      const size = filters.size === 'all' ? count : Math.min(Number(filters.size), count);
-      return `Доступно: ${tasksWord(count)}. В раунд попадёт ${size}.`;
+      const size = roundCount(filters.size, count);
+      const report = size > REPORT_MAX_TASKS ? ` Отчёт учителю — только для раунда до ${REPORT_MAX_TASKS} заданий.` : '';
+      return `Доступно: ${tasksWord(count)}. В раунд попадёт ${size}.${report}`;
     }
     if (filters.state === 'mistakes') return 'Ошибок с такими фильтрами нет.';
     if (filters.state === 'done') return 'Решённых с такими фильтрами пока нет.';
@@ -1071,15 +1074,16 @@
       type: 'radio', name: 'roundPreset', value, dataset: { key: `Размер:${value}` }, onchange: () => set(value),
     }));
     let shown = '';
+    // Упёршаяся кнопка — aria-disabled, а не disabled: она не срабатывает, но держит фокус.
+    // Иначе фокус пришлось бы переносить, и пробел ушёл бы в поле, а на телефоне открылась бы клавиатура.
+    const off = (button) => button.getAttribute('aria-disabled') === 'true';
     function sync() {
-      const count = filters.size === 'all' ? available : Math.min(Number(filters.size), available);
-      shown = filters.size === 'all' ? String(available) : filters.size;
+      const count = roundCount(filters.size, available);
+      shown = filters.size === 'all' ? (available ? String(available) : '') : filters.size;
       field.value = shown;
       for (const preset of presets) preset.checked = preset.value === filters.size;
-      less.disabled = count <= 1;
-      more.disabled = count >= Math.min(available, ROUND_SIZE_MAX);
-      // Нажатая кнопка стала недоступной — фокус в поле, а не в никуда.
-      if ((less.disabled && document.activeElement === less) || (more.disabled && document.activeElement === more)) field.focus();
+      less.setAttribute('aria-disabled', String(count <= 1));
+      more.setAttribute('aria-disabled', String(count >= Math.min(available, ROUND_SIZE_MAX)));
     }
     function set(value) {
       filters.size = value;
@@ -1099,7 +1103,7 @@
     }
     function step(delta) {
       commit();
-      if (!(delta > 0 ? more : less).disabled) set(stepRoundSize(filters.size, available, delta));
+      if (!off(delta > 0 ? more : less)) set(stepRoundSize(filters.size, available, delta));
     }
     less.addEventListener('click', () => step(-1));
     more.addEventListener('click', () => step(1));
@@ -1111,6 +1115,7 @@
     field.addEventListener('blur', () => { fresh = false; commit(); });
     field.addEventListener('keydown', (e) => {
       fresh = false;
+      if (e.isComposing) return; // Enter подтверждает набор в китайской раскладке, а не число
       if (e.key === 'Enter') {
         e.preventDefault();
         commit();
@@ -1121,12 +1126,13 @@
       }
     });
     sync();
-    return el('fieldset', { class: 'filter size-filter', id: 'roundSizeBox' },
+    const node = el('fieldset', { class: 'filter size-filter', id: 'roundSizeBox' },
       el('legend', { text: 'Размер раунда' }),
       el('div', { class: 'chips' }, presets.map((input, i) => el('label', { class: 'chip' }, input, el('span', { text: ROUND_PRESETS[i][1] })))),
       el('div', { class: 'size-own' },
         el('label', { for: 'roundSize', text: 'Своё число' }),
         el('div', { class: 'stepper' }, less, field, more)));
+    return { node, commit };
   }
 
   function startRound(ids) {
