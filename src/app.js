@@ -626,12 +626,15 @@
     }
     // Китайское внутри формулировки вопроса по правилу — крупнее русского текста; предложение
     // — своей строкой размером с условие задания, пропуск в нём — клетка, как в условии.
-    const prompt = heading || item.prompt;
-    const cells = blankCells(item, prompt, { selected, reveal });
+    // Клетки — только в китайских кусках (их и считает blankFill) и не у задания ЕГЭ: его
+    // пропуск — в условии под формулировкой.
+    const runs = chineseRuns(heading || item.prompt);
+    const zh = kind === 'exam' ? '' : runs.filter((r) => r.zh).map((r) => r.text).join(' ');
+    const cells = blankCells(item, zh, { selected, reveal });
     card.append(el('p', { class: 'instruction', tabindex: '-1', dataset: { focus: '1' } },
-      chineseRuns(prompt).map((r) => {
+      runs.map((r) => {
         if (!r.zh) return r.text;
-        const parts = stemSegments(r.text);
+        const parts = zh ? stemSegments(r.text) : [{ text: r.text }];
         const cls = ['prompt-zh', r.line ? 'line' : '', parts.some((p) => p.blank) ? 'blanks' : ''].filter(Boolean).join(' ');
         return el('span', { class: cls, lang: 'zh' }, cells(parts));
       })));
