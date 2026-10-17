@@ -736,6 +736,23 @@ export function stemSegments(stem) {
   return parts;
 }
 
+// Русская формулировка с китайским внутри («Какое слово подходит: 他___了 «…»?») → куски,
+// китайские помечены zh: их выводят крупнее, иначе иероглифы не разобрать с задней парты.
+// Пропуск «___» и китайская пунктуация остаются в китайском куске.
+export function chineseRuns(text) {
+  const runs = [];
+  const re = /[_\u3000-\u303f\u3400-\u9fff\uff00-\uffef…]*[\u3400-\u9fff][_\u3000-\u303f\u3400-\u9fff\uff00-\uffef…]*/g;
+  let last = 0;
+  let match;
+  while ((match = re.exec(text)) !== null) {
+    if (match.index > last) runs.push({ text: text.slice(last, match.index) });
+    runs.push({ text: match[0], zh: true });
+    last = match.index + match[0].length;
+  }
+  if (last < text.length) runs.push({ text: text.slice(last) });
+  return runs;
+}
+
 // ---------- пропуск-клетка: что вписать ----------
 
 const HANZI = /[㐀-鿿]/; // U+3400–U+9FFF: иероглифы, включая расширение A

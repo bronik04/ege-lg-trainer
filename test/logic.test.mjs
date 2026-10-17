@@ -181,6 +181,19 @@ test('blankFill: один пропуск с многоточием — цели�
   assert.equal(L.blankFill({ stem: '___他，___我。', options: opts('因为所以') }, '1'), null);
 });
 
+test('chineseRuns: китайское в русской формулировке — отдельными кусками', () => {
+  assert.deepEqual(L.chineseRuns('Какое наречие нужно: 你的作业里有错字，请___检查一遍 «проверь ещё раз»?'), [
+    { text: 'Какое наречие нужно: ' },
+    { text: '你的作业里有错字，请___检查一遍', zh: true },
+    { text: ' «проверь ещё раз»?' },
+  ]);
+  assert.deepEqual(L.chineseRuns('从窗户照进来一___阳光'), [{ text: '从窗户照进来一___阳光', zh: true }]);
+  assert.deepEqual(L.chineseRuns('Что ставят после 比 и перед 了?'),
+    [{ text: 'Что ставят после ' }, { text: '比', zh: true }, { text: ' и перед ' }, { text: '了', zh: true }, { text: '?' }]);
+  assert.deepEqual(L.chineseRuns('Без иероглифов ___'), [{ text: 'Без иероглифов ___' }]);
+  assert.deepEqual(L.chineseRuns(''), []);
+});
+
 test('isChinese: иероглифы без кириллицы', () => {
   assert.equal(L.isChinese('上来'), true);
   assert.equal(L.isChinese('要是……，就……'), true);
