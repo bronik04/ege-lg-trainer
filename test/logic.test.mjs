@@ -184,14 +184,31 @@ test('blankFill: один пропуск с многоточием — цели�
 test('chineseRuns: китайское в русской формулировке — отдельными кусками', () => {
   assert.deepEqual(L.chineseRuns('Какое наречие нужно: 你的作业里有错字，请___检查一遍 «проверь ещё раз»?'), [
     { text: 'Какое наречие нужно: ' },
-    { text: '你的作业里有错字，请___检查一遍', zh: true },
+    { text: '你的作业里有错字，请___检查一遍', zh: true, line: true },
     { text: ' «проверь ещё раз»?' },
   ]);
-  assert.deepEqual(L.chineseRuns('从窗户照进来一___阳光'), [{ text: '从窗户照进来一___阳光', zh: true }]);
+  assert.deepEqual(L.chineseRuns('一___阳光'), [{ text: '一___阳光', zh: true, line: true }]);
+  // Слово — в строке; предложение без пропуска длиннее четырёх знаков — своей строкой.
   assert.deepEqual(L.chineseRuns('Что ставят после 比 и перед 了?'),
     [{ text: 'Что ставят после ' }, { text: '比', zh: true }, { text: ' и перед ' }, { text: '了', zh: true }, { text: '?' }]);
+  assert.deepEqual(L.chineseRuns('Где ошибка в 先…然后?'), [{ text: 'Где ошибка в ' }, { text: '先…然后', zh: true }, { text: '?' }]);
   assert.deepEqual(L.chineseRuns('Без иероглифов ___'), [{ text: 'Без иероглифов ___' }]);
   assert.deepEqual(L.chineseRuns(''), []);
+});
+
+test('chineseRuns: «?» за предложением не остаётся один на строке', () => {
+  assert.deepEqual(L.chineseRuns('Как записать цифрами: 三千零五十万 ?'),
+    [{ text: 'Как записать цифрами: ' }, { text: '三千零五十万?', zh: true, line: true }]);
+  // За словом в строке знак остаётся русским текстом: переноса там нет.
+  assert.deepEqual(L.chineseRuns('Что выражает 了?'), [{ text: 'Что выражает ' }, { text: '了', zh: true }, { text: '?' }]);
+});
+
+test('chineseRuns: цифры, латиница и кавычки “” не рвут предложение', () => {
+  assert.deepEqual(L.chineseRuns('Нужно ли: 这个100块钱'), [{ text: 'Нужно ли: ' }, { text: '这个100块钱', zh: true, line: true }]);
+  assert.deepEqual(L.chineseRuns('我买了3D打印机'), [{ text: '我买了3D打印机', zh: true, line: true }]);
+  assert.deepEqual(L.chineseRuns('Так ли: 他说：“你好”?'), [{ text: 'Так ли: ' }, { text: '他说：“你好”?', zh: true, line: true }]);
+  // Латиница отдельно от иероглифов — русский текст.
+  assert.deepEqual(L.chineseRuns('Слово HSK 4: 了'), [{ text: 'Слово HSK 4: ' }, { text: '了', zh: true }]);
 });
 
 test('isChinese: иероглифы без кириллицы', () => {

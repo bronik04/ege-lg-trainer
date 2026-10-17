@@ -618,10 +618,9 @@
         item.draft ? el('span', { class: 'pill draft', text: 'черновик' }) : null));
     }
     // Китайское внутри формулировки вопроса по правилу — крупнее русского текста; предложение
-    // (с пропуском или длиннее слова) — своей строкой размером с условие задания.
-    const zhRun = (t) => el('span', { class: t.length > 4 || t.includes('_') ? 'prompt-zh line' : 'prompt-zh', lang: 'zh', text: t });
+    // — своей строкой размером с условие задания.
     card.append(el('p', { class: 'instruction', tabindex: '-1', dataset: { focus: '1' } },
-      chineseRuns(heading || item.prompt).map((r) => (r.zh ? zhRun(r.text) : r.text))));
+      chineseRuns(heading || item.prompt).map((r) => (r.zh ? el('span', { class: r.line ? 'prompt-zh line' : 'prompt-zh', lang: 'zh', text: r.text }) : r.text))));
     if (kind === 'exam') card.append(stemNode(item, { selected, reveal }));
     else if (item.sentence) {
       card.append(sentenceNode(item, item.sentence, 'stem', { selected, reveal }));

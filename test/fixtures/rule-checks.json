@@ -65,7 +65,7 @@
       "aspect-suffixes"
     ],
     "status": "accepted",
-    "prompt": "Что выражает 过 после глагола?",
+    "prompt": "Что выражает 过 после глагола: 我去过北京?",
     "options": [
       {
         "id": "a",

@@ -738,18 +738,24 @@ export function stemSegments(stem) {
 
 // Русская формулировка с китайским внутри («Какое слово подходит: 他___了 «…»?») → куски,
 // китайские помечены zh: их выводят крупнее, иначе иероглифы не разобрать с задней парты.
-// Пропуск «___» и китайская пунктуация остаются в китайском куске.
+// Пропуск «___», китайская пунктуация, кавычки “” и цифры с латиницей вплотную к иероглифам
+// (100块, 3D打印机) остаются в китайском куске. Предложение (с пропуском или длиннее слова)
+// помечено line — его выводят своей строкой; русская пунктуация сразу за ним («?») уходит
+// в тот же кусок, чтобы не остаться одна на следующей строке.
+const ZH_RUN = /[_A-Za-z0-9“”‘’\u3000-\u303f\uff00-\uffef…]*[\u3400-\u9fff][_A-Za-z0-9“”‘’\u3000-\u303f\u3400-\u9fff\uff00-\uffef…]*/g;
+const TAIL_PUNCT = /^\s*[?!.,:;»)]+\s*$/;
 export function chineseRuns(text) {
   const runs = [];
-  const re = /[_\u3000-\u303f\u3400-\u9fff\uff00-\uffef…]*[\u3400-\u9fff][_\u3000-\u303f\u3400-\u9fff\uff00-\uffef…]*/g;
   let last = 0;
-  let match;
-  while ((match = re.exec(text)) !== null) {
+  for (const match of text.matchAll(ZH_RUN)) {
     if (match.index > last) runs.push({ text: text.slice(last, match.index) });
-    runs.push({ text: match[0], zh: true });
-    last = match.index + match[0].length;
+    const t = match[0];
+    runs.push(t.length > 4 || t.includes('_') ? { text: t, zh: true, line: true } : { text: t, zh: true });
+    last = match.index + t.length;
   }
-  if (last < text.length) runs.push({ text: text.slice(last) });
+  const tail = text.slice(last);
+  if (tail && runs.at(-1)?.line && TAIL_PUNCT.test(tail)) runs.at(-1).text += tail.trim();
+  else if (tail) runs.push({ text: tail });
   return runs;
 }
 

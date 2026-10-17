@@ -52,7 +52,7 @@ CHECKS = [
      "options": [{"id": "a", "text": "Раньше ожидаемого"}, {"id": "b", "text": "Позже ожидаемого"}], "correctOptionId": "b",
      "explanation": {"correct": "才 после указания времени: говорящий считает, что это поздно.", "options": {"a": "Раньше ожидаемого выражает 就, а не 才."}}},
     {"id": "check-guo", "kind": "identify-rule", "ruleIds": ["aspect-suffixes"], "status": "accepted",
-     "prompt": "Что выражает 过 после глагола?",
+     "prompt": "Что выражает 过 после глагола: 我去过北京?",
      "options": [{"id": "a", "text": "Действие длится сейчас"}, {"id": "b", "text": "Такое уже бывало когда-то"},
                  {"id": "c", "text": "Действие только что закончилось"}, {"id": "d", "text": "Действие будет потом"}],
      "correctOptionId": "b",
