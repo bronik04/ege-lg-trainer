@@ -772,12 +772,14 @@ export function isChinese(text) {
 const PUNCT = '\\s，,、；;。：:';
 const EDGE_PUNCT = new RegExp(`^[${PUNCT}]+|[${PUNCT}]+$`, 'g');
 const INNER_PUNCT = new RegExp(`[${PUNCT}]`);
-const blankCount = (item) => stemSegments(item.stem ?? item.sentence ?? '').filter((p) => p.blank).length;
+const blankCount = (text) => stemSegments(text).filter((p) => p.blank).length;
 
 // Что вписать в пропуски для варианта: один пропуск — весь текст, несколько — части союза
 // («要是……，就……» → 要是 и 就). Не раскладывается или без иероглифов — null.
-export function blankFill(item, optionId) {
-  const k = blankCount(item);
+// text — где пропуски: условие, предложение вопроса или (у вопроса по правилу без
+// предложения) сама формулировка «Какое слово подходит: 他___了?».
+export function blankFill(item, optionId, text = item.stem ?? item.sentence ?? item.prompt ?? '') {
+  const k = blankCount(text);
   const option = item.options.find((o) => o.id === optionId);
   if (!k || !option || !isChinese(option.text)) return null;
   if (k === 1) return [option.text.trim()];

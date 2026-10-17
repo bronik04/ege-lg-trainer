@@ -580,13 +580,15 @@
     return box;
   }
 
-  // Предложение с пропусками-клетками. selected — выбранный вариант, reveal — после проверки.
-  function sentenceNode(item, text, cls, { selected, reveal }) {
-    const chosen = selected == null ? null : blankFill(item, selected);
-    const right = reveal ? blankFill(item, item.correctOptionId) : null;
+  // Пропуски текста text по порядку: возвращает функцию, которая превращает куски stemSegments
+  // в текст и клетки. Куски можно отдавать частями (формулировка вопроса режется на русское и
+  // китайское) — счёт пропусков сквозной. selected — выбранный вариант, reveal — после проверки.
+  function blankCells(item, text, { selected, reveal }) {
+    const chosen = selected == null ? null : blankFill(item, selected, text);
+    const right = reveal ? blankFill(item, item.correctOptionId, text) : null;
     const correct = selected != null && selected === item.correctOptionId;
     let index = 0;
-    return el('p', { class: cls, lang: 'zh' }, stemSegments(text).map((part) => {
+    return (parts) => parts.map((part) => {
       if (!part.blank) return part.text;
       const i = index;
       index += 1;
@@ -595,7 +597,12 @@
         state: reveal ? (correct ? 'right' : 'wrong') : null,
         fix: reveal && !correct && right ? right[i] : null,
       });
-    }));
+    });
+  }
+
+  // Предложение с пропусками-клетками.
+  function sentenceNode(item, text, cls, state) {
+    return el('p', { class: cls, lang: 'zh' }, blankCells(item, text, state)(stemSegments(text)));
   }
 
   function stemNode(q, state) {
@@ -618,9 +625,19 @@
         item.draft ? el('span', { class: 'pill draft', text: 'черновик' }) : null));
     }
     // Китайское внутри формулировки вопроса по правилу — крупнее русского текста; предложение
-    // — своей строкой размером с условие задания.
+    // — своей строкой размером с условие задания, пропуск в нём — клетка, как в условии.
+    // Клетки — только в китайских кусках (их и считает blankFill) и не у задания ЕГЭ: его
+    // пропуск — в условии под формулировкой.
+    const runs = chineseRuns(heading || item.prompt);
+    const zh = kind === 'exam' ? '' : runs.filter((r) => r.zh).map((r) => r.text).join(' ');
+    const cells = blankCells(item, zh, { selected, reveal });
     card.append(el('p', { class: 'instruction', tabindex: '-1', dataset: { focus: '1' } },
-      chineseRuns(heading || item.prompt).map((r) => (r.zh ? el('span', { class: r.line ? 'prompt-zh line' : 'prompt-zh', lang: 'zh', text: r.text }) : r.text))));
+      runs.map((r) => {
+        if (!r.zh) return r.text;
+        const parts = zh ? stemSegments(r.text) : [{ text: r.text }];
+        const cls = ['prompt-zh', r.line ? 'line' : '', parts.some((p) => p.blank) ? 'blanks' : ''].filter(Boolean).join(' ');
+        return el('span', { class: cls, lang: 'zh' }, cells(parts));
+      })));
     if (kind === 'exam') card.append(stemNode(item, { selected, reveal }));
     else if (item.sentence) {
       card.append(sentenceNode(item, item.sentence, 'stem', { selected, reveal }));

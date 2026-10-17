@@ -176,6 +176,16 @@ test('blankFill: без пропуска и без иероглифов — null
   assert.deepEqual(L.blankFill({ sentence: '他十点___来。', options: opts('就', '才') }, '2'), ['才']);
 });
 
+test('blankFill: пропуск в формулировке вопроса по правилу', () => {
+  const check = { prompt: 'Какое слово нужно: 他一回家___睡觉了?', options: opts('就', '才') };
+  assert.deepEqual(L.blankFill(check, '1'), ['就']);
+  const pair = { prompt: 'Какая конструкция нужна: ___你想学，___报个班吧?', options: opts('既然……就……') };
+  assert.deepEqual(L.blankFill(pair, '1'), ['既然', '就']);
+  // Предложение у вопроса важнее формулировки; текст можно назвать явно.
+  assert.equal(L.blankFill({ prompt: 'Что выражает ___?', sentence: '他来了。', options: opts('了') }, '1'), null);
+  assert.deepEqual(L.blankFill({ sentence: '他来了。', options: opts('了') }, '1', '他___。'), ['了']);
+});
+
 test('blankFill: один пропуск с многоточием — целиком; два пропуска без многоточия — null', () => {
   assert.deepEqual(L.blankFill({ stem: '___我看来，这不对。', options: opts('在……看来', '对') }, '1'), ['在……看来']);
   assert.equal(L.blankFill({ stem: '___他，___我。', options: opts('因为所以') }, '1'), null);

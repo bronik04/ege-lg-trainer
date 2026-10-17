@@ -1360,6 +1360,63 @@ test('вопрос по правилу: китайское предложени�
   assert.ok(phone.px <= 28, `телефон: ${phone.px}px`);
 });
 
+test('вопрос по правилу: пропуск в формулировке — клетка 田字格, после ответа в неё вписан ответ', { skip }, async () => {
+  const url = buildPage('prompt-blank', {
+    change: (data) => {
+      const guo = data['rule-checks'].find((c) => c.id === 'check-guo');
+      Object.assign(guo, {
+        prompt: 'Какой суффикс нужен: 我从来没去___北京 «я никогда не был в Пекине»?',
+        options: [{ id: 'a', text: '过' }, { id: 'b', text: '了' }, { id: 'c', text: '着' }], correctOptionId: 'a',
+        explanation: { correct: '过 — опыт: «никогда не бывал».', options: { b: '了 говорит о состоявшемся действии, а не об опыте.', c: '着 — длящееся состояние, а не опыт.' } },
+      });
+      data.rules.push({ ...data.rules.find((r) => r.id === 'jiu-cai'), id: 'pairs', title: 'Парные союзы' });
+      data['rule-checks'].push({
+        id: 'check-pair', kind: 'choose-form', ruleIds: ['pairs'], status: 'accepted',
+        prompt: 'Какая конструкция нужна: ___你想学，___报个班吧 «раз хочешь учиться — запишись на курсы»?',
+        options: [{ id: 'a', text: '即使……也……' }, { id: 'b', text: '既然……就……' }], correctOptionId: 'b',
+        explanation: { correct: '既然……就…… — «раз уж …, то …».', options: { a: '即使……也…… — «даже если»: предположение, а желание уже известно.' } },
+      });
+    },
+  });
+  const cells = (page) => page.evaluate(() => [...document.querySelectorAll('.instruction .tz')].map((t) => ({
+    cells: t.querySelectorAll('.c').length, ink: [...t.querySelectorAll('.ink')].map((n) => n.textContent).join(''),
+    fix: t.querySelector('.fix')?.textContent ?? '', cls: t.className, label: t.getAttribute('aria-label'),
+  })));
+  const start = async (width, height, rule) => {
+    const opened = await open(url, { width, height, hash: '#/rules' });
+    await opened.page.getByRole('link', { name: rule }).click();
+    await opened.page.getByRole('button', { name: /Проверить правило/ }).click();
+    await opened.page.locator('.prompt-zh.line.blanks').waitFor();
+    return opened;
+  };
+
+  for (const [width, height] of [[1366, 768], [390, 844]]) {
+    const { page, context, errors } = await start(width, height, /了, 过 и 着/);
+    // До ответа — одна пустая клетка, «___» в тексте нет.
+    assert.deepEqual(await cells(page), [{ cells: 1, ink: '', fix: '', cls: 'tz', label: 'пропуск' }]);
+    assert.equal(await page.locator('.prompt-zh.line').textContent(), '我从来没去北京');
+    await page.keyboard.press('2');
+    await page.locator('.verdict.bad').waitFor();
+    // Выбранное вписано и зачёркнуто, верное — над клеткой.
+    assert.deepEqual(await cells(page), [{ cells: 1, ink: '了', fix: '过', cls: 'tz written wrong', label: 'пропуск: выбрано 了, верно 过' }]);
+    // Клетка — того же размера, что в условии задания: строка крупная на ноутбуке и как было на телефоне.
+    const px = await page.evaluate(() => parseFloat(getComputedStyle(document.querySelector('.prompt-zh.line')).fontSize));
+    assert.ok(width > 720 ? px >= 36 : px <= 28, `${width}px: ${px}px`);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), width, 'без прокрутки вбок');
+    assert.deepEqual(errors, []);
+    await context.close();
+  }
+
+  // Два пропуска: до ответа по клетке на каждый, союз раскладывается по ним.
+  const { page, context, errors } = await start(1366, 768, /Парные союзы/);
+  assert.deepEqual((await cells(page)).map((c) => c.cells), [1, 1]);
+  await page.keyboard.press('2');
+  await page.locator('.verdict.ok').waitFor();
+  assert.deepEqual((await cells(page)).map((c) => [c.cells, c.ink, c.cls]), [[2, '既然', 'tz written right'], [1, '就', 'tz written right']]);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
 test('№19 на ноутбуке: число в варианте не рвётся на две строки', { skip }, async () => {
   for (const width of [800, 1024, 1366]) {
     const { page, context } = await open(mainUrl, { width, height: 768, hash: '#/practice?ids=q19-a' });
