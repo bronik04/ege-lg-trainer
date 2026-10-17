@@ -244,6 +244,8 @@ kbd {
 .pill.draft { padding: 1px 8px; border-radius: 4px; background: var(--warn-bg); color: var(--warn-ink); font-size: .8rem; font-weight: 700; }
 
 .instruction { margin: 0 0 4px; font-size: 1.02rem; font-weight: 600; outline: none; }
+.prompt-zh { font-family: var(--zh); font-size: 1.3em; font-weight: 400; }
+.prompt-zh.line { display: block; margin: 6px 0; font-size: clamp(1.45rem, 5.4vw, 1.75rem); line-height: 1.6; }
 .stem, .fragments, .instruction { scroll-margin-top: 12px; }
 .stem { margin: 0 0 12px; font-family: var(--zh); font-size: clamp(1.45rem, 5.4vw, 1.75rem); line-height: 2.45; }
 .stem.solo { margin: 10px 0 18px; font-size: clamp(2rem, 8vw, 2.8rem); line-height: 1.5; letter-spacing: .06em; }
@@ -490,6 +492,7 @@ kbd {
   .pills { font-size: .92rem; }
   .instruction { font-size: 1.25rem; }
   .stem { font-size: 2.4rem; }
+  .prompt-zh.line { font-size: 2.4rem; }
   .stem.solo { font-size: 3.4rem; }
   .stem-ru { font-size: 1.1rem; }
   .fragments li { grid-template-columns: 40px 1fr; font-size: 1.8rem; }

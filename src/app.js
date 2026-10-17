@@ -617,7 +617,10 @@
         item.ruleIds.map((id) => rulesById.get(id)).filter(Boolean).map((r) => el('span', { class: 'pill quiet', text: r.title })),
         item.draft ? el('span', { class: 'pill draft', text: 'черновик' }) : null));
     }
-    card.append(el('p', { class: 'instruction', tabindex: '-1', dataset: { focus: '1' }, text: heading || item.prompt }));
+    // Китайское внутри формулировки вопроса по правилу — крупнее русского текста; предложение
+    // — своей строкой размером с условие задания.
+    card.append(el('p', { class: 'instruction', tabindex: '-1', dataset: { focus: '1' } },
+      chineseRuns(heading || item.prompt).map((r) => (r.zh ? el('span', { class: r.line ? 'prompt-zh line' : 'prompt-zh', lang: 'zh', text: r.text }) : r.text))));
     if (kind === 'exam') card.append(stemNode(item, { selected, reveal }));
     else if (item.sentence) {
       card.append(sentenceNode(item, item.sentence, 'stem', { selected, reveal }));

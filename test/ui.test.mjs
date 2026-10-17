@@ -1338,6 +1338,28 @@ test('шрифт задания: крупный на ноутбуке, на те
   await phone.context.close();
 });
 
+test('вопрос по правилу: китайское предложение в формулировке — крупно, своей строкой', { skip }, async () => {
+  const zhSize = async (width, height) => {
+    const { page, context, errors } = await open(mainUrl, { width, height, hash: '#/rules' });
+    await page.getByRole('link', { name: /了, 过 и 着/ }).click();
+    await page.getByRole('button', { name: /Проверить правило/ }).click();
+    await page.locator('.prompt-zh.line').waitFor();
+    const got = await page.evaluate(() => {
+      const line = document.querySelector('.prompt-zh.line');
+      return { text: line.textContent, px: parseFloat(getComputedStyle(line).fontSize) };
+    });
+    assert.deepEqual(errors, []);
+    await context.close();
+    return got;
+  };
+  const wide = await zhSize(1366, 768);
+  // «?» — в той же строке, а не один на следующей.
+  assert.equal(wide.text, '我去过北京?');
+  assert.ok(wide.px >= 36, `ноутбук: ${wide.px}px`);
+  const phone = await zhSize(390, 844);
+  assert.ok(phone.px <= 28, `телефон: ${phone.px}px`);
+});
+
 test('№19 на ноутбуке: число в варианте не рвётся на две строки', { skip }, async () => {
   for (const width of [800, 1024, 1366]) {
     const { page, context } = await open(mainUrl, { width, height: 768, hash: '#/practice?ids=q19-a' });

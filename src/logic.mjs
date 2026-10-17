@@ -736,6 +736,29 @@ export function stemSegments(stem) {
   return parts;
 }
 
+// Русская формулировка с китайским внутри («Какое слово подходит: 他___了 «…»?») → куски,
+// китайские помечены zh: их выводят крупнее, иначе иероглифы не разобрать с задней парты.
+// Пропуск «___», китайская пунктуация, кавычки “” и цифры с латиницей вплотную к иероглифам
+// (100块, 3D打印机) остаются в китайском куске. Предложение (с пропуском или длиннее слова)
+// помечено line — его выводят своей строкой; русская пунктуация сразу за ним («?») уходит
+// в тот же кусок, чтобы не остаться одна на следующей строке.
+const ZH_RUN = /[_A-Za-z0-9“”‘’\u3000-\u303f\uff00-\uffef…]*[\u3400-\u9fff][_A-Za-z0-9“”‘’\u3000-\u303f\u3400-\u9fff\uff00-\uffef…]*/g;
+const TAIL_PUNCT = /^\s*[?!.,:;»)]+\s*$/;
+export function chineseRuns(text) {
+  const runs = [];
+  let last = 0;
+  for (const match of text.matchAll(ZH_RUN)) {
+    if (match.index > last) runs.push({ text: text.slice(last, match.index) });
+    const t = match[0];
+    runs.push(t.length > 4 || t.includes('_') ? { text: t, zh: true, line: true } : { text: t, zh: true });
+    last = match.index + t.length;
+  }
+  const tail = text.slice(last);
+  if (tail && runs.at(-1)?.line && TAIL_PUNCT.test(tail)) runs.at(-1).text += tail.trim();
+  else if (tail) runs.push({ text: tail });
+  return runs;
+}
+
 // ---------- пропуск-клетка: что вписать ----------
 
 const HANZI = /[㐀-鿿]/; // U+3400–U+9FFF: иероглифы, включая расширение A
