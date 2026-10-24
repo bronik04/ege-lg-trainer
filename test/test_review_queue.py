@@ -253,5 +253,12 @@ class ReportsTest(unittest.TestCase):
         self.assertIn("brew install gh", error)
 
 
+class CommittedDataTest(unittest.TestCase):
+    def test_review_state_builds_on_committed_data(self):
+        # Задания, снятые в банке, держат разборы — «Проверка» не должна на них падать.
+        state = rq.load_state()
+        self.assertTrue(state["questions"])
+
+
 if __name__ == "__main__":
     unittest.main()

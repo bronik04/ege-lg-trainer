@@ -48,14 +48,12 @@ jobs:
         if: env.OFFLINE != 'false'
         run: npm ci
 
-      # Банк пересобирается из снимка источников. Закоммиченные данные и отчёты
+      # Банк пересобирается из снимка выгрузки единого банка (sources/bank). Закоммиченные данные и отчёты
       # (в том числе очередь проверки, по которой автор принимает содержание)
       # обязаны совпасть с пересборкой — иначе публикация останавливается.
       - name: Пересобрать и проверить данные
         run: |
-          python3 scripts/import_constructor.py
-          python3 scripts/import_generated.py
-          python3 scripts/import_hsk.py
+          python3 scripts/import_bank.py
           python3 scripts/build_bank.py
           python3 scripts/validate.py
           # status, а не diff: новый файл, которого нет в репозитории, тоже расхождение.

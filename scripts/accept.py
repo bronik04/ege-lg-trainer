@@ -2,11 +2,13 @@
 
     python3 scripts/accept.py --list                 # что ждёт проверки
     python3 scripts/accept.py q20-190b16c0 aspect    # принять по ID
-    python3 scripts/accept.py --task 20              # принять все разборы задания 20
+    python3 scripts/accept.py --task 20              # принять все черновые разборы задания 20
 
-Запускает только автор после чтения data/review/queue.md: это и есть отметка
-«проверено». После принятия — пересобрать банк (build_bank.py). Пункт из списка на правку
-(data/review/fixes.md) не принимается: он ждёт исправления Claude.
+Запускает Claude по вердикту ревьюеров (решение автора 24.10.2026) или автор после чтения
+data/review/queue.md: это и есть отметка «проверено». После принятия — пересобрать банк
+(build_bank.py). Пункт из списка на правку (data/review/fixes.md) не принимается: он ждёт
+исправления Claude. Разбор, перепроверенный после правки задания в банке (data/review/recheck.md),
+принимается только по ID и только если подходит к новому тексту; иначе — reopen.py и новый разбор.
 """
 
 import argparse
@@ -14,8 +16,17 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import AUTHORED, RULE_CHECKS, RULES, TASK_CONTENT, content_hash, read_json, write_json  # noqa: E402
+from common import AUTHORED, DATA, RULE_CHECKS, RULES, TASK_CONTENT, content_hash, read_json, write_json  # noqa: E402
 from review_queue import pending_ids, read_fixes  # noqa: E402
+from validate import explanation_problems  # noqa: E402
+
+
+RAW_DIR = DATA / "raw"
+
+
+def snapshot_of(record):
+    return {"stem": record["stem"], "options": {o["id"]: o["text"] for o in record["options"]},
+            "correctOptionId": record["correctOptionId"]}
 
 
 def drafts():
@@ -31,12 +42,24 @@ def accept(ids, task=None, fixes_text=None):
     waiting = pending_ids(read_fixes() if fixes_text is None else fixes_text)
     ids = set(ids)
     accepted = []
+    # Задание поправили в банке, ревьюер перепроверил разбор: принять — значит закрепить новый текст.
+    current = {r["id"]: r for path in sorted(RAW_DIR.glob("*.json")) for r in read_json(path)}
     for path in sorted(AUTHORED.glob("task-*.json")):
         entries = read_json(path)
         whole_file = task is not None and path.stem == f"task-{task}"
         changed = False
         for qid, entry in entries.items():
-            if (qid in ids or whole_file) and entry.get("status") == "draft" and qid not in waiting:
+            if not (qid in ids or whole_file) or qid in waiting:
+                continue
+            drifted = qid in current and entry.get("sourceSnapshot") != snapshot_of(current[qid])
+            rechecked = entry.get("status") == "accepted" and drifted and qid in ids
+            if rechecked:
+                task_now = current[qid]
+                if explanation_problems(entry.get("explanation"), task_now["options"], task_now["correctOptionId"]):
+                    continue
+            if entry.get("status") == "draft" or rechecked:
+                if drifted:
+                    entry["sourceSnapshot"] = snapshot_of(current[qid])
                 entry["status"] = "accepted"
                 entry["acceptedHash"] = content_hash(entry, TASK_CONTENT)
                 accepted.append(qid)

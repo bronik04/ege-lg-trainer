@@ -8,8 +8,8 @@ wave.json: {"q20-190b16c0": {"topicIds": [...], "ruleIds": [...],
            }, ...}
 
 Каждая запись получает статус draft и снимок условия, вариантов и ключа из банка:
-если источник потом изменится, сборка остановится и попросит перепроверить разбор.
-Принятые записи не перезаписываются.
+если задание потом поправят в банке, разбор встанет в data/review/recheck.md на перепроверку.
+Принятые записи не перезаписываются; пометка replaces (копия спорного задания) сохраняется.
 """
 
 import sys
@@ -20,6 +20,7 @@ from build_bank import load_records  # noqa: E402
 from common import AUTHORED, read_json, write_json  # noqa: E402
 
 FIELDS = ("topicIds", "ruleIds", "explanation", "contrast", "keyConflict", "keyDecision", "note")
+KEPT = ("replaces",)  # решение о публикации, а не часть разбора: волна его не задаёт и не стирает
 
 
 def add(wave):
@@ -39,8 +40,10 @@ def add(wave):
                 skipped.append(qid)
                 continue
             rec = records[qid]
+            kept = {k: current[qid][k] for k in KEPT if k in current.get(qid, {})}
             current[qid] = {
                 "status": "draft",
+                **kept,
                 **{k: entry[k] for k in FIELDS if k in entry},
                 "sourceSnapshot": {
                     "stem": rec["stem"],

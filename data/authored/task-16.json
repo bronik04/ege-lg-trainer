@@ -277,7 +277,8 @@
       },
       "correctOptionId": "2"
     },
-    "acceptedHash": "49bd885be143"
+    "acceptedHash": "49bd885be143",
+    "replaces": "q16-15173f0c"
   },
   "g16-593ab481": {
     "status": "accepted",

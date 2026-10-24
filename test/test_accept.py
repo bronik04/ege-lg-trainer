@@ -53,5 +53,40 @@ class AcceptTest(unittest.TestCase):
         self.assertEqual(sorted(accept.accept([], task=20, fixes_text="")), ["q20-aaaaaaaa", "q20-bbbbbbbb"])
 
 
+class RecheckTest(unittest.TestCase):
+    """После правки задания в банке ревьюер перепроверил разбор — accept.py закрепляет новый текст."""
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(lambda: __import__("shutil").rmtree(self.tmp, ignore_errors=True))
+        self.rec = record(qid="q20-aaaaaaaa")
+        entry = {k: v for k, v in authored_for(self.rec).items() if k != "_file"}
+        write(self.tmp / "task-20.json", {self.rec["id"]: entry})
+        changed = dict(self.rec, options=[{"id": "1", "text": "的"}] + self.rec["options"][1:])
+        (self.tmp / "raw").mkdir()
+        write(self.tmp / "raw" / "bank.json", [changed])
+        self.changed = changed
+        patcher = mock.patch.multiple(accept, AUTHORED=self.tmp, RAW_DIR=self.tmp / "raw")
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def test_accepting_rechecked_task_updates_snapshot_and_fingerprint(self):
+        before = read(self.tmp / "task-20.json")[self.rec["id"]]["acceptedHash"]
+        self.assertEqual(accept.accept([self.rec["id"]], fixes_text=""), [self.rec["id"]])
+        entry = read(self.tmp / "task-20.json")[self.rec["id"]]
+        self.assertEqual(entry["sourceSnapshot"]["options"]["1"], "的")
+        self.assertNotEqual(entry["acceptedHash"], before)
+        self.assertEqual(entry["status"], "accepted")
+
+    def test_explanation_that_does_not_fit_the_new_key_is_not_accepted(self):
+        write(self.tmp / "raw" / "bank.json", [dict(self.rec, correctOptionId="3")])
+        self.assertEqual(accept.accept([self.rec["id"]], fixes_text=""), [])
+        self.assertEqual(read(self.tmp / "task-20.json")[self.rec["id"]]["sourceSnapshot"]["correctOptionId"], "2")
+
+    def test_whole_task_does_not_reaccept_rechecks(self):
+        # --task принимает черновики номера; перепроверку после правки в банке — только по ID.
+        self.assertEqual(accept.accept([], task=20, fixes_text=""), [])
+
+
 if __name__ == "__main__":
     unittest.main()
