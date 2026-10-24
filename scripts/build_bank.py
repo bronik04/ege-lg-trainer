@@ -498,12 +498,17 @@ def recheck_report(questions, withdrawn_with_explanation):
     return "\n".join(lines) + "\n"
 
 
+def load_withdrawn():
+    """ID заданий, которые банк снял с сайтов; без снимка — пусто."""
+    return set(load_bank_snapshot().get("withdrawn", [])) if (BANK_SOURCE / "export.json").exists() else set()
+
+
 def build():
     topics = read_json(TOPICS)
     rules = read_json(RULES)
     rule_checks = read_json(RULE_CHECKS)
     records = load_records()
-    withdrawn = set(load_bank_snapshot().get("withdrawn", [])) if (BANK_SOURCE / "export.json").exists() else set()
+    withdrawn = load_withdrawn()
     authored = load_authored()
     questions, pending = merge(records, authored, topics, rules, withdrawn)
     write_json(QUESTIONS, questions)

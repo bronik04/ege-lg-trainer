@@ -173,7 +173,9 @@ class CommittedBankTest(unittest.TestCase):
         self.rules = read_json(bb.RULES)
         self.checks = read_json(bb.RULE_CHECKS)
         self.records = bb.load_records()
-        self.questions, self.pending = bb.merge(self.records, bb.load_authored(), self.topics, self.rules)
+        self.authored = bb.load_authored()
+        self.withdrawn = bb.load_withdrawn()
+        self.questions, self.pending = bb.merge(self.records, self.authored, self.topics, self.rules, self.withdrawn)
 
     def test_questions_json_is_up_to_date(self):
         self.assertEqual(self.questions, read_json(QUESTIONS), "data/questions.json устарел: запустите build_bank.py")
@@ -184,6 +186,7 @@ class CommittedBankTest(unittest.TestCase):
             "queue.md": bb.queue_report(self.questions, self.pending, self.rules, self.checks),
             "coverage.md": bb.coverage_report(self.questions, self.topics),
             "duplicates.md": bb.duplicates_report(self.records, self.questions, self.rules, self.checks),
+            "recheck.md": bb.recheck_report(self.questions, sorted(self.withdrawn & set(self.authored))),
         }
         for name, text in expected.items():
             self.assertEqual((bb.REVIEW / name).read_text(encoding="utf-8"), text,
