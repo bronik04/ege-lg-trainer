@@ -17,11 +17,14 @@ RULE_CHECKS = DATA / "rule-checks.json"
 AUTHORED = DATA / "authored"
 QUESTIONS = DATA / "questions.json"
 REVIEW = DATA / "review"
+BANK_SOURCE = SOURCES / "bank"
+RAW_BANK = DATA / "raw" / "bank.json"
 HSK_SOURCE = SOURCES / "hsk4"
 HSK_MANIFEST = HSK_SOURCE / "manifest.json"
 RAW_HSK = DATA / "raw" / "hsk.json"
 
 TASK_NUMBERS = tuple(range(15, 28))
+BANK_SCHEMA = 1
 FORMAT_YEAR = 2026
 # Сообщения об ошибках в заданиях ученик оставляет в issues этого репозитория.
 ISSUES_URL = "https://github.com/bronik04/ege-lg-trainer/issues/new"
@@ -79,3 +82,22 @@ def write_text(path, text):
         os.replace(temp, path)
     finally:
         temp.unlink(missing_ok=True)
+
+
+def load_bank_snapshot(source=None):
+    """Выгрузка единого банка из снимка sources/bank: сверяет контрольную сумму с манифестом.
+
+    Сайт собирается в GitHub Actions, где Диска нет, поэтому конвейер читает только этот снимок;
+    правка снимка руками ломает сверку с банком и не принимается.
+    """
+    source = Path(source) if source else BANK_SOURCE
+    export, manifest = source / "export.json", source / "manifest.json"
+    if not export.exists() or not manifest.exists():
+        raise SystemExit(f"нет снимка банка в {source}: запустите scripts/snapshot_bank.py <выгрузка>")
+    raw = export.read_bytes()
+    if hashlib.sha256(raw).hexdigest() != json.loads(manifest.read_text(encoding="utf-8"))["sha256"]:
+        raise SystemExit(f"снимок банка {export} изменён вручную: возьмите новую выгрузку и snapshot_bank.py")
+    data = json.loads(raw.decode("utf-8"))
+    if data.get("schemaVersion") != BANK_SCHEMA:
+        raise SystemExit(f"выгрузка банка: schemaVersion {data.get('schemaVersion')!r}, ожидается {BANK_SCHEMA}")
+    return data
