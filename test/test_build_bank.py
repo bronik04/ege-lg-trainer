@@ -114,6 +114,20 @@ class MergeTest(unittest.TestCase):
         self.assertEqual(q["id"], rec["id"])
         self.assertEqual(q["recheck"], ["изменились варианты"])
 
+    def test_bank_edit_that_breaks_the_explanation_takes_task_off_until_rewritten(self):
+        rec = record()
+        changed = clone(rec)
+        changed["correctOptionId"] = "3"
+        (q,), pending = self.merge([changed], {rec["id"]: authored_for(rec)})
+        self.assertEqual(q["reviewStatus"], "draft")
+        self.assertEqual(q["recheck"], ["изменился ключ"])
+        self.assertIn("разбор не подходит к изменённому в банке заданию — перепроверить", pending[rec["id"]])
+        report = bb.recheck_report([q], [])
+        fits, broken = report.split("## Сняты с сайта до нового разбора")
+        self.assertNotIn(rec["id"], fits)
+        self.assertIn(f"`{rec['id']}`", broken)
+        self.assertIn("reopen.py", broken)
+
     def test_explanation_of_withdrawn_task_does_not_stop_build(self):
         rec = record()
         questions, _ = bb.merge([rec], {"q20-ffffffff": authored_for(rec)}, TOPICS, [rule()],

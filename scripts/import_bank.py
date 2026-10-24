@@ -4,7 +4,9 @@
 generated/ и снимок HSK4 больше не читаются. ID задания задаётся один раз и хранится в банке
 (`lgIds`): правка текста ID не меняет, прогресс учеников сохраняется. Заданию без ID присваивается
 <q|h|g><номер>-<8 знаков ID блока>, а пара «ID → блок банка» пишется в data/review/new-links.json —
-её записывают в банк командой `link lg --file`.
+её записывают в банк командой `link lg --file`. Задание HSK узнаётся и по источнику «HSK4», и по тегу
+«HSK4 <пробник> №N» (спорные HSK пришли в банк из тренажёра). Варианты не по формату номера — в
+замечания: задание остаётся черновиком и на сайт не идёт.
 
     python3 scripts/import_bank.py
 """
@@ -17,8 +19,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import (  # noqa: E402
-    AUTHORED, FORMAT_YEAR, INSTRUCTIONS, RAW_BANK, REVIEW, load_bank_snapshot, parse_fragments, quality_notes,
-    write_json, write_text,
+    AUTHORED, FORMAT_YEAR, INSTRUCTIONS, RAW_BANK, REVIEW, load_bank_snapshot, option_problems, parse_fragments,
+    quality_notes, write_json, write_text,
 )
 
 ORIGIN = {"ФИПИ": "fipi", "HSK4": "hsk"}
@@ -52,12 +54,24 @@ def source_ref(block, origin):
     return ref
 
 
+def origin_of(block):
+    if block["source"] in ORIGIN:
+        return ORIGIN[block["source"]]
+    return "hsk" if any(map(HSK_TAG.match, block["tags"])) else "generated"
+
+
 def records_from_export(export, authored):
-    """(записи, новые связи {ID: ID блока}, замечания) из выгрузки банка и разборов (по ID)."""
+    """(записи, новые связи {ID: ID блока}, замечания) из выгрузки банка и разборов (по ID).
+
+    Два ID тренажёра у одного задания банка — ошибка: какой из них сохранит прогресс учеников,
+    решает банк (`unlink` лишнего), а не порядок в списке."""
     records, new_links, problems = [], {}, []
     for block in export["blocks"]:
         n = block["taskNumber"]
-        origin = ORIGIN.get(block["source"], "generated")
+        origin = origin_of(block)
+        if len(block["lgIds"]) > 1:
+            raise ValueError(f"задание банка {block['id']}: несколько ID тренажёра ({', '.join(block['lgIds'])}) — "
+                             "в банке должен остаться один (unlink lg лишнего)")
         if block["lgIds"]:
             qid = block["lgIds"][0]
         else:
@@ -76,7 +90,7 @@ def records_from_export(export, authored):
             "options": options,
             "correctOptionId": block["correct"],
         }
-        issues = []
+        issues = option_problems(n, options)
         if block["correct"] not in {o["id"] for o in options}:
             issues.append(f"ключ {block['correct']!r} не совпадает ни с одним вариантом")
         if n == 26:
@@ -107,19 +121,29 @@ def load_authored():
     return entries
 
 
-def main():
-    export = load_bank_snapshot()
-    records, new_links, problems = records_from_export(export, load_authored())
-    write_json(RAW_BANK, records)
-    write_json(REVIEW / "new-links.json", new_links)
+def import_report(export, records, new_links, problems):
     counts = Counter(r["origin"] for r in records)
     lines = ["# Импорт из единого банка", "", f"Снимок от {export['generatedAt']}: заданий {len(records)} "
              f"(ФИПИ {counts['fipi']}, HSK {counts['hsk']}, новые {counts['generated']}).", "",
              f"Новых ID (записать в банк: `link lg --file data/review/new-links.json`): {len(new_links)}.",
-             f"Сняты с сайта в банке: {len(export.get('withdrawn', []))}."]
+             f"Не идут на сайт (сняты в банке или ждут решения): {len(export.get('withdrawn', []))}."]
     if problems:
         lines += ["", "## Замечания", ""] + [f"- {p}" for p in problems]
-    write_text(REVIEW / "import-report.md", "\n".join(lines) + "\n")
+    notes = [f"- `{r['id']}`: {note}" for r in records for note in r.get("notes", [])]
+    if notes:
+        lines += ["", "## Заметки об источнике", "", "Публикации не мешают, но стоят взгляда при проверке.", ""] + notes
+    return "\n".join(lines) + "\n"
+
+
+def main():
+    export = load_bank_snapshot()
+    try:
+        records, new_links, problems = records_from_export(export, load_authored())
+    except ValueError as error:
+        raise SystemExit(f"Импорт из банка остановлен: {error}")
+    write_json(RAW_BANK, records)
+    write_json(REVIEW / "new-links.json", new_links)
+    write_text(REVIEW / "import-report.md", import_report(export, records, new_links, problems))
     print(f"Импорт из банка: {len(records)} заданий, новых ID {len(new_links)}, замечаний {len(problems)}")
 
 

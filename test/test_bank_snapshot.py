@@ -44,6 +44,13 @@ class BankSnapshotTest(unittest.TestCase):
         with self.assertRaisesRegex(SystemExit, "изменён вручную"):
             load_bank_snapshot(self.target)
 
+    def test_manifest_without_checksum_is_a_clear_error(self):
+        self.write(export())
+        snapshot(self.source, self.target)
+        (self.target / "manifest.json").write_text("{}", encoding="utf-8")
+        with self.assertRaisesRegex(SystemExit, "контрольной суммы"):
+            load_bank_snapshot(self.target)
+
     def test_unknown_schema_is_rejected(self):
         self.write(export(schema=2))
         with self.assertRaisesRegex(SystemExit, "schemaVersion"):

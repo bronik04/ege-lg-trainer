@@ -2,11 +2,13 @@
 
     python3 scripts/accept.py --list                 # что ждёт проверки
     python3 scripts/accept.py q20-190b16c0 aspect    # принять по ID
-    python3 scripts/accept.py --task 20              # принять все разборы задания 20
+    python3 scripts/accept.py --task 20              # принять все черновые разборы задания 20
 
-Запускает только автор после чтения data/review/queue.md: это и есть отметка
-«проверено». После принятия — пересобрать банк (build_bank.py). Пункт из списка на правку
-(data/review/fixes.md) не принимается: он ждёт исправления Claude.
+Запускает Claude по вердикту ревьюеров (решение автора 24.10.2026) или автор после чтения
+data/review/queue.md: это и есть отметка «проверено». После принятия — пересобрать банк
+(build_bank.py). Пункт из списка на правку (data/review/fixes.md) не принимается: он ждёт
+исправления Claude. Разбор, перепроверенный после правки задания в банке (data/review/recheck.md),
+принимается только по ID и только если подходит к новому тексту; иначе — reopen.py и новый разбор.
 """
 
 import argparse
@@ -16,6 +18,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import AUTHORED, DATA, RULE_CHECKS, RULES, TASK_CONTENT, content_hash, read_json, write_json  # noqa: E402
 from review_queue import pending_ids, read_fixes  # noqa: E402
+from validate import explanation_problems  # noqa: E402
 
 
 RAW_DIR = DATA / "raw"
@@ -49,7 +52,12 @@ def accept(ids, task=None, fixes_text=None):
             if not (qid in ids or whole_file) or qid in waiting:
                 continue
             drifted = qid in current and entry.get("sourceSnapshot") != snapshot_of(current[qid])
-            if entry.get("status") == "draft" or (entry.get("status") == "accepted" and drifted):
+            rechecked = entry.get("status") == "accepted" and drifted and qid in ids
+            if rechecked:
+                task_now = current[qid]
+                if explanation_problems(entry.get("explanation"), task_now["options"], task_now["correctOptionId"]):
+                    continue
+            if entry.get("status") == "draft" or rechecked:
                 if drifted:
                     entry["sourceSnapshot"] = snapshot_of(current[qid])
                 entry["status"] = "accepted"

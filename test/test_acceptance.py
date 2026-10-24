@@ -173,6 +173,13 @@ class AddExplanationsTest(unittest.TestCase):
         self.assertEqual(stored[self.b["id"]]["sourceSnapshot"],
                          {"stem": "我___来。", "options": {"1": "了", "2": "着", "3": "过"}, "correctOptionId": "2"})
 
+    def test_rewritten_draft_keeps_replaces(self):
+        # Копия спорного задания помечена replaces в разборе: новая волна разбора не должна его стереть.
+        write(self.tmp / "task-20.json", {self.b["id"]: {"status": "draft", "replaces": "q20-cccccccc"}})
+        ae.add({self.b["id"]: {"topicIds": ["aspect"], "ruleIds": ["aspect-suffixes"],
+                               "explanation": {"correct": "Новый разбор."}}})
+        self.assertEqual(read(self.tmp / "task-20.json")[self.b["id"]]["replaces"], "q20-cccccccc")
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -492,8 +492,15 @@ def recheck_report(questions, withdrawn_with_explanation):
              "Задание поправили в едином банке: ID и публикация прежние, разбор перепроверяет ревьюер.",
              "После вердикта — `python3 scripts/accept.py ID…`: закрепит новый текст и снимет строку.", ""]
     changed = [q for q in questions if q.get("recheck")]
-    lines += [f"- `{q['id']}` (№{q['taskNumber']}): {', '.join(q['recheck'])}" for q in changed] or ["Нет."]
-    lines += ["", "## Сняты с сайта в банке (разбор остаётся, на сайт не идут)", ""]
+    fits = [q for q in changed if q["reviewStatus"] != "draft"]
+    broken = [q for q in changed if q["reviewStatus"] == "draft"]
+    lines += [f"- `{q['id']}` (№{q['taskNumber']}): {', '.join(q['recheck'])}" for q in fits] or ["Нет."]
+    lines += ["", "## Сняты с сайта до нового разбора", "",
+              "Принятый разбор к новому тексту не подходит (например, сменился ключ): `accept.py` его не примет.",
+              "Порядок: `python3 scripts/reopen.py ID` → новая волна разборов (`add_explanations.py`) → ревью →",
+              "`accept.py ID`.", ""]
+    lines += [f"- `{q['id']}` (№{q['taskNumber']}): {', '.join(q['recheck'])}" for q in broken] or ["Нет."]
+    lines += ["", "## Не идут на сайт: сняты в банке или ждут решения (разбор остаётся)", ""]
     lines += [f"- `{qid}`" for qid in withdrawn_with_explanation] or ["Нет."]
     return "\n".join(lines) + "\n"
 

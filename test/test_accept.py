@@ -53,10 +53,6 @@ class AcceptTest(unittest.TestCase):
         self.assertEqual(sorted(accept.accept([], task=20, fixes_text="")), ["q20-aaaaaaaa", "q20-bbbbbbbb"])
 
 
-if __name__ == "__main__":
-    unittest.main()
-
-
 class RecheckTest(unittest.TestCase):
     """После правки задания в банке ревьюер перепроверил разбор — accept.py закрепляет новый текст."""
 
@@ -82,3 +78,15 @@ class RecheckTest(unittest.TestCase):
         self.assertNotEqual(entry["acceptedHash"], before)
         self.assertEqual(entry["status"], "accepted")
 
+    def test_explanation_that_does_not_fit_the_new_key_is_not_accepted(self):
+        write(self.tmp / "raw" / "bank.json", [dict(self.rec, correctOptionId="3")])
+        self.assertEqual(accept.accept([self.rec["id"]], fixes_text=""), [])
+        self.assertEqual(read(self.tmp / "task-20.json")[self.rec["id"]]["sourceSnapshot"]["correctOptionId"], "2")
+
+    def test_whole_task_does_not_reaccept_rechecks(self):
+        # --task принимает черновики номера; перепроверку после правки в банке — только по ID.
+        self.assertEqual(accept.accept([], task=20, fixes_text=""), [])
+
+
+if __name__ == "__main__":
+    unittest.main()

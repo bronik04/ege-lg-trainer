@@ -82,7 +82,7 @@ def load_state():
     rules = read_json(RULES)
     records = build_bank.load_records()
     authored = build_bank.load_authored()
-    questions, pending = build_bank.merge(records, authored, topics, rules)
+    questions, pending = build_bank.merge(records, authored, topics, rules, build_bank.load_withdrawn())
     return {"topics": topics, "rules": rules, "checks": read_json(RULE_CHECKS), "records": records,
             "authored": authored, "questions": questions, "pending": pending, "fixes": read_fixes()}
 

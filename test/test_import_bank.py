@@ -2,7 +2,7 @@
 
 import unittest
 
-from scripts.import_bank import records_from_export
+from scripts.import_bank import import_report, records_from_export
 
 FIPI = "Укажите, какое наречие пропущено в данном предложении."
 
@@ -73,10 +73,46 @@ class ImportBankTest(unittest.TestCase):
         gen = next(r for r in records if r["origin"] == "generated")
         self.assertEqual(gen["sourceRef"]["batch"], "2026-10 наречия")
 
-    def test_withdrawn_task_is_not_imported(self):
-        keep = block("aaaa1111-0000", 22, "我们明天___去吧。", ["就", "才", "还", "再"], "4", lg=["q22-aaaa1111"])
-        records, _, _ = records_from_export(export([keep], withdrawn=["g22-0efff49d"]), {})
-        self.assertEqual([r["id"] for r in records], ["q22-aaaa1111"])
+    def test_hsk_task_is_recognised_by_its_tag_whatever_the_bank_source(self):
+        # 27 спорных HSK пришли в банк из тренажёра: источник в банке — «тренажёр ЛГ», тег — HSK4.
+        tags = ["HSK4", "Порядок фрагментов", "HSK4 Лю Юнь пробник 1 №56"]
+        b = block("a51cb615-0000", 26, "A) 我\nB) 去\nC) 学校", ["ABC", "ACB", "BAC", "CAB"], "1",
+                  source="тренажёр ЛГ", lg=["h26-a51cb615"], tags=tags)
+        fresh = block("b51cb615-0000", 26, "A) 他\nB) 来\nC) 了", ["ABC", "ACB", "BAC", "CAB"], "1",
+                      source="тренажёр ЛГ", tags=tags)
+        records, new_links, _ = records_from_export(export([b, fresh]), {})
+        self.assertEqual([r["origin"] for r in records], ["hsk", "hsk"])
+        self.assertEqual((records[0]["sourceRef"]["paper"], records[0]["sourceRef"]["number"]), ("Лю Юнь пробник 1", 56))
+        self.assertEqual(list(new_links), ["h26-b51cb615"])
+
+    def test_two_trainer_ids_on_one_task_stop_the_import(self):
+        b = block("aaaa1111-0000", 22, "我们明天___去吧。", ["就", "才", "还", "再"], "4", lg=["g22-11111111", "q22-aaaa1111"])
+        with self.assertRaisesRegex(ValueError, "aaaa1111-0000.*g22-11111111, q22-aaaa1111"):
+            records_from_export(export([b]), {})
+
+    def test_option_format_is_checked(self):
+        cases = [
+            (block("a-1", 20, "他去___北京。", ["了", "着", "过", "的"], "1"), "вариантов 4, у задания 20 их 3"),
+            (block("a-2", 22, "他___来。", ["就", "才", "还"], "1"), "вариантов 3, у задания 22 их 4"),
+            (block("a-3", 22, "他___来。", ["就", "就", "还", "再"], "1"), "повторяются варианты"),
+            (block("a-4", 22, "他___来。", ["就", " ", "还", "再"], "1"), "пустой вариант"),
+            (block("a-5", 26, "A) 我\nB) 去\nC) 学校", ["ABC", "ACB", "BAC", "AB"], "1", source="HSK4"),
+             "варианты — не четыре разные последовательности A, B, C"),
+        ]
+        records, _, problems = records_from_export(export([b for b, _ in cases]), {})
+        issues = {r["sourceRef"]["bankId"]: r.get("issues", []) for r in records}
+        for b, expected in cases:
+            self.assertIn(expected, issues[b["id"]], b["id"])
+        self.assertEqual(len(problems), len(cases))
+
+    def test_report_counts_tasks_kept_off_the_site_and_lists_source_notes(self):
+        b = block("cccc3333-0000", 19, "三百五十___", ["350", "三百五", "305", "530"], "1", lg=["q19-cccc3333"])
+        ex = export([b], withdrawn=["h26-a51cb615"])
+        records, new_links, problems = records_from_export(ex, {})
+        report = import_report(ex, records, new_links, problems)
+        self.assertIn("Не идут на сайт (сняты в банке или ждут решения): 1.", report)
+        self.assertIn("## Заметки об источнике", report)
+        self.assertIn("`q19-cccc3333`: нестандартная запись числа в вариантах: 三百五", report)
 
     def test_replaces_comes_from_the_explanation(self):
         b = block("dddd4444-0000", 16, "她送了一大___花。", ["支", "束", "件", "个"], "2", source="тренажёр ЛГ", lg=["g16-56406db2"])

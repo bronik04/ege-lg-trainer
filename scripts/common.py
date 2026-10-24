@@ -1,6 +1,7 @@
 """Общие пути и константы конвейера данных."""
 
 import hashlib
+import itertools
 import json
 import os
 import re
@@ -90,7 +91,10 @@ def load_bank_snapshot(source=None):
     if not export.exists() or not manifest.exists():
         raise SystemExit(f"нет снимка банка в {source}: запустите scripts/snapshot_bank.py <выгрузка>")
     raw = export.read_bytes()
-    if hashlib.sha256(raw).hexdigest() != json.loads(manifest.read_text(encoding="utf-8"))["sha256"]:
+    expected = json.loads(manifest.read_text(encoding="utf-8")).get("sha256")
+    if not expected:
+        raise SystemExit(f"в {manifest} нет контрольной суммы: снимок не проверить — запустите snapshot_bank.py заново")
+    if hashlib.sha256(raw).hexdigest() != expected:
         raise SystemExit(f"снимок банка {export} изменён вручную: возьмите новую выгрузку и snapshot_bank.py")
     data = json.loads(raw.decode("utf-8"))
     if data.get("schemaVersion") != BANK_SCHEMA:
@@ -109,6 +113,27 @@ def parse_fragments(stem):
     if [letter for letter, _ in found] != ["A", "B", "C"]:
         return None
     return [{"id": letter, "text": text} for letter, text in found]
+
+
+# У №20 и №21 по три варианта, у остальных — четыре; у №26 варианты — порядок фрагментов A, B, C.
+OPTION_COUNT = {20: 3, 21: 3}
+ORDERS = {"".join(p) for p in itertools.permutations("ABC")}
+
+
+def option_problems(task_number, options):
+    """Варианты не по формату задания: такое задание на сайт не идёт, пока его не поправят в банке."""
+    texts = [o["text"].strip() for o in options]
+    expected = OPTION_COUNT.get(task_number, 4)
+    problems = []
+    if len(texts) != expected:
+        problems.append(f"вариантов {len(texts)}, у задания {task_number} их {expected}")
+    if any(not t for t in texts):
+        problems.append("пустой вариант")
+    if len(set(texts)) != len(texts):
+        problems.append("повторяются варианты")
+    if task_number == 26 and not (len(set(texts)) == 4 and set(texts) <= ORDERS):
+        problems.append("варианты — не четыре разные последовательности A, B, C")
+    return problems
 
 
 def quality_notes(task_number, options):
