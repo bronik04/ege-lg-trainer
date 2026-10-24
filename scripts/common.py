@@ -3,14 +3,12 @@
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SOURCES = ROOT / "sources"
-SNAPSHOT = SOURCES / "constructor-bank"
-MANIFEST = SOURCES / "manifest.json"
 DATA = ROOT / "data"
-RAW = DATA / "raw" / "fipi.json"
 TOPICS = DATA / "topics.json"
 RULES = DATA / "rules.json"
 RULE_CHECKS = DATA / "rule-checks.json"
@@ -19,9 +17,6 @@ QUESTIONS = DATA / "questions.json"
 REVIEW = DATA / "review"
 BANK_SOURCE = SOURCES / "bank"
 RAW_BANK = DATA / "raw" / "bank.json"
-HSK_SOURCE = SOURCES / "hsk4"
-HSK_MANIFEST = HSK_SOURCE / "manifest.json"
-RAW_HSK = DATA / "raw" / "hsk.json"
 
 TASK_NUMBERS = tuple(range(15, 28))
 BANK_SCHEMA = 1
@@ -101,3 +96,29 @@ def load_bank_snapshot(source=None):
     if data.get("schemaVersion") != BANK_SCHEMA:
         raise SystemExit(f"выгрузка банка: schemaVersion {data.get('schemaVersion')!r}, ожидается {BANK_SCHEMA}")
     return data
+
+
+# Фрагменты задания 26: «A) …\nB) …» или «A … B … C …» в одну строку.
+FRAGMENT = re.compile(r"(?:^|\s)([ABC])\)?\s+(.+?)(?=\s+[ABC]\)?\s+|\s*$)", re.S)
+NUMBER_OPTION = re.compile(r"^\d{1,3}( \d{3})*$")
+
+
+def parse_fragments(stem):
+    """Фрагменты A, B, C задания 26 или None, если выделить их нельзя."""
+    found = [(letter, text.strip()) for letter, text in FRAGMENT.findall(stem)]
+    if [letter for letter, _ in found] != ["A", "B", "C"]:
+        return None
+    return [{"id": letter, "text": text} for letter, text in found]
+
+
+def quality_notes(task_number, options):
+    """Замечания к заданию, которые не мешают публикации, но стоят отчёта."""
+    texts = [o["text"] for o in options]
+    notes = []
+    if task_number == 19:
+        odd = [t for t in texts if not NUMBER_OPTION.match(t)]
+        if odd:
+            notes.append("нестандартная запись числа в вариантах: " + ", ".join(odd))
+    if task_number == 24 and not any(("得" in t or "不" in t) for t in texts):
+        notes.append("в вариантах нет 得/不: по формату это задание 23 (результативная морфема), а не 24")
+    return notes
