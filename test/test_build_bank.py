@@ -102,13 +102,23 @@ class MergeTest(unittest.TestCase):
         with self.assertRaisesRegex(bb.BuildError, "разбор варианта 3: пусто"):
             self.merge([rec], {rec["id"]: entry})
 
-    def test_source_change_stops_build(self):
+    def test_bank_edit_keeps_task_published_and_queues_recheck(self):
+        # Решение автора 24.10.2026: правка в банке не меняет ID и не снимает задание с сайта —
+        # разбор уходит на перепроверку ревьюером.
         rec = record()
         entry = authored_for(rec)
         changed = clone(rec)
         changed["options"][0]["text"] = "的"
-        with self.assertRaisesRegex(bb.BuildError, "изменились варианты"):
-            self.merge([changed], {rec["id"]: entry})
+        (q,), _ = self.merge([changed], {rec["id"]: entry})
+        self.assertEqual(q["reviewStatus"], "ready")
+        self.assertEqual(q["id"], rec["id"])
+        self.assertEqual(q["recheck"], ["изменились варианты"])
+
+    def test_explanation_of_withdrawn_task_does_not_stop_build(self):
+        rec = record()
+        questions, _ = bb.merge([rec], {"q20-ffffffff": authored_for(rec)}, TOPICS, [rule()],
+                                withdrawn={"q20-ffffffff"})
+        self.assertEqual([q["id"] for q in questions], [rec["id"]])
 
     def test_explanation_for_unknown_task_stops_build(self):
         rec = record()

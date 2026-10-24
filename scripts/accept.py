@@ -14,8 +14,16 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import AUTHORED, RULE_CHECKS, RULES, TASK_CONTENT, content_hash, read_json, write_json  # noqa: E402
+from common import AUTHORED, DATA, RULE_CHECKS, RULES, TASK_CONTENT, content_hash, read_json, write_json  # noqa: E402
 from review_queue import pending_ids, read_fixes  # noqa: E402
+
+
+RAW_DIR = DATA / "raw"
+
+
+def snapshot_of(record):
+    return {"stem": record["stem"], "options": {o["id"]: o["text"] for o in record["options"]},
+            "correctOptionId": record["correctOptionId"]}
 
 
 def drafts():
@@ -31,12 +39,19 @@ def accept(ids, task=None, fixes_text=None):
     waiting = pending_ids(read_fixes() if fixes_text is None else fixes_text)
     ids = set(ids)
     accepted = []
+    # Задание поправили в банке, ревьюер перепроверил разбор: принять — значит закрепить новый текст.
+    current = {r["id"]: r for path in sorted(RAW_DIR.glob("*.json")) for r in read_json(path)}
     for path in sorted(AUTHORED.glob("task-*.json")):
         entries = read_json(path)
         whole_file = task is not None and path.stem == f"task-{task}"
         changed = False
         for qid, entry in entries.items():
-            if (qid in ids or whole_file) and entry.get("status") == "draft" and qid not in waiting:
+            if not (qid in ids or whole_file) or qid in waiting:
+                continue
+            drifted = qid in current and entry.get("sourceSnapshot") != snapshot_of(current[qid])
+            if entry.get("status") == "draft" or (entry.get("status") == "accepted" and drifted):
+                if drifted:
+                    entry["sourceSnapshot"] = snapshot_of(current[qid])
                 entry["status"] = "accepted"
                 entry["acceptedHash"] = content_hash(entry, TASK_CONTENT)
                 accepted.append(qid)

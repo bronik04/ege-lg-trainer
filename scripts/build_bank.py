@@ -21,8 +21,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import (  # noqa: E402
-    AUTHORED, DATA, QUESTIONS, REVIEW, ROOT, RULE_CHECKS, RULES, TASK_CONTENT, TASK_NUMBERS, TOPICS,
-    content_hash, read_json, write_json, write_text,
+    AUTHORED, BANK_SOURCE, DATA, QUESTIONS, REVIEW, ROOT, RULE_CHECKS, RULES, TASK_CONTENT, TASK_NUMBERS, TOPICS,
+    content_hash, load_bank_snapshot, read_json, write_json, write_text,
 )
 from validate import BLANK, _strings, explanation_problems  # noqa: E402
 
@@ -186,11 +186,14 @@ def default_topic(task_number, topics):
     return next((t["id"] for t in topics if task_number in t.get("taskNumbers", [])), None)
 
 
-def merge(records, authored, topics, rules):
-    """Канонический банк и список «почему не готово» для отчёта очереди."""
+def merge(records, authored, topics, rules, withdrawn=frozenset()):
+    """Канонический банк и список «почему не готово» для отчёта очереди.
+
+    `withdrawn` — ID заданий, которые банк снял с сайтов: их разборы остаются, сборку не стопорят.
+    """
     rules_by_id = {r["id"]: r for r in rules}
     known = {r["id"] for r in records}
-    unknown = sorted(set(authored) - known)
+    unknown = sorted(set(authored) - known - set(withdrawn))
     if unknown:
         raise BuildError("разборы к несуществующим заданиям: " + ", ".join(unknown))
 
@@ -230,10 +233,11 @@ def merge(records, authored, topics, rules):
         reasons = []
 
         if entry is not None:
+            # Решение автора 24.10.2026: задание поправили в банке — ID и публикация остаются,
+            # разбор ждёт перепроверки ревьюером (data/review/recheck.md, затем accept.py).
             drift = snapshot_problems(entry, record)
             if drift:
-                raise BuildError(f"{entry['_file']}: {record['id']}: {', '.join(drift)} — перепроверьте разбор "
-                                 "и обновите sourceSnapshot")
+                q["recheck"] = drift
             if entry.get("status") not in ("draft", "accepted"):
                 raise BuildError(f"{entry['_file']}: {record['id']}: статус должен быть draft или accepted")
             if entry["status"] == "accepted" and entry.get("acceptedHash") != content_hash(entry, TASK_CONTENT):
@@ -252,8 +256,10 @@ def merge(records, authored, topics, rules):
             for rule_id in q["ruleIds"]:
                 if rule_id not in rules_by_id:
                     problems.append(f"нет правила {rule_id!r}")
-            if problems and entry["status"] == "accepted":
+            if problems and entry["status"] == "accepted" and not drift:
                 raise BuildError(f"{entry['_file']}: {record['id']} принят, но: " + "; ".join(problems))
+            if problems and drift:
+                problems.append("разбор не подходит к изменённому в банке заданию — перепроверить")
             reasons += problems
             if entry["status"] == "draft":
                 reasons.append("разбор не принят автором")
@@ -480,13 +486,28 @@ def queue_report(questions, pending, rules, rule_checks):
     return "\n".join(lines) + "\n"
 
 
+def recheck_report(questions, withdrawn_with_explanation):
+    """Что ждёт ревьюера после правок в банке: разборы к изменённым заданиям и снятые задания."""
+    lines = ["# Перепроверка после правок в банке", "",
+             "Задание поправили в едином банке: ID и публикация прежние, разбор перепроверяет ревьюер.",
+             "После вердикта — `python3 scripts/accept.py ID…`: закрепит новый текст и снимет строку.", ""]
+    changed = [q for q in questions if q.get("recheck")]
+    lines += [f"- `{q['id']}` (№{q['taskNumber']}): {', '.join(q['recheck'])}" for q in changed] or ["Нет."]
+    lines += ["", "## Сняты с сайта в банке (разбор остаётся, на сайт не идут)", ""]
+    lines += [f"- `{qid}`" for qid in withdrawn_with_explanation] or ["Нет."]
+    return "\n".join(lines) + "\n"
+
+
 def build():
     topics = read_json(TOPICS)
     rules = read_json(RULES)
     rule_checks = read_json(RULE_CHECKS)
     records = load_records()
-    questions, pending = merge(records, load_authored(), topics, rules)
+    withdrawn = set(load_bank_snapshot().get("withdrawn", [])) if (BANK_SOURCE / "export.json").exists() else set()
+    authored = load_authored()
+    questions, pending = merge(records, authored, topics, rules, withdrawn)
     write_json(QUESTIONS, questions)
+    write_text(REVIEW / "recheck.md", recheck_report(questions, sorted(withdrawn & set(authored))))
     write_text(REVIEW / "coverage.md", coverage_report(questions, topics))
     write_text(REVIEW / "duplicates.md", duplicates_report(records, questions, rules, rule_checks))
     write_text(REVIEW / "queue.md", queue_report(questions, pending, rules, rule_checks))
