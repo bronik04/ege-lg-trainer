@@ -345,6 +345,35 @@ export function filterQuestions(questions, filters, progress, now = null) {
   });
 }
 
+// ---------- тренировка тонов ----------
+
+export const TONE_LEVELS = [1, 2, 3, 4];
+export const TONE_LENGTHS = [2, 3];
+const wordLength = (q) => [...q.stem].length;
+
+// Слова тренировки тонов по уровню HSK, длине слова (иероглифов) и состоянию ответа. Пустой список —
+// без ограничения; состояние считается так же, как у заданий практики.
+export function filterToneWords(words, filters, progress, now = null) {
+  const levels = filters.levels || [];
+  const lengths = filters.lengths || [];
+  const rest = words.filter((q) => (!levels.length || levels.includes(q.level))
+    && (!lengths.length || lengths.includes(wordLength(q))));
+  return filterQuestions(rest, { state: filters.state || 'all' }, progress, now);
+}
+
+// Сколько слов в каждом уровне и в каждой длине — для счётчиков у фишек. Считается по другому
+// признаку фильтра: уровень учитывает выбранную длину, длина — выбранный уровень.
+export function toneCounts(words, filters) {
+  const levels = filters.levels || [];
+  const lengths = filters.lengths || [];
+  return {
+    levels: Object.fromEntries(TONE_LEVELS.map((level) => [level,
+      words.filter((q) => q.level === level && (!lengths.length || lengths.includes(wordLength(q)))).length])),
+    lengths: Object.fromEntries(TONE_LENGTHS.map((n) => [n,
+      words.filter((q) => wordLength(q) === n && (!levels.length || levels.includes(q.level))).length])),
+  };
+}
+
 // Номера, в которых есть задания этих правил: кнопка карточки правила и ссылка только с правилами
 // отмечают их, чтобы выбранное правило было видно под оглавлением.
 export function ruleTasks(ruleIds, questions) {
@@ -790,9 +819,14 @@ export function blankFill(item, optionId, text = item.stem ?? item.sentence ?? i
 
 // ---------- сессии: раунд тренировки и полный вариант ----------
 
-export function startSession(ids, at) {
-  return { ids: ids.slice(), answers: {}, index: 0, startedAt: at, finishedAt: null };
+// mode — необязательная пометка вида раунда: 'tones' у круга тренировки тонов. Старая страница
+// сохраняет её как есть (сессия копируется целиком), версия прогресса не меняется.
+export function startSession(ids, at, mode = null) {
+  return { ids: ids.slice(), answers: {}, index: 0, startedAt: at, finishedAt: null, ...(mode ? { mode } : {}) };
 }
+
+export const TONES_MODE = 'tones';
+export const isTonesRound = (session) => Boolean(session) && session.mode === TONES_MODE;
 
 // Полный вариант ведёт время с нуля. У варианта, начатого до появления часов, поля нет —
 // сколько он шёл, неизвестно, и часы для него не идут.

@@ -18,6 +18,7 @@ QUESTIONS = DATA / "questions.json"
 REVIEW = DATA / "review"
 BANK_SOURCE = SOURCES / "bank"
 RAW_BANK = DATA / "raw" / "bank.json"
+TONE_WORDS = DATA / "tone-words.json"
 
 TASK_NUMBERS = tuple(range(15, 28))
 BANK_SCHEMA = 1
