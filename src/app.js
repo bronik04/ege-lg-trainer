@@ -643,7 +643,7 @@
   }
 
   // Карточка вопроса: задание ЕГЭ или вопрос по правилу. reveal — показать верный/неверный.
-  // hint — что делает Enter; null — Enter ничего не делает, undefined — без подсказки клавиш
+  // hint — что делают Enter и пробел; null — они ничего не делают, undefined — без подсказки клавиш
   // (она видна только при мыши и клавиатуре).
   function questionCard(item, { kind, selected, reveal, onChoose, heading, hint }) {
     const card = el('article', { class: 'question', dataset: { card: '1' } });
@@ -696,7 +696,7 @@
     card.append(list);
     if (hint !== undefined) {
       card.append(el('p', { class: 'keys' }, 'Клавиши: ', el('kbd', { text: '1' }), '–', el('kbd', { text: String(item.options.length) }), ' — ответ',
-        hint ? [', ', el('kbd', { text: 'Enter' }), ` — ${hint}`] : null));
+        hint ? [', ', el('kbd', { text: 'Enter' }), ' или ', el('kbd', { text: 'Space' }), ` — ${hint}`] : null));
     }
     return card;
   }
@@ -819,11 +819,10 @@
   }
 
   // Фокус после ответа — без прокрутки; delta — сдвиг страницы, который ещё впереди. На «Дальше» —
-  // только если её видно (липкая панель на телефоне или кнопка на экране после сдвига):
-  // невидимую кнопку нажал бы пробел, которым листают разбор, и разбор пропал бы. Иначе фокус на
-  // разборе, если его начало на экране, а нет (низкий экран: сдвиг дошёл до предложения у
-  // верхнего края) или разбора нет (полный вариант) — на условии. Enter всё равно ведёт дальше:
-  // его ловит общий обработчик клавиш.
+  // только если её видно (липкая панель на телефоне или кнопка на экране после сдвига). Иначе
+  // фокус на разборе, если его начало на экране, а нет (низкий экран: сдвиг дошёл до предложения
+  // у верхнего края) или разбора нет (полный вариант) — на условии. Enter и пробел всё равно
+  // ведут дальше: их ловит общий обработчик клавиш; разбор листают стрелки и PageDown.
   function focusAfterAnswer(delta = 0) {
     const next = view.querySelector('[data-enter]') || view.querySelector('#finishVariant');
     const box = view.querySelector('.feedback');
@@ -970,7 +969,7 @@
       const last = s.index === s.ids.length - 1;
       view.append(el('div', { class: 'actions dock' },
         el('button', {
-          class: 'button', type: 'button', dataset: { enter: '1' },
+          class: 'button', type: 'button', dataset: { enter: '1', space: '1' },
           onclick: () => {
             checkSession = last ? { ...checkSession, finishedAt: now() } : moveSession(checkSession, checkSession.index + 1);
             render();
@@ -1246,7 +1245,7 @@
       view.append(feedback(q, chosen));
       const last = round.index === round.ids.length - 1;
       view.append(el('div', { class: 'actions dock' }, el('button', {
-        class: 'button', type: 'button', dataset: { enter: '1' },
+        class: 'button', type: 'button', dataset: { enter: '1', space: '1' },
         onclick: () => {
           progress = { ...progress, round: last ? { ...progress.round, finishedAt: now() } : moveSession(progress.round, progress.round.index + 1) };
           save();
@@ -1506,7 +1505,7 @@
     view.append(el('div', { class: 'actions dock' },
       // Сессия — из progress, а не v с прошлой отрисовки: табло между ними дописывает время.
       el('button', { class: 'button ghost', type: 'button', disabled: v.index === 0, onclick: () => { progress = { ...progress, variant: moveSession(progress.variant, progress.variant.index - 1) }; save(); render(); } }, '← Назад'),
-      last ? finishButton : el('button', { class: 'button', type: 'button', dataset: { enter: '1' }, onclick: () => { progress = { ...progress, variant: moveSession(progress.variant, progress.variant.index + 1) }; save(); render(); } }, 'Дальше →')));
+      last ? finishButton : el('button', { class: 'button', type: 'button', dataset: { enter: '1', space: '1' }, onclick: () => { progress = { ...progress, variant: moveSession(progress.variant, progress.variant.index + 1) }; save(); render(); } }, 'Дальше →')));
     function finish() {
       commitClock();
       progress = finishVariant(progress, byId, now());
@@ -1642,7 +1641,7 @@
           el('p', { text: `Вкладка «Тоны» — отдельная тренировка к заданию 15: ${toneQuestions.length} ${plural(toneQuestions.length, 'слово', 'слова', 'слов')} HSK 2.0 уровней 1–4, по два-три иероглифа. Раунд идёт как в практике, ошибки раунда можно повторить; ссылки учителю и отчёта у этой вкладки нет.` }),
         ] : null,
         el('p', { class: 'section-title', text: 'Клавиши' }),
-        el('p', {}, el('kbd', { text: '1' }), '–', el('kbd', { text: '4' }), ' — выбрать ответ, ', el('kbd', { text: 'Enter' }), ' — дальше.'),
+        el('p', {}, el('kbd', { text: '1' }), '–', el('kbd', { text: '4' }), ' — выбрать ответ, ', el('kbd', { text: 'Enter' }), ' или ', el('kbd', { text: 'Space' }), ' — дальше.'),
         el('p', { class: 'section-title', text: 'Учителю' }),
         el('p', { text: 'Ссылку на подборку, на задания раунда или на вариант можно взять в практике и на итоге: по ней ученики получат то же самое. С итога ученик отправляет отчёт учителю, а отчёты всего класса сводятся в одну таблицу.' }),
         el('p', {}, el('a', { href: '#/teacher', text: 'Учителю: сводка отчётов учеников' }))));
@@ -1820,8 +1819,10 @@
       }
       return;
     }
-    if (event.key === 'Enter' && tag !== 'button' && tag !== 'a' && tag !== 'summary') {
-      const next = view.querySelector('[data-enter]:not(:disabled)');
+    // Пробел ведёт дальше только там, где есть «Дальше» (после ответа); «Начать раунд» — только Enter.
+    const mark = event.key === 'Enter' ? 'enter' : event.key === ' ' ? 'space' : null;
+    if (mark && tag !== 'button' && tag !== 'a' && tag !== 'summary') {
+      const next = view.querySelector(`[data-${mark}]:not(:disabled)`);
       if (next) {
         event.preventDefault();
         next.click();

@@ -1111,7 +1111,7 @@ for (const [device, size] of [['ноутбук', { width: 1280, height: 720 }], 
   test(`${device}: после неверного ответа предложение не уезжает с экрана, новый экран — с начала`, { skip }, async () => {
     const { page, context, errors } = await open(mainUrl, { ...size, reducedMotion: 'reduce', hash: '#/practice?ids=q26-a,q27-a,q22-a' });
     // Неверные ответы: в №26 (фрагменты), №27 (два пропуска) и №22 разбор длинный.
-    for (const key of ['2', '1', '2']) {
+    for (const [i, key] of ['2', '1', '2'].entries()) {
       await page.locator('[data-card]').waitFor();
       assert.equal(await page.evaluate(() => window.scrollY), 0, 'задание открывается с начала страницы');
       await page.keyboard.press(key);
@@ -1128,20 +1128,21 @@ for (const [device, size] of [['ноутбук', { width: 1280, height: 720 }], 
       assert.equal(at.focusSeen, true, `фокус за краем экрана: ${JSON.stringify(at)}`);
       if (device === 'телефон') assert.equal(at.enter, true, 'на телефоне фокус на «Дальше» в панели');
       if (device === 'ноутбук') {
-        // Пробел листает разбор, а не переходит к следующему заданию.
+        // PageDown листает разбор, а не переходит к следующему заданию.
         const before = await text(page, '.progress');
         const start = await page.evaluate(() => window.scrollY);
-        await page.keyboard.press('Space');
+        await page.keyboard.press('PageDown');
         assert.equal(await text(page, '.progress'), before);
         assert.equal(await page.locator('.feedback').count(), 1);
-        // Пробел прокрутил разбор; ученик дочитывает — плавная прокрутка успевает закончиться.
+        // PageDown прокрутил разбор; ученик дочитывает — плавная прокрутка успевает закончиться.
         await page.waitForFunction((y) => window.scrollY !== y, start, { timeout: 5000 });
         await page.waitForFunction(() => new Promise((resolve) => {
           const y = window.scrollY;
           setTimeout(() => resolve(window.scrollY === y), 200);
         }), null, { timeout: 5000 });
       }
-      await page.keyboard.press('Enter');
+      // Дальше ведут и Enter, и пробел.
+      await page.keyboard.press(i === 1 ? 'Space' : 'Enter');
     }
     await see(page, 'h2', /Раунд окончен/);
     assert.equal(await page.evaluate(() => window.scrollY), 0);
@@ -1163,11 +1164,12 @@ test('телефон: предложение ушло за верх, пока у
   await context.close();
 });
 
-// Enter, пока ещё идёт плавная прокрутка прошлого экрана: пробел по разбору или сдвиг страницы
-// к разбору сразу после ответа. Новый экран всё равно открывается с начала.
-for (const [what, height, between] of [
-  ['пробел и сразу Enter', 720, (page) => page.keyboard.press('Space')],
-  ['Enter, пока страница едет к разбору', 560, (page) => page.waitForTimeout(30)],
+// Enter или пробел, пока ещё идёт плавная прокрутка прошлого экрана: PageDown по разбору или
+// сдвиг страницы к разбору сразу после ответа. Новый экран всё равно открывается с начала.
+for (const [what, height, between, advance] of [
+  ['PageDown и сразу Enter', 720, (page) => page.keyboard.press('PageDown'), 'Enter'],
+  ['Enter, пока страница едет к разбору', 560, (page) => page.waitForTimeout(30), 'Enter'],
+  ['пробел, пока страница едет к разбору', 560, (page) => page.waitForTimeout(30), 'Space'],
 ]) {
   test(`ноутбук: ${what} — новый экран с начала`, { skip }, async () => {
     const { page, context, errors } = await open(mainUrl, { width: 1280, height, hash: '#/practice?ids=q26-a,q27-a,q22-a' });
@@ -1176,7 +1178,7 @@ for (const [what, height, between] of [
       await page.keyboard.press(key);
       await page.locator('.verdict.bad').waitFor();
       await between(page);
-      await page.keyboard.press('Enter');
+      await page.keyboard.press(advance);
       await see(page, '.progress, h2', screen);
       // Плавная прокрутка в Chrome длится до 300 мс — ждём с запасом.
       await page.waitForTimeout(700);
