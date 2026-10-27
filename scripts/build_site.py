@@ -146,7 +146,10 @@ def share_head(data):
 def render(data):
     template = (SRC / "template.html").read_text(encoding="utf-8")
     script = inline_logic((SRC / "logic.mjs").read_text(encoding="utf-8")) + "\n" + (SRC / "app.js").read_text(encoding="utf-8")
-    css = (SRC / "app.css").read_text(encoding="utf-8")
+    # Токены системы «Тушь и киноварь» — первыми: стили страницы пишутся поверх них.
+    # Комментарии токенов в страницу не идут: в них образец <link> со шрифтами.
+    tokens = re.sub(r"/\*.*?\*/", "", (SRC / "ink" / "ink-tokens.css").read_text(encoding="utf-8"), flags=re.S)
+    css = tokens + "\n" + (SRC / "app.css").read_text(encoding="utf-8")
     values = {"/*APP_CSS*/": css, "/*APP_JS*/": script,
               "/*DATA_JSON*/": embed_json(data), "/*DESCRIPTION*/": description(data),
               "/*PWA_HEAD*/": PWA_HEAD if data["meta"]["offline"] else "",

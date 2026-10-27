@@ -1,54 +1,34 @@
-/* Облик «тетрадь»: ученик пишет синей ручкой, учитель правит красной, пропуск — клетка 田字格.
-   Цвета и шрифты — docs/superpowers/specs/2026-09-26-notebook-redesign-design.md. */
+/* Облик «Тушь и киноварь» — дизайн-система автора (токены: src/ink/ink-tokens.css, не править; сборка кладёт их
+   перед этим файлом). Клетка 田字格 осталась: ответ вписан от руки, исправление и галочка над ней.
+   Прежние имена переменных ниже — псевдонимы семантики системы, цветов здесь больше нет.
+   Замысел — docs/superpowers/specs/2026-10-27-ink-cinnabar-design.md. */
 :root {
-  --paper: #F2F4EF;
-  --sheet: #FBFCFA;
-  --ink: #1C2230;
-  --muted: #5D6672;
-  --line: #DAE1DA;
-  --grid: #86B59F;
-  --guide: #BFD9CB;
-  --pen: #2447A8;
-  --pen-bg: #E8EDFA;
-  --on-pen: #FFFFFF;
-  --red: #C23A2C;
-  --red-bg: #FAE8E4;
-  --jade: #1D7852;
-  --jade-bg: #E4F1E9;
-  --warn-ink: #8A5A12;
-  --warn-bg: #FBF1DC;
-  --focus: #5577D6;
-  --cell-line: #5E977C;
-  --seal-ink: #FFF6F2;
-  /* Иероглифы в русском тексте берут кайшу: у системных шрифтов перед ним их нет. */
-  --zh: "LXGW WenKai Screen", "Kaiti SC", STKaiti, KaiTi, "Songti SC", "Noto Serif CJK SC", serif;
-  --ui: "Golos Text", system-ui, -apple-system, "Segoe UI", Roboto, "LXGW WenKai Screen", "Kaiti SC", STKaiti, KaiTi, sans-serif;
-  --disp: Alegreya, Georgia, "Times New Roman", "LXGW WenKai Screen", "Kaiti SC", STKaiti, KaiTi, serif;
-  color-scheme: light;
-}
-
-/* «Ночная тетрадь». */
-:root[data-theme="dark"] {
-  --paper: #1B2338;
-  --sheet: #222B44;
-  --ink: #E9EDF7;
-  --muted: #AAB4CC;
-  --line: #34405E;
-  --grid: #6F92C0;
-  --guide: #3B4B6E;
-  --pen: #9FB7FF;
-  --pen-bg: #2E3C66;
-  --on-pen: #16203A;
-  --red: #FF9C8C;
-  --red-bg: #4A2F35;
-  --jade: #7FDDB0;
-  --jade-bg: #20403A;
-  --warn-ink: #F0C987;
-  --warn-bg: #3F3726;
-  --focus: #9FB7FF;
-  --cell-line: #6F92C0;
-  --seal-ink: #1B2338;
-  color-scheme: dark;
+  --paper: var(--surface-ground);
+  --sheet: var(--surface-raised);
+  --ink: var(--text-on-ground);
+  --muted: var(--text-on-ground-muted);
+  --line: var(--line-on-paper);
+  --grid: var(--line-quiet);
+  /* Направляющие клетки — киноварь вполсилы, как красный пунктир прописей. */
+  --guide: color-mix(in srgb, var(--accent) 42%, var(--surface-raised));
+  /* Акцент: ссылки, активная вкладка, пометки; заливки-печати — --fill-accent. */
+  --pen: var(--accent-on-ground);
+  --pen-bg: var(--surface-paper);
+  --on-pen: var(--on-accent);
+  --red: var(--state-incorrect);
+  --red-bg: color-mix(in srgb, var(--state-incorrect) 12%, var(--surface-raised));
+  --jade: var(--state-correct-on-ground);
+  --jade-bg: color-mix(in srgb, var(--state-correct-on-ground) 14%, var(--surface-raised));
+  --warn-ink: var(--accent-strong);
+  --warn-bg: var(--surface-paper);
+  --focus: var(--focus-on-ground);
+  --cell-line: var(--line-on-ground-strong);
+  --seal-ink: var(--on-accent);
+  /* Иероглифы: печатные — Noto Serif SC (система), от руки в клетке — кайшу. */
+  --zh: "Noto Serif SC", "Songti SC", SimSun, STSong, "Source Han Serif SC", serif;
+  --zh-hand: "LXGW WenKai Screen", "Kaiti SC", STKaiti, KaiTi, "Noto Serif SC", "Songti SC", serif;
+  --ui: "Onest", "Noto Serif SC", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --disp: "Cormorant Garamond", "Noto Serif SC", Georgia, "Times New Roman", serif;
 }
 
 * { box-sizing: border-box; }
@@ -58,15 +38,15 @@ body {
   margin: 0;
   color: var(--ink);
   background: var(--paper);
-  font: 16px/1.55 var(--ui);
+  font: 17px/1.5 var(--ui);
   -webkit-text-size-adjust: 100%;
 }
 
 button, input, select { font: inherit; color: inherit; }
 button { cursor: pointer; }
 a { color: var(--pen); text-underline-offset: 3px; }
-::selection { background: var(--pen-bg); }
-:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+::selection { background: var(--surface-pressed); }
+:focus-visible { outline: var(--border-focus) solid var(--focus); outline-offset: 3px; }
 /* На заголовок экрана фокус переводит страница, а не ученик: рамка не нужна. */
 [tabindex="-1"]:focus { outline: none; }
 
@@ -75,7 +55,7 @@ a { color: var(--pen); text-underline-offset: 3px; }
   clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
 .skip { position: absolute; left: -9999px; }
-.skip:focus { left: 16px; top: 12px; z-index: 10; padding: 10px 14px; border-radius: 8px; background: var(--sheet); }
+.skip:focus { left: 16px; top: 12px; z-index: 10; padding: 10px 14px; border-radius: var(--radius-sm); background: var(--sheet); }
 
 .shell { width: min(100% - 32px, 880px); margin: 0 auto; padding: 12px 0 calc(40px + env(safe-area-inset-bottom)); }
 
@@ -84,11 +64,11 @@ a { color: var(--pen); text-underline-offset: 3px; }
 .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 4px 0 8px; }
 .brand { display: flex; align-items: center; gap: 11px; min-width: 0; color: inherit; text-decoration: none; }
 .seal {
-  flex: none; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 4px;
-  background: var(--red); color: var(--seal-ink); font: 24px/1 var(--zh);
+  flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 4px;
+  background: var(--fill-accent); color: var(--seal-ink); font: 700 26px/1 var(--zh);
 }
 .brand-text { min-width: 0; }
-.brand h1 { margin: 0; font: 700 1.15rem/1.15 var(--disp); }
+.brand h1 { margin: 0; font: 700 1.5rem/1.1 var(--disp); }
 .brand h1 a { color: inherit; text-decoration: none; }
 .brand h1 a:hover { color: var(--pen); }
 .nowrap { white-space: nowrap; }
@@ -96,13 +76,13 @@ a { color: var(--pen); text-underline-offset: 3px; }
 .top-actions { flex: none; display: flex; gap: 8px; }
 /* Круглые кнопки шапки: справка и тема. */
 .round {
-  flex: none; display: grid; place-items: center; width: 44px; height: 44px; border: 1.5px solid var(--line);
+  flex: none; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--line);
   border-radius: 50%; background: var(--sheet); color: var(--muted); font-size: 1.1rem; font-weight: 700; text-decoration: none;
 }
 .round:hover { border-color: var(--grid); color: var(--ink); }
 .round[aria-current="page"] { border-color: var(--pen); color: var(--pen); }
 
-.tabs { display: flex; gap: 8px; margin: 0 0 24px; border-bottom: 1.5px solid var(--line); }
+.tabs { display: flex; gap: 8px; margin: 0 0 24px; border-bottom: 1px solid var(--line-on-ground); }
 .tab {
   min-width: 96px; padding: 12px 6px 10px; margin-bottom: -1.5px; border-bottom: 2.5px solid transparent;
   color: var(--muted); font-size: .95rem; font-weight: 650; text-align: center; text-decoration: none;
@@ -111,13 +91,13 @@ a { color: var(--pen); text-underline-offset: 3px; }
 .tab[aria-current="page"] { border-color: var(--pen); color: var(--pen); }
 
 .review-banner {
-  margin: -8px 0 18px; padding: 10px 14px; border-radius: 8px; background: var(--warn-bg); color: var(--warn-ink);
+  margin: -8px 0 18px; padding: 10px 14px; border-radius: var(--radius-sm); background: var(--warn-bg); color: var(--warn-ink);
   font-size: .9rem; font-weight: 600;
 }
 
 .view { outline: none; }
 
-h2 { margin: 0 0 8px; font: 800 clamp(1.75rem, 4.6vw, 2.3rem)/1.1 var(--disp); }
+h2 { margin: 0 0 8px; font: 700 clamp(2rem, 5.4vw, 2.6rem)/1.1 var(--disp); text-wrap: balance; }
 h3 { margin: 0 0 6px; font-size: 1rem; }
 /* Длинное слово («Последовательность») на системном шрифте шире телефона: переносится. */
 h2, h3 { overflow-wrap: break-word; hyphens: auto; }
@@ -129,22 +109,27 @@ h2, h3 { overflow-wrap: break-word; hyphens: auto; }
 
 .button {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px;
-  padding: 10px 20px; border: 1.5px solid var(--pen); border-radius: 8px; background: var(--pen);
-  color: var(--on-pen); font-weight: 700; text-align: center; text-decoration: none;
+  padding: 10px 24px; border: 1px solid transparent; border-radius: var(--radius-sm); background: var(--fill-accent);
+  color: var(--on-accent); font-weight: 600; text-align: center; text-decoration: none;
+  transition: background var(--duration-quick) var(--ease-out);
 }
-.button:hover { filter: brightness(1.08); }
-.button:disabled, .button[aria-disabled="true"] { opacity: .4; cursor: not-allowed; filter: none; }
-.button.alt { border-color: transparent; background: var(--pen-bg); color: var(--pen); }
-.button.ghost { border-color: var(--line); background: transparent; color: var(--ink); font-weight: 650; }
-.button.ghost:hover { border-color: var(--grid); filter: none; }
+.button:hover:not(:disabled):not([aria-disabled="true"]) { background: var(--fill-accent-hover); }
+.button:active:not(:disabled):not([aria-disabled="true"]) { background: var(--fill-accent-hover); box-shadow: inset 0 var(--border-solid) 0 var(--fill-accent-shade); }
+.button:disabled, .button[aria-disabled="true"] { background: var(--surface-disabled); color: var(--muted); cursor: not-allowed; }
+/* Второстепенные — рамка тушью, как в системе. */
+.button.alt, .button.ghost { border-color: var(--line-on-ground-strong); background: transparent; color: var(--ink); }
+.button.ghost { border-color: var(--line-quiet); font-weight: 500; }
+.button.alt:hover:not(:disabled):not([aria-disabled="true"]), .button.ghost:hover:not(:disabled):not([aria-disabled="true"]) { background: var(--surface-hover); }
+.button.alt:active:not(:disabled):not([aria-disabled="true"]), .button.ghost:active:not(:disabled):not([aria-disabled="true"]) { background: var(--surface-pressed); box-shadow: none; }
+.button.alt:disabled, .button.ghost:disabled, .button.ghost[aria-disabled="true"] { border-color: var(--line); background: transparent; }
 .button.danger { color: var(--red); }
 .link-button { padding: 0; border: 0; background: none; color: var(--pen); font-weight: 650; text-decoration: underline; text-underline-offset: 3px; }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
 
 .field { display: grid; gap: 6px; color: var(--muted); font-size: .86rem; font-weight: 650; }
 .field select {
-  width: 100%; min-width: 0; min-height: 46px; padding: 8px 10px; border: 1.5px solid var(--line);
-  border-radius: 8px; background: var(--sheet); color: var(--ink); font-weight: 600;
+  width: 100%; min-width: 0; min-height: 46px; padding: 8px 10px; border: 1px solid var(--line-on-ground-strong);
+  border-radius: var(--radius-sm); background: var(--sheet); color: var(--ink); font-weight: 500;
 }
 
 .filter { margin: 0 0 18px; padding: 0; border: 0; min-width: 0; }
@@ -154,13 +139,15 @@ h2, h3 { overflow-wrap: break-word; hyphens: auto; }
 .chip input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; }
 .chip span {
   display: inline-flex; align-items: baseline; gap: 7px; min-height: 44px; padding: 10px 12px;
-  border: 1.5px solid var(--line); border-radius: 6px; background: var(--sheet); color: var(--ink);
-  font-size: .9rem; font-weight: 600; line-height: 1.3;
+  border: 1px solid var(--line-on-ground-strong); border-radius: 22px; background: transparent; color: var(--ink);
+  font-size: .94rem; font-weight: 500; line-height: 1.3;
+  transition: color var(--duration-quick) var(--ease-out), border-color var(--duration-quick) var(--ease-out), background var(--duration-quick) var(--ease-out);
 }
+.chip input:not(:disabled):hover + span { border-color: var(--accent-on-ground); color: var(--accent-on-ground); }
 .chip small { color: var(--muted); font-weight: 600; font-variant-numeric: tabular-nums; }
-.chip input:checked + span { border-color: var(--pen); background: var(--pen-bg); color: var(--pen); }
-.chip input:checked + span small { color: var(--pen); }
-.chip input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 2px; }
+.chip input:checked + span { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.chip input:checked + span small { color: inherit; opacity: .8; }
+.chip input:focus-visible + span { outline: var(--border-focus) solid var(--focus); outline-offset: 3px; }
 .chip input:disabled + span { opacity: .45; }
 /* Оглавление практики: номер в клетке бланка, тема, отточие до числа заданий.
    Колонки читаются сверху вниз, как оглавление правил. Выбранный номер вписан синей ручкой. */
@@ -169,34 +156,34 @@ h2, h3 { overflow-wrap: break-word; hyphens: auto; }
 .task-row input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; }
 .task-row > span {
   display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px;
-  min-height: 52px; padding: 7px 14px 7px 8px; border: 1.5px solid var(--line); border-radius: 6px;
+  min-height: 52px; padding: 7px 14px 7px 8px; border: 1px solid var(--line-quiet); border-radius: var(--radius-sm);
   background: var(--sheet); color: var(--ink); font-weight: 650; line-height: 1.3;
 }
 .task-row .cellnum { min-width: 38px; height: 36px; font-size: 1rem; }
 .task-title { display: flex; align-items: flex-end; gap: 8px; }
 .task-title::after { content: ""; flex: 1 0 0; margin-bottom: .3em; border-bottom: 2px dotted var(--line); }
 .task-row small { color: var(--muted); font-size: .9rem; font-weight: 650; font-variant-numeric: tabular-nums; }
-.task-row input:not(:disabled):hover + span { border-color: var(--grid); }
-.task-row input:checked + span { border-color: var(--pen); background: var(--pen-bg); color: var(--pen); }
-.task-row input:checked + span .cellnum { border-color: var(--pen); color: var(--pen); }
-.task-row input:checked + span .task-title::after { border-bottom-color: var(--pen); opacity: .35; }
-.task-row input:checked + span small { color: var(--pen); }
-.task-row input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 2px; }
+.task-row input:not(:disabled):hover + span { border-color: var(--line-on-ground-strong); }
+/* Выбранный номер — как выбранная карточка системы: рамка тушью потолще, лист светлее. */
+.task-row input:checked + span { border-color: var(--line-on-ground-strong); box-shadow: inset 0 0 0 1px var(--line-on-ground-strong); background: var(--surface-raised); }
+.task-row input:checked + span .cellnum { border-color: var(--accent-on-ground); color: var(--accent-on-ground); }
+.task-row input:checked + span .task-title::after { border-bottom-color: var(--accent-on-ground); opacity: .5; }
+.task-row input:focus-visible + span { outline: var(--border-focus) solid var(--focus); outline-offset: 3px; }
 /* Полупрозрачный span ложится поверх поля: курсор «нельзя» ставим ему. */
 .task-row input:disabled + span { opacity: .45; cursor: not-allowed; }
 /* Тема с карточки правила или из старой ссылки: сужает оглавление, снимается кнопкой. */
 .topic-focus {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px;
-  margin: 0 0 8px; padding: 6px 6px 6px 14px; border: 1.5px dashed var(--pen); border-radius: 6px;
-  background: var(--pen-bg); color: var(--pen); font-weight: 600;
+  margin: 0 0 8px; padding: 6px 6px 6px 14px; border: 1.5px dashed var(--pen); border-radius: var(--radius-sm);
+  background: var(--pen-bg); color: var(--ink); font-weight: 600;
 }
 .topic-focus b { font-weight: 750; }
-.topic-focus .button { min-height: 44px; padding: 6px 12px; border-color: transparent; color: var(--pen); }
-.topic-focus .button:hover { border-color: var(--pen); }
+.topic-focus .button { min-height: 44px; padding: 6px 12px; border-color: transparent; background: transparent; color: var(--pen); }
+.topic-focus .button:hover:not(:disabled) { border-color: var(--pen); background: transparent; }
 
-.notice { margin: 4px 0 0; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--sheet); }
+.notice { margin: 4px 0 0; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--sheet); }
 .notice.warn { border-color: transparent; background: var(--warn-bg); color: var(--warn-ink); }
-.empty { padding: 22px; border: 1.5px dashed var(--grid); border-radius: 8px; color: var(--muted); }
+.empty { padding: 22px; border: 1.5px dashed var(--grid); border-radius: var(--radius-sm); color: var(--muted); }
 .empty strong { display: block; margin-bottom: 4px; color: var(--ink); }
 kbd {
   display: inline-block; min-width: 1.6em; padding: 0 5px; border: 1px solid var(--line); border-bottom-width: 2px;
@@ -267,19 +254,19 @@ kbd {
 .tz .c::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px dashed var(--guide); }
 .tz .c.long { width: auto; min-width: 3.2em; padding: 0 .3em; }
 .tz .c.long::before { display: none; }
-.tz .ink { position: relative; z-index: 1; color: var(--pen); white-space: nowrap; animation: ink-in .16s ease-out; }
-/* Неверно: вписанное зачёркнуто, сверху исправление красной ручкой. */
+.tz .ink { position: relative; z-index: 1; color: var(--ink); font-family: var(--zh-hand); white-space: nowrap; animation: ink-in .16s ease-out; }
+/* Неверно: вписанное зачёркнуто, сверху исправление киноварью; верно — нефритовая галочка. */
 .tz.wrong.written::after {
   content: ""; position: absolute; z-index: 2; left: -.12em; right: -.12em; top: 50%;
   border-top: 2px solid var(--red); transform: rotate(-7deg);
 }
 .tz .fix {
-  position: absolute; left: 50%; bottom: 100%; z-index: 2; color: var(--red); font-size: .62em; line-height: 1;
+  position: absolute; left: 50%; bottom: 100%; z-index: 2; color: var(--red); font-family: var(--zh-hand); font-weight: 700; font-size: .66em; line-height: 1;
   white-space: nowrap; transform: translate(-50%, .1em) rotate(-3deg); animation: fix-in .2s .12s both;
 }
 .tz .tick { position: absolute; top: -.55em; right: -.62em; width: .95em; height: .95em; overflow: visible; }
 .tz .tick path {
-  fill: none; stroke: var(--red); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round;
+  fill: none; stroke: var(--jade); stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round;
   stroke-dasharray: 1; stroke-dashoffset: 0; animation: draw .28s ease-out both;
 }
 @keyframes ink-in { from { opacity: 0; transform: scale(.82); } }
@@ -290,25 +277,27 @@ kbd {
 .options.row { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
 .option {
   display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 14px; width: 100%;
-  min-height: 56px; padding: 8px 16px 8px 12px; border: 1.5px solid var(--line); border-radius: 8px;
-  background: var(--sheet); color: var(--ink); text-align: left;
+  min-height: 56px; padding: 8px 16px 8px 12px; border: 1px solid var(--line-on-ground-strong); border-radius: var(--radius-sm);
+  background: var(--sheet); color: var(--ink); text-align: left; font-weight: 500;
+  transition: background var(--duration-quick) var(--ease-out);
 }
-.option:hover:not(:disabled) { border-color: var(--grid); }
+.option:hover:not(:disabled) { background: var(--surface-hover); }
 .option .num {
-  display: grid; place-items: center; width: 26px; height: 26px; border: 1.5px solid var(--line); border-radius: 4px;
+  display: grid; place-items: center; width: 26px; height: 26px; border: 1px solid var(--line-quiet); border-radius: 4px;
   color: var(--muted); font: 700 .82rem/1 var(--ui);
 }
 .option .text { font-family: var(--zh); font-size: 1.45rem; line-height: 1.3; overflow-wrap: anywhere; }
 .option .text.plain { font-family: var(--ui); font-size: 1.1rem; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: .02em; }
-.option.selected { border-color: var(--pen); background: var(--pen-bg); }
-.option.selected .num { border-color: var(--pen); color: var(--pen); }
-.option.correct { border-color: var(--jade); background: var(--jade-bg); }
-.option.correct .num { border-color: var(--jade); color: var(--jade); }
-.option.wrong { border-color: var(--red); background: var(--red-bg); }
-.option.wrong .num { border-color: var(--red); color: var(--red); }
+.option.selected { border-color: var(--ink); background: var(--surface-paper); box-shadow: inset 0 0 0 1px var(--ink); }
+.option.selected .num { border-color: var(--ink); color: var(--ink); }
 .option:disabled { cursor: default; color: var(--ink); opacity: 1; }
-.option:disabled:not(.correct):not(.wrong) { opacity: .55; }
-.option.correct::after { content: "✓"; color: var(--jade); font-weight: 800; }
+.option:disabled:not(.correct):not(.wrong) { border-color: var(--line); color: var(--muted); }
+/* После ответа: верный — нефритовая печать, неверный выбор — киноварная рамка потолще, как в системе. */
+.option.correct, .option.correct:disabled { border-color: var(--fill-correct); background: var(--fill-correct); color: var(--on-correct); font-weight: 600; }
+.option.correct .num { border-color: var(--on-correct); color: var(--on-correct); }
+.option.wrong { border-color: var(--state-incorrect); background: var(--sheet); box-shadow: inset 0 0 0 1px var(--state-incorrect); }
+.option.wrong .num { border-color: var(--red); color: var(--red); }
+.option.correct::after { content: "✓"; color: var(--on-correct); font-weight: 800; }
 .option.wrong::after { content: "✗"; color: var(--red); font-weight: 800; }
 
 .keys { display: none; margin: 12px 0 0; color: var(--muted); font-size: .8rem; }
@@ -323,16 +312,16 @@ kbd {
 .verdict.bad h3 { color: var(--red); }
 .verdict p { margin: 0; }
 .zh { font-family: var(--zh); font-size: 1.1em; }
-.rule-note { padding: 14px 16px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--sheet); }
+.rule-note { padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--sheet); }
 .rule-note p { margin: 6px 0 0; }
 .rule-note p:first-child { margin-top: 0; }
 .others summary { display: flex; align-items: center; min-height: 44px; color: var(--muted); font-weight: 650; cursor: pointer; }
 .others ul { margin: 6px 0 0; padding-left: 20px; }
 .report { margin: 0; color: var(--muted); font-size: .88rem; }
-.share { display: grid; gap: 8px; margin-top: 14px; padding: 14px 16px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--sheet); }
+.share { display: grid; gap: 8px; margin-top: 14px; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--sheet); }
 .share p { margin: 0; }
 .report-text {
-  width: 100%; min-width: 0; min-height: 150px; padding: 10px 12px; border: 1.5px solid var(--line); border-radius: 8px;
+  width: 100%; min-width: 0; min-height: 150px; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--radius-sm);
   background: var(--paper); color: var(--ink); font: .82rem/1.45 var(--ui); resize: vertical;
 }
 .table-wrap { max-width: 100%; overflow-x: auto; margin: 0 0 18px; }
@@ -341,7 +330,7 @@ kbd {
 .class-table th { color: var(--muted); font-weight: 650; }
 .share-row { display: flex; flex-wrap: wrap; gap: 10px; }
 .share-url {
-  flex: 1 1 240px; min-width: 0; min-height: 46px; padding: 8px 10px; border: 1.5px solid var(--line); border-radius: 8px;
+  flex: 1 1 240px; min-width: 0; min-height: 46px; padding: 8px 10px; border: 1px solid var(--line); border-radius: var(--radius-sm);
   background: var(--paper); font-size: .82rem;
 }
 
@@ -371,12 +360,12 @@ kbd {
 .score b { font: 800 clamp(2.6rem, 9vw, 3.4rem)/1 var(--disp); white-space: nowrap; }
 .score .percent { color: var(--pen); font-size: clamp(1.9rem, 6.5vw, 2.5rem); }
 .advice { margin: 0 0 16px; }
-.mistakes { margin: 0 0 18px; padding: 10px 14px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--sheet); }
+.mistakes { margin: 0 0 18px; padding: 10px 14px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--sheet); }
 .mistakes > summary { font-weight: 700; cursor: pointer; min-height: 44px; display: flex; align-items: center; }
 /* Итог раунда по номерам: клетка номера, тема, сколько ошибок; номер без ошибок — приглушён. */
 .by-task { margin: 0 0 18px; }
 .by-task h3 { margin: 0 0 8px; color: var(--muted); font-size: .86rem; font-weight: 650; }
-.by-task ul { margin: 0; padding: 0; list-style: none; border-top: 1.5px solid var(--line); }
+.by-task ul { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-on-ground); }
 .by-task li {
   display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px;
   min-height: 48px; padding: 6px 0; border-bottom: 1.5px solid var(--line); font-weight: 650;
@@ -391,7 +380,7 @@ kbd {
 .mistake-list li { display: grid; gap: 2px; margin-bottom: 8px; min-width: 0; }
 .mistake-list .zh { overflow-wrap: anywhere; }
 /* Блок, а не сетка: строка с nowrap растянула бы колонку сетки шире экрана. */
-.results { margin: 0; padding: 0; list-style: none; border-top: 1.5px solid var(--line); }
+.results { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-on-ground); }
 .results details { border-bottom: 1.5px solid var(--line); }
 .results summary { display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 10px 2px; cursor: pointer; list-style: none; }
 .results summary::-webkit-details-marker { display: none; }
@@ -406,7 +395,7 @@ kbd {
 
 .all-checks {
   display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 56px;
-  padding: 12px 16px; border: 1.5px dashed var(--grid); border-radius: 8px; background: transparent;
+  padding: 12px 16px; border: 1.5px dashed var(--grid); border-radius: var(--radius-sm); background: transparent;
   color: var(--ink); font-weight: 650; text-align: left;
 }
 .all-checks span { flex: none; color: var(--muted); font-weight: 600; }
@@ -414,7 +403,7 @@ kbd {
 .index { margin: 18px 0 0; padding: 0; list-style: none; columns: 2 300px; column-gap: 40px; }
 .index > li {
   display: grid; grid-template-columns: minmax(44px, auto) minmax(0, 1fr); gap: 12px; padding: 14px 0;
-  border-top: 1.5px solid var(--line); break-inside: avoid;
+  border-top: 1px solid var(--line-on-ground); break-inside: avoid;
 }
 .index .cellnum { min-width: 40px; height: 40px; font-size: 1rem; }
 .index h3 { margin: 2px 0 0; color: var(--muted); font-size: .74rem; font-weight: 650; letter-spacing: .07em; line-height: 1.35; text-transform: uppercase; }
@@ -433,7 +422,7 @@ kbd {
 .examples .zh { display: block; font-size: 1.35rem; }
 .examples .ru { color: var(--muted); }
 .contrast { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.contrast div { padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--sheet); }
+.contrast div { padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--sheet); }
 .contrast .zh { display: block; font-size: 1.35rem; }
 /* Типичная ошибка — пометка на полях красной ручкой. */
 .rule-detail .mistake { margin: 0; padding: 2px 0 2px 14px; border-left: 3px solid var(--red); }
@@ -456,14 +445,14 @@ kbd {
 .size-own { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 10px; color: var(--muted); font-size: .86rem; font-weight: 650; }
 .stepper { display: inline-flex; }
 .stepper .size-step { min-width: 48px; min-height: 48px; padding: 0 12px; font-size: 1.3rem; line-height: 1; }
-.stepper .size-step:first-child { border-radius: 8px 0 0 8px; }
+.stepper .size-step:first-child { border-radius: var(--radius-sm) 0 0 8px; }
 .stepper .size-step:last-child { border-radius: 0 8px 8px 0; }
 .size-input {
-  width: 4.4em; min-height: 48px; margin: 0 -1.5px; padding: 6px 4px; border: 1.5px solid var(--line); border-radius: 0;
+  width: 4.4em; min-height: 48px; margin: 0 -1.5px; padding: 6px 4px; border: 1px solid var(--line); border-radius: 0;
   background: var(--sheet); color: var(--ink); font-size: 1.15rem; font-weight: 700; text-align: center; font-variant-numeric: tabular-nums;
 }
 .size-input:focus-visible { position: relative; z-index: 1; border-color: var(--pen); }
-.bank-list { margin: 0; padding: 0; list-style: none; border-top: 1.5px solid var(--line); }
+.bank-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-on-ground); }
 .bank-item {
   display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; align-items: center; gap: 12px; width: 100%;
   min-height: 58px; padding: 9px 2px; border: 0; border-bottom: 1.5px solid var(--line); background: transparent;
@@ -527,7 +516,7 @@ kbd {
   html { scroll-padding-bottom: 96px; }
   .shell { width: calc(100% - 32px); padding-top: 8px; }
   .tabs { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 0; margin-bottom: 20px; }
-  .tab { min-width: 0; padding-inline: 2px; font-size: .9rem; }
+  .tab { min-width: 0; padding-inline: 2px; font-size: .84rem; font-weight: 600; }
   .options.row { grid-template-columns: 1fr; }
   .sheet { grid-template-columns: repeat(7, minmax(0, 1fr)); }
   .contrast { grid-template-columns: 1fr; }
@@ -538,14 +527,14 @@ kbd {
   .actions.dock {
     position: sticky; bottom: 0; z-index: 5; flex-wrap: nowrap; margin: 20px -16px 0;
     padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-    border-top: 1.5px solid var(--line); background: var(--paper);
+    border-top: 1px solid var(--line-on-ground); background: var(--paper);
   }
   .actions.dock .button { flex: 1 1 0; min-width: 0; }
   /* Панель не закрывает конец страницы. */
   .view.has-start-bar { padding-bottom: 88px; }
   .start-bar {
     position: fixed; inset: auto 0 0; z-index: 5; display: flex; align-items: center; gap: 12px;
-    padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); border-top: 1.5px solid var(--line); background: var(--paper);
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line-on-ground); background: var(--paper);
     visibility: hidden; transform: translateY(100%);
     transition: transform .16s ease-out, visibility 0s linear .16s;
   }
@@ -559,10 +548,12 @@ kbd {
    до загрузки своих). Что за тренажёр, сказано в справке. */
 @media (max-width: 430px) {
   .brand small { display: none; }
+  .brand h1 { font-size: 1.2rem; }
+  .seal { width: 36px; height: 36px; font-size: 24px; }
 }
 
 @media (max-width: 360px) {
-  .tab { font-size: .84rem; }
+  .tab { font-size: .8rem; }
 }
 
 /* Пять вкладок на самых узких телефонах: «Практика» и «Правила» иначе вылезают за ячейку. */

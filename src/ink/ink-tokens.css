@@ -1,0 +1,253 @@
+/* Копия из дизайн-системы «Тушь и киноварь» (claude.ai/artifact/HxB8a7sUq8ZYSU35wYLUfu,
+   версия 1792001657-f8e2). Не править здесь: правка идёт в систему, сюда — новая копия. */
+/*
+ * «Тушь и киноварь» — токены: светлая тема в :root, тёмная «Тушечница» —
+ * по prefers-color-scheme или data-theme="dark" на корне.
+ *
+ * Шрифты подключаются отдельно, в <head> до этого файла:
+ * <link rel="preconnect" href="https://fonts.googleapis.com">
+ * <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ * <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Onest:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;700&display=swap">
+ *
+ * Два слоя: примитивы (--c-*, --s-*, --t-*) — сырые значения; семантика
+ * (--surface-*, --text-*, --line-*, --accent*, --state-*, --focus-*) — роль.
+ * Компоненты пишут только семантику и шкалы, примитивы цвета — никогда:
+ * тёмная тема переопределяет одну семантику.
+ */
+
+:root {
+  /* --- Примитивы: цвет --------------------------------------------------- */
+
+  /* Бумага. Фон, панели и поля — всё бумага; отделяет их линия тушью. */
+  --c-paper-50: #fffdf8;
+  --c-paper-100: #faf4e8;
+  --c-paper-200: #f2ead9;
+  --c-paper-300: #e5d9c2;
+  --c-paper-400: #cdbea1;
+  /* Бумага вполсилы: подписи в тёмной теме. */
+  --c-paper-500: #b5a78f;
+
+  /* Тушь. Текст, линии, рамки, фокус. */
+  --c-ink-900: #141110;
+  --c-ink-700: #3a322a;
+  --c-ink-500: #6b5d4d;
+  /* Тушь вполсилы — только графика (3.93:1 к paper-200), не текст. */
+  --c-ink-300: #78736a;
+  /* «Линия» макета: значимая графика в тёмной теме. */
+  --c-ink-200: #8a8075;
+
+  /* Киноварь 朱砂 — знак, главная кнопка, ошибка. */
+  --c-cinnabar-400: #e08174;
+  --c-cinnabar-600: #b8352a;
+  --c-cinnabar-700: #8f271e;
+  --c-cinnabar-800: #751d15;
+
+  /* Нефрит — «верно». */
+  --c-jade-500: #356f52;
+  --c-jade-600: #2c7350;
+  --c-jade-700: #17563a;
+  --c-jade-800: #123f2a;
+  /* Светлый нефрит макета: «верно» текстом в тёмной теме. */
+  --c-jade-300: #8db59a;
+
+  /* Тушечница — поверхности тёмной темы. */
+  --c-night-900: #181512;
+  --c-night-800: #211d19;
+  --c-night-700: #2b2620;
+  --c-night-600: #2f2a24;
+  --c-night-500: #3a332c;
+  --c-night-400: #4a433b;
+
+  /* --- Примитивы: отступы ------------------------------------------------ */
+
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+
+  /* --- Примитивы: типографика -------------------------------------------- */
+
+  /* Noto Serif SC вторым: у латинских шрифтов нет знаков ✓ ● ○ →. */
+  --font-display:
+    'Cormorant Garamond', 'Noto Serif SC', Georgia, 'Times New Roman', serif;
+  --font-text:
+    'Onest', 'Noto Serif SC', ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-han:
+    'Noto Serif SC', 'Songti SC', SimSun, STSong, 'Source Han Serif SC', serif;
+
+  /* Шкала по листу стиля макетов. */
+  --t-size-eyebrow: 14px;
+  --t-size-caption: 15px;
+  --t-size-body: 17px;
+  --t-size-lead: 19px;
+  --t-size-title-2: 28px;
+  --t-size-title-1: 40px;
+
+  --t-weight-regular: 400;
+  --t-weight-medium: 500;
+  --t-weight-semibold: 600;
+  --t-weight-bold: 700;
+
+  --t-leading-tight: 1.15;
+  --t-leading-body: 1.5;
+
+  --t-tracking-eyebrow: 0.14em;
+
+  /* --- Примитивы: форма, движение ---------------------------------------- */
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* Только для плашек поверх графики: тушь 35 %. */
+  --shadow-float: 0 4px 18px rgb(20 17 16 / 35%);
+
+  --border-hair: 1px;
+  --border-solid: 2px;
+  --border-focus: 3px;
+
+  --duration-instant: 90ms;
+  --duration-quick: 160ms;
+  --duration-calm: 260ms;
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* Цель нажатия: WCAG 2.2 требует 24×24, система держит 44×44. */
+  --target-min: 44px;
+
+  /* --- Семантика --------------------------------------------------------- */
+
+  --surface-ground: var(--c-paper-100);
+  --surface-raised: var(--c-paper-50);
+  --surface-paper: var(--c-paper-200);
+  --surface-paper-bright: var(--c-paper-100);
+  --surface-hover: var(--c-paper-200);
+  --surface-pressed: var(--c-paper-300);
+  --surface-disabled: var(--c-paper-300);
+
+  --text-on-ground: var(--c-ink-900);
+  --text-on-ground-muted: var(--c-ink-500);
+  --text-on-ground-strong: var(--c-ink-900);
+  --text-on-paper: var(--c-ink-900);
+  --text-on-paper-muted: var(--c-ink-500);
+  --text-soft: var(--c-ink-700);
+
+  /* Разделитель и рамка управления — оба тушью; токенов два, чтобы
+     разделитель можно было ослабить, не задев рамок (WCAG 1.4.11). */
+  --line-on-ground: var(--c-ink-900);
+  --line-on-ground-strong: var(--c-ink-900);
+  --line-on-paper: var(--c-paper-400);
+  --line-quiet: var(--c-ink-300);
+
+  --accent: var(--c-cinnabar-600);
+  --accent-on-ground: var(--c-cinnabar-600);
+  --accent-strong: var(--c-cinnabar-700);
+
+  /* Печати: одни в обеих темах. */
+  --fill-accent: var(--c-cinnabar-600);
+  --fill-accent-hover: var(--c-cinnabar-700);
+  --fill-accent-shade: var(--c-cinnabar-800);
+  --on-accent: var(--c-paper-100);
+  --fill-correct: var(--c-jade-600);
+  --on-correct: var(--c-paper-50);
+
+  --state-correct: var(--c-jade-700);
+  --state-correct-on-ground: var(--c-jade-600);
+  --state-incorrect: var(--c-cinnabar-600);
+
+  /* Кольцо фокуса: тушью на светлом, бумагой на тёмной заливке. */
+  --focus-on-paper: var(--c-ink-900);
+  --focus-on-ground: var(--c-ink-900);
+  --focus-on-dark: var(--c-paper-50);
+
+  --backdrop: rgb(20 17 16 / 55%);
+}
+
+/* --- Тёмная тема «Тушечница» -------------------------------------------- */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --surface-ground: var(--c-night-900);
+    --surface-raised: var(--c-night-800);
+    --surface-paper: var(--c-night-700);
+    --surface-paper-bright: var(--c-night-900);
+    --surface-hover: var(--c-night-600);
+    --surface-pressed: var(--c-night-500);
+    --surface-disabled: var(--c-night-500);
+
+    --text-on-ground: var(--c-paper-200);
+    --text-on-ground-muted: var(--c-paper-500);
+    --text-on-ground-strong: var(--c-paper-200);
+    --text-on-paper: var(--c-paper-200);
+    --text-on-paper-muted: var(--c-paper-500);
+    --text-soft: var(--c-paper-300);
+
+    --line-on-ground: var(--c-paper-400);
+    --line-on-ground-strong: var(--c-paper-400);
+    --line-on-paper: var(--c-night-400);
+    --line-quiet: var(--c-ink-200);
+
+    /* Киноварь и нефрит текстом — светлые ступени; заливки-печати не меняются. */
+    --accent: var(--c-cinnabar-400);
+    --accent-on-ground: var(--c-cinnabar-400);
+    --accent-strong: var(--c-cinnabar-400);
+    --state-correct-on-ground: var(--c-jade-300);
+    --state-incorrect: var(--c-cinnabar-400);
+
+    --focus-on-paper: var(--c-paper-50);
+    --focus-on-ground: var(--c-paper-50);
+
+    --backdrop: rgb(0 0 0 / 70%);
+
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --surface-ground: var(--c-night-900);
+  --surface-raised: var(--c-night-800);
+  --surface-paper: var(--c-night-700);
+  --surface-paper-bright: var(--c-night-900);
+  --surface-hover: var(--c-night-600);
+  --surface-pressed: var(--c-night-500);
+  --surface-disabled: var(--c-night-500);
+
+  --text-on-ground: var(--c-paper-200);
+  --text-on-ground-muted: var(--c-paper-500);
+  --text-on-ground-strong: var(--c-paper-200);
+  --text-on-paper: var(--c-paper-200);
+  --text-on-paper-muted: var(--c-paper-500);
+  --text-soft: var(--c-paper-300);
+
+  --line-on-ground: var(--c-paper-400);
+  --line-on-ground-strong: var(--c-paper-400);
+  --line-on-paper: var(--c-night-400);
+  --line-quiet: var(--c-ink-200);
+
+  /* Киноварь и нефрит текстом — светлые ступени; заливки-печати не меняются. */
+  --accent: var(--c-cinnabar-400);
+  --accent-on-ground: var(--c-cinnabar-400);
+  --accent-strong: var(--c-cinnabar-400);
+  --state-correct-on-ground: var(--c-jade-300);
+  --state-incorrect: var(--c-cinnabar-400);
+
+  --focus-on-paper: var(--c-paper-50);
+  --focus-on-ground: var(--c-paper-50);
+
+  --backdrop: rgb(0 0 0 / 70%);
+
+  color-scheme: dark;
+}
+
+/* Движение обслуживает понимание; по запросу системы снимается целиком. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-instant: 0ms;
+    --duration-quick: 0ms;
+    --duration-calm: 0ms;
+  }
+}

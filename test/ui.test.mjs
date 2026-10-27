@@ -1470,11 +1470,11 @@ test('шапка: заголовок страницы, кнопка темы —
   const toggle = page.locator('#themeToggle');
   const themeColors = () => page.evaluate(() => [...document.querySelectorAll('meta[name="theme-color"]')].map((m) => m.content));
   assert.equal(await toggle.getAttribute('aria-pressed'), 'false');
-  assert.deepEqual(await themeColors(), ['#F2F4EF', '#F2F4EF']);
+  assert.deepEqual(await themeColors(), ['#FAF4E8', '#FAF4E8']);
   await toggle.click();
   assert.equal(await page.evaluate(() => document.documentElement.dataset.theme), 'dark');
   assert.equal(await toggle.getAttribute('aria-pressed'), 'true');
-  assert.deepEqual(await themeColors(), ['#1B2338', '#1B2338']);
+  assert.deepEqual(await themeColors(), ['#181512', '#181512']);
   await page.reload();
   assert.equal(await page.locator('#themeToggle').getAttribute('aria-pressed'), 'true', 'тема запомнилась');
   await context.close();

@@ -1891,7 +1891,7 @@
     toggle.setAttribute('aria-pressed', String(dark));
     toggle.title = dark ? 'Включить светлую тему' : 'Включить тёмную тему';
     // Строка браузера — цвета бумаги выбранной темы, а не темы системы.
-    document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => meta.setAttribute('content', dark ? '#1B2338' : '#F2F4EF'));
+    document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => meta.setAttribute('content', dark ? '#181512' : '#FAF4E8'));
   }
   document.getElementById('themeToggle').addEventListener('click', () => {
     const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
