@@ -401,14 +401,15 @@ export function percent(score, total) {
 }
 
 // Раунд из отобранного: номера по кругу (номера в случайном порядке, внутри номера — задания в
-// случайном порядке), чтобы один большой номер не занимал всю подборку; итог перемешан.
+// случайном порядке), чтобы один большой номер не занимал всю подборку; итог перемешан. Слова
+// тренировки тонов (origin 'words') — своя группа в круге: сотни слов не вытесняют задания №15 ФИПИ.
 // «Все» — всё отобранное вперемешку.
 export function pickRound(list, size, rng = Math.random) {
   const shuffled = shuffle(list, rng);
   if (size === 'all') return shuffled;
   const groups = new Map();
   for (const item of shuffled) {
-    const key = item && typeof item === 'object' ? item.taskNumber : undefined;
+    const key = item && typeof item === 'object' ? (item.origin === 'words' ? 'words' : item.taskNumber) : undefined;
     if (!groups.has(key)) groups.set(key, []);
     groups.get(key).push(item);
   }
@@ -423,12 +424,12 @@ export function pickRound(list, size, rng = Math.random) {
   return shuffle(picked, rng);
 }
 
-// Одно задание на каждую позицию 15–27, только формата ЕГЭ: задания HSK (origin 'hsk') — для
+// Одно задание на каждую позицию 15–27, только формата ЕГЭ: задания HSK (origin 'hsk') и слова (origin 'words') — для
 // практики. Если позиция пуста — вариант не собирается.
 export function buildVariant(questions, rng = Math.random) {
   const byTask = new Map(TASK_NUMBERS.map((n) => [n, []]));
   for (const q of questions) {
-    if (q.origin !== 'hsk' && byTask.has(q.taskNumber)) byTask.get(q.taskNumber).push(q);
+    if (q.origin !== 'hsk' && q.origin !== 'words' && byTask.has(q.taskNumber)) byTask.get(q.taskNumber).push(q);
   }
   const missing = TASK_NUMBERS.filter((n) => byTask.get(n).length === 0);
   if (missing.length) return { ok: false, missing };

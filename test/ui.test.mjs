@@ -1572,8 +1572,10 @@ test('настоящие данные: сборка для проверки от
   // В сборке для проверки — все задания с разбором: готовые и черновики (с пометкой).
   const bank = JSON.parse(readFileSync(join(ROOT, 'data', 'questions.json'), 'utf8'))
     .filter((q) => (q.reviewStatus === 'ready' || q.reviewStatus === 'draft') && q.explanation);
+  // Слова тренировки тонов — тоже задания №15: в сборке для проверки в банке и они.
+  const words = JSON.parse(readFileSync(join(ROOT, 'data', 'tone-words.json'), 'utf8')).words;
   await page.locator('.bank-item').first().waitFor();
-  assert.equal(await page.locator('.bank-item').count(), bank.length);
+  assert.equal(await page.locator('.bank-item').count(), bank.length + words.length);
   const drafts = bank.filter((q) => q.reviewStatus === 'draft').length;
   assert.equal(await page.locator('.bank-item .meta', { hasText: 'черновик' }).count(), drafts);
   // Телефон 320 px на системных шрифтах (шрифты из сети не пришли): ни одна карточка правила не
@@ -1905,11 +1907,13 @@ test('тоны: круг из слов, ошибки повторяются, п�
   await see(page, '.score', /3 из 4/);
   assert.equal(await page.getByRole('button', { name: /Отчёт учителю/ }).count(), 0, 'отчёта у круга тонов нет');
   assert.equal(await page.getByRole('button', { name: /Ссылка на эти/ }).count(), 0, 'ссылки на круг тонов нет');
-  // Практика не подхватывает круг тонов и не берёт слова.
+  // Практика не подхватывает круг тонов, но слова — её задания №15: 16 заданий и 4 слова.
   await page.goto(`${withWords}#/practice`);
   await see(page, 'h2', /Практика ЕГЭ/);
   assert.equal(await page.getByRole('link', { name: /Продолжить раунд/ }).count(), 0);
-  await see(page, '#available', /Доступно: 16 заданий\./);
+  await see(page, '#available', /Доступно: 20 заданий\./);
+  await page.locator('input[data-key="Источник:words"]').check();
+  await see(page, '#available', /Доступно: 4 задания\./);
   // Перезагрузка вкладки «Тоны» показывает итог того же круга; ошибки повторяются в нём же.
   await page.goto(`${withWords}#/tones`);
   await see(page, 'h2', /Раунд окончен/);

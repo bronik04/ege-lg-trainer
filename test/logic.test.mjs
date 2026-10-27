@@ -824,3 +824,20 @@ test('тоны: слова не заменяют снятое задание в 
   const pruned = L.pruneProgress({ ...L.emptyProgress(), variant }, bank);
   assert.deepEqual(pruned.variant.ids, ['q15-a']);
 });
+
+test('слова в практике: в круге они — своя группа, а в полный вариант не входят', () => {
+  const words = Array.from({ length: 50 }, (_, i) => word(`字${i}`, 1));
+  const tasks = [q('q15-a', 15), q('q16-a', 16), q('q17-a', 17)];
+  // Круг из 6: четыре группы (№15, №16, №17, слова) по очереди — слова не занимают всё.
+  const round = L.pickRound([...words, ...tasks], 6, L.mulberry32(3));
+  assert.equal(round.length, 6);
+  assert.ok(round.filter((x) => x.origin === 'words').length <= 3);
+  assert.ok(round.some((x) => x.taskNumber === 15 && x.origin !== 'words'));
+  const bank = [...fullBank, ...words];
+  const variant = L.buildVariant(bank, L.mulberry32(1));
+  assert.equal(variant.ok, true);
+  assert.ok(variant.ids.every((id) => !id.startsWith('w15-')));
+  // №15 без заданий формата ЕГЭ: слова позицию не закрывают.
+  const noFifteen = [...fullBank.filter((x) => x.taskNumber !== 15), ...words];
+  assert.deepEqual(L.buildVariant(noFifteen).missing, [15]);
+});
