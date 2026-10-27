@@ -1987,3 +1987,40 @@ test('тоны: загрузка файла прогресса не стирае
   assert.deepEqual(errors, []);
   await context.close();
 });
+
+// Телефон: кнопка «Начать раунд» стоит в конце длинной страницы — пока её не видно, у нижнего края
+// панель с той же кнопкой и числом заданий; у конца страницы панели нет, на ноутбуке её нет совсем.
+for (const [screen, hash, real] of [['практика', '#/practice', '#startRound'], ['тоны', '#/tones', '#startTones']]) {
+  test(`телефон: ${screen} — панель «Начать раунд» у нижнего края, пока кнопка за краем экрана`, { skip }, async () => {
+    const { page, context, errors } = await open(screen === 'тоны' ? buildPage('tones-bar', { change: (data) => { data['tone-words'] = { words: toneWords }; } }) : mainUrl, { width: 360, height: 360, reducedMotion: 'reduce', hash });
+    await page.locator(real).waitFor();
+    const bar = page.locator('#startBar');
+    const barShown = () => bar.evaluate((node) => node.classList.contains('is-shown'));
+    const realBottom = () => page.locator(real).evaluate((node) => node.getBoundingClientRect().top - window.innerHeight);
+    {
+      assert.ok(await realBottom() > 0, 'кнопка за краем экрана');
+      assert.equal(await barShown(), true, 'кнопка за краем — панель показана');
+      assert.match(await text(page, '#startBarText'), /^В раунд: \d+ /);
+      assert.ok((await page.locator('#barStart').boundingBox()).y > 280, 'панель у нижнего края');
+      await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+      await page.waitForFunction(() => !document.getElementById('startBar').classList.contains('is-shown'));
+    }
+    // Кнопка на экране — панели нет; число в панели следует за размером раунда.
+    assert.equal(await barShown(), false);
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.locator('input[data-key="Размер:5"]').check();
+    await page.waitForFunction(() => /В раунд: [1-5] /.test(document.getElementById('startBarText').textContent));
+    await page.locator('#barStart').click();
+    await see(page, '.progress', /(Задание|Слово) 1 из /);
+    assert.deepEqual(errors, []);
+    await context.close();
+  });
+}
+
+test('ноутбук: панели «Начать раунд» нет', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { width: 1280, height: 600, reducedMotion: 'reduce', hash: '#/practice' });
+  await page.locator('#startRound').waitFor();
+  assert.equal(await page.locator('#startBar').isVisible(), false);
+  assert.deepEqual(errors, []);
+  await context.close();
+});

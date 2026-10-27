@@ -517,6 +517,9 @@ kbd {
   .options.row:has(> :nth-child(4)) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
+/* Панель «Начать раунд» — только на телефоне (см. startBar в app.js). */
+.start-bar { display: none; }
+
 /* ---------- телефон ---------- */
 
 @media (max-width: 720px) {
@@ -538,6 +541,17 @@ kbd {
     border-top: 1.5px solid var(--line); background: var(--paper);
   }
   .actions.dock .button { flex: 1 1 0; min-width: 0; }
+  /* Панель не закрывает конец страницы. */
+  .view.has-start-bar { padding-bottom: 88px; }
+  .start-bar {
+    position: fixed; inset: auto 0 0; z-index: 5; display: flex; align-items: center; gap: 12px;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); border-top: 1.5px solid var(--line); background: var(--paper);
+    visibility: hidden; transform: translateY(100%);
+    transition: transform .16s ease-out, visibility 0s linear .16s;
+  }
+  .start-bar.is-shown { visibility: visible; transform: none; transition: transform .16s ease-out; }
+  .start-bar p { flex: 1 1 auto; min-width: 0; margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.3; }
+  .start-bar .button { flex: 0 0 auto; padding-inline: 22px; }
 }
 
 /* Телефон: рядом с кнопками справки и темы подзаголовку места нет — шапка не растёт,

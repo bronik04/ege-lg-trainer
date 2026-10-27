@@ -276,6 +276,7 @@
       else tab.removeAttribute('aria-current');
     });
     view.replaceChildren();
+    startBarText = null;
     if (name !== 'bank') transferNotice = null;
     if (name !== 'variant') pendingVariant = null;
     if (name === 'rules' && arg) renderRule(arg);
@@ -308,6 +309,8 @@
       const same = [...view.querySelectorAll('[data-key]')].find((node) => node.dataset.key === activeKey);
       if (same) same.focus();
     }
+    view.classList.toggle('has-start-bar', Boolean(document.getElementById('startBar')));
+    syncStartBar();
     syncClock();
     const clockNode = document.getElementById('variantClock');
     if (clockNode) paintClock(clockNode);
@@ -1063,6 +1066,35 @@
     return chipGroup('Грамматика', items, filters.rules, (v) => { filters.rules = toggle(filters.rules, v); saveFilters(); render(false); }, 'grammar');
   }
 
+  // Телефон: «Начать раунд» стоит под всеми фильтрами, в конце длинной страницы. Пока её не видно,
+  // у нижнего края висит панель с той же кнопкой и числом заданий в раунде — прокручивать
+  // страницу до конца не надо. Панель показывает syncStartBar: на прокрутке, при смене размера
+  // окна и когда меняется размер раунда.
+  const onPhone = () => window.matchMedia('(max-width: 720px)').matches;
+  let startBarText = null; // () => подпись панели; null — на экране панели нет
+
+  function startBar(button, text) {
+    startBarText = text;
+    return el('div', { class: 'start-bar', id: 'startBar' },
+      el('p', { id: 'startBarText' }),
+      el('button', { class: 'button', type: 'button', id: 'barStart', disabled: button.disabled, onclick: () => button.click() }, 'Начать раунд'));
+  }
+
+  function syncStartBar() {
+    const bar = document.getElementById('startBar');
+    if (!bar) return;
+    const real = view.querySelector('#startRound, #startTones');
+    document.getElementById('startBarText').textContent = startBarText ? startBarText() : '';
+    let shown = false;
+    if (real && onPhone()) {
+      const viewport = window.visualViewport;
+      const visibleBottom = viewport ? viewport.offsetTop + viewport.height : window.innerHeight;
+      const rect = real.getBoundingClientRect();
+      shown = rect.bottom < 0 || rect.top > visibleBottom - bar.offsetHeight;
+    }
+    bar.classList.toggle('is-shown', shown);
+  }
+
   function renderPractice() {
     // Круг тонов идёт на своей вкладке: «Практика» его не открывает и не продолжает.
     const round = isTonesRound(progress.round) ? null : progress.round;
@@ -1114,6 +1146,8 @@
     actions.append(share.button);
     view.append(actions);
     if (share.box) view.append(share.box);
+    view.append(startBar(actions.querySelector('#startRound'),
+      () => (available.length ? `В раунд: ${tasksWord(roundCount(filters.size, available.length))}` : 'Заданий нет')));
   }
 
   function availableText(count) {
@@ -1160,6 +1194,7 @@
       sync();
       const notice = document.getElementById('available');
       if (notice) notice.textContent = scope.text(available);
+      syncStartBar();
       const link = document.querySelector('#shareBox .share-url');
       if (link && scope.share && shareOpen === 'setup') link.value = pageUrl(`#/practice?${shareQuery(filters)}`);
     }
@@ -1364,6 +1399,10 @@
       actions.append(el('a', { class: 'button alt', href: '#/tones', text: `Продолжить раунд · ${Object.keys(round.answers).length} из ${round.ids.length}` }));
     }
     view.append(actions);
+    view.append(startBar(actions.querySelector('#startTones'), () => {
+      const n = roundCount(toneFilters.size, available.length);
+      return available.length ? `В раунд: ${n} ${plural(n, 'слово', 'слова', 'слов')}` : 'Слов нет';
+    }));
   }
 
   // ---------- полный вариант ----------
@@ -1806,6 +1845,19 @@
   }
 
   // ---------- клавиатура, тема, запуск ----------
+
+  let startBarFrame = 0;
+  const scheduleStartBar = () => {
+    if (!startBarFrame) {
+      startBarFrame = requestAnimationFrame(() => {
+        startBarFrame = 0;
+        syncStartBar();
+      });
+    }
+  };
+  window.addEventListener('scroll', scheduleStartBar, { passive: true });
+  window.addEventListener('resize', scheduleStartBar);
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', scheduleStartBar);
 
   document.addEventListener('keydown', (event) => {
     if (event.altKey || event.ctrlKey || event.metaKey) return;
