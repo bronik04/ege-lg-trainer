@@ -1147,7 +1147,7 @@
     view.append(actions);
     if (share.box) view.append(share.box);
     view.append(startBar(actions.querySelector('#startRound'),
-      () => (available.length ? `В раунд: ${tasksWord(roundCount(filters.size, available.length))}` : 'Заданий нет')));
+      () => (available.length ? `В раунд: ${tasksWord(roundCount(filters.size, available.length))}${unfinishedTones ? ' · заменит начатый круг тонов' : ''}` : 'Заданий нет')));
   }
 
   function availableText(count) {
@@ -1401,7 +1401,7 @@
     view.append(actions);
     view.append(startBar(actions.querySelector('#startTones'), () => {
       const n = roundCount(toneFilters.size, available.length);
-      return available.length ? `В раунд: ${n} ${plural(n, 'слово', 'слова', 'слов')}` : 'Слов нет';
+      return available.length ? `В раунд: ${n} ${plural(n, 'слово', 'слова', 'слов')}${other ? ' · заменит начатую практику' : ''}` : 'Слов нет';
     }));
   }
 
@@ -1544,7 +1544,7 @@
     view.append(el('div', { class: 'actions dock' },
       // Сессия — из progress, а не v с прошлой отрисовки: табло между ними дописывает время.
       el('button', { class: 'button ghost', type: 'button', disabled: v.index === 0, onclick: () => { progress = { ...progress, variant: moveSession(progress.variant, progress.variant.index - 1) }; save(); render(); } }, '← Назад'),
-      last ? finishButton : el('button', { class: 'button', type: 'button', dataset: { enter: '1', space: '1' }, onclick: () => { progress = { ...progress, variant: moveSession(progress.variant, progress.variant.index + 1) }; save(); render(); } }, 'Дальше →')));
+      last ? finishButton : el('button', { class: 'button', type: 'button', dataset: v.answers[v.ids[v.index]] === undefined ? { enter: '1' } : { enter: '1', space: '1' }, onclick: () => { progress = { ...progress, variant: moveSession(progress.variant, progress.variant.index + 1) }; save(); render(); } }, 'Дальше →')));
     function finish() {
       commitClock();
       progress = finishVariant(progress, byId, now());
@@ -1857,7 +1857,12 @@
   };
   window.addEventListener('scroll', scheduleStartBar, { passive: true });
   window.addEventListener('resize', scheduleStartBar);
-  if (window.visualViewport) window.visualViewport.addEventListener('resize', scheduleStartBar);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', scheduleStartBar);
+    window.visualViewport.addEventListener('scroll', scheduleStartBar);
+  }
+  // Шрифты догружаются и сдвигают строки: показ панели пересчитывается.
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleStartBar);
 
   document.addEventListener('keydown', (event) => {
     if (event.altKey || event.ctrlKey || event.metaKey) return;
@@ -1871,8 +1876,11 @@
       }
       return;
     }
-    // Пробел ведёт дальше только там, где есть «Дальше» (после ответа); «Начать раунд» — только Enter.
+    // Пробел ведёт дальше только там, где есть «Дальше» после ответа (в варианте — у позиции с ответом);
+    // «Начать раунд» — только Enter.
     const mark = event.key === 'Enter' ? 'enter' : event.key === ' ' ? 'space' : null;
+    // Удержанная клавиша не пролистывает экраны подряд.
+    if (mark && event.repeat) return;
     if (mark && tag !== 'button' && tag !== 'a' && tag !== 'summary') {
       const next = view.querySelector(`[data-${mark}]:not(:disabled)`);
       if (next) {

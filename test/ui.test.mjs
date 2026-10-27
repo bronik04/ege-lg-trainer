@@ -994,7 +994,7 @@ test('телефон: без горизонтальной прокрутки в�
   }
 });
 
-test('тетрадь: пропуск-клетка, исправление красной ручкой, панель на телефоне', { skip }, async () => {
+test('клетка: пропуск, исправление над ней, панель «Дальше» на телефоне', { skip }, async () => {
   const { page, context, errors } = await open(mainUrl, { width: 390, height: 844, hash: '#/practice?ids=q25-a' });
   await page.locator('[data-card]').waitFor();
   // До ответа — одна клетка, хотя у всех вариантов по два знака: ширина ничего не подсказывает.
@@ -2021,6 +2021,47 @@ test('ноутбук: панели «Начать раунд» нет', { skip }
   const { page, context, errors } = await open(mainUrl, { width: 1280, height: 600, reducedMotion: 'reduce', hash: '#/practice' });
   await page.locator('#startRound').waitFor();
   assert.equal(await page.locator('#startBar').isVisible(), false);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+// Пробел ведёт дальше только там, где есть «Дальше» после ответа: на выборе номеров не запускает
+// раунд, в варианте — только у позиции с ответом, удержанная клавиша экраны не листает.
+test('пробел: «Начать раунд» не запускает, в варианте дальше — только после ответа', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { width: 1280, height: 900, reducedMotion: 'reduce', hash: '#/practice' });
+  await page.locator('#startRound').waitFor();
+  await page.keyboard.press('Space');
+  assert.equal(await page.locator('[data-card]').count(), 0, 'пробел раунд не начал');
+  await page.goto(`${mainUrl}#/variant`);
+  await page.locator('#buildVariant').click();
+  const current = () => text(page, '.sheet .cell.current .pos');
+  const first = await current();
+  await page.keyboard.press('Space');
+  assert.equal(await current(), first, 'без ответа пробел позицию не меняет');
+  await page.keyboard.press('1');
+  await page.keyboard.press('Space');
+  const second = await current();
+  assert.notEqual(second, first, 'с ответом пробел ведёт дальше');
+  await page.keyboard.press('1');
+  await page.evaluate(() => document.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', repeat: true, bubbles: true })));
+  assert.equal(await current(), second, 'удержанный пробел позицию не меняет');
+  await page.keyboard.press('Space');
+  assert.notEqual(await current(), second);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('пробел: в проверке по правилу после ответа ведёт дальше', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { width: 1280, height: 900, reducedMotion: 'reduce', hash: '#/rules' });
+  await page.locator('.rule-card', { hasNotText: 'Тоны' }).first().click();
+  await page.getByRole('button', { name: /Проверить правило/ }).click();
+  await page.locator('[data-card]').waitFor();
+  await page.keyboard.press('Space');
+  assert.equal(await page.locator('.feedback').count(), 0, 'без ответа пробел ничего не делает');
+  await page.keyboard.press('1');
+  await page.locator('.feedback').waitFor();
+  await page.keyboard.press('Space');
+  await page.locator('.feedback').waitFor({ state: 'detached' });
   assert.deepEqual(errors, []);
   await context.close();
 });
