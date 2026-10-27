@@ -551,6 +551,11 @@ kbd {
   .tab { font-size: .84rem; }
 }
 
+/* Пять вкладок на самых узких телефонах: «Практика» и «Правила» иначе вылезают за ячейку. */
+@media (max-width: 340px) {
+  .tab { font-size: .74rem; padding-inline: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }

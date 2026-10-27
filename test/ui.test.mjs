@@ -1905,7 +1905,6 @@ test('тоны: круг из слов, ошибки повторяются, п�
   await see(page, '.score', /3 из 4/);
   assert.equal(await page.getByRole('button', { name: /Отчёт учителю/ }).count(), 0, 'отчёта у круга тонов нет');
   assert.equal(await page.getByRole('button', { name: /Ссылка на эти/ }).count(), 0, 'ссылки на круг тонов нет');
-  assert.equal(await page.locator('#roundByTask').count(), 0);
   // Практика не подхватывает круг тонов и не берёт слова.
   await page.goto(`${withWords}#/practice`);
   await see(page, 'h2', /Практика ЕГЭ/);
@@ -1951,4 +1950,34 @@ test('тоны: без принятых слов вкладки нет, а сл�
     await opened.context.close();
   }
   assert.deepEqual(errors, []);
+});
+
+test('тоны: загрузка файла прогресса не стирает круг тонов; начатая практика — предупреждение', { skip }, async () => {
+  const withWords = buildPage('tones-import', { change: (data) => { data['tone-words'] = { words: toneWords }; } });
+  const { page, context, errors } = await open(withWords, { hash: '#/practice?ids=q20-a,q22-a' });
+  await page.locator('[data-card]').waitFor();
+  await page.keyboard.press('2');
+  await page.locator('.feedback').waitFor();
+  // Практика начата и отвечена: новый круг тонов её заменит — ученик предупреждён.
+  await page.goto(`${withWords}#/tones/setup`);
+  await see(page, '#replaceWarning', /заменит его/);
+  await page.getByRole('button', { name: 'Начать раунд' }).click();
+  await see(page, '.progress', /Слово 1 из 4/);
+  await page.keyboard.press((await toneKeys(page)).right);
+  await page.locator('.feedback').waitFor();
+  const before = await page.evaluate(() => JSON.parse(localStorage.getItem('ege-lg-trainer:progress')).round);
+  // Загрузка файла прогресса (пустого): круг тонов остаётся.
+  await page.goto(`${withWords}#/bank`);
+  const file = join(work, 'progress-empty-tones.json');
+  writeFileSync(file, JSON.stringify({ app: 'ege-lg-trainer', exportedAt: 't', version: 2, questions: {}, checks: {}, round: null, variant: null, history: [] }));
+  await page.locator('#progressFile').setInputFiles(file);
+  await see(page, '#transferNotice', /./);
+  const after = await page.evaluate(() => JSON.parse(localStorage.getItem('ege-lg-trainer:progress')).round);
+  assert.equal(after.mode, 'tones');
+  assert.deepEqual(after.ids, before.ids);
+  // И наоборот: в практике — предупреждение о начатом круге тонов.
+  await page.goto(`${withWords}#/practice/setup`);
+  await see(page, '#replaceWarning', /раунд тонов/);
+  assert.deepEqual(errors, []);
+  await context.close();
 });

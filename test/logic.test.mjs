@@ -817,3 +817,10 @@ test('тоны: снятое слово уходит из раунда, слов
   assert.deepEqual(pruned.round.ids, ['w15-上午']);
   assert.equal(L.isTonesRound(pruned.round), true);
 });
+
+test('тоны: слова не заменяют снятое задание в начатом варианте', () => {
+  const bank = [q('q15-a', 15), word('整齐', 4)];
+  const variant = { ...L.startVariant(['q15-a', 'q15-gone'], 'x') };
+  const pruned = L.pruneProgress({ ...L.emptyProgress(), variant }, bank);
+  assert.deepEqual(pruned.variant.ids, ['q15-a']);
+});

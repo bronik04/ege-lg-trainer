@@ -141,7 +141,7 @@ export function pruneProgress(progress, questions) {
         ids.push(id);
         return;
       }
-      const swap = refill && questions.find((q) => q.taskNumber === idTaskNumber(id) && q.origin !== 'hsk' && !taken.has(q.id));
+      const swap = refill && questions.find((q) => q.taskNumber === idTaskNumber(id) && q.origin !== 'hsk' && q.origin !== 'words' && !taken.has(q.id));
       if (swap) {
         taken.add(swap.id);
         ids.push(swap.id);

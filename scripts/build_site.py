@@ -66,7 +66,9 @@ def payload(questions, topics, rules, rule_checks, drafts=False, tone_words=()):
         return out
 
     def tone_question(entry):
-        out = {k: v for k, v in tones.make_question(entry).items() if k not in tones.QUESTION_BASE}
+        # Пиньинь и перевод уже в разборе: отдельными полями они странице не нужны.
+        out = {k: v for k, v in tones.make_question(entry).items()
+               if k not in tones.QUESTION_BASE and k not in ("pinyin", "translation")}
         if entry["status"] != "accepted":
             out["draft"] = True
         return out

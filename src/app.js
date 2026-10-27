@@ -1095,6 +1095,8 @@
       el('label', { class: 'field' }, 'Какие задания', stateSelect),
       size.node),
       el('p', { class: 'notice', id: 'available', 'aria-live': 'polite', text: availableText(available.length) }));
+    const unfinishedTones = isTonesRound(progress.round) && !progress.round.finishedAt && Object.keys(progress.round.answers).length;
+    if (unfinishedTones) view.append(el('p', { class: 'notice warn small', id: 'replaceWarning', text: 'У вас начат раунд тонов. Новый раунд практики заменит его: вернуться к тонам будет нельзя.' }));
     const actions = el('div', { class: 'actions' },
       el('button', {
         class: 'button', type: 'button', id: 'startRound', disabled: !available.length, dataset: { enter: '1' },
@@ -1349,6 +1351,8 @@
       el('label', { class: 'field' }, 'Какие слова', stateSelect),
       size.node),
       el('p', { class: 'notice', id: 'available', 'aria-live': 'polite', text: toneAvailableText(available.length) }));
+    const other = progress.round && !progress.round.finishedAt && !isTonesRound(progress.round) && Object.keys(progress.round.answers).length;
+    if (other) view.append(el('p', { class: 'notice warn small', id: 'replaceWarning', text: 'У вас начат раунд практики. Новый раунд тонов заменит его: вернуться к практике будет нельзя.' }));
     const actions = el('div', { class: 'actions' },
       el('button', {
         class: 'button', type: 'button', id: 'startTones', disabled: !available.length, dataset: { enter: '1' },
@@ -1783,7 +1787,7 @@
     }
     if (result.ok) {
       try {
-        progress = pruneProgress(mergeProgress(progress, result.progress), questions);
+        progress = pruneProgress(mergeProgress(progress, result.progress), allItems);
       } catch {
         result = { ok: false, reason: 'not-progress' };
       }

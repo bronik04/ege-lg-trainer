@@ -166,6 +166,11 @@ def read_candidates(candidates, count):
 # ---------- варианты ответа ----------
 
 
+# Меняете make_options или разбор — поднимите версию: отпечатки принятых слов устареют, слова вернутся
+# на ревью (ответ ученика хранится по id варианта, и после смены порядка он указывал бы на другой вариант).
+OPTIONS_VERSION = "1"
+
+
 def word_id(word):
     return "w15-" + hashlib.sha1(word.encode("utf-8")).hexdigest()[:8]
 
@@ -283,5 +288,7 @@ def make_question(entry):
 
 def fingerprint(entry):
     """Отпечаток принятого: слово, чтение, тоны и перевод. Правка любого из них требует нового принятия."""
-    value = "|".join([entry["word"], entry["pinyin"], sequence_text(entry["tones"]), entry["ru"], str(entry["level"])])
+    syllables = " ".join(entry.get("syllables") or [])
+    value = "|".join([entry["word"], entry["pinyin"], syllables, sequence_text(entry["tones"]), entry["ru"],
+                      str(entry["level"]), OPTIONS_VERSION])
     return hashlib.sha256(value.encode("utf-8")).hexdigest()[:12]
