@@ -1852,3 +1852,132 @@ test('прогресс новой версии появился незаметн
   assert.deepEqual(errors, []);
   await context.close();
 });
+
+// ---------- тренировка тонов ----------
+
+const toneWords = [
+  { word: '整齐', level: 4, pinyin: 'zhěngqí', syllables: ['zhěng', 'qí'], tones: [3, 2], ru: 'аккуратный' },
+  { word: '学生', level: 1, pinyin: 'xuésheng', syllables: ['xué', 'sheng'], tones: [2, 0], ru: 'ученик' },
+  { word: '上午', level: 1, pinyin: 'shàngwǔ', syllables: ['shàng', 'wǔ'], tones: [4, 3], ru: 'до полудня' },
+  { word: '工程师', level: 3, pinyin: 'gōngchéngshī', syllables: ['gōng', 'chéng', 'shī'], tones: [1, 2, 1], ru: 'инженер' },
+].map((w) => ({ ...w, status: 'accepted', acceptedHash: 'x' }));
+
+// Верный и один из неверных ответов по слову на экране: данные берутся из самой страницы.
+async function toneKeys(page) {
+  const data = JSON.parse(await page.locator('#trainer-data').evaluate((n) => n.textContent));
+  const stem = (await text(page, '.stem')).trim();
+  const q = data.tones.find((t) => t.stem === stem);
+  const right = q.options.findIndex((o) => o.id === q.correctOptionId) + 1;
+  return { right: String(right), wrong: String(right === 1 ? 2 : 1) };
+}
+
+test('тоны: круг из слов, ошибки повторяются, практика и отчёт учителю не затронуты', { skip }, async () => {
+  const withWords = buildPage('tones', { change: (data) => { data['tone-words'] = { words: toneWords }; } });
+  const { page, context, errors } = await open(withWords, { hash: '#/tones' });
+  await see(page, 'h2', /Тоны · задание 15/);
+  await see(page, '#available', /Доступно: 4 слова\. В раунд попадёт 4\./);
+  // Счётчики у фишек: HSK 1 — два слова, три иероглифа — одно; выбор в другой группе их сужает.
+  await see(page, '#toneLevels', /HSK 1\s*2/);
+  await page.locator('input[data-key="Длина слова:3"]').check();
+  await see(page, '#available', /Доступно: 1 слово\./);
+  await see(page, '#toneLevels', /HSK 3\s*1/);
+  await page.locator('input[data-key="Длина слова:3"]').uncheck();
+  await page.locator('input[data-key="Уровень HSK:1"]').check();
+  await see(page, '#available', /Доступно: 2 слова\./);
+  await page.getByRole('button', { name: 'Сбросить фильтры' }).click();
+  await see(page, '#available', /Доступно: 4 слова\./);
+  await page.getByRole('button', { name: 'Начать раунд' }).click();
+  await see(page, '.progress', /Слово 1 из 4/);
+  // Первое слово — ошибка, остальные верно.
+  for (let i = 0; i < 4; i += 1) {
+    await page.locator('[data-card]').waitFor();
+    const keys = await toneKeys(page);
+    await page.keyboard.press(i === 0 ? keys.wrong : keys.right);
+    await page.locator('.feedback').waitFor();
+    if (i === 0) {
+      const why = await text(page, '.verdict.bad p');
+      assert.match(why, /слог .* произносится .* тоном, а не /);
+      await see(page, '.feedback', /Запись: \d(-\d)+\./);
+    }
+    await page.keyboard.press('Enter');
+  }
+  await see(page, 'h2', /Раунд окончен/);
+  await see(page, '.score', /3 из 4/);
+  assert.equal(await page.getByRole('button', { name: /Отчёт учителю/ }).count(), 0, 'отчёта у круга тонов нет');
+  assert.equal(await page.getByRole('button', { name: /Ссылка на эти/ }).count(), 0, 'ссылки на круг тонов нет');
+  // Практика не подхватывает круг тонов и не берёт слова.
+  await page.goto(`${withWords}#/practice`);
+  await see(page, 'h2', /Практика ЕГЭ/);
+  assert.equal(await page.getByRole('link', { name: /Продолжить раунд/ }).count(), 0);
+  await see(page, '#available', /Доступно: 16 заданий\./);
+  // Перезагрузка вкладки «Тоны» показывает итог того же круга; ошибки повторяются в нём же.
+  await page.goto(`${withWords}#/tones`);
+  await see(page, 'h2', /Раунд окончен/);
+  await page.getByRole('button', { name: /Повторить ошибки раунда · 1/ }).click();
+  await see(page, '.progress', /Слово 1 из 1/);
+  assert.equal(page.url().endsWith('#/tones'), true);
+  await page.keyboard.press((await toneKeys(page)).right);
+  await page.keyboard.press('Enter');
+  await see(page, '.score', /1 из 1/);
+  // Ответ записан в общий прогресс: слово больше не ошибка.
+  const progress = await page.evaluate(() => JSON.parse(localStorage.getItem('ege-lg-trainer:progress')));
+  assert.equal(progress.round.mode, 'tones');
+  assert.equal(Object.keys(progress.questions).filter((id) => id.startsWith('w15-')).length, 4);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('тоны: без принятых слов вкладки нет, а слова-черновики видны только в сборке для проверки', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { hash: '#/rules' });
+  assert.equal(await page.locator('[data-tab="tones"]').count(), 0);
+  await page.goto(`${mainUrl}#/tones`);
+  await see(page, '.empty', /Слов для тренировки пока нет/);
+  await context.close();
+  const drafts = toneWords.map((w) => ({ ...w, status: 'draft' }));
+  const set = (data) => { data['tone-words'] = { words: drafts }; };
+  const published = buildPage('tones-drafts-published', { change: set });
+  const review = buildPage('tones-drafts-review', { change: set, drafts: true });
+  for (const [url, count] of [[published, 0], [review, 4]]) {
+    const opened = await open(url, { hash: '#/rules' });
+    assert.equal(await opened.page.locator('[data-tab="tones"]').count(), count ? 1 : 0);
+    if (count) {
+      await opened.page.goto(`${url}#/tones`);
+      await see(opened.page, '#available', /Доступно: 4 слова/);
+      await opened.page.getByRole('button', { name: 'Начать раунд' }).click();
+      await see(opened.page, '.pills', /черновик/);
+    }
+    assert.deepEqual(opened.errors, []);
+    await opened.context.close();
+  }
+  assert.deepEqual(errors, []);
+});
+
+test('тоны: загрузка файла прогресса не стирает круг тонов; начатая практика — предупреждение', { skip }, async () => {
+  const withWords = buildPage('tones-import', { change: (data) => { data['tone-words'] = { words: toneWords }; } });
+  const { page, context, errors } = await open(withWords, { hash: '#/practice?ids=q20-a,q22-a' });
+  await page.locator('[data-card]').waitFor();
+  await page.keyboard.press('2');
+  await page.locator('.feedback').waitFor();
+  // Практика начата и отвечена: новый круг тонов её заменит — ученик предупреждён.
+  await page.goto(`${withWords}#/tones/setup`);
+  await see(page, '#replaceWarning', /заменит его/);
+  await page.getByRole('button', { name: 'Начать раунд' }).click();
+  await see(page, '.progress', /Слово 1 из 4/);
+  await page.keyboard.press((await toneKeys(page)).right);
+  await page.locator('.feedback').waitFor();
+  const before = await page.evaluate(() => JSON.parse(localStorage.getItem('ege-lg-trainer:progress')).round);
+  // Загрузка файла прогресса (пустого): круг тонов остаётся.
+  await page.goto(`${withWords}#/bank`);
+  const file = join(work, 'progress-empty-tones.json');
+  writeFileSync(file, JSON.stringify({ app: 'ege-lg-trainer', exportedAt: 't', version: 2, questions: {}, checks: {}, round: null, variant: null, history: [] }));
+  await page.locator('#progressFile').setInputFiles(file);
+  await see(page, '#transferNotice', /./);
+  const after = await page.evaluate(() => JSON.parse(localStorage.getItem('ege-lg-trainer:progress')).round);
+  assert.equal(after.mode, 'tones');
+  assert.deepEqual(after.ids, before.ids);
+  // И наоборот: в практике — предупреждение о начатом круге тонов.
+  await page.goto(`${withWords}#/practice/setup`);
+  await see(page, '#replaceWarning', /раунд тонов/);
+  assert.deepEqual(errors, []);
+  await context.close();
+});

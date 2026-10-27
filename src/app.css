@@ -523,7 +523,7 @@ kbd {
   /* Фокус и прокрутка не прячут элементы под панелью внизу. */
   html { scroll-padding-bottom: 96px; }
   .shell { width: calc(100% - 32px); padding-top: 8px; }
-  .tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin-bottom: 20px; }
+  .tabs { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 0; margin-bottom: 20px; }
   .tab { min-width: 0; padding-inline: 2px; font-size: .9rem; }
   .options.row { grid-template-columns: 1fr; }
   .sheet { grid-template-columns: repeat(7, minmax(0, 1fr)); }
@@ -549,6 +549,11 @@ kbd {
 
 @media (max-width: 360px) {
   .tab { font-size: .84rem; }
+}
+
+/* Пять вкладок на самых узких телефонах: «Практика» и «Правила» иначе вылезают за ячейку. */
+@media (max-width: 340px) {
+  .tab { font-size: .74rem; padding-inline: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -10,9 +10,11 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import QUESTIONS, RULE_CHECKS, RULES, TASK_NUMBERS, TOPICS, content_hash, read_json  # noqa: E402
+from common import QUESTIONS, RULE_CHECKS, RULES, TASK_NUMBERS, TONE_WORDS, TOPICS, content_hash, read_json  # noqa: E402
+import tones  # noqa: E402
 
 ORIGINS = {"fipi", "generated", "hsk"}
+TONE_LEVELS = (1, 2, 3, 4)
 REVIEW_STATUSES = {"imported", "draft", "ready", "conflict", "excluded"}
 CONTENT_STATUSES = {"draft", "accepted"}
 RULE_CHECK_KINDS = {"choose-form", "identify-rule"}
@@ -254,7 +256,55 @@ def _duplicates(items, label):
     return problems
 
 
-def check_all(questions, topics, rules, rule_checks):
+def tone_word_problems(entries, bank_stems=()):
+    """Слова тренировки тонов: чтение, тоны, варианты, разбор и принятие."""
+    errors = _duplicates([{"id": e.get("word")} for e in entries], "слова тренировки тонов")
+    ids = {}
+    for e in entries:
+        word = e.get("word", "")
+        where = f"слово {word!r}"
+        wid = tones.word_id(word)
+        if wid in ids:
+            errors.append(f"{where}: ID {wid} совпал со словом {ids[wid]!r}")
+        ids[wid] = word
+        if not (2 <= len(word) <= 3 and HAN.fullmatch(word)):
+            errors.append(f"{where}: не 2–3 иероглифа")
+            continue
+        if word in bank_stems:
+            errors.append(f"{where}: есть среди заданий №15 банка — тренировка подсказала бы ключ")
+        if e.get("level") not in TONE_LEVELS:
+            errors.append(f"{where}: уровень HSK {e.get('level')!r} вне 1–4")
+        seq = e.get("tones")
+        if not (isinstance(seq, list) and len(seq) == len(word) and all(t in (0, 1, 2, 3, 4) for t in seq)):
+            errors.append(f"{where}: тонов {seq!r} не столько, сколько иероглифов, или вне 0–4")
+            continue
+        if seq[0] == 0:
+            errors.append(f"{where}: первый слог не бывает лёгким")
+        if tones.tone_sequence(e.get("pinyin", ""), len(word)) != tuple(seq):
+            errors.append(f"{where}: тоны {tones.sequence_text(seq)} не сходятся с пиньинем {e.get('pinyin')!r}")
+        if e.get("syllables") and tones.join_syllables(e["syllables"]) != e.get("pinyin"):
+            errors.append(f"{where}: слоги {e['syllables']!r} не складываются в пиньинь {e.get('pinyin')!r}")
+        if not str(e.get("ru", "")).strip():
+            errors.append(f"{where}: нет перевода")
+        if e.get("status") not in CONTENT_STATUSES:
+            errors.append(f"{where}: статус {e.get('status')!r}")
+        elif e["status"] == "accepted" and e.get("acceptedHash") != tones.fingerprint(e):
+            errors.append(f"{where}: изменено после принятия — верните в черновик, ревью и принятие заново")
+        q = tones.make_question(e)
+        texts = [o["text"] for o in q["options"]]
+        if len(set(texts)) != 4 or texts.count(tones.sequence_text(seq)) != 1:
+            errors.append(f"{where}: варианты повторяются или верного нет ровно один раз")
+        wrong = {o["id"] for o in q["options"]} - {q["correctOptionId"]}
+        if set(q["explanation"]["options"]) != wrong:
+            errors.append(f"{where}: нет разбора неверного варианта")
+        for label, text in [("разбор верного", q["explanation"]["correct"])] + list(q["explanation"]["options"].items()):
+            problem = _text_problem(f"{where}: {label}", text)
+            if problem:
+                errors.append(problem)
+    return errors
+
+
+def check_all(questions, topics, rules, rule_checks, tone_words=()):
     """Все ошибки данных одним списком строк «где: что»."""
     errors = []
     topic_ids = {t["id"] for t in topics}
@@ -288,11 +338,14 @@ def check_all(questions, topics, rules, rule_checks):
                    for item in items if item.get("status") == "accepted" and item.get("acceptedHash") != content_hash(item)]
     for q in questions:
         errors += [f"задание {q.get('id')}: {p}" for p in question_problems(q, topic_ids, rules_by_id)]
+    stems = {re.sub(r"[\s.。]+$", "", q.get("stem", "")) for q in questions if q.get("taskNumber") == 15}
+    errors += tone_word_problems(tone_words, stems)
     return errors
 
 
 def main():
-    errors = check_all(read_json(QUESTIONS), read_json(TOPICS), read_json(RULES), read_json(RULE_CHECKS))
+    words = read_json(TONE_WORDS)["words"] if TONE_WORDS.exists() else []
+    errors = check_all(read_json(QUESTIONS), read_json(TOPICS), read_json(RULES), read_json(RULE_CHECKS), words)
     if errors:
         print(f"Ошибок: {len(errors)}")
         for e in errors:

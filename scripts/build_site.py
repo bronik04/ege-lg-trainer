@@ -18,7 +18,8 @@ from html import escape
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import DATA, FORMAT_YEAR, ISSUES_URL, ROOT, SITE_URL, read_json, write_text  # noqa: E402
+from common import DATA, FORMAT_YEAR, ISSUES_URL, ROOT, SITE_URL, TONE_WORDS, read_json, write_text  # noqa: E402
+import tones  # noqa: E402
 
 SRC = ROOT / "src"
 PWA = SRC / "pwa"
@@ -38,7 +39,7 @@ QUESTION_FIELDS = ("id", "taskNumber", "formatYear", "origin", "prompt", "stem",
 SOURCE_FIELDS = ("collection", "fipiId", "specVersion", "paper", "number")
 
 
-def payload(questions, topics, rules, rule_checks, drafts=False):
+def payload(questions, topics, rules, rule_checks, drafts=False, tone_words=()):
     """Что увидит ученик. Без --drafts — только принятое и готовое."""
     if drafts:
         shown_rules = rules
@@ -64,12 +65,25 @@ def payload(questions, topics, rules, rule_checks, drafts=False):
             out["draft"] = True
         return out
 
+    def tone_question(entry):
+        # Пиньинь и перевод уже в разборе: отдельными полями они странице не нужны.
+        out = {k: v for k, v in tones.make_question(entry).items()
+               if k not in tones.QUESTION_BASE and k not in ("pinyin", "translation")}
+        if entry["status"] != "accepted":
+            out["draft"] = True
+        return out
+
+    # Слова тренировки тонов: на сайт идут принятые, черновики — только в сборке для проверки.
+    shown_tones = [tone_question(e) for e in tone_words if drafts or e["status"] == "accepted"]
+
     return {
         "meta": {"formatYear": FORMAT_YEAR, "drafts": drafts, "issuesUrl": ISSUES_URL, "offline": not drafts},
         "topics": topics,
         "rules": [content(r) for r in shown_rules],
         "ruleChecks": [content(c) for c in shown_checks],
         "questions": [question(q) for q in shown_questions],
+        "toneBase": tones.QUESTION_BASE,
+        "tones": shown_tones,
     }
 
 
@@ -172,8 +186,10 @@ def main():
     args = parser.parse_args()
     out = args.out or (ROOT / ("review-build/review.html" if args.drafts else "dist/index.html"))
     d = args.data_dir
+    words_file = d / TONE_WORDS.name
     data = payload(read_json(d / "questions.json"), read_json(d / "topics.json"),
-                   read_json(d / "rules.json"), read_json(d / "rule-checks.json"), drafts=args.drafts)
+                   read_json(d / "rules.json"), read_json(d / "rule-checks.json"), drafts=args.drafts,
+                   tone_words=read_json(words_file)["words"] if words_file.exists() else [])
     if args.no_offline:
         data["meta"]["offline"] = False
     html = render(data)
@@ -185,7 +201,7 @@ def main():
     elif args.no_offline:
         write_offline_off(out.parent)
     print(f"Страница: {out} — заданий {len(data['questions'])}, правил {len(data['rules'])}, "
-          f"вопросов по правилам {len(data['ruleChecks'])}")
+          f"вопросов по правилам {len(data['ruleChecks'])}, слов для тонов {len(data['tones'])}")
 
 
 if __name__ == "__main__":

@@ -10,11 +10,18 @@
   const rules = DATA.rules;
   const checks = DATA.ruleChecks;
   const byId = new Map(questions.map((q) => [q.id, q]));
+  // Слова тренировки тонов: у всех одно и то же приходит один раз (toneBase). Это вопросы того же вида, что
+  // задания №15, поэтому карточку, разбор и раунд им показывает тот же код.
+  const toneQuestions = (DATA.tones || []).map((q) => ({ ...DATA.toneBase, ...q }));
+  const toneById = new Map(toneQuestions.map((q) => [q.id, q]));
+  const itemById = new Map([...byId, ...toneById]);
+  const allItems = [...questions, ...toneQuestions];
   const topicsById = new Map(topics.map((t) => [t.id, t]));
   const rulesById = new Map(rules.map((r) => [r.id, r]));
   const checksById = new Map(checks.map((c) => [c.id, c]));
   const origins = [...new Set(questions.map((q) => q.origin))];
   const ORIGIN_NAMES = { fipi: 'Банк ФИПИ', generated: 'Новые задания', hsk: 'HSK 4' };
+  const TONE_FILTERS_KEY = 'ege-lg-trainer:tones-filters';
   const SOLO_STEM = new Set([15, 19]);
   const FILTERS_KEY = 'ege-lg-trainer:filters';
   const THEME_KEY = 'ege-lg-trainer:theme';
@@ -47,7 +54,7 @@
     storage.set(`${PROGRESS_KEY}:v${storedVersion}`, storedText);
   }
   const loaded = parseProgress(storedText);
-  let progress = pruneProgress(loaded, questions);
+  let progress = pruneProgress(loaded, allItems);
   let storageOk = !progressLocked;
   function save() {
     commitClock();
@@ -144,6 +151,27 @@
   let filters = loadFilters();
   function saveFilters() {
     storage.set(FILTERS_KEY, JSON.stringify(filters));
+  }
+
+  // Настройка раунда тонов хранится отдельно от практики: уровни HSK, длина слова, состояние, размер.
+  function loadToneFilters() {
+    const empty = { levels: [], lengths: [], state: 'all', size: '10' };
+    try {
+      const raw = JSON.parse(storage.get(TONE_FILTERS_KEY) || 'null');
+      if (!raw || typeof raw !== 'object') return empty;
+      return {
+        levels: Array.isArray(raw.levels) ? raw.levels.filter((n) => TONE_LEVELS.includes(n)) : [],
+        lengths: Array.isArray(raw.lengths) ? raw.lengths.filter((n) => TONE_LENGTHS.includes(n)) : [],
+        state: ['all', 'new', 'done', 'review', 'mistakes'].includes(raw.state) ? raw.state : 'all',
+        size: roundSize(raw.size) || '10',
+      };
+    } catch {
+      return empty;
+    }
+  }
+  let toneFilters = loadToneFilters();
+  function saveToneFilters() {
+    storage.set(TONE_FILTERS_KEY, JSON.stringify(toneFilters));
   }
 
   // Проверка правил не сохраняется между перезагрузками: это короткая разминка.
@@ -255,6 +283,7 @@
     else if (name === 'rules') renderRules();
     else if (name === 'check') renderCheck();
     else if (name === 'practice') renderPractice();
+    else if (name === 'tones') renderTones();
     else if (name === 'variant') renderVariant();
     else if (name === 'bank') renderBank();
     else if (name === 'teacher') renderTeacher();
@@ -290,7 +319,7 @@
   // «Перечитайте правило» — к ошибкам раунда или варианта. Без ошибок — пустой фрагмент:
   // null штатный view.append напечатал бы словом «null».
   function ruleAdvice(items) {
-    const ids = rulesForMistakes(items, byId, new Set(rulesById.keys()));
+    const ids = rulesForMistakes(items, itemById, new Set(rulesById.keys()));
     if (!ids.length) return document.createDocumentFragment();
     const links = ids.flatMap((id, i) => [i ? ', ' : '', el('a', { href: `#/rules/${encodeURIComponent(id)}`, text: rulesById.get(id).title })]);
     return el('p', { class: 'notice advice', id: 'ruleAdvice' }, 'Перечитайте правило: ', ...links, '.');
@@ -308,7 +337,7 @@
   // Сводка итога раунда по номерам: номер, его тема, сколько ошибок из скольких заданий.
   // Раунд одного номера — без сводки: она повторила бы общий счёт.
   function taskScore(items) {
-    const rows = scoreByTask(items, byId);
+    const rows = scoreByTask(items, itemById);
     if (rows.length < 2) return document.createDocumentFragment();
     return el('section', { class: 'by-task', 'aria-labelledby': 'byTaskTitle' },
       el('h3', { id: 'byTaskTitle', text: 'По номерам' }),
@@ -320,8 +349,8 @@
 
   // Работа над ошибками: по номерам в порядке экзамена; у задания — его правило, ваш ответ,
   // верный и почему. Повтор — только ошибки этого номера.
-  function mistakeWork(items, { id, open = true }) {
-    const groups = groupMistakesByTask(items, byId);
+  function mistakeWork(items, { id, open = true, mode = null }) {
+    const groups = groupMistakesByTask(items, itemById);
     if (!groups.length) return document.createDocumentFragment();
     const entries = groups.flatMap((g) => g.entries);
     const skipped = entries.filter((e) => e.chosen == null).length;
@@ -333,7 +362,7 @@
       groups.map((g) => el('section', { class: 'mistake-group' },
         el('h3', {}, cellnum(g.taskNumber), ` ${taskTitle(g.taskNumber)} · ${g.entries.length}`),
         el('ul', { class: 'mistake-list' }, g.entries.map((entry) => {
-          const q = byId.get(entry.id);
+          const q = itemById.get(entry.id);
           const e = explainChoice(q, entry.chosen);
           const why = entry.chosen == null ? e.correctExplanation : e.chosenExplanation;
           // №26: верный порядок собранным предложением — буквы сами по себе ничего не объясняют.
@@ -350,7 +379,7 @@
         })),
         el('button', {
           class: 'button ghost', type: 'button',
-          onclick: () => startRound(shuffle(g.entries.map((x) => x.id))),
+          onclick: () => startRound(shuffle(g.entries.map((x) => x.id)), mode),
         }, `Повторить ошибки №${g.taskNumber} · ${g.entries.length}`))));
   }
 
@@ -526,6 +555,7 @@
   }
 
   function originLabel(q) {
+    if (q.origin === 'words') return `Слово HSK ${q.level}`;
     if (q.origin === 'fipi') return q.sourceRef && q.sourceRef.fipiId ? `Банк ФИПИ · ${q.sourceRef.fipiId}` : 'Банк ФИПИ';
     if (q.origin === 'hsk') {
       const ref = q.sourceRef || {};
@@ -1036,7 +1066,8 @@
   }
 
   function renderPractice() {
-    const round = progress.round;
+    // Круг тонов идёт на своей вкладке: «Практика» его не открывает и не продолжает.
+    const round = isTonesRound(progress.round) ? null : progress.round;
     if (round && !round.finishedAt && route().arg !== 'setup') {
       renderRound();
       return;
@@ -1064,6 +1095,8 @@
       el('label', { class: 'field' }, 'Какие задания', stateSelect),
       size.node),
       el('p', { class: 'notice', id: 'available', 'aria-live': 'polite', text: availableText(available.length) }));
+    const unfinishedTones = isTonesRound(progress.round) && !progress.round.finishedAt && Object.keys(progress.round.answers).length;
+    if (unfinishedTones) view.append(el('p', { class: 'notice warn small', id: 'replaceWarning', text: 'У вас начат раунд тонов. Новый раунд практики заменит его: вернуться к тонам будет нельзя.' }));
     const actions = el('div', { class: 'actions' },
       el('button', {
         class: 'button', type: 'button', id: 'startRound', disabled: !available.length, dataset: { enter: '1' },
@@ -1101,7 +1134,7 @@
   // кнопками ±. Меняется на месте, без перерисовки: поле применяет число, когда фокус уходит, —
   // щелчок, который его увёл («Начать раунд», «+»), не должен попасть в уже снятую кнопку.
   const ROUND_PRESETS = [['5', '5'], ['10', '10'], ['15', '15'], ['20', '20'], ['30', '30'], ['all', 'все']];
-  function roundSizeControl(available) {
+  function roundSizeControl(available, scope = { filters, save: saveFilters, text: availableText, share: true }) {
     const field = el('input', {
       id: 'roundSize', class: 'size-input', type: 'text', inputmode: 'numeric', autocomplete: 'off',
       'aria-describedby': 'available', dataset: { key: 'size' },
@@ -1116,21 +1149,21 @@
     // Иначе фокус пришлось бы переносить, и пробел ушёл бы в поле, а на телефоне открылась бы клавиатура.
     const off = (button) => button.getAttribute('aria-disabled') === 'true';
     function sync() {
-      const count = roundCount(filters.size, available);
-      shown = filters.size === 'all' ? (available ? String(available) : '') : filters.size;
+      const count = roundCount(scope.filters.size, available);
+      shown = scope.filters.size === 'all' ? (available ? String(available) : '') : scope.filters.size;
       field.value = shown;
-      for (const preset of presets) preset.checked = preset.value === filters.size;
+      for (const preset of presets) preset.checked = preset.value === scope.filters.size;
       less.setAttribute('aria-disabled', String(count <= 1));
       more.setAttribute('aria-disabled', String(count >= Math.min(available, ROUND_SIZE_MAX)));
     }
     function set(value) {
-      filters.size = value;
-      saveFilters();
+      scope.filters.size = value;
+      scope.save();
       sync();
       const notice = document.getElementById('available');
-      if (notice) notice.textContent = availableText(available);
+      if (notice) notice.textContent = scope.text(available);
       const link = document.querySelector('#shareBox .share-url');
-      if (link && shareOpen === 'setup') link.value = pageUrl(`#/practice?${shareQuery(filters)}`);
+      if (link && scope.share && shareOpen === 'setup') link.value = pageUrl(`#/practice?${shareQuery(filters)}`);
     }
     // Вписанное применяется; не число — в поле возвращается прежнее.
     function commit() {
@@ -1141,7 +1174,7 @@
     }
     function step(delta) {
       commit();
-      if (!off(delta > 0 ? more : less)) set(stepRoundSize(filters.size, available, delta));
+      if (!off(delta > 0 ? more : less)) set(stepRoundSize(scope.filters.size, available, delta));
     }
     less.addEventListener('click', () => step(-1));
     more.addEventListener('click', () => step(1));
@@ -1173,24 +1206,28 @@
     return { node, commit };
   }
 
-  function startRound(ids) {
+  // Круг тренировки тонов (mode 'tones') идёт в той же сессии раунда, но на своей вкладке.
+  const roundHome = (round) => (isTonesRound(round) ? '#/tones' : '#/practice');
+
+  function startRound(ids, mode = null) {
     if (!ids.length) return;
     shareOpen = null; // блок ссылки или отчёта прошлого итога в новом раунде не открывается сам
-    progress = { ...progress, round: startSession(ids, now()) };
+    progress = { ...progress, round: startSession(ids, now(), mode) };
     save();
-    go('#/practice');
+    go(mode === TONES_MODE ? '#/tones' : '#/practice');
   }
 
   function renderRound() {
     const round = progress.round;
     const id = round.ids[round.index];
-    const q = byId.get(id);
+    const q = itemById.get(id);
     const answered = round.ids.filter((x) => round.answers[x] !== undefined);
-    const correct = answered.filter((x) => round.answers[x] === byId.get(x).correctOptionId).length;
+    const correct = answered.filter((x) => round.answers[x] === itemById.get(x).correctOptionId).length;
     const chosen = round.answers[id];
+    const tones = isTonesRound(round);
     view.append(sessionBar({
-      exit: '#/practice/setup', index: round.index, label: `Задание ${round.index + 1} из ${round.ids.length}`, right: `верно: ${correct}`,
-      marks: round.ids.map((x) => markOf(round.answers[x], byId.get(x).correctOptionId)),
+      exit: `${roundHome(round)}/setup`, index: round.index, label: `${tones ? 'Слово' : 'Задание'} ${round.index + 1} из ${round.ids.length}`, right: `верно: ${correct}`,
+      marks: round.ids.map((x) => markOf(round.answers[x], itemById.get(x).correctOptionId)),
     }));
     view.append(questionCard(q, {
       kind: 'exam',
@@ -1222,7 +1259,7 @@
 
   function resultList(ids, answers) {
     return el('ul', { class: 'results' }, ids.map((id) => {
-      const q = byId.get(id);
+      const q = itemById.get(id);
       const chosen = answers[id];
       const ok = chosen !== undefined && chosen !== null && chosen === q.correctOptionId;
       const body = el('div', { class: 'body' });
@@ -1245,29 +1282,90 @@
 
   function renderRoundResult() {
     const round = progress.round;
-    const result = scoreSession(round, byId);
+    const result = scoreSession(round, itemById);
     const wrong = result.items.filter((i) => !i.correct).map((i) => i.id);
+    const tones = isTonesRound(round);
+    const mode = tones ? TONES_MODE : null;
     view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Раунд окончен' }),
       scoreLine(result.score, result.total, 'верных ответов'),
       taskScore(result.items),
       ruleAdvice(result.items),
-      mistakeWork(result.items, { id: 'roundMistakes' }),
+      mistakeWork(result.items, { id: 'roundMistakes', mode }),
       resultList(round.ids, round.answers));
-    const share = shareToggle('round', 'Ссылка на эти задания', pageUrl(`#/practice?${idsQuery(round.ids)}`),
-      `По ссылке откроется раунд из этих же заданий (${round.ids.length}) в том же порядке — одинаковый для всех, кто её получит.`);
+    // Слова тренировки тонов учитель по ID не разберёт: ни ссылки, ни отчёта у такого раунда нет.
+    const share = tones ? { button: null, box: null }
+      : shareToggle('round', 'Ссылка на эти задания', pageUrl(`#/practice?${idsQuery(round.ids)}`),
+        `По ссылке откроется раунд из этих же заданий (${round.ids.length}) в том же порядке — одинаковый для всех, кто её получит.`);
     // Код отчёта держит не больше REPORT_MAX_TASKS заданий: учитель большой раунд не прочитал бы.
-    const report = round.ids.length <= REPORT_MAX_TASKS
+    const report = tones ? { button: null, box: null } : round.ids.length <= REPORT_MAX_TASKS
       ? reportToggle('round', { kind: 'round', at: round.finishedAt || now(), ids: round.ids, answers: sessionAnswers(round),
         score: result.score, total: result.total })
       : { button: null, box: el('p', { class: 'small muted', id: 'reportTooBig', text: `Отчёт учителю — для раунда до ${REPORT_MAX_TASKS} заданий, а в этом ${round.ids.length}. Для отчёта соберите раунд поменьше.` }) };
     view.append(el('div', { class: 'actions' },
-      wrong.length ? el('button', { class: 'button', type: 'button', onclick: () => startRound(shuffle(wrong)) }, `Повторить ошибки раунда · ${wrong.length}`) : null,
-      el('a', { class: wrong.length ? 'button alt' : 'button', href: '#/practice/setup', text: 'Новый раунд' }),
-      el('button', { class: 'button ghost', type: 'button', id: 'restartRound', onclick: () => startRound(round.ids) }, 'Решить эти задания заново'),
+      wrong.length ? el('button', { class: 'button', type: 'button', onclick: () => startRound(shuffle(wrong), mode) }, `Повторить ошибки раунда · ${wrong.length}`) : null,
+      el('a', { class: wrong.length ? 'button alt' : 'button', href: `${roundHome(round)}/setup`, text: 'Новый раунд' }),
+      el('button', { class: 'button ghost', type: 'button', id: 'restartRound', onclick: () => startRound(round.ids, mode) }, tones ? 'Решить эти слова заново' : 'Решить эти задания заново'),
       report.button,
       share.button));
     if (report.box) view.append(report.box);
     if (share.box) view.append(share.box);
+  }
+
+  // ---------- тренировка тонов ----------
+
+  function toneAvailableText(count) {
+    if (count) return `Доступно: ${count} ${plural(count, 'слово', 'слова', 'слов')}. В раунд попадёт ${roundCount(toneFilters.size, count)}.`;
+    if (toneFilters.state === 'mistakes') return 'Ошибок с такими фильтрами нет.';
+    if (toneFilters.state === 'done') return 'Решённых слов с такими фильтрами пока нет.';
+    if (toneFilters.state === 'review') return 'Повторять пока нечего: ошибок нет, а исправленные ещё не подошли к сроку.';
+    return 'С такими фильтрами слов нет — снимите часть фильтров.';
+  }
+
+  function renderTones() {
+    const round = isTonesRound(progress.round) ? progress.round : null;
+    if (round && route().arg !== 'setup') {
+      if (round.finishedAt) renderRoundResult();
+      else renderRound();
+      return;
+    }
+    view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Тоны · задание 15' }),
+      el('p', { class: 'lead', text: 'Слово без пиньиня — выберите сочетание его тонов. Слова HSK 2.0 уровней 1–4 из двух-трёх иероглифов; пиньинь и перевод — после ответа.' }));
+    if (!toneQuestions.length) {
+      view.append(el('div', { class: 'empty' }, el('strong', { text: 'Слов для тренировки пока нет.' }),
+        'Они появятся здесь, когда автор примет их.'));
+      return;
+    }
+    const counts = toneCounts(toneQuestions, toneFilters);
+    const change = (key) => (v) => { toneFilters[key] = toggle(toneFilters[key], v); saveToneFilters(); render(false); };
+    view.append(
+      chipGroup('Уровень HSK', TONE_LEVELS.filter((n) => counts.levels[n] || toneFilters.levels.includes(n))
+        .map((n) => ({ value: n, label: `HSK ${n}`, count: counts.levels[n] })), toneFilters.levels, change('levels'), 'toneLevels'),
+      chipGroup('Длина слова', TONE_LENGTHS.filter((n) => counts.lengths[n] || toneFilters.lengths.includes(n))
+        .map((n) => ({ value: n, label: `${n} иероглифа`, count: counts.lengths[n] })), toneFilters.lengths, change('lengths'), 'toneLengths'));
+    const stateSelect = el('select', { id: 'stateFilter', dataset: { key: 'state' }, onchange: (e) => { toneFilters.state = e.target.value; saveToneFilters(); render(false); } },
+      [['all', 'Все'], ['new', 'Новые'], ['done', 'Уже решённые'], ['review', 'На повторение'], ['mistakes', 'Ошибки']]
+        .map(([v, label]) => el('option', { value: v, selected: toneFilters.state === v, text: label })));
+    const available = filterToneWords(toneQuestions, toneFilters, progress, now());
+    const size = roundSizeControl(available.length, { filters: toneFilters, save: saveToneFilters, text: toneAvailableText, share: false });
+    view.append(el('div', { class: 'filters-row' },
+      el('label', { class: 'field' }, 'Какие слова', stateSelect),
+      size.node),
+      el('p', { class: 'notice', id: 'available', 'aria-live': 'polite', text: toneAvailableText(available.length) }));
+    const other = progress.round && !progress.round.finishedAt && !isTonesRound(progress.round) && Object.keys(progress.round.answers).length;
+    if (other) view.append(el('p', { class: 'notice warn small', id: 'replaceWarning', text: 'У вас начат раунд практики. Новый раунд тонов заменит его: вернуться к практике будет нельзя.' }));
+    const actions = el('div', { class: 'actions' },
+      el('button', {
+        class: 'button', type: 'button', id: 'startTones', disabled: !available.length, dataset: { enter: '1' },
+        onclick: () => { size.commit(); startRound(pickRound(available, toneFilters.size).map((q) => q.id), TONES_MODE); },
+      }, 'Начать раунд'),
+      el('button', {
+        class: 'button ghost', type: 'button',
+        onclick: () => { toneFilters = { ...toneFilters, levels: [], lengths: [], state: 'all' }; saveToneFilters(); render(false); },
+      }, 'Сбросить фильтры'));
+    if (round && !round.finishedAt) {
+      actions.append(el('a', { class: 'button alt', href: '#/tones', text: `Продолжить раунд · ${Object.keys(round.answers).length} из ${round.ids.length}` }));
+    }
+    view.append(actions);
   }
 
   // ---------- полный вариант ----------
@@ -1539,6 +1637,10 @@
           `. Задания — ${sourceNote}, формат ЕГЭ ${DATA.meta.formatYear}. Разборы и правила проверены автором тренажёра.`),
         el('p', { class: 'section-title', text: 'Прогресс' }),
         el('p', { text: 'Прогресс хранится только в этом браузере на этом устройстве. Перенести его на другое устройство можно файлом: «Банк» → «Сохранить в файл».' }),
+        toneQuestions.length ? [
+          el('p', { class: 'section-title', text: 'Тоны' }),
+          el('p', { text: `Вкладка «Тоны» — отдельная тренировка к заданию 15: ${toneQuestions.length} ${plural(toneQuestions.length, 'слово', 'слова', 'слов')} HSK 2.0 уровней 1–4, по два-три иероглифа. Раунд идёт как в практике, ошибки раунда можно повторить; ссылки учителю и отчёта у этой вкладки нет.` }),
+        ] : null,
         el('p', { class: 'section-title', text: 'Клавиши' }),
         el('p', {}, el('kbd', { text: '1' }), '–', el('kbd', { text: '4' }), ' — выбрать ответ, ', el('kbd', { text: 'Enter' }), ' — дальше.'),
         el('p', { class: 'section-title', text: 'Учителю' }),
@@ -1685,7 +1787,7 @@
     }
     if (result.ok) {
       try {
-        progress = pruneProgress(mergeProgress(progress, result.progress), questions);
+        progress = pruneProgress(mergeProgress(progress, result.progress), allItems);
       } catch {
         result = { ok: false, reason: 'not-progress' };
       }
@@ -1747,6 +1849,8 @@
   syncTheme();
 
   document.getElementById('reviewBanner').hidden = !DATA.meta.drafts;
+  // Слов тренировки на сайте ещё нет (никто не принял) — вкладки тоже нет.
+  if (!toneQuestions.length) document.querySelector('[data-tab="tones"]').remove();
 
   // Ссылка «К содержимому» переводит фокус, а не меняет маршрут.
   document.querySelector('.skip').addEventListener('click', (event) => {
@@ -1789,7 +1893,7 @@
       return;
     }
     commitClock();
-    let incoming = pruneProgress(parseProgress(event.newValue), questions);
+    let incoming = pruneProgress(parseProgress(event.newValue), allItems);
     const mine = progress.variant;
     const theirs = incoming.variant;
     if (timed(mine) && theirs && theirs.startedAt === mine.startedAt && !(theirs.elapsedMs >= mine.elapsedMs)) {

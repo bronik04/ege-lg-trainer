@@ -764,3 +764,63 @@ test('вариант: снятое задание не заменяется за
   const noEge26 = questions.filter((x) => x.id !== 'q26-b');
   assert.deepEqual(L.pruneProgress({ round: null, variant }, noEge26).variant.ids, ['q25-a']);
 });
+
+// ---------- тренировка тонов ----------
+
+const word = (stem, level, extra = {}) => q(`w15-${stem}`, 15, { origin: 'words', stem, level, ...extra });
+const toneBank = [word('上午', 1), word('下午', 1), word('工程师', 3), word('整齐', 4), word('音乐会', 4)];
+
+test('тоны: фильтр по уровню и длине слова', () => {
+  const ids = (f) => L.filterToneWords(toneBank, f, L.emptyProgress()).map((x) => x.stem);
+  assert.deepEqual(ids({}), ['上午', '下午', '工程师', '整齐', '音乐会']);
+  assert.deepEqual(ids({ levels: [1] }), ['上午', '下午']);
+  assert.deepEqual(ids({ levels: [1, 4] }), ['上午', '下午', '整齐', '音乐会']);
+  assert.deepEqual(ids({ lengths: [3] }), ['工程师', '音乐会']);
+  assert.deepEqual(ids({ levels: [4], lengths: [2] }), ['整齐']);
+});
+
+test('тоны: состояние ответа считается как в практике', () => {
+  let p = L.emptyProgress();
+  p = L.recordAnswer(p, 'questions', 'w15-上午', '1', false, '2026-10-26T10:00:00.000Z');
+  p = L.recordAnswer(p, 'questions', 'w15-下午', '1', true, '2026-10-26T10:00:00.000Z');
+  const ids = (state) => L.filterToneWords(toneBank, { state }, p).map((x) => x.stem);
+  assert.deepEqual(ids('mistakes'), ['上午']);
+  assert.deepEqual(ids('done'), ['上午', '下午']);
+  assert.deepEqual(ids('new'), ['工程师', '整齐', '音乐会']);
+  assert.deepEqual(ids('review'), ['上午']);
+});
+
+test('тоны: счётчики фишек учитывают выбор в другой группе', () => {
+  assert.deepEqual(L.toneCounts(toneBank, {}), { levels: { 1: 2, 2: 0, 3: 1, 4: 2 }, lengths: { 2: 3, 3: 2 } });
+  assert.deepEqual(L.toneCounts(toneBank, { lengths: [3] }).levels, { 1: 0, 2: 0, 3: 1, 4: 1 });
+  assert.deepEqual(L.toneCounts(toneBank, { levels: [1] }).lengths, { 2: 2, 3: 0 });
+});
+
+test('тоны: раунд помнит вид и остаётся полноценной сессией', () => {
+  const round = L.startSession(['w15-上午'], '2026-10-26T10:00:00.000Z', L.TONES_MODE);
+  assert.equal(L.isTonesRound(round), true);
+  assert.equal(L.isTonesRound(L.startSession(['q15-a'], 'x')), false);
+  assert.equal(L.isTonesRound(null), false);
+  assert.equal('mode' in L.startSession(['q15-a'], 'x'), false);
+  const progress = { ...L.emptyProgress(), round };
+  const back = L.parseProgress(JSON.stringify(progress));
+  assert.equal(L.isTonesRound(back.round), true);
+  // Сессию двигают и оценивают те же функции, что и в практике.
+  const moved = L.answerSession(round, 'w15-上午', '2');
+  assert.equal(L.isTonesRound(moved), true);
+  assert.equal(L.scoreSession(moved, new Map([['w15-上午', toneBank[0]]])).total, 1);
+});
+
+test('тоны: снятое слово уходит из раунда, слова тренировки остаются', () => {
+  const p = { ...L.emptyProgress(), round: L.startSession(['w15-上午', 'w15-下午'], 'x', L.TONES_MODE) };
+  const pruned = L.pruneProgress(p, [toneBank[0], q('q15-a', 15)]);
+  assert.deepEqual(pruned.round.ids, ['w15-上午']);
+  assert.equal(L.isTonesRound(pruned.round), true);
+});
+
+test('тоны: слова не заменяют снятое задание в начатом варианте', () => {
+  const bank = [q('q15-a', 15), word('整齐', 4)];
+  const variant = { ...L.startVariant(['q15-a', 'q15-gone'], 'x') };
+  const pruned = L.pruneProgress({ ...L.emptyProgress(), variant }, bank);
+  assert.deepEqual(pruned.variant.ids, ['q15-a']);
+});
