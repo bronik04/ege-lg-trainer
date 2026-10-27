@@ -276,6 +276,7 @@
       else tab.removeAttribute('aria-current');
     });
     view.replaceChildren();
+    startBarText = null;
     if (name !== 'bank') transferNotice = null;
     if (name !== 'variant') pendingVariant = null;
     if (name === 'rules' && arg) renderRule(arg);
@@ -308,6 +309,8 @@
       const same = [...view.querySelectorAll('[data-key]')].find((node) => node.dataset.key === activeKey);
       if (same) same.focus();
     }
+    view.classList.toggle('has-start-bar', Boolean(document.getElementById('startBar')));
+    syncStartBar();
     syncClock();
     const clockNode = document.getElementById('variantClock');
     if (clockNode) paintClock(clockNode);
@@ -643,7 +646,7 @@
   }
 
   // Карточка вопроса: задание ЕГЭ или вопрос по правилу. reveal — показать верный/неверный.
-  // hint — что делает Enter; null — Enter ничего не делает, undefined — без подсказки клавиш
+  // hint — что делают Enter и пробел; null — они ничего не делают, undefined — без подсказки клавиш
   // (она видна только при мыши и клавиатуре).
   function questionCard(item, { kind, selected, reveal, onChoose, heading, hint }) {
     const card = el('article', { class: 'question', dataset: { card: '1' } });
@@ -696,7 +699,7 @@
     card.append(list);
     if (hint !== undefined) {
       card.append(el('p', { class: 'keys' }, 'Клавиши: ', el('kbd', { text: '1' }), '–', el('kbd', { text: String(item.options.length) }), ' — ответ',
-        hint ? [', ', el('kbd', { text: 'Enter' }), ` — ${hint}`] : null));
+        hint ? [', ', el('kbd', { text: 'Enter' }), ' или ', el('kbd', { text: 'Space' }), ` — ${hint}`] : null));
     }
     return card;
   }
@@ -819,11 +822,10 @@
   }
 
   // Фокус после ответа — без прокрутки; delta — сдвиг страницы, который ещё впереди. На «Дальше» —
-  // только если её видно (липкая панель на телефоне или кнопка на экране после сдвига):
-  // невидимую кнопку нажал бы пробел, которым листают разбор, и разбор пропал бы. Иначе фокус на
-  // разборе, если его начало на экране, а нет (низкий экран: сдвиг дошёл до предложения у
-  // верхнего края) или разбора нет (полный вариант) — на условии. Enter всё равно ведёт дальше:
-  // его ловит общий обработчик клавиш.
+  // только если её видно (липкая панель на телефоне или кнопка на экране после сдвига). Иначе
+  // фокус на разборе, если его начало на экране, а нет (низкий экран: сдвиг дошёл до предложения
+  // у верхнего края) или разбора нет (полный вариант) — на условии. Enter и пробел всё равно
+  // ведут дальше: их ловит общий обработчик клавиш; разбор листают стрелки и PageDown.
   function focusAfterAnswer(delta = 0) {
     const next = view.querySelector('[data-enter]') || view.querySelector('#finishVariant');
     const box = view.querySelector('.feedback');
@@ -970,7 +972,7 @@
       const last = s.index === s.ids.length - 1;
       view.append(el('div', { class: 'actions dock' },
         el('button', {
-          class: 'button', type: 'button', dataset: { enter: '1' },
+          class: 'button', type: 'button', dataset: { enter: '1', space: '1' },
           onclick: () => {
             checkSession = last ? { ...checkSession, finishedAt: now() } : moveSession(checkSession, checkSession.index + 1);
             render();
@@ -1064,6 +1066,35 @@
     return chipGroup('Грамматика', items, filters.rules, (v) => { filters.rules = toggle(filters.rules, v); saveFilters(); render(false); }, 'grammar');
   }
 
+  // Телефон: «Начать раунд» стоит под всеми фильтрами, в конце длинной страницы. Пока её не видно,
+  // у нижнего края висит панель с той же кнопкой и числом заданий в раунде — прокручивать
+  // страницу до конца не надо. Панель показывает syncStartBar: на прокрутке, при смене размера
+  // окна и когда меняется размер раунда.
+  const onPhone = () => window.matchMedia('(max-width: 720px)').matches;
+  let startBarText = null; // () => подпись панели; null — на экране панели нет
+
+  function startBar(button, text) {
+    startBarText = text;
+    return el('div', { class: 'start-bar', id: 'startBar' },
+      el('p', { id: 'startBarText' }),
+      el('button', { class: 'button', type: 'button', id: 'barStart', disabled: button.disabled, onclick: () => button.click() }, 'Начать раунд'));
+  }
+
+  function syncStartBar() {
+    const bar = document.getElementById('startBar');
+    if (!bar) return;
+    const real = view.querySelector('#startRound, #startTones');
+    document.getElementById('startBarText').textContent = startBarText ? startBarText() : '';
+    let shown = false;
+    if (real && onPhone()) {
+      const viewport = window.visualViewport;
+      const visibleBottom = viewport ? viewport.offsetTop + viewport.height : window.innerHeight;
+      const rect = real.getBoundingClientRect();
+      shown = rect.bottom < 0 || rect.top > visibleBottom - bar.offsetHeight;
+    }
+    bar.classList.toggle('is-shown', shown);
+  }
+
   function renderPractice() {
     // Круг тонов идёт на своей вкладке: «Практика» его не открывает и не продолжает.
     const round = isTonesRound(progress.round) ? null : progress.round;
@@ -1115,6 +1146,8 @@
     actions.append(share.button);
     view.append(actions);
     if (share.box) view.append(share.box);
+    view.append(startBar(actions.querySelector('#startRound'),
+      () => (available.length ? `В раунд: ${tasksWord(roundCount(filters.size, available.length))}${unfinishedTones ? ' · заменит начатый круг тонов' : ''}` : 'Заданий нет')));
   }
 
   function availableText(count) {
@@ -1161,6 +1194,7 @@
       sync();
       const notice = document.getElementById('available');
       if (notice) notice.textContent = scope.text(available);
+      syncStartBar();
       const link = document.querySelector('#shareBox .share-url');
       if (link && scope.share && shareOpen === 'setup') link.value = pageUrl(`#/practice?${shareQuery(filters)}`);
     }
@@ -1246,7 +1280,7 @@
       view.append(feedback(q, chosen));
       const last = round.index === round.ids.length - 1;
       view.append(el('div', { class: 'actions dock' }, el('button', {
-        class: 'button', type: 'button', dataset: { enter: '1' },
+        class: 'button', type: 'button', dataset: { enter: '1', space: '1' },
         onclick: () => {
           progress = { ...progress, round: last ? { ...progress.round, finishedAt: now() } : moveSession(progress.round, progress.round.index + 1) };
           save();
@@ -1365,6 +1399,10 @@
       actions.append(el('a', { class: 'button alt', href: '#/tones', text: `Продолжить раунд · ${Object.keys(round.answers).length} из ${round.ids.length}` }));
     }
     view.append(actions);
+    view.append(startBar(actions.querySelector('#startTones'), () => {
+      const n = roundCount(toneFilters.size, available.length);
+      return available.length ? `В раунд: ${n} ${plural(n, 'слово', 'слова', 'слов')}${other ? ' · заменит начатую практику' : ''}` : 'Слов нет';
+    }));
   }
 
   // ---------- полный вариант ----------
@@ -1506,7 +1544,7 @@
     view.append(el('div', { class: 'actions dock' },
       // Сессия — из progress, а не v с прошлой отрисовки: табло между ними дописывает время.
       el('button', { class: 'button ghost', type: 'button', disabled: v.index === 0, onclick: () => { progress = { ...progress, variant: moveSession(progress.variant, progress.variant.index - 1) }; save(); render(); } }, '← Назад'),
-      last ? finishButton : el('button', { class: 'button', type: 'button', dataset: { enter: '1' }, onclick: () => { progress = { ...progress, variant: moveSession(progress.variant, progress.variant.index + 1) }; save(); render(); } }, 'Дальше →')));
+      last ? finishButton : el('button', { class: 'button', type: 'button', dataset: v.answers[v.ids[v.index]] === undefined ? { enter: '1' } : { enter: '1', space: '1' }, onclick: () => { progress = { ...progress, variant: moveSession(progress.variant, progress.variant.index + 1) }; save(); render(); } }, 'Дальше →')));
     function finish() {
       commitClock();
       progress = finishVariant(progress, byId, now());
@@ -1642,7 +1680,7 @@
           el('p', { text: `Вкладка «Тоны» — отдельная тренировка к заданию 15: ${toneQuestions.length} ${plural(toneQuestions.length, 'слово', 'слова', 'слов')} HSK 2.0 уровней 1–4, по два-три иероглифа. Раунд идёт как в практике, ошибки раунда можно повторить; ссылки учителю и отчёта у этой вкладки нет.` }),
         ] : null,
         el('p', { class: 'section-title', text: 'Клавиши' }),
-        el('p', {}, el('kbd', { text: '1' }), '–', el('kbd', { text: '4' }), ' — выбрать ответ, ', el('kbd', { text: 'Enter' }), ' — дальше.'),
+        el('p', {}, el('kbd', { text: '1' }), '–', el('kbd', { text: '4' }), ' — выбрать ответ, ', el('kbd', { text: 'Enter' }), ' или ', el('kbd', { text: 'Space' }), ' — дальше.'),
         el('p', { class: 'section-title', text: 'Учителю' }),
         el('p', { text: 'Ссылку на подборку, на задания раунда или на вариант можно взять в практике и на итоге: по ней ученики получат то же самое. С итога ученик отправляет отчёт учителю, а отчёты всего класса сводятся в одну таблицу.' }),
         el('p', {}, el('a', { href: '#/teacher', text: 'Учителю: сводка отчётов учеников' }))));
@@ -1808,6 +1846,24 @@
 
   // ---------- клавиатура, тема, запуск ----------
 
+  let startBarFrame = 0;
+  const scheduleStartBar = () => {
+    if (!startBarFrame) {
+      startBarFrame = requestAnimationFrame(() => {
+        startBarFrame = 0;
+        syncStartBar();
+      });
+    }
+  };
+  window.addEventListener('scroll', scheduleStartBar, { passive: true });
+  window.addEventListener('resize', scheduleStartBar);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', scheduleStartBar);
+    window.visualViewport.addEventListener('scroll', scheduleStartBar);
+  }
+  // Шрифты догружаются и сдвигают строки: показ панели пересчитывается.
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleStartBar);
+
   document.addEventListener('keydown', (event) => {
     if (event.altKey || event.ctrlKey || event.metaKey) return;
     const tag = (event.target.tagName || '').toLowerCase();
@@ -1820,8 +1876,13 @@
       }
       return;
     }
-    if (event.key === 'Enter' && tag !== 'button' && tag !== 'a' && tag !== 'summary') {
-      const next = view.querySelector('[data-enter]:not(:disabled)');
+    // Пробел ведёт дальше только там, где есть «Дальше» после ответа (в варианте — у позиции с ответом);
+    // «Начать раунд» — только Enter.
+    const mark = event.key === 'Enter' ? 'enter' : event.key === ' ' ? 'space' : null;
+    // Удержанная клавиша не пролистывает экраны подряд.
+    if (mark && event.repeat) return;
+    if (mark && tag !== 'button' && tag !== 'a' && tag !== 'summary') {
+      const next = view.querySelector(`[data-${mark}]:not(:disabled)`);
       if (next) {
         event.preventDefault();
         next.click();
@@ -1838,7 +1899,7 @@
     toggle.setAttribute('aria-pressed', String(dark));
     toggle.title = dark ? 'Включить светлую тему' : 'Включить тёмную тему';
     // Строка браузера — цвета бумаги выбранной темы, а не темы системы.
-    document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => meta.setAttribute('content', dark ? '#1B2338' : '#F2F4EF'));
+    document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => meta.setAttribute('content', dark ? '#181512' : '#FAF4E8'));
   }
   document.getElementById('themeToggle').addEventListener('click', () => {
     const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';

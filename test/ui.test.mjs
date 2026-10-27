@@ -994,7 +994,7 @@ test('телефон: без горизонтальной прокрутки в�
   }
 });
 
-test('тетрадь: пропуск-клетка, исправление красной ручкой, панель на телефоне', { skip }, async () => {
+test('клетка: пропуск, исправление над ней, панель «Дальше» на телефоне', { skip }, async () => {
   const { page, context, errors } = await open(mainUrl, { width: 390, height: 844, hash: '#/practice?ids=q25-a' });
   await page.locator('[data-card]').waitFor();
   // До ответа — одна клетка, хотя у всех вариантов по два знака: ширина ничего не подсказывает.
@@ -1111,7 +1111,7 @@ for (const [device, size] of [['ноутбук', { width: 1280, height: 720 }], 
   test(`${device}: после неверного ответа предложение не уезжает с экрана, новый экран — с начала`, { skip }, async () => {
     const { page, context, errors } = await open(mainUrl, { ...size, reducedMotion: 'reduce', hash: '#/practice?ids=q26-a,q27-a,q22-a' });
     // Неверные ответы: в №26 (фрагменты), №27 (два пропуска) и №22 разбор длинный.
-    for (const key of ['2', '1', '2']) {
+    for (const [i, key] of ['2', '1', '2'].entries()) {
       await page.locator('[data-card]').waitFor();
       assert.equal(await page.evaluate(() => window.scrollY), 0, 'задание открывается с начала страницы');
       await page.keyboard.press(key);
@@ -1128,20 +1128,21 @@ for (const [device, size] of [['ноутбук', { width: 1280, height: 720 }], 
       assert.equal(at.focusSeen, true, `фокус за краем экрана: ${JSON.stringify(at)}`);
       if (device === 'телефон') assert.equal(at.enter, true, 'на телефоне фокус на «Дальше» в панели');
       if (device === 'ноутбук') {
-        // Пробел листает разбор, а не переходит к следующему заданию.
+        // PageDown листает разбор, а не переходит к следующему заданию.
         const before = await text(page, '.progress');
         const start = await page.evaluate(() => window.scrollY);
-        await page.keyboard.press('Space');
+        await page.keyboard.press('PageDown');
         assert.equal(await text(page, '.progress'), before);
         assert.equal(await page.locator('.feedback').count(), 1);
-        // Пробел прокрутил разбор; ученик дочитывает — плавная прокрутка успевает закончиться.
+        // PageDown прокрутил разбор; ученик дочитывает — плавная прокрутка успевает закончиться.
         await page.waitForFunction((y) => window.scrollY !== y, start, { timeout: 5000 });
         await page.waitForFunction(() => new Promise((resolve) => {
           const y = window.scrollY;
           setTimeout(() => resolve(window.scrollY === y), 200);
         }), null, { timeout: 5000 });
       }
-      await page.keyboard.press('Enter');
+      // Дальше ведут и Enter, и пробел.
+      await page.keyboard.press(i === 1 ? 'Space' : 'Enter');
     }
     await see(page, 'h2', /Раунд окончен/);
     assert.equal(await page.evaluate(() => window.scrollY), 0);
@@ -1163,11 +1164,12 @@ test('телефон: предложение ушло за верх, пока у
   await context.close();
 });
 
-// Enter, пока ещё идёт плавная прокрутка прошлого экрана: пробел по разбору или сдвиг страницы
-// к разбору сразу после ответа. Новый экран всё равно открывается с начала.
-for (const [what, height, between] of [
-  ['пробел и сразу Enter', 720, (page) => page.keyboard.press('Space')],
-  ['Enter, пока страница едет к разбору', 560, (page) => page.waitForTimeout(30)],
+// Enter или пробел, пока ещё идёт плавная прокрутка прошлого экрана: PageDown по разбору или
+// сдвиг страницы к разбору сразу после ответа. Новый экран всё равно открывается с начала.
+for (const [what, height, between, advance] of [
+  ['PageDown и сразу Enter', 720, (page) => page.keyboard.press('PageDown'), 'Enter'],
+  ['Enter, пока страница едет к разбору', 560, (page) => page.waitForTimeout(30), 'Enter'],
+  ['пробел, пока страница едет к разбору', 560, (page) => page.waitForTimeout(30), 'Space'],
 ]) {
   test(`ноутбук: ${what} — новый экран с начала`, { skip }, async () => {
     const { page, context, errors } = await open(mainUrl, { width: 1280, height, hash: '#/practice?ids=q26-a,q27-a,q22-a' });
@@ -1176,7 +1178,7 @@ for (const [what, height, between] of [
       await page.keyboard.press(key);
       await page.locator('.verdict.bad').waitFor();
       await between(page);
-      await page.keyboard.press('Enter');
+      await page.keyboard.press(advance);
       await see(page, '.progress, h2', screen);
       // Плавная прокрутка в Chrome длится до 300 мс — ждём с запасом.
       await page.waitForTimeout(700);
@@ -1468,11 +1470,11 @@ test('шапка: заголовок страницы, кнопка темы —
   const toggle = page.locator('#themeToggle');
   const themeColors = () => page.evaluate(() => [...document.querySelectorAll('meta[name="theme-color"]')].map((m) => m.content));
   assert.equal(await toggle.getAttribute('aria-pressed'), 'false');
-  assert.deepEqual(await themeColors(), ['#F2F4EF', '#F2F4EF']);
+  assert.deepEqual(await themeColors(), ['#FAF4E8', '#FAF4E8']);
   await toggle.click();
   assert.equal(await page.evaluate(() => document.documentElement.dataset.theme), 'dark');
   assert.equal(await toggle.getAttribute('aria-pressed'), 'true');
-  assert.deepEqual(await themeColors(), ['#1B2338', '#1B2338']);
+  assert.deepEqual(await themeColors(), ['#181512', '#181512']);
   await page.reload();
   assert.equal(await page.locator('#themeToggle').getAttribute('aria-pressed'), 'true', 'тема запомнилась');
   await context.close();
@@ -1982,6 +1984,84 @@ test('тоны: загрузка файла прогресса не стирае
   // И наоборот: в практике — предупреждение о начатом круге тонов.
   await page.goto(`${withWords}#/practice/setup`);
   await see(page, '#replaceWarning', /раунд тонов/);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+// Телефон: кнопка «Начать раунд» стоит в конце длинной страницы — пока её не видно, у нижнего края
+// панель с той же кнопкой и числом заданий; у конца страницы панели нет, на ноутбуке её нет совсем.
+for (const [screen, hash, real] of [['практика', '#/practice', '#startRound'], ['тоны', '#/tones', '#startTones']]) {
+  test(`телефон: ${screen} — панель «Начать раунд» у нижнего края, пока кнопка за краем экрана`, { skip }, async () => {
+    const { page, context, errors } = await open(screen === 'тоны' ? buildPage('tones-bar', { change: (data) => { data['tone-words'] = { words: toneWords }; } }) : mainUrl, { width: 360, height: 360, reducedMotion: 'reduce', hash });
+    await page.locator(real).waitFor();
+    const bar = page.locator('#startBar');
+    const barShown = () => bar.evaluate((node) => node.classList.contains('is-shown'));
+    const realBottom = () => page.locator(real).evaluate((node) => node.getBoundingClientRect().top - window.innerHeight);
+    {
+      assert.ok(await realBottom() > 0, 'кнопка за краем экрана');
+      assert.equal(await barShown(), true, 'кнопка за краем — панель показана');
+      assert.match(await text(page, '#startBarText'), /^В раунд: \d+ /);
+      assert.ok((await page.locator('#barStart').boundingBox()).y > 280, 'панель у нижнего края');
+      await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+      await page.waitForFunction(() => !document.getElementById('startBar').classList.contains('is-shown'));
+    }
+    // Кнопка на экране — панели нет; число в панели следует за размером раунда.
+    assert.equal(await barShown(), false);
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.locator('input[data-key="Размер:5"]').check();
+    await page.waitForFunction(() => /В раунд: [1-5] /.test(document.getElementById('startBarText').textContent));
+    await page.locator('#barStart').click();
+    await see(page, '.progress', /(Задание|Слово) 1 из /);
+    assert.deepEqual(errors, []);
+    await context.close();
+  });
+}
+
+test('ноутбук: панели «Начать раунд» нет', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { width: 1280, height: 600, reducedMotion: 'reduce', hash: '#/practice' });
+  await page.locator('#startRound').waitFor();
+  assert.equal(await page.locator('#startBar').isVisible(), false);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+// Пробел ведёт дальше только там, где есть «Дальше» после ответа: на выборе номеров не запускает
+// раунд, в варианте — только у позиции с ответом, удержанная клавиша экраны не листает.
+test('пробел: «Начать раунд» не запускает, в варианте дальше — только после ответа', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { width: 1280, height: 900, reducedMotion: 'reduce', hash: '#/practice' });
+  await page.locator('#startRound').waitFor();
+  await page.keyboard.press('Space');
+  assert.equal(await page.locator('[data-card]').count(), 0, 'пробел раунд не начал');
+  await page.goto(`${mainUrl}#/variant`);
+  await page.locator('#buildVariant').click();
+  const current = () => text(page, '.sheet .cell.current .pos');
+  const first = await current();
+  await page.keyboard.press('Space');
+  assert.equal(await current(), first, 'без ответа пробел позицию не меняет');
+  await page.keyboard.press('1');
+  await page.keyboard.press('Space');
+  const second = await current();
+  assert.notEqual(second, first, 'с ответом пробел ведёт дальше');
+  await page.keyboard.press('1');
+  await page.evaluate(() => document.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', repeat: true, bubbles: true })));
+  assert.equal(await current(), second, 'удержанный пробел позицию не меняет');
+  await page.keyboard.press('Space');
+  assert.notEqual(await current(), second);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('пробел: в проверке по правилу после ответа ведёт дальше', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { width: 1280, height: 900, reducedMotion: 'reduce', hash: '#/rules' });
+  await page.locator('.rule-card', { hasNotText: 'Тоны' }).first().click();
+  await page.getByRole('button', { name: /Проверить правило/ }).click();
+  await page.locator('[data-card]').waitFor();
+  await page.keyboard.press('Space');
+  assert.equal(await page.locator('.feedback').count(), 0, 'без ответа пробел ничего не делает');
+  await page.keyboard.press('1');
+  await page.locator('.feedback').waitFor();
+  await page.keyboard.press('Space');
+  await page.locator('.feedback').waitFor({ state: 'detached' });
   assert.deepEqual(errors, []);
   await context.close();
 });
