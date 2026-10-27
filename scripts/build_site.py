@@ -113,8 +113,10 @@ def description(data):
     names = ["банка ФИПИ"] + [name for origin, name in (("generated", "новых"), ("hsk", "HSK 4")) if origin in kinds]
     origin = names[0] if len(names) == 1 else ", ".join(names[:-1]) + " и " + names[-1]
     tasks = plural(count, "задание", "задания", "заданий")
+    words = len(data.get("tones") or [])
+    tones_note = f", {words} {plural(words, 'слово', 'слова', 'слов')} для тренировки тонов" if words else ""
     return (f"Тренажёр заданий 15–27 ЕГЭ по китайскому языку: {count} {tasks} {origin} с разбором "
-            "каждого неверного варианта, правила и полный вариант.")
+            f"каждого неверного варианта{tones_note}, правила и полный вариант.")
 
 
 def og_image_url():

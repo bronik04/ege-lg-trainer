@@ -5,22 +5,21 @@
   'use strict';
 
   const DATA = JSON.parse(document.getElementById('trainer-data').textContent);
-  const questions = DATA.questions;
+  // Слова тренировки тонов: у всех одно и то же приходит один раз (toneBase). Это вопросы того же вида, что
+  // задания №15 (origin 'words'): практика берёт их как задания, а вкладка «Тоны» — только их.
+  const toneQuestions = (DATA.tones || []).map((q) => ({ ...DATA.toneBase, ...q }));
+  const questions = [...DATA.questions, ...toneQuestions];
   const topics = DATA.topics;
   const rules = DATA.rules;
   const checks = DATA.ruleChecks;
   const byId = new Map(questions.map((q) => [q.id, q]));
-  // Слова тренировки тонов: у всех одно и то же приходит один раз (toneBase). Это вопросы того же вида, что
-  // задания №15, поэтому карточку, разбор и раунд им показывает тот же код.
-  const toneQuestions = (DATA.tones || []).map((q) => ({ ...DATA.toneBase, ...q }));
-  const toneById = new Map(toneQuestions.map((q) => [q.id, q]));
-  const itemById = new Map([...byId, ...toneById]);
-  const allItems = [...questions, ...toneQuestions];
+  const itemById = byId;
+  const allItems = questions;
   const topicsById = new Map(topics.map((t) => [t.id, t]));
   const rulesById = new Map(rules.map((r) => [r.id, r]));
   const checksById = new Map(checks.map((c) => [c.id, c]));
   const origins = [...new Set(questions.map((q) => q.origin))];
-  const ORIGIN_NAMES = { fipi: 'Банк ФИПИ', generated: 'Новые задания', hsk: 'HSK 4' };
+  const ORIGIN_NAMES = { fipi: 'Банк ФИПИ', generated: 'Новые задания', hsk: 'HSK 4', words: 'Слова HSK 1–4' };
   const TONE_FILTERS_KEY = 'ege-lg-trainer:tones-filters';
   const SOLO_STEM = new Set([15, 19]);
   const FILTERS_KEY = 'ege-lg-trainer:filters';
@@ -1625,6 +1624,7 @@
     const sources = ['открытый банк ФИПИ'];
     if (origins.includes('generated')) sources.push('новые задания в том же формате');
     if (origins.includes('hsk')) sources.push('задания HSK 4 (источник указан у задания)');
+    if (origins.includes('words')) sources.push('слова HSK 2.0 уровней 1–4 для тренировки тонов (№15)');
     const sourceNote = sources.length > 1 ? `${sources.slice(0, -1).join(', ')} и ${sources[sources.length - 1]}` : sources[0];
     const count = questions.length
       ? `${tasksWord(questions.length)} · ${rules.length} ${plural(rules.length, 'правило', 'правила', 'правил')}`
