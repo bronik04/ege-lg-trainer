@@ -1989,34 +1989,47 @@ test('тоны: загрузка файла прогресса не стирае
   await context.close();
 });
 
-// Телефон: кнопка «Начать раунд» стоит в конце длинной страницы — пока её не видно, у нижнего края
-// панель с той же кнопкой и числом заданий; у конца страницы панели нет, на ноутбуке её нет совсем.
+// «Следующий раунд» — первым на экране: что войдёт, сколько заданий и кнопка; настройки ниже.
+// Телефон: ученик листает настройки — кнопка уходит за верхний край, и у нижнего края её повторяет
+// панель с числом заданий; вернулся наверх — панели нет. На ноутбуке панели нет совсем.
 for (const [screen, hash, real] of [['практика', '#/practice', '#startRound'], ['тоны', '#/tones', '#startTones']]) {
-  test(`телефон: ${screen} — панель «Начать раунд» у нижнего края, пока кнопка за краем экрана`, { skip }, async () => {
-    const { page, context, errors } = await open(screen === 'тоны' ? buildPage('tones-bar', { change: (data) => { data['tone-words'] = { words: toneWords }; } }) : mainUrl, { width: 360, height: 360, reducedMotion: 'reduce', hash });
+  test(`телефон: ${screen} — «Начать раунд» наверху, панель у нижнего края, пока кнопка за краем`, { skip }, async () => {
+    const { page, context, errors } = await open(screen === 'тоны' ? buildPage('tones-bar', { change: (data) => { data['tone-words'] = { words: toneWords }; } }) : mainUrl, { width: 360, height: 640, reducedMotion: 'reduce', hash });
     await page.locator(real).waitFor();
     const bar = page.locator('#startBar');
     const barShown = () => bar.evaluate((node) => node.classList.contains('is-shown'));
-    const realBottom = () => page.locator(real).evaluate((node) => node.getBoundingClientRect().top - window.innerHeight);
-    {
-      assert.ok(await realBottom() > 0, 'кнопка за краем экрана');
-      assert.equal(await barShown(), true, 'кнопка за краем — панель показана');
-      assert.match(await text(page, '#startBarText'), /^В раунд: \d+ /);
-      assert.ok((await page.locator('#barStart').boundingBox()).y > 280, 'панель у нижнего края');
-      await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
-      await page.waitForFunction(() => !document.getElementById('startBar').classList.contains('is-shown'));
-    }
-    // Кнопка на экране — панели нет; число в панели следует за размером раунда.
-    assert.equal(await barShown(), false);
-    await page.evaluate(() => window.scrollTo(0, 0));
+    // Кнопка — в первом блоке экрана, до настроек.
+    assert.equal(await page.locator(`.next ${real}`).count(), 1, 'кнопка в «Следующем раунде»');
+    assert.ok(await page.evaluate((sel) => document.querySelector(sel).compareDocumentPosition(document.querySelector('.filter, .contents')) & Node.DOCUMENT_POSITION_FOLLOWING, real), 'настройки ниже кнопки');
+    assert.match(await text(page, '#nextSummary'), screen === 'тоны' ? /Все уровни HSK 1–4/ : /Все задания 15–27/);
+    assert.equal(await barShown(), false, 'кнопка на экране — панели нет');
+    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    await page.waitForFunction(() => document.getElementById('startBar').classList.contains('is-shown'));
+    assert.match(await text(page, '#startBarText'), /^В раунд: \d+ /);
+    assert.ok((await page.locator('#barStart').boundingBox()).y > 560, 'панель у нижнего края');
+    // Число в панели следует за размером раунда.
     await page.locator('input[data-key="Размер:5"]').check();
     await page.waitForFunction(() => /В раунд: [1-5] /.test(document.getElementById('startBarText').textContent));
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.waitForFunction(() => !document.getElementById('startBar').classList.contains('is-shown'));
+    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    await page.waitForFunction(() => document.getElementById('startBar').classList.contains('is-shown'));
     await page.locator('#barStart').click();
     await see(page, '.progress', /(Задание|Слово) 1 из /);
     assert.deepEqual(errors, []);
     await context.close();
   });
 }
+
+test('«Следующий раунд»: строка называет выбранное', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { width: 1280, height: 900, hash: '#/practice' });
+  await page.locator('#startRound').waitFor();
+  await page.locator('input[data-key="Задания:22"]').check({ force: true });
+  await page.locator('#stateFilter').selectOption('new');
+  await see(page, '#nextSummary', /^Задани[ея] .*22.* · новые$/);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
 
 test('ноутбук: панели «Начать раунд» нет', { skip }, async () => {
   const { page, context, errors } = await open(mainUrl, { width: 1280, height: 600, reducedMotion: 'reduce', hash: '#/practice' });

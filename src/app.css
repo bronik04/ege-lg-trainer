@@ -506,6 +506,15 @@ kbd {
   .options.row:has(> :nth-child(4)) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
+/* Следующий раунд: что войдёт и кнопка — первыми на экране, настройки ниже (nextRound в app.js). */
+.next { display: grid; justify-items: start; gap: 10px; margin: 6px 0 26px; padding: 18px 0 22px; border-block: 1px solid var(--line-on-ground); }
+.next-summary { margin: 0; font-size: 1.12rem; font-weight: 500; }
+.next-note { margin: 0; color: var(--muted); font-size: .92rem; }
+.next .notice { margin: 0; }
+.next .actions { margin-top: 4px; }
+.next .actions .button:first-child { min-width: 240px; }
+.next .keys { margin: 0; }
+
 /* Панель «Начать раунд» — только на телефоне (см. startBar в app.js). */
 .start-bar { display: none; }
 
@@ -530,6 +539,8 @@ kbd {
     border-top: 1px solid var(--line-on-ground); background: var(--paper);
   }
   .actions.dock .button { flex: 1 1 0; min-width: 0; }
+  .next .actions { width: 100%; }
+  .next .actions .button { flex: 1 1 100%; min-width: 0; }
   /* Панель не закрывает конец страницы. */
   .view.has-start-bar { padding-bottom: 88px; }
   .start-bar {
