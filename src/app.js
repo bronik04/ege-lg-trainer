@@ -262,9 +262,22 @@
     releaseTop = release;
   }
 
+  // data-key элемента под последним касанием или щелчком: на iPhone касание флажка не даёт ему фокус.
+  let touchedKey = null;
+  document.addEventListener('pointerdown', (event) => {
+    const node = event.target.closest && (event.target.closest('[data-key]') || (event.target.closest('label') || { querySelector: () => null }).querySelector('[data-key]'));
+    touchedKey = node ? node.dataset.key : null;
+  }, true);
+  const keyed = (key) => [...view.querySelectorAll('[data-key]')].find((node) => node.dataset.key === key);
+
   function render(focus = true) {
     const active = document.activeElement;
     const activeKey = active && active.dataset ? active.dataset.key : null;
+    // Перерисовка на месте не сдвигает нажатое под пальцем: строка «Следующего раунда» выше
+    // флажков меняет высоту, а прокрутка остаётся прежней. Запоминаем, где было нажатое.
+    const anchorKey = focus ? null : activeKey || touchedKey;
+    const anchorNode = anchorKey ? keyed(anchorKey) : null;
+    const anchorTop = anchorNode ? anchorNode.getBoundingClientRect().top : null;
     let { name, arg, query } = route();
     if (query && (name === 'practice' || name === 'variant')) {
       openShared(name, query);
@@ -305,9 +318,14 @@
       holdTop();
       const target = view.querySelector('[data-focus]') || view;
       target.focus({ preventScroll: true });
-    } else if (activeKey) {
-      const same = [...view.querySelectorAll('[data-key]')].find((node) => node.dataset.key === activeKey);
-      if (same) same.focus();
+    } else {
+      const same = activeKey ? keyed(activeKey) : null;
+      if (same) same.focus({ preventScroll: true });
+      const anchor = anchorKey ? keyed(anchorKey) : null;
+      if (anchor && anchorTop !== null) {
+        const shift = anchor.getBoundingClientRect().top - anchorTop;
+        if (shift) window.scrollBy(0, shift);
+      }
     }
     view.classList.toggle('has-start-bar', Boolean(document.getElementById('startBar')));
     syncStartBar();
@@ -1066,10 +1084,10 @@
     return chipGroup('Грамматика', items, filters.rules, (v) => { filters.rules = toggle(filters.rules, v); saveFilters(); render(false); }, 'grammar');
   }
 
-  // Телефон: «Начать раунд» стоит под всеми фильтрами, в конце длинной страницы. Пока её не видно,
-  // у нижнего края висит панель с той же кнопкой и числом заданий в раунде — прокручивать
-  // страницу до конца не надо. Панель показывает syncStartBar: на прокрутке, при смене размера
-  // окна и когда меняется размер раунда.
+  // Телефон: «Начать раунд» стоит наверху, в «Следующем раунде». Ученик листает настройки — кнопка
+  // уходит за верхний край, и у нижнего края её повторяет панель с числом заданий в раунде, чтобы
+  // не листать обратно. Панель показывает syncStartBar: на прокрутке, при смене размера окна и
+  // когда меняется размер раунда.
   const onPhone = () => window.matchMedia('(max-width: 720px)').matches;
   let startBarText = null; // () => подпись панели; null — на экране панели нет
 
@@ -1095,6 +1113,48 @@
     bar.classList.toggle('is-shown', shown);
   }
 
+  // Состояние ответов: общий список для практики и тонов (подпись в «Следующем раунде» — его же).
+  const STATE_OPTIONS = [['all', 'Все'], ['new', 'Новые'], ['done', 'Уже решённые'], ['review', 'На повторение'], ['mistakes', 'Ошибки']];
+  // В строке «Следующего раунда» состояние — с «только»: «Новые задания · новые» читалось бы как повтор.
+  const STATE_SUMMARY = { new: 'только новые', done: 'только решённые', review: 'на повторение', mistakes: 'только ошибки' };
+
+  // «Следующий раунд» — первым на экране, как в тренажёре по лингвострановедению: что войдёт в
+  // раунд одной строкой, сколько заданий и кнопка; настройки — ниже. Ушла кнопка за верхний край
+  // (настройки листают на телефоне) — у нижнего края её повторяет панель (startBar).
+  function nextRound({ summary, notice, start, resume, warning }) {
+    return el('section', { class: 'next', 'aria-label': 'Следующий раунд' },
+      el('p', { class: 'next-summary', id: 'nextSummary', text: summary }),
+      notice,
+      warning,
+      el('div', { class: 'actions' }, start, resume),
+      start.disabled ? null : el('p', { class: 'keys' }, el('kbd', { text: 'Enter' }), ' — начать раунд'));
+  }
+
+  // Части через « · »: в названиях правил свои запятые. Два правила и больше — числом.
+  function practiceSummary() {
+    const tasks = [...filters.tasks].sort((a, b) => a - b);
+    const topics = filters.topics.map(topicTitle);
+    const parts = [];
+    if (tasks.length) parts.push(`${tasks.length === 1 ? 'Задание' : 'Задания'} ${tasks.join(', ')}`);
+    if (topics.length) parts.push(`${tasks.length ? 'т' : 'Т'}${topics.length === 1 ? 'ема' : 'емы'}: ${topics.join('; ')}`);
+    if (!parts.length) parts.push(`Все задания ${TASK_NUMBERS[0]}–${TASK_NUMBERS[TASK_NUMBERS.length - 1]}`);
+    const ruleTitles = filters.rules.map((id) => rulesById.get(id)).filter(Boolean).map((r) => r.title);
+    if (ruleTitles.length === 1) parts.push(`правило: ${ruleTitles[0]}`);
+    else if (ruleTitles.length) parts.push(`${ruleTitles.length} ${plural(ruleTitles.length, 'правило', 'правила', 'правил')}`);
+    if (filters.origins.length) parts.push(filters.origins.map((o) => ORIGIN_NAMES[o] || o).join(', '));
+    if (STATE_SUMMARY[filters.state]) parts.push(STATE_SUMMARY[filters.state]);
+    return parts.join(' · ');
+  }
+
+  function toneSummary() {
+    const levels = [...toneFilters.levels].sort((a, b) => a - b);
+    const lengths = [...toneFilters.lengths].sort((a, b) => a - b);
+    const parts = [levels.length ? `HSK ${levels.join(', ')}` : 'Все уровни HSK 1–4'];
+    parts.push(lengths.length ? `${lengths.join(' и ')} иероглифа` : 'слова из 2–3 иероглифов');
+    if (STATE_SUMMARY[toneFilters.state]) parts.push(STATE_SUMMARY[toneFilters.state]);
+    return parts.join(' · ');
+  }
+
   function renderPractice() {
     // Круг тонов идёт на своей вкладке: «Практика» его не открывает и не продолжает.
     const round = isTonesRound(progress.round) ? null : progress.round;
@@ -1112,41 +1172,43 @@
       view.append(emptyBank());
       return;
     }
+    const available = filterQuestions(questions, filters, progress, now());
+    const size = roundSizeControl(available.length);
+    const unfinishedTones = isTonesRound(progress.round) && !progress.round.finishedAt && Object.keys(progress.round.answers).length;
+    const start = el('button', {
+      class: 'button', type: 'button', id: 'startRound', disabled: !available.length, dataset: { enter: '1' },
+      // Поле применяется и здесь: если касание кнопки не увело из него фокус (iPhone).
+      onclick: () => { size.commit(); startRound(pickRound(available, filters.size).map((q) => q.id)); },
+    }, 'Начать раунд');
+    view.append(nextRound({
+      summary: practiceSummary(),
+      notice: el('p', { class: 'next-note', id: 'available', 'aria-live': 'polite', text: availableText(available.length) }),
+      warning: unfinishedTones ? el('p', { class: 'notice warn small', id: 'replaceWarning', text: 'У вас начат раунд тонов. Новый раунд практики заменит его: вернуться к тонам будет нельзя.' }) : null,
+      start,
+      resume: round && !round.finishedAt ? el('a', { class: 'button alt', href: '#/practice', text: `Продолжить раунд · ${Object.keys(round.answers).length} из ${round.ids.length}` }) : null,
+    }));
     view.append(taskContents(), grammarFilter());
     if (origins.length > 1) {
       view.append(chipGroup('Источник', origins.map((o) => ({ value: o, label: ORIGIN_NAMES[o] || o, count: questions.filter((q) => q.origin === o).length })),
         filters.origins, (v) => { filters.origins = toggle(filters.origins, v); saveFilters(); render(false); }));
     }
     const stateSelect = el('select', { id: 'stateFilter', dataset: { key: 'state' }, onchange: (e) => { filters.state = e.target.value; saveFilters(); render(false); } },
-      [['all', 'Все'], ['new', 'Новые'], ['done', 'Уже решённые'], ['review', 'На повторение'], ['mistakes', 'Ошибки']].map(([v, label]) => el('option', { value: v, selected: filters.state === v, text: label })));
-    const available = filterQuestions(questions, filters, progress, now());
-    const size = roundSizeControl(available.length);
+      STATE_OPTIONS.map(([v, label]) => el('option', { value: v, selected: filters.state === v, text: label })));
     view.append(el('div', { class: 'filters-row' },
       el('label', { class: 'field' }, 'Какие задания', stateSelect),
-      size.node),
-      el('p', { class: 'notice', id: 'available', 'aria-live': 'polite', text: availableText(available.length) }));
-    const unfinishedTones = isTonesRound(progress.round) && !progress.round.finishedAt && Object.keys(progress.round.answers).length;
-    if (unfinishedTones) view.append(el('p', { class: 'notice warn small', id: 'replaceWarning', text: 'У вас начат раунд тонов. Новый раунд практики заменит его: вернуться к тонам будет нельзя.' }));
+      size.node));
     const actions = el('div', { class: 'actions' },
-      el('button', {
-        class: 'button', type: 'button', id: 'startRound', disabled: !available.length, dataset: { enter: '1' },
-        // Поле применяется и здесь: если касание кнопки не увело из него фокус (iPhone).
-        onclick: () => { size.commit(); startRound(pickRound(available, filters.size).map((q) => q.id)); },
-      }, 'Начать раунд'),
       el('button', {
         class: 'button ghost', type: 'button',
         onclick: () => { filters = { ...filters, topics: [], tasks: [], rules: [], origins: [], state: 'all' }; saveFilters(); render(false); },
       }, 'Сбросить фильтры'));
-    if (round && !round.finishedAt) {
-      actions.append(el('a', { class: 'button alt', href: '#/practice', text: `Продолжить раунд · ${Object.keys(round.answers).length} из ${round.ids.length}` }));
-    }
     const share = shareToggle('setup', 'Ссылка на подборку', pageUrl(`#/practice?${shareQuery(filters)}`),
       'По ссылке откроется эта подборка: номера, правила, источник и размер раунда. Задания каждому выпадут свои. Чтобы у всех были одни и те же задания, пройдите раунд и возьмите ссылку на его итоге.',
       !available.length);
     actions.append(share.button);
     view.append(actions);
     if (share.box) view.append(share.box);
-    view.append(startBar(actions.querySelector('#startRound'),
+    view.append(startBar(start,
       () => (available.length ? `В раунд: ${tasksWord(roundCount(filters.size, available.length))}${unfinishedTones ? ' · заменит начатый круг тонов' : ''}` : 'Заданий нет')));
   }
 
@@ -1370,36 +1432,36 @@
     }
     const counts = toneCounts(toneQuestions, toneFilters);
     const change = (key) => (v) => { toneFilters[key] = toggle(toneFilters[key], v); saveToneFilters(); render(false); };
+    const available = filterToneWords(toneQuestions, toneFilters, progress, now());
+    const size = roundSizeControl(available.length, { filters: toneFilters, save: saveToneFilters, text: toneAvailableText, share: false });
+    const other = progress.round && !progress.round.finishedAt && !isTonesRound(progress.round) && Object.keys(progress.round.answers).length;
+    const start = el('button', {
+      class: 'button', type: 'button', id: 'startTones', disabled: !available.length, dataset: { enter: '1' },
+      onclick: () => { size.commit(); startRound(pickRound(available, toneFilters.size).map((q) => q.id), TONES_MODE); },
+    }, 'Начать раунд');
+    view.append(nextRound({
+      summary: toneSummary(),
+      notice: el('p', { class: 'next-note', id: 'available', 'aria-live': 'polite', text: toneAvailableText(available.length) }),
+      warning: other ? el('p', { class: 'notice warn small', id: 'replaceWarning', text: 'У вас начат раунд практики. Новый раунд тонов заменит его: вернуться к практике будет нельзя.' }) : null,
+      start,
+      resume: round && !round.finishedAt ? el('a', { class: 'button alt', href: '#/tones', text: `Продолжить раунд · ${Object.keys(round.answers).length} из ${round.ids.length}` }) : null,
+    }));
     view.append(
       chipGroup('Уровень HSK', TONE_LEVELS.filter((n) => counts.levels[n] || toneFilters.levels.includes(n))
         .map((n) => ({ value: n, label: `HSK ${n}`, count: counts.levels[n] })), toneFilters.levels, change('levels'), 'toneLevels'),
       chipGroup('Длина слова', TONE_LENGTHS.filter((n) => counts.lengths[n] || toneFilters.lengths.includes(n))
         .map((n) => ({ value: n, label: `${n} иероглифа`, count: counts.lengths[n] })), toneFilters.lengths, change('lengths'), 'toneLengths'));
     const stateSelect = el('select', { id: 'stateFilter', dataset: { key: 'state' }, onchange: (e) => { toneFilters.state = e.target.value; saveToneFilters(); render(false); } },
-      [['all', 'Все'], ['new', 'Новые'], ['done', 'Уже решённые'], ['review', 'На повторение'], ['mistakes', 'Ошибки']]
-        .map(([v, label]) => el('option', { value: v, selected: toneFilters.state === v, text: label })));
-    const available = filterToneWords(toneQuestions, toneFilters, progress, now());
-    const size = roundSizeControl(available.length, { filters: toneFilters, save: saveToneFilters, text: toneAvailableText, share: false });
+      STATE_OPTIONS.map(([v, label]) => el('option', { value: v, selected: toneFilters.state === v, text: label })));
     view.append(el('div', { class: 'filters-row' },
       el('label', { class: 'field' }, 'Какие слова', stateSelect),
-      size.node),
-      el('p', { class: 'notice', id: 'available', 'aria-live': 'polite', text: toneAvailableText(available.length) }));
-    const other = progress.round && !progress.round.finishedAt && !isTonesRound(progress.round) && Object.keys(progress.round.answers).length;
-    if (other) view.append(el('p', { class: 'notice warn small', id: 'replaceWarning', text: 'У вас начат раунд практики. Новый раунд тонов заменит его: вернуться к практике будет нельзя.' }));
-    const actions = el('div', { class: 'actions' },
-      el('button', {
-        class: 'button', type: 'button', id: 'startTones', disabled: !available.length, dataset: { enter: '1' },
-        onclick: () => { size.commit(); startRound(pickRound(available, toneFilters.size).map((q) => q.id), TONES_MODE); },
-      }, 'Начать раунд'),
+      size.node));
+    view.append(el('div', { class: 'actions' },
       el('button', {
         class: 'button ghost', type: 'button',
         onclick: () => { toneFilters = { ...toneFilters, levels: [], lengths: [], state: 'all' }; saveToneFilters(); render(false); },
-      }, 'Сбросить фильтры'));
-    if (round && !round.finishedAt) {
-      actions.append(el('a', { class: 'button alt', href: '#/tones', text: `Продолжить раунд · ${Object.keys(round.answers).length} из ${round.ids.length}` }));
-    }
-    view.append(actions);
-    view.append(startBar(actions.querySelector('#startTones'), () => {
+      }, 'Сбросить фильтры')));
+    view.append(startBar(start, () => {
       const n = roundCount(toneFilters.size, available.length);
       return available.length ? `В раунд: ${n} ${plural(n, 'слово', 'слова', 'слов')}${other ? ' · заменит начатую практику' : ''}` : 'Слов нет';
     }));
