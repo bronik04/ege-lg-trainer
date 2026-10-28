@@ -1578,7 +1578,8 @@ test('настоящие данные: сборка для проверки от
   const words = JSON.parse(readFileSync(join(ROOT, 'data', 'tone-words.json'), 'utf8')).words;
   await page.locator('.bank-item').first().waitFor();
   assert.equal(await page.locator('.bank-item').count(), bank.length + words.length);
-  const drafts = bank.filter((q) => q.reviewStatus === 'draft').length;
+  // Непринятые слова (после смены вариантов — все до ревью) в сборке для проверки тоже с пометкой.
+  const drafts = bank.filter((q) => q.reviewStatus === 'draft').length + words.filter((w) => w.status !== 'accepted').length;
   assert.equal(await page.locator('.bank-item .meta', { hasText: 'черновик' }).count(), drafts);
   // Телефон 320 px на системных шрифтах (шрифты из сети не пришли): ни одна карточка правила не
   // шире экрана — длинные названия переносятся.

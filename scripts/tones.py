@@ -1,6 +1,7 @@
 """Тренировка тонов (№15) по словам HSK 2.0: пиньинь → тоны, варианты ответа, разбор.
 
-Чистые функции без чтения файлов: их используют сборка (build_tones.py, build_site.py) и тесты.
+Чистые функции: их используют сборка (build_tones.py, build_site.py) и тесты. Файл читается один раз — таблица
+слогов sources/words/syllable-tones.json (syllable_tones), ею make_question выбирает существующие слоги в вариантах.
 Правила записи — как в правиле «Тоны в словах»: тон словарный, 1–4, лёгкий — 0.
 """
 
@@ -11,7 +12,9 @@ import random
 import re
 import unicodedata
 
-from common import FORMAT_YEAR, INSTRUCTIONS
+import json
+
+from common import FORMAT_YEAR, INSTRUCTIONS, SOURCES
 
 TONE_MARKS = {"̄": 1, "́": 2, "̌": 3, "̀": 4, "̆": 3}  # бреве — набор «ǎ» с опечаткой
 INITIALS = ["", "b", "p", "m", "f", "d", "t", "n", "l", "g", "k", "h", "j", "q", "x", "zh", "ch", "sh", "r", "z",
@@ -119,6 +122,35 @@ def join_syllables(syllables):
     return out
 
 
+SYLLABLE_TONES = SOURCES / "words" / "syllable-tones.json"
+_known = None
+
+
+def syllable_tones():
+    """{слог без тона: {тон 1–4: число иероглифов учебной лексики с таким чтением}} — снимок
+    sources/words/syllable-tones.json. Чем больше иероглифов, тем обычнее тон для слога; 0 — чтение есть только у
+    редких иероглифов (xín), нет тона в словаре слога — такого слога в китайском нет (zái)."""
+    global _known
+    if _known is None:
+        table = json.loads(SYLLABLE_TONES.read_text(encoding="utf-8"))["syllables"]
+        _known = {syllable: {int(t): n for t, n in tones.items()} for syllable, tones in table.items()}
+    return _known
+
+
+def options_signature():
+    """Отпечаток всего, от чего зависят варианты, кроме слова: таблица слогов, омографы, версия схемы. Он входит в
+    отпечаток принятого слова: сменилась таблица — варианты другие, слово возвращается на ревью."""
+    table = hashlib.sha256(SYLLABLE_TONES.read_bytes()).hexdigest()[:12]
+    homographs = sorted((w, sorted(v)) for w, v in HOMOGRAPHS.items())
+    return f"{OPTIONS_VERSION}:{table}:{homographs}"
+
+
+def plain_syllable(syllable):
+    """Слог без тонового знака, ü как v: «nǚ» → «nv»."""
+    text = "".join(ch for ch in unicodedata.normalize("NFD", syllable.lower()) if ch not in TONE_MARKS)
+    return unicodedata.normalize("NFC", text.replace("u\u0308", "v")).replace("ü", "v")
+
+
 def sequence_text(seq):
     return "-".join(str(t) for t in seq)
 
@@ -167,16 +199,21 @@ def read_candidates(candidates, count):
 
 
 # Меняете make_options или разбор — поднимите версию: отпечатки принятых слов устареют, слова вернутся
-# на ревью (ответ ученика хранится по id варианта, и после смены порядка он указывал бы на другой вариант).
-OPTIONS_VERSION = "1"
+# на ревью, а ID слов сменятся (ответ ученика хранится по id варианта, и после смены порядка он указывал бы
+# на другой вариант, а старая статистика слова относилась бы к другим вариантам).
+OPTIONS_VERSION = "2"
 
 
 def word_id(word):
-    return "w15-" + hashlib.sha1(word.encode("utf-8")).hexdigest()[:8]
+    return "w15-" + hashlib.sha1(f"{OPTIONS_VERSION}:{word}".encode("utf-8")).hexdigest()[:8]
 
 
 def _rng(word):
     return random.Random(int(hashlib.sha1(word.encode("utf-8")).hexdigest()[:8], 16))
+
+
+# Другое слово с теми же иероглифами и другим чтением: ученик, знающий его, выбрал бы вариант с полным правом.
+HOMOGRAPHS = {"结果": {(1, 3)}}  # jiēguǒ «плодоносить»
 
 
 def heard_sequences(word, seq):
@@ -197,32 +234,80 @@ def heard_sequences(word, seq):
     return {c for c in itertools.product(*choices)} - {tuple(seq)}
 
 
-def make_options(word, seq):
-    """Четыре варианта (id «1»–«4») и id верного. Неверные — как в заданиях ФИПИ: один слог другим тоном,
-    те же тоны в другом порядке, лёгкий тон вместо полного. Лёгкий тон первого слога не бывает.
-    Выбор случайный, но зависит только от слова."""
+def make_options(word, seq, syllables=None, known=None):
+    """Четыре варианта (id «1»–«4») и id верного. Варианты — «квадрат» по двум слогам: верный (a-b), (x-b),
+    (a-y), (x-y); остальные слоги одинаковы во всех. У каждого варианта то же сходство с остальными, в каждом
+    слоге два тона по два варианта — угадать подстановкой («самый похожий на остальные», «чаще встречающийся
+    тон») нельзя, нужно знать тон хотя бы одного слога. Лёгкий слог не меняется и стоит во всех вариантах:
+    лёгкий тон только у части вариантов отбрасывал бы остальные, а полный тон вместо лёгкого бывает слышен
+    (xuésheng — xuéshēng). Если слогов без лёгкого тона меньше двух (学生, 什么), варианты — четыре тона
+    единственного слога (так бывает и у слов с двумя свободными слогами, когда квадрат хуже). Все четыре варианта перемешиваются: порядок не должен выдавать верный.
+
+    Вариант не берётся, если он слышен в речи как верный (3-3 для 2-3: 3+3 звучит 2+3), если верный слышен
+    как он, или это другое слово тех же иероглифов (HOMOGRAPHS). Если даны слоги слова без тонов и таблица
+    known (syllable_tones), выбираются варианты с наименьшим числом слогов, которых нет в китайском (zái), а потом
+    редких чтений (xín): такой вариант отбрасывают, не зная слова. Выбор случайный, но зависит только от слова."""
     rng = _rng(word)
     base = tuple(seq)
-    main, neutral = [], []
-    for i, t in itertools.product(range(len(base)), (1, 2, 3, 4)):
-        if t != base[i]:
-            main.append(base[:i] + (t,) + base[i + 1:])
-    for perm in itertools.permutations(base):
-        if perm != base and perm[0] != 0 and perm not in main:
-            main.append(perm)
-    for i in range(1, len(base)):
-        if base[i] != 0:
-            neutral.append(base[:i] + (0,) + base[i + 1:])
-    heard = heard_sequences(word, base)
-    main = [c for c in main if c not in heard]
-    neutral = [c for c in neutral if c not in heard and c.count(0) <= 1]  # «4-0-0» так не говорят
-    picked = rng.sample(main, 3)
-    if neutral and rng.random() < 0.25:
-        picked[2] = rng.choice(neutral)
-    texts = [sequence_text(p) for p in picked]
-    position = rng.randrange(4)
-    texts.insert(position, sequence_text(base))
-    return [{"id": str(i), "text": t} for i, t in enumerate(texts, 1)], str(position + 1)
+    heard = heard_sequences(word, base) | HOMOGRAPHS.get(word, set())
+
+    def put(item, i, tone):
+        return item[:i] + (tone,) + item[i + 1:]
+
+    def allowed(option):
+        return option not in heard and base not in heard_sequences(word, option)
+
+    def missing(option):
+        """Несуществующий слог (zái) весит как сто редких чтений (xín): сначала избегаем его."""
+        if not (syllables and known):
+            return 0
+        total = 0
+        for i, tone in enumerate(option):
+            if tone:
+                count = known.get(syllables[i], {}).get(tone)
+                total += 100 if count is None else (count == 0)
+        return total
+
+    def twins(options):
+        """Два неверных варианта, из которых один звучит как другой (3-3 и 2-3): знающий сандхи вычеркнёт оба."""
+        return any(a in heard_sequences(word, b) or b in heard_sequences(word, a) for a, b in itertools.combinations(options, 2))
+
+    def common(position, tone):
+        """Насколько тон обычен для слога: число иероглифов с таким чтением, в квадрате (1, если таблицы нет)."""
+        if not (syllables and known):
+            return 1
+        return (known.get(syllables[position], {}).get(tone, 0) + 1) ** 2
+
+    free = [i for i, tone in enumerate(base) if tone]
+    found = []  # («цена» неверных вариантов: несуществующие и редкие слоги, вес, неверные варианты)
+    for i, j in itertools.combinations(free, 2):
+        for x, y in itertools.product((1, 2, 3, 4), repeat=2):
+            if x == base[i] or y == base[j]:
+                continue
+            square = [put(base, i, x), put(base, j, y), put(put(base, i, x), j, y)]
+            if all(map(allowed, square)) and not twins(square):
+                found.append((sum(map(missing, square)), common(i, x) * common(j, y), square))
+    for i in free:
+        line = [put(base, i, tone) for tone in (1, 2, 3, 4) if tone != base[i]]
+        if all(map(allowed, line)) and not twins(line):
+            weight = 1
+            for tone in (1, 2, 3, 4):
+                if tone != base[i]:
+                    weight *= common(i, tone)
+            found.append((sum(map(missing, line)), weight, line))
+    if not found:
+        raise ValueError(f"слово {word!r} ({sequence_text(base)}): не из чего составить варианты")
+    best = min(score for score, _, _ in found)
+    pool = [(weight, option) for score, weight, option in found if score == best]
+    # Неверные тоны — не равновероятно: тон, обычный для слога, чаще встречается и среди верных, и подсказывал бы
+    # верный. Вес набора — квадрат числа иероглифов с таким чтением, чтобы приманки были так же правдоподобны (до конца
+    # не выровнять: обычный для слога тон — это уже знание).
+    picked = rng.choices([option for _, option in pool], weights=[weight for weight, _ in pool])[0]
+    # Перемешиваются все четыре: неверные в фиксированном порядке и верный в случайном месте выдавали верный
+    # (в квадрате по расположению «диагоналей», в ряду 1-0…4-0 — по выбивающемуся из возрастания).
+    ordered = [base] + picked
+    rng.shuffle(ordered)
+    return [{"id": str(i), "text": sequence_text(t)} for i, t in enumerate(ordered, 1)], str(ordered.index(base) + 1)
 
 
 # ---------- разбор ----------
@@ -267,7 +352,7 @@ QUESTION_BASE = {
 def make_question(entry):
     """Слово → вопрос в том же виде, что задание №15: его показывает общий код карточки и разбора."""
     seq = tuple(entry["tones"])
-    options, correct = make_options(entry["word"], seq)
+    options, correct = make_options(entry["word"], seq, [plain_syllable(s) for s in _syllables_of(entry)], syllable_tones())
     explanation = {"correct": explain_correct(entry), "options": {}}
     for option in options:
         if option["id"] != correct:
@@ -290,5 +375,5 @@ def fingerprint(entry):
     """Отпечаток принятого: слово, чтение, тоны и перевод. Правка любого из них требует нового принятия."""
     syllables = " ".join(entry.get("syllables") or [])
     value = "|".join([entry["word"], entry["pinyin"], syllables, sequence_text(entry["tones"]), entry["ru"],
-                      str(entry["level"]), OPTIONS_VERSION])
+                      str(entry["level"]), options_signature()])
     return hashlib.sha256(value.encode("utf-8")).hexdigest()[:12]

@@ -1,6 +1,10 @@
 """Слова для тренировки тонов: пиньинь → тоны, варианты ответа и разбор."""
 
+import itertools
+import json
 import unittest
+from collections import Counter
+from pathlib import Path
 
 from test import helpers  # noqa: F401  (добавляет scripts/ в sys.path)
 
@@ -103,6 +107,164 @@ class OptionsTest(unittest.TestCase):
         words = [chr(0x4e00 + i) * 2 for i in range(200)]
         spots = {tones.make_options(w, (3, 2))[1] for w in words}
         self.assertEqual(spots, {"1", "2", "3", "4"})
+
+
+def _digits(text):
+    return tuple(int(d) for d in text.split("-"))
+
+
+def _overlap(a, b):
+    return sum(x == y for x, y in zip(a, b))
+
+
+class SyllableTableTest(unittest.TestCase):
+    def test_plain_syllable(self):
+        self.assertEqual([tones.plain_syllable(s) for s in ("nǚ", "lǜ", "zhōng", "ér", "lüè", "mā")], ["nv", "lv", "zhong", "er", "lve", "ma"])
+
+    def test_table_knows_real_syllables_and_not_zai2(self):
+        known = tones.syllable_tones()
+        self.assertEqual(set(known["zai"]), {1, 3, 4})
+        self.assertEqual(set(known["nuan"]) - {2, 4}, {3})  # nuán и nuàn бывают только у редких иероглифов
+        self.assertEqual(known["nuan"].get(2, 0), 0)
+        self.assertIn(3, known["nv"])
+        self.assertNotIn(2, known["zai"])
+
+    def test_every_correct_syllable_of_every_word_is_in_the_table(self):
+        known = tones.syllable_tones()
+        words = json.loads((Path(__file__).resolve().parent.parent / "data" / "tone-words.json").read_text(encoding="utf-8"))["words"]
+        for w in words:
+            for syllable, tone in zip(w["syllables"], w["tones"]):
+                if tone:
+                    self.assertIn(tone, known.get(tones.plain_syllable(syllable), set()), f"{w['word']} {syllable}")
+
+    def test_options_use_existing_syllables_where_the_word_allows(self):
+        # Вариант с несуществующим слогом (zái) отбрасывают, не зная слова; редкое чтение (xín) — почти так же.
+        known = tones.syllable_tones()
+        words = json.loads((Path(__file__).resolve().parent.parent / "data" / "tone-words.json").read_text(encoding="utf-8"))["words"]
+        absent = rare = 0
+        for w in words:
+            syllables = [tones.plain_syllable(s) for s in w["syllables"]]
+            options, correct = tones.make_options(w["word"], tuple(w["tones"]), syllables, known)
+            counts = [known.get(syllables[i], {}).get(t) for o in options for i, t in enumerate(_digits(o["text"])) if t]
+            absent += any(c is None for c in counts)
+            rare += any(c == 0 for c in counts)
+        self.assertLess(absent / len(words), 0.05)
+        self.assertLess(rare / len(words), 0.15)
+
+    def test_homograph_reading_is_not_offered(self):
+        # 结果 jiéguǒ «результат»: 1-3 — jiēguǒ «плодоносить», другое слово тех же иероглифов.
+        for syllables in (None, ["jie", "guo"]):
+            texts = {o["text"] for o in tones.make_options("结果", (2, 3), syllables, tones.syllable_tones() if syllables else None)[0]}
+            self.assertNotIn("1-3", texts)
+
+    def test_signature_of_options_is_part_of_the_fingerprint(self):
+        entry = {"word": "整齐", "pinyin": "zhěngqí", "tones": [3, 2], "ru": "аккуратный", "level": 4}
+        before = tones.fingerprint(entry)
+        original = dict(tones.HOMOGRAPHS)
+        try:
+            tones.HOMOGRAPHS["整齐"] = {(3, 4)}
+            self.assertNotEqual(before, tones.fingerprint(entry))
+        finally:
+            tones.HOMOGRAPHS.clear()
+            tones.HOMOGRAPHS.update(original)
+
+
+class GuessingTest(unittest.TestCase):
+    """Верный вариант нельзя найти, не зная тонов: он не похож на остальные ни больше, ни меньше других.
+
+    Раньше три неверных были «верный с одной правкой», и верный находился как вариант, самый похожий на
+    остальные (80% против 25% случайных): ученики угадывали подстановкой."""
+
+    @classmethod
+    def setUpClass(cls):
+        words = json.loads((Path(__file__).resolve().parent.parent / "data" / "tone-words.json").read_text(encoding="utf-8"))["words"]
+        cls.syllables = {w["word"]: [tones.plain_syllable(x) for x in w["syllables"]] for w in words}
+        cls.cases = [(w["word"], tuple(w["tones"])) for w in words]
+        # Все сочетания тонов у слов без 不 и 一 (знаки с U+4E20, 一 — U+4E00, 不 — U+4E0D): проверка не
+        # зависит от того, какие слова взяли.
+        cls.cases += [(chr(0x4e20 + i) + chr(0x4e80 + i), (a, b)) for i, (a, b) in
+                      enumerate((a, b) for a in (1, 2, 3, 4) for b in (0, 1, 2, 3, 4))]
+        cls.cases += [(chr(0x4e20 + i) + chr(0x4e80 + i) + chr(0x4f00 + i), (a, b, c)) for i, (a, b, c) in
+                      enumerate((a, b, c) for a in (1, 2, 3, 4) for b in (0, 1, 2, 3, 4) for c in (0, 1, 2, 3, 4)
+                                if b or c)]
+
+    def questions(self):
+        for word, seq in self.cases:
+            # Слова из данных — как на сайте (с таблицей слогов); синтетические сочетания — без неё.
+            syllables = self.syllables.get(word)
+            options, correct = tones.make_options(word, seq, syllables, tones.syllable_tones() if syllables else None)
+            yield word, seq, [_digits(o["text"]) for o in options], int(correct) - 1
+
+    def test_every_option_is_as_similar_to_the_others_as_the_correct_one(self):
+        for word, seq, options, correct in self.questions():
+            scores = [sum(_overlap(o, p) for p in options if p is not o) for o in options]
+            self.assertEqual(len(set(scores)), 1, f"{word} {seq}: {options}")
+
+    def test_no_syllable_gives_the_answer_by_majority(self):
+        for word, seq, options, correct in self.questions():
+            for i in range(len(seq)):
+                counts = Counter(o[i] for o in options).most_common()
+                if len(counts) > 1:
+                    self.assertEqual(counts[0][1], counts[1][1], f"{word} {seq}: {options}")
+
+    def test_correct_option_is_not_marked_by_neutral_tone_or_digit_frequency(self):
+        # Лёгкий тон у неверного варианта и общий перекос цифр — тоже подсказки.
+        total = Counter(d for _, seq in self.cases for d in seq)
+        weight = {d: n / sum(total.values()) for d, n in total.items()}
+        neutral_hint = prior_hits = 0
+        for word, seq, options, correct in self.questions():
+            if any(0 in o for o in options) and 0 not in seq:
+                neutral_hint += 1
+            best = max(range(4), key=lambda k: sum(weight[d] for d in options[k]))
+            prior_hits += best == correct
+        self.assertEqual(neutral_hint, 0, "лёгкий тон только у неверных вариантов выдаёт верный")
+        # Частые тона (четвёртый — около трети) слегка выдают верный: у слова 4-4 он всегда самый «ходовой».
+        # Это не устранить, а подсказка слабая (нужна статистика тонов): порог — далеко от прежних 80%.
+        self.assertLess(prior_hits / len(self.cases), 0.36)
+
+    def test_two_wrong_options_never_sound_alike(self):
+        # 小时 (3-2): 2-3 и 3-3 звучат одинаково — знающий сандхи вычеркнёт оба и останется выбирать из двух.
+        for word, seq, options, correct in self.questions():
+            wrong = [o for k, o in enumerate(options) if k != correct]
+            for a, b in itertools.combinations(wrong, 2):
+                self.assertNotIn(a, tones.heard_sequences(word, b), f"{word} {seq}: {a} {b}")
+                self.assertNotIn(b, tones.heard_sequences(word, a), f"{word} {seq}: {a} {b}")
+
+    def test_options_still_never_offer_a_heard_form(self):
+        for word, seq, options, correct in self.questions():
+            self.assertFalse(set(options) & tones.heard_sequences(word, seq), word)
+
+    def test_order_of_options_does_not_give_the_answer_away(self):
+        # Неверные варианты нельзя собирать в одном порядке и вставлять верный в случайное место: по порядку
+        # видно, какой вариант выбивается (у «1-0, 3-0, 4-0, 2-0» верный 2-0). Смотрим, какие пары вариантов
+        # не имеют общих слогов («диагонали» квадрата) и сколько раз верный стоит на каждом месте.
+        seen = {}
+        for word, seq, options, correct in self.questions():
+            diagonals = tuple((i, j) for i in range(4) for j in range(i + 1, 4) if not _overlap(options[i], options[j]))
+            seen.setdefault(diagonals, Counter())[correct] += 1
+        for diagonals, spots in seen.items():
+            total = sum(spots.values())
+            if total >= 40:
+                self.assertLess(max(spots.values()) / total, 0.45, f"{diagonals}: {dict(spots)}")
+        rising = sum(list(o) == sorted(o) for _, seq, options, _ in self.questions() if seq[-1] == 0 and len(seq) == 2 for o in [[x[0] for x in options]])
+        total = sum(1 for _, seq, *_ in self.questions() if seq[-1] == 0 and len(seq) == 2)
+        self.assertLess(rising / total, 0.5, "варианты «1-0…4-0» не должны идти по возрастанию")
+
+    def test_no_wrong_option_sounds_like_the_correct_one(self):
+        # 苹果 píngguǒ 2-3: 3-3 в речи тоже звучит 2-3 — второй верный «по слуху».
+        for word, seq, options, correct in self.questions():
+            for k, option in enumerate(options):
+                if k != correct:
+                    self.assertNotIn(seq, tones.heard_sequences(word, option), f"{word} {seq}: {option}")
+        texts = {o["text"] for o in tones.make_options("苹果", (2, 3))[0]}
+        self.assertNotIn("3-3", texts)
+
+    def test_neutral_syllable_stays_neutral_in_every_option(self):
+        # Лёгкий тон у части вариантов выдавал верный, а полный тон вместо лёгкого бывает слышен (xuéshēng).
+        for word, seq, options, correct in self.questions():
+            for i, tone in enumerate(seq):
+                if tone == 0:
+                    self.assertEqual({o[i] for o in options}, {0}, f"{word} {seq}: {options}")
 
 
 class SandhiTest(unittest.TestCase):
