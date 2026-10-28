@@ -1965,9 +1965,12 @@ test('тоны: загрузка файла прогресса не стирае
   await page.locator('[data-card]').waitFor();
   await page.keyboard.press('2');
   await page.locator('.feedback').waitFor();
+  // «Продолжить» — в «Следующем раунде», рядом с кнопкой.
+  await page.goto(`${withWords}#/practice/setup`);
+  await see(page, '.next a.button', /Продолжить раунд · 1 из 2/);
   // Практика начата и отвечена: новый круг тонов её заменит — ученик предупреждён.
   await page.goto(`${withWords}#/tones/setup`);
-  await see(page, '#replaceWarning', /заменит его/);
+  await see(page, '.next #replaceWarning', /заменит его/);
   await page.getByRole('button', { name: 'Начать раунд' }).click();
   await see(page, '.progress', /Слово 1 из 4/);
   await page.keyboard.press((await toneKeys(page)).right);
@@ -1984,7 +1987,7 @@ test('тоны: загрузка файла прогресса не стирае
   assert.deepEqual(after.ids, before.ids);
   // И наоборот: в практике — предупреждение о начатом круге тонов.
   await page.goto(`${withWords}#/practice/setup`);
-  await see(page, '#replaceWarning', /раунд тонов/);
+  await see(page, '.next #replaceWarning', /раунд тонов/);
   assert.deepEqual(errors, []);
   await context.close();
 });
@@ -2021,12 +2024,41 @@ for (const [screen, hash, real] of [['практика', '#/practice', '#startRo
   });
 }
 
-test('«Следующий раунд»: строка называет выбранное', { skip }, async () => {
+test('«Следующий раунд»: строка называет выбранное, подсказка Enter — только при доступной кнопке', { skip }, async () => {
   const { page, context, errors } = await open(mainUrl, { width: 1280, height: 900, hash: '#/practice' });
   await page.locator('#startRound').waitFor();
+  await see(page, '#nextSummary', /^Все задания 15–27$/);
   await page.locator('input[data-key="Задания:22"]').check({ force: true });
   await page.locator('#stateFilter').selectOption('new');
-  await see(page, '#nextSummary', /^Задани[ея] .*22.* · новые$/);
+  await see(page, '#nextSummary', /^Задание 22 · только новые$/);
+  await page.locator('input[data-key="Задания:20"]').check({ force: true });
+  await see(page, '#nextSummary', /^Задания 20, 22 · только новые$/);
+  assert.equal(await page.locator('.next .keys').count(), 1);
+  // Заданий нет — кнопка выключена, подсказки Enter нет.
+  await page.locator('#stateFilter').selectOption('mistakes');
+  await see(page, '#available', /Ошибок с такими фильтрами нет/);
+  assert.equal(await page.locator('#startRound').isDisabled(), true);
+  assert.equal(await page.locator('.next .keys').count(), 0);
+  // Тема из ссылки учителя — названа темой, а не «все задания».
+  await page.goto(`${mainUrl}#/practice?topics=${encodeURIComponent((await page.evaluate(() => JSON.parse(document.getElementById('trainer-data').textContent).topics[0].id)))}`);
+  await see(page, '#nextSummary', /^Тема: /);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+// Отметили номер — строка «Следующего раунда» выше стала длиннее, а нажатое не уехало из-под пальца.
+test('телефон: флажок под пальцем не сдвигается, когда строка наверху меняет высоту', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { width: 320, height: 640, reducedMotion: 'reduce', hash: '#/practice' });
+  await page.locator('#startRound').waitFor();
+  const row = (n) => page.locator(`input[data-key="Задания:${n}"]`);
+  for (const n of [16, 17, 18, 19, 20, 22, 25, 27]) {
+    await row(n).scrollIntoViewIfNeeded();
+    const before = (await row(n).boundingBox()).y;
+    await page.locator('.task-row').filter({ has: row(n) }).click();
+    await page.waitForFunction((key) => document.querySelector(`input[data-key="${key}"]`).checked, `Задания:${n}`);
+    const after = (await row(n).boundingBox()).y;
+    assert.ok(Math.abs(after - before) <= 1, `№${n}: ${before} → ${after}`);
+  }
   assert.deepEqual(errors, []);
   await context.close();
 });

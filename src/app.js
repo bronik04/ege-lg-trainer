@@ -262,9 +262,22 @@
     releaseTop = release;
   }
 
+  // data-key элемента под последним касанием или щелчком: на iPhone касание флажка не даёт ему фокус.
+  let touchedKey = null;
+  document.addEventListener('pointerdown', (event) => {
+    const node = event.target.closest && (event.target.closest('[data-key]') || (event.target.closest('label') || { querySelector: () => null }).querySelector('[data-key]'));
+    touchedKey = node ? node.dataset.key : null;
+  }, true);
+  const keyed = (key) => [...view.querySelectorAll('[data-key]')].find((node) => node.dataset.key === key);
+
   function render(focus = true) {
     const active = document.activeElement;
     const activeKey = active && active.dataset ? active.dataset.key : null;
+    // Перерисовка на месте не сдвигает нажатое под пальцем: строка «Следующего раунда» выше
+    // флажков меняет высоту, а прокрутка остаётся прежней. Запоминаем, где было нажатое.
+    const anchorKey = focus ? null : activeKey || touchedKey;
+    const anchorNode = anchorKey ? keyed(anchorKey) : null;
+    const anchorTop = anchorNode ? anchorNode.getBoundingClientRect().top : null;
     let { name, arg, query } = route();
     if (query && (name === 'practice' || name === 'variant')) {
       openShared(name, query);
@@ -305,9 +318,14 @@
       holdTop();
       const target = view.querySelector('[data-focus]') || view;
       target.focus({ preventScroll: true });
-    } else if (activeKey) {
-      const same = [...view.querySelectorAll('[data-key]')].find((node) => node.dataset.key === activeKey);
-      if (same) same.focus();
+    } else {
+      const same = activeKey ? keyed(activeKey) : null;
+      if (same) same.focus({ preventScroll: true });
+      const anchor = anchorKey ? keyed(anchorKey) : null;
+      if (anchor && anchorTop !== null) {
+        const shift = anchor.getBoundingClientRect().top - anchorTop;
+        if (shift) window.scrollBy(0, shift);
+      }
     }
     view.classList.toggle('has-start-bar', Boolean(document.getElementById('startBar')));
     syncStartBar();
@@ -1097,7 +1115,8 @@
 
   // Состояние ответов: общий список для практики и тонов (подпись в «Следующем раунде» — его же).
   const STATE_OPTIONS = [['all', 'Все'], ['new', 'Новые'], ['done', 'Уже решённые'], ['review', 'На повторение'], ['mistakes', 'Ошибки']];
-  const stateName = (v) => (STATE_OPTIONS.find(([key]) => key === v) || [v, v])[1];
+  // В строке «Следующего раунда» состояние — с «только»: «Новые задания · новые» читалось бы как повтор.
+  const STATE_SUMMARY = { new: 'только новые', done: 'только решённые', review: 'на повторение', mistakes: 'только ошибки' };
 
   // «Следующий раунд» — первым на экране, как в тренажёре по лингвострановедению: что войдёт в
   // раунд одной строкой, сколько заданий и кнопка; настройки — ниже. Ушла кнопка за верхний край
@@ -1108,17 +1127,22 @@
       notice,
       warning,
       el('div', { class: 'actions' }, start, resume),
-      el('p', { class: 'keys' }, el('kbd', { text: 'Enter' }), ' — начать раунд'));
+      start.disabled ? null : el('p', { class: 'keys' }, el('kbd', { text: 'Enter' }), ' — начать раунд'));
   }
 
+  // Части через « · »: в названиях правил свои запятые. Два правила и больше — числом.
   function practiceSummary() {
     const tasks = [...filters.tasks].sort((a, b) => a - b);
-    const parts = [tasks.length ? `${tasks.length === 1 ? 'Задание' : 'Задания'} ${tasks.join(', ')}` : `Все задания ${TASK_NUMBERS[0]}–${TASK_NUMBERS[TASK_NUMBERS.length - 1]}`];
-    if (filters.topics.length) parts.push(filters.topics.map(topicTitle).join(', '));
+    const topics = filters.topics.map(topicTitle);
+    const parts = [];
+    if (tasks.length) parts.push(`${tasks.length === 1 ? 'Задание' : 'Задания'} ${tasks.join(', ')}`);
+    if (topics.length) parts.push(`${tasks.length ? 'т' : 'Т'}${topics.length === 1 ? 'ема' : 'емы'}: ${topics.join('; ')}`);
+    if (!parts.length) parts.push(`Все задания ${TASK_NUMBERS[0]}–${TASK_NUMBERS[TASK_NUMBERS.length - 1]}`);
     const ruleTitles = filters.rules.map((id) => rulesById.get(id)).filter(Boolean).map((r) => r.title);
-    if (ruleTitles.length) parts.push(ruleTitles.join(', '));
+    if (ruleTitles.length === 1) parts.push(`правило: ${ruleTitles[0]}`);
+    else if (ruleTitles.length) parts.push(`${ruleTitles.length} ${plural(ruleTitles.length, 'правило', 'правила', 'правил')}`);
     if (filters.origins.length) parts.push(filters.origins.map((o) => ORIGIN_NAMES[o] || o).join(', '));
-    if (filters.state !== 'all') parts.push(stateName(filters.state).toLowerCase());
+    if (STATE_SUMMARY[filters.state]) parts.push(STATE_SUMMARY[filters.state]);
     return parts.join(' · ');
   }
 
@@ -1127,7 +1151,7 @@
     const lengths = [...toneFilters.lengths].sort((a, b) => a - b);
     const parts = [levels.length ? `HSK ${levels.join(', ')}` : 'Все уровни HSK 1–4'];
     parts.push(lengths.length ? `${lengths.join(' и ')} иероглифа` : 'слова из 2–3 иероглифов');
-    if (toneFilters.state !== 'all') parts.push(stateName(toneFilters.state).toLowerCase());
+    if (STATE_SUMMARY[toneFilters.state]) parts.push(STATE_SUMMARY[toneFilters.state]);
     return parts.join(' · ');
   }
 
