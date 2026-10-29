@@ -3,7 +3,7 @@
     python3 scripts/build_tones.py
 
 Слово берётся, если чтение однозначно: источники (таблицы автора, Anki) сходятся в тонах, пиньинь делится на
-слоги по числу иероглифов, слова нет среди заданий №15 банка (тренировка не подсказывает ключ).
+слоги по числу иероглифов, слова нет среди заданий №15 банка на сайте (тренировка не подсказывает ключ; черновик ключа не покажет).
 Остальные — в data/review/tones-report.md: автор решает по ним и вписывает чтение в data/words/overrides.json:
 
     { "слово": { "pinyin": "fǎn gǎn", "why": "почему так" } }   # чтение вписано
@@ -34,8 +34,9 @@ def short_translation(ru):
 
 
 def fipi_stems(questions):
-    """Слова заданий №15 банка без знаков в конце: «整齐。» → «整齐»."""
-    return {re.sub(r"[\s.。]+$", "", q["stem"]) for q in questions if q["taskNumber"] == 15}
+    """Слова заданий №15 банка, которые идут на сайт, без знаков в конце: «整齐。» → «整齐». Черновик ключа ученику
+    не покажет; выйдет задание на сайт — слово уйдёт из тренировки при следующей сборке."""
+    return {re.sub(r"[\s.。]+$", "", q["stem"]) for q in questions if q["taskNumber"] == 15 and q.get("reviewStatus") == "ready"}
 
 
 def build(source, overrides, stems, previous):
@@ -49,7 +50,7 @@ def build(source, overrides, stems, previous):
             skipped.append((word, level, f"решение автора: {decision.get('why', 'не берётся')}"))
             continue
         if word in stems:
-            skipped.append((word, level, "есть среди заданий №15 банка"))
+            skipped.append((word, level, "есть среди заданий №15 на сайте"))
             continue
         candidates = [decision["pinyin"]] if decision.get("pinyin") else item["table"] + item["anki"]
         reading = tones.read_candidates(candidates, len(word))

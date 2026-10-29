@@ -271,7 +271,7 @@ def tone_word_problems(entries, bank_stems=()):
             errors.append(f"{where}: не 2–3 иероглифа")
             continue
         if word in bank_stems:
-            errors.append(f"{where}: есть среди заданий №15 банка — тренировка подсказала бы ключ")
+            errors.append(f"{where}: есть среди заданий №15 на сайте — тренировка подсказала бы ключ (python3 scripts/build_tones.py)")
         if e.get("level") not in TONE_LEVELS:
             errors.append(f"{where}: уровень HSK {e.get('level')!r} вне 1–4")
         seq = e.get("tones")
@@ -338,7 +338,9 @@ def check_all(questions, topics, rules, rule_checks, tone_words=()):
                    for item in items if item.get("status") == "accepted" and item.get("acceptedHash") != content_hash(item)]
     for q in questions:
         errors += [f"задание {q.get('id')}: {p}" for p in question_problems(q, topic_ids, rules_by_id)]
-    stems = {re.sub(r"[\s.。]+$", "", q.get("stem", "")) for q in questions if q.get("taskNumber") == 15}
+    # Только задания на сайте: черновик №15 ключа ученику не покажет (build_tones.fipi_stems).
+    stems = {re.sub(r"[\s.。]+$", "", q.get("stem", "")) for q in questions
+             if q.get("taskNumber") == 15 and q.get("reviewStatus") == "ready"}
     errors += tone_word_problems(tone_words, stems)
     return errors
 
