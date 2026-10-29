@@ -645,6 +645,22 @@
       "status": "draft"
     },
     {
+      "word": "水果",
+      "level": 1,
+      "pinyin": "shuǐguǒ",
+      "syllables": [
+        "shuǐ",
+        "guǒ"
+      ],
+      "tones": [
+        3,
+        3
+      ],
+      "ru": "фрукты",
+      "status": "accepted",
+      "acceptedHash": "f6a1b2dc50f2"
+    },
+    {
       "word": "汉语",
       "level": 1,
       "pinyin": "hànyǔ",
@@ -677,6 +693,22 @@
       "ru": "неважно",
       "status": "accepted",
       "acceptedHash": "82461f9f2bd2"
+    },
+    {
+      "word": "漂亮",
+      "level": 1,
+      "pinyin": "piàoliang",
+      "syllables": [
+        "piào",
+        "liang"
+      ],
+      "tones": [
+        4,
+        0
+      ],
+      "ru": "красивый",
+      "status": "accepted",
+      "acceptedHash": "62ddc3c96f61"
     },
     {
       "word": "火车站",
@@ -839,6 +871,22 @@
       "ru": "яблоко",
       "status": "accepted",
       "acceptedHash": "128b608ddb16"
+    },
+    {
+      "word": "衣服",
+      "level": 1,
+      "pinyin": "yīfu",
+      "syllables": [
+        "yī",
+        "fu"
+      ],
+      "tones": [
+        1,
+        0
+      ],
+      "ru": "одежда",
+      "status": "accepted",
+      "acceptedHash": "a99ca7b5afd0"
     },
     {
       "word": "认识",
@@ -1904,6 +1952,22 @@
       "acceptedHash": "ad20d0608317"
     },
     {
+      "word": "觉得",
+      "level": 2,
+      "pinyin": "juéde",
+      "syllables": [
+        "jué",
+        "de"
+      ],
+      "tones": [
+        2,
+        0
+      ],
+      "ru": "считать, чувствовать",
+      "status": "accepted",
+      "acceptedHash": "b6ced9548e6d"
+    },
+    {
       "word": "起床",
       "level": 2,
       "pinyin": "qǐchuáng",
@@ -2256,6 +2320,22 @@
       "ru": "привычка",
       "status": "accepted",
       "acceptedHash": "70638db3c524"
+    },
+    {
+      "word": "了解",
+      "level": 3,
+      "pinyin": "liǎojiě",
+      "syllables": [
+        "liǎo",
+        "jiě"
+      ],
+      "tones": [
+        3,
+        3
+      ],
+      "ru": "понять",
+      "status": "accepted",
+      "acceptedHash": "da0725ad9551"
     },
     {
       "word": "以为",
@@ -3014,6 +3094,22 @@
       "acceptedHash": "c7dbfb19ef8c"
     },
     {
+      "word": "头发",
+      "level": 3,
+      "pinyin": "tóufa",
+      "syllables": [
+        "tóu",
+        "fa"
+      ],
+      "tones": [
+        2,
+        0
+      ],
+      "ru": "волосы",
+      "status": "accepted",
+      "acceptedHash": "cae194fd4e13"
+    },
+    {
       "word": "奇怪",
       "level": 3,
       "pinyin": "qíguài",
@@ -3267,6 +3363,22 @@
       "ru": "молодой",
       "status": "accepted",
       "acceptedHash": "969c70a8ed7c"
+    },
+    {
+      "word": "应该",
+      "level": 3,
+      "pinyin": "yīnggāi",
+      "syllables": [
+        "yīng",
+        "gāi"
+      ],
+      "tones": [
+        1,
+        1
+      ],
+      "ru": "следует, должно",
+      "status": "accepted",
+      "acceptedHash": "4a4c473bfd30"
     },
     {
       "word": "当然",
@@ -9044,6 +9156,22 @@
       "ru": "временный",
       "status": "accepted",
       "acceptedHash": "244c44fd1ee1"
+    },
+    {
+      "word": "暖和",
+      "level": 4,
+      "pinyin": "nuǎnhuo",
+      "syllables": [
+        "nuǎn",
+        "huo"
+      ],
+      "tones": [
+        3,
+        0
+      ],
+      "ru": "тёплый",
+      "status": "accepted",
+      "acceptedHash": "090099e9be9c"
     },
     {
       "word": "最后",

@@ -338,7 +338,9 @@ def check_all(questions, topics, rules, rule_checks, tone_words=()):
                    for item in items if item.get("status") == "accepted" and item.get("acceptedHash") != content_hash(item)]
     for q in questions:
         errors += [f"задание {q.get('id')}: {p}" for p in question_problems(q, topic_ids, rules_by_id)]
-    stems = {re.sub(r"[\s.。]+$", "", q.get("stem", "")) for q in questions if q.get("taskNumber") == 15}
+    # Только задания на сайте: черновик №15 ключа ученику не покажет (build_tones.fipi_stems).
+    stems = {re.sub(r"[\s.。]+$", "", q.get("stem", "")) for q in questions
+             if q.get("taskNumber") == 15 and q.get("reviewStatus") == "ready"}
     errors += tone_word_problems(tone_words, stems)
     return errors
 

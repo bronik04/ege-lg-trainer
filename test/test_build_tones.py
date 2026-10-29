@@ -38,6 +38,13 @@ class BuildTest(unittest.TestCase):
         kept, skipped, _ = build_tones.build(source(item("整齐", 4, ["zhěngqí"])), {}, {"整齐"}, [])
         self.assertEqual((kept, skipped[0][2]), ([], "есть среди заданий №15 банка"))
 
+    def test_only_published_task_15_takes_the_word_away(self):
+        # Черновик №15 (без разбора, не на сайте) ключа не подсказывает: слово остаётся в тренировке.
+        questions = [{"taskNumber": 15, "stem": "整齐。", "reviewStatus": "ready"},
+                     {"taskNumber": 15, "stem": "漂亮", "reviewStatus": "imported"},
+                     {"taskNumber": 16, "stem": "学生", "reviewStatus": "ready"}]
+        self.assertEqual(build_tones.fipi_stems(questions), {"整齐"})
+
     def test_override_fixes_reading_skip_removes_word(self):
         data = source(item("不过", 4, ["bùguò"], ["búguò"]), item("可能", 2, ["kěnéng"]), item("奇怪", 3, ["qíguài"]))
         overrides = {"不过": {"pinyin": "bù guò", "why": "x"}, "可能": {"pinyin": "kě néng", "why": "x"},

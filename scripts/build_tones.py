@@ -34,8 +34,9 @@ def short_translation(ru):
 
 
 def fipi_stems(questions):
-    """Слова заданий №15 банка без знаков в конце: «整齐。» → «整齐»."""
-    return {re.sub(r"[\s.。]+$", "", q["stem"]) for q in questions if q["taskNumber"] == 15}
+    """Слова заданий №15 банка, которые идут на сайт, без знаков в конце: «整齐。» → «整齐». Черновик ключа ученику
+    не покажет; выйдет задание на сайт — слово уйдёт из тренировки при следующей сборке."""
+    return {re.sub(r"[\s.。]+$", "", q["stem"]) for q in questions if q["taskNumber"] == 15 and q.get("reviewStatus") == "ready"}
 
 
 def build(source, overrides, stems, previous):
