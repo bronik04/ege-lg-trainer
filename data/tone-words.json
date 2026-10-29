@@ -24,8 +24,7 @@
         3
       ],
       "ru": "до полудня",
-      "status": "accepted",
-      "acceptedHash": "cb284d778714"
+      "status": "draft"
     },
     {
       "word": "下午",
@@ -40,8 +39,7 @@
         3
       ],
       "ru": "вторая половина дня, после полудня",
-      "status": "accepted",
-      "acceptedHash": "4674a239382a"
+      "status": "draft"
     },
     {
       "word": "下雨",
@@ -56,8 +54,7 @@
         3
       ],
       "ru": "идёт дождь",
-      "status": "accepted",
-      "acceptedHash": "e2337e5c9cf7"
+      "status": "draft"
     },
     {
       "word": "不客气",
@@ -74,8 +71,7 @@
         0
       ],
       "ru": "не за что, не стоит благодарности",
-      "status": "accepted",
-      "acceptedHash": "3e993fd45685"
+      "status": "draft"
     },
     {
       "word": "中午",
@@ -90,8 +86,7 @@
         3
       ],
       "ru": "полдень",
-      "status": "accepted",
-      "acceptedHash": "0763d8f56e4f"
+      "status": "draft"
     },
     {
       "word": "中国",
@@ -106,8 +101,7 @@
         2
       ],
       "ru": "Китай",
-      "status": "accepted",
-      "acceptedHash": "5c1165a46581"
+      "status": "draft"
     },
     {
       "word": "什么",
@@ -123,7 +117,7 @@
       ],
       "ru": "что?, что такое?",
       "status": "accepted",
-      "acceptedHash": "70fb5f6978e3"
+      "acceptedHash": "ddfab21b254e"
     },
     {
       "word": "今天",
@@ -139,7 +133,7 @@
       ],
       "ru": "сегодня",
       "status": "accepted",
-      "acceptedHash": "9ffcdf5a25a7"
+      "acceptedHash": "a86c08577e1d"
     },
     {
       "word": "先生",
@@ -155,7 +149,7 @@
       ],
       "ru": "господин",
       "status": "accepted",
-      "acceptedHash": "02b2517e7d09"
+      "acceptedHash": "ed15c472896f"
     },
     {
       "word": "再见",
@@ -171,7 +165,7 @@
       ],
       "ru": "до свидания",
       "status": "accepted",
-      "acceptedHash": "5e918d4c59ae"
+      "acceptedHash": "c042cd3110dc"
     },
     {
       "word": "出租车",
@@ -188,8 +182,7 @@
         1
       ],
       "ru": "такси",
-      "status": "accepted",
-      "acceptedHash": "9af33a730b4c"
+      "status": "draft"
     },
     {
       "word": "分钟",
@@ -204,8 +197,7 @@
         1
       ],
       "ru": "минута",
-      "status": "accepted",
-      "acceptedHash": "036be52e9a36"
+      "status": "draft"
     },
     {
       "word": "北京",
@@ -221,7 +213,7 @@
       ],
       "ru": "Пекин",
       "status": "accepted",
-      "acceptedHash": "df7153409eaf"
+      "acceptedHash": "08b410a811e5"
     },
     {
       "word": "医院",
@@ -236,8 +228,7 @@
         4
       ],
       "ru": "больница",
-      "status": "accepted",
-      "acceptedHash": "c800dacdd5e0"
+      "status": "draft"
     },
     {
       "word": "名字",
@@ -253,7 +244,7 @@
       ],
       "ru": "имя (человека)",
       "status": "accepted",
-      "acceptedHash": "7f9e1ce9591e"
+      "acceptedHash": "5a69527039fe"
     },
     {
       "word": "商店",
@@ -269,7 +260,7 @@
       ],
       "ru": "магазин",
       "status": "accepted",
-      "acceptedHash": "f4eb5e76a2fe"
+      "acceptedHash": "7f81d2796e7a"
     },
     {
       "word": "喜欢",
@@ -285,7 +276,7 @@
       ],
       "ru": "нравиться",
       "status": "accepted",
-      "acceptedHash": "07438c77d125"
+      "acceptedHash": "bd12ec678bf4"
     },
     {
       "word": "多少",
@@ -301,7 +292,7 @@
       ],
       "ru": "сколько?",
       "status": "accepted",
-      "acceptedHash": "0d0b3aecdb8e"
+      "acceptedHash": "a9d72df4c42e"
     },
     {
       "word": "天气",
@@ -316,8 +307,7 @@
         4
       ],
       "ru": "погода",
-      "status": "accepted",
-      "acceptedHash": "0fde82dcb313"
+      "status": "draft"
     },
     {
       "word": "女儿",
@@ -333,7 +323,7 @@
       ],
       "ru": "дочь",
       "status": "accepted",
-      "acceptedHash": "a5b16dcaeb39"
+      "acceptedHash": "f5df7e6daf19"
     },
     {
       "word": "学习",
@@ -348,8 +338,7 @@
         2
       ],
       "ru": "учиться",
-      "status": "accepted",
-      "acceptedHash": "8c3e08c8610a"
+      "status": "draft"
     },
     {
       "word": "学校",
@@ -365,7 +354,7 @@
       ],
       "ru": "школа",
       "status": "accepted",
-      "acceptedHash": "09b71bf5f77d"
+      "acceptedHash": "894f69626bf5"
     },
     {
       "word": "学生",
@@ -381,7 +370,7 @@
       ],
       "ru": "студент",
       "status": "accepted",
-      "acceptedHash": "3ba2d9f34e0f"
+      "acceptedHash": "ed65cba934cf"
     },
     {
       "word": "对不起",
@@ -398,8 +387,7 @@
         3
       ],
       "ru": "виноват!, простите!, извините!",
-      "status": "accepted",
-      "acceptedHash": "ac3ddc207fa7"
+      "status": "draft"
     },
     {
       "word": "工作",
@@ -415,7 +403,7 @@
       ],
       "ru": "работать",
       "status": "accepted",
-      "acceptedHash": "501bbe2c9953"
+      "acceptedHash": "1372e724c5dc"
     },
     {
       "word": "怎么",
@@ -431,7 +419,7 @@
       ],
       "ru": "как?, каким образом?",
       "status": "accepted",
-      "acceptedHash": "567e6a85e320"
+      "acceptedHash": "70f8de04ed71"
     },
     {
       "word": "怎么样",
@@ -448,8 +436,7 @@
         4
       ],
       "ru": "как, каким образом",
-      "status": "accepted",
-      "acceptedHash": "45566e149dfa"
+      "status": "draft"
     },
     {
       "word": "我们",
@@ -465,7 +452,7 @@
       ],
       "ru": "мы",
       "status": "accepted",
-      "acceptedHash": "fd36dbe2e396"
+      "acceptedHash": "6ce1b6ae4571"
     },
     {
       "word": "打电话",
@@ -483,7 +470,7 @@
       ],
       "ru": "звонить по телефону",
       "status": "accepted",
-      "acceptedHash": "61d068f066fa"
+      "acceptedHash": "11689a1a5788"
     },
     {
       "word": "时候",
@@ -499,7 +486,7 @@
       ],
       "ru": "время, промежуток",
       "status": "accepted",
-      "acceptedHash": "53fbfa46ff9f"
+      "acceptedHash": "57c04e54602f"
     },
     {
       "word": "明天",
@@ -515,7 +502,7 @@
       ],
       "ru": "завтра",
       "status": "accepted",
-      "acceptedHash": "f2be53a92f6a"
+      "acceptedHash": "6f1c785159e0"
     },
     {
       "word": "星期",
@@ -530,8 +517,7 @@
         1
       ],
       "ru": "неделя",
-      "status": "accepted",
-      "acceptedHash": "caa1bab6f26c"
+      "status": "draft"
     },
     {
       "word": "昨天",
@@ -547,7 +533,7 @@
       ],
       "ru": "вчера",
       "status": "accepted",
-      "acceptedHash": "c433179edb49"
+      "acceptedHash": "a5002446b51c"
     },
     {
       "word": "朋友",
@@ -563,7 +549,7 @@
       ],
       "ru": "друг, товарищ",
       "status": "accepted",
-      "acceptedHash": "0c64db7bb89e"
+      "acceptedHash": "6fa6af6d613a"
     },
     {
       "word": "水果",
@@ -578,8 +564,7 @@
         3
       ],
       "ru": "фрукты",
-      "status": "accepted",
-      "acceptedHash": "f6a1b2dc50f2"
+      "status": "draft"
     },
     {
       "word": "汉语",
@@ -594,8 +579,7 @@
         3
       ],
       "ru": "китайский язык",
-      "status": "accepted",
-      "acceptedHash": "dd13bd168fc8"
+      "status": "draft"
     },
     {
       "word": "没关系",
@@ -613,7 +597,7 @@
       ],
       "ru": "неважно",
       "status": "accepted",
-      "acceptedHash": "82461f9f2bd2"
+      "acceptedHash": "0a6c11e44529"
     },
     {
       "word": "漂亮",
@@ -629,7 +613,7 @@
       ],
       "ru": "красивый",
       "status": "accepted",
-      "acceptedHash": "62ddc3c96f61"
+      "acceptedHash": "1b0a3b5c7d78"
     },
     {
       "word": "火车站",
@@ -646,8 +630,7 @@
         4
       ],
       "ru": "вокзал",
-      "status": "accepted",
-      "acceptedHash": "40c72a671f4a"
+      "status": "draft"
     },
     {
       "word": "现在",
@@ -662,8 +645,7 @@
         4
       ],
       "ru": "теперь",
-      "status": "accepted",
-      "acceptedHash": "bcea59949e90"
+      "status": "draft"
     },
     {
       "word": "电影",
@@ -678,8 +660,7 @@
         3
       ],
       "ru": "кино",
-      "status": "accepted",
-      "acceptedHash": "0b82a1886971"
+      "status": "draft"
     },
     {
       "word": "电脑",
@@ -695,7 +676,7 @@
       ],
       "ru": "компьютер",
       "status": "accepted",
-      "acceptedHash": "19a56c009885"
+      "acceptedHash": "02b1ed687280"
     },
     {
       "word": "电视",
@@ -710,8 +691,7 @@
         4
       ],
       "ru": "телевидение",
-      "status": "accepted",
-      "acceptedHash": "03932e5a874b"
+      "status": "draft"
     },
     {
       "word": "睡觉",
@@ -727,7 +707,7 @@
       ],
       "ru": "спать",
       "status": "accepted",
-      "acceptedHash": "d26e4aa5d48e"
+      "acceptedHash": "5f4ff278d830"
     },
     {
       "word": "米饭",
@@ -742,8 +722,7 @@
         4
       ],
       "ru": "варёный рис",
-      "status": "accepted",
-      "acceptedHash": "570200debb69"
+      "status": "draft"
     },
     {
       "word": "老师",
@@ -758,8 +737,7 @@
         1
       ],
       "ru": "учитель",
-      "status": "accepted",
-      "acceptedHash": "0fae2b5c2bb2"
+      "status": "draft"
     },
     {
       "word": "苹果",
@@ -774,8 +752,7 @@
         3
       ],
       "ru": "яблоко",
-      "status": "accepted",
-      "acceptedHash": "128b608ddb16"
+      "status": "draft"
     },
     {
       "word": "衣服",
@@ -791,7 +768,7 @@
       ],
       "ru": "одежда",
       "status": "accepted",
-      "acceptedHash": "a99ca7b5afd0"
+      "acceptedHash": "155cc941c03b"
     },
     {
       "word": "认识",
@@ -807,7 +784,7 @@
       ],
       "ru": "знать",
       "status": "accepted",
-      "acceptedHash": "ed89a671b9e5"
+      "acceptedHash": "39b67d52d28b"
     },
     {
       "word": "说话",
@@ -823,7 +800,7 @@
       ],
       "ru": "говорить",
       "status": "accepted",
-      "acceptedHash": "2965569b065b"
+      "acceptedHash": "dfde439e353f"
     },
     {
       "word": "谢谢",
@@ -839,7 +816,7 @@
       ],
       "ru": "спасибо, благодарю",
       "status": "accepted",
-      "acceptedHash": "f12aa71e7600"
+      "acceptedHash": "e153a8ed16da"
     },
     {
       "word": "飞机",
@@ -854,8 +831,7 @@
         1
       ],
       "ru": "самолёт",
-      "status": "accepted",
-      "acceptedHash": "ed7b8f47fbbc"
+      "status": "draft"
     },
     {
       "word": "饭馆",
@@ -871,7 +847,7 @@
       ],
       "ru": "ресторан",
       "status": "accepted",
-      "acceptedHash": "2c9e70144cb5"
+      "acceptedHash": "36625dd57392"
     },
     {
       "word": "高兴",
@@ -887,7 +863,7 @@
       ],
       "ru": "радоваться",
       "status": "accepted",
-      "acceptedHash": "39d8f83a3888"
+      "acceptedHash": "be3e828d6bd4"
     },
     {
       "word": "一起",
@@ -902,8 +878,7 @@
         3
       ],
       "ru": "вместе",
-      "status": "accepted",
-      "acceptedHash": "fb10d94310da"
+      "status": "draft"
     },
     {
       "word": "丈夫",
@@ -919,7 +894,7 @@
       ],
       "ru": "муж",
       "status": "accepted",
-      "acceptedHash": "ba923ca8a563"
+      "acceptedHash": "ade685598a6f"
     },
     {
       "word": "上班",
@@ -935,7 +910,7 @@
       ],
       "ru": "идти на работу",
       "status": "accepted",
-      "acceptedHash": "b36a69096f66"
+      "acceptedHash": "c3361f816a52"
     },
     {
       "word": "为什么",
@@ -953,7 +928,7 @@
       ],
       "ru": "почему",
       "status": "accepted",
-      "acceptedHash": "6a0a1475d8a7"
+      "acceptedHash": "6222a924944e"
     },
     {
       "word": "事情",
@@ -969,7 +944,7 @@
       ],
       "ru": "дело, событие, инцидент",
       "status": "accepted",
-      "acceptedHash": "4ea41a6cfb87"
+      "acceptedHash": "93a5f2747c20"
     },
     {
       "word": "介绍",
@@ -984,8 +959,7 @@
         4
       ],
       "ru": "представлять, знакомить",
-      "status": "accepted",
-      "acceptedHash": "40d81ab92fdc"
+      "status": "draft"
     },
     {
       "word": "休息",
@@ -1001,7 +975,7 @@
       ],
       "ru": "отдыхать",
       "status": "accepted",
-      "acceptedHash": "b2aed9e3d94d"
+      "acceptedHash": "8c0660acc597"
     },
     {
       "word": "但是",
@@ -1016,8 +990,7 @@
         4
       ],
       "ru": "но",
-      "status": "accepted",
-      "acceptedHash": "1684e3b9eec2"
+      "status": "draft"
     },
     {
       "word": "便宜",
@@ -1033,7 +1006,7 @@
       ],
       "ru": "дешёвый",
       "status": "accepted",
-      "acceptedHash": "78f8a6aaa90f"
+      "acceptedHash": "b228af965b93"
     },
     {
       "word": "公司",
@@ -1049,7 +1022,7 @@
       ],
       "ru": "компания",
       "status": "accepted",
-      "acceptedHash": "349b4e54d071"
+      "acceptedHash": "f442196c6631"
     },
     {
       "word": "公斤",
@@ -1065,7 +1038,7 @@
       ],
       "ru": "килограмм",
       "status": "accepted",
-      "acceptedHash": "a13fcea9af8b"
+      "acceptedHash": "4c80656414f7"
     },
     {
       "word": "准备",
@@ -1081,7 +1054,7 @@
       ],
       "ru": "готовить",
       "status": "accepted",
-      "acceptedHash": "82d6cf641efb"
+      "acceptedHash": "6b99fd7c5d08"
     },
     {
       "word": "去年",
@@ -1097,7 +1070,7 @@
       ],
       "ru": "прошлый год",
       "status": "accepted",
-      "acceptedHash": "fb3d3ead146e"
+      "acceptedHash": "8774a72d6071"
     },
     {
       "word": "可以",
@@ -1112,8 +1085,7 @@
         3
       ],
       "ru": "можно, возможно",
-      "status": "accepted",
-      "acceptedHash": "0054c34c77cb"
+      "status": "draft"
     },
     {
       "word": "可能",
@@ -1128,8 +1100,7 @@
         2
       ],
       "ru": "возможно",
-      "status": "accepted",
-      "acceptedHash": "8c47e0257f0d"
+      "status": "draft"
     },
     {
       "word": "告诉",
@@ -1145,7 +1116,7 @@
       ],
       "ru": "сказать",
       "status": "accepted",
-      "acceptedHash": "b83e31d7bbcf"
+      "acceptedHash": "b767d59f6117"
     },
     {
       "word": "咖啡",
@@ -1161,7 +1132,7 @@
       ],
       "ru": "кофе",
       "status": "accepted",
-      "acceptedHash": "00fc0d2bce3c"
+      "acceptedHash": "3860b5420d11"
     },
     {
       "word": "唱歌",
@@ -1176,8 +1147,7 @@
         1
       ],
       "ru": "петь",
-      "status": "accepted",
-      "acceptedHash": "1e1e7c89f1fa"
+      "status": "draft"
     },
     {
       "word": "回答",
@@ -1192,8 +1162,7 @@
         2
       ],
       "ru": "отвечать",
-      "status": "accepted",
-      "acceptedHash": "d4818bf0733a"
+      "status": "draft"
     },
     {
       "word": "因为",
@@ -1208,8 +1177,7 @@
         4
       ],
       "ru": "так как, потому что",
-      "status": "accepted",
-      "acceptedHash": "3f44b5f80ba3"
+      "status": "draft"
     },
     {
       "word": "好吃",
@@ -1225,7 +1193,7 @@
       ],
       "ru": "вкусный",
       "status": "accepted",
-      "acceptedHash": "c816bace830d"
+      "acceptedHash": "40c4956a758d"
     },
     {
       "word": "小时",
@@ -1240,8 +1208,7 @@
         2
       ],
       "ru": "час",
-      "status": "accepted",
-      "acceptedHash": "7ffd724e0b2c"
+      "status": "draft"
     },
     {
       "word": "已经",
@@ -1256,8 +1223,7 @@
         1
       ],
       "ru": "уже",
-      "status": "accepted",
-      "acceptedHash": "6b3bee8c6cfe"
+      "status": "draft"
     },
     {
       "word": "希望",
@@ -1272,8 +1238,7 @@
         4
       ],
       "ru": "надеяться",
-      "status": "accepted",
-      "acceptedHash": "9a038988888e"
+      "status": "draft"
     },
     {
       "word": "帮助",
@@ -1288,8 +1253,7 @@
         4
       ],
       "ru": "помогать",
-      "status": "accepted",
-      "acceptedHash": "44f1d45aafee"
+      "status": "draft"
     },
     {
       "word": "开始",
@@ -1304,8 +1268,7 @@
         3
       ],
       "ru": "начинать",
-      "status": "accepted",
-      "acceptedHash": "a90f7036c896"
+      "status": "draft"
     },
     {
       "word": "快乐",
@@ -1321,7 +1284,7 @@
       ],
       "ru": "счастливый, радостный",
       "status": "accepted",
-      "acceptedHash": "1610d1a70f7c"
+      "acceptedHash": "bdefe7cdc1a9"
     },
     {
       "word": "意思",
@@ -1337,7 +1300,7 @@
       ],
       "ru": "смысл, значение",
       "status": "accepted",
-      "acceptedHash": "c46d6f8ee595"
+      "acceptedHash": "6dd01682bea7"
     },
     {
       "word": "房间",
@@ -1353,7 +1316,7 @@
       ],
       "ru": "комната",
       "status": "accepted",
-      "acceptedHash": "4bd7ea107630"
+      "acceptedHash": "b33c1e814726"
     },
     {
       "word": "所以",
@@ -1368,8 +1331,7 @@
         3
       ],
       "ru": "поэтому",
-      "status": "accepted",
-      "acceptedHash": "29e6a7bdd489"
+      "status": "draft"
     },
     {
       "word": "手机",
@@ -1384,8 +1346,7 @@
         1
       ],
       "ru": "Мобильный (сотовый) телефон",
-      "status": "accepted",
-      "acceptedHash": "47b1f41a5ef2"
+      "status": "draft"
     },
     {
       "word": "手表",
@@ -1401,7 +1362,7 @@
       ],
       "ru": "наручные часы",
       "status": "accepted",
-      "acceptedHash": "65fc882ebdcf"
+      "acceptedHash": "b7993fbddfe9"
     },
     {
       "word": "打篮球",
@@ -1418,8 +1379,7 @@
         2
       ],
       "ru": "играть в баскетбол",
-      "status": "accepted",
-      "acceptedHash": "d433788cdf5c"
+      "status": "draft"
     },
     {
       "word": "报纸",
@@ -1434,8 +1394,7 @@
         3
       ],
       "ru": "газета",
-      "status": "accepted",
-      "acceptedHash": "a9c59a38ce44"
+      "status": "draft"
     },
     {
       "word": "教室",
@@ -1450,8 +1409,7 @@
         4
       ],
       "ru": "класс",
-      "status": "accepted",
-      "acceptedHash": "2f045c99e15e"
+      "status": "draft"
     },
     {
       "word": "旁边",
@@ -1467,7 +1425,7 @@
       ],
       "ru": "сбоку",
       "status": "accepted",
-      "acceptedHash": "3dc006e451af"
+      "acceptedHash": "10da7a4076ed"
     },
     {
       "word": "旅游",
@@ -1483,7 +1441,7 @@
       ],
       "ru": "туризм",
       "status": "accepted",
-      "acceptedHash": "8f9a1361a809"
+      "acceptedHash": "ce0f9da60c1b"
     },
     {
       "word": "早上",
@@ -1499,7 +1457,7 @@
       ],
       "ru": "утром, спозаранку",
       "status": "accepted",
-      "acceptedHash": "39bd0830a191"
+      "acceptedHash": "829dfb048abf"
     },
     {
       "word": "时间",
@@ -1514,8 +1472,7 @@
         1
       ],
       "ru": "время",
-      "status": "accepted",
-      "acceptedHash": "30b9410055ca"
+      "status": "draft"
     },
     {
       "word": "晚上",
@@ -1531,7 +1488,7 @@
       ],
       "ru": "вечером",
       "status": "accepted",
-      "acceptedHash": "6c66c82cb2a7"
+      "acceptedHash": "3edb746ac015"
     },
     {
       "word": "服务员",
@@ -1548,8 +1505,7 @@
         2
       ],
       "ru": "обслуживающий персонал",
-      "status": "accepted",
-      "acceptedHash": "c3385b96a2b8"
+      "status": "draft"
     },
     {
       "word": "机场",
@@ -1565,7 +1521,7 @@
       ],
       "ru": "аэропорт",
       "status": "accepted",
-      "acceptedHash": "60f30ca03b80"
+      "acceptedHash": "0e05e537ee81"
     },
     {
       "word": "欢迎",
@@ -1580,8 +1536,7 @@
         2
       ],
       "ru": "приветствовать",
-      "status": "accepted",
-      "acceptedHash": "13ab2bf1dc2e"
+      "status": "draft"
     },
     {
       "word": "正在",
@@ -1597,7 +1552,7 @@
       ],
       "ru": "как раз сейчас (действие идёт)",
       "status": "accepted",
-      "acceptedHash": "830581f14ac0"
+      "acceptedHash": "c2498c105b98"
     },
     {
       "word": "游泳",
@@ -1613,7 +1568,7 @@
       ],
       "ru": "плавать",
       "status": "accepted",
-      "acceptedHash": "877d1c4e01fd"
+      "acceptedHash": "9f9bbe53723c"
     },
     {
       "word": "牛奶",
@@ -1629,7 +1584,7 @@
       ],
       "ru": "молоко",
       "status": "accepted",
-      "acceptedHash": "45b29e2968f2"
+      "acceptedHash": "64e27bc068d1"
     },
     {
       "word": "生日",
@@ -1644,8 +1599,7 @@
         4
       ],
       "ru": "день рождения",
-      "status": "accepted",
-      "acceptedHash": "c936b85ebd28"
+      "status": "draft"
     },
     {
       "word": "生病",
@@ -1661,7 +1615,7 @@
       ],
       "ru": "заболеть",
       "status": "accepted",
-      "acceptedHash": "cdecb3ade082"
+      "acceptedHash": "58876e43d328"
     },
     {
       "word": "眼睛",
@@ -1677,7 +1631,7 @@
       ],
       "ru": "глаза",
       "status": "accepted",
-      "acceptedHash": "53a5e60540dd"
+      "acceptedHash": "7e7b0b508682"
     },
     {
       "word": "第一",
@@ -1692,8 +1646,7 @@
         1
       ],
       "ru": "первый",
-      "status": "accepted",
-      "acceptedHash": "1059e0061bb4"
+      "status": "draft"
     },
     {
       "word": "羊肉",
@@ -1708,8 +1661,7 @@
         4
       ],
       "ru": "баранина",
-      "status": "accepted",
-      "acceptedHash": "c7ac84451240"
+      "status": "draft"
     },
     {
       "word": "考试",
@@ -1724,8 +1676,7 @@
         4
       ],
       "ru": "экзамен",
-      "status": "accepted",
-      "acceptedHash": "89329eac55c5"
+      "status": "draft"
     },
     {
       "word": "自行车",
@@ -1742,8 +1693,7 @@
         1
       ],
       "ru": "велосипед",
-      "status": "accepted",
-      "acceptedHash": "3954ddf5e8a1"
+      "status": "draft"
     },
     {
       "word": "西瓜",
@@ -1759,7 +1709,7 @@
       ],
       "ru": "арбуз",
       "status": "accepted",
-      "acceptedHash": "ad20d0608317"
+      "acceptedHash": "ff91cf218fa3"
     },
     {
       "word": "觉得",
@@ -1775,7 +1725,7 @@
       ],
       "ru": "считать, чувствовать",
       "status": "accepted",
-      "acceptedHash": "b6ced9548e6d"
+      "acceptedHash": "4f3133e153ca"
     },
     {
       "word": "起床",
@@ -1790,8 +1740,7 @@
         2
       ],
       "ru": "встать с постели",
-      "status": "accepted",
-      "acceptedHash": "e4e99ebc07cd"
+      "status": "draft"
     },
     {
       "word": "跑步",
@@ -1807,7 +1756,7 @@
       ],
       "ru": "бег",
       "status": "accepted",
-      "acceptedHash": "7780ed7bd251"
+      "acceptedHash": "c03f5cf8bc2c"
     },
     {
       "word": "跳舞",
@@ -1822,8 +1771,7 @@
         3
       ],
       "ru": "танцевать",
-      "status": "accepted",
-      "acceptedHash": "39e4f63b84f3"
+      "status": "draft"
     },
     {
       "word": "踢足球",
@@ -1840,8 +1788,7 @@
         2
       ],
       "ru": "играть в футбол",
-      "status": "accepted",
-      "acceptedHash": "5fcb052a6717"
+      "status": "draft"
     },
     {
       "word": "身体",
@@ -1856,8 +1803,7 @@
         3
       ],
       "ru": "тело",
-      "status": "accepted",
-      "acceptedHash": "dc9e4b149d06"
+      "status": "draft"
     },
     {
       "word": "运动",
@@ -1873,7 +1819,7 @@
       ],
       "ru": "спорт",
       "status": "accepted",
-      "acceptedHash": "499c6d85c16c"
+      "acceptedHash": "e4d852b20fb8"
     },
     {
       "word": "问题",
@@ -1888,8 +1834,7 @@
         2
       ],
       "ru": "вопрос",
-      "status": "accepted",
-      "acceptedHash": "879bbde37fed"
+      "status": "draft"
     },
     {
       "word": "非常",
@@ -1904,8 +1849,7 @@
         2
       ],
       "ru": "очень",
-      "status": "accepted",
-      "acceptedHash": "0e872aed9b8d"
+      "status": "draft"
     },
     {
       "word": "鸡蛋",
@@ -1920,8 +1864,7 @@
         4
       ],
       "ru": "куриное яйцо",
-      "status": "accepted",
-      "acceptedHash": "a1562b720b9f"
+      "status": "draft"
     },
     {
       "word": "一共",
@@ -1937,7 +1880,7 @@
       ],
       "ru": "всего",
       "status": "accepted",
-      "acceptedHash": "a9c7eee3a553"
+      "acceptedHash": "2eea73385053"
     },
     {
       "word": "一定",
@@ -1953,7 +1896,7 @@
       ],
       "ru": "непременно, обязательно",
       "status": "accepted",
-      "acceptedHash": "24b0f16a52aa"
+      "acceptedHash": "fdfde6ec100b"
     },
     {
       "word": "一样",
@@ -1968,8 +1911,7 @@
         4
       ],
       "ru": "одинаковый",
-      "status": "accepted",
-      "acceptedHash": "b6690554e824"
+      "status": "draft"
     },
     {
       "word": "一直",
@@ -1984,8 +1926,7 @@
         2
       ],
       "ru": "всё время, постоянно",
-      "status": "accepted",
-      "acceptedHash": "8b3a64b41077"
+      "status": "draft"
     },
     {
       "word": "一般",
@@ -2001,7 +1942,7 @@
       ],
       "ru": "обычный, простой, рядовой, заурядный",
       "status": "accepted",
-      "acceptedHash": "4d25fb399bd1"
+      "acceptedHash": "6bbbd3168e40"
     },
     {
       "word": "一边",
@@ -2017,7 +1958,7 @@
       ],
       "ru": "одновременно (一边…一边…)",
       "status": "accepted",
-      "acceptedHash": "70d44d3500e8"
+      "acceptedHash": "d1e6284d6f4e"
     },
     {
       "word": "上网",
@@ -2033,7 +1974,7 @@
       ],
       "ru": "выходить в интернет",
       "status": "accepted",
-      "acceptedHash": "9793004367df"
+      "acceptedHash": "e7d0f68543c1"
     },
     {
       "word": "世界",
@@ -2048,8 +1989,7 @@
         4
       ],
       "ru": "вселенная",
-      "status": "accepted",
-      "acceptedHash": "a87d407b04a1"
+      "status": "draft"
     },
     {
       "word": "中间",
@@ -2065,7 +2005,7 @@
       ],
       "ru": "посередине",
       "status": "accepted",
-      "acceptedHash": "a97d58b57075"
+      "acceptedHash": "64ed658983e9"
     },
     {
       "word": "为了",
@@ -2081,7 +2021,7 @@
       ],
       "ru": "для",
       "status": "accepted",
-      "acceptedHash": "e2fbecc33081"
+      "acceptedHash": "50a61660906f"
     },
     {
       "word": "主要",
@@ -2096,8 +2036,7 @@
         4
       ],
       "ru": "главный",
-      "status": "accepted",
-      "acceptedHash": "6a47fcecc9fe"
+      "status": "draft"
     },
     {
       "word": "举行",
@@ -2112,8 +2051,7 @@
         2
       ],
       "ru": "проводить",
-      "status": "accepted",
-      "acceptedHash": "4ebe9128389e"
+      "status": "draft"
     },
     {
       "word": "习惯",
@@ -2128,8 +2066,7 @@
         4
       ],
       "ru": "привычка",
-      "status": "accepted",
-      "acceptedHash": "70638db3c524"
+      "status": "draft"
     },
     {
       "word": "了解",
@@ -2144,8 +2081,7 @@
         3
       ],
       "ru": "понять",
-      "status": "accepted",
-      "acceptedHash": "da0725ad9551"
+      "status": "draft"
     },
     {
       "word": "以为",
@@ -2160,8 +2096,7 @@
         2
       ],
       "ru": "(ошибочно) думать, полагать",
-      "status": "accepted",
-      "acceptedHash": "35a124df068d"
+      "status": "draft"
     },
     {
       "word": "以前",
@@ -2176,8 +2111,7 @@
         2
       ],
       "ru": "раньше, прежде",
-      "status": "accepted",
-      "acceptedHash": "4afbf7bf8d5e"
+      "status": "draft"
     },
     {
       "word": "以后",
@@ -2192,8 +2126,7 @@
         4
       ],
       "ru": "после",
-      "status": "accepted",
-      "acceptedHash": "1fde50323d61"
+      "status": "draft"
     },
     {
       "word": "会议",
@@ -2208,8 +2141,7 @@
         4
       ],
       "ru": "собрание",
-      "status": "accepted",
-      "acceptedHash": "41f91f2f7fb7"
+      "status": "draft"
     },
     {
       "word": "体育",
@@ -2224,8 +2156,7 @@
         4
       ],
       "ru": "физкультура",
-      "status": "accepted",
-      "acceptedHash": "20f6ca67b007"
+      "status": "draft"
     },
     {
       "word": "作业",
@@ -2240,8 +2171,7 @@
         4
       ],
       "ru": "домашнее задание",
-      "status": "accepted",
-      "acceptedHash": "0cf52eceb43a"
+      "status": "draft"
     },
     {
       "word": "作用",
@@ -2256,8 +2186,7 @@
         4
       ],
       "ru": "роль",
-      "status": "accepted",
-      "acceptedHash": "ec3e8245f43b"
+      "status": "draft"
     },
     {
       "word": "健康",
@@ -2273,7 +2202,7 @@
       ],
       "ru": "здоровье",
       "status": "accepted",
-      "acceptedHash": "821711ed24f0"
+      "acceptedHash": "a8c0731a7350"
     },
     {
       "word": "公园",
@@ -2289,7 +2218,7 @@
       ],
       "ru": "парк",
       "status": "accepted",
-      "acceptedHash": "d3b09f92dc97"
+      "acceptedHash": "b7da964a7115"
     },
     {
       "word": "关于",
@@ -2304,8 +2233,7 @@
         2
       ],
       "ru": "относительно, в отношении, что касается",
-      "status": "accepted",
-      "acceptedHash": "4117b9940ea5"
+      "status": "draft"
     },
     {
       "word": "关心",
@@ -2321,7 +2249,7 @@
       ],
       "ru": "заботиться",
       "status": "accepted",
-      "acceptedHash": "192b6baf161c"
+      "acceptedHash": "f3724d1a0edf"
     },
     {
       "word": "兴趣",
@@ -2337,7 +2265,7 @@
       ],
       "ru": "интерес",
       "status": "accepted",
-      "acceptedHash": "f6b7231ad974"
+      "acceptedHash": "1c31025f1cdc"
     },
     {
       "word": "其他",
@@ -2352,8 +2280,7 @@
         1
       ],
       "ru": "прочие",
-      "status": "accepted",
-      "acceptedHash": "186c9d9a28e2"
+      "status": "draft"
     },
     {
       "word": "其实",
@@ -2368,8 +2295,7 @@
         2
       ],
       "ru": "на самом деле",
-      "status": "accepted",
-      "acceptedHash": "8253720c1e52"
+      "status": "draft"
     },
     {
       "word": "冰箱",
@@ -2384,8 +2310,7 @@
         1
       ],
       "ru": "холодильник",
-      "status": "accepted",
-      "acceptedHash": "a2170c74c6e0"
+      "status": "draft"
     },
     {
       "word": "决定",
@@ -2401,7 +2326,7 @@
       ],
       "ru": "решить",
       "status": "accepted",
-      "acceptedHash": "9b8eb1afa90e"
+      "acceptedHash": "2babde7af09c"
     },
     {
       "word": "几乎",
@@ -2416,8 +2341,7 @@
         1
       ],
       "ru": "почти",
-      "status": "accepted",
-      "acceptedHash": "5ee682a9c729"
+      "status": "draft"
     },
     {
       "word": "出现",
@@ -2432,8 +2356,7 @@
         4
       ],
       "ru": "появиться",
-      "status": "accepted",
-      "acceptedHash": "38e53197d324"
+      "status": "draft"
     },
     {
       "word": "刚才",
@@ -2448,8 +2371,7 @@
         2
       ],
       "ru": "только что",
-      "status": "accepted",
-      "acceptedHash": "c359c1d1f6d4"
+      "status": "draft"
     },
     {
       "word": "刮风",
@@ -2465,7 +2387,7 @@
       ],
       "ru": "дует ветер",
       "status": "accepted",
-      "acceptedHash": "60a759ebb894"
+      "acceptedHash": "66281d7a65b6"
     },
     {
       "word": "刷牙",
@@ -2481,7 +2403,7 @@
       ],
       "ru": "чистка зубов",
       "status": "accepted",
-      "acceptedHash": "6fa1f2816f7e"
+      "acceptedHash": "bdc9ff4b9e22"
     },
     {
       "word": "办公室",
@@ -2498,8 +2420,7 @@
         4
       ],
       "ru": "кабинет",
-      "status": "accepted",
-      "acceptedHash": "d2f40bea9497"
+      "status": "draft"
     },
     {
       "word": "办法",
@@ -2515,7 +2436,7 @@
       ],
       "ru": "способ, метод",
       "status": "accepted",
-      "acceptedHash": "157011483c9e"
+      "acceptedHash": "83d67eac7405"
     },
     {
       "word": "动物",
@@ -2530,8 +2451,7 @@
         4
       ],
       "ru": "животное",
-      "status": "accepted",
-      "acceptedHash": "675cd006df91"
+      "status": "draft"
     },
     {
       "word": "努力",
@@ -2547,7 +2467,7 @@
       ],
       "ru": "прилагать усилия",
       "status": "accepted",
-      "acceptedHash": "ace55c42603b"
+      "acceptedHash": "8b2c58762548"
     },
     {
       "word": "北方",
@@ -2562,8 +2482,7 @@
         1
       ],
       "ru": "север",
-      "status": "accepted",
-      "acceptedHash": "f6a67124d7f5"
+      "status": "draft"
     },
     {
       "word": "历史",
@@ -2578,8 +2497,7 @@
         3
       ],
       "ru": "история",
-      "status": "accepted",
-      "acceptedHash": "650e45d0baa3"
+      "status": "draft"
     },
     {
       "word": "参加",
@@ -2594,8 +2512,7 @@
         1
       ],
       "ru": "участвовать",
-      "status": "accepted",
-      "acceptedHash": "c15fe3f993f4"
+      "status": "draft"
     },
     {
       "word": "发烧",
@@ -2610,8 +2527,7 @@
         1
       ],
       "ru": "температурить",
-      "status": "accepted",
-      "acceptedHash": "15d2519c5b0d"
+      "status": "draft"
     },
     {
       "word": "发现",
@@ -2626,8 +2542,7 @@
         4
       ],
       "ru": "обнаружить",
-      "status": "accepted",
-      "acceptedHash": "0195c9962b56"
+      "status": "draft"
     },
     {
       "word": "变化",
@@ -2643,7 +2558,7 @@
       ],
       "ru": "изменение, перемена",
       "status": "accepted",
-      "acceptedHash": "4bdbb3c78c59"
+      "acceptedHash": "e6614c4b9fb8"
     },
     {
       "word": "可爱",
@@ -2658,8 +2573,7 @@
         4
       ],
       "ru": "милый",
-      "status": "accepted",
-      "acceptedHash": "21230a990bcd"
+      "status": "draft"
     },
     {
       "word": "司机",
@@ -2674,8 +2588,7 @@
         1
       ],
       "ru": "водитель",
-      "status": "accepted",
-      "acceptedHash": "27d5cf5e3a81"
+      "status": "draft"
     },
     {
       "word": "同事",
@@ -2690,8 +2603,7 @@
         4
       ],
       "ru": "сослуживец, коллега",
-      "status": "accepted",
-      "acceptedHash": "496fe2da876f"
+      "status": "draft"
     },
     {
       "word": "同意",
@@ -2706,8 +2618,7 @@
         4
       ],
       "ru": "согласиться",
-      "status": "accepted",
-      "acceptedHash": "7c76cdb55671"
+      "status": "draft"
     },
     {
       "word": "周末",
@@ -2723,7 +2634,7 @@
       ],
       "ru": "конец недели",
       "status": "accepted",
-      "acceptedHash": "d51987fb88de"
+      "acceptedHash": "74e441151f76"
     },
     {
       "word": "啤酒",
@@ -2739,7 +2650,7 @@
       ],
       "ru": "пиво",
       "status": "accepted",
-      "acceptedHash": "efd04a0cabb1"
+      "acceptedHash": "e043a028bab3"
     },
     {
       "word": "国家",
@@ -2754,8 +2665,7 @@
         1
       ],
       "ru": "государство",
-      "status": "accepted",
-      "acceptedHash": "33eed33e2598"
+      "status": "draft"
     },
     {
       "word": "图书馆",
@@ -2773,7 +2683,7 @@
       ],
       "ru": "библиотека",
       "status": "accepted",
-      "acceptedHash": "f0c75da4b9d5"
+      "acceptedHash": "70fdaefc54cc"
     },
     {
       "word": "地图",
@@ -2788,8 +2698,7 @@
         2
       ],
       "ru": "карта (географическая)",
-      "status": "accepted",
-      "acceptedHash": "24fb7c91a3e4"
+      "status": "draft"
     },
     {
       "word": "地铁",
@@ -2805,7 +2714,7 @@
       ],
       "ru": "метро, метрополитен",
       "status": "accepted",
-      "acceptedHash": "e2b27aa284f8"
+      "acceptedHash": "bf51512ab010"
     },
     {
       "word": "城市",
@@ -2820,8 +2729,7 @@
         4
       ],
       "ru": "город",
-      "status": "accepted",
-      "acceptedHash": "71c1247c64af"
+      "status": "draft"
     },
     {
       "word": "声音",
@@ -2836,8 +2744,7 @@
         1
       ],
       "ru": "звук",
-      "status": "accepted",
-      "acceptedHash": "d7f022845fce"
+      "status": "draft"
     },
     {
       "word": "复习",
@@ -2852,8 +2759,7 @@
         2
       ],
       "ru": "повторять (пройденное)",
-      "status": "accepted",
-      "acceptedHash": "2b4cab0f8212"
+      "status": "draft"
     },
     {
       "word": "多么",
@@ -2869,7 +2775,7 @@
       ],
       "ru": "так, до такой степени",
       "status": "accepted",
-      "acceptedHash": "c7dbfb19ef8c"
+      "acceptedHash": "a2103d2109c4"
     },
     {
       "word": "头发",
@@ -2885,7 +2791,7 @@
       ],
       "ru": "волосы",
       "status": "accepted",
-      "acceptedHash": "cae194fd4e13"
+      "acceptedHash": "0fe18a9d9a55"
     },
     {
       "word": "奇怪",
@@ -2900,8 +2806,7 @@
         4
       ],
       "ru": "удивительный",
-      "status": "accepted",
-      "acceptedHash": "d1c61ccb5f76"
+      "status": "draft"
     },
     {
       "word": "如果",
@@ -2917,7 +2822,7 @@
       ],
       "ru": "если",
       "status": "accepted",
-      "acceptedHash": "d00e1c2b2b8b"
+      "acceptedHash": "87c42fffd3d6"
     },
     {
       "word": "字典",
@@ -2933,7 +2838,7 @@
       ],
       "ru": "словарь",
       "status": "accepted",
-      "acceptedHash": "918c400aa175"
+      "acceptedHash": "8d7337844490"
     },
     {
       "word": "季节",
@@ -2948,8 +2853,7 @@
         2
       ],
       "ru": "сезон",
-      "status": "accepted",
-      "acceptedHash": "2f13ea58d998"
+      "status": "draft"
     },
     {
       "word": "安静",
@@ -2965,7 +2869,7 @@
       ],
       "ru": "тихий, спокойный",
       "status": "accepted",
-      "acceptedHash": "993f3dbe8d1d"
+      "acceptedHash": "81301906ae48"
     },
     {
       "word": "完成",
@@ -2981,7 +2885,7 @@
       ],
       "ru": "закончить(ся)",
       "status": "accepted",
-      "acceptedHash": "dcf53ee6ebba"
+      "acceptedHash": "53bd7d51c8b4"
     },
     {
       "word": "害怕",
@@ -2996,8 +2900,7 @@
         4
       ],
       "ru": "бояться",
-      "status": "accepted",
-      "acceptedHash": "e0484d9de2ac"
+      "status": "draft"
     },
     {
       "word": "容易",
@@ -3012,8 +2915,7 @@
         4
       ],
       "ru": "лёгкий",
-      "status": "accepted",
-      "acceptedHash": "04ecaa4c0d6b"
+      "status": "draft"
     },
     {
       "word": "宾馆",
@@ -3029,7 +2931,7 @@
       ],
       "ru": "гостиница",
       "status": "accepted",
-      "acceptedHash": "660d70bb7702"
+      "acceptedHash": "fa5847e1fe5d"
     },
     {
       "word": "小心",
@@ -3045,7 +2947,7 @@
       ],
       "ru": "остерегаться",
       "status": "accepted",
-      "acceptedHash": "c4166a8d1b83"
+      "acceptedHash": "5b124ec1686c"
     },
     {
       "word": "帮忙",
@@ -3061,7 +2963,7 @@
       ],
       "ru": "помогать",
       "status": "accepted",
-      "acceptedHash": "2eadbbbb1511"
+      "acceptedHash": "342dc302a250"
     },
     {
       "word": "干净",
@@ -3077,7 +2979,7 @@
       ],
       "ru": "чистый",
       "status": "accepted",
-      "acceptedHash": "d01e596b3c7c"
+      "acceptedHash": "d00c7a5da5eb"
     },
     {
       "word": "年级",
@@ -3092,8 +2994,7 @@
         2
       ],
       "ru": "класс, курс",
-      "status": "accepted",
-      "acceptedHash": "098eeaab8dbf"
+      "status": "draft"
     },
     {
       "word": "年轻",
@@ -3108,8 +3009,7 @@
         1
       ],
       "ru": "молодой",
-      "status": "accepted",
-      "acceptedHash": "969c70a8ed7c"
+      "status": "draft"
     },
     {
       "word": "应该",
@@ -3124,8 +3024,7 @@
         1
       ],
       "ru": "следует, должно",
-      "status": "accepted",
-      "acceptedHash": "4a4c473bfd30"
+      "status": "draft"
     },
     {
       "word": "当然",
@@ -3141,7 +3040,7 @@
       ],
       "ru": "конечно, естественно",
       "status": "accepted",
-      "acceptedHash": "937abf642cfd"
+      "acceptedHash": "61ecea2221f7"
     },
     {
       "word": "影响",
@@ -3156,8 +3055,7 @@
         3
       ],
       "ru": "влиять",
-      "status": "accepted",
-      "acceptedHash": "64898b979b39"
+      "status": "draft"
     },
     {
       "word": "必须",
@@ -3173,7 +3071,7 @@
       ],
       "ru": "необходимо, должно",
       "status": "accepted",
-      "acceptedHash": "844fca0c3714"
+      "acceptedHash": "69407f4cf57a"
     },
     {
       "word": "忘记",
@@ -3188,8 +3086,7 @@
         4
       ],
       "ru": "забывать",
-      "status": "accepted",
-      "acceptedHash": "e5ae6a5168ee"
+      "status": "draft"
     },
     {
       "word": "总是",
@@ -3204,8 +3101,7 @@
         4
       ],
       "ru": "всегда",
-      "status": "accepted",
-      "acceptedHash": "09e3d5c3e1eb"
+      "status": "draft"
     },
     {
       "word": "感冒",
@@ -3221,7 +3117,7 @@
       ],
       "ru": "простудиться",
       "status": "accepted",
-      "acceptedHash": "6edf2dadd54a"
+      "acceptedHash": "0e27e0a478a2"
     },
     {
       "word": "成绩",
@@ -3236,8 +3132,7 @@
         4
       ],
       "ru": "успехи",
-      "status": "accepted",
-      "acceptedHash": "1d06d1981396"
+      "status": "draft"
     },
     {
       "word": "或者",
@@ -3253,7 +3148,7 @@
       ],
       "ru": "или, либо",
       "status": "accepted",
-      "acceptedHash": "d9500c2bfd60"
+      "acceptedHash": "70304ede06bd"
     },
     {
       "word": "打扫",
@@ -3269,7 +3164,7 @@
       ],
       "ru": "подметать",
       "status": "accepted",
-      "acceptedHash": "0c05a22e19c2"
+      "acceptedHash": "e8f8408153ca"
     },
     {
       "word": "护照",
@@ -3284,8 +3179,7 @@
         4
       ],
       "ru": "паспорт",
-      "status": "accepted",
-      "acceptedHash": "437b4b5c53dc"
+      "status": "draft"
     },
     {
       "word": "担心",
@@ -3301,7 +3195,7 @@
       ],
       "ru": "беспокоиться, тревожиться",
       "status": "accepted",
-      "acceptedHash": "62ccea68c129"
+      "acceptedHash": "b6a38fca5058"
     },
     {
       "word": "提高",
@@ -3316,8 +3210,7 @@
         1
       ],
       "ru": "повышать, улучшать",
-      "status": "accepted",
-      "acceptedHash": "d92a22bf691d"
+      "status": "draft"
     },
     {
       "word": "放心",
@@ -3332,8 +3225,7 @@
         1
       ],
       "ru": "не беспокоиться, быть спокойным",
-      "status": "accepted",
-      "acceptedHash": "8957d0bcec2b"
+      "status": "draft"
     },
     {
       "word": "数学",
@@ -3348,8 +3240,7 @@
         2
       ],
       "ru": "математика",
-      "status": "accepted",
-      "acceptedHash": "8bb9ecc45fd7"
+      "status": "draft"
     },
     {
       "word": "文化",
@@ -3365,7 +3256,7 @@
       ],
       "ru": "культура",
       "status": "accepted",
-      "acceptedHash": "dd3bc723d2ed"
+      "acceptedHash": "041b1b6e853f"
     },
     {
       "word": "新闻",
@@ -3380,8 +3271,7 @@
         2
       ],
       "ru": "новости",
-      "status": "accepted",
-      "acceptedHash": "9569b0807641"
+      "status": "draft"
     },
     {
       "word": "新鲜",
@@ -3396,8 +3286,7 @@
         1
       ],
       "ru": "свежий",
-      "status": "accepted",
-      "acceptedHash": "caaa373c3d5f"
+      "status": "draft"
     },
     {
       "word": "方便",
@@ -3412,8 +3301,7 @@
         4
       ],
       "ru": "удобный",
-      "status": "accepted",
-      "acceptedHash": "841d52398eb7"
+      "status": "draft"
     },
     {
       "word": "最近",
@@ -3429,7 +3317,7 @@
       ],
       "ru": "за последнее время",
       "status": "accepted",
-      "acceptedHash": "2d3c99e20a73"
+      "acceptedHash": "aa5c1aed0c73"
     },
     {
       "word": "月亮",
@@ -3445,7 +3333,7 @@
       ],
       "ru": "луна",
       "status": "accepted",
-      "acceptedHash": "e5af245d444d"
+      "acceptedHash": "835b9652727d"
     },
     {
       "word": "有名",
@@ -3460,8 +3348,7 @@
         2
       ],
       "ru": "известный, знаменитый",
-      "status": "accepted",
-      "acceptedHash": "f15784c99a99"
+      "status": "draft"
     },
     {
       "word": "机会",
@@ -3476,8 +3363,7 @@
         4
       ],
       "ru": "удобный случай, благоприятная возможность",
-      "status": "accepted",
-      "acceptedHash": "1da4a9d42089"
+      "status": "draft"
     },
     {
       "word": "果汁",
@@ -3492,8 +3378,7 @@
         1
       ],
       "ru": "фруктовый сок",
-      "status": "accepted",
-      "acceptedHash": "e11b28761ba7"
+      "status": "draft"
     },
     {
       "word": "根据",
@@ -3508,8 +3393,7 @@
         4
       ],
       "ru": "согласно",
-      "status": "accepted",
-      "acceptedHash": "383aa8c18e9b"
+      "status": "draft"
     },
     {
       "word": "检查",
@@ -3524,8 +3408,7 @@
         2
       ],
       "ru": "проверять",
-      "status": "accepted",
-      "acceptedHash": "d33ccfbb90c4"
+      "status": "draft"
     },
     {
       "word": "比赛",
@@ -3540,8 +3423,7 @@
         4
       ],
       "ru": "соревнования, состязания",
-      "status": "accepted",
-      "acceptedHash": "3083c41b9831"
+      "status": "draft"
     },
     {
       "word": "比较",
@@ -3557,7 +3439,7 @@
       ],
       "ru": "сравнительно",
       "status": "accepted",
-      "acceptedHash": "6b5cec485cc9"
+      "acceptedHash": "88c2d1178bd3"
     },
     {
       "word": "水平",
@@ -3573,7 +3455,7 @@
       ],
       "ru": "уровень",
       "status": "accepted",
-      "acceptedHash": "b80d8d4afd7f"
+      "acceptedHash": "e75c9ba1df6b"
     },
     {
       "word": "注意",
@@ -3588,8 +3470,7 @@
         4
       ],
       "ru": "обращать [уделять] внимание",
-      "status": "accepted",
-      "acceptedHash": "5bafdd232d74"
+      "status": "draft"
     },
     {
       "word": "洗手间",
@@ -3606,8 +3487,7 @@
         1
       ],
       "ru": "туалет, уборная",
-      "status": "accepted",
-      "acceptedHash": "b30d381e4c2b"
+      "status": "draft"
     },
     {
       "word": "洗澡",
@@ -3623,7 +3503,7 @@
       ],
       "ru": "мыться",
       "status": "accepted",
-      "acceptedHash": "177175e431a7"
+      "acceptedHash": "685dd06575aa"
     },
     {
       "word": "游戏",
@@ -3638,8 +3518,7 @@
         4
       ],
       "ru": "игра, забава",
-      "status": "accepted",
-      "acceptedHash": "dccde3af5987"
+      "status": "draft"
     },
     {
       "word": "满意",
@@ -3654,8 +3533,7 @@
         4
       ],
       "ru": "быть довольным",
-      "status": "accepted",
-      "acceptedHash": "3adc78ecf9c1"
+      "status": "draft"
     },
     {
       "word": "热情",
@@ -3670,8 +3548,7 @@
         2
       ],
       "ru": "энтузиазм",
-      "status": "accepted",
-      "acceptedHash": "f7910536f5fa"
+      "status": "draft"
     },
     {
       "word": "然后",
@@ -3687,7 +3564,7 @@
       ],
       "ru": "потом, затем",
       "status": "accepted",
-      "acceptedHash": "5251ee9ed6db"
+      "acceptedHash": "c31e84c27c63"
     },
     {
       "word": "照片",
@@ -3703,7 +3580,7 @@
       ],
       "ru": "фотография",
       "status": "accepted",
-      "acceptedHash": "b013cb3fc977"
+      "acceptedHash": "3a2144e49da9"
     },
     {
       "word": "照相机",
@@ -3720,8 +3597,7 @@
         1
       ],
       "ru": "фотоаппарат",
-      "status": "accepted",
-      "acceptedHash": "fe5e6374cf46"
+      "status": "draft"
     },
     {
       "word": "爬山",
@@ -3737,7 +3613,7 @@
       ],
       "ru": "восходить на горы",
       "status": "accepted",
-      "acceptedHash": "be99563b7945"
+      "acceptedHash": "73ba17a4db6b"
     },
     {
       "word": "爱好",
@@ -3753,7 +3629,7 @@
       ],
       "ru": "хобби, увлечение; любить",
       "status": "accepted",
-      "acceptedHash": "b492b9b67c5c"
+      "acceptedHash": "fdc4096f8720"
     },
     {
       "word": "特别",
@@ -3768,8 +3644,7 @@
         2
       ],
       "ru": "особый",
-      "status": "accepted",
-      "acceptedHash": "bb130de8c244"
+      "status": "draft"
     },
     {
       "word": "环境",
@@ -3785,7 +3660,7 @@
       ],
       "ru": "окружение",
       "status": "accepted",
-      "acceptedHash": "2c7bf64ae2aa"
+      "acceptedHash": "ab9c634d3c37"
     },
     {
       "word": "生气",
@@ -3800,8 +3675,7 @@
         4
       ],
       "ru": "сердиться",
-      "status": "accepted",
-      "acceptedHash": "287fa79fb689"
+      "status": "draft"
     },
     {
       "word": "电梯",
@@ -3816,8 +3690,7 @@
         1
       ],
       "ru": "лифт",
-      "status": "accepted",
-      "acceptedHash": "d1bb436072e0"
+      "status": "draft"
     },
     {
       "word": "相信",
@@ -3832,8 +3705,7 @@
         4
       ],
       "ru": "верить",
-      "status": "accepted",
-      "acceptedHash": "5a2cc237fc79"
+      "status": "draft"
     },
     {
       "word": "相同",
@@ -3848,8 +3720,7 @@
         2
       ],
       "ru": "одинаковый",
-      "status": "accepted",
-      "acceptedHash": "d9fdf60ad0be"
+      "status": "draft"
     },
     {
       "word": "着急",
@@ -3864,8 +3735,7 @@
         2
       ],
       "ru": "волноваться",
-      "status": "accepted",
-      "acceptedHash": "214eda136d20"
+      "status": "draft"
     },
     {
       "word": "礼物",
@@ -3881,7 +3751,7 @@
       ],
       "ru": "подарок",
       "status": "accepted",
-      "acceptedHash": "b728b3a7c3b1"
+      "acceptedHash": "ec4e1f33ba6d"
     },
     {
       "word": "离开",
@@ -3897,7 +3767,7 @@
       ],
       "ru": "оставить, покинуть",
       "status": "accepted",
-      "acceptedHash": "93c880395a26"
+      "acceptedHash": "6c37801e198b"
     },
     {
       "word": "空调",
@@ -3913,7 +3783,7 @@
       ],
       "ru": "кондиционер",
       "status": "accepted",
-      "acceptedHash": "873849f6b47a"
+      "acceptedHash": "2642391409d7"
     },
     {
       "word": "突然",
@@ -3929,7 +3799,7 @@
       ],
       "ru": "вдруг, внезапно",
       "status": "accepted",
-      "acceptedHash": "ae856756c46d"
+      "acceptedHash": "21de36a2523b"
     },
     {
       "word": "简单",
@@ -3945,7 +3815,7 @@
       ],
       "ru": "простой",
       "status": "accepted",
-      "acceptedHash": "2a694166c860"
+      "acceptedHash": "3e24d0e3b539"
     },
     {
       "word": "练习",
@@ -3960,8 +3830,7 @@
         2
       ],
       "ru": "тренироваться, упражняться",
-      "status": "accepted",
-      "acceptedHash": "1d274917e63f"
+      "status": "draft"
     },
     {
       "word": "终于",
@@ -3976,8 +3845,7 @@
         2
       ],
       "ru": "наконец-то",
-      "status": "accepted",
-      "acceptedHash": "d8e6852ad3ae"
+      "status": "draft"
     },
     {
       "word": "经常",
@@ -3993,7 +3861,7 @@
       ],
       "ru": "часто",
       "status": "accepted",
-      "acceptedHash": "3a60137a8789"
+      "acceptedHash": "58f19fe300c4"
     },
     {
       "word": "经理",
@@ -4009,7 +3877,7 @@
       ],
       "ru": "директор",
       "status": "accepted",
-      "acceptedHash": "2e180db69f90"
+      "acceptedHash": "9c4fa4c97248"
     },
     {
       "word": "经过",
@@ -4025,7 +3893,7 @@
       ],
       "ru": "проходить (через, сквозь, мимо)",
       "status": "accepted",
-      "acceptedHash": "c46ba3e57392"
+      "acceptedHash": "fdc27aa5760b"
     },
     {
       "word": "结婚",
@@ -4040,8 +3908,7 @@
         1
       ],
       "ru": "вступить в брак",
-      "status": "accepted",
-      "acceptedHash": "faa4bf578f4b"
+      "status": "draft"
     },
     {
       "word": "结束",
@@ -4056,8 +3923,7 @@
         4
       ],
       "ru": "закончить(ся)",
-      "status": "accepted",
-      "acceptedHash": "a68801361de1"
+      "status": "draft"
     },
     {
       "word": "而且",
@@ -4073,7 +3939,7 @@
       ],
       "ru": "к тому же, притом",
       "status": "accepted",
-      "acceptedHash": "0e6bb145c279"
+      "acceptedHash": "d384d1af3701"
     },
     {
       "word": "耳朵",
@@ -4104,7 +3970,7 @@
       ],
       "ru": "умный",
       "status": "accepted",
-      "acceptedHash": "5aca36f54083"
+      "acceptedHash": "a6d5c340bd67"
     },
     {
       "word": "自己",
@@ -4119,8 +3985,7 @@
         3
       ],
       "ru": "сам",
-      "status": "accepted",
-      "acceptedHash": "3cad05e7a7d9"
+      "status": "draft"
     },
     {
       "word": "舒服",
@@ -4136,7 +4001,7 @@
       ],
       "ru": "удобный",
       "status": "accepted",
-      "acceptedHash": "007f71a6cba4"
+      "acceptedHash": "fdc97445e647"
     },
     {
       "word": "节日",
@@ -4151,8 +4016,7 @@
         4
       ],
       "ru": "праздник",
-      "status": "accepted",
-      "acceptedHash": "dc88bea839cb"
+      "status": "draft"
     },
     {
       "word": "节目",
@@ -4167,8 +4031,7 @@
         4
       ],
       "ru": "номер (программы)",
-      "status": "accepted",
-      "acceptedHash": "09a2f39ee61a"
+      "status": "draft"
     },
     {
       "word": "花园",
@@ -4183,8 +4046,7 @@
         2
       ],
       "ru": "сад",
-      "status": "accepted",
-      "acceptedHash": "49e971053e97"
+      "status": "draft"
     },
     {
       "word": "菜单",
@@ -4200,7 +4062,7 @@
       ],
       "ru": "меню",
       "status": "accepted",
-      "acceptedHash": "b8e872c2bf99"
+      "acceptedHash": "bf89987ee9cf"
     },
     {
       "word": "葡萄",
@@ -4216,7 +4078,7 @@
       ],
       "ru": "виноград",
       "status": "accepted",
-      "acceptedHash": "8363d8ec5b58"
+      "acceptedHash": "1bd52fdcb036"
     },
     {
       "word": "虽然",
@@ -4232,7 +4094,7 @@
       ],
       "ru": "хотя, хоть, пусть",
       "status": "accepted",
-      "acceptedHash": "f5529fa1a1ac"
+      "acceptedHash": "586946b7b7a8"
     },
     {
       "word": "蛋糕",
@@ -4248,7 +4110,7 @@
       ],
       "ru": "пирожное, бисквит",
       "status": "accepted",
-      "acceptedHash": "898734c687a8"
+      "acceptedHash": "413f4fb5c0cc"
     },
     {
       "word": "街道",
@@ -4263,8 +4125,7 @@
         4
       ],
       "ru": "улица",
-      "status": "accepted",
-      "acceptedHash": "36a5f9805bbf"
+      "status": "draft"
     },
     {
       "word": "表演",
@@ -4279,8 +4140,7 @@
         3
       ],
       "ru": "исполнять",
-      "status": "accepted",
-      "acceptedHash": "1697f89448af"
+      "status": "draft"
     },
     {
       "word": "表示",
@@ -4295,8 +4155,7 @@
         4
       ],
       "ru": "выражать",
-      "status": "accepted",
-      "acceptedHash": "a268c43fbb74"
+      "status": "draft"
     },
     {
       "word": "衬衫",
@@ -4312,7 +4171,7 @@
       ],
       "ru": "сорочка",
       "status": "accepted",
-      "acceptedHash": "f70c83fcad37"
+      "acceptedHash": "6a695976b8cc"
     },
     {
       "word": "要求",
@@ -4328,7 +4187,7 @@
       ],
       "ru": "требовать",
       "status": "accepted",
-      "acceptedHash": "da3cca50e9a8"
+      "acceptedHash": "b683a8af26b5"
     },
     {
       "word": "见面",
@@ -4344,7 +4203,7 @@
       ],
       "ru": "встретиться",
       "status": "accepted",
-      "acceptedHash": "83fe9e913764"
+      "acceptedHash": "0150aa0f1934"
     },
     {
       "word": "解决",
@@ -4359,8 +4218,7 @@
         2
       ],
       "ru": "решать, разрешать (напр., проблемы)",
-      "status": "accepted",
-      "acceptedHash": "15e23588f2bd"
+      "status": "draft"
     },
     {
       "word": "认为",
@@ -4375,8 +4233,7 @@
         2
       ],
       "ru": "полагать, считать",
-      "status": "accepted",
-      "acceptedHash": "ab0708caa418"
+      "status": "draft"
     },
     {
       "word": "认真",
@@ -4392,7 +4249,7 @@
       ],
       "ru": "серьёзный",
       "status": "accepted",
-      "acceptedHash": "7d809ddf9589"
+      "acceptedHash": "d4458a699334"
     },
     {
       "word": "记得",
@@ -4408,7 +4265,7 @@
       ],
       "ru": "помнить",
       "status": "accepted",
-      "acceptedHash": "e379ac931202"
+      "acceptedHash": "573bc074013c"
     },
     {
       "word": "词语",
@@ -4423,8 +4280,7 @@
         3
       ],
       "ru": "обороты речи",
-      "status": "accepted",
-      "acceptedHash": "65452bffad40"
+      "status": "draft"
     },
     {
       "word": "超市",
@@ -4439,8 +4295,7 @@
         4
       ],
       "ru": "супермаркет",
-      "status": "accepted",
-      "acceptedHash": "9d458fc034d4"
+      "status": "draft"
     },
     {
       "word": "还是",
@@ -4456,7 +4311,7 @@
       ],
       "ru": "или; всё-таки",
       "status": "accepted",
-      "acceptedHash": "6d3fc80f3d28"
+      "acceptedHash": "a927e005d652"
     },
     {
       "word": "迟到",
@@ -4472,7 +4327,7 @@
       ],
       "ru": "опоздать",
       "status": "accepted",
-      "acceptedHash": "002c35c39f08"
+      "acceptedHash": "f8281a3ab26e"
     },
     {
       "word": "选择",
@@ -4488,7 +4343,7 @@
       ],
       "ru": "выбирать",
       "status": "accepted",
-      "acceptedHash": "0d813c74bdd9"
+      "acceptedHash": "c903b0d43ce7"
     },
     {
       "word": "遇到",
@@ -4503,8 +4358,7 @@
         4
       ],
       "ru": "встретить(ся)",
-      "status": "accepted",
-      "acceptedHash": "f917835f2418"
+      "status": "draft"
     },
     {
       "word": "邻居",
@@ -4519,8 +4373,7 @@
         1
       ],
       "ru": "сосед",
-      "status": "accepted",
-      "acceptedHash": "18fa6d67997e"
+      "status": "draft"
     },
     {
       "word": "重要",
@@ -4536,7 +4389,7 @@
       ],
       "ru": "важный",
       "status": "accepted",
-      "acceptedHash": "83252e4bfed3"
+      "acceptedHash": "b4ee0a5e38b3"
     },
     {
       "word": "铅笔",
@@ -4552,7 +4405,7 @@
       ],
       "ru": "карандаш",
       "status": "accepted",
-      "acceptedHash": "6e2c266d7080"
+      "acceptedHash": "56b2e2edbe32"
     },
     {
       "word": "银行",
@@ -4567,8 +4420,7 @@
         2
       ],
       "ru": "банк",
-      "status": "accepted",
-      "acceptedHash": "f6c49cf921db"
+      "status": "draft"
     },
     {
       "word": "锻炼",
@@ -4584,7 +4436,7 @@
       ],
       "ru": "заниматься спортом, тренироваться",
       "status": "accepted",
-      "acceptedHash": "9f6d8f9e5cbd"
+      "acceptedHash": "be068d068dc9"
     },
     {
       "word": "阿姨",
@@ -4599,8 +4451,7 @@
         2
       ],
       "ru": "тётя, тётка",
-      "status": "accepted",
-      "acceptedHash": "d7b0678b5c77"
+      "status": "draft"
     },
     {
       "word": "附近",
@@ -4615,8 +4466,7 @@
         4
       ],
       "ru": "окрестности",
-      "status": "accepted",
-      "acceptedHash": "34ad654697ff"
+      "status": "draft"
     },
     {
       "word": "除了",
@@ -4632,7 +4482,7 @@
       ],
       "ru": "кроме",
       "status": "accepted",
-      "acceptedHash": "b0e4691d1919"
+      "acceptedHash": "fc24f1901951"
     },
     {
       "word": "难过",
@@ -4647,8 +4497,7 @@
         4
       ],
       "ru": "грустный, тяжело на душе",
-      "status": "accepted",
-      "acceptedHash": "31159102da60"
+      "status": "draft"
     },
     {
       "word": "需要",
@@ -4664,7 +4513,7 @@
       ],
       "ru": "требоваться, быть потребным",
       "status": "accepted",
-      "acceptedHash": "07962122b07b"
+      "acceptedHash": "515d26b74fdb"
     },
     {
       "word": "面包",
@@ -4680,7 +4529,7 @@
       ],
       "ru": "хлеб",
       "status": "accepted",
-      "acceptedHash": "295813f67df5"
+      "acceptedHash": "bdd5e30f637c"
     },
     {
       "word": "面条",
@@ -4696,7 +4545,7 @@
       ],
       "ru": "лапша",
       "status": "accepted",
-      "acceptedHash": "9c103b8a4b96"
+      "acceptedHash": "ae09bc265ea1"
     },
     {
       "word": "香蕉",
@@ -4711,8 +4560,7 @@
         1
       ],
       "ru": "банан",
-      "status": "accepted",
-      "acceptedHash": "00c15b42a8f7"
+      "status": "draft"
     },
     {
       "word": "马上",
@@ -4728,7 +4576,7 @@
       ],
       "ru": "тотчас, немедленно",
       "status": "accepted",
-      "acceptedHash": "50e098f553a3"
+      "acceptedHash": "ecef89e6bb8e"
     },
     {
       "word": "黑板",
@@ -4743,8 +4591,7 @@
         3
       ],
       "ru": "классная доска",
-      "status": "accepted",
-      "acceptedHash": "f2245df7351c"
+      "status": "draft"
     },
     {
       "word": "一切",
@@ -4760,7 +4607,7 @@
       ],
       "ru": "все",
       "status": "accepted",
-      "acceptedHash": "1d7d771590f9"
+      "acceptedHash": "033b274a9a23"
     },
     {
       "word": "不仅",
@@ -4776,7 +4623,7 @@
       ],
       "ru": "не только",
       "status": "accepted",
-      "acceptedHash": "fb87c9cb8438"
+      "acceptedHash": "fa891d13025a"
     },
     {
       "word": "不但",
@@ -4792,7 +4639,7 @@
       ],
       "ru": "не только",
       "status": "accepted",
-      "acceptedHash": "dcea254046fe"
+      "acceptedHash": "9341b6343615"
     },
     {
       "word": "不得不",
@@ -4810,7 +4657,7 @@
       ],
       "ru": "быть вынужденным",
       "status": "accepted",
-      "acceptedHash": "bdfc1a9ed42f"
+      "acceptedHash": "9e029d07ef05"
     },
     {
       "word": "不管",
@@ -4826,7 +4673,7 @@
       ],
       "ru": "несмотря на (то, что)",
       "status": "accepted",
-      "acceptedHash": "ec3610708203"
+      "acceptedHash": "b7d9c4fb3e6c"
     },
     {
       "word": "不过",
@@ -4841,8 +4688,7 @@
         4
       ],
       "ru": "однако",
-      "status": "accepted",
-      "acceptedHash": "c8029e0fb402"
+      "status": "draft"
     },
     {
       "word": "专业",
@@ -4858,7 +4704,7 @@
       ],
       "ru": "специальность",
       "status": "accepted",
-      "acceptedHash": "4fe96c33afe8"
+      "acceptedHash": "3f01844a8fa9"
     },
     {
       "word": "专门",
@@ -4874,7 +4720,7 @@
       ],
       "ru": "специальный",
       "status": "accepted",
-      "acceptedHash": "f1886712d292"
+      "acceptedHash": "6e21fe902062"
     },
     {
       "word": "世纪",
@@ -4889,8 +4735,7 @@
         4
       ],
       "ru": "век",
-      "status": "accepted",
-      "acceptedHash": "cdbf9a724c81"
+      "status": "draft"
     },
     {
       "word": "严格",
@@ -4905,8 +4750,7 @@
         2
       ],
       "ru": "строгий",
-      "status": "accepted",
-      "acceptedHash": "08b3a18c757a"
+      "status": "draft"
     },
     {
       "word": "严重",
@@ -4921,8 +4765,7 @@
         4
       ],
       "ru": "серьёзный",
-      "status": "accepted",
-      "acceptedHash": "c6b1091c3430"
+      "status": "draft"
     },
     {
       "word": "中文",
@@ -4938,7 +4781,7 @@
       ],
       "ru": "китайский язык",
       "status": "accepted",
-      "acceptedHash": "f9c04b2e2ade"
+      "acceptedHash": "c5004c0a1f7c"
     },
     {
       "word": "丰富",
@@ -4953,8 +4796,7 @@
         4
       ],
       "ru": "богатый, обильный",
-      "status": "accepted",
-      "acceptedHash": "abfc1f079f14"
+      "status": "draft"
     },
     {
       "word": "主动",
@@ -4969,8 +4811,7 @@
         4
       ],
       "ru": "активный",
-      "status": "accepted",
-      "acceptedHash": "f22ed47b8ad8"
+      "status": "draft"
     },
     {
       "word": "举办",
@@ -4985,8 +4826,7 @@
         4
       ],
       "ru": "проводить (мероприятие)",
-      "status": "accepted",
-      "acceptedHash": "808e780f1f3d"
+      "status": "draft"
     },
     {
       "word": "乒乓球",
@@ -5004,7 +4844,7 @@
       ],
       "ru": "настольный теннис, пинг-понг",
       "status": "accepted",
-      "acceptedHash": "f22c28c54a83"
+      "acceptedHash": "654f2645cf11"
     },
     {
       "word": "乘坐",
@@ -5019,8 +4859,7 @@
         4
       ],
       "ru": "ехать (на транспорте)",
-      "status": "accepted",
-      "acceptedHash": "5a68e023d336"
+      "status": "draft"
     },
     {
       "word": "也许",
@@ -5036,7 +4875,7 @@
       ],
       "ru": "возможно, может быть",
       "status": "accepted",
-      "acceptedHash": "c2e24303823c"
+      "acceptedHash": "6a4a9552ef64"
     },
     {
       "word": "于是",
@@ -5051,8 +4890,7 @@
         4
       ],
       "ru": "таким образом",
-      "status": "accepted",
-      "acceptedHash": "6b247fdcc012"
+      "status": "draft"
     },
     {
       "word": "互相",
@@ -5067,8 +4905,7 @@
         1
       ],
       "ru": "взаимно",
-      "status": "accepted",
-      "acceptedHash": "cda726ce60ac"
+      "status": "draft"
     },
     {
       "word": "亚洲",
@@ -5084,7 +4921,7 @@
       ],
       "ru": "Азия",
       "status": "accepted",
-      "acceptedHash": "2d701e39d41a"
+      "acceptedHash": "9409cbfbd40f"
     },
     {
       "word": "交流",
@@ -5100,7 +4937,7 @@
       ],
       "ru": "обмениваться (напр., опытом)",
       "status": "accepted",
-      "acceptedHash": "611375538846"
+      "acceptedHash": "989c546e1661"
     },
     {
       "word": "交通",
@@ -5115,8 +4952,7 @@
         1
       ],
       "ru": "транспорт, движение",
-      "status": "accepted",
-      "acceptedHash": "f51f753c1720"
+      "status": "draft"
     },
     {
       "word": "京剧",
@@ -5132,7 +4968,7 @@
       ],
       "ru": "пекинская музыкальная драма",
       "status": "accepted",
-      "acceptedHash": "78c4ae6accdf"
+      "acceptedHash": "a2f9777a6754"
     },
     {
       "word": "亲戚",
@@ -5148,7 +4984,7 @@
       ],
       "ru": "родные",
       "status": "accepted",
-      "acceptedHash": "29346d6a98b2"
+      "acceptedHash": "b6febd72e916"
     },
     {
       "word": "人民币",
@@ -5166,7 +5002,7 @@
       ],
       "ru": "народная валюта (в юанях, деньги КНР)",
       "status": "accepted",
-      "acceptedHash": "583e15d1fe7c"
+      "acceptedHash": "75f32fee0d01"
     },
     {
       "word": "仍然",
@@ -5182,7 +5018,7 @@
       ],
       "ru": "по-прежнему",
       "status": "accepted",
-      "acceptedHash": "76c406d0f32d"
+      "acceptedHash": "56bffc114385"
     },
     {
       "word": "从来",
@@ -5198,7 +5034,7 @@
       ],
       "ru": "никогда (с отрицанием); всегда",
       "status": "accepted",
-      "acceptedHash": "09bf6f9f59d4"
+      "acceptedHash": "a1b14339ec0e"
     },
     {
       "word": "仔细",
@@ -5213,8 +5049,7 @@
         4
       ],
       "ru": "тщательный",
-      "status": "accepted",
-      "acceptedHash": "c1340a6f9603"
+      "status": "draft"
     },
     {
       "word": "代替",
@@ -5229,8 +5064,7 @@
         4
       ],
       "ru": "заменять",
-      "status": "accepted",
-      "acceptedHash": "848b126e8534"
+      "status": "draft"
     },
     {
       "word": "代表",
@@ -5246,7 +5080,7 @@
       ],
       "ru": "представитель",
       "status": "accepted",
-      "acceptedHash": "3817c518210e"
+      "acceptedHash": "a4e65b08acf6"
     },
     {
       "word": "价格",
@@ -5261,8 +5095,7 @@
         2
       ],
       "ru": "цена",
-      "status": "accepted",
-      "acceptedHash": "01df2f774256"
+      "status": "draft"
     },
     {
       "word": "任何",
@@ -5278,7 +5111,7 @@
       ],
       "ru": "любой",
       "status": "accepted",
-      "acceptedHash": "2ab0136188f5"
+      "acceptedHash": "a5bd3037e854"
     },
     {
       "word": "任务",
@@ -5294,7 +5127,7 @@
       ],
       "ru": "задача",
       "status": "accepted",
-      "acceptedHash": "c0e991208e77"
+      "acceptedHash": "487a8fc5454a"
     },
     {
       "word": "优点",
@@ -5310,7 +5143,7 @@
       ],
       "ru": "достоинство, преимущество",
       "status": "accepted",
-      "acceptedHash": "d169db864726"
+      "acceptedHash": "8de70aaf209e"
     },
     {
       "word": "优秀",
@@ -5325,8 +5158,7 @@
         4
       ],
       "ru": "превосходный",
-      "status": "accepted",
-      "acceptedHash": "e28ab5e8f347"
+      "status": "draft"
     },
     {
       "word": "传真",
@@ -5342,7 +5174,7 @@
       ],
       "ru": "факс",
       "status": "accepted",
-      "acceptedHash": "334eb2e98a96"
+      "acceptedHash": "ad6d2132fc81"
     },
     {
       "word": "伤心",
@@ -5358,7 +5190,7 @@
       ],
       "ru": "огорчаться",
       "status": "accepted",
-      "acceptedHash": "9a5efe67f09d"
+      "acceptedHash": "57f842c48ec8"
     },
     {
       "word": "估计",
@@ -5373,8 +5205,7 @@
         4
       ],
       "ru": "оценивать",
-      "status": "accepted",
-      "acceptedHash": "314fd9dfddd4"
+      "status": "draft"
     },
     {
       "word": "作者",
@@ -5390,7 +5221,7 @@
       ],
       "ru": "автор",
       "status": "accepted",
-      "acceptedHash": "661a7a5beca1"
+      "acceptedHash": "560c044947c1"
     },
     {
       "word": "使用",
@@ -5405,8 +5236,7 @@
         4
       ],
       "ru": "использовать(ся)",
-      "status": "accepted",
-      "acceptedHash": "3bd2e31e2609"
+      "status": "draft"
     },
     {
       "word": "例如",
@@ -5422,7 +5252,7 @@
       ],
       "ru": "например",
       "status": "accepted",
-      "acceptedHash": "d1e5c8fefcf4"
+      "acceptedHash": "dc423af5485d"
     },
     {
       "word": "保护",
@@ -5438,7 +5268,7 @@
       ],
       "ru": "защищать",
       "status": "accepted",
-      "acceptedHash": "2bf5ef1664c0"
+      "acceptedHash": "b0f184263065"
     },
     {
       "word": "保证",
@@ -5454,7 +5284,7 @@
       ],
       "ru": "гарантировать",
       "status": "accepted",
-      "acceptedHash": "2507a73399ec"
+      "acceptedHash": "98f59f9cf771"
     },
     {
       "word": "信任",
@@ -5470,7 +5300,7 @@
       ],
       "ru": "доверие",
       "status": "accepted",
-      "acceptedHash": "2ecdebe410b4"
+      "acceptedHash": "377a007e7979"
     },
     {
       "word": "信心",
@@ -5486,7 +5316,7 @@
       ],
       "ru": "уверенность",
       "status": "accepted",
-      "acceptedHash": "26390cd7d135"
+      "acceptedHash": "451bf218d3a8"
     },
     {
       "word": "信用卡",
@@ -5504,7 +5334,7 @@
       ],
       "ru": "Кредитная карта",
       "status": "accepted",
-      "acceptedHash": "f160629043a5"
+      "acceptedHash": "1828bcdef5f8"
     },
     {
       "word": "做生意",
@@ -5521,8 +5351,7 @@
         0
       ],
       "ru": "вести торговлю",
-      "status": "accepted",
-      "acceptedHash": "3c6d49f72dc9"
+      "status": "draft"
     },
     {
       "word": "停止",
@@ -5537,8 +5366,7 @@
         3
       ],
       "ru": "прекратить, остановить, положить конец",
-      "status": "accepted",
-      "acceptedHash": "2d4918723151"
+      "status": "draft"
     },
     {
       "word": "偶尔",
@@ -5554,7 +5382,7 @@
       ],
       "ru": "иногда",
       "status": "accepted",
-      "acceptedHash": "d462f781bdd7"
+      "acceptedHash": "fdcfcf0c1b11"
     },
     {
       "word": "儿童",
@@ -5570,7 +5398,7 @@
       ],
       "ru": "дети",
       "status": "accepted",
-      "acceptedHash": "31af4b5df860"
+      "acceptedHash": "f291a326c652"
     },
     {
       "word": "允许",
@@ -5586,7 +5414,7 @@
       ],
       "ru": "разрешать",
       "status": "accepted",
-      "acceptedHash": "6f01a92d0a74"
+      "acceptedHash": "130df3e965a8"
     },
     {
       "word": "免费",
@@ -5601,8 +5429,7 @@
         4
       ],
       "ru": "бесплатный",
-      "status": "accepted",
-      "acceptedHash": "2f3093e26a8e"
+      "status": "draft"
     },
     {
       "word": "入口",
@@ -5618,7 +5445,7 @@
       ],
       "ru": "вход",
       "status": "accepted",
-      "acceptedHash": "ee729ed373b5"
+      "acceptedHash": "8d4c80829146"
     },
     {
       "word": "全部",
@@ -5634,7 +5461,7 @@
       ],
       "ru": "целиком",
       "status": "accepted",
-      "acceptedHash": "ea3160103452"
+      "acceptedHash": "432c3161aa2d"
     },
     {
       "word": "公里",
@@ -5650,7 +5477,7 @@
       ],
       "ru": "километр",
       "status": "accepted",
-      "acceptedHash": "d7b66a396e9b"
+      "acceptedHash": "752473b056e1"
     },
     {
       "word": "共同",
@@ -5666,7 +5493,7 @@
       ],
       "ru": "совместный, общий",
       "status": "accepted",
-      "acceptedHash": "ff8ca89962c1"
+      "acceptedHash": "5b45d6b4d07b"
     },
     {
       "word": "关键",
@@ -5682,7 +5509,7 @@
       ],
       "ru": "решающий фактор",
       "status": "accepted",
-      "acceptedHash": "e9529bab94a3"
+      "acceptedHash": "3fdb82cdc6ce"
     },
     {
       "word": "其中",
@@ -5697,8 +5524,7 @@
         1
       ],
       "ru": "среди них",
-      "status": "accepted",
-      "acceptedHash": "d01bf0536a02"
+      "status": "draft"
     },
     {
       "word": "其次",
@@ -5713,8 +5539,7 @@
         4
       ],
       "ru": "затем",
-      "status": "accepted",
-      "acceptedHash": "ca4b6f59f760"
+      "status": "draft"
     },
     {
       "word": "养成",
@@ -5729,8 +5554,7 @@
         2
       ],
       "ru": "выработать",
-      "status": "accepted",
-      "acceptedHash": "e035209e0fb1"
+      "status": "draft"
     },
     {
       "word": "内容",
@@ -5746,7 +5570,7 @@
       ],
       "ru": "содержание",
       "status": "accepted",
-      "acceptedHash": "510a6d047307"
+      "acceptedHash": "bbee8f3bf602"
     },
     {
       "word": "农村",
@@ -5762,7 +5586,7 @@
       ],
       "ru": "деревня",
       "status": "accepted",
-      "acceptedHash": "e7431d7eba0f"
+      "acceptedHash": "8866b771784e"
     },
     {
       "word": "冷静",
@@ -5778,7 +5602,7 @@
       ],
       "ru": "хладнокровный, невозмутимый",
       "status": "accepted",
-      "acceptedHash": "1fa05691e12b"
+      "acceptedHash": "be57331d1b7b"
     },
     {
       "word": "准时",
@@ -5793,8 +5617,7 @@
         2
       ],
       "ru": "вовремя",
-      "status": "accepted",
-      "acceptedHash": "e0c0d82475dd"
+      "status": "draft"
     },
     {
       "word": "准确",
@@ -5810,7 +5633,7 @@
       ],
       "ru": "точный",
       "status": "accepted",
-      "acceptedHash": "520fc953da3e"
+      "acceptedHash": "025f8ff6fb59"
     },
     {
       "word": "减少",
@@ -5825,8 +5648,7 @@
         3
       ],
       "ru": "уменьшать",
-      "status": "accepted",
-      "acceptedHash": "e2b2508e0828"
+      "status": "draft"
     },
     {
       "word": "减肥",
@@ -5842,7 +5664,7 @@
       ],
       "ru": "худеть",
       "status": "accepted",
-      "acceptedHash": "413c1a0c31dc"
+      "acceptedHash": "54f22f02a46c"
     },
     {
       "word": "出发",
@@ -5857,8 +5679,7 @@
         1
       ],
       "ru": "отправиться",
-      "status": "accepted",
-      "acceptedHash": "a53a79f1575c"
+      "status": "draft"
     },
     {
       "word": "出差",
@@ -5873,8 +5694,7 @@
         1
       ],
       "ru": "командировка",
-      "status": "accepted",
-      "acceptedHash": "4887ed52f605"
+      "status": "draft"
     },
     {
       "word": "出生",
@@ -5889,8 +5709,7 @@
         1
       ],
       "ru": "родиться",
-      "status": "accepted",
-      "acceptedHash": "bc3231a8cf6f"
+      "status": "draft"
     },
     {
       "word": "分之",
@@ -5905,8 +5724,7 @@
         1
       ],
       "ru": "дробная часть",
-      "status": "accepted",
-      "acceptedHash": "4871ffc9f0c3"
+      "status": "draft"
     },
     {
       "word": "刚刚",
@@ -5922,7 +5740,7 @@
       ],
       "ru": "только что, только-только",
       "status": "accepted",
-      "acceptedHash": "3821a68d45ce"
+      "acceptedHash": "3d67eb4e52c4"
     },
     {
       "word": "判断",
@@ -5938,7 +5756,7 @@
       ],
       "ru": "определять, решать",
       "status": "accepted",
-      "acceptedHash": "4d4563718fae"
+      "acceptedHash": "73635bbb335b"
     },
     {
       "word": "到处",
@@ -5953,8 +5771,7 @@
         4
       ],
       "ru": "везде",
-      "status": "accepted",
-      "acceptedHash": "1514194f8048"
+      "status": "draft"
     },
     {
       "word": "到底",
@@ -5969,8 +5786,7 @@
         3
       ],
       "ru": "в конце концов, в конечном счёте, всё-таки",
-      "status": "accepted",
-      "acceptedHash": "10a13ffb38a7"
+      "status": "draft"
     },
     {
       "word": "制造",
@@ -5985,8 +5801,7 @@
         4
       ],
       "ru": "изготавливать",
-      "status": "accepted",
-      "acceptedHash": "13d406b252b6"
+      "status": "draft"
     },
     {
       "word": "力气",
@@ -6002,7 +5817,7 @@
       ],
       "ru": "физическая сила",
       "status": "accepted",
-      "acceptedHash": "00ae16f9b52e"
+      "acceptedHash": "a51d615296ed"
     },
     {
       "word": "加油站",
@@ -6019,8 +5834,7 @@
         4
       ],
       "ru": "бензозаправочная станция",
-      "status": "accepted",
-      "acceptedHash": "94c71ea44b42"
+      "status": "draft"
     },
     {
       "word": "加班",
@@ -6036,7 +5850,7 @@
       ],
       "ru": "работать сверхурочно",
       "status": "accepted",
-      "acceptedHash": "6e3e07b984e5"
+      "acceptedHash": "0c559f54a2dd"
     },
     {
       "word": "动作",
@@ -6051,8 +5865,7 @@
         4
       ],
       "ru": "движение",
-      "status": "accepted",
-      "acceptedHash": "1061fc4fe658"
+      "status": "draft"
     },
     {
       "word": "勇敢",
@@ -6068,7 +5881,7 @@
       ],
       "ru": "смелый, храбрый, отважный",
       "status": "accepted",
-      "acceptedHash": "160b38312b55"
+      "acceptedHash": "73cf93243dc7"
     },
     {
       "word": "包括",
@@ -6083,8 +5896,7 @@
         4
       ],
       "ru": "охватывать, включать",
-      "status": "accepted",
-      "acceptedHash": "b3272af8cc53"
+      "status": "draft"
     },
     {
       "word": "区别",
@@ -6099,8 +5911,7 @@
         2
       ],
       "ru": "различать",
-      "status": "accepted",
-      "acceptedHash": "54933c018aee"
+      "status": "draft"
     },
     {
       "word": "十分",
@@ -6115,8 +5926,7 @@
         1
       ],
       "ru": "в полной мере",
-      "status": "accepted",
-      "acceptedHash": "5684217d5be7"
+      "status": "draft"
     },
     {
       "word": "千万",
@@ -6132,7 +5942,7 @@
       ],
       "ru": "во что бы то ни стало",
       "status": "accepted",
-      "acceptedHash": "b8cdc21ab71c"
+      "acceptedHash": "cbb82c97d33d"
     },
     {
       "word": "博士",
@@ -6147,8 +5957,7 @@
         4
       ],
       "ru": "доктор (наук)",
-      "status": "accepted",
-      "acceptedHash": "d70da9c85885"
+      "status": "draft"
     },
     {
       "word": "印象",
@@ -6164,7 +5973,7 @@
       ],
       "ru": "впечатление",
       "status": "accepted",
-      "acceptedHash": "621bf3e33aea"
+      "acceptedHash": "44b9257b02d8"
     },
     {
       "word": "危险",
@@ -6179,8 +5988,7 @@
         3
       ],
       "ru": "опасность",
-      "status": "accepted",
-      "acceptedHash": "8fd7cb7a032c"
+      "status": "draft"
     },
     {
       "word": "即使",
@@ -6195,8 +6003,7 @@
         3
       ],
       "ru": "пусть (даже)",
-      "status": "accepted",
-      "acceptedHash": "a95f2f71fe88"
+      "status": "draft"
     },
     {
       "word": "厉害",
@@ -6212,7 +6019,7 @@
       ],
       "ru": "сильный, крутой",
       "status": "accepted",
-      "acceptedHash": "bf8a0281a3c4"
+      "acceptedHash": "dae6e9d1201d"
     },
     {
       "word": "压力",
@@ -6228,7 +6035,7 @@
       ],
       "ru": "давление",
       "status": "accepted",
-      "acceptedHash": "49bb72a448a3"
+      "acceptedHash": "5bbec27ac661"
     },
     {
       "word": "原因",
@@ -6243,8 +6050,7 @@
         1
       ],
       "ru": "причина",
-      "status": "accepted",
-      "acceptedHash": "a19c0ade21da"
+      "status": "draft"
     },
     {
       "word": "原来",
@@ -6259,8 +6065,7 @@
         2
       ],
       "ru": "оказывается",
-      "status": "accepted",
-      "acceptedHash": "bc5be465395d"
+      "status": "draft"
     },
     {
       "word": "原谅",
@@ -6275,8 +6080,7 @@
         4
       ],
       "ru": "извинять",
-      "status": "accepted",
-      "acceptedHash": "f542854b7a53"
+      "status": "draft"
     },
     {
       "word": "参观",
@@ -6292,7 +6096,7 @@
       ],
       "ru": "совершать экскурсию",
       "status": "accepted",
-      "acceptedHash": "67bb33b2297c"
+      "acceptedHash": "e20df6e04d31"
     },
     {
       "word": "及时",
@@ -6307,8 +6111,7 @@
         2
       ],
       "ru": "вовремя",
-      "status": "accepted",
-      "acceptedHash": "a6aa84417ac1"
+      "status": "draft"
     },
     {
       "word": "友好",
@@ -6324,7 +6127,7 @@
       ],
       "ru": "дружелюбный",
       "status": "accepted",
-      "acceptedHash": "23b0204f0f04"
+      "acceptedHash": "14ddf5fcc1fe"
     },
     {
       "word": "友谊",
@@ -6339,8 +6142,7 @@
         4
       ],
       "ru": "дружба",
-      "status": "accepted",
-      "acceptedHash": "f36b2f0c11dd"
+      "status": "draft"
     },
     {
       "word": "反对",
@@ -6355,8 +6157,7 @@
         4
       ],
       "ru": "возражать",
-      "status": "accepted",
-      "acceptedHash": "85d57a2675fc"
+      "status": "draft"
     },
     {
       "word": "反映",
@@ -6371,8 +6172,7 @@
         4
       ],
       "ru": "отображать, отражать",
-      "status": "accepted",
-      "acceptedHash": "15926592bb58"
+      "status": "draft"
     },
     {
       "word": "发展",
@@ -6388,7 +6188,7 @@
       ],
       "ru": "развивать(ся)",
       "status": "accepted",
-      "acceptedHash": "8de2b4b179b7"
+      "acceptedHash": "3d59cf28a9f2"
     },
     {
       "word": "发生",
@@ -6404,7 +6204,7 @@
       ],
       "ru": "возникнуть",
       "status": "accepted",
-      "acceptedHash": "554763b4c3d7"
+      "acceptedHash": "bb66a32da9d1"
     },
     {
       "word": "受到",
@@ -6419,8 +6219,7 @@
         4
       ],
       "ru": "получить",
-      "status": "accepted",
-      "acceptedHash": "367e22e44da6"
+      "status": "draft"
     },
     {
       "word": "另外",
@@ -6435,8 +6234,7 @@
         4
       ],
       "ru": "кроме того, сверх того",
-      "status": "accepted",
-      "acceptedHash": "b176866a0976"
+      "status": "draft"
     },
     {
       "word": "只好",
@@ -6452,7 +6250,7 @@
       ],
       "ru": "быть вынужденным",
       "status": "accepted",
-      "acceptedHash": "692ac5c1c5ba"
+      "acceptedHash": "a6c0a32fad91"
     },
     {
       "word": "只要",
@@ -6467,8 +6265,7 @@
         4
       ],
       "ru": "если только",
-      "status": "accepted",
-      "acceptedHash": "87ebc3b606be"
+      "status": "draft"
     },
     {
       "word": "可怜",
@@ -6483,8 +6280,7 @@
         2
       ],
       "ru": "жалкий",
-      "status": "accepted",
-      "acceptedHash": "9e3672ca9d5c"
+      "status": "draft"
     },
     {
       "word": "可惜",
@@ -6499,8 +6295,7 @@
         1
       ],
       "ru": "к сожалению",
-      "status": "accepted",
-      "acceptedHash": "38cf7fd8d738"
+      "status": "draft"
     },
     {
       "word": "可是",
@@ -6515,8 +6310,7 @@
         4
       ],
       "ru": "а, но, однако",
-      "status": "accepted",
-      "acceptedHash": "d55c1aa31011"
+      "status": "draft"
     },
     {
       "word": "号码",
@@ -6532,7 +6326,7 @@
       ],
       "ru": "номер",
       "status": "accepted",
-      "acceptedHash": "fdfb0a97a0ed"
+      "acceptedHash": "2481ac5a3b0d"
     },
     {
       "word": "吃惊",
@@ -6548,7 +6342,7 @@
       ],
       "ru": "удивиться",
       "status": "accepted",
-      "acceptedHash": "e21dcecef7eb"
+      "acceptedHash": "bcbaef251427"
     },
     {
       "word": "合格",
@@ -6563,8 +6357,7 @@
         2
       ],
       "ru": "соответствовать стандарту [норме]",
-      "status": "accepted",
-      "acceptedHash": "adf3adbd0112"
+      "status": "draft"
     },
     {
       "word": "合适",
@@ -6579,8 +6372,7 @@
         4
       ],
       "ru": "подходить",
-      "status": "accepted",
-      "acceptedHash": "dfb9df149321"
+      "status": "draft"
     },
     {
       "word": "同情",
@@ -6595,8 +6387,7 @@
         2
       ],
       "ru": "сочувствовать",
-      "status": "accepted",
-      "acceptedHash": "91ca923b577b"
+      "status": "draft"
     },
     {
       "word": "后悔",
@@ -6612,7 +6403,7 @@
       ],
       "ru": "раскаиваться",
       "status": "accepted",
-      "acceptedHash": "d67e32fe35bf"
+      "acceptedHash": "5fbdc0491b25"
     },
     {
       "word": "后来",
@@ -6628,7 +6419,7 @@
       ],
       "ru": "потом, впоследствии, затем",
       "status": "accepted",
-      "acceptedHash": "9a532494b0f8"
+      "acceptedHash": "7c89b1fe16a5"
     },
     {
       "word": "否则",
@@ -6644,7 +6435,7 @@
       ],
       "ru": "в противном случае",
       "status": "accepted",
-      "acceptedHash": "e2081d7efcc5"
+      "acceptedHash": "ce33c02a18b9"
     },
     {
       "word": "吸引",
@@ -6659,8 +6450,7 @@
         3
       ],
       "ru": "привлекать",
-      "status": "accepted",
-      "acceptedHash": "46eaf3154980"
+      "status": "draft"
     },
     {
       "word": "周围",
@@ -6675,8 +6465,7 @@
         2
       ],
       "ru": "круг, окружность",
-      "status": "accepted",
-      "acceptedHash": "6f9a598ae44a"
+      "status": "draft"
     },
     {
       "word": "咱们",
@@ -6692,7 +6481,7 @@
       ],
       "ru": "мы (включая собеседника)",
       "status": "accepted",
-      "acceptedHash": "b6b70437dccc"
+      "acceptedHash": "05faac993349"
     },
     {
       "word": "咳嗽",
@@ -6708,7 +6497,7 @@
       ],
       "ru": "кашлять",
       "status": "accepted",
-      "acceptedHash": "d0fe7628907f"
+      "acceptedHash": "1a98b31ae281"
     },
     {
       "word": "售货员",
@@ -6725,8 +6514,7 @@
         2
       ],
       "ru": "продавец",
-      "status": "accepted",
-      "acceptedHash": "5a3622dd1850"
+      "status": "draft"
     },
     {
       "word": "商量",
@@ -6742,7 +6530,7 @@
       ],
       "ru": "обсуждать",
       "status": "accepted",
-      "acceptedHash": "7c7cb7704827"
+      "acceptedHash": "908e6c3c9d42"
     },
     {
       "word": "回忆",
@@ -6757,8 +6545,7 @@
         4
       ],
       "ru": "вспоминать",
-      "status": "accepted",
-      "acceptedHash": "e7a28c9badc5"
+      "status": "draft"
     },
     {
       "word": "因此",
@@ -6774,7 +6561,7 @@
       ],
       "ru": "в связи с этим, поэтому",
       "status": "accepted",
-      "acceptedHash": "d6250343c5a3"
+      "acceptedHash": "984c3a58578f"
     },
     {
       "word": "国际",
@@ -6789,8 +6576,7 @@
         4
       ],
       "ru": "международный",
-      "status": "accepted",
-      "acceptedHash": "8d179d3e9776"
+      "status": "draft"
     },
     {
       "word": "地址",
@@ -6805,8 +6591,7 @@
         3
       ],
       "ru": "адрес",
-      "status": "accepted",
-      "acceptedHash": "09f5fda7fa99"
+      "status": "draft"
     },
     {
       "word": "地球",
@@ -6821,8 +6606,7 @@
         2
       ],
       "ru": "земной шар",
-      "status": "accepted",
-      "acceptedHash": "fa577e0fe0cd"
+      "status": "draft"
     },
     {
       "word": "坚持",
@@ -6838,7 +6622,7 @@
       ],
       "ru": "твёрдо придерживаться",
       "status": "accepted",
-      "acceptedHash": "aefa9c36b2c4"
+      "acceptedHash": "d67db2b9d6f5"
     },
     {
       "word": "垃圾桶",
@@ -6856,7 +6640,7 @@
       ],
       "ru": "мусорное ведро",
       "status": "accepted",
-      "acceptedHash": "afe643fba624"
+      "acceptedHash": "94ef466114c8"
     },
     {
       "word": "基础",
@@ -6872,7 +6656,7 @@
       ],
       "ru": "основа",
       "status": "accepted",
-      "acceptedHash": "ee3e787a3d51"
+      "acceptedHash": "10eaaf72ea72"
     },
     {
       "word": "堵车",
@@ -6887,8 +6671,7 @@
         1
       ],
       "ru": "пробка, затор",
-      "status": "accepted",
-      "acceptedHash": "5ba66796ad4c"
+      "status": "draft"
     },
     {
       "word": "塑料袋",
@@ -6906,7 +6689,7 @@
       ],
       "ru": "пластиковый пакет",
       "status": "accepted",
-      "acceptedHash": "297eda415723"
+      "acceptedHash": "0aab4629780e"
     },
     {
       "word": "填空",
@@ -6922,7 +6705,7 @@
       ],
       "ru": "заполнить пропуск",
       "status": "accepted",
-      "acceptedHash": "b2f4e4fd940a"
+      "acceptedHash": "f891bc7751bd"
     },
     {
       "word": "增加",
@@ -6938,7 +6721,7 @@
       ],
       "ru": "увеличить(ся)",
       "status": "accepted",
-      "acceptedHash": "35313ba634db"
+      "acceptedHash": "38ec657071f6"
     },
     {
       "word": "增长",
@@ -6954,7 +6737,7 @@
       ],
       "ru": "возрастать",
       "status": "accepted",
-      "acceptedHash": "0c00e7d3ebe7"
+      "acceptedHash": "5dbde037ab2b"
     },
     {
       "word": "复印",
@@ -6969,8 +6752,7 @@
         4
       ],
       "ru": "размножать",
-      "status": "accepted",
-      "acceptedHash": "862e7cdb50bb"
+      "status": "draft"
     },
     {
       "word": "复杂",
@@ -6985,8 +6767,7 @@
         2
       ],
       "ru": "сложный",
-      "status": "accepted",
-      "acceptedHash": "ee4cd9442a94"
+      "status": "draft"
     },
     {
       "word": "大使馆",
@@ -7004,7 +6785,7 @@
       ],
       "ru": "посольство",
       "status": "accepted",
-      "acceptedHash": "f34c4e676ceb"
+      "acceptedHash": "7365cd284e0d"
     },
     {
       "word": "大概",
@@ -7020,7 +6801,7 @@
       ],
       "ru": "вероятно",
       "status": "accepted",
-      "acceptedHash": "73594c848112"
+      "acceptedHash": "4705993ccb34"
     },
     {
       "word": "大约",
@@ -7035,8 +6816,7 @@
         1
       ],
       "ru": "приблизительно",
-      "status": "accepted",
-      "acceptedHash": "e28890c232a5"
+      "status": "draft"
     },
     {
       "word": "失望",
@@ -7051,8 +6831,7 @@
         4
       ],
       "ru": "разочароваться",
-      "status": "accepted",
-      "acceptedHash": "3bdafb9ba1f4"
+      "status": "draft"
     },
     {
       "word": "失败",
@@ -7067,8 +6846,7 @@
         4
       ],
       "ru": "поражение",
-      "status": "accepted",
-      "acceptedHash": "b3c9b43825b8"
+      "status": "draft"
     },
     {
       "word": "奖金",
@@ -7084,7 +6862,7 @@
       ],
       "ru": "денежная награда",
       "status": "accepted",
-      "acceptedHash": "46443c3e39e6"
+      "acceptedHash": "9db823b23494"
     },
     {
       "word": "好像",
@@ -7099,8 +6877,7 @@
         4
       ],
       "ru": "как будто",
-      "status": "accepted",
-      "acceptedHash": "10e34e6611f4"
+      "status": "draft"
     },
     {
       "word": "孤单",
@@ -7116,7 +6893,7 @@
       ],
       "ru": "одинокий",
       "status": "accepted",
-      "acceptedHash": "7d600a440cb0"
+      "acceptedHash": "e0a6e5ad042e"
     },
     {
       "word": "安全",
@@ -7131,8 +6908,7 @@
         2
       ],
       "ru": "безопасность",
-      "status": "accepted",
-      "acceptedHash": "2c8f04516d4c"
+      "status": "draft"
     },
     {
       "word": "安排",
@@ -7148,7 +6924,7 @@
       ],
       "ru": "налаживать",
       "status": "accepted",
-      "acceptedHash": "124b475dc3b8"
+      "acceptedHash": "d450e2a41544"
     },
     {
       "word": "完全",
@@ -7163,8 +6939,7 @@
         2
       ],
       "ru": "полный",
-      "status": "accepted",
-      "acceptedHash": "cd030dcf3376"
+      "status": "draft"
     },
     {
       "word": "实际",
@@ -7179,8 +6954,7 @@
         4
       ],
       "ru": "реальный",
-      "status": "accepted",
-      "acceptedHash": "95c2c329a268"
+      "status": "draft"
     },
     {
       "word": "害羞",
@@ -7196,7 +6970,7 @@
       ],
       "ru": "стесняться",
       "status": "accepted",
-      "acceptedHash": "3882602ff43b"
+      "acceptedHash": "770ba32425db"
     },
     {
       "word": "密码",
@@ -7212,7 +6986,7 @@
       ],
       "ru": "пароль",
       "status": "accepted",
-      "acceptedHash": "9e1f4dc103e2"
+      "acceptedHash": "2c8241d837e7"
     },
     {
       "word": "寒假",
@@ -7228,7 +7002,7 @@
       ],
       "ru": "зимние каникулы",
       "status": "accepted",
-      "acceptedHash": "e0787359099c"
+      "acceptedHash": "3fb818f97ab3"
     },
     {
       "word": "对话",
@@ -7244,7 +7018,7 @@
       ],
       "ru": "диалог",
       "status": "accepted",
-      "acceptedHash": "272a0b0abcb7"
+      "acceptedHash": "5d3e74201f1c"
     },
     {
       "word": "对面",
@@ -7260,7 +7034,7 @@
       ],
       "ru": "напротив",
       "status": "accepted",
-      "acceptedHash": "69e02d139d28"
+      "acceptedHash": "cf0f1fb239a9"
     },
     {
       "word": "导游",
@@ -7275,8 +7049,7 @@
         2
       ],
       "ru": "гид",
-      "status": "accepted",
-      "acceptedHash": "0021a93fd431"
+      "status": "draft"
     },
     {
       "word": "将来",
@@ -7292,7 +7065,7 @@
       ],
       "ru": "будущий",
       "status": "accepted",
-      "acceptedHash": "bc6c9626ac44"
+      "acceptedHash": "d027772ab31d"
     },
     {
       "word": "尊重",
@@ -7308,7 +7081,7 @@
       ],
       "ru": "уважать",
       "status": "accepted",
-      "acceptedHash": "7ef5fdb3b9cf"
+      "acceptedHash": "3825a3ecb5f7"
     },
     {
       "word": "小说",
@@ -7324,7 +7097,7 @@
       ],
       "ru": "роман, повесть",
       "status": "accepted",
-      "acceptedHash": "8bb073311b82"
+      "acceptedHash": "9d7381c10d43"
     },
     {
       "word": "尤其",
@@ -7339,8 +7112,7 @@
         2
       ],
       "ru": "в особенности",
-      "status": "accepted",
-      "acceptedHash": "b351ba7a2917"
+      "status": "draft"
     },
     {
       "word": "尽管",
@@ -7356,7 +7128,7 @@
       ],
       "ru": "хотя, несмотря на то что",
       "status": "accepted",
-      "acceptedHash": "b869bca37086"
+      "acceptedHash": "44ea3ac23369"
     },
     {
       "word": "工具",
@@ -7371,8 +7143,7 @@
         4
       ],
       "ru": "инструмент",
-      "status": "accepted",
-      "acceptedHash": "f8e12a24af98"
+      "status": "draft"
     },
     {
       "word": "工资",
@@ -7388,7 +7159,7 @@
       ],
       "ru": "заработная плата",
       "status": "accepted",
-      "acceptedHash": "fef236142bd8"
+      "acceptedHash": "57b3b1c0ce4e"
     },
     {
       "word": "巧克力",
@@ -7405,8 +7176,7 @@
         4
       ],
       "ru": "шоколад",
-      "status": "accepted",
-      "acceptedHash": "6bf4f7a6190c"
+      "status": "draft"
     },
     {
       "word": "差不多",
@@ -7423,8 +7193,7 @@
         1
       ],
       "ru": "почти одинаковый, почти одно и то же",
-      "status": "accepted",
-      "acceptedHash": "31c206ee614b"
+      "status": "draft"
     },
     {
       "word": "市场",
@@ -7440,7 +7209,7 @@
       ],
       "ru": "рынок",
       "status": "accepted",
-      "acceptedHash": "3cc18a6f0153"
+      "acceptedHash": "9805992d41a2"
     },
     {
       "word": "师傅",
@@ -7456,7 +7225,7 @@
       ],
       "ru": "мастер",
       "status": "accepted",
-      "acceptedHash": "7a851b5be72a"
+      "acceptedHash": "7b5cca1b88fc"
     },
     {
       "word": "干杯",
@@ -7472,7 +7241,7 @@
       ],
       "ru": "выпить до капли, осушить бокал",
       "status": "accepted",
-      "acceptedHash": "011078b44f3f"
+      "acceptedHash": "d342165e804a"
     },
     {
       "word": "干燥",
@@ -7488,7 +7257,7 @@
       ],
       "ru": "сухой",
       "status": "accepted",
-      "acceptedHash": "e6a1f3e17bcf"
+      "acceptedHash": "0b31dfbbf056"
     },
     {
       "word": "平时",
@@ -7503,8 +7272,7 @@
         2
       ],
       "ru": "обычно",
-      "status": "accepted",
-      "acceptedHash": "c2fb3c547142"
+      "status": "draft"
     },
     {
       "word": "年龄",
@@ -7520,7 +7288,7 @@
       ],
       "ru": "возраст",
       "status": "accepted",
-      "acceptedHash": "7659cb60731e"
+      "acceptedHash": "d3b97d256cc0"
     },
     {
       "word": "并且",
@@ -7536,7 +7304,7 @@
       ],
       "ru": "к тому же",
       "status": "accepted",
-      "acceptedHash": "12383024ebe5"
+      "acceptedHash": "f43981a9e919"
     },
     {
       "word": "幸福",
@@ -7551,8 +7319,7 @@
         2
       ],
       "ru": "счастье",
-      "status": "accepted",
-      "acceptedHash": "0f45e46f9cf4"
+      "status": "draft"
     },
     {
       "word": "幽默",
@@ -7567,8 +7334,7 @@
         4
       ],
       "ru": "юмор",
-      "status": "accepted",
-      "acceptedHash": "a6686aa51dea"
+      "status": "draft"
     },
     {
       "word": "广告",
@@ -7584,7 +7350,7 @@
       ],
       "ru": "реклама",
       "status": "accepted",
-      "acceptedHash": "319739b00223"
+      "acceptedHash": "b0b0539e5953"
     },
     {
       "word": "广播",
@@ -7600,7 +7366,7 @@
       ],
       "ru": "радиовещание",
       "status": "accepted",
-      "acceptedHash": "6936262e6b22"
+      "acceptedHash": "51eecbee8bf2"
     },
     {
       "word": "座位",
@@ -7615,8 +7381,7 @@
         4
       ],
       "ru": "место",
-      "status": "accepted",
-      "acceptedHash": "e99eb189203a"
+      "status": "draft"
     },
     {
       "word": "开玩笑",
@@ -7634,7 +7399,7 @@
       ],
       "ru": "шутить",
       "status": "accepted",
-      "acceptedHash": "2fe58157b8f2"
+      "acceptedHash": "53612c5d5ea7"
     },
     {
       "word": "引起",
@@ -7649,8 +7414,7 @@
         3
       ],
       "ru": "вызывать",
-      "status": "accepted",
-      "acceptedHash": "ea7306084d3a"
+      "status": "draft"
     },
     {
       "word": "弹钢琴",
@@ -7668,7 +7432,7 @@
       ],
       "ru": "играть на фортепьяно",
       "status": "accepted",
-      "acceptedHash": "ca8ea2f1697d"
+      "acceptedHash": "c092d6191793"
     },
     {
       "word": "当地",
@@ -7684,7 +7448,7 @@
       ],
       "ru": "данное место",
       "status": "accepted",
-      "acceptedHash": "825b8822ff8a"
+      "acceptedHash": "7281515141ed"
     },
     {
       "word": "当时",
@@ -7699,8 +7463,7 @@
         2
       ],
       "ru": "тогда, в то время",
-      "status": "accepted",
-      "acceptedHash": "d73b9a961d48"
+      "status": "draft"
     },
     {
       "word": "往往",
@@ -7716,7 +7479,7 @@
       ],
       "ru": "сплошь и рядом",
       "status": "accepted",
-      "acceptedHash": "63ad45650bf9"
+      "acceptedHash": "9d5911b95a43"
     },
     {
       "word": "律师",
@@ -7731,8 +7494,7 @@
         1
       ],
       "ru": "адвокат",
-      "status": "accepted",
-      "acceptedHash": "c74facea00ff"
+      "status": "draft"
     },
     {
       "word": "得意",
@@ -7747,8 +7509,7 @@
         4
       ],
       "ru": "довольный",
-      "status": "accepted",
-      "acceptedHash": "4e980bbcf4ab"
+      "status": "draft"
     },
     {
       "word": "心情",
@@ -7763,8 +7524,7 @@
         2
       ],
       "ru": "настроение",
-      "status": "accepted",
-      "acceptedHash": "e79389445276"
+      "status": "draft"
     },
     {
       "word": "忽然",
@@ -7779,8 +7539,7 @@
         2
       ],
       "ru": "вдруг, внезапно, неожиданно",
-      "status": "accepted",
-      "acceptedHash": "9689cedbd5a2"
+      "status": "draft"
     },
     {
       "word": "怀疑",
@@ -7795,8 +7554,7 @@
         2
       ],
       "ru": "сомневаться",
-      "status": "accepted",
-      "acceptedHash": "1f1c4374c70e"
+      "status": "draft"
     },
     {
       "word": "性别",
@@ -7811,8 +7569,7 @@
         2
       ],
       "ru": "пол",
-      "status": "accepted",
-      "acceptedHash": "03d6861cb085"
+      "status": "draft"
     },
     {
       "word": "性格",
@@ -7827,8 +7584,7 @@
         2
       ],
       "ru": "характер",
-      "status": "accepted",
-      "acceptedHash": "8e71ff0bffe1"
+      "status": "draft"
     },
     {
       "word": "总结",
@@ -7843,8 +7599,7 @@
         2
       ],
       "ru": "подводить итог; итог",
-      "status": "accepted",
-      "acceptedHash": "bf77f519d5b3"
+      "status": "draft"
     },
     {
       "word": "恐怕",
@@ -7860,7 +7615,7 @@
       ],
       "ru": "бояться, опасаться",
       "status": "accepted",
-      "acceptedHash": "04b868154fac"
+      "acceptedHash": "ec955aa08d11"
     },
     {
       "word": "情况",
@@ -7875,8 +7630,7 @@
         4
       ],
       "ru": "обстановка",
-      "status": "accepted",
-      "acceptedHash": "89e93d157db6"
+      "status": "draft"
     },
     {
       "word": "愉快",
@@ -7891,8 +7645,7 @@
         4
       ],
       "ru": "радостный",
-      "status": "accepted",
-      "acceptedHash": "7ff0da9e538a"
+      "status": "draft"
     },
     {
       "word": "感动",
@@ -7908,7 +7661,7 @@
       ],
       "ru": "растрогаться, расчувствоваться",
       "status": "accepted",
-      "acceptedHash": "0ff72f06ebc2"
+      "acceptedHash": "5183b8a78608"
     },
     {
       "word": "感情",
@@ -7923,8 +7676,7 @@
         2
       ],
       "ru": "чувство",
-      "status": "accepted",
-      "acceptedHash": "2931991e77c3"
+      "status": "draft"
     },
     {
       "word": "感觉",
@@ -7940,7 +7692,7 @@
       ],
       "ru": "чувство, ощущение",
       "status": "accepted",
-      "acceptedHash": "41f36632c471"
+      "acceptedHash": "4b793325c0dd"
     },
     {
       "word": "感谢",
@@ -7955,8 +7707,7 @@
         4
       ],
       "ru": "благодарить",
-      "status": "accepted",
-      "acceptedHash": "0e7ce9c6c63d"
+      "status": "draft"
     },
     {
       "word": "成为",
@@ -7971,8 +7722,7 @@
         2
       ],
       "ru": "стать",
-      "status": "accepted",
-      "acceptedHash": "6a880e3672e4"
+      "status": "draft"
     },
     {
       "word": "成功",
@@ -7988,7 +7738,7 @@
       ],
       "ru": "успех",
       "status": "accepted",
-      "acceptedHash": "f92ae7b4f805"
+      "acceptedHash": "3240dad0eb12"
     },
     {
       "word": "成熟",
@@ -8003,8 +7753,7 @@
         2
       ],
       "ru": "созреть",
-      "status": "accepted",
-      "acceptedHash": "4ddc2195ae68"
+      "status": "draft"
     },
     {
       "word": "所有",
@@ -8019,8 +7768,7 @@
         3
       ],
       "ru": "весь, все",
-      "status": "accepted",
-      "acceptedHash": "19e357f6d266"
+      "status": "draft"
     },
     {
       "word": "打印",
@@ -8035,8 +7783,7 @@
         4
       ],
       "ru": "печатать",
-      "status": "accepted",
-      "acceptedHash": "b226c4567f2b"
+      "status": "draft"
     },
     {
       "word": "打扰",
@@ -8052,7 +7799,7 @@
       ],
       "ru": "тревожить, беспокоить",
       "status": "accepted",
-      "acceptedHash": "1ba4ad640bd5"
+      "acceptedHash": "a18de2b1ffe9"
     },
     {
       "word": "打折",
@@ -8067,8 +7814,7 @@
         2
       ],
       "ru": "сделать скидку",
-      "status": "accepted",
-      "acceptedHash": "75d594c145e3"
+      "status": "draft"
     },
     {
       "word": "打针",
@@ -8083,8 +7829,7 @@
         1
       ],
       "ru": "сделать укол",
-      "status": "accepted",
-      "acceptedHash": "5753af6e30d3"
+      "status": "draft"
     },
     {
       "word": "扩大",
@@ -8099,8 +7844,7 @@
         4
       ],
       "ru": "увеличивать",
-      "status": "accepted",
-      "acceptedHash": "04a0836c0f92"
+      "status": "draft"
     },
     {
       "word": "批评",
@@ -8115,8 +7859,7 @@
         2
       ],
       "ru": "критиковать",
-      "status": "accepted",
-      "acceptedHash": "cc0dafa5af3c"
+      "status": "draft"
     },
     {
       "word": "技术",
@@ -8131,8 +7874,7 @@
         4
       ],
       "ru": "технология, мастерство",
-      "status": "accepted",
-      "acceptedHash": "a3d0e6324d9c"
+      "status": "draft"
     },
     {
       "word": "护士",
@@ -8148,7 +7890,7 @@
       ],
       "ru": "медицинская сестра, медсестра",
       "status": "accepted",
-      "acceptedHash": "cb8621bee65e"
+      "acceptedHash": "5eeb25fd05fc"
     },
     {
       "word": "报名",
@@ -8164,7 +7906,7 @@
       ],
       "ru": "записаться, зарегистрироваться",
       "status": "accepted",
-      "acceptedHash": "17068cafb565"
+      "acceptedHash": "486b741abdaa"
     },
     {
       "word": "报道",
@@ -8180,7 +7922,7 @@
       ],
       "ru": "сообщать, информировать",
       "status": "accepted",
-      "acceptedHash": "589b6481b4fa"
+      "acceptedHash": "19fbca45e51d"
     },
     {
       "word": "抱歉",
@@ -8196,7 +7938,7 @@
       ],
       "ru": "сожалеть, выражать сожаление",
       "status": "accepted",
-      "acceptedHash": "a681833d33b0"
+      "acceptedHash": "a5596dab7ed0"
     },
     {
       "word": "抽烟",
@@ -8211,8 +7953,7 @@
         1
       ],
       "ru": "курить",
-      "status": "accepted",
-      "acceptedHash": "2092d9be0868"
+      "status": "draft"
     },
     {
       "word": "拒绝",
@@ -8227,8 +7968,7 @@
         2
       ],
       "ru": "отказываться",
-      "status": "accepted",
-      "acceptedHash": "9434b4a620bf"
+      "status": "draft"
     },
     {
       "word": "招聘",
@@ -8243,8 +7983,7 @@
         4
       ],
       "ru": "набирать сотрудников",
-      "status": "accepted",
-      "acceptedHash": "fa3b9862e0ca"
+      "status": "draft"
     },
     {
       "word": "按时",
@@ -8259,8 +7998,7 @@
         2
       ],
       "ru": "вовремя",
-      "status": "accepted",
-      "acceptedHash": "57c95bb59e6d"
+      "status": "draft"
     },
     {
       "word": "按照",
@@ -8275,8 +8013,7 @@
         4
       ],
       "ru": "согласно",
-      "status": "accepted",
-      "acceptedHash": "c29f0124ab9d"
+      "status": "draft"
     },
     {
       "word": "排列",
@@ -8291,8 +8028,7 @@
         4
       ],
       "ru": "расставлять [ставить] по порядку",
-      "status": "accepted",
-      "acceptedHash": "cdf2f5c82409"
+      "status": "draft"
     },
     {
       "word": "接受",
@@ -8307,8 +8043,7 @@
         4
       ],
       "ru": "принимать, получать",
-      "status": "accepted",
-      "acceptedHash": "24b721f305a3"
+      "status": "draft"
     },
     {
       "word": "推迟",
@@ -8324,7 +8059,7 @@
       ],
       "ru": "отсрочить, отложить",
       "status": "accepted",
-      "acceptedHash": "ec0a580bf377"
+      "acceptedHash": "8737278fadf5"
     },
     {
       "word": "提供",
@@ -8339,8 +8074,7 @@
         1
       ],
       "ru": "предоставлять",
-      "status": "accepted",
-      "acceptedHash": "0a09744bdbda"
+      "status": "draft"
     },
     {
       "word": "提前",
@@ -8355,8 +8089,7 @@
         2
       ],
       "ru": "досрочно",
-      "status": "accepted",
-      "acceptedHash": "381e84df38e9"
+      "status": "draft"
     },
     {
       "word": "提醒",
@@ -8371,8 +8104,7 @@
         3
       ],
       "ru": "напоминать",
-      "status": "accepted",
-      "acceptedHash": "0be3f0dadb62"
+      "status": "draft"
     },
     {
       "word": "握手",
@@ -8387,8 +8119,7 @@
         3
       ],
       "ru": "пожимать руку, подавать руку",
-      "status": "accepted",
-      "acceptedHash": "e8f9fb70ce1d"
+      "status": "draft"
     },
     {
       "word": "支持",
@@ -8403,8 +8134,7 @@
         2
       ],
       "ru": "поддерживать",
-      "status": "accepted",
-      "acceptedHash": "27ab8799f6e9"
+      "status": "draft"
     },
     {
       "word": "收入",
@@ -8419,8 +8149,7 @@
         4
       ],
       "ru": "доход",
-      "status": "accepted",
-      "acceptedHash": "b6db8642882d"
+      "status": "draft"
     },
     {
       "word": "收拾",
@@ -8436,7 +8165,7 @@
       ],
       "ru": "привести в порядок, прибрать(ся)",
       "status": "accepted",
-      "acceptedHash": "4a565bd73b8c"
+      "acceptedHash": "abef3e450729"
     },
     {
       "word": "改变",
@@ -8452,7 +8181,7 @@
       ],
       "ru": "изменять, переменять",
       "status": "accepted",
-      "acceptedHash": "4307e848c1a5"
+      "acceptedHash": "f75ce8bcdc32"
     },
     {
       "word": "放弃",
@@ -8467,8 +8196,7 @@
         4
       ],
       "ru": "отказаться, отбросить",
-      "status": "accepted",
-      "acceptedHash": "0a431dc7831d"
+      "status": "draft"
     },
     {
       "word": "放暑假",
@@ -8485,8 +8213,7 @@
         4
       ],
       "ru": "идти на летние каникулы",
-      "status": "accepted",
-      "acceptedHash": "09d47d57fdc6"
+      "status": "draft"
     },
     {
       "word": "故意",
@@ -8501,8 +8228,7 @@
         4
       ],
       "ru": "намеренно",
-      "status": "accepted",
-      "acceptedHash": "2b90c9f61116"
+      "status": "draft"
     },
     {
       "word": "效果",
@@ -8517,8 +8243,7 @@
         3
       ],
       "ru": "эффект",
-      "status": "accepted",
-      "acceptedHash": "51c582836612"
+      "status": "draft"
     },
     {
       "word": "教授",
@@ -8534,7 +8259,7 @@
       ],
       "ru": "профессор",
       "status": "accepted",
-      "acceptedHash": "85ec57332630"
+      "acceptedHash": "39ca8b470740"
     },
     {
       "word": "教育",
@@ -8550,7 +8275,7 @@
       ],
       "ru": "просвещение, образование",
       "status": "accepted",
-      "acceptedHash": "d47f0adc697b"
+      "acceptedHash": "3bda83740fd7"
     },
     {
       "word": "散步",
@@ -8566,7 +8291,7 @@
       ],
       "ru": "прогуливаться, совершать прогулку",
       "status": "accepted",
-      "acceptedHash": "088eaa4074fa"
+      "acceptedHash": "9d07fe42582a"
     },
     {
       "word": "数字",
@@ -8581,8 +8306,7 @@
         4
       ],
       "ru": "цифра",
-      "status": "accepted",
-      "acceptedHash": "5b79290cf671"
+      "status": "draft"
     },
     {
       "word": "数量",
@@ -8597,8 +8321,7 @@
         4
       ],
       "ru": "количество",
-      "status": "accepted",
-      "acceptedHash": "8b9b7cf6b535"
+      "status": "draft"
     },
     {
       "word": "整理",
@@ -8614,7 +8337,7 @@
       ],
       "ru": "привести в порядок",
       "status": "accepted",
-      "acceptedHash": "9a715154ed46"
+      "acceptedHash": "ca132ad73888"
     },
     {
       "word": "方向",
@@ -8629,8 +8352,7 @@
         4
       ],
       "ru": "направление",
-      "status": "accepted",
-      "acceptedHash": "ca2a1e067637"
+      "status": "draft"
     },
     {
       "word": "方法",
@@ -8646,7 +8368,7 @@
       ],
       "ru": "метод, способ",
       "status": "accepted",
-      "acceptedHash": "04db4245f222"
+      "acceptedHash": "599808b46aba"
     },
     {
       "word": "方面",
@@ -8661,8 +8383,7 @@
         4
       ],
       "ru": "сторона",
-      "status": "accepted",
-      "acceptedHash": "3d86bdb35651"
+      "status": "draft"
     },
     {
       "word": "无聊",
@@ -8677,8 +8398,7 @@
         2
       ],
       "ru": "скука",
-      "status": "accepted",
-      "acceptedHash": "73d9b51e2d5c"
+      "status": "draft"
     },
     {
       "word": "无论",
@@ -8693,8 +8413,7 @@
         4
       ],
       "ru": "независимо от чего-либо",
-      "status": "accepted",
-      "acceptedHash": "d504407b59a5"
+      "status": "draft"
     },
     {
       "word": "既然",
@@ -8709,8 +8428,7 @@
         2
       ],
       "ru": "раз (уж)",
-      "status": "accepted",
-      "acceptedHash": "a98d985154aa"
+      "status": "draft"
     },
     {
       "word": "日记",
@@ -8725,8 +8443,7 @@
         4
       ],
       "ru": "дневник",
-      "status": "accepted",
-      "acceptedHash": "e1303be8e52f"
+      "status": "draft"
     },
     {
       "word": "普遍",
@@ -8742,7 +8459,7 @@
       ],
       "ru": "всеобщий",
       "status": "accepted",
-      "acceptedHash": "3cab6a803a37"
+      "acceptedHash": "582609e661c5"
     },
     {
       "word": "暂时",
@@ -8757,8 +8474,7 @@
         2
       ],
       "ru": "временный",
-      "status": "accepted",
-      "acceptedHash": "244c44fd1ee1"
+      "status": "draft"
     },
     {
       "word": "暖和",
@@ -8774,7 +8490,7 @@
       ],
       "ru": "тёплый",
       "status": "accepted",
-      "acceptedHash": "090099e9be9c"
+      "acceptedHash": "d8b40edaf264"
     },
     {
       "word": "最后",
@@ -8790,7 +8506,7 @@
       ],
       "ru": "самый последний",
       "status": "accepted",
-      "acceptedHash": "0b7eeaaa0f4a"
+      "acceptedHash": "f39278b39efd"
     },
     {
       "word": "最好",
@@ -8806,7 +8522,7 @@
       ],
       "ru": "самый хороший",
       "status": "accepted",
-      "acceptedHash": "c5521fd7ebbd"
+      "acceptedHash": "2bc3a0bdfe71"
     },
     {
       "word": "有趣",
@@ -8821,8 +8537,7 @@
         4
       ],
       "ru": "интересный",
-      "status": "accepted",
-      "acceptedHash": "cc196e44973e"
+      "status": "draft"
     },
     {
       "word": "本来",
@@ -8838,7 +8553,7 @@
       ],
       "ru": "первоначальный",
       "status": "accepted",
-      "acceptedHash": "8707d66ef452"
+      "acceptedHash": "9c2e8b11a538"
     },
     {
       "word": "杂志",
@@ -8853,8 +8568,7 @@
         4
       ],
       "ru": "журнал",
-      "status": "accepted",
-      "acceptedHash": "f2615e055482"
+      "status": "draft"
     },
     {
       "word": "材料",
@@ -8869,8 +8583,7 @@
         4
       ],
       "ru": "материал",
-      "status": "accepted",
-      "acceptedHash": "56bdb3e7c3b9"
+      "status": "draft"
     },
     {
       "word": "条件",
@@ -8886,7 +8599,7 @@
       ],
       "ru": "условие",
       "status": "accepted",
-      "acceptedHash": "9961aae3af3b"
+      "acceptedHash": "7e16878fe735"
     },
     {
       "word": "来不及",
@@ -8903,8 +8616,7 @@
         2
       ],
       "ru": "не успеть",
-      "status": "accepted",
-      "acceptedHash": "63d11f8ce8da"
+      "status": "draft"
     },
     {
       "word": "来得及",
@@ -8921,8 +8633,7 @@
         2
       ],
       "ru": "успеть",
-      "status": "accepted",
-      "acceptedHash": "2ec9fe3cfeb2"
+      "status": "draft"
     },
     {
       "word": "极其",
@@ -8937,8 +8648,7 @@
         2
       ],
       "ru": "чрезвычайно",
-      "status": "accepted",
-      "acceptedHash": "c5f7163095dd"
+      "status": "draft"
     },
     {
       "word": "果然",
@@ -8953,8 +8663,7 @@
         2
       ],
       "ru": "действительно, в самом деле",
-      "status": "accepted",
-      "acceptedHash": "117b1e46f707"
+      "status": "draft"
     },
     {
       "word": "标准",
@@ -8970,7 +8679,7 @@
       ],
       "ru": "стандарт",
       "status": "accepted",
-      "acceptedHash": "5662e6551e90"
+      "acceptedHash": "3dbb90e8510a"
     },
     {
       "word": "森林",
@@ -8986,7 +8695,7 @@
       ],
       "ru": "лес",
       "status": "accepted",
-      "acceptedHash": "99391d86210d"
+      "acceptedHash": "1c38b6ee57ac"
     },
     {
       "word": "植物",
@@ -9001,8 +8710,7 @@
         4
       ],
       "ru": "растение",
-      "status": "accepted",
-      "acceptedHash": "b4435e1a80d4"
+      "status": "draft"
     },
     {
       "word": "正好",
@@ -9018,7 +8726,7 @@
       ],
       "ru": "как раз",
       "status": "accepted",
-      "acceptedHash": "5b4f75bd5184"
+      "acceptedHash": "8ddaaccab64f"
     },
     {
       "word": "正常",
@@ -9034,7 +8742,7 @@
       ],
       "ru": "нормальный",
       "status": "accepted",
-      "acceptedHash": "600b48bb5caf"
+      "acceptedHash": "d3e67b8b5c28"
     },
     {
       "word": "正式",
@@ -9049,8 +8757,7 @@
         4
       ],
       "ru": "официальный",
-      "status": "accepted",
-      "acceptedHash": "84ca20797b32"
+      "status": "draft"
     },
     {
       "word": "正确",
@@ -9066,7 +8773,7 @@
       ],
       "ru": "правильный",
       "status": "accepted",
-      "acceptedHash": "b0b76dcadc4f"
+      "acceptedHash": "89bd24af39ce"
     },
     {
       "word": "毕业",
@@ -9081,8 +8788,7 @@
         4
       ],
       "ru": "закончить курс",
-      "status": "accepted",
-      "acceptedHash": "35e769d8223b"
+      "status": "draft"
     },
     {
       "word": "毛巾",
@@ -9098,7 +8804,7 @@
       ],
       "ru": "полотенце",
       "status": "accepted",
-      "acceptedHash": "3aaa9fc3cbb7"
+      "acceptedHash": "b2e48ca3404a"
     },
     {
       "word": "民族",
@@ -9114,7 +8820,7 @@
       ],
       "ru": "народность",
       "status": "accepted",
-      "acceptedHash": "2cdcfe875660"
+      "acceptedHash": "888cd4794868"
     },
     {
       "word": "气候",
@@ -9129,8 +8835,7 @@
         4
       ],
       "ru": "климат",
-      "status": "accepted",
-      "acceptedHash": "396c61795904"
+      "status": "draft"
     },
     {
       "word": "永远",
@@ -9145,8 +8850,7 @@
         3
       ],
       "ru": "навечно",
-      "status": "accepted",
-      "acceptedHash": "5e3799a56e7e"
+      "status": "draft"
     },
     {
       "word": "污染",
@@ -9162,7 +8866,7 @@
       ],
       "ru": "загрязнять",
       "status": "accepted",
-      "acceptedHash": "8684c1dc6c3f"
+      "acceptedHash": "b283e9f635bc"
     },
     {
       "word": "沙发",
@@ -9178,7 +8882,7 @@
       ],
       "ru": "диван, софа",
       "status": "accepted",
-      "acceptedHash": "006ac6738330"
+      "acceptedHash": "41641cb735d1"
     },
     {
       "word": "法律",
@@ -9194,7 +8898,7 @@
       ],
       "ru": "закон",
       "status": "accepted",
-      "acceptedHash": "7b14b0f067bd"
+      "acceptedHash": "b95f984a049d"
     },
     {
       "word": "洗衣机",
@@ -9211,8 +8915,7 @@
         1
       ],
       "ru": "стиральная машина",
-      "status": "accepted",
-      "acceptedHash": "6997d4332706"
+      "status": "draft"
     },
     {
       "word": "活动",
@@ -9227,8 +8930,7 @@
         4
       ],
       "ru": "действовать",
-      "status": "accepted",
-      "acceptedHash": "b89e5a903c8e"
+      "status": "draft"
     },
     {
       "word": "流利",
@@ -9244,7 +8946,7 @@
       ],
       "ru": "бегло, свободно",
       "status": "accepted",
-      "acceptedHash": "c6af82f33024"
+      "acceptedHash": "290c81ee51bf"
     },
     {
       "word": "流泪",
@@ -9259,8 +8961,7 @@
         4
       ],
       "ru": "проливать (ронять) слёзы",
-      "status": "accepted",
-      "acceptedHash": "848f26cf898c"
+      "status": "draft"
     },
     {
       "word": "流行",
@@ -9275,8 +8976,7 @@
         2
       ],
       "ru": "быть в моде",
-      "status": "accepted",
-      "acceptedHash": "b287b364b8b9"
+      "status": "draft"
     },
     {
       "word": "浪漫",
@@ -9292,7 +8992,7 @@
       ],
       "ru": "романтический",
       "status": "accepted",
-      "acceptedHash": "7c56fe9e8240"
+      "acceptedHash": "348bb2a964bf"
     },
     {
       "word": "浪费",
@@ -9307,8 +9007,7 @@
         4
       ],
       "ru": "транжирить",
-      "status": "accepted",
-      "acceptedHash": "5e1ff1fe8044"
+      "status": "draft"
     },
     {
       "word": "海洋",
@@ -9323,8 +9022,7 @@
         2
       ],
       "ru": "моря и океаны",
-      "status": "accepted",
-      "acceptedHash": "1ee0473b2b21"
+      "status": "draft"
     },
     {
       "word": "消息",
@@ -9340,7 +9038,7 @@
       ],
       "ru": "известия",
       "status": "accepted",
-      "acceptedHash": "f73839b89699"
+      "acceptedHash": "da6b4ce87804"
     },
     {
       "word": "温度",
@@ -9355,8 +9053,7 @@
         4
       ],
       "ru": "температура",
-      "status": "accepted",
-      "acceptedHash": "d70b49359bd7"
+      "status": "draft"
     },
     {
       "word": "湿润",
@@ -9371,8 +9068,7 @@
         4
       ],
       "ru": "влажный",
-      "status": "accepted",
-      "acceptedHash": "af6a5137295c"
+      "status": "draft"
     },
     {
       "word": "演出",
@@ -9387,8 +9083,7 @@
         1
       ],
       "ru": "представлять",
-      "status": "accepted",
-      "acceptedHash": "75f0ba3f4101"
+      "status": "draft"
     },
     {
       "word": "演员",
@@ -9403,8 +9098,7 @@
         2
       ],
       "ru": "артист",
-      "status": "accepted",
-      "acceptedHash": "9f8a8fb25f7a"
+      "status": "draft"
     },
     {
       "word": "激动",
@@ -9419,8 +9113,7 @@
         4
       ],
       "ru": "волноваться",
-      "status": "accepted",
-      "acceptedHash": "34b374425661"
+      "status": "draft"
     },
     {
       "word": "烦恼",
@@ -9436,7 +9129,7 @@
       ],
       "ru": "быть удручённым",
       "status": "accepted",
-      "acceptedHash": "42aa18ef6ad4"
+      "acceptedHash": "44afd8e1a8ba"
     },
     {
       "word": "热闹",
@@ -9452,7 +9145,7 @@
       ],
       "ru": "оживлённый",
       "status": "accepted",
-      "acceptedHash": "fe4acff5bed1"
+      "acceptedHash": "a5060e22fcd4"
     },
     {
       "word": "然而",
@@ -9468,7 +9161,7 @@
       ],
       "ru": "но, однако",
       "status": "accepted",
-      "acceptedHash": "2d8af11b761a"
+      "acceptedHash": "2e1c9851869d"
     },
     {
       "word": "爱情",
@@ -9483,8 +9176,7 @@
         2
       ],
       "ru": "любовь",
-      "status": "accepted",
-      "acceptedHash": "68d6b59bef8c"
+      "status": "draft"
     },
     {
       "word": "牙膏",
@@ -9500,7 +9192,7 @@
       ],
       "ru": "зубная паста",
       "status": "accepted",
-      "acceptedHash": "bdb8116da458"
+      "acceptedHash": "e2b29c027b9c"
     },
     {
       "word": "特点",
@@ -9515,8 +9207,7 @@
         3
       ],
       "ru": "особенность",
-      "status": "accepted",
-      "acceptedHash": "0f30a02386b2"
+      "status": "draft"
     },
     {
       "word": "现代",
@@ -9531,8 +9222,7 @@
         4
       ],
       "ru": "современный",
-      "status": "accepted",
-      "acceptedHash": "c8eed1740ec3"
+      "status": "draft"
     },
     {
       "word": "理想",
@@ -9547,8 +9237,7 @@
         3
       ],
       "ru": "идеал",
-      "status": "accepted",
-      "acceptedHash": "c2e5079f5e58"
+      "status": "draft"
     },
     {
       "word": "理解",
@@ -9564,7 +9253,7 @@
       ],
       "ru": "понимать, осмысливать: уяснять",
       "status": "accepted",
-      "acceptedHash": "6470428ad40d"
+      "acceptedHash": "5605193af7d4"
     },
     {
       "word": "甚至",
@@ -9579,8 +9268,7 @@
         4
       ],
       "ru": "вплоть до того",
-      "status": "accepted",
-      "acceptedHash": "0e4c219ea847"
+      "status": "draft"
     },
     {
       "word": "生命",
@@ -9596,7 +9284,7 @@
       ],
       "ru": "жизнь",
       "status": "accepted",
-      "acceptedHash": "9b4527ac0661"
+      "acceptedHash": "6166dd20fd8d"
     },
     {
       "word": "生活",
@@ -9611,8 +9299,7 @@
         2
       ],
       "ru": "жизнь",
-      "status": "accepted",
-      "acceptedHash": "a55f209797f3"
+      "status": "draft"
     },
     {
       "word": "由于",
@@ -9627,8 +9314,7 @@
         2
       ],
       "ru": "из-за того, что",
-      "status": "accepted",
-      "acceptedHash": "40822df2011c"
+      "status": "draft"
     },
     {
       "word": "申请",
@@ -9643,8 +9329,7 @@
         3
       ],
       "ru": "подавать заявление",
-      "status": "accepted",
-      "acceptedHash": "485e2fb30d1a"
+      "status": "draft"
     },
     {
       "word": "留学",
@@ -9660,7 +9345,7 @@
       ],
       "ru": "учиться за границей",
       "status": "accepted",
-      "acceptedHash": "f083e9c2c463"
+      "acceptedHash": "63fe40ed5c21"
     },
     {
       "word": "皮肤",
@@ -9675,8 +9360,7 @@
         1
       ],
       "ru": "кожа, кожный покров",
-      "status": "accepted",
-      "acceptedHash": "78a179df1192"
+      "status": "draft"
     },
     {
       "word": "目的",
@@ -9691,8 +9375,7 @@
         4
       ],
       "ru": "цель",
-      "status": "accepted",
-      "acceptedHash": "df546e594863"
+      "status": "draft"
     },
     {
       "word": "直接",
@@ -9707,8 +9390,7 @@
         1
       ],
       "ru": "прямой",
-      "status": "accepted",
-      "acceptedHash": "920cd2dfd9d9"
+      "status": "draft"
     },
     {
       "word": "相反",
@@ -9723,8 +9405,7 @@
         3
       ],
       "ru": "напротив",
-      "status": "accepted",
-      "acceptedHash": "57010952b75d"
+      "status": "draft"
     },
     {
       "word": "看法",
@@ -9740,7 +9421,7 @@
       ],
       "ru": "точка зрения",
       "status": "accepted",
-      "acceptedHash": "323aac3ff016"
+      "acceptedHash": "2deb3a13967f"
     },
     {
       "word": "真正",
@@ -9756,7 +9437,7 @@
       ],
       "ru": "подлинный",
       "status": "accepted",
-      "acceptedHash": "ba56b06b0877"
+      "acceptedHash": "a41858ff8d97"
     },
     {
       "word": "知识",
@@ -9772,7 +9453,7 @@
       ],
       "ru": "знания",
       "status": "accepted",
-      "acceptedHash": "755e1229cce7"
+      "acceptedHash": "9cc7991bb55e"
     },
     {
       "word": "研究生",
@@ -9789,8 +9470,7 @@
         1
       ],
       "ru": "аспирант",
-      "status": "accepted",
-      "acceptedHash": "c1ff81d9d9a6"
+      "status": "draft"
     },
     {
       "word": "硕士",
@@ -9805,8 +9485,7 @@
         4
       ],
       "ru": "магистр",
-      "status": "accepted",
-      "acceptedHash": "c87307c84376"
+      "status": "draft"
     },
     {
       "word": "确实",
@@ -9821,8 +9500,7 @@
         2
       ],
       "ru": "достоверный",
-      "status": "accepted",
-      "acceptedHash": "30feb2034f83"
+      "status": "draft"
     },
     {
       "word": "礼貌",
@@ -9838,7 +9516,7 @@
       ],
       "ru": "вежливость",
       "status": "accepted",
-      "acceptedHash": "2df02c8af6d3"
+      "acceptedHash": "c2b1f7350b72"
     },
     {
       "word": "社会",
@@ -9854,7 +9532,7 @@
       ],
       "ru": "общество",
       "status": "accepted",
-      "acceptedHash": "2b4a1b23b6a7"
+      "acceptedHash": "ef23a51d3011"
     },
     {
       "word": "祝贺",
@@ -9870,7 +9548,7 @@
       ],
       "ru": "поздравлять",
       "status": "accepted",
-      "acceptedHash": "1e223b880c7e"
+      "acceptedHash": "2072068ce5f6"
     },
     {
       "word": "禁止",
@@ -9885,8 +9563,7 @@
         3
       ],
       "ru": "запрещать",
-      "status": "accepted",
-      "acceptedHash": "2a9c30a4567e"
+      "status": "draft"
     },
     {
       "word": "科学",
@@ -9902,7 +9579,7 @@
       ],
       "ru": "наука",
       "status": "accepted",
-      "acceptedHash": "6f741b03a548"
+      "acceptedHash": "4952fbf5c082"
     },
     {
       "word": "积极",
@@ -9917,8 +9594,7 @@
         2
       ],
       "ru": "активный",
-      "status": "accepted",
-      "acceptedHash": "7ffecc525b79"
+      "status": "draft"
     },
     {
       "word": "积累",
@@ -9934,7 +9610,7 @@
       ],
       "ru": "накапливать, копить, скапливать",
       "status": "accepted",
-      "acceptedHash": "1754c3bdc766"
+      "acceptedHash": "ffa1a7e749da"
     },
     {
       "word": "稍微",
@@ -9949,8 +9625,7 @@
         1
       ],
       "ru": "немного",
-      "status": "accepted",
-      "acceptedHash": "508a43718f9f"
+      "status": "draft"
     },
     {
       "word": "究竟",
@@ -9966,7 +9641,7 @@
       ],
       "ru": "в конце концов, в конечном счёте",
       "status": "accepted",
-      "acceptedHash": "3726fac0464f"
+      "acceptedHash": "b9e556013c16"
     },
     {
       "word": "空气",
@@ -9981,8 +9656,7 @@
         4
       ],
       "ru": "воздух, атмосфера",
-      "status": "accepted",
-      "acceptedHash": "3e110e466179"
+      "status": "draft"
     },
     {
       "word": "窗户",
@@ -9998,7 +9672,7 @@
       ],
       "ru": "окно",
       "status": "accepted",
-      "acceptedHash": "14a64008aaa9"
+      "acceptedHash": "6499c87893e9"
     },
     {
       "word": "竞争",
@@ -10014,7 +9688,7 @@
       ],
       "ru": "конкурировать",
       "status": "accepted",
-      "acceptedHash": "e8592e608974"
+      "acceptedHash": "385b392be208"
     },
     {
       "word": "竟然",
@@ -10030,7 +9704,7 @@
       ],
       "ru": "неожиданно",
       "status": "accepted",
-      "acceptedHash": "39ca1da220c6"
+      "acceptedHash": "eeb448193901"
     },
     {
       "word": "笔记本",
@@ -10048,7 +9722,7 @@
       ],
       "ru": "ноутбук",
       "status": "accepted",
-      "acceptedHash": "2f9d1b362324"
+      "acceptedHash": "e49bca3fd045"
     },
     {
       "word": "符合",
@@ -10063,8 +9737,7 @@
         2
       ],
       "ru": "соответствовать",
-      "status": "accepted",
-      "acceptedHash": "d7ed5e9f20f4"
+      "status": "draft"
     },
     {
       "word": "答案",
@@ -10079,8 +9752,7 @@
         4
       ],
       "ru": "ответ",
-      "status": "accepted",
-      "acceptedHash": "123b70de99db"
+      "status": "draft"
     },
     {
       "word": "签证",
@@ -10096,7 +9768,7 @@
       ],
       "ru": "виза",
       "status": "accepted",
-      "acceptedHash": "700f4fe935f0"
+      "acceptedHash": "4c6b827c0db3"
     },
     {
       "word": "管理",
@@ -10112,7 +9784,7 @@
       ],
       "ru": "управлять",
       "status": "accepted",
-      "acceptedHash": "40eae32b466e"
+      "acceptedHash": "100e43c8cf02"
     },
     {
       "word": "粗心",
@@ -10128,7 +9800,7 @@
       ],
       "ru": "небрежный",
       "status": "accepted",
-      "acceptedHash": "242251d5c957"
+      "acceptedHash": "43f4bb28d301"
     },
     {
       "word": "精彩",
@@ -10144,7 +9816,7 @@
       ],
       "ru": "замечательный",
       "status": "accepted",
-      "acceptedHash": "d2d2c1b6fceb"
+      "acceptedHash": "ce104f6cce2b"
     },
     {
       "word": "约会",
@@ -10160,7 +9832,7 @@
       ],
       "ru": "свидание, встреча",
       "status": "accepted",
-      "acceptedHash": "e302141378f5"
+      "acceptedHash": "776fef53c303"
     },
     {
       "word": "组成",
@@ -10176,7 +9848,7 @@
       ],
       "ru": "образовать",
       "status": "accepted",
-      "acceptedHash": "4ae945bd925f"
+      "acceptedHash": "6cab894767b5"
     },
     {
       "word": "组织",
@@ -10191,8 +9863,7 @@
         1
       ],
       "ru": "организовать",
-      "status": "accepted",
-      "acceptedHash": "6ed4391721b1"
+      "status": "draft"
     },
     {
       "word": "经历",
@@ -10208,7 +9879,7 @@
       ],
       "ru": "испытать, пережить",
       "status": "accepted",
-      "acceptedHash": "8cac86be9a93"
+      "acceptedHash": "e0fb93f286ed"
     },
     {
       "word": "经济",
@@ -10223,8 +9894,7 @@
         4
       ],
       "ru": "экономика",
-      "status": "accepted",
-      "acceptedHash": "47ee76d5e2b5"
+      "status": "draft"
     },
     {
       "word": "经验",
@@ -10239,8 +9909,7 @@
         4
       ],
       "ru": "опыт",
-      "status": "accepted",
-      "acceptedHash": "e1d436a02319"
+      "status": "draft"
     },
     {
       "word": "结果",
@@ -10256,7 +9925,7 @@
       ],
       "ru": "результат, итог",
       "status": "accepted",
-      "acceptedHash": "771b7816bb51"
+      "acceptedHash": "50190535de45"
     },
     {
       "word": "继续",
@@ -10271,8 +9940,7 @@
         4
       ],
       "ru": "продолжать(ся)",
-      "status": "accepted",
-      "acceptedHash": "1487e8553034"
+      "status": "draft"
     },
     {
       "word": "缺少",
@@ -10287,8 +9955,7 @@
         3
       ],
       "ru": "недоставать, не хватать",
-      "status": "accepted",
-      "acceptedHash": "dcf092af11cc"
+      "status": "draft"
     },
     {
       "word": "缺点",
@@ -10304,7 +9971,7 @@
       ],
       "ru": "недостаток",
       "status": "accepted",
-      "acceptedHash": "4483d033fb78"
+      "acceptedHash": "1be074f9fbb0"
     },
     {
       "word": "网球",
@@ -10320,7 +9987,7 @@
       ],
       "ru": "теннис",
       "status": "accepted",
-      "acceptedHash": "0fa550268388"
+      "acceptedHash": "ffbf24905cb4"
     },
     {
       "word": "网站",
@@ -10336,7 +10003,7 @@
       ],
       "ru": "интернет-сайт",
       "status": "accepted",
-      "acceptedHash": "c31d9b0ba906"
+      "acceptedHash": "a89903478984"
     },
     {
       "word": "美丽",
@@ -10352,7 +10019,7 @@
       ],
       "ru": "красивый",
       "status": "accepted",
-      "acceptedHash": "bad486de07fb"
+      "acceptedHash": "1e52fbab6843"
     },
     {
       "word": "羡慕",
@@ -10367,8 +10034,7 @@
         4
       ],
       "ru": "завидовать",
-      "status": "accepted",
-      "acceptedHash": "bb0574414f6c"
+      "status": "draft"
     },
     {
       "word": "羽毛球",
@@ -10385,8 +10051,7 @@
         2
       ],
       "ru": "бадминтон",
-      "status": "accepted",
-      "acceptedHash": "b4af101e1433"
+      "status": "draft"
     },
     {
       "word": "翻译",
@@ -10401,8 +10066,7 @@
         4
       ],
       "ru": "переводить",
-      "status": "accepted",
-      "acceptedHash": "84881587e86e"
+      "status": "draft"
     },
     {
       "word": "老虎",
@@ -10417,8 +10081,7 @@
         3
       ],
       "ru": "тигр",
-      "status": "accepted",
-      "acceptedHash": "7306f410737e"
+      "status": "draft"
     },
     {
       "word": "考虑",
@@ -10434,7 +10097,7 @@
       ],
       "ru": "обдумывать",
       "status": "accepted",
-      "acceptedHash": "3775c6bd7995"
+      "acceptedHash": "56eb40675910"
     },
     {
       "word": "耐心",
@@ -10450,7 +10113,7 @@
       ],
       "ru": "терпеливый",
       "status": "accepted",
-      "acceptedHash": "f039f3c8766d"
+      "acceptedHash": "b4f60449b0f1"
     },
     {
       "word": "聊天",
@@ -10466,7 +10129,7 @@
       ],
       "ru": "болтать, трепаться, судачить",
       "status": "accepted",
-      "acceptedHash": "2f0d98759885"
+      "acceptedHash": "53eaeb5b6ce9"
     },
     {
       "word": "职业",
@@ -10481,8 +10144,7 @@
         4
       ],
       "ru": "занятие",
-      "status": "accepted",
-      "acceptedHash": "fcc60d8a9e56"
+      "status": "draft"
     },
     {
       "word": "联系",
@@ -10497,8 +10159,7 @@
         4
       ],
       "ru": "связывать(ся)",
-      "status": "accepted",
-      "acceptedHash": "34f3a54d00be"
+      "status": "draft"
     },
     {
       "word": "肯定",
@@ -10514,7 +10175,7 @@
       ],
       "ru": "утвердительный",
       "status": "accepted",
-      "acceptedHash": "c1c81a865dd0"
+      "acceptedHash": "885bc9d101ae"
     },
     {
       "word": "能力",
@@ -10529,8 +10190,7 @@
         4
       ],
       "ru": "способность",
-      "status": "accepted",
-      "acceptedHash": "b61751e4faf6"
+      "status": "draft"
     },
     {
       "word": "脾气",
@@ -10546,7 +10206,7 @@
       ],
       "ru": "характер",
       "status": "accepted",
-      "acceptedHash": "c1d5eaa8cc72"
+      "acceptedHash": "0df8c263a308"
     },
     {
       "word": "自然",
@@ -10562,7 +10222,7 @@
       ],
       "ru": "естественно",
       "status": "accepted",
-      "acceptedHash": "642c3ec07907"
+      "acceptedHash": "f92611002e03"
     },
     {
       "word": "至少",
@@ -10578,7 +10238,7 @@
       ],
       "ru": "самое малое",
       "status": "accepted",
-      "acceptedHash": "f47b5170b6b9"
+      "acceptedHash": "ef09ad554892"
     },
     {
       "word": "航班",
@@ -10594,7 +10254,7 @@
       ],
       "ru": "рейс",
       "status": "accepted",
-      "acceptedHash": "f2cfb8bb8ccd"
+      "acceptedHash": "8b334ecd698f"
     },
     {
       "word": "艺术",
@@ -10609,8 +10269,7 @@
         4
       ],
       "ru": "искусство",
-      "status": "accepted",
-      "acceptedHash": "1a8a351525bb"
+      "status": "draft"
     },
     {
       "word": "节约",
@@ -10625,8 +10284,7 @@
         1
       ],
       "ru": "экономить",
-      "status": "accepted",
-      "acceptedHash": "db9f9d393a78"
+      "status": "draft"
     },
     {
       "word": "范围",
@@ -10641,8 +10299,7 @@
         2
       ],
       "ru": "сфера",
-      "status": "accepted",
-      "acceptedHash": "7aa1ed46b9df"
+      "status": "draft"
     },
     {
       "word": "获得",
@@ -10657,8 +10314,7 @@
         2
       ],
       "ru": "получить",
-      "status": "accepted",
-      "acceptedHash": "55ac737a77e6"
+      "status": "draft"
     },
     {
       "word": "著名",
@@ -10673,8 +10329,7 @@
         2
       ],
       "ru": "знаменитый",
-      "status": "accepted",
-      "acceptedHash": "9d58a8b1fd1a"
+      "status": "draft"
     },
     {
       "word": "表扬",
@@ -10689,8 +10344,7 @@
         2
       ],
       "ru": "отмечать, поощрять",
-      "status": "accepted",
-      "acceptedHash": "a4f0e6489a3f"
+      "status": "draft"
     },
     {
       "word": "表格",
@@ -10705,8 +10359,7 @@
         2
       ],
       "ru": "бланк",
-      "status": "accepted",
-      "acceptedHash": "072dc55ef648"
+      "status": "draft"
     },
     {
       "word": "表达",
@@ -10722,7 +10375,7 @@
       ],
       "ru": "выражать (напр., мысли)",
       "status": "accepted",
-      "acceptedHash": "280e1239a046"
+      "acceptedHash": "0c2f1278e5e4"
     },
     {
       "word": "西红柿",
@@ -10739,8 +10392,7 @@
         4
       ],
       "ru": "помидор",
-      "status": "accepted",
-      "acceptedHash": "d6a5db5a79ee"
+      "status": "draft"
     },
     {
       "word": "观众",
@@ -10756,7 +10408,7 @@
       ],
       "ru": "зрители",
       "status": "accepted",
-      "acceptedHash": "2de32f21608a"
+      "acceptedHash": "9473febaff9b"
     },
     {
       "word": "规定",
@@ -10772,7 +10424,7 @@
       ],
       "ru": "устанавливать",
       "status": "accepted",
-      "acceptedHash": "1cfa59777e6d"
+      "acceptedHash": "36e955b1a4f5"
     },
     {
       "word": "解释",
@@ -10787,8 +10439,7 @@
         4
       ],
       "ru": "объяснять, разъяснять",
-      "status": "accepted",
-      "acceptedHash": "3d9dd3df2e72"
+      "status": "draft"
     },
     {
       "word": "警察",
@@ -10803,8 +10454,7 @@
         2
       ],
       "ru": "полиция",
-      "status": "accepted",
-      "acceptedHash": "2d8ad8129ce8"
+      "status": "draft"
     },
     {
       "word": "计划",
@@ -10819,8 +10469,7 @@
         4
       ],
       "ru": "план",
-      "status": "accepted",
-      "acceptedHash": "76807edb92e9"
+      "status": "draft"
     },
     {
       "word": "讨厌",
@@ -10836,7 +10485,7 @@
       ],
       "ru": "ненавидеть, раздражать",
       "status": "accepted",
-      "acceptedHash": "bcc1d2d2998f"
+      "acceptedHash": "e46338c68ba6"
     },
     {
       "word": "讨论",
@@ -10852,7 +10501,7 @@
       ],
       "ru": "обсуждать, дискутировать",
       "status": "accepted",
-      "acceptedHash": "916b70db797e"
+      "acceptedHash": "df62b23c54ec"
     },
     {
       "word": "记者",
@@ -10867,8 +10516,7 @@
         3
       ],
       "ru": "корреспондент",
-      "status": "accepted",
-      "acceptedHash": "9f78aea25894"
+      "status": "draft"
     },
     {
       "word": "许多",
@@ -10884,7 +10532,7 @@
       ],
       "ru": "много",
       "status": "accepted",
-      "acceptedHash": "d9984b2d9cac"
+      "acceptedHash": "9c37e117bb7a"
     },
     {
       "word": "访问",
@@ -10899,8 +10547,7 @@
         4
       ],
       "ru": "наносить визит",
-      "status": "accepted",
-      "acceptedHash": "ce4669d10069"
+      "status": "draft"
     },
     {
       "word": "证明",
@@ -10916,7 +10563,7 @@
       ],
       "ru": "удостоверять",
       "status": "accepted",
-      "acceptedHash": "72dbd524bcb0"
+      "acceptedHash": "8dc6a8d35092"
     },
     {
       "word": "词典",
@@ -10932,7 +10579,7 @@
       ],
       "ru": "словарь",
       "status": "accepted",
-      "acceptedHash": "e9879e47761f"
+      "acceptedHash": "5eb03f13dac0"
     },
     {
       "word": "诚实",
@@ -10947,8 +10594,7 @@
         2
       ],
       "ru": "честный, правдивый",
-      "status": "accepted",
-      "acceptedHash": "4abc5a662c8f"
+      "status": "draft"
     },
     {
       "word": "详细",
@@ -10963,8 +10609,7 @@
         4
       ],
       "ru": "подробный",
-      "status": "accepted",
-      "acceptedHash": "20f32f79dea6"
+      "status": "draft"
     },
     {
       "word": "语法",
@@ -10980,7 +10625,7 @@
       ],
       "ru": "грамматика",
       "status": "accepted",
-      "acceptedHash": "fa5ff122ecb9"
+      "acceptedHash": "309bc8460186"
     },
     {
       "word": "语言",
@@ -10995,8 +10640,7 @@
         2
       ],
       "ru": "язык",
-      "status": "accepted",
-      "acceptedHash": "e69261ccafec"
+      "status": "draft"
     },
     {
       "word": "误会",
@@ -11011,8 +10655,7 @@
         4
       ],
       "ru": "неправильно понять",
-      "status": "accepted",
-      "acceptedHash": "47d4990e11a8"
+      "status": "draft"
     },
     {
       "word": "说明",
@@ -11028,7 +10671,7 @@
       ],
       "ru": "объяснить, разъяснить, пояснить",
       "status": "accepted",
-      "acceptedHash": "3b27fb3ef972"
+      "acceptedHash": "8e35145a9ba4"
     },
     {
       "word": "请假",
@@ -11043,8 +10686,7 @@
         4
       ],
       "ru": "просить [брать] отпуск",
-      "status": "accepted",
-      "acceptedHash": "10f8c4f979bd"
+      "status": "draft"
     },
     {
       "word": "请客",
@@ -11059,8 +10701,7 @@
         4
       ],
       "ru": "приглашать гостей",
-      "status": "accepted",
-      "acceptedHash": "fb3b317678c4"
+      "status": "draft"
     },
     {
       "word": "调查",
@@ -11075,8 +10716,7 @@
         2
       ],
       "ru": "обследовать",
-      "status": "accepted",
-      "acceptedHash": "7fef99c7b3cc"
+      "status": "draft"
     },
     {
       "word": "负责",
@@ -11091,8 +10731,7 @@
         2
       ],
       "ru": "нести ответственность",
-      "status": "accepted",
-      "acceptedHash": "da0f658b1688"
+      "status": "draft"
     },
     {
       "word": "责任",
@@ -11108,7 +10747,7 @@
       ],
       "ru": "ответственность",
       "status": "accepted",
-      "acceptedHash": "1ca813b7df54"
+      "acceptedHash": "8c8bf3fa9955"
     },
     {
       "word": "质量",
@@ -11123,8 +10762,7 @@
         4
       ],
       "ru": "качество",
-      "status": "accepted",
-      "acceptedHash": "79b68605de13"
+      "status": "draft"
     },
     {
       "word": "购物",
@@ -11139,8 +10777,7 @@
         4
       ],
       "ru": "делать покупки",
-      "status": "accepted",
-      "acceptedHash": "edc44e8f5a99"
+      "status": "draft"
     },
     {
       "word": "起飞",
@@ -11155,8 +10792,7 @@
         1
       ],
       "ru": "подняться в воздух, взлететь",
-      "status": "accepted",
-      "acceptedHash": "b1b923a6bd4a"
+      "status": "draft"
     },
     {
       "word": "超过",
@@ -11171,8 +10807,7 @@
         4
       ],
       "ru": "обогнать",
-      "status": "accepted",
-      "acceptedHash": "c3309148c5fc"
+      "status": "draft"
     },
     {
       "word": "距离",
@@ -11188,7 +10823,7 @@
       ],
       "ru": "отстоять от",
       "status": "accepted",
-      "acceptedHash": "639853107652"
+      "acceptedHash": "020ce41bb6d0"
     },
     {
       "word": "轻松",
@@ -11203,8 +10838,7 @@
         1
       ],
       "ru": "расслабиться",
-      "status": "accepted",
-      "acceptedHash": "3eed11d12238"
+      "status": "draft"
     },
     {
       "word": "辛苦",
@@ -11220,7 +10854,7 @@
       ],
       "ru": "упорно трудиться",
       "status": "accepted",
-      "acceptedHash": "7a51bd916fe5"
+      "acceptedHash": "561225c02d4c"
     },
     {
       "word": "过程",
@@ -11235,8 +10869,7 @@
         2
       ],
       "ru": "процесс",
-      "status": "accepted",
-      "acceptedHash": "933ff0b5caab"
+      "status": "draft"
     },
     {
       "word": "进行",
@@ -11251,8 +10884,7 @@
         2
       ],
       "ru": "проводить",
-      "status": "accepted",
-      "acceptedHash": "f529584e1b0f"
+      "status": "draft"
     },
     {
       "word": "适合",
@@ -11267,8 +10899,7 @@
         2
       ],
       "ru": "соответствовать, подходить",
-      "status": "accepted",
-      "acceptedHash": "c78f7cea3c21"
+      "status": "draft"
     },
     {
       "word": "适应",
@@ -11283,8 +10914,7 @@
         4
       ],
       "ru": "приспосабливаться",
-      "status": "accepted",
-      "acceptedHash": "e33c684efb9e"
+      "status": "draft"
     },
     {
       "word": "逐渐",
@@ -11300,7 +10930,7 @@
       ],
       "ru": "постепенно",
       "status": "accepted",
-      "acceptedHash": "40514cb22fd7"
+      "acceptedHash": "981b519b0f18"
     },
     {
       "word": "通知",
@@ -11315,8 +10945,7 @@
         1
       ],
       "ru": "сообщать",
-      "status": "accepted",
-      "acceptedHash": "90ba37c363ee"
+      "status": "draft"
     },
     {
       "word": "通过",
@@ -11331,8 +10960,7 @@
         4
       ],
       "ru": "проходить через",
-      "status": "accepted",
-      "acceptedHash": "ec1e0c267c05"
+      "status": "draft"
     },
     {
       "word": "速度",
@@ -11347,8 +10975,7 @@
         4
       ],
       "ru": "скорость",
-      "status": "accepted",
-      "acceptedHash": "1cfebc03e4b4"
+      "status": "draft"
     },
     {
       "word": "道歉",
@@ -11364,7 +10991,7 @@
       ],
       "ru": "принести извинения",
       "status": "accepted",
-      "acceptedHash": "e3ede089388f"
+      "acceptedHash": "335bb7f135cd"
     },
     {
       "word": "邀请",
@@ -11379,8 +11006,7 @@
         3
       ],
       "ru": "приглашать",
-      "status": "accepted",
-      "acceptedHash": "f16f7d655049"
+      "status": "draft"
     },
     {
       "word": "重新",
@@ -11396,7 +11022,7 @@
       ],
       "ru": "вновь, снова",
       "status": "accepted",
-      "acceptedHash": "b9a4268a446c"
+      "acceptedHash": "43d29f9b5a1c"
     },
     {
       "word": "重点",
@@ -11412,7 +11038,7 @@
       ],
       "ru": "ключевой пункт",
       "status": "accepted",
-      "acceptedHash": "2fa96d6389ea"
+      "acceptedHash": "8d672ee5cb3f"
     },
     {
       "word": "重视",
@@ -11427,8 +11053,7 @@
         4
       ],
       "ru": "придавать важное значение",
-      "status": "accepted",
-      "acceptedHash": "f61f5d5e411f"
+      "status": "draft"
     },
     {
       "word": "钥匙",
@@ -11444,7 +11069,7 @@
       ],
       "ru": "ключ",
       "status": "accepted",
-      "acceptedHash": "c3ec3ce0a5da"
+      "acceptedHash": "c6d3f24c6b9d"
     },
     {
       "word": "长城",
@@ -11460,7 +11085,7 @@
       ],
       "ru": "Великая китайская стена",
       "status": "accepted",
-      "acceptedHash": "06f0319d9a59"
+      "acceptedHash": "68b225f189d2"
     },
     {
       "word": "长江",
@@ -11476,7 +11101,7 @@
       ],
       "ru": "Чанцзян [Янцзы]",
       "status": "accepted",
-      "acceptedHash": "0056491bd05f"
+      "acceptedHash": "8cb280c1a022"
     },
     {
       "word": "阅读",
@@ -11491,8 +11116,7 @@
         2
       ],
       "ru": "читать",
-      "status": "accepted",
-      "acceptedHash": "430eac744131"
+      "status": "draft"
     },
     {
       "word": "阳光",
@@ -11507,8 +11131,7 @@
         1
       ],
       "ru": "солнечный свет",
-      "status": "accepted",
-      "acceptedHash": "37b6815cdcb8"
+      "status": "draft"
     },
     {
       "word": "降低",
@@ -11523,8 +11146,7 @@
         1
       ],
       "ru": "снизить(ся)",
-      "status": "accepted",
-      "acceptedHash": "bb61992352c0"
+      "status": "draft"
     },
     {
       "word": "限制",
@@ -11539,8 +11161,7 @@
         4
       ],
       "ru": "ограничить",
-      "status": "accepted",
-      "acceptedHash": "d4bb7aa3159d"
+      "status": "draft"
     },
     {
       "word": "随便",
@@ -11556,7 +11177,7 @@
       ],
       "ru": "как угодно, как захочется",
       "status": "accepted",
-      "acceptedHash": "46d08cc14f77"
+      "acceptedHash": "6b4b48ee3075"
     },
     {
       "word": "随着",
@@ -11572,7 +11193,7 @@
       ],
       "ru": "по мере",
       "status": "accepted",
-      "acceptedHash": "92f6e1712a8c"
+      "acceptedHash": "65bb36683413"
     },
     {
       "word": "难受",
@@ -11587,8 +11208,7 @@
         4
       ],
       "ru": "трудно вынести",
-      "status": "accepted",
-      "acceptedHash": "fdd7aebb5ce5"
+      "status": "draft"
     },
     {
       "word": "难道",
@@ -11604,7 +11224,7 @@
       ],
       "ru": "неужели, разве",
       "status": "accepted",
-      "acceptedHash": "636d88b3bce3"
+      "acceptedHash": "0fcce051377c"
     },
     {
       "word": "集合",
@@ -11619,8 +11239,7 @@
         2
       ],
       "ru": "собирать(ся)",
-      "status": "accepted",
-      "acceptedHash": "d9aeeefa5962"
+      "status": "draft"
     },
     {
       "word": "顺便",
@@ -11636,7 +11255,7 @@
       ],
       "ru": "попутно",
       "status": "accepted",
-      "acceptedHash": "547d72574e74"
+      "acceptedHash": "cf10d595a74d"
     },
     {
       "word": "顺利",
@@ -11651,8 +11270,7 @@
         4
       ],
       "ru": "гладко",
-      "status": "accepted",
-      "acceptedHash": "2084e1dbe8e5"
+      "status": "draft"
     },
     {
       "word": "顺序",
@@ -11667,8 +11285,7 @@
         4
       ],
       "ru": "порядок",
-      "status": "accepted",
-      "acceptedHash": "3704c65201d6"
+      "status": "draft"
     },
     {
       "word": "顾客",
@@ -11683,8 +11300,7 @@
         4
       ],
       "ru": "покупатель",
-      "status": "accepted",
-      "acceptedHash": "0f893ed460b5"
+      "status": "draft"
     },
     {
       "word": "预习",
@@ -11699,8 +11315,7 @@
         2
       ],
       "ru": "предварительное ознакомление с материалом",
-      "status": "accepted",
-      "acceptedHash": "05a251529bb5"
+      "status": "draft"
     },
     {
       "word": "风景",
@@ -11716,7 +11331,7 @@
       ],
       "ru": "вид, пейзаж, ландшафт",
       "status": "accepted",
-      "acceptedHash": "5de276b3d483"
+      "acceptedHash": "2ae967f5371f"
     },
     {
       "word": "食品",
@@ -11732,7 +11347,7 @@
       ],
       "ru": "продукты (питания)",
       "status": "accepted",
-      "acceptedHash": "78bb8334cc83"
+      "acceptedHash": "dcde5312c251"
     },
     {
       "word": "饮料",
@@ -11747,8 +11362,7 @@
         4
       ],
       "ru": "напитки",
-      "status": "accepted",
-      "acceptedHash": "be9c1764b57e"
+      "status": "draft"
     },
     {
       "word": "饼干",
@@ -11764,7 +11378,7 @@
       ],
       "ru": "печенье",
       "status": "accepted",
-      "acceptedHash": "be0f943a27a8"
+      "acceptedHash": "e5538ecb544c"
     },
     {
       "word": "首先",
@@ -11779,8 +11393,7 @@
         1
       ],
       "ru": "сначала, сперва",
-      "status": "accepted",
-      "acceptedHash": "6f67b67bcc44"
+      "status": "draft"
     },
     {
       "word": "首都",
@@ -11795,8 +11408,7 @@
         1
       ],
       "ru": "столица",
-      "status": "accepted",
-      "acceptedHash": "36acaba182a2"
+      "status": "draft"
     },
     {
       "word": "马虎",
@@ -11827,7 +11439,7 @@
       ],
       "ru": "гордиться, зазнаваться",
       "status": "accepted",
-      "acceptedHash": "9bc1518e22ff"
+      "acceptedHash": "c3854b747d9d"
     },
     {
       "word": "高级",
@@ -11842,8 +11454,7 @@
         2
       ],
       "ru": "высший (напр., о руководстве)",
-      "status": "accepted",
-      "acceptedHash": "3d7f4dd3faa7"
+      "status": "draft"
     },
     {
       "word": "麻烦",
@@ -11859,7 +11470,7 @@
       ],
       "ru": "хлопотливый",
       "status": "accepted",
-      "acceptedHash": "8329a315d209"
+      "acceptedHash": "833f68fdd85c"
     },
     {
       "word": "鼓励",
@@ -11875,7 +11486,7 @@
       ],
       "ru": "воодушевлять",
       "status": "accepted",
-      "acceptedHash": "e0eb408a8799"
+      "acceptedHash": "9c9550959ed7"
     },
     {
       "word": "鼓掌",
@@ -11891,7 +11502,7 @@
       ],
       "ru": "аплодировать",
       "status": "accepted",
-      "acceptedHash": "cde495f9a1fd"
+      "acceptedHash": "dd19a74b26f8"
     }
   ]
 }

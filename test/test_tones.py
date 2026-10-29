@@ -234,6 +234,17 @@ class GuessingTest(unittest.TestCase):
         for word, seq, options, correct in self.questions():
             self.assertFalse(set(options) & tones.heard_sequences(word, seq), word)
 
+    def test_both_full_syllables_vary_when_the_word_has_two(self):
+        # 下午 4-2 / 4-1 / 4-3 / 4-4: тон первого слога виден сразу, вопрос проверяет только второй. Четыре тона
+        # одного слога — только у слов, где слогов без лёгкого тона меньше двух (学生, 什么).
+        for word, seq, options, correct in self.questions():
+            full = [i for i, t in enumerate(seq) if t]
+            varying = [i for i in range(len(seq)) if len({o[i] for o in options}) > 1]
+            if len(full) >= 2:
+                self.assertEqual(len(varying), 2, f"{word} {seq}: {options}")
+            else:
+                self.assertEqual(varying, full, f"{word} {seq}: {options}")
+
     def test_order_of_options_does_not_give_the_answer_away(self):
         # Неверные варианты нельзя собирать в одном порядке и вставлять верный в случайное место: по порядку
         # видно, какой вариант выбивается (у «1-0, 3-0, 4-0, 2-0» верный 2-0). Смотрим, какие пары вариантов
