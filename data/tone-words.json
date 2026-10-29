@@ -1208,7 +1208,8 @@
         4
       ],
       "ru": "так как, потому что",
-      "status": "draft"
+      "status": "accepted",
+      "acceptedHash": "6f195b3d504c"
     },
     {
       "word": "好吃",
@@ -1643,7 +1644,8 @@
         4
       ],
       "ru": "день рождения",
-      "status": "draft"
+      "status": "accepted",
+      "acceptedHash": "82969e29e32e"
     },
     {
       "word": "生病",
@@ -3234,7 +3236,8 @@
         4
       ],
       "ru": "успехи",
-      "status": "draft"
+      "status": "accepted",
+      "acceptedHash": "fdd6fb00e3ed"
     },
     {
       "word": "或者",
@@ -3765,7 +3768,8 @@
         2
       ],
       "ru": "особый",
-      "status": "draft"
+      "status": "accepted",
+      "acceptedHash": "56f5b4ea27dd"
     },
     {
       "word": "环境",
@@ -4147,7 +4151,8 @@
         4
       ],
       "ru": "праздник",
-      "status": "draft"
+      "status": "accepted",
+      "acceptedHash": "cf9d2ed2f0a7"
     },
     {
       "word": "节目",
@@ -6077,7 +6082,8 @@
         4
       ],
       "ru": "охватывать, включать",
-      "status": "draft"
+      "status": "accepted",
+      "acceptedHash": "1cd22416b6ef"
     },
     {
       "word": "区别",
@@ -6332,7 +6338,8 @@
         4
       ],
       "ru": "дружба",
-      "status": "draft"
+      "status": "accepted",
+      "acceptedHash": "9643aa580a1f"
     },
     {
       "word": "反对",
@@ -6913,7 +6920,8 @@
         4
       ],
       "ru": "заполнить пропуск",
-      "status": "draft"
+      "status": "accepted",
+      "acceptedHash": "a698e796bf00"
     },
     {
       "word": "增加",
@@ -7690,7 +7698,8 @@
         2
       ],
       "ru": "тогда, в то время",
-      "status": "draft"
+      "status": "accepted",
+      "acceptedHash": "22c1cfa5b064"
     },
     {
       "word": "往往",
@@ -8089,7 +8098,8 @@
         4
       ],
       "ru": "увеличивать",
-      "status": "draft"
+      "status": "accepted",
+      "acceptedHash": "672cf449f195"
     },
     {
       "word": "批评",
@@ -8714,7 +8724,8 @@
         4
       ],
       "ru": "дневник",
-      "status": "draft"
+      "status": "accepted",
+      "acceptedHash": "07b340347d93"
     },
     {
       "word": "普遍",
@@ -9936,7 +9947,8 @@
         1
       ],
       "ru": "немного",
-      "status": "draft"
+      "status": "accepted",
+      "acceptedHash": "afec62266e2f"
     },
     {
       "word": "究竟",
@@ -11109,7 +11121,8 @@
         4
       ],
       "ru": "качество",
-      "status": "draft"
+      "status": "accepted",
+      "acceptedHash": "583f9ce9ff1f"
     },
     {
       "word": "购物",
