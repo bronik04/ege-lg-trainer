@@ -36,7 +36,7 @@ class BuildTest(unittest.TestCase):
 
     def test_word_from_bank_task_15_is_not_taken(self):
         kept, skipped, _ = build_tones.build(source(item("整齐", 4, ["zhěngqí"])), {}, {"整齐"}, [])
-        self.assertEqual((kept, skipped[0][2]), ([], "есть среди заданий №15 банка"))
+        self.assertEqual((kept, skipped[0][2]), ([], "есть среди заданий №15 на сайте"))
 
     def test_only_published_task_15_takes_the_word_away(self):
         # Черновик №15 (без разбора, не на сайте) ключа не подсказывает: слово остаётся в тренировке.

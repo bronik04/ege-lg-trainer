@@ -16,7 +16,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "整齐.",
+      "stem": "整齐",
       "options": {
         "1": "2-3",
         "2": "3-2",
@@ -25,7 +25,7 @@
       },
       "correctOptionId": "2"
     },
-    "acceptedHash": "a093d38cb166"
+    "acceptedHash": "ba1d3e8a0f88"
   },
   "q15-0bd9d448": {
     "status": "accepted",
@@ -44,7 +44,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "要紧。",
+      "stem": "要紧",
       "options": {
         "1": "4-2",
         "2": "4-1",
@@ -53,7 +53,7 @@
       },
       "correctOptionId": "4"
     },
-    "acceptedHash": "41dc07aeeb17"
+    "acceptedHash": "65f36d7acbf5"
   },
   "q15-16dc1d5b": {
     "status": "accepted",
@@ -72,7 +72,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "音乐.",
+      "stem": "音乐",
       "options": {
         "1": "2-4",
         "2": "1-4",
@@ -81,7 +81,7 @@
       },
       "correctOptionId": "2"
     },
-    "acceptedHash": "f248f95b8e63"
+    "acceptedHash": "84f8ddb981ba"
   },
   "q15-1b28be1b": {
     "status": "accepted",
@@ -100,7 +100,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "兴奋。",
+      "stem": "兴奋",
       "options": {
         "1": "1-2",
         "2": "1-4",
@@ -109,7 +109,7 @@
       },
       "correctOptionId": "2"
     },
-    "acceptedHash": "4feba9cbc135"
+    "acceptedHash": "1d01fdb4f51e"
   },
   "q15-1be47501": {
     "status": "accepted",
@@ -128,7 +128,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "工程师。",
+      "stem": "工程师",
       "options": {
         "1": "1-3-1",
         "2": "1-2-1",
@@ -137,7 +137,7 @@
       },
       "correctOptionId": "2"
     },
-    "acceptedHash": "5f131b423f74"
+    "acceptedHash": "360bf01cf42f"
   },
   "q15-21d530ba": {
     "status": "accepted",
@@ -156,7 +156,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "理发。",
+      "stem": "理发",
       "options": {
         "1": "3-1",
         "2": "3-4",
@@ -165,7 +165,7 @@
       },
       "correctOptionId": "2"
     },
-    "acceptedHash": "055fa6623789"
+    "acceptedHash": "b6e5d8d8fc47"
   },
   "q15-32703938": {
     "status": "accepted",
@@ -184,7 +184,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "厨房.",
+      "stem": "厨房",
       "options": {
         "1": "1-2",
         "2": "2-1",
@@ -193,7 +193,7 @@
       },
       "correctOptionId": "4"
     },
-    "acceptedHash": "4e20712bd434"
+    "acceptedHash": "e9ef27a31615"
   },
   "q15-52fc222d": {
     "status": "accepted",
@@ -212,7 +212,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "国歌.",
+      "stem": "国歌",
       "options": {
         "1": "2-2",
         "2": "2-4",
@@ -221,7 +221,7 @@
       },
       "correctOptionId": "3"
     },
-    "acceptedHash": "f38200db6940"
+    "acceptedHash": "8ee4bff20c2d"
   },
   "q15-65cac4fd": {
     "status": "accepted",
@@ -240,7 +240,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "展览馆.",
+      "stem": "展览馆",
       "options": {
         "1": "1-3-3",
         "2": "3-3-3",
@@ -249,7 +249,7 @@
       },
       "correctOptionId": "2"
     },
-    "acceptedHash": "4417e7e93dec"
+    "acceptedHash": "0c1b03ab8e4c"
   },
   "q15-6ba04829": {
     "status": "accepted",
@@ -268,7 +268,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "游泳池.",
+      "stem": "游泳池",
       "options": {
         "1": "2-3-4",
         "2": "2-3-2",
@@ -277,7 +277,7 @@
       },
       "correctOptionId": "2"
     },
-    "acceptedHash": "f42a1f9f5094"
+    "acceptedHash": "e66e312a0794"
   },
   "q15-768efd14": {
     "status": "accepted",
@@ -296,7 +296,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "校长.",
+      "stem": "校长",
       "options": {
         "1": "4-2",
         "2": "3-4",
@@ -305,7 +305,7 @@
       },
       "correctOptionId": "4"
     },
-    "acceptedHash": "b84d9dc8443b"
+    "acceptedHash": "f11b829a45c6"
   },
   "q15-7847e9fb": {
     "status": "accepted",
@@ -324,7 +324,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "熟悉。",
+      "stem": "熟悉",
       "options": {
         "1": "2-1",
         "2": "2-4",
@@ -333,7 +333,7 @@
       },
       "correctOptionId": "1"
     },
-    "acceptedHash": "4df9d446d1b1"
+    "acceptedHash": "47e2523af028"
   },
   "q15-87a0df04": {
     "status": "accepted",
@@ -352,7 +352,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "文章。",
+      "stem": "文章",
       "options": {
         "1": "1-2",
         "2": "2-1",
@@ -361,7 +361,7 @@
       },
       "correctOptionId": "2"
     },
-    "acceptedHash": "2ffeccc13adb"
+    "acceptedHash": "baeacf6f1ce2"
   },
   "q15-8976f2a6": {
     "status": "accepted",
@@ -380,7 +380,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "墨镜。",
+      "stem": "墨镜",
       "options": {
         "1": "4-4",
         "2": "2-4",
@@ -389,7 +389,7 @@
       },
       "correctOptionId": "1"
     },
-    "acceptedHash": "512fe6f52980"
+    "acceptedHash": "4e11aa93e983"
   },
   "q15-92fca08e": {
     "status": "accepted",
@@ -408,7 +408,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "地铁站。",
+      "stem": "地铁站",
       "options": {
         "1": "2-3-2",
         "2": "4-3-4",
@@ -417,7 +417,7 @@
       },
       "correctOptionId": "2"
     },
-    "acceptedHash": "efc4997a5ce6"
+    "acceptedHash": "33d57f231abf"
   },
   "q15-a2785292": {
     "status": "accepted",
@@ -436,7 +436,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "普通话.",
+      "stem": "普通话",
       "options": {
         "1": "2-4-4",
         "2": "3-1-4",
@@ -445,7 +445,7 @@
       },
       "correctOptionId": "2"
     },
-    "acceptedHash": "63ee93237f2c"
+    "acceptedHash": "73bb60b2bd6d"
   },
   "q15-ae4bdf45": {
     "status": "accepted",
@@ -464,7 +464,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "太极拳。",
+      "stem": "太极拳",
       "options": {
         "1": "2-4-2",
         "2": "4-2-3",
@@ -473,7 +473,7 @@
       },
       "correctOptionId": "3"
     },
-    "acceptedHash": "8c99fc86a9f3"
+    "acceptedHash": "62e5b41c3a0c"
   },
   "q15-afa50e17": {
     "status": "accepted",
@@ -492,7 +492,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "酱油。",
+      "stem": "酱油",
       "options": {
         "1": "3-4",
         "2": "4-3",
@@ -501,7 +501,7 @@
       },
       "correctOptionId": "3"
     },
-    "acceptedHash": "a82220d78132"
+    "acceptedHash": "bb58da404c64"
   },
   "q15-afebfe9a": {
     "status": "accepted",
@@ -520,7 +520,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "紧张。",
+      "stem": "紧张",
       "options": {
         "1": "3-3",
         "2": "2-1",
@@ -529,7 +529,7 @@
       },
       "correctOptionId": "3"
     },
-    "acceptedHash": "3bb32ea46f89"
+    "acceptedHash": "e2dfbd8decd7"
   },
   "q15-b0d59156": {
     "status": "accepted",
@@ -548,7 +548,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "长大。",
+      "stem": "长大",
       "options": {
         "1": "1-4",
         "2": "4-1",
@@ -557,7 +557,7 @@
       },
       "correctOptionId": "3"
     },
-    "acceptedHash": "b47879b30549"
+    "acceptedHash": "4b65e81ac7c3"
   },
   "q15-c0e5ac11": {
     "status": "accepted",
@@ -576,7 +576,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "错误。",
+      "stem": "错误",
       "options": {
         "1": "4-1",
         "2": "4-2",
@@ -585,7 +585,7 @@
       },
       "correctOptionId": "3"
     },
-    "acceptedHash": "d2667c815c6c"
+    "acceptedHash": "5362f59842b6"
   },
   "q15-c1da5ebb": {
     "status": "accepted",
@@ -604,7 +604,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "熊猫。",
+      "stem": "熊猫",
       "options": {
         "1": "2-3",
         "2": "4-1",
@@ -613,7 +613,7 @@
       },
       "correctOptionId": "4"
     },
-    "acceptedHash": "53d90879790b"
+    "acceptedHash": "666212dce0a2"
   },
   "q15-c788c851": {
     "status": "accepted",
@@ -632,7 +632,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "眼镜.",
+      "stem": "眼镜",
       "options": {
         "1": "2-3",
         "2": "3-4",
@@ -641,7 +641,7 @@
       },
       "correctOptionId": "2"
     },
-    "acceptedHash": "bed8de0539e4"
+    "acceptedHash": "c4b23fefac0f"
   },
   "q15-ca228d2e": {
     "status": "accepted",
@@ -660,7 +660,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "时差。",
+      "stem": "时差",
       "options": {
         "1": "2-1",
         "2": "2-4",
@@ -669,7 +669,7 @@
       },
       "correctOptionId": "1"
     },
-    "acceptedHash": "2d6a71fd7c18"
+    "acceptedHash": "c6252fd44a12"
   },
   "q15-d1d69030": {
     "status": "accepted",
@@ -688,7 +688,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "变成.",
+      "stem": "变成",
       "options": {
         "1": "2-2",
         "2": "4-2",
@@ -697,7 +697,7 @@
       },
       "correctOptionId": "2"
     },
-    "acceptedHash": "a89a754003de"
+    "acceptedHash": "9b1cd5dd29a4"
   },
   "q15-d9da4a18": {
     "status": "accepted",
@@ -716,7 +716,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "包裹。",
+      "stem": "包裹",
       "options": {
         "1": "1-2",
         "2": "1-3",
@@ -725,7 +725,7 @@
       },
       "correctOptionId": "2"
     },
-    "acceptedHash": "08bbbf173993"
+    "acceptedHash": "c8ca02ea52b4"
   },
   "q15-ec786fc3": {
     "status": "accepted",
@@ -744,7 +744,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "实验.",
+      "stem": "实验",
       "options": {
         "1": "2-2",
         "2": "4-2",
@@ -753,7 +753,7 @@
       },
       "correctOptionId": "3"
     },
-    "acceptedHash": "55f460f49d47"
+    "acceptedHash": "9fdffc82a31a"
   },
   "q15-ece8b53a": {
     "status": "accepted",
@@ -772,7 +772,7 @@
       }
     },
     "sourceSnapshot": {
-      "stem": "愿意.",
+      "stem": "愿意",
       "options": {
         "1": "2-2",
         "2": "4-2",
@@ -781,6 +781,6 @@
       },
       "correctOptionId": "3"
     },
-    "acceptedHash": "3a3cf3b1e38d"
+    "acceptedHash": "51eba8f1147d"
   }
 }

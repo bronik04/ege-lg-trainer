@@ -271,7 +271,7 @@ def tone_word_problems(entries, bank_stems=()):
             errors.append(f"{where}: не 2–3 иероглифа")
             continue
         if word in bank_stems:
-            errors.append(f"{where}: есть среди заданий №15 банка — тренировка подсказала бы ключ")
+            errors.append(f"{where}: есть среди заданий №15 на сайте — тренировка подсказала бы ключ (python3 scripts/build_tones.py)")
         if e.get("level") not in TONE_LEVELS:
             errors.append(f"{where}: уровень HSK {e.get('level')!r} вне 1–4")
         seq = e.get("tones")
