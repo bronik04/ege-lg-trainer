@@ -4743,7 +4743,8 @@
         3
       ],
       "ru": "классная доска",
-      "status": "draft"
+      "status": "accepted",
+      "acceptedHash": "b4de75dabf77"
     },
     {
       "word": "一切",
@@ -9514,7 +9515,8 @@
         3
       ],
       "ru": "особенность",
-      "status": "draft"
+      "status": "accepted",
+      "acceptedHash": "2b2ac337e066"
     },
     {
       "word": "现代",
