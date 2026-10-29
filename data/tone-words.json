@@ -142,22 +142,6 @@
       "acceptedHash": "9ffcdf5a25a7"
     },
     {
-      "word": "儿子",
-      "level": 1,
-      "pinyin": "érzi",
-      "syllables": [
-        "ér",
-        "zi"
-      ],
-      "tones": [
-        2,
-        0
-      ],
-      "ru": "сын",
-      "status": "accepted",
-      "acceptedHash": "1df7025a2034"
-    },
-    {
       "word": "先生",
       "level": 1,
       "pinyin": "xiānsheng",
@@ -350,22 +334,6 @@
       "ru": "дочь",
       "status": "accepted",
       "acceptedHash": "a5b16dcaeb39"
-    },
-    {
-      "word": "妈妈",
-      "level": 1,
-      "pinyin": "māma",
-      "syllables": [
-        "mā",
-        "ma"
-      ],
-      "tones": [
-        1,
-        0
-      ],
-      "ru": "мама",
-      "status": "accepted",
-      "acceptedHash": "af5ede657704"
     },
     {
       "word": "学习",
@@ -598,53 +566,6 @@
       "acceptedHash": "0c64db7bb89e"
     },
     {
-      "word": "杯子",
-      "level": 1,
-      "pinyin": "bēizi",
-      "syllables": [
-        "bēi",
-        "zi"
-      ],
-      "tones": [
-        1,
-        0
-      ],
-      "ru": "стакан",
-      "status": "accepted",
-      "acceptedHash": "2f8a0820fa68"
-    },
-    {
-      "word": "桌子",
-      "level": 1,
-      "pinyin": "zhuōzi",
-      "syllables": [
-        "zhuō",
-        "zi"
-      ],
-      "tones": [
-        1,
-        0
-      ],
-      "ru": "стол",
-      "status": "accepted",
-      "acceptedHash": "9dae985d5a6e"
-    },
-    {
-      "word": "椅子",
-      "level": 1,
-      "pinyin": "yǐzi",
-      "syllables": [
-        "yǐ",
-        "zi"
-      ],
-      "tones": [
-        3,
-        0
-      ],
-      "ru": "стул",
-      "status": "draft"
-    },
-    {
       "word": "水果",
       "level": 1,
       "pinyin": "shuǐguǒ",
@@ -727,22 +648,6 @@
       "ru": "вокзал",
       "status": "accepted",
       "acceptedHash": "40c72a671f4a"
-    },
-    {
-      "word": "爸爸",
-      "level": 1,
-      "pinyin": "bàba",
-      "syllables": [
-        "bà",
-        "ba"
-      ],
-      "tones": [
-        4,
-        0
-      ],
-      "ru": "папа, тятя",
-      "status": "accepted",
-      "acceptedHash": "b32317c4d5fe"
     },
     {
       "word": "现在",
@@ -1259,22 +1164,6 @@
       "acceptedHash": "00fc0d2bce3c"
     },
     {
-      "word": "哥哥",
-      "level": 2,
-      "pinyin": "gēge",
-      "syllables": [
-        "gē",
-        "ge"
-      ],
-      "tones": [
-        1,
-        0
-      ],
-      "ru": "старший брат",
-      "status": "accepted",
-      "acceptedHash": "40d363dab55d"
-    },
-    {
       "word": "唱歌",
       "level": 2,
       "pinyin": "chànggē",
@@ -1337,69 +1226,6 @@
       "ru": "вкусный",
       "status": "accepted",
       "acceptedHash": "c816bace830d"
-    },
-    {
-      "word": "妹妹",
-      "level": 2,
-      "pinyin": "mèimei",
-      "syllables": [
-        "mèi",
-        "mei"
-      ],
-      "tones": [
-        4,
-        0
-      ],
-      "ru": "младшая сестра",
-      "status": "accepted",
-      "acceptedHash": "9cb392b7bb64"
-    },
-    {
-      "word": "妻子",
-      "level": 2,
-      "pinyin": "qīzi",
-      "syllables": [
-        "qī",
-        "zi"
-      ],
-      "tones": [
-        1,
-        0
-      ],
-      "ru": "жена",
-      "status": "accepted",
-      "acceptedHash": "944b59eff89e"
-    },
-    {
-      "word": "姐姐",
-      "level": 2,
-      "pinyin": "jiějie",
-      "syllables": [
-        "jiě",
-        "jie"
-      ],
-      "tones": [
-        3,
-        0
-      ],
-      "ru": "старшая сестра",
-      "status": "draft"
-    },
-    {
-      "word": "孩子",
-      "level": 2,
-      "pinyin": "háizi",
-      "syllables": [
-        "hái",
-        "zi"
-      ],
-      "tones": [
-        2,
-        0
-      ],
-      "ru": "ребёнок, дитя",
-      "status": "accepted",
-      "acceptedHash": "b3fe500a5acc"
     },
     {
       "word": "小时",
@@ -1480,22 +1306,6 @@
       "ru": "начинать",
       "status": "accepted",
       "acceptedHash": "a90f7036c896"
-    },
-    {
-      "word": "弟弟",
-      "level": 2,
-      "pinyin": "dìdi",
-      "syllables": [
-        "dì",
-        "di"
-      ],
-      "tones": [
-        4,
-        0
-      ],
-      "ru": "младший брат",
-      "status": "accepted",
-      "acceptedHash": "d1f3d46cfb6e"
     },
     {
       "word": "快乐",
@@ -2820,22 +2630,6 @@
       "acceptedHash": "0195c9962b56"
     },
     {
-      "word": "叔叔",
-      "level": 3,
-      "pinyin": "shūshu",
-      "syllables": [
-        "shū",
-        "shu"
-      ],
-      "tones": [
-        1,
-        0
-      ],
-      "ru": "дядя (младший брат отца)",
-      "status": "accepted",
-      "acceptedHash": "25855a85c826"
-    },
-    {
       "word": "变化",
       "level": 3,
       "pinyin": "biànhuà",
@@ -2850,22 +2644,6 @@
       "ru": "изменение, перемена",
       "status": "accepted",
       "acceptedHash": "4bdbb3c78c59"
-    },
-    {
-      "word": "句子",
-      "level": 3,
-      "pinyin": "jùzi",
-      "syllables": [
-        "jù",
-        "zi"
-      ],
-      "tones": [
-        4,
-        0
-      ],
-      "ru": "предложение",
-      "status": "accepted",
-      "acceptedHash": "4b78c67115a0"
     },
     {
       "word": "可爱",
@@ -3126,21 +2904,6 @@
       "acceptedHash": "d1c61ccb5f76"
     },
     {
-      "word": "奶奶",
-      "level": 3,
-      "pinyin": "nǎinai",
-      "syllables": [
-        "nǎi",
-        "nai"
-      ],
-      "tones": [
-        3,
-        0
-      ],
-      "ru": "бабушка",
-      "status": "draft"
-    },
-    {
       "word": "如果",
       "level": 3,
       "pinyin": "rúguǒ",
@@ -3299,22 +3062,6 @@
       "ru": "помогать",
       "status": "accepted",
       "acceptedHash": "2eadbbbb1511"
-    },
-    {
-      "word": "帽子",
-      "level": 3,
-      "pinyin": "màozi",
-      "syllables": [
-        "mào",
-        "zi"
-      ],
-      "tones": [
-        4,
-        0
-      ],
-      "ru": "головной убор",
-      "status": "accepted",
-      "acceptedHash": "6920912ac003"
     },
     {
       "word": "干净",
@@ -4009,22 +3756,6 @@
       "acceptedHash": "b492b9b67c5c"
     },
     {
-      "word": "爷爷",
-      "level": 3,
-      "pinyin": "yéye",
-      "syllables": [
-        "yé",
-        "ye"
-      ],
-      "tones": [
-        2,
-        0
-      ],
-      "ru": "дедушка",
-      "status": "accepted",
-      "acceptedHash": "703931519b4a"
-    },
-    {
       "word": "特别",
       "level": 3,
       "pinyin": "tèbié",
@@ -4087,22 +3818,6 @@
       "ru": "лифт",
       "status": "accepted",
       "acceptedHash": "d1bb436072e0"
-    },
-    {
-      "word": "盘子",
-      "level": 3,
-      "pinyin": "pánzi",
-      "syllables": [
-        "pán",
-        "zi"
-      ],
-      "tones": [
-        2,
-        0
-      ],
-      "ru": "тарелка",
-      "status": "accepted",
-      "acceptedHash": "8e125e2cdea5"
     },
     {
       "word": "相信",
@@ -4215,22 +3930,6 @@
       "ru": "вдруг, внезапно",
       "status": "accepted",
       "acceptedHash": "ae856756c46d"
-    },
-    {
-      "word": "筷子",
-      "level": 3,
-      "pinyin": "kuàizi",
-      "syllables": [
-        "kuài",
-        "zi"
-      ],
-      "tones": [
-        4,
-        0
-      ],
-      "ru": "куайцзы, палочки для еды",
-      "status": "accepted",
-      "acceptedHash": "d28cadb7d5b2"
     },
     {
       "word": "简单",
@@ -4614,38 +4313,6 @@
       "ru": "сорочка",
       "status": "accepted",
       "acceptedHash": "f70c83fcad37"
-    },
-    {
-      "word": "裙子",
-      "level": 3,
-      "pinyin": "qúnzi",
-      "syllables": [
-        "qún",
-        "zi"
-      ],
-      "tones": [
-        2,
-        0
-      ],
-      "ru": "юбка",
-      "status": "accepted",
-      "acceptedHash": "6a0961c9a422"
-    },
-    {
-      "word": "裤子",
-      "level": 3,
-      "pinyin": "kùzi",
-      "syllables": [
-        "kù",
-        "zi"
-      ],
-      "tones": [
-        4,
-        0
-      ],
-      "ru": "брюки",
-      "status": "accepted",
-      "acceptedHash": "1ef8ff8d5a3c"
     },
     {
       "word": "要求",
@@ -5080,22 +4747,6 @@
       "acceptedHash": "f2245df7351c"
     },
     {
-      "word": "鼻子",
-      "level": 3,
-      "pinyin": "bízi",
-      "syllables": [
-        "bí",
-        "zi"
-      ],
-      "tones": [
-        2,
-        0
-      ],
-      "ru": "нос",
-      "status": "accepted",
-      "acceptedHash": "05dd75c8010b"
-    },
-    {
       "word": "一切",
       "level": 4,
       "pinyin": "yīqiè",
@@ -5272,22 +4923,6 @@
       "ru": "серьёзный",
       "status": "accepted",
       "acceptedHash": "c6b1091c3430"
-    },
-    {
-      "word": "个子",
-      "level": 4,
-      "pinyin": "gèzi",
-      "syllables": [
-        "gè",
-        "zi"
-      ],
-      "tones": [
-        4,
-        0
-      ],
-      "ru": "рост, комплекция",
-      "status": "accepted",
-      "acceptedHash": "e4871df158a6"
     },
     {
       "word": "中文",
@@ -6884,22 +6519,6 @@
       "acceptedHash": "d55c1aa31011"
     },
     {
-      "word": "叶子",
-      "level": 4,
-      "pinyin": "yèzi",
-      "syllables": [
-        "yè",
-        "zi"
-      ],
-      "tones": [
-        4,
-        0
-      ],
-      "ru": "лист",
-      "status": "accepted",
-      "acceptedHash": "6b6535e10a7a"
-    },
-    {
       "word": "号码",
       "level": 4,
       "pinyin": "hàomǎ",
@@ -7482,22 +7101,6 @@
       "ru": "как будто",
       "status": "accepted",
       "acceptedHash": "10e34e6611f4"
-    },
-    {
-      "word": "孙子",
-      "level": 4,
-      "pinyin": "sūnzi",
-      "syllables": [
-        "sūn",
-        "zi"
-      ],
-      "tones": [
-        1,
-        0
-      ],
-      "ru": "внук",
-      "status": "accepted",
-      "acceptedHash": "59891c5fe2b6"
     },
     {
       "word": "孤单",
@@ -9370,22 +8973,6 @@
       "acceptedHash": "5662e6551e90"
     },
     {
-      "word": "样子",
-      "level": 4,
-      "pinyin": "yàngzi",
-      "syllables": [
-        "yàng",
-        "zi"
-      ],
-      "tones": [
-        4,
-        0
-      ],
-      "ru": "вид",
-      "status": "accepted",
-      "acceptedHash": "bf1737569be5"
-    },
-    {
       "word": "森林",
       "level": 4,
       "pinyin": "sēnlín",
@@ -9932,38 +9519,6 @@
       "acceptedHash": "0f30a02386b2"
     },
     {
-      "word": "狮子",
-      "level": 4,
-      "pinyin": "shīzi",
-      "syllables": [
-        "shī",
-        "zi"
-      ],
-      "tones": [
-        1,
-        0
-      ],
-      "ru": "лев",
-      "status": "accepted",
-      "acceptedHash": "a820de3bde5e"
-    },
-    {
-      "word": "猴子",
-      "level": 4,
-      "pinyin": "hóuzi",
-      "syllables": [
-        "hóu",
-        "zi"
-      ],
-      "tones": [
-        2,
-        0
-      ],
-      "ru": "обезьяна",
-      "status": "accepted",
-      "acceptedHash": "2fdeebdb1db8"
-    },
-    {
       "word": "现代",
       "level": 4,
       "pinyin": "xiàndài",
@@ -10010,22 +9565,6 @@
       "ru": "понимать, осмысливать: уяснять",
       "status": "accepted",
       "acceptedHash": "6470428ad40d"
-    },
-    {
-      "word": "瓶子",
-      "level": 4,
-      "pinyin": "píngzi",
-      "syllables": [
-        "píng",
-        "zi"
-      ],
-      "tones": [
-        2,
-        0
-      ],
-      "ru": "бутылка",
-      "status": "accepted",
-      "acceptedHash": "60f1b74288a8"
     },
     {
       "word": "甚至",
@@ -10138,22 +9677,6 @@
       "ru": "кожа, кожный покров",
       "status": "accepted",
       "acceptedHash": "78a179df1192"
-    },
-    {
-      "word": "盒子",
-      "level": 4,
-      "pinyin": "hézi",
-      "syllables": [
-        "hé",
-        "zi"
-      ],
-      "tones": [
-        2,
-        0
-      ],
-      "ru": "коробка",
-      "status": "accepted",
-      "acceptedHash": "befb971b0c89"
     },
     {
       "word": "目的",
@@ -10978,21 +10501,6 @@
       "acceptedHash": "34f3a54d00be"
     },
     {
-      "word": "肚子",
-      "level": 4,
-      "pinyin": "dùzi",
-      "syllables": [
-        "dù",
-        "zi"
-      ],
-      "tones": [
-        4,
-        0
-      ],
-      "ru": "живот, брюхо",
-      "status": "draft"
-    },
-    {
       "word": "肯定",
       "level": 4,
       "pinyin": "kěndìng",
@@ -11215,22 +10723,6 @@
       "ru": "выражать (напр., мысли)",
       "status": "accepted",
       "acceptedHash": "280e1239a046"
-    },
-    {
-      "word": "袜子",
-      "level": 4,
-      "pinyin": "wàzi",
-      "syllables": [
-        "wà",
-        "zi"
-      ],
-      "tones": [
-        4,
-        0
-      ],
-      "ru": "носки",
-      "status": "accepted",
-      "acceptedHash": "c723de9f66b5"
     },
     {
       "word": "西红柿",
@@ -11955,22 +11447,6 @@
       "acceptedHash": "c3ec3ce0a5da"
     },
     {
-      "word": "镜子",
-      "level": 4,
-      "pinyin": "jìngzi",
-      "syllables": [
-        "jìng",
-        "zi"
-      ],
-      "tones": [
-        4,
-        0
-      ],
-      "ru": "зеркало",
-      "status": "accepted",
-      "acceptedHash": "b12140cf3397"
-    },
-    {
       "word": "长城",
       "level": 4,
       "pinyin": "chángchéng",
@@ -12273,21 +11749,6 @@
       "ru": "напитки",
       "status": "accepted",
       "acceptedHash": "be9c1764b57e"
-    },
-    {
-      "word": "饺子",
-      "level": 4,
-      "pinyin": "jiǎozi",
-      "syllables": [
-        "jiǎo",
-        "zi"
-      ],
-      "tones": [
-        3,
-        0
-      ],
-      "ru": "пельмени",
-      "status": "draft"
     },
     {
       "word": "饼干",
