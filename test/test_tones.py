@@ -156,6 +156,13 @@ class SyllableTableTest(unittest.TestCase):
         for syllables in (None, ["jie", "guo"]):
             texts = {o["text"] for o in tones.make_options("结果", (2, 3), syllables, tones.syllable_tones() if syllables else None)[0]}
             self.assertNotIn("1-3", texts)
+        # Другие чтения тех же иероглифов (dàngshí, chéngjī, yīnwéi…) не предлагаются ни у одного слова из данных.
+        words = json.loads((Path(__file__).resolve().parent.parent / "data" / "tone-words.json").read_text(encoding="utf-8"))["words"]
+        for w in words:
+            if w["word"] in tones.HOMOGRAPHS:
+                texts = {o["text"] for o in tones.make_question(w)["options"]}
+                for reading in tones.HOMOGRAPHS[w["word"]]:
+                    self.assertNotIn(tones.sequence_text(reading), texts, w["word"])
 
     def test_signature_of_options_is_part_of_the_fingerprint(self):
         entry = {"word": "整齐", "pinyin": "zhěngqí", "tones": [3, 2], "ru": "аккуратный", "level": 4}
@@ -240,7 +247,14 @@ class GuessingTest(unittest.TestCase):
         for word, seq, options, correct in self.questions():
             full = [i for i, t in enumerate(seq) if t]
             varying = [i for i in range(len(seq)) if len({o[i] for o in options}) > 1]
-            if len(full) >= 2:
+            syllables = self.syllables.get(word)
+            if len(full) >= 2 and len(varying) == 1 and syllables:
+                # Ряд вместо квадрата — только если у неизменного слога в китайском один тон (生日: только rì).
+                known = tones.syllable_tones()
+                for i in full:
+                    if i not in varying:
+                        self.assertEqual(set(known.get(syllables[i], {})), {seq[i]}, f"{word} {seq}: {options}")
+            elif len(full) >= 2:
                 self.assertEqual(len(varying), 2, f"{word} {seq}: {options}")
             else:
                 self.assertEqual(varying, full, f"{word} {seq}: {options}")
