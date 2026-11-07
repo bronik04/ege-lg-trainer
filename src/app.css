@@ -434,6 +434,8 @@ kbd {
 .stat span { color: var(--muted); font-size: .82rem; font-weight: 600; }
 .filters-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr)); gap: 10px; margin-bottom: 14px; }
 .filters-row > * { min-width: 0; }
+.round-settings { align-items: start; }
+.round-settings .chip input:checked:hover + span { color: var(--paper); }
 .filters-row > .field { align-self: start; } /* рядом с блоком размера раунда поле не растёт в высоту */
 /* Кнопка сброса в ряду полей — их высоты и в одну строку. */
 .filters-row > .button { align-self: end; min-height: 46px; padding: 8px 14px; white-space: nowrap; }
@@ -521,6 +523,7 @@ kbd {
 /* ---------- телефон ---------- */
 
 @media (max-width: 720px) {
+  .round-settings { grid-template-columns: 1fr; }
   /* Фокус и прокрутка не прячут элементы под панелью внизу. */
   html { scroll-padding-bottom: 96px; }
   .shell { width: calc(100% - 32px); padding-top: 8px; }

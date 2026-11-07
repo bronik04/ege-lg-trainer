@@ -269,7 +269,7 @@ test('сохранённые фильтры: старая версия без п
   await page.goto(`${mainUrl}#/practice/setup`);
   await page.reload();
   assert.equal(await page.locator('input[data-key="Задания:22"]').isChecked(), true);
-  assert.equal(await page.locator('#stateFilter').inputValue(), 'done', '«Уже решённые» переживают перезагрузку');
+  assert.equal(await page.getByRole('radio', { name: 'Уже решённые', exact: true }).isChecked(), true, '«Уже решённые» переживают перезагрузку');
   assert.equal(await page.locator('#roundSize').inputValue(), '5');
   assert.equal(await page.locator('input[data-key="Грамматика:jiu-cai"]').isChecked(), false);
   // Правило 就 и 才 у №20 заданий не имеет — подборку оно не сужает и не выбрано.
@@ -343,10 +343,10 @@ test('размер раунда: своё число с клавиатуры, к
   await page.reload();
   assert.equal(await size.inputValue(), '14');
   // «Все» без доступных — поле пустое, а не «0».
-  await page.locator('#stateFilter').selectOption('mistakes');
+  await page.getByRole('radio', { name: 'Ошибки', exact: true }).check();
   await page.locator('input[data-key="Размер:all"]').check();
   assert.equal(await size.inputValue(), '');
-  await page.locator('#stateFilter').selectOption('all');
+  await page.getByRole('radio', { name: 'Все', exact: true }).check();
   // Вписал и сразу «Начать раунд», без Enter: раунд — из вписанного числа.
   await size.fill('7');
   await page.locator('#startRound').click();
@@ -370,7 +370,7 @@ test('уже решённые в практике, сброс фильтров �
   await page.keyboard.press('1');
   await page.locator('.feedback').waitFor();
   await page.goto(`${mainUrl}#/practice/setup`);
-  await page.locator('#stateFilter').selectOption('done');
+  await page.getByRole('radio', { name: 'Уже решённые', exact: true }).check();
   await see(page, '#available', /Доступно: 1 задание/);
   await page.goto(`${mainUrl}#/bank`);
   await page.setViewportSize({ width: 1366, height: 768 });
@@ -712,7 +712,7 @@ test('повторение: исправленная ошибка возвращ
   await page.locator('select[data-key="bank:state"]').selectOption('due');
   await see(page, '.small.muted', /Показано: 1 задание/);
   await page.goto(`${mainUrl}#/practice/setup`);
-  await page.locator('#stateFilter').selectOption('review');
+  await page.getByRole('radio', { name: 'На повторение', exact: true }).check();
   await see(page, '#available', /Доступно: 1 задание/);
   await page.goto(`${mainUrl}#/bank`);
   await page.locator('#repeatDue').click();
@@ -2029,13 +2029,13 @@ test('«Следующий раунд»: строка называет выбр�
   await page.locator('#startRound').waitFor();
   await see(page, '#nextSummary', /^Все задания 15–27$/);
   await page.locator('input[data-key="Задания:22"]').check({ force: true });
-  await page.locator('#stateFilter').selectOption('new');
+  await page.getByRole('radio', { name: 'Только новые', exact: true }).check();
   await see(page, '#nextSummary', /^Задание 22 · только новые$/);
   await page.locator('input[data-key="Задания:20"]').check({ force: true });
   await see(page, '#nextSummary', /^Задания 20, 22 · только новые$/);
   assert.equal(await page.locator('.next .keys').count(), 1);
   // Заданий нет — кнопка выключена, подсказки Enter нет.
-  await page.locator('#stateFilter').selectOption('mistakes');
+  await page.getByRole('radio', { name: 'Ошибки', exact: true }).check();
   await see(page, '#available', /Ошибок с такими фильтрами нет/);
   assert.equal(await page.locator('#startRound').isDisabled(), true);
   assert.equal(await page.locator('.next .keys').count(), 0);
@@ -2093,6 +2093,92 @@ test('пробел: «Начать раунд» не запускает, в ва
   assert.equal(await current(), second, 'удержанный пробел позицию не меняет');
   await page.keyboard.press('Space');
   assert.notEqual(await current(), second);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('новые задания: видимый выбор, история попыток, сохранение и исчерпание подборки', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { width: 390, height: 844, hash: '#/practice/setup' });
+  const at = '2026-11-01T12:00:00.000Z';
+  let progress = L.recordAnswer(L.emptyProgress(), 'questions', 'q22-a', '1', true, at);
+  progress = L.recordAnswer(progress, 'questions', 'q20-a', '1', false, at);
+  await page.evaluate((value) => localStorage.setItem('ege-lg-trainer:progress', JSON.stringify(value)), progress);
+  await page.reload();
+  await page.getByRole('radio', { name: 'Только новые', exact: true }).check({ timeout: 2000 });
+  await page.locator('input[data-key="Задания:20"]').check();
+  await page.locator('input[data-key="Задания:22"]').check();
+  await page.locator('input[data-key="Источник:fipi"]').check();
+  await page.locator('input[data-key="Размер:all"]').check();
+  assert.ok(await page.evaluate(() => {
+    const contents = document.querySelector('.contents');
+    return ['stateFilter', 'roundSizeBox'].every((id) =>
+      document.getElementById(id).compareDocumentPosition(contents) & Node.DOCUMENT_POSITION_FOLLOWING);
+  }), 'выбор режима и размера расположен до оглавления');
+  const modeBox = await page.locator('#stateFilter').boundingBox();
+  const sizeBox = await page.locator('#roundSizeBox').boundingBox();
+  assert.ok(sizeBox.y >= modeBox.y + modeBox.height, 'на телефоне режим и размер идут друг под другом');
+  await see(page, '#stateHelp', /ни разу не отвечали/);
+  await see(page, '#available', /Доступно: 1 задание\. В раунд попадёт 1\./);
+  await page.reload();
+  assert.equal(await page.getByRole('radio', { name: 'Только новые', exact: true }).isChecked(), true);
+  await page.locator('#startRound').click();
+  await page.locator('[data-card]').waitFor();
+  assert.deepEqual((await storedProgress(page)).round.ids, ['q22-b'], 'верные и неверные попытки исключены');
+  await page.locator('[data-card] .option').first().click();
+  await page.getByRole('button', { name: 'Итог раунда', exact: true }).click();
+  await see(page, 'h2', /Раунд окончен/);
+  const finished = (await storedProgress(page)).round;
+  await page.getByRole('link', { name: 'На главную', exact: true }).click();
+  await see(page, 'h2', /Правила/);
+  assert.equal(new URL(page.url()).hash, '#/rules');
+  assert.deepEqual((await storedProgress(page)).round, finished, 'возврат на главную сохраняет итог');
+  await page.goto(`${mainUrl}#/practice`);
+  await see(page, 'h2', /Раунд окончен/);
+  await page.getByRole('link', { name: 'Новый раунд', exact: true }).click();
+  await see(page, '#available', /Новых заданий с такими фильтрами не осталось/);
+  assert.equal(await page.locator('#startRound').isDisabled(), true, 'решённые не подмешиваются вместо новых');
+  await page.getByRole('radio', { name: 'Все', exact: true }).check();
+  await see(page, '#available', /Доступно: 3 задания/);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('тоны: новые слова выбираются явно и не меняют фильтр практики', { skip }, async () => {
+  const url = buildPage('tones-new-mode', { change: (data) => { data['tone-words'] = { words: toneWords }; } });
+  const { page, context, errors } = await open(url, { width: 320, height: 640, hash: '#/tones/setup' });
+  await page.getByRole('radio', { name: 'Только новые', exact: true }).check({ timeout: 2000 });
+  await page.reload();
+  assert.equal(await page.getByRole('radio', { name: 'Только новые', exact: true }).isChecked(), true);
+  await page.locator('input[data-key="Размер:5"]').check();
+  await page.locator('#startTones').click();
+  for (let i = 0; i < 4; i += 1) {
+    await page.locator('[data-card] .option').first().click();
+    await page.locator('[data-enter]').click();
+  }
+  await see(page, 'h2', /Раунд окончен/);
+  await page.getByRole('link', { name: 'На главную', exact: true }).click();
+  await see(page, 'h2', /Правила/);
+  await page.goto(`${url}#/tones/setup`);
+  await see(page, '#available', /Новых слов с такими фильтрами не осталось/);
+  assert.equal(await page.locator('#startTones').isDisabled(), true);
+  await page.goto(`${url}#/practice/setup`);
+  assert.equal(await page.getByRole('radio', { name: 'Все', exact: true }).isChecked(), true);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('итог полного варианта: переход на главную сохраняет результат', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { hash: '#/variant' });
+  const byId = new Map(fixture('questions').map((q) => [q.id, q]));
+  const ids = Array.from({ length: 13 }, (_, i) => `q${i + 15}-a`);
+  const at = '2026-11-01T12:00:00.000Z';
+  const progress = L.finishVariant({ ...L.emptyProgress(), variant: L.startVariant(ids, at) }, byId, at);
+  await page.evaluate((value) => localStorage.setItem('ege-lg-trainer:progress', JSON.stringify(value)), progress);
+  await page.reload();
+  await see(page, '.section-title', /Результат последнего варианта/);
+  await page.getByRole('link', { name: 'На главную', exact: true }).click({ timeout: 2000 });
+  await see(page, 'h2', /Правила/);
+  assert.deepEqual((await storedProgress(page)).variant, progress.variant);
   assert.deepEqual(errors, []);
   await context.close();
 });

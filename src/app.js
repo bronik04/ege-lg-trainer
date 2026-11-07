@@ -1114,9 +1114,28 @@
   }
 
   // Состояние ответов: общий список для практики и тонов (подпись в «Следующем раунде» — его же).
-  const STATE_OPTIONS = [['all', 'Все'], ['new', 'Новые'], ['done', 'Уже решённые'], ['review', 'На повторение'], ['mistakes', 'Ошибки']];
+  const STATE_OPTIONS = [['all', 'Все'], ['new', 'Только новые'], ['done', 'Уже решённые'], ['review', 'На повторение'], ['mistakes', 'Ошибки']];
+  const STATE_HELP = {
+    all: 'И новые, и уже решённые задания.',
+    new: 'Задания, на которые вы ещё ни разу не отвечали. Ответ с ошибкой тоже считается попыткой.',
+    done: 'Хотя бы одна попытка ответа, включая неверные.',
+    review: 'Ошибки и задания, у которых подошёл срок повторения.',
+    mistakes: 'Задания, на которые последний ответ был неверным.',
+  };
   // В строке «Следующего раунда» состояние — с «только»: «Новые задания · новые» читалось бы как повтор.
   const STATE_SUMMARY = { new: 'только новые', done: 'только решённые', review: 'на повторение', mistakes: 'только ошибки' };
+
+  function roundStateControl(legend, state, onChange) {
+    return el('fieldset', { class: 'filter', id: 'stateFilter', 'aria-describedby': 'stateHelp' },
+      el('legend', { text: legend }),
+      el('div', { class: 'chips' }, STATE_OPTIONS.map(([value, label]) => el('label', { class: 'chip' },
+        el('input', {
+          type: 'radio', name: 'roundState', value, checked: state === value, dataset: { key: `state:${value}` },
+          onchange: () => onChange(value),
+        }),
+        el('span', { text: label })))),
+      el('p', { class: 'small muted', id: 'stateHelp', text: STATE_HELP[state] }));
+  }
 
   // «Следующий раунд» — первым на экране, как в тренажёре по лингвострановедению: что войдёт в
   // раунд одной строкой, сколько заданий и кнопка; настройки — ниже. Ушла кнопка за верхний край
@@ -1187,16 +1206,14 @@
       start,
       resume: round && !round.finishedAt ? el('a', { class: 'button alt', href: '#/practice', text: `Продолжить раунд · ${Object.keys(round.answers).length} из ${round.ids.length}` }) : null,
     }));
+    view.append(el('div', { class: 'filters-row round-settings' },
+      roundStateControl('Какие задания', filters.state, (value) => { filters.state = value; saveFilters(); render(false); }),
+      size.node));
     view.append(taskContents(), grammarFilter());
     if (origins.length > 1) {
       view.append(chipGroup('Источник', origins.map((o) => ({ value: o, label: ORIGIN_NAMES[o] || o, count: questions.filter((q) => q.origin === o).length })),
         filters.origins, (v) => { filters.origins = toggle(filters.origins, v); saveFilters(); render(false); }));
     }
-    const stateSelect = el('select', { id: 'stateFilter', dataset: { key: 'state' }, onchange: (e) => { filters.state = e.target.value; saveFilters(); render(false); } },
-      STATE_OPTIONS.map(([v, label]) => el('option', { value: v, selected: filters.state === v, text: label })));
-    view.append(el('div', { class: 'filters-row' },
-      el('label', { class: 'field' }, 'Какие задания', stateSelect),
-      size.node));
     const actions = el('div', { class: 'actions' },
       el('button', {
         class: 'button ghost', type: 'button',
@@ -1221,6 +1238,7 @@
     if (filters.state === 'mistakes') return 'Ошибок с такими фильтрами нет.';
     if (filters.state === 'done') return 'Решённых с такими фильтрами пока нет.';
     if (filters.state === 'review') return 'Повторять пока нечего: ошибок нет, а исправленные ещё не подошли к сроку.';
+    if (filters.state === 'new') return 'Новых заданий с такими фильтрами не осталось. Выберите «Все» или измените фильтры.';
     return 'С такими фильтрами заданий нет — снимите часть фильтров.';
   }
 
@@ -1401,7 +1419,8 @@
       el('a', { class: wrong.length ? 'button alt' : 'button', href: `${roundHome(round)}/setup`, text: 'Новый раунд' }),
       el('button', { class: 'button ghost', type: 'button', id: 'restartRound', onclick: () => startRound(round.ids, mode) }, tones ? 'Решить эти слова заново' : 'Решить эти задания заново'),
       report.button,
-      share.button));
+      share.button,
+      el('a', { class: 'button ghost', href: '#/rules', text: 'На главную' })));
     if (report.box) view.append(report.box);
     if (share.box) view.append(share.box);
   }
@@ -1413,6 +1432,7 @@
     if (toneFilters.state === 'mistakes') return 'Ошибок с такими фильтрами нет.';
     if (toneFilters.state === 'done') return 'Решённых слов с такими фильтрами пока нет.';
     if (toneFilters.state === 'review') return 'Повторять пока нечего: ошибок нет, а исправленные ещё не подошли к сроку.';
+    if (toneFilters.state === 'new') return 'Новых слов с такими фильтрами не осталось. Выберите «Все» или измените фильтры.';
     return 'С такими фильтрами слов нет — снимите часть фильтров.';
   }
 
@@ -1446,16 +1466,14 @@
       start,
       resume: round && !round.finishedAt ? el('a', { class: 'button alt', href: '#/tones', text: `Продолжить раунд · ${Object.keys(round.answers).length} из ${round.ids.length}` }) : null,
     }));
+    view.append(el('div', { class: 'filters-row round-settings' },
+      roundStateControl('Какие слова', toneFilters.state, (value) => { toneFilters.state = value; saveToneFilters(); render(false); }),
+      size.node));
     view.append(
       chipGroup('Уровень HSK', TONE_LEVELS.filter((n) => counts.levels[n] || toneFilters.levels.includes(n))
         .map((n) => ({ value: n, label: `HSK ${n}`, count: counts.levels[n] })), toneFilters.levels, change('levels'), 'toneLevels'),
       chipGroup('Длина слова', TONE_LENGTHS.filter((n) => counts.lengths[n] || toneFilters.lengths.includes(n))
         .map((n) => ({ value: n, label: `${n} иероглифа`, count: counts.lengths[n] })), toneFilters.lengths, change('lengths'), 'toneLengths'));
-    const stateSelect = el('select', { id: 'stateFilter', dataset: { key: 'state' }, onchange: (e) => { toneFilters.state = e.target.value; saveToneFilters(); render(false); } },
-      STATE_OPTIONS.map(([v, label]) => el('option', { value: v, selected: toneFilters.state === v, text: label })));
-    view.append(el('div', { class: 'filters-row' },
-      el('label', { class: 'field' }, 'Какие слова', stateSelect),
-      size.node));
     view.append(el('div', { class: 'actions' },
       el('button', {
         class: 'button ghost', type: 'button',
@@ -1637,7 +1655,8 @@
     const report = reportToggle('variant', { kind: 'variant', at: v.finishedAt, timeMs: (v.result || {}).timeMs, ids: v.ids, answers: sessionAnswers(v),
       score: result.score, total: result.total });
     // null — кнопки нет: штатный append напечатал бы его словом «null».
-    actions.append(...[report.button, share.button].filter(Boolean));
+    actions.append(...[report.button, share.button,
+      el('a', { class: 'button ghost', href: '#/rules', text: 'На главную' })].filter(Boolean));
     view.append(el('p', { class: 'section-title', text: 'Результат последнего варианта' }),
       scoreLine(result.score, result.total, 'первичных баллов за раздел 3'),
       Number.isFinite(v.result && v.result.timeMs)
