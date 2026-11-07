@@ -82,6 +82,12 @@ async function see(page, selector, pattern) {
   await page.locator(selector).filter({ hasText: pattern }).first().waitFor({ timeout: 5000 });
 }
 
+async function pickSource(page, origin) {
+  const disclosure = page.locator('.practice-sources');
+  if (!await disclosure.evaluate((node) => node.open)) await disclosure.locator('summary').click();
+  await page.locator(`input[data-key="Источник:${origin}"]`).check();
+}
+
 test('правило → проверка правила → задания по правилу', { skip }, async () => {
   const { page, context, errors } = await open(mainUrl, { hash: '#/rules' });
   await page.getByRole('link', { name: /就 и 才/ }).click();
@@ -145,8 +151,8 @@ test('оглавление по номерам: тема — подпись но
   await see(page, '#available', /Доступно: 2 задания/);
   await row(22).check();
   await see(page, '#available', /Доступно: 4 задания/);
-  await page.getByRole('button', { name: 'Сбросить фильтры' }).click();
-  await page.locator('input[data-key="Источник:generated"]').check();
+  await page.getByRole('button', { name: 'Снять фильтры' }).click();
+  await pickSource(page, 'generated');
   await see(page, '#available', /Доступно: 1 задание/);
   assert.deepEqual(errors, []);
   await context.close();
@@ -204,9 +210,8 @@ test('грамматика: правила отмеченных номеров �
   });
   const { page, context, errors } = await open(url, { hash: '#/practice' });
   const chip = (id) => page.locator(`input[data-key="Грамматика:${id}"]`);
-  // Без номера правил не видно — подсказка, где они появятся.
+  // Правила появляются после выбора номера.
   assert.equal(await page.locator('input[data-key^="Грамматика:"]').count(), 0);
-  await see(page, '#grammar', /Отметьте номер/);
   await page.locator('input[data-key="Задания:22"]').check();
   await see(page, '#grammar', /就 и 才\s*1/);
   await see(page, '#grammar', /又, 再 и 还\s*1/);
@@ -239,11 +244,11 @@ test('грамматика: правила отмеченных номеров �
   await page.goto(`${url}#/practice?tasks=20&rules=jiu-cai&size=5`);
   await see(page, '#shareNotice', /одного правила из неё на сайте больше нет/);
   assert.equal(await chip('jiu-cai').count(), 0);
-  // Тема из старой ссылки: подсказка не говорит, что у номера нет правил.
+  // Тема из старой ссылки не подменяется заданиями другого номера.
   await page.goto(`${url}#/practice?topics=adverbs&tasks=20&size=5`);
-  await see(page, '#grammar', /В выбранной теме/);
-  // «Сбросить фильтры» снимает и правила.
-  await page.getByRole('button', { name: 'Сбросить фильтры' }).click();
+  await see(page, '#available', /С такими фильтрами заданий нет/);
+  // Сброс снимает и правила.
+  await page.getByRole('button', { name: 'Снять фильтры' }).click();
   await see(page, '#available', /Доступно: 16 заданий/);
   assert.equal(await chip('jiu-cai').count(), 0);
   assert.deepEqual(errors, []);
@@ -252,7 +257,7 @@ test('грамматика: правила отмеченных номеров �
 
 test('кнопка карточки правила: задания правила при любом выбранном источнике', { skip }, async () => {
   const { page, context, errors } = await open(mainUrl, { hash: '#/practice' });
-  await page.locator('input[data-key="Источник:hsk"]').check();
+  await pickSource(page, 'hsk');
   await see(page, '#available', /Доступно: 1 задание/);
   await page.goto(`${mainUrl}#/rules/jiu-cai`);
   await page.getByRole('button', { name: 'Задания ЕГЭ по правилу · 2 задания' }).click();
@@ -269,7 +274,7 @@ test('сохранённые фильтры: старая версия без п
   await page.goto(`${mainUrl}#/practice/setup`);
   await page.reload();
   assert.equal(await page.locator('input[data-key="Задания:22"]').isChecked(), true);
-  assert.equal(await page.getByRole('radio', { name: 'Уже решённые', exact: true }).isChecked(), true, '«Уже решённые» переживают перезагрузку');
+  assert.equal(await page.getByRole('combobox', { name: 'Какие задания', exact: true }).inputValue(), 'done', 'выбор решённых заданий переживает перезагрузку');
   assert.equal(await page.locator('#roundSize').inputValue(), '5');
   assert.equal(await page.locator('input[data-key="Грамматика:jiu-cai"]').isChecked(), false);
   // Правило 就 и 才 у №20 заданий не имеет — подборку оно не сужает и не выбрано.
@@ -303,7 +308,7 @@ test('размер раунда: своё число с клавиатуры, к
   await see(page, '#available', /В раунд попадёт 13\./);
   // Вписанное применяется и при уходе из поля, без Enter.
   await size.fill('3');
-  await page.locator('#available').click();
+  await page.locator('#practiceAvailable').click();
   await see(page, '#available', /В раунд попадёт 3\./);
   await page.locator('#roundLess').click();
   await see(page, '#available', /В раунд попадёт 2\./);
@@ -343,10 +348,10 @@ test('размер раунда: своё число с клавиатуры, к
   await page.reload();
   assert.equal(await size.inputValue(), '14');
   // «Все» без доступных — поле пустое, а не «0».
-  await page.getByRole('radio', { name: 'Ошибки', exact: true }).check();
+  await page.getByRole('combobox', { name: 'Какие задания', exact: true }).selectOption('mistakes');
   await page.locator('input[data-key="Размер:all"]').check();
   assert.equal(await size.inputValue(), '');
-  await page.getByRole('radio', { name: 'Все', exact: true }).check();
+  await page.getByRole('combobox', { name: 'Какие задания', exact: true }).selectOption('all');
   // Вписал и сразу «Начать раунд», без Enter: раунд — из вписанного числа.
   await size.fill('7');
   await page.locator('#startRound').click();
@@ -370,7 +375,7 @@ test('уже решённые в практике, сброс фильтров �
   await page.keyboard.press('1');
   await page.locator('.feedback').waitFor();
   await page.goto(`${mainUrl}#/practice/setup`);
-  await page.getByRole('radio', { name: 'Уже решённые', exact: true }).check();
+  await page.getByRole('combobox', { name: 'Какие задания', exact: true }).selectOption('done');
   await see(page, '#available', /Доступно: 1 задание/);
   await page.goto(`${mainUrl}#/bank`);
   await page.setViewportSize({ width: 1366, height: 768 });
@@ -424,7 +429,7 @@ test('задание HSK: подпись источника и фильтр', { 
   const { page, context, errors } = await open(mainUrl, { hash: '#/bank' });
   await see(page, '.bank-list', /HSK 4 · 样卷 H40000, №56/);
   await page.goto(`${mainUrl}#/practice`);
-  await page.locator('input[data-key="Источник:hsk"]').check();
+  await pickSource(page, 'hsk');
   await see(page, '#available', /Доступно: 1 задание/);
   assert.deepEqual(errors, []);
   await context.close();
@@ -712,7 +717,7 @@ test('повторение: исправленная ошибка возвращ
   await page.locator('select[data-key="bank:state"]').selectOption('due');
   await see(page, '.small.muted', /Показано: 1 задание/);
   await page.goto(`${mainUrl}#/practice/setup`);
-  await page.getByRole('radio', { name: 'На повторение', exact: true }).check();
+  await page.getByRole('combobox', { name: 'Какие задания', exact: true }).selectOption('review');
   await see(page, '#available', /Доступно: 1 задание/);
   await page.goto(`${mainUrl}#/bank`);
   await page.locator('#repeatDue').click();
@@ -858,7 +863,7 @@ test('без сети: после первого визита страница �
     assert.equal(await page.evaluate(() => document.querySelector('link[rel="manifest"]').getAttribute('href')), 'manifest.webmanifest');
     await context.setOffline(true);
     await page.goto(`${url}?nocache=1#/practice/setup`);
-    await see(page, 'h2', /Практика ЕГЭ/);
+    await page.locator('#startRound').waitFor();
     await page.goto(`${url}#/rules/jiu-cai`);
     await see(page, 'h2', /就 и 才/);
     // Сначала сеть: на сервере страница новее, чем в кэше (worker тот же) — ученик видит новую.
@@ -1912,10 +1917,10 @@ test('тоны: круг из слов, ошибки повторяются, п�
   assert.equal(await page.getByRole('button', { name: /Ссылка на эти/ }).count(), 0, 'ссылки на круг тонов нет');
   // Практика не подхватывает круг тонов, но слова — её задания №15: 16 заданий и 4 слова.
   await page.goto(`${withWords}#/practice`);
-  await see(page, 'h2', /Практика ЕГЭ/);
+  await page.locator('#startRound').waitFor();
   assert.equal(await page.getByRole('link', { name: /Продолжить раунд/ }).count(), 0);
   await see(page, '#available', /Доступно: 20 заданий\./);
-  await page.locator('input[data-key="Источник:words"]').check();
+  await pickSource(page, 'words');
   await see(page, '#available', /Доступно: 4 задания\./);
   // Перезагрузка вкладки «Тоны» показывает итог того же круга; ошибки повторяются в нём же.
   await page.goto(`${withWords}#/tones`);
@@ -2024,21 +2029,19 @@ for (const [screen, hash, real] of [['практика', '#/practice', '#startRo
   });
 }
 
-test('«Следующий раунд»: строка называет выбранное, подсказка Enter — только при доступной кнопке', { skip }, async () => {
+test('«Следующий раунд»: строка называет выбранное, без подходящих заданий запуск недоступен', { skip }, async () => {
   const { page, context, errors } = await open(mainUrl, { width: 1280, height: 900, hash: '#/practice' });
   await page.locator('#startRound').waitFor();
   await see(page, '#nextSummary', /^Все задания 15–27$/);
   await page.locator('input[data-key="Задания:22"]').check({ force: true });
-  await page.getByRole('radio', { name: 'Только новые', exact: true }).check();
+  await page.getByRole('combobox', { name: 'Какие задания', exact: true }).selectOption('new');
   await see(page, '#nextSummary', /^Задание 22 · только новые$/);
   await page.locator('input[data-key="Задания:20"]').check({ force: true });
   await see(page, '#nextSummary', /^Задания 20, 22 · только новые$/);
-  assert.equal(await page.locator('.next .keys').count(), 1);
-  // Заданий нет — кнопка выключена, подсказки Enter нет.
-  await page.getByRole('radio', { name: 'Ошибки', exact: true }).check();
+  // Заданий нет — кнопка выключена.
+  await page.getByRole('combobox', { name: 'Какие задания', exact: true }).selectOption('mistakes');
   await see(page, '#available', /Ошибок с такими фильтрами нет/);
   assert.equal(await page.locator('#startRound').isDisabled(), true);
-  assert.equal(await page.locator('.next .keys').count(), 0);
   // Тема из ссылки учителя — названа темой, а не «все задания».
   await page.goto(`${mainUrl}#/practice?topics=${encodeURIComponent((await page.evaluate(() => JSON.parse(document.getElementById('trainer-data').textContent).topics[0].id)))}`);
   await see(page, '#nextSummary', /^Тема: /);
@@ -2097,6 +2100,44 @@ test('пробел: «Начать раунд» не запускает, в ва
   await context.close();
 });
 
+test('практика C: последний источник доступен на телефоне над нижней кнопкой', { skip }, async () => {
+  const url = buildPage('practice-sources-phone', { change: (data) => {
+    // Трёхзначный счёт источника, как в настоящем банке: последняя кнопка переносится ниже.
+    data['tone-words'] = { words: Array.from({ length: 736 }, (_, i) => ({ ...toneWords[i % toneWords.length], id: `w15-phone-${i}` })) };
+  } });
+  const { page, context, errors } = await open(url, { width: 320, height: 640, hash: '#/practice/setup' });
+  await page.getByRole('combobox', { name: 'Какие задания', exact: true }).selectOption('new');
+  await page.locator('input[data-key="Задания:24"]').check();
+  await page.getByText('Источники: все', { exact: true }).click();
+  await page.locator('input[data-key="Источник:words"]').check({ timeout: 2000 });
+  await see(page, '#available', /Новых заданий с такими фильтрами не осталось/);
+  assert.equal(await page.locator('input[data-key="Источник:words"]').isChecked(), true);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('практика C: источники раскрываются, ссылка и подпись следуют размеру, сброс сохраняет размер', { skip }, async () => {
+  const { page, context, errors } = await open(mainUrl, { width: 1200, height: 900, hash: '#/practice/setup' });
+  assert.equal(await page.getByRole('button', { name: 'Снять фильтры', exact: true }).count(), 0);
+  await page.getByText('Источники: все', { exact: true }).click({ timeout: 2000 });
+  await pickSource(page, 'fipi');
+  assert.equal(await page.locator('input[data-key="Источник:fipi"]').isVisible(), true, 'раскрытие остаётся открытым после выбора');
+  await see(page, '#available', /Доступно: 14 заданий/);
+  await page.getByRole('button', { name: 'Поделиться настройками', exact: true }).click();
+  await page.locator('#roundSize').fill('6');
+  await page.locator('#roundSize').press('Enter');
+  await see(page, '#practiceAvailable', /^6 заданий в раунде · 14 доступно$/);
+  const link = new URL(await page.locator('#shareBox input').inputValue());
+  assert.match(link.hash, /size=6/);
+  assert.match(link.hash, /origins=fipi/);
+  await page.getByRole('button', { name: 'Снять фильтры', exact: true }).click();
+  await see(page, '#available', /Доступно: 16 заданий\. В раунд попадёт 6\./);
+  assert.equal(await page.locator('#roundSize').inputValue(), '6');
+  assert.equal(await page.getByRole('button', { name: 'Снять фильтры', exact: true }).count(), 0);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
 test('новые задания: видимый выбор, история попыток, сохранение и исчерпание подборки', { skip }, async () => {
   const { page, context, errors } = await open(mainUrl, { width: 390, height: 844, hash: '#/practice/setup' });
   const at = '2026-11-01T12:00:00.000Z';
@@ -2104,10 +2145,10 @@ test('новые задания: видимый выбор, история по�
   progress = L.recordAnswer(progress, 'questions', 'q20-a', '1', false, at);
   await page.evaluate((value) => localStorage.setItem('ege-lg-trainer:progress', JSON.stringify(value)), progress);
   await page.reload();
-  await page.getByRole('radio', { name: 'Только новые', exact: true }).check({ timeout: 2000 });
+  await page.getByRole('combobox', { name: 'Какие задания', exact: true }).selectOption('new', { timeout: 2000 });
   await page.locator('input[data-key="Задания:20"]').check();
   await page.locator('input[data-key="Задания:22"]').check();
-  await page.locator('input[data-key="Источник:fipi"]').check();
+  await pickSource(page, 'fipi');
   await page.locator('input[data-key="Размер:all"]').check();
   assert.ok(await page.evaluate(() => {
     const contents = document.querySelector('.contents');
@@ -2120,7 +2161,7 @@ test('новые задания: видимый выбор, история по�
   await see(page, '#stateHelp', /ни разу не отвечали/);
   await see(page, '#available', /Доступно: 1 задание\. В раунд попадёт 1\./);
   await page.reload();
-  assert.equal(await page.getByRole('radio', { name: 'Только новые', exact: true }).isChecked(), true);
+  assert.equal(await page.getByRole('combobox', { name: 'Какие задания', exact: true }).inputValue(), 'new');
   await page.locator('#startRound').click();
   await page.locator('[data-card]').waitFor();
   assert.deepEqual((await storedProgress(page)).round.ids, ['q22-b'], 'верные и неверные попытки исключены');
@@ -2137,7 +2178,7 @@ test('новые задания: видимый выбор, история по�
   await page.getByRole('link', { name: 'Новый раунд', exact: true }).click();
   await see(page, '#available', /Новых заданий с такими фильтрами не осталось/);
   assert.equal(await page.locator('#startRound').isDisabled(), true, 'решённые не подмешиваются вместо новых');
-  await page.getByRole('radio', { name: 'Все', exact: true }).check();
+  await page.getByRole('combobox', { name: 'Какие задания', exact: true }).selectOption('all');
   await see(page, '#available', /Доступно: 3 задания/);
   assert.deepEqual(errors, []);
   await context.close();
@@ -2162,7 +2203,7 @@ test('тоны: новые слова выбираются явно и не ме
   await see(page, '#available', /Новых слов с такими фильтрами не осталось/);
   assert.equal(await page.locator('#startTones').isDisabled(), true);
   await page.goto(`${url}#/practice/setup`);
-  assert.equal(await page.getByRole('radio', { name: 'Все', exact: true }).isChecked(), true);
+  assert.equal(await page.getByRole('combobox', { name: 'Какие задания', exact: true }).inputValue(), 'all');
   assert.deepEqual(errors, []);
   await context.close();
 });

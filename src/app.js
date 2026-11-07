@@ -180,6 +180,7 @@
   let transferNotice = null; // итог загрузки файла прогресса, виден на экране банка
   let shareNotice = prunedNotice(loaded, progress); // что открыто по ссылке учителя; показывается один раз
   let shareOpen = null; // какой блок «Ссылка…» раскрыт: setup, round или variant
+  let practiceSourcesOpen = false;
   let pendingVariant = null; // вариант из ссылки ждёт решения: поверх незавершённого своего
   const BANK_FILTERS = { task: '', topic: '', state: 'all', origin: '' };
   let bankFilters = { ...BANK_FILTERS };
@@ -289,6 +290,7 @@
       else tab.removeAttribute('aria-current');
     });
     view.replaceChildren();
+    view.classList.remove('practice-setup');
     startBarText = null;
     if (name !== 'bank') transferNotice = null;
     if (name !== 'variant') pendingVariant = null;
@@ -1137,10 +1139,49 @@
       el('p', { class: 'small muted', id: 'stateHelp', text: STATE_HELP[state] }));
   }
 
+  function practiceIcon(kind) {
+    const ns = 'http://www.w3.org/2000/svg';
+    const icon = document.createElementNS(ns, 'svg');
+    const size = kind === 'link' ? 16 : 14;
+    for (const [key, value] of Object.entries({ class: 'practice-icon', width: size, height: size,
+      viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': '1.7',
+      'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'aria-hidden': 'true' })) icon.setAttribute(key, value);
+    const paths = kind === 'link'
+      ? ['M10 13a5 5 0 0 0 7.1 0l3-3a5 5 0 0 0-7.1-7.1l-1.7 1.7', 'M14 11a5 5 0 0 0-7.1 0l-3 3a5 5 0 0 0 7.1 7.1l1.7-1.7']
+      : ['m6 9 6 6 6-6'];
+    for (const d of paths) {
+      const path = document.createElementNS(ns, 'path');
+      path.setAttribute('d', d);
+      icon.append(path);
+    }
+    return icon;
+  }
+
+  function practiceStateControl() {
+    const labels = { all: 'Все задания', new: 'Новые', done: 'Решённые' };
+    return el('fieldset', { class: 'filter', id: 'stateFilter' },
+      el('legend', { id: 'stateLegend', text: 'Какие задания' }),
+      el('div', { class: 'practice-select' },
+        el('select', {
+          'aria-labelledby': 'stateLegend', 'aria-describedby': 'stateHelp', dataset: { key: 'state' },
+          onchange: (event) => { filters.state = event.target.value; saveFilters(); render(false); },
+        }, STATE_OPTIONS.map(([value, label]) => el('option', { value, selected: filters.state === value, text: labels[value] || label }))),
+        practiceIcon('chevron')),
+      el('p', { class: 'sr', id: 'stateHelp', text: STATE_HELP[filters.state] }));
+  }
+
   // «Следующий раунд» — первым на экране, как в тренажёре по лингвострановедению: что войдёт в
   // раунд одной строкой, сколько заданий и кнопка; настройки — ниже. Ушла кнопка за верхний край
   // (настройки листают на телефоне) — у нижнего края её повторяет панель (startBar).
-  function nextRound({ summary, notice, start, resume, warning }) {
+  function nextRound({ summary, notice, start, resume, warning, compact = false, detail }) {
+    if (compact) {
+      return el('section', { class: 'next practice-next', 'aria-label': 'Следующий раунд' },
+        el('div', { class: 'practice-heading' },
+          el('h2', { class: 'next-summary', id: 'nextSummary', tabindex: '-1', dataset: { focus: '1' }, text: summary }),
+          notice, detail),
+        el('div', { class: 'actions' }, start, resume),
+        warning);
+    }
     return el('section', { class: 'next', 'aria-label': 'Следующий раунд' },
       el('p', { class: 'next-summary', id: 'nextSummary', text: summary }),
       notice,
@@ -1185,14 +1226,14 @@
       renderRoundResult();
       return;
     }
-    view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Практика ЕГЭ' }),
-      el('p', { class: 'lead', text: 'Задания из банка с разбором сразу после ответа. Отметьте номера — или ничего, чтобы взять все.' }));
+    view.classList.add('practice-setup');
     if (!questions.length) {
-      view.append(emptyBank());
+      view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Практика ЕГЭ' }), emptyBank());
       return;
     }
     const available = filterQuestions(questions, filters, progress, now());
     const size = roundSizeControl(available.length);
+    size.node.append(el('div', { class: 'practice-size-body' }, size.node.querySelector('.chips'), size.node.querySelector('.size-own')));
     const unfinishedTones = isTonesRound(progress.round) && !progress.round.finishedAt && Object.keys(progress.round.answers).length;
     const start = el('button', {
       class: 'button', type: 'button', id: 'startRound', disabled: !available.length, dataset: { enter: '1' },
@@ -1200,33 +1241,54 @@
       onclick: () => { size.commit(); startRound(pickRound(available, filters.size).map((q) => q.id)); },
     }, 'Начать раунд');
     view.append(nextRound({
+      compact: true,
       summary: practiceSummary(),
-      notice: el('p', { class: 'next-note', id: 'available', 'aria-live': 'polite', text: availableText(available.length) }),
+      notice: el('p', { class: 'sr', id: 'available', 'aria-live': 'polite', text: availableText(available.length) }),
+      detail: el('p', { class: 'practice-available', id: 'practiceAvailable', 'aria-hidden': 'true', text: practiceAvailableText(available.length) }),
       warning: unfinishedTones ? el('p', { class: 'notice warn small', id: 'replaceWarning', text: 'У вас начат раунд тонов. Новый раунд практики заменит его: вернуться к тонам будет нельзя.' }) : null,
       start,
       resume: round && !round.finishedAt ? el('a', { class: 'button alt', href: '#/practice', text: `Продолжить раунд · ${Object.keys(round.answers).length} из ${round.ids.length}` }) : null,
     }));
-    view.append(el('div', { class: 'filters-row round-settings' },
-      roundStateControl('Какие задания', filters.state, (value) => { filters.state = value; saveFilters(); render(false); }),
-      size.node));
-    view.append(taskContents(), grammarFilter());
+    view.append(el('div', { class: 'practice-settings' }, practiceStateControl(), size.node));
+    const contents = taskContents();
+    contents.classList.add('practice-contents');
+    view.append(contents);
+    const grammar = grammarFilter();
+    if (grammar.querySelector('.chips')) view.append(grammar);
+    const secondary = el('div', { class: 'practice-secondary' });
     if (origins.length > 1) {
-      view.append(chipGroup('Источник', origins.map((o) => ({ value: o, label: ORIGIN_NAMES[o] || o, count: questions.filter((q) => q.origin === o).length })),
-        filters.origins, (v) => { filters.origins = toggle(filters.origins, v); saveFilters(); render(false); }));
+      const sourceLabel = filters.origins.length === 0 ? 'все'
+        : filters.origins.length === 1 ? (ORIGIN_NAMES[filters.origins[0]] || filters.origins[0]) : `${filters.origins.length} выбрано`;
+      secondary.append(el('details', {
+        class: 'practice-sources', open: practiceSourcesOpen,
+        ontoggle: (event) => { practiceSourcesOpen = event.currentTarget.open; },
+      },
+      el('summary', {}, el('span', { text: `Источники: ${sourceLabel}` }), practiceIcon('chevron')),
+      chipGroup('Источник', origins.map((o) => ({ value: o, label: ORIGIN_NAMES[o] || o, count: questions.filter((q) => q.origin === o).length })),
+        filters.origins, (v) => { practiceSourcesOpen = true; filters.origins = toggle(filters.origins, v); saveFilters(); render(false); })));
     }
-    const actions = el('div', { class: 'actions' },
-      el('button', {
+    const hasFilters = filters.topics.length || filters.tasks.length || filters.rules.length || filters.origins.length || filters.state !== 'all';
+    const actions = el('div', { class: 'actions practice-service' },
+      hasFilters ? el('button', {
         class: 'button ghost', type: 'button',
+        title: 'Снять выбор номеров, правил, источников и результатов. Размер раунда сохранится.',
         onclick: () => { filters = { ...filters, topics: [], tasks: [], rules: [], origins: [], state: 'all' }; saveFilters(); render(false); },
-      }, 'Сбросить фильтры'));
-    const share = shareToggle('setup', 'Ссылка на подборку', pageUrl(`#/practice?${shareQuery(filters)}`),
-      'По ссылке откроется эта подборка: номера, правила, источник и размер раунда. Задания каждому выпадут свои. Чтобы у всех были одни и те же задания, пройдите раунд и возьмите ссылку на его итоге.',
+      }, 'Снять фильтры') : null);
+    const share = shareToggle('setup', 'Поделиться настройками', pageUrl(`#/practice?${shareQuery(filters)}`),
+      'По ссылке откроются выбранные номера, правила, источники и размер раунда. Случайные задания у каждого будут свои.',
       !available.length);
+    share.button.prepend(practiceIcon('link'));
     actions.append(share.button);
-    view.append(actions);
+    secondary.append(actions);
+    view.append(secondary);
     if (share.box) view.append(share.box);
     view.append(startBar(start,
       () => (available.length ? `В раунд: ${tasksWord(roundCount(filters.size, available.length))}${unfinishedTones ? ' · заменит начатый круг тонов' : ''}` : 'Заданий нет')));
+  }
+
+  function practiceAvailableText(count) {
+    if (!count) return availableText(count);
+    return `${tasksWord(roundCount(filters.size, count))} в раунде · ${count.toLocaleString('ru-RU')} доступно`;
   }
 
   function availableText(count) {
@@ -1274,6 +1336,8 @@
       sync();
       const notice = document.getElementById('available');
       if (notice) notice.textContent = scope.text(available);
+      const detail = document.getElementById('practiceAvailable');
+      if (detail) detail.textContent = practiceAvailableText(available);
       syncStartBar();
       const link = document.querySelector('#shareBox .share-url');
       if (link && scope.share && shareOpen === 'setup') link.value = pageUrl(`#/practice?${shareQuery(filters)}`);
