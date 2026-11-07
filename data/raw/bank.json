@@ -1549,6 +1549,117 @@
     "correctOptionId": "4"
   },
   {
+    "id": "g16-055e206c",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "055e206c-7274-4a3a-9c9b-04e721c997ed",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 2"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "这___儿歌的歌词很简单，孩子们很快就会唱了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "本"
+      },
+      {
+        "id": "2",
+        "text": "场"
+      },
+      {
+        "id": "3",
+        "text": "部"
+      },
+      {
+        "id": "4",
+        "text": "首"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g16-0597cf3d",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "0597cf3d-ec23-4381-bea3-403f4c0c28aa",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 2"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "弟弟的那___牙又疼了，妈妈今天带他去看牙医。",
+    "options": [
+      {
+        "id": "1",
+        "text": "颗"
+      },
+      {
+        "id": "2",
+        "text": "棵"
+      },
+      {
+        "id": "3",
+        "text": "朵"
+      },
+      {
+        "id": "4",
+        "text": "支"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g16-07139c5e",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "07139c5e-de27-4974-a262-f2a1b3b36b1e",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова без универсального классификатора — партия 1"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "游泳以后，我用一___干毛巾把头发擦干了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "门"
+      },
+      {
+        "id": "2",
+        "text": "顶"
+      },
+      {
+        "id": "3",
+        "text": "本"
+      },
+      {
+        "id": "4",
+        "text": "条"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
     "id": "g16-14ab7588",
     "taskNumber": 16,
     "formatYear": 2026,
@@ -1638,7 +1749,7 @@
       "2.4.33"
     ],
     "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
-    "stem": "运动会那天，老师给每个同学发了一___矿泉水。",
+    "stem": "运动会那天，老师给每位同学发了一___矿泉水。",
     "options": [
       {
         "id": "1",
@@ -1658,6 +1769,117 @@
       }
     ],
     "correctOptionId": "2"
+  },
+  {
+    "id": "g16-233a1a19",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "233a1a19-e5c9-4432-b8de-16d343e348cb",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 2"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "那___医院门口有很多人，大家正在等车。",
+    "options": [
+      {
+        "id": "1",
+        "text": "门"
+      },
+      {
+        "id": "2",
+        "text": "节"
+      },
+      {
+        "id": "3",
+        "text": "句"
+      },
+      {
+        "id": "4",
+        "text": "所"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g16-26e33d3e",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "26e33d3e-8cac-4e53-bdcf-a537e9c47d8b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 2"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "我想画画，可是书包里连一___铅笔也没有。",
+    "options": [
+      {
+        "id": "1",
+        "text": "匹"
+      },
+      {
+        "id": "2",
+        "text": "支"
+      },
+      {
+        "id": "3",
+        "text": "张"
+      },
+      {
+        "id": "4",
+        "text": "颗"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g16-29cb04a1",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "29cb04a1-cd03-451d-9c1c-2591f4d35dfa",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова без универсального классификатора — партия 1"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "那___餐馆的面条很有名，我们放学后常去那里吃饭。",
+    "options": [
+      {
+        "id": "1",
+        "text": "家"
+      },
+      {
+        "id": "2",
+        "text": "本"
+      },
+      {
+        "id": "3",
+        "text": "辆"
+      },
+      {
+        "id": "4",
+        "text": "棵"
+      }
+    ],
+    "correctOptionId": "1"
   },
   {
     "id": "g16-2b398368",
@@ -1697,6 +1919,80 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g16-2c0e0d6b",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "2c0e0d6b-b262-4d5d-b811-cf0f59be13aa",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова без универсального классификатора — партия 1"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "码头上停着一___轮船，游客们正在排队上船。",
+    "options": [
+      {
+        "id": "1",
+        "text": "艘"
+      },
+      {
+        "id": "2",
+        "text": "架"
+      },
+      {
+        "id": "3",
+        "text": "辆"
+      },
+      {
+        "id": "4",
+        "text": "座"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g16-2d3f86c0",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "2d3f86c0-24bf-4ae1-880a-c23612fc425b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 2"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "那___冰箱里还有鸡蛋吗？我想做早饭。",
+    "options": [
+      {
+        "id": "1",
+        "text": "颗"
+      },
+      {
+        "id": "2",
+        "text": "门"
+      },
+      {
+        "id": "3",
+        "text": "本"
+      },
+      {
+        "id": "4",
+        "text": "台"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
     "id": "g16-2d6fe64c",
     "taskNumber": 16,
     "formatYear": 2026,
@@ -1729,6 +2025,154 @@
       {
         "id": "4",
         "text": "本"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g16-2e778520",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "2e778520-5116-407a-883a-f18e0b7b0568",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 3"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "那___日记写的是我到中国留学的第一天。",
+    "options": [
+      {
+        "id": "1",
+        "text": "杯"
+      },
+      {
+        "id": "2",
+        "text": "家"
+      },
+      {
+        "id": "3",
+        "text": "所"
+      },
+      {
+        "id": "4",
+        "text": "篇"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g16-33780e2b",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "33780e2b-4587-4541-898c-0ec347173d02",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 3"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "最后那___选择题特别难，同学们的答案都不一样。",
+    "options": [
+      {
+        "id": "1",
+        "text": "名"
+      },
+      {
+        "id": "2",
+        "text": "封"
+      },
+      {
+        "id": "3",
+        "text": "支"
+      },
+      {
+        "id": "4",
+        "text": "道"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g16-355eec41",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "355eec41-b314-4be3-8289-168f0a64a728",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова без универсального классификатора — партия 1"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "客厅里的那___电视机坏了，爸爸正在检查电源。",
+    "options": [
+      {
+        "id": "1",
+        "text": "颗"
+      },
+      {
+        "id": "2",
+        "text": "门"
+      },
+      {
+        "id": "3",
+        "text": "本"
+      },
+      {
+        "id": "4",
+        "text": "台"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g16-39bdf7f3",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "39bdf7f3-07b9-44a3-833f-8e7fc193433b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 2"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "这___邀请信上写着我的名字，日期是下星期五。",
+    "options": [
+      {
+        "id": "1",
+        "text": "本"
+      },
+      {
+        "id": "2",
+        "text": "条"
+      },
+      {
+        "id": "3",
+        "text": "封"
+      },
+      {
+        "id": "4",
+        "text": "场"
       }
     ],
     "correctOptionId": "3"
@@ -1771,6 +2215,117 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g16-3be1a350",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3be1a350-31d0-4338-8f39-b2b64f132afe",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 3"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "这___毛笔是爷爷送给我的，我常用它练习写汉字。",
+    "options": [
+      {
+        "id": "1",
+        "text": "朵"
+      },
+      {
+        "id": "2",
+        "text": "支"
+      },
+      {
+        "id": "3",
+        "text": "顶"
+      },
+      {
+        "id": "4",
+        "text": "封"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g16-3c5feffa",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3c5feffa-e62e-4dd3-a021-a78d96b60fff",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 3"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "我收到了朋友的一___回信，他说暑假会来我家玩。",
+    "options": [
+      {
+        "id": "1",
+        "text": "封"
+      },
+      {
+        "id": "2",
+        "text": "座"
+      },
+      {
+        "id": "3",
+        "text": "堂"
+      },
+      {
+        "id": "4",
+        "text": "艘"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g16-3e43bd88",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3e43bd88-3baa-4fb0-839b-844b125d2455",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова без универсального классификатора — партия 1"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "今天有两___作家来学校讲故事，大家都很高兴。",
+    "options": [
+      {
+        "id": "1",
+        "text": "件"
+      },
+      {
+        "id": "2",
+        "text": "名"
+      },
+      {
+        "id": "3",
+        "text": "张"
+      },
+      {
+        "id": "4",
+        "text": "架"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g16-42af8625",
     "taskNumber": 16,
     "formatYear": 2026,
@@ -1806,6 +2361,80 @@
       }
     ],
     "correctOptionId": "4"
+  },
+  {
+    "id": "g16-476c8fbf",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "476c8fbf-8b92-41f8-a8ff-79c3dd5fb8fb",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 3"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "画上那___梅花的花瓣是粉红色的，非常漂亮。",
+    "options": [
+      {
+        "id": "1",
+        "text": "封"
+      },
+      {
+        "id": "2",
+        "text": "朵"
+      },
+      {
+        "id": "3",
+        "text": "辆"
+      },
+      {
+        "id": "4",
+        "text": "匹"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g16-49b8e41a",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "49b8e41a-cbcc-472f-b4ad-b7e18ae00a12",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова без универсального классификатора — партия 1"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "这___全班同学一起写的感谢信，已经寄给了校长。",
+    "options": [
+      {
+        "id": "3",
+        "text": "封"
+      },
+      {
+        "id": "1",
+        "text": "支"
+      },
+      {
+        "id": "2",
+        "text": "首"
+      },
+      {
+        "id": "4",
+        "text": "道"
+      }
+    ],
+    "correctOptionId": "3"
   },
   {
     "id": "g16-4acbebb8",
@@ -1845,6 +2474,80 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g16-4cf89cdb",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "4cf89cdb-e91a-4e2a-a8dd-bb4c0c13df9c",
+      "file": "sources/bank/export.json",
+      "collection": "Новые задания",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 4"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "姐姐把切好的水果摆成了花的形状，端来一___水果请大家吃。",
+    "options": [
+      {
+        "id": "1",
+        "text": "艘"
+      },
+      {
+        "id": "2",
+        "text": "篇"
+      },
+      {
+        "id": "3",
+        "text": "盘"
+      },
+      {
+        "id": "4",
+        "text": "匹"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g16-4cfa66f7",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "4cfa66f7-8c35-4c02-bdc4-de6091a08497",
+      "file": "sources/bank/export.json",
+      "collection": "Новые задания",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 4"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "这___报纸上有昨天比赛的照片，爸爸说要把它留作纪念。",
+    "options": [
+      {
+        "id": "1",
+        "text": "份"
+      },
+      {
+        "id": "2",
+        "text": "首"
+      },
+      {
+        "id": "3",
+        "text": "朵"
+      },
+      {
+        "id": "4",
+        "text": "匹"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
     "id": "g16-56406db2",
     "taskNumber": 16,
     "formatYear": 2026,
@@ -1864,7 +2567,7 @@
     "options": [
       {
         "id": "1",
-        "text": "支"
+        "text": "首"
       },
       {
         "id": "2",
@@ -1876,7 +2579,7 @@
       },
       {
         "id": "4",
-        "text": "个"
+        "text": "辆"
       }
     ],
     "correctOptionId": "2",
@@ -1920,6 +2623,43 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g16-5e499884",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5e499884-c229-48bd-8990-b0f568503de5",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова без универсального классификатора — партия 1"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "老师把那___课程表贴在教室门上。",
+    "options": [
+      {
+        "id": "1",
+        "text": "条"
+      },
+      {
+        "id": "2",
+        "text": "张"
+      },
+      {
+        "id": "3",
+        "text": "本"
+      },
+      {
+        "id": "4",
+        "text": "篇"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g16-632642d9",
     "taskNumber": 16,
     "formatYear": 2026,
@@ -1952,6 +2692,117 @@
       {
         "id": "4",
         "text": "双"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g16-697c2ded",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "697c2ded-83f5-48c8-a151-9d0fcfde6af9",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 3"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "服务员先上了一___汤，然后是鱼和肉。",
+    "options": [
+      {
+        "id": "1",
+        "text": "首"
+      },
+      {
+        "id": "2",
+        "text": "名"
+      },
+      {
+        "id": "3",
+        "text": "所"
+      },
+      {
+        "id": "4",
+        "text": "道"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g16-6cd284bc",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "6cd284bc-d618-482e-9f99-a166b0bf7d81",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 2"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "那___装满货物的货船，明天就要离开港口。",
+    "options": [
+      {
+        "id": "2",
+        "text": "部"
+      },
+      {
+        "id": "4",
+        "text": "辆"
+      },
+      {
+        "id": "1",
+        "text": "艘"
+      },
+      {
+        "id": "3",
+        "text": "架"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g16-6cdd7ac6",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "6cdd7ac6-db0d-4bb9-8903-27bad55c1393",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 3"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "那___求职信里介绍了王明的学习经历。",
+    "options": [
+      {
+        "id": "1",
+        "text": "顶"
+      },
+      {
+        "id": "2",
+        "text": "匹"
+      },
+      {
+        "id": "3",
+        "text": "封"
+      },
+      {
+        "id": "4",
+        "text": "杯"
       }
     ],
     "correctOptionId": "3"
@@ -1994,6 +2845,191 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g16-729247d8",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "729247d8-1d46-480f-8235-e934e6746fcc",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова без универсального классификатора — партия 1"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "在草原上，我们看见两___马正在河边吃草。",
+    "options": [
+      {
+        "id": "1",
+        "text": "辆"
+      },
+      {
+        "id": "2",
+        "text": "架"
+      },
+      {
+        "id": "3",
+        "text": "匹"
+      },
+      {
+        "id": "4",
+        "text": "棵"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g16-73b8eb37",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "73b8eb37-ef6f-4352-bdb3-cc75b12f06b3",
+      "file": "sources/bank/export.json",
+      "collection": "Новые задания",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 4"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "我给加班的妈妈留了一___晚饭，等她回来再热一下。",
+    "options": [
+      {
+        "id": "1",
+        "text": "篇"
+      },
+      {
+        "id": "2",
+        "text": "封"
+      },
+      {
+        "id": "3",
+        "text": "台"
+      },
+      {
+        "id": "4",
+        "text": "份"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g16-7b912916",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "7b912916-0e36-4049-9f85-2c660b42e4ae",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова без универсального классификатора — партия 1"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "这___数学题我想了很久，还是没找到正确的答案。",
+    "options": [
+      {
+        "id": "1",
+        "text": "门"
+      },
+      {
+        "id": "2",
+        "text": "节"
+      },
+      {
+        "id": "3",
+        "text": "句"
+      },
+      {
+        "id": "4",
+        "text": "道"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g16-81b1ecc4",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "81b1ecc4-6c3d-494f-9f62-a52816f7b50a",
+      "file": "sources/bank/export.json",
+      "collection": "Новые задания",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 4"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "今天下午最后一___体育课取消了，我们可以早点儿回家。",
+    "options": [
+      {
+        "id": "1",
+        "text": "首"
+      },
+      {
+        "id": "2",
+        "text": "节"
+      },
+      {
+        "id": "3",
+        "text": "艘"
+      },
+      {
+        "id": "4",
+        "text": "匹"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g16-85f345ae",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "85f345ae-ee2a-4c10-a723-7cde30dde849",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова без универсального классификатора — партия 1"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "学校请来一___由学生组成的乐队，为毕业晚会演出。",
+    "options": [
+      {
+        "id": "2",
+        "text": "支"
+      },
+      {
+        "id": "1",
+        "text": "名"
+      },
+      {
+        "id": "3",
+        "text": "位"
+      },
+      {
+        "id": "4",
+        "text": "所"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g16-8a7b5ffe",
     "taskNumber": 16,
     "formatYear": 2026,
@@ -2013,7 +3049,7 @@
     "options": [
       {
         "id": "1",
-        "text": "个"
+        "text": "架"
       },
       {
         "id": "2",
@@ -2029,6 +3065,117 @@
       }
     ],
     "correctOptionId": "3"
+  },
+  {
+    "id": "g16-8ceb3422",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "8ceb3422-d74e-41fe-ac67-427513738b13",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 2"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "我家附近有两___理发店，周末常常要排队。",
+    "options": [
+      {
+        "id": "1",
+        "text": "本"
+      },
+      {
+        "id": "2",
+        "text": "家"
+      },
+      {
+        "id": "3",
+        "text": "艘"
+      },
+      {
+        "id": "4",
+        "text": "首"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g16-98d06aa7",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "98d06aa7-5bf8-45c2-9bb4-2ea84dea32b1",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 3"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "办公室的那___打印机速度很快，大家都想用它。",
+    "options": [
+      {
+        "id": "1",
+        "text": "朵"
+      },
+      {
+        "id": "2",
+        "text": "篇"
+      },
+      {
+        "id": "3",
+        "text": "台"
+      },
+      {
+        "id": "4",
+        "text": "颗"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g16-9d5c24b4",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "9d5c24b4-dcd3-45bd-a550-75ac106a02ac",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 3"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "这___流行歌曲很有名，连爷爷也会唱。",
+    "options": [
+      {
+        "id": "1",
+        "text": "首"
+      },
+      {
+        "id": "2",
+        "text": "台"
+      },
+      {
+        "id": "3",
+        "text": "封"
+      },
+      {
+        "id": "4",
+        "text": "颗"
+      }
+    ],
+    "correctOptionId": "1"
   },
   {
     "id": "g16-a135e88d",
@@ -2068,6 +3215,117 @@
     "correctOptionId": "4"
   },
   {
+    "id": "g16-a90cc6d3",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "a90cc6d3-4ea8-487e-a293-fbac4e8712a2",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 3"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "那___每天清晨出海捕鱼的渔船，是爷爷年轻时买的。",
+    "options": [
+      {
+        "id": "4",
+        "text": "名"
+      },
+      {
+        "id": "1",
+        "text": "艘"
+      },
+      {
+        "id": "2",
+        "text": "台"
+      },
+      {
+        "id": "3",
+        "text": "所"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g16-aa49fdcd",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "aa49fdcd-0047-4db6-9202-be19a08988db",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 2"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "我们找了一___能安排中文导游的旅行社，准备暑假去中国。",
+    "options": [
+      {
+        "id": "2",
+        "text": "位"
+      },
+      {
+        "id": "1",
+        "text": "家"
+      },
+      {
+        "id": "3",
+        "text": "封"
+      },
+      {
+        "id": "4",
+        "text": "支"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g16-aaee9fbc",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "aaee9fbc-dad7-4a9a-9746-0b7644030443",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 3"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "那___去年在比赛中得过奖的马，今天又赢了。",
+    "options": [
+      {
+        "id": "3",
+        "text": "匹"
+      },
+      {
+        "id": "1",
+        "text": "场"
+      },
+      {
+        "id": "2",
+        "text": "支"
+      },
+      {
+        "id": "4",
+        "text": "辆"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g16-ae767b94",
     "taskNumber": 16,
     "formatYear": 2026,
@@ -2103,6 +3361,80 @@
       }
     ],
     "correctOptionId": "2"
+  },
+  {
+    "id": "g16-b24d9e58",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "b24d9e58-1249-480a-9144-875d5ad3f1bc",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова без универсального классификатора — партия 1"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "老师让我们写一___读书笔记，谈谈对主人公的看法。",
+    "options": [
+      {
+        "id": "1",
+        "text": "封"
+      },
+      {
+        "id": "3",
+        "text": "支"
+      },
+      {
+        "id": "4",
+        "text": "朵"
+      },
+      {
+        "id": "2",
+        "text": "篇"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g16-b62a04a6",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "b62a04a6-d9a8-45cd-8a43-9604df7df180",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 2"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "那一___像小船一样的云，过了一会儿就看不见了。",
+    "options": [
+      {
+        "id": "4",
+        "text": "艘"
+      },
+      {
+        "id": "1",
+        "text": "棵"
+      },
+      {
+        "id": "3",
+        "text": "朵"
+      },
+      {
+        "id": "2",
+        "text": "辆"
+      }
+    ],
+    "correctOptionId": "3"
   },
   {
     "id": "g16-ba865543",
@@ -2179,6 +3511,154 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g16-c5a5a283",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c5a5a283-f452-44f8-9721-1cdc8b15f238",
+      "file": "sources/bank/export.json",
+      "collection": "Новые задания",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 4"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "那___奶牛每天都能产很多奶，爷爷把它照顾得很好。",
+    "options": [
+      {
+        "id": "1",
+        "text": "架"
+      },
+      {
+        "id": "2",
+        "text": "匹"
+      },
+      {
+        "id": "3",
+        "text": "头"
+      },
+      {
+        "id": "4",
+        "text": "顶"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g16-c798f47b",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c798f47b-1547-48d9-8c95-eb891e45ef50",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 2"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "农场新买的那___马跑得特别快，大家都很喜欢它。",
+    "options": [
+      {
+        "id": "1",
+        "text": "辆"
+      },
+      {
+        "id": "2",
+        "text": "棵"
+      },
+      {
+        "id": "3",
+        "text": "匹"
+      },
+      {
+        "id": "4",
+        "text": "艘"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g16-c99fdb46",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c99fdb46-28ab-4a55-a91b-ad526f6637bd",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 2"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "这两___工人正在修理电梯，我们只能走楼梯。",
+    "options": [
+      {
+        "id": "1",
+        "text": "名"
+      },
+      {
+        "id": "2",
+        "text": "件"
+      },
+      {
+        "id": "3",
+        "text": "张"
+      },
+      {
+        "id": "4",
+        "text": "辆"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g16-cb30dd98",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "cb30dd98-635d-4117-99ce-ebd5039378ee",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова без универсального классификатора — партия 1"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "蓝蓝的天空中飘着几___白云。",
+    "options": [
+      {
+        "id": "1",
+        "text": "棵"
+      },
+      {
+        "id": "2",
+        "text": "辆"
+      },
+      {
+        "id": "3",
+        "text": "朵"
+      },
+      {
+        "id": "4",
+        "text": "匹"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g16-cbbd46c0",
     "taskNumber": 16,
     "formatYear": 2026,
@@ -2216,6 +3696,339 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g16-d40916d7",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d40916d7-2b4a-4a2a-b3f6-af79c94c3c36",
+      "file": "sources/bank/export.json",
+      "collection": "Новые задания",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 4"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "爷爷和邻居下了两___象棋，直到天黑才结束。",
+    "options": [
+      {
+        "id": "1",
+        "text": "封"
+      },
+      {
+        "id": "2",
+        "text": "顶"
+      },
+      {
+        "id": "3",
+        "text": "支"
+      },
+      {
+        "id": "4",
+        "text": "盘"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g16-d6246522",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d6246522-856b-4267-a400-6e1782efd407",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова без универсального классификатора — партия 1"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "盘子里只剩下一___葡萄了，弟弟把它放进了嘴里。",
+    "options": [
+      {
+        "id": "1",
+        "text": "颗"
+      },
+      {
+        "id": "2",
+        "text": "棵"
+      },
+      {
+        "id": "3",
+        "text": "朵"
+      },
+      {
+        "id": "4",
+        "text": "支"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g16-d8aac740",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d8aac740-7f1d-41eb-abee-7dda5c3abb32",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 3"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "新教室装了一___空调，夏天上课就不热了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "台"
+      },
+      {
+        "id": "2",
+        "text": "支"
+      },
+      {
+        "id": "3",
+        "text": "首"
+      },
+      {
+        "id": "4",
+        "text": "封"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g16-df3c335f",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "df3c335f-b5d3-438a-ac3e-02b75d57a1c4",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова без универсального классификатора — партия 1"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "晚会上，安娜唱了一___中国民歌，大家都说很好听。",
+    "options": [
+      {
+        "id": "1",
+        "text": "部"
+      },
+      {
+        "id": "2",
+        "text": "本"
+      },
+      {
+        "id": "3",
+        "text": "场"
+      },
+      {
+        "id": "4",
+        "text": "首"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g16-e2efdd46",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "e2efdd46-da4f-402e-b962-c09158778d33",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 2"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "这___准备在毕业典礼上使用的演讲稿，是我们一起修改的。",
+    "options": [
+      {
+        "id": "3",
+        "text": "场"
+      },
+      {
+        "id": "2",
+        "text": "篇"
+      },
+      {
+        "id": "1",
+        "text": "封"
+      },
+      {
+        "id": "4",
+        "text": "条"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g16-e5254284",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "e5254284-21a8-4fbb-9f69-6496871251c6",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 3"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "那___故事讲的是爷爷小时候的生活，很有意思。",
+    "options": [
+      {
+        "id": "1",
+        "text": "顶"
+      },
+      {
+        "id": "2",
+        "text": "篇"
+      },
+      {
+        "id": "3",
+        "text": "艘"
+      },
+      {
+        "id": "4",
+        "text": "瓶"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g16-e595a648",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "e595a648-321e-4606-8f57-d78ea4c00b3a",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 2"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "校长邀请了三___刚从国外回来的运动员，给同学们讲比赛的经历。",
+    "options": [
+      {
+        "id": "1",
+        "text": "支"
+      },
+      {
+        "id": "3",
+        "text": "家"
+      },
+      {
+        "id": "2",
+        "text": "名"
+      },
+      {
+        "id": "4",
+        "text": "所"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g16-ee552cfd",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "ee552cfd-20a3-4201-9214-c4068f5bd1bb",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 2"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "这___中学离我家不远，我每天走路去上学。",
+    "options": [
+      {
+        "id": "1",
+        "text": "本"
+      },
+      {
+        "id": "2",
+        "text": "辆"
+      },
+      {
+        "id": "3",
+        "text": "所"
+      },
+      {
+        "id": "4",
+        "text": "首"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g16-ef75ffd8",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "ef75ffd8-f5fa-4a09-ade3-bedb9ad9b34d",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 3"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "今晚天上没有云，那___星星显得特别亮。",
+    "options": [
+      {
+        "id": "1",
+        "text": "堂"
+      },
+      {
+        "id": "2",
+        "text": "颗"
+      },
+      {
+        "id": "3",
+        "text": "封"
+      },
+      {
+        "id": "4",
+        "text": "间"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g16-f406b258",
     "taskNumber": 16,
     "formatYear": 2026,
@@ -2251,6 +4064,154 @@
       }
     ],
     "correctOptionId": "1"
+  },
+  {
+    "id": "g16-f95a2f05",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f95a2f05-7c60-413c-b15d-872da4ea19e0",
+      "file": "sources/bank/export.json",
+      "collection": "Новые задания",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 4"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "在博物馆里给我们讲解的那___导游，中文和俄语都说得很好。",
+    "options": [
+      {
+        "id": "1",
+        "text": "位"
+      },
+      {
+        "id": "2",
+        "text": "艘"
+      },
+      {
+        "id": "3",
+        "text": "棵"
+      },
+      {
+        "id": "4",
+        "text": "封"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g16-fd24e5ae",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "fd24e5ae-9443-4df0-836f-dc54959a31f5",
+      "file": "sources/bank/export.json",
+      "collection": "Новые задания",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 4"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "早饭时，妈妈给我盛了一___粥，提醒我小心烫。",
+    "options": [
+      {
+        "id": "1",
+        "text": "封"
+      },
+      {
+        "id": "2",
+        "text": "碗"
+      },
+      {
+        "id": "3",
+        "text": "件"
+      },
+      {
+        "id": "4",
+        "text": "匹"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g16-fda40de7",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "fda40de7-5ff0-4844-a942-1c57ddb42d13",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова без универсального классификатора — партия 1"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "村里那___去年才建好的小学，今年开始招收学生。",
+    "options": [
+      {
+        "id": "1",
+        "text": "封"
+      },
+      {
+        "id": "2",
+        "text": "台"
+      },
+      {
+        "id": "4",
+        "text": "首"
+      },
+      {
+        "id": "3",
+        "text": "所"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g16-fdc7354f",
+    "taskNumber": 16,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "fdc7354f-203b-4816-806b-548093b44c98",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11 №16 счётные слова — партия 3"
+    },
+    "codifierCodes": [
+      "2.4.33"
+    ],
+    "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
+    "stem": "晚饭的最后那___甜点是姐姐做的，大家都说好吃。",
+    "options": [
+      {
+        "id": "1",
+        "text": "艘"
+      },
+      {
+        "id": "2",
+        "text": "封"
+      },
+      {
+        "id": "3",
+        "text": "道"
+      },
+      {
+        "id": "4",
+        "text": "匹"
+      }
+    ],
+    "correctOptionId": "3"
   },
   {
     "id": "q16-02da78dd",
@@ -2541,11 +4502,11 @@
     "options": [
       {
         "id": "1",
-        "text": "个"
+        "text": "顶"
       },
       {
         "id": "2",
-        "text": "件"
+        "text": "台"
       },
       {
         "id": "3",
@@ -2629,7 +4590,7 @@
       },
       {
         "id": "4",
-        "text": "个"
+        "text": "匹"
       }
     ],
     "correctOptionId": "3"
@@ -2841,7 +4802,7 @@
       "2.4.33"
     ],
     "prompt": "Укажите, какое счётное слово пропущено в данном предложении.",
-    "stem": "这个戏只演了一___。我觉得，票一定很难买到。",
+    "stem": "今晚只演一___戏，想看的人很多，票已经卖完了。",
     "options": [
       {
         "id": "1",
@@ -2853,7 +4814,7 @@
       },
       {
         "id": "3",
-        "text": "个"
+        "text": "艘"
       },
       {
         "id": "4",
