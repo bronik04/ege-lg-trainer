@@ -5284,6 +5284,339 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g17-00285a5a",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "00285a5a-fab6-46fe-bf8d-ce5330543a5e",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания №17, партия 1; только локальная проверка",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "开学前，老师带新生___了学校的食堂和图书馆。",
+    "options": [
+      {
+        "id": "1",
+        "text": "观看"
+      },
+      {
+        "id": "2",
+        "text": "观众"
+      },
+      {
+        "id": "3",
+        "text": "乐观"
+      },
+      {
+        "id": "4",
+        "text": "参观"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g17-020b1ae9",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "020b1ae9-14cc-4e26-a83d-3aa3e3f6b000",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 7: 6 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "这个表格还有几个地方没写，请先___它，再交给老师。",
+    "options": [
+      {
+        "id": "1",
+        "text": "成功"
+      },
+      {
+        "id": "2",
+        "text": "成为"
+      },
+      {
+        "id": "3",
+        "text": "完成"
+      },
+      {
+        "id": "4",
+        "text": "成绩"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g17-03191519",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "03191519-b78e-4863-ac4c-276c34f1307f",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия №17; согласованные группы 13–15,9ключей по1разу, HSK1–4, только локальная приёмка",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "他对工作的___一直很高，周末也愿意来帮忙。",
+    "options": [
+      {
+        "id": "1",
+        "text": "热烈"
+      },
+      {
+        "id": "2",
+        "text": "热情"
+      },
+      {
+        "id": "3",
+        "text": "热闹"
+      },
+      {
+        "id": "4",
+        "text": "热心"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g17-04b75003",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "04b75003-4c9d-4223-a4de-1ec52e4541b8",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия №17; согласованные группы 13–15,9ключей по1разу, HSK1–4, только локальная приёмка",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "谢谢你的___帮助，我终于把桌子搬进了房间。",
+    "options": [
+      {
+        "id": "1",
+        "text": "热闹"
+      },
+      {
+        "id": "2",
+        "text": "中心"
+      },
+      {
+        "id": "3",
+        "text": "点心"
+      },
+      {
+        "id": "4",
+        "text": "热心"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g17-069860ae",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "069860ae-847d-4ae2-91e9-2a0ca62cde2c",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания №17, партия 1; только локальная проверка",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "老师周末要给大家拍照，希望同学们能___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "帮手"
+      },
+      {
+        "id": "2",
+        "text": "帮忙"
+      },
+      {
+        "id": "3",
+        "text": "助手"
+      },
+      {
+        "id": "4",
+        "text": "手套"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g17-06cb24b1",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "06cb24b1-37d1-4f94-895e-738fd0cc705a",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 6: 18 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "有危险的时候，爸爸用身体___孩子。",
+    "options": [
+      {
+        "id": "1",
+        "text": "保留"
+      },
+      {
+        "id": "2",
+        "text": "保护"
+      },
+      {
+        "id": "3",
+        "text": "保持"
+      },
+      {
+        "id": "4",
+        "text": "保密"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g17-08077a95",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "08077a95-613f-4618-91f2-9a1fd000d9e0",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 6: 18 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "姐姐结婚了，收到了很多朋友的___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "庆祝"
+      },
+      {
+        "id": "2",
+        "text": "庆幸"
+      },
+      {
+        "id": "3",
+        "text": "祝贺"
+      },
+      {
+        "id": "4",
+        "text": "祝"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g17-0db3ebf8",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "0db3ebf8-02ec-4b4f-b6fb-2c23e5178204",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания №17, партия 2; только локальное решение",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "老师让孩子们学着等待，是为了___他们的耐心。",
+    "options": [
+      {
+        "id": "1",
+        "text": "培养"
+      },
+      {
+        "id": "2",
+        "text": "养育"
+      },
+      {
+        "id": "3",
+        "text": "养活"
+      },
+      {
+        "id": "4",
+        "text": "养生"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g17-146e5a82",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "146e5a82-1a18-4e0f-b0e5-3bac80327502",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 6: 18 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "下个月你就要搬进新家了，___你以后生活幸福！",
+    "options": [
+      {
+        "id": "1",
+        "text": "祝贺"
+      },
+      {
+        "id": "2",
+        "text": "祝"
+      },
+      {
+        "id": "3",
+        "text": "庆祝"
+      },
+      {
+        "id": "4",
+        "text": "庆幸"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g17-15dffc05",
     "taskNumber": 17,
     "formatYear": 2026,
@@ -5319,6 +5652,43 @@
       }
     ],
     "correctOptionId": "3"
+  },
+  {
+    "id": "g17-16fa0d99",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "16fa0d99-91a4-4a54-90ba-84b76e4dc582",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания №17, партия 2; только локальное решение",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "原来六十分就能通过，现在至少要七十分，考试要求___了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "提醒"
+      },
+      {
+        "id": "2",
+        "text": "提高"
+      },
+      {
+        "id": "3",
+        "text": "提前"
+      },
+      {
+        "id": "4",
+        "text": "提问"
+      }
+    ],
+    "correctOptionId": "2"
   },
   {
     "id": "g17-17ca1b9f",
@@ -5358,6 +5728,228 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g17-1a0296b2",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "1a0296b2-2df8-403f-a90b-87da1057bdd7",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 6: 18 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "你___这个办法好吗？我想听听你的看法。",
+    "options": [
+      {
+        "id": "1",
+        "text": "行为"
+      },
+      {
+        "id": "2",
+        "text": "认为"
+      },
+      {
+        "id": "3",
+        "text": "成为"
+      },
+      {
+        "id": "4",
+        "text": "作为"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g17-1e91c25e",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "1e91c25e-3f83-41fe-88f5-f0d200d7ffaa",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 6: 18 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "明天大家就要回家了，请___今天见面的机会。",
+    "options": [
+      {
+        "id": "1",
+        "text": "珍珠"
+      },
+      {
+        "id": "2",
+        "text": "可爱"
+      },
+      {
+        "id": "3",
+        "text": "可惜"
+      },
+      {
+        "id": "4",
+        "text": "珍惜"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g17-22203275",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "22203275-21fe-478c-aa36-0abc1699f016",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 6: 18 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "我想___你，你平时喜欢做什么？",
+    "options": [
+      {
+        "id": "1",
+        "text": "了解"
+      },
+      {
+        "id": "2",
+        "text": "解决"
+      },
+      {
+        "id": "3",
+        "text": "解放"
+      },
+      {
+        "id": "4",
+        "text": "解脱"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g17-22402996",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "22402996-2ff1-4b3e-8dce-2c262a720857",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия №17; согласованные группы 10–12, HSK1–4, локальная приёмка без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "课已经全部上完了，请大家写好___计划，准备考试。",
+    "options": [
+      {
+        "id": "1",
+        "text": "习惯"
+      },
+      {
+        "id": "2",
+        "text": "习俗"
+      },
+      {
+        "id": "3",
+        "text": "复习"
+      },
+      {
+        "id": "4",
+        "text": "预习"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g17-22730b1a",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "22730b1a-3a8e-40bd-89d2-71dd30515109",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания №17, партия 1; только локальная проверка",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "姐姐报名___了读书会，每周都去跟大家谈读过的书。",
+    "options": [
+      {
+        "id": "1",
+        "text": "参观"
+      },
+      {
+        "id": "2",
+        "text": "参加"
+      },
+      {
+        "id": "3",
+        "text": "增加"
+      },
+      {
+        "id": "4",
+        "text": "加班"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g17-24da0a2a",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "24da0a2a-2045-4edc-9841-35c63797d973",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 6: 18 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "这次活动，时间和地方都是老师___的。",
+    "options": [
+      {
+        "id": "1",
+        "text": "安排"
+      },
+      {
+        "id": "2",
+        "text": "安静"
+      },
+      {
+        "id": "3",
+        "text": "安全"
+      },
+      {
+        "id": "4",
+        "text": "安心"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
     "id": "g17-281bfd85",
     "taskNumber": 17,
     "formatYear": 2026,
@@ -5395,6 +5987,302 @@
     "correctOptionId": "4"
   },
   {
+    "id": "g17-2cd6e87c",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "2cd6e87c-7501-4a8f-9c30-e9d07a3fa3d1",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 6: 18 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "哥哥___那位老师，但是老师不一定记得他。",
+    "options": [
+      {
+        "id": "1",
+        "text": "认为"
+      },
+      {
+        "id": "2",
+        "text": "相识"
+      },
+      {
+        "id": "3",
+        "text": "以为"
+      },
+      {
+        "id": "4",
+        "text": "认识"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g17-32c4ec08",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "32c4ec08-3ef5-4463-abde-76cd68cdd60e",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия №17; согласованные группы 10–12, HSK1–4, локальная приёмка без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "学校每年都安排一次___，让学生们认识其他国家的朋友。",
+    "options": [
+      {
+        "id": "1",
+        "text": "流利"
+      },
+      {
+        "id": "2",
+        "text": "流行"
+      },
+      {
+        "id": "3",
+        "text": "流泪"
+      },
+      {
+        "id": "4",
+        "text": "交流"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g17-3b6a94ee",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3b6a94ee-ffe7-4121-819a-e38b3cd49d02",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия№17; согласованные группы7–9, HSK1–4, локальная приёмка без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "现在周末也要六点起床，我用了一个月才___这种生活。",
+    "options": [
+      {
+        "id": "1",
+        "text": "反应"
+      },
+      {
+        "id": "2",
+        "text": "适当"
+      },
+      {
+        "id": "3",
+        "text": "适应"
+      },
+      {
+        "id": "4",
+        "text": "适合"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g17-3c23c193",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3c23c193-4db3-40b3-930b-3de0ac8f8603",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 6: 18 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "把苹果放在冰箱里，可以___新鲜。",
+    "options": [
+      {
+        "id": "1",
+        "text": "保密"
+      },
+      {
+        "id": "2",
+        "text": "保护"
+      },
+      {
+        "id": "3",
+        "text": "保留"
+      },
+      {
+        "id": "4",
+        "text": "保持"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g17-3c92a151",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3c92a151-3dea-4427-a5e8-5c8a929f0411",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания №17, партия 1; только локальная проверка",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "周末，我们在家___了中国电影，觉得很有意思。",
+    "options": [
+      {
+        "id": "1",
+        "text": "观看"
+      },
+      {
+        "id": "2",
+        "text": "观众"
+      },
+      {
+        "id": "3",
+        "text": "看法"
+      },
+      {
+        "id": "4",
+        "text": "看望"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g17-3f2a8e6f",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3f2a8e6f-b336-4129-b916-82c58a3e8bdf",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия №17; согласованные группы 13–15,9ключей по1разу, HSK1–4, только локальная приёмка",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "天气太冷了，妈妈___孩子会感冒，就让他多穿衣服。",
+    "options": [
+      {
+        "id": "1",
+        "text": "担心"
+      },
+      {
+        "id": "2",
+        "text": "放心"
+      },
+      {
+        "id": "3",
+        "text": "关系"
+      },
+      {
+        "id": "4",
+        "text": "关心"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g17-466ee244",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "466ee244-0896-4002-91cf-64b99d5e9959",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания №17, партия 2; только локальное решение",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "学校把教室的面积___到原来的两倍，现在大家坐得更舒服了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "大方"
+      },
+      {
+        "id": "2",
+        "text": "方向"
+      },
+      {
+        "id": "3",
+        "text": "向往"
+      },
+      {
+        "id": "4",
+        "text": "扩大"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g17-496de75b",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "496de75b-c761-4bb1-b806-5cb3c24cabe5",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 6: 18 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "这个笑话我没___，大家为什么都笑了？",
+    "options": [
+      {
+        "id": "1",
+        "text": "理由"
+      },
+      {
+        "id": "2",
+        "text": "理解"
+      },
+      {
+        "id": "3",
+        "text": "理想"
+      },
+      {
+        "id": "4",
+        "text": "理发"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g17-4f7df0c0",
     "taskNumber": 17,
     "formatYear": 2026,
@@ -5427,6 +6315,43 @@
       {
         "id": "4",
         "text": "推迟"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g17-549f648f",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "549f648f-022c-45c5-a85f-0e2f15c9fd2e",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия №17; согласованные группы 13–15,9ключей по1разу, HSK1–4, только локальная приёмка",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "这个故事___极了，我还想再听一遍。",
+    "options": [
+      {
+        "id": "1",
+        "text": "兴趣"
+      },
+      {
+        "id": "2",
+        "text": "感兴趣"
+      },
+      {
+        "id": "3",
+        "text": "乐趣"
+      },
+      {
+        "id": "4",
+        "text": "有趣"
       }
     ],
     "correctOptionId": "4"
@@ -5469,6 +6394,339 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g17-55119815",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "55119815-471f-44c3-8052-2e3603dace95",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 6: 18 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "在这里买书能___很多钱，比其他地方便宜。",
+    "options": [
+      {
+        "id": "1",
+        "text": "节省"
+      },
+      {
+        "id": "2",
+        "text": "节目"
+      },
+      {
+        "id": "3",
+        "text": "题目"
+      },
+      {
+        "id": "4",
+        "text": "问题"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g17-57c26439",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "57c26439-fdd2-46e2-8fc6-a19976e1975a",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания №17, партия 1; только локальная проверка",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "考试没过，他难过了几天，才慢慢___了这个事实。",
+    "options": [
+      {
+        "id": "1",
+        "text": "接待"
+      },
+      {
+        "id": "2",
+        "text": "连接"
+      },
+      {
+        "id": "3",
+        "text": "直接"
+      },
+      {
+        "id": "4",
+        "text": "接受"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g17-5f3d999f",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5f3d999f-385d-4643-b70a-ca5a364f7083",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 7: 6 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "这次做面包非常___，大家都觉得好吃。",
+    "options": [
+      {
+        "id": "1",
+        "text": "完成"
+      },
+      {
+        "id": "2",
+        "text": "成功"
+      },
+      {
+        "id": "3",
+        "text": "成为"
+      },
+      {
+        "id": "4",
+        "text": "成绩"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g17-61308704",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "61308704-9980-49ba-b7f9-c5fbcc4590b1",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия №17; согласованные группы 10–12, HSK1–4, локальная приёмка без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "我也___了这种事情，所以理解你现在的心情。",
+    "options": [
+      {
+        "id": "1",
+        "text": "经历"
+      },
+      {
+        "id": "2",
+        "text": "经验"
+      },
+      {
+        "id": "3",
+        "text": "历史"
+      },
+      {
+        "id": "4",
+        "text": "日历"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g17-692e65b0",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "692e65b0-f454-4911-b060-3ad1dc72370e",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 6: 18 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "这些照片我都喜欢，想___几张，其他的送给朋友。",
+    "options": [
+      {
+        "id": "1",
+        "text": "保留"
+      },
+      {
+        "id": "2",
+        "text": "保安"
+      },
+      {
+        "id": "3",
+        "text": "保险"
+      },
+      {
+        "id": "4",
+        "text": "保证"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g17-6c1e0094",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "6c1e0094-35b0-45f1-8708-9315b33ca5f7",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания №17, партия 1; только локальная проверка",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "老师常用照片___孩子认识动物。",
+    "options": [
+      {
+        "id": "1",
+        "text": "帮助"
+      },
+      {
+        "id": "2",
+        "text": "互助"
+      },
+      {
+        "id": "3",
+        "text": "助手"
+      },
+      {
+        "id": "4",
+        "text": "助理"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g17-6dc20bcf",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "6dc20bcf-c083-4adb-8f93-3b7f7f3ba951",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия №17; согласованные группы 10–12, HSK1–4, локальная приёмка без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "上次学习的内容有些忘记了，我想先___一下再做练习。",
+    "options": [
+      {
+        "id": "1",
+        "text": "复习"
+      },
+      {
+        "id": "2",
+        "text": "恢复"
+      },
+      {
+        "id": "3",
+        "text": "复杂"
+      },
+      {
+        "id": "4",
+        "text": "答复"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g17-7b5ce824",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "7b5ce824-c505-4582-bc6d-634d5456fae0",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания №17, партия 1; только локальная проверка",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "朋友画的地图对我们找路___很大，我们很快就找到了学校。",
+    "options": [
+      {
+        "id": "1",
+        "text": "帮忙"
+      },
+      {
+        "id": "2",
+        "text": "帮手"
+      },
+      {
+        "id": "3",
+        "text": "帮助"
+      },
+      {
+        "id": "4",
+        "text": "助手"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g17-821f1dda",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "821f1dda-980e-40ee-831c-6cf9c1c7597f",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия №17; согласованные группы 13–15,9ключей по1разу, HSK1–4, только локальная приёмка",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "我对游泳___，周末想请朋友教我。",
+    "options": [
+      {
+        "id": "1",
+        "text": "感兴趣"
+      },
+      {
+        "id": "2",
+        "text": "乐趣"
+      },
+      {
+        "id": "3",
+        "text": "有趣"
+      },
+      {
+        "id": "4",
+        "text": "兴趣"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
     "id": "g17-8308a185",
     "taskNumber": 17,
     "formatYear": 2026,
@@ -5504,6 +6762,80 @@
       }
     ],
     "correctOptionId": "1"
+  },
+  {
+    "id": "g17-83512246",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "83512246-e204-4418-93bc-3e57ac20a3b1",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 6: 18 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "我们买了蛋糕，准备在家里___爷爷的生日。",
+    "options": [
+      {
+        "id": "1",
+        "text": "庆祝"
+      },
+      {
+        "id": "2",
+        "text": "国庆"
+      },
+      {
+        "id": "3",
+        "text": "校庆"
+      },
+      {
+        "id": "4",
+        "text": "庆幸"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g17-84fdfcf6",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "84fdfcf6-de58-4148-8361-a8459119a9ac",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания №17, партия 2; только локальное решение",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "饭馆原来只卖面条，现在菜单上___了米饭和饺子。",
+    "options": [
+      {
+        "id": "1",
+        "text": "更加"
+      },
+      {
+        "id": "2",
+        "text": "家长"
+      },
+      {
+        "id": "3",
+        "text": "增加"
+      },
+      {
+        "id": "4",
+        "text": "增长"
+      }
+    ],
+    "correctOptionId": "3"
   },
   {
     "id": "g17-859128a1",
@@ -5543,6 +6875,191 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g17-86f4cc68",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "86f4cc68-55af-47e1-8b4e-263f00e710d4",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 6: 18 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "爷爷花钱很___，一件衣服能穿好几年。",
+    "options": [
+      {
+        "id": "1",
+        "text": "大约"
+      },
+      {
+        "id": "2",
+        "text": "预约"
+      },
+      {
+        "id": "3",
+        "text": "节约"
+      },
+      {
+        "id": "4",
+        "text": "约会"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g17-8a2baac4",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "8a2baac4-27a3-46b7-9196-63a92a042729",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия№17; согласованные группы7–9, HSK1–4, локальная приёмка без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "我经常忘记带钥匙，离开家以前请你___一下。",
+    "options": [
+      {
+        "id": "1",
+        "text": "提醒"
+      },
+      {
+        "id": "2",
+        "text": "提问"
+      },
+      {
+        "id": "3",
+        "text": "提供"
+      },
+      {
+        "id": "4",
+        "text": "提高"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g17-8adf8a42",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "8adf8a42-8791-42fc-80d7-2045914ed088",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия№17; согласованные группы7–9, HSK1–4, локальная приёмка без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "我等了很久，他终于___在教室里了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "出差"
+      },
+      {
+        "id": "2",
+        "text": "出发"
+      },
+      {
+        "id": "3",
+        "text": "出口"
+      },
+      {
+        "id": "4",
+        "text": "出现"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g17-8d3eba6b",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "8d3eba6b-8cc3-448c-b046-76d54c631f22",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания №17, партия 2; только локальное решение",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "等着买票的人很多，门口很快___了长队。",
+    "options": [
+      {
+        "id": "1",
+        "text": "成立"
+      },
+      {
+        "id": "2",
+        "text": "成功"
+      },
+      {
+        "id": "3",
+        "text": "形成"
+      },
+      {
+        "id": "4",
+        "text": "完成"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g17-8e12155b",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "8e12155b-8d03-4e99-a4d4-34d97b2571a3",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия №17; согласованные группы 10–12, HSK1–4, локальная приёмка без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "下课以后，我们用汉语___，谈学习和生活。",
+    "options": [
+      {
+        "id": "1",
+        "text": "交通"
+      },
+      {
+        "id": "2",
+        "text": "交流"
+      },
+      {
+        "id": "3",
+        "text": "交给"
+      },
+      {
+        "id": "4",
+        "text": "交换"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g17-9308127b",
     "taskNumber": 17,
     "formatYear": 2026,
@@ -5578,6 +7095,228 @@
       }
     ],
     "correctOptionId": "3"
+  },
+  {
+    "id": "g17-9bb7d0fd",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "9bb7d0fd-5b5f-4f58-939e-b645b32fed07",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 7: 6 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "他的新家就在我家旁边，我们___了邻居。",
+    "options": [
+      {
+        "id": "1",
+        "text": "成功"
+      },
+      {
+        "id": "2",
+        "text": "成绩"
+      },
+      {
+        "id": "3",
+        "text": "成为"
+      },
+      {
+        "id": "4",
+        "text": "完成"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g17-9e4b6c5e",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "9e4b6c5e-6335-401f-bcbf-41a34500948b",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания №17, партия 2; только локальное решение",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "从小爸妈总是鼓励她，她慢慢___了乐观的性格。",
+    "options": [
+      {
+        "id": "1",
+        "text": "养成"
+      },
+      {
+        "id": "2",
+        "text": "完成"
+      },
+      {
+        "id": "3",
+        "text": "成长"
+      },
+      {
+        "id": "4",
+        "text": "成功"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g17-a8b0920e",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "a8b0920e-ebc0-429f-b722-e534577bda10",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия№17; согласованные группы7–9, HSK1–4, локальная приёмка без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "这本书故事简单，___汉语不太好的人读。",
+    "options": [
+      {
+        "id": "1",
+        "text": "适应"
+      },
+      {
+        "id": "2",
+        "text": "适合"
+      },
+      {
+        "id": "3",
+        "text": "合适"
+      },
+      {
+        "id": "4",
+        "text": "适当"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g17-a8fec606",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "a8fec606-29dd-46fa-aea3-8a2435c22140",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания №17, партия 2; только локальное решение",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "公司决定___开会的次数，由每周三次改成一次。",
+    "options": [
+      {
+        "id": "1",
+        "text": "减少"
+      },
+      {
+        "id": "2",
+        "text": "减肥"
+      },
+      {
+        "id": "3",
+        "text": "减法"
+      },
+      {
+        "id": "4",
+        "text": "加法"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g17-adf9a27b",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "adf9a27b-d99e-437a-abc2-5466bc4e6eee",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия №17; согласованные группы 13–15,9ключей по1разу, HSK1–4, только локальная приёмка",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "老师总是主动___我们的学习，也教我们怎么解决问题。",
+    "options": [
+      {
+        "id": "1",
+        "text": "关系"
+      },
+      {
+        "id": "2",
+        "text": "关心"
+      },
+      {
+        "id": "3",
+        "text": "担心"
+      },
+      {
+        "id": "4",
+        "text": "放心"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g17-aee1f741",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "aee1f741-8616-4066-8ba6-0bb3a81db8f9",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 7: 6 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "这种菜很苦，你___吃吗？",
+    "options": [
+      {
+        "id": "1",
+        "text": "愿意"
+      },
+      {
+        "id": "2",
+        "text": "满意"
+      },
+      {
+        "id": "3",
+        "text": "意思"
+      },
+      {
+        "id": "4",
+        "text": "意见"
+      }
+    ],
+    "correctOptionId": "1"
   },
   {
     "id": "g17-b38d2b21",
@@ -5617,6 +7356,191 @@
     "correctOptionId": "4"
   },
   {
+    "id": "g17-b402a288",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "b402a288-f629-46fe-966e-365103861bfa",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия№17; согласованные группы7–9, HSK1–4, локальная приёмка без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "你说话不清楚，就容易___误会。",
+    "options": [
+      {
+        "id": "1",
+        "text": "发明"
+      },
+      {
+        "id": "2",
+        "text": "发烧"
+      },
+      {
+        "id": "3",
+        "text": "发生"
+      },
+      {
+        "id": "4",
+        "text": "出发"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g17-b56dc119",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "b56dc119-7000-423d-a0f5-112ae919fd17",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия№17; согласованные группы7–9, HSK1–4, локальная приёмка без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "学校为学生___免费的水果，大家不用自己买。",
+    "options": [
+      {
+        "id": "1",
+        "text": "提前"
+      },
+      {
+        "id": "2",
+        "text": "提供"
+      },
+      {
+        "id": "3",
+        "text": "提醒"
+      },
+      {
+        "id": "4",
+        "text": "提出"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g17-b6bcdc44",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "b6bcdc44-923c-4644-bffa-305bab7a8cff",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания №17, партия 2; только локальное решение",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "夜深了，请___电视的音量，别影响邻居休息。",
+    "options": [
+      {
+        "id": "1",
+        "text": "下降"
+      },
+      {
+        "id": "2",
+        "text": "降价"
+      },
+      {
+        "id": "3",
+        "text": "降落"
+      },
+      {
+        "id": "4",
+        "text": "降低"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g17-b7aacacd",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "b7aacacd-ef4e-47cf-97ba-fd80d2f4e7bc",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия№17; согласованные группы7–9, HSK1–4, локальная приёмка без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "我仔细看了两遍，终于___这两个字不一样。",
+    "options": [
+      {
+        "id": "1",
+        "text": "发现"
+      },
+      {
+        "id": "2",
+        "text": "出发"
+      },
+      {
+        "id": "3",
+        "text": "发生"
+      },
+      {
+        "id": "4",
+        "text": "发明"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g17-ba2aea66",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "ba2aea66-26bb-4802-8c90-eefb101859e1",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия №17; согласованные группы 10–12, HSK1–4, локальная приёмка без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "这一课还没有学习过，老师让我们___，明天再上课。",
+    "options": [
+      {
+        "id": "1",
+        "text": "预订"
+      },
+      {
+        "id": "2",
+        "text": "预习"
+      },
+      {
+        "id": "3",
+        "text": "复习"
+      },
+      {
+        "id": "4",
+        "text": "预报"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g17-bc273e2b",
     "taskNumber": 17,
     "formatYear": 2026,
@@ -5652,6 +7576,117 @@
       }
     ],
     "correctOptionId": "1"
+  },
+  {
+    "id": "g17-bd5f83f7",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "bd5f83f7-22cf-4e64-bb44-e9df84cfc269",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия №17; согласованные группы 10–12, HSK1–4, локальная приёмка без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "见面以后，我们互相___了礼物，都很高兴。",
+    "options": [
+      {
+        "id": "1",
+        "text": "交换"
+      },
+      {
+        "id": "2",
+        "text": "交通"
+      },
+      {
+        "id": "3",
+        "text": "交往"
+      },
+      {
+        "id": "4",
+        "text": "交流"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g17-bdd4e6a4",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "bdd4e6a4-638e-4a2a-a753-99108b6f69c2",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 6: 18 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "我___今天是星期一，没想到今天已经是星期二了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "以外"
+      },
+      {
+        "id": "2",
+        "text": "意外"
+      },
+      {
+        "id": "3",
+        "text": "以为"
+      },
+      {
+        "id": "4",
+        "text": "另外"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g17-bfb02170",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "bfb02170-b914-49cc-92ce-8bc2580f6880",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 6: 18 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "明天打扫教室的___已经发给大家了，请先看清楚。",
+    "options": [
+      {
+        "id": "1",
+        "text": "计算"
+      },
+      {
+        "id": "2",
+        "text": "会计"
+      },
+      {
+        "id": "3",
+        "text": "计划"
+      },
+      {
+        "id": "4",
+        "text": "估计"
+      }
+    ],
+    "correctOptionId": "3"
   },
   {
     "id": "g17-bfd43ff4",
@@ -5691,6 +7726,80 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g17-c034967d",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c034967d-e46c-4729-91cd-489a7e20cca3",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания №17, партия 1; только локальная проверка",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "小李想得到这份工作，所以要认真___明天的面试。",
+    "options": [
+      {
+        "id": "1",
+        "text": "参观"
+      },
+      {
+        "id": "2",
+        "text": "参考"
+      },
+      {
+        "id": "3",
+        "text": "参加"
+      },
+      {
+        "id": "4",
+        "text": "考验"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g17-c0e467aa",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c0e467aa-48f5-4fdc-9c89-8fd2228dbd5c",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания №17, партия 2; только локальное решение",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "医生说弟弟没事，这才___了妈妈的担心。",
+    "options": [
+      {
+        "id": "1",
+        "text": "年轻"
+      },
+      {
+        "id": "2",
+        "text": "减轻"
+      },
+      {
+        "id": "3",
+        "text": "减肥"
+      },
+      {
+        "id": "4",
+        "text": "轻松"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g17-c3cc16e5",
     "taskNumber": 17,
     "formatYear": 2026,
@@ -5723,6 +7832,43 @@
       {
         "id": "4",
         "text": "锻炼"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g17-c3fc01ad",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c3fc01ad-fc3d-4e93-85ac-75b1d9252ec3",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 7: 6 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "这个办法太危险了，我不能___，请你再想一个。",
+    "options": [
+      {
+        "id": "1",
+        "text": "主意"
+      },
+      {
+        "id": "2",
+        "text": "意见"
+      },
+      {
+        "id": "3",
+        "text": "意思"
+      },
+      {
+        "id": "4",
+        "text": "同意"
       }
     ],
     "correctOptionId": "4"
@@ -5802,6 +7948,302 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g17-ca033b53",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "ca033b53-2098-4e7e-b9e3-000ee9e2d73a",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия №17; согласованные группы 10–12, HSK1–4, локальная приёмка без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "这次比赛以后，老师让我们总结___，想一想什么办法有用。",
+    "options": [
+      {
+        "id": "1",
+        "text": "经理"
+      },
+      {
+        "id": "2",
+        "text": "经常"
+      },
+      {
+        "id": "3",
+        "text": "经济"
+      },
+      {
+        "id": "4",
+        "text": "经验"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g17-d13878a9",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d13878a9-64f6-4abc-87d5-ca787f170224",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 6: 18 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "姐姐___周末学习做蛋糕，还没有买需要的东西。",
+    "options": [
+      {
+        "id": "1",
+        "text": "打扫"
+      },
+      {
+        "id": "2",
+        "text": "打算"
+      },
+      {
+        "id": "3",
+        "text": "打针"
+      },
+      {
+        "id": "4",
+        "text": "打扮"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g17-d19bab85",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d19bab85-8b67-4d54-8e0b-0d97cedd89d2",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания №17, партия 1; только локальная проверка",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "我想了很久，最后___了朋友的建议，决定坐火车去。",
+    "options": [
+      {
+        "id": "1",
+        "text": "接受"
+      },
+      {
+        "id": "2",
+        "text": "受到"
+      },
+      {
+        "id": "3",
+        "text": "难受"
+      },
+      {
+        "id": "4",
+        "text": "感受"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g17-d58718aa",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d58718aa-48ff-4177-8d80-69796e057cbc",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 7: 6 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "比赛的结果让大家都___，回家的路上一直在笑。",
+    "options": [
+      {
+        "id": "1",
+        "text": "同意"
+      },
+      {
+        "id": "2",
+        "text": "满意"
+      },
+      {
+        "id": "3",
+        "text": "故意"
+      },
+      {
+        "id": "4",
+        "text": "意见"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g17-dc480235",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "dc480235-6f1a-406c-bddc-6b6c3784ee37",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия№17; согласованные группы7–9, HSK1–4, локальная приёмка без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "同学们正在讨论这个办法，我也___了自己的看法。",
+    "options": [
+      {
+        "id": "1",
+        "text": "提醒"
+      },
+      {
+        "id": "2",
+        "text": "提前"
+      },
+      {
+        "id": "3",
+        "text": "提高"
+      },
+      {
+        "id": "4",
+        "text": "提出"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g17-e1f11f12",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "e1f11f12-6c2e-4907-9a28-50b911c77fad",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия №17; согласованные группы 10–12, HSK1–4, локальная приёмка без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "解决这种问题，她很有___，总是能找到好办法。",
+    "options": [
+      {
+        "id": "1",
+        "text": "经历"
+      },
+      {
+        "id": "2",
+        "text": "经常"
+      },
+      {
+        "id": "3",
+        "text": "经验"
+      },
+      {
+        "id": "4",
+        "text": "经济"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g17-ec8b71e9",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "ec8b71e9-f009-47e0-b7ed-4c69fab7d379",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия№17; согласованные группы7–9, HSK1–4, локальная приёмка без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "这件衬衫不大也不小，非常___，我就买它了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "合适"
+      },
+      {
+        "id": "2",
+        "text": "合作"
+      },
+      {
+        "id": "3",
+        "text": "合同"
+      },
+      {
+        "id": "4",
+        "text": "符合"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g17-ee8052d0",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "ee8052d0-aeb4-4a26-8d0f-4925be1856d3",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания №17, партия 1; только локальная проверка",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "电脑坏了，我不会修，你能___吗？",
+    "options": [
+      {
+        "id": "1",
+        "text": "帮手"
+      },
+      {
+        "id": "2",
+        "text": "忙于"
+      },
+      {
+        "id": "3",
+        "text": "忙碌"
+      },
+      {
+        "id": "4",
+        "text": "帮忙"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
     "id": "g17-f1496562",
     "taskNumber": 17,
     "formatYear": 2026,
@@ -5834,6 +8276,228 @@
       {
         "id": "4",
         "text": "生气"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g17-f213312a",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f213312a-82b1-4a81-b982-25a3356538e7",
+      "file": "sources/bank/export.json",
+      "collection": "№17 партия 6: 18 авторских заданий, без публикации",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "我不明白这个句子的意思，请再___一遍。",
+    "options": [
+      {
+        "id": "1",
+        "text": "解决"
+      },
+      {
+        "id": "2",
+        "text": "了解"
+      },
+      {
+        "id": "3",
+        "text": "理解"
+      },
+      {
+        "id": "4",
+        "text": "解释"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g17-f4777c58",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f4777c58-7e56-42a9-9315-8a1f9d85d8e7",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия №17; согласованные группы 13–15,9ключей по1разу, HSK1–4, только локальная приёмка",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "他通过了考试，我们都___地祝贺他。",
+    "options": [
+      {
+        "id": "1",
+        "text": "热烈"
+      },
+      {
+        "id": "2",
+        "text": "热闹"
+      },
+      {
+        "id": "3",
+        "text": "热爱"
+      },
+      {
+        "id": "4",
+        "text": "热带"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g17-f4ede1de",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f4ede1de-30df-40e7-80e9-8b2b0abf6986",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия №17; согласованные группы 13–15,9ключей по1разу, HSK1–4, только локальная приёмка",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "这段音乐引起了我的___，我想知道是谁写的。",
+    "options": [
+      {
+        "id": "1",
+        "text": "有趣"
+      },
+      {
+        "id": "2",
+        "text": "感兴趣"
+      },
+      {
+        "id": "3",
+        "text": "兴趣"
+      },
+      {
+        "id": "4",
+        "text": "乐趣"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g17-f6f04a99",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f6f04a99-0a75-4e8d-80f6-af50b7f91412",
+      "file": "sources/bank/export.json",
+      "collection": "Авторская партия №17; согласованные группы 13–15,9ключей по1разу, HSK1–4, только локальная приёмка",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "知道家里一切都好，我才___了，不再害怕。",
+    "options": [
+      {
+        "id": "1",
+        "text": "关心"
+      },
+      {
+        "id": "2",
+        "text": "关系"
+      },
+      {
+        "id": "3",
+        "text": "放心"
+      },
+      {
+        "id": "4",
+        "text": "担心"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g17-f8e27884",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f8e27884-df1b-4213-ba8c-944efab4666e",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания №17, партия 1; только локальная проверка",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "妈妈寄来的照片，我今天才___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "收据"
+      },
+      {
+        "id": "2",
+        "text": "据说"
+      },
+      {
+        "id": "3",
+        "text": "收到"
+      },
+      {
+        "id": "4",
+        "text": "收支"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g17-fe9e2a52",
+    "taskNumber": 17,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "fe9e2a52-f355-48fd-b8d1-464bc6809fce",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания №17, партия 1; только локальная проверка",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.3.1"
+    ],
+    "prompt": "Укажите, какая лексическая единица пропущена в данном предложении.",
+    "stem": "他上课总说话，___了老师的批评。",
+    "options": [
+      {
+        "id": "1",
+        "text": "难受"
+      },
+      {
+        "id": "2",
+        "text": "受到"
+      },
+      {
+        "id": "3",
+        "text": "受伤"
+      },
+      {
+        "id": "4",
+        "text": "受骗"
       }
     ],
     "correctOptionId": "2"
