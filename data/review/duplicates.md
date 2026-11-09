@@ -81,6 +81,17 @@
 - `g18-f76bc336` «我们在»: `g17-3c92a151`, `q25-06e87779`, `q25-fe11f817`
 - `g22-44b9123e` «今天又»: `g16-aaee9fbc`
 - `g22-b7a65c53` «今天又»: `g16-aaee9fbc`
+- `g23-1375e3f0` «到了那»: правило result-complements
+- `g23-1375e3f0` «找到了»: `g17-7b5ce824`, `h26-464d3cbe`, `q22-bd920829`
+- `g23-20773377` «擦掉了»: правило result-more
+- `g23-3d9a5923` «准备好»: `g20-8965b061`, правило result-complements
+- `g23-3d9a5923` «备好了»: правило result-complements
+- `g23-44fc7f3f` «累坏了»: правило result-rare
+- `g23-5cefe05e` «翻译成»: правило result-rare
+- `g23-5e9f5c71` «吃光了»: правило result-rare
+- `g23-860e1a89` «听懂了»: правило result-complements
+- `g23-bb232c5b` «花光了»: вопрос check-rr-guang, правило result-rare
+- `g23-de6367f4` «记住了»: вопрос check-rc-zhu
 - `q16-153f9be8` «一条裙»: правило measure-words
 - `q16-153f9be8` «条裙子»: правило measure-words
 - `q16-2a9b389a` «一架飞»: правило measure-words-more
@@ -93,6 +104,8 @@
 - `q16-c469d69b` «块蛋糕»: правило measure-words-more
 - `q16-fff46d4a` «一门外»: правило measure-words-more
 - `q16-fff46d4a` «门外语»: правило measure-words-more
+- `q17-22430935` «的时间»: `g23-8c6ebc31`, `g23-bb232c5b`
+- `q21-da9ba3fd` «的时间»: `g23-8c6ebc31`, `g23-bb232c5b`
 - `q22-b24a67ef` «今天又»: `g16-aaee9fbc`
 - `q23-147437cc` «上了一»: `g16-697c2ded`
 - `q25-a3749f53` «出去了»: `g27-f19a27db`
