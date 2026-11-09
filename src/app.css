@@ -455,6 +455,26 @@ kbd {
 }
 .size-input:focus-visible { position: relative; z-index: 1; border-color: var(--pen); }
 
+/* Режим раунда: обычный тест или один отложенный повтор каждой ошибки. */
+.round-type { max-width: 312px; margin-bottom: 16px; }
+.round-type .mode-options {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0;
+  border: 1px solid var(--line-on-ground-strong); border-radius: var(--radius-sm); overflow: hidden;
+}
+.round-type .chip { display: flex; min-width: 0; }
+.round-type .chip span {
+  align-items: center; justify-content: center; width: 100%; height: 42px; min-height: 42px;
+  padding: 0 8px; border: 0; border-radius: 0; line-height: 1;
+}
+.round-type .chip + .chip span { border-left: 1px solid var(--line-quiet); }
+.round-type .chip input:checked:hover + span { color: var(--paper); }
+.round-type .chip input:focus-visible + span { outline-offset: -4px; }
+.round-type .chip input:checked:focus-visible + span { outline-color: var(--paper); }
+.training-hint { margin: -8px 0 24px; }
+.training-result { margin: 0 0 16px; color: var(--muted); }
+.round-mode-status .repeat-mark { color: var(--pen); border-color: var(--pen); }
+.result-actions { margin: 16px 0 24px; }
+
 /* Практика: согласованный вариант C. Общие контролы «Тонов» остаются прежними. */
 .practice-setup .practice-next {
   grid-template-columns: minmax(0, 1fr) auto; align-items: center; justify-items: stretch;
@@ -468,10 +488,11 @@ kbd {
 .practice-setup .practice-next .actions .button:first-child { min-width: 196px; }
 .practice-setup .practice-next > .notice { grid-column: 1 / -1; }
 .practice-setup .practice-settings {
-  display: grid; grid-template-columns: minmax(220px, 1fr) minmax(0, 2fr); gap: 24px;
+  display: grid; grid-template-columns: minmax(180px, 1fr) minmax(180px, 1fr) minmax(0, 2fr); gap: 24px;
   margin-bottom: 24px; align-items: start;
 }
 .practice-setup .practice-settings > .filter { margin: 0; }
+.practice-setup .practice-settings .round-type { max-width: none; }
 .practice-setup .practice-settings legend { margin-bottom: 8px; }
 .practice-setup .practice-select { position: relative; }
 .practice-setup .practice-select select {
@@ -539,6 +560,7 @@ kbd {
 .practice-setup .practice-service .button[aria-expanded="true"] { color: var(--pen); }
 @media (max-width: 980px) and (min-width: 721px) {
   .practice-setup .practice-settings { grid-template-columns: minmax(180px, 1fr) minmax(0, 2fr); gap: 16px; }
+  .practice-setup .practice-settings .round-type { grid-column: 1 / -1; max-width: 312px; }
   .practice-setup .practice-size-body { grid-template-columns: minmax(0, 1fr) 128px; gap: 8px; }
   .practice-setup .stepper { width: 128px; }
   .practice-setup .stepper .size-step { width: 40px; min-width: 40px; }

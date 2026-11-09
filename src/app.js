@@ -131,7 +131,7 @@
   }
 
   function loadFilters() {
-    const empty = { topics: [], tasks: [], rules: [], origins: [], state: 'all', size: '10' };
+    const empty = { topics: [], tasks: [], rules: [], origins: [], state: 'all', size: '10', roundType: 'test' };
     try {
       const raw = JSON.parse(storage.get(FILTERS_KEY) || 'null');
       if (!raw || typeof raw !== 'object') return empty;
@@ -142,6 +142,7 @@
         origins: Array.isArray(raw.origins) ? raw.origins.filter((o) => origins.includes(o)) : [],
         state: ['all', 'new', 'done', 'review', 'mistakes'].includes(raw.state) ? raw.state : 'all',
         size: roundSize(raw.size) || '10',
+        roundType: raw.roundType === 'training' ? 'training' : 'test',
       }, questions);
     } catch {
       return empty;
@@ -154,7 +155,7 @@
 
   // Настройка раунда тонов хранится отдельно от практики: уровни HSK, длина слова, состояние, размер.
   function loadToneFilters() {
-    const empty = { levels: [], lengths: [], state: 'all', size: '10' };
+    const empty = { levels: [], lengths: [], state: 'all', size: '10', roundType: 'test' };
     try {
       const raw = JSON.parse(storage.get(TONE_FILTERS_KEY) || 'null');
       if (!raw || typeof raw !== 'object') return empty;
@@ -163,6 +164,7 @@
         lengths: Array.isArray(raw.lengths) ? raw.lengths.filter((n) => TONE_LENGTHS.includes(n)) : [],
         state: ['all', 'new', 'done', 'review', 'mistakes'].includes(raw.state) ? raw.state : 'all',
         size: roundSize(raw.size) || '10',
+        roundType: raw.roundType === 'training' ? 'training' : 'test',
       };
     } catch {
       return empty;
@@ -371,7 +373,7 @@
 
   // Работа над ошибками: по номерам в порядке экзамена; у задания — его правило, ваш ответ,
   // верный и почему. Повтор — только ошибки этого номера.
-  function mistakeWork(items, { id, open = true, mode = null }) {
+  function mistakeWork(items, { id, open = true, mode = null, roundType = 'test' }) {
     const groups = groupMistakesByTask(items, itemById);
     if (!groups.length) return document.createDocumentFragment();
     const entries = groups.flatMap((g) => g.entries);
@@ -401,7 +403,7 @@
         })),
         el('button', {
           class: 'button ghost', type: 'button',
-          onclick: () => startRound(shuffle(g.entries.map((x) => x.id)), mode),
+          onclick: () => startRound(shuffle(g.entries.map((x) => x.id)), mode, roundType),
         }, `Повторить ошибки №${g.taskNumber} · ${g.entries.length}`))));
   }
 
@@ -420,11 +422,11 @@
         shareNotice = { warn: true, text: 'Вариант из ссылки не открыть: части его заданий больше нет в банке. Соберите новый вариант.' };
       }
     } else if (link.kind === 'ids') {
-      const action = link.ids.length ? linkAction(progress.round, link.ids) : null;
+      const action = link.ids.length ? linkAction(progress.round, link.ids, link.roundType) : null;
       if (action === 'continue' || action === 'result') {
         shareNotice = { warn: false, text: SAME_LINK.round[action] };
       } else if (action) {
-        progress = { ...progress, round: startSession(link.ids, now()) };
+        progress = { ...progress, round: startSession(link.ids, now(), null, link.roundType) };
         save();
         if (link.missing) shareNotice = { warn: true, text: `Из ссылки не найдено в банке: ${tasksWord(link.missing)}. Раунд собран из остальных.` };
       } else {
@@ -432,7 +434,7 @@
         target = '#/practice/setup';
       }
     } else {
-      filters = { ...filters, ...link.filters, state: 'all' };
+      filters = { ...filters, ...link.filters, state: 'all', roundType: link.filters.roundType || 'test' };
       // Ссылка только с правилами: отмечаются их номера, иначе правила под оглавлением не видны.
       if (filters.rules.length && !filters.tasks.length) filters.tasks = ruleTasks(filters.rules, questions);
       // Правило без заданий в номерах ссылки (их сняли с сайта) тоже не выбрано — ученик узнает.
@@ -561,7 +563,7 @@
     return { button, box };
   }
 
-  const sessionAnswers = (session) => session.ids.map((id) => session.answers[id] ?? null);
+  const sessionAnswers = (session) => initialRoundIds(session).map((id) => session.answers[id] ?? null);
 
   // Из начатой сессии ушли снятые с публикации задания — ученик узнаёт об этом один раз.
   function prunedNotice(before, after) {
@@ -793,10 +795,10 @@
 
   // Верх раунда и проверки правила: выход, деления по заданиям (нефрит — верно, красное —
   // ошибка, синее — текущее) и строка счёта. Длинный раунд — сплошная полоска.
-  function sessionBar({ exit, marks, index, label, right }) {
+  function sessionBar({ exit, marks, index, label, right, useTicks = marks.length <= 30 }) {
     const bar = el('div', { class: 'session-bar' },
       el('a', { class: 'exit', href: exit, 'aria-label': 'Выйти', title: 'Выйти', text: '✕' }));
-    if (marks.length <= 30) {
+    if (useTicks) {
       bar.append(el('div', { class: 'ticks', 'aria-hidden': 'true' },
         marks.map((m, i) => el('i', { class: m || (i === index ? 'now' : null) }))));
     } else {
@@ -1139,6 +1141,20 @@
       el('p', { class: 'small muted', id: 'stateHelp', text: STATE_HELP[state] }));
   }
 
+  function roundModeControl(settings, persist) {
+    return el('fieldset', { class: 'filter round-type', id: 'roundTypeFilter' },
+      el('legend', { text: 'Режим' }),
+      el('div', { class: 'chips mode-options' }, [['test', 'Тест'], ['training', 'Тренировка']].map(([value, label]) =>
+        el('label', { class: 'chip' },
+          el('input', { type: 'radio', name: 'roundType', value, checked: settings.roundType === value,
+            dataset: { key: `roundType:${value}` },
+            onchange: () => { settings.roundType = value; persist(); render(false); } }),
+          el('span', { text: label })))));
+  }
+
+  const trainingHint = () => el('p', { class: 'small muted training-hint',
+    text: 'Каждая ошибка вернётся один раз: через пять других заданий или в конце раунда.' });
+
   function practiceIcon(kind) {
     const ns = 'http://www.w3.org/2000/svg';
     const icon = document.createElementNS(ns, 'svg');
@@ -1247,9 +1263,10 @@
       detail: el('p', { class: 'practice-available', id: 'practiceAvailable', 'aria-hidden': 'true', text: practiceAvailableText(available.length) }),
       warning: unfinishedTones ? el('p', { class: 'notice warn small', id: 'replaceWarning', text: 'У вас начат раунд тонов. Новый раунд практики заменит его: вернуться к тонам будет нельзя.' }) : null,
       start,
-      resume: round && !round.finishedAt ? el('a', { class: 'button alt', href: '#/practice', text: `Продолжить раунд · ${Object.keys(round.answers).length} из ${round.ids.length}` }) : null,
+      resume: round && !round.finishedAt ? el('a', { class: 'button alt', href: '#/practice', text: `Продолжить раунд · ${roundAnswerCount(round)} из ${round.ids.length + (round.retryQueue?.length || 0)}` }) : null,
     }));
-    view.append(el('div', { class: 'practice-settings' }, practiceStateControl(), size.node));
+    view.append(el('div', { class: 'practice-settings' }, roundModeControl(filters, saveFilters), practiceStateControl(), size.node));
+    if (filters.roundType === 'training') view.append(trainingHint());
     const contents = taskContents();
     contents.classList.add('practice-contents');
     view.append(contents);
@@ -1386,10 +1403,11 @@
   // Круг тренировки тонов (mode 'tones') идёт в той же сессии раунда, но на своей вкладке.
   const roundHome = (round) => (isTonesRound(round) ? '#/tones' : '#/practice');
 
-  function startRound(ids, mode = null) {
+  function startRound(ids, mode = null, roundType = null) {
     if (!ids.length) return;
     shareOpen = null; // блок ссылки или отчёта прошлого итога в новом раунде не открывается сам
-    progress = { ...progress, round: startSession(ids, now(), mode) };
+    const type = roundType || (mode === TONES_MODE ? toneFilters.roundType : filters.roundType);
+    progress = { ...progress, round: startSession(ids, now(), mode, type) };
     save();
     go(mode === TONES_MODE ? '#/tones' : '#/practice');
   }
@@ -1398,22 +1416,31 @@
     const round = progress.round;
     const id = round.ids[round.index];
     const q = itemById.get(id);
-    const answered = round.ids.filter((x) => round.answers[x] !== undefined);
+    const training = isTrainingRound(round);
+    const originals = initialRoundIds(round);
+    const answered = originals.filter((x) => round.answers[x] !== undefined);
     const correct = answered.filter((x) => round.answers[x] === itemById.get(x).correctOptionId).length;
-    const chosen = round.answers[id];
+    const chosen = roundAnswer(round);
     const tones = isTonesRound(round);
+    const pending = training ? round.retryQueue.length : 0;
+    const marks = round.ids.map((x, i) => markOf(roundAnswer(round, i), itemById.get(x).correctOptionId));
+    marks.push(...Array(pending).fill(null));
     view.append(sessionBar({
-      exit: `${roundHome(round)}/setup`, index: round.index, label: `${tones ? 'Слово' : 'Задание'} ${round.index + 1} из ${round.ids.length}`, right: `верно: ${correct}`,
-      marks: round.ids.map((x) => markOf(round.answers[x], itemById.get(x).correctOptionId)),
+      exit: `${roundHome(round)}/setup`, index: round.index, label: `${tones ? 'Слово' : 'Задание'} ${round.index + 1} из ${marks.length}`,
+      right: training ? `с первого раза: ${correct} из ${originals.length}` : `верно: ${correct}`,
+      marks, useTicks: originals.length <= 30,
     }));
+    if (training) view.append(el('p', { class: 'pills round-mode-status' },
+      el('span', { class: 'pill quiet', text: 'Тренировка' }),
+      round.ids.slice(0, round.index).includes(id) ? el('span', { class: 'pill quiet repeat-mark', text: 'Повтор ошибки' }) : null));
     view.append(questionCard(q, {
       kind: 'exam',
       selected: chosen,
       reveal: chosen !== undefined,
       hint: 'дальше',
       onChoose: (optionId) => {
-        if (progress.round.answers[id] !== undefined) return;
-        progress = recordAnswer({ ...progress, round: answerSession(progress.round, id, optionId) },
+        if (progress.round.index !== round.index || progress.round.ids[progress.round.index] !== id || roundAnswer(progress.round) !== undefined) return;
+        progress = recordAnswer({ ...progress, round: answerRound(progress.round, optionId, grade(q, optionId).correct) },
           'questions', id, optionId, grade(q, optionId).correct, now());
         save();
         render(false);
@@ -1422,27 +1449,30 @@
     }));
     if (chosen !== undefined) {
       view.append(feedback(q, chosen));
-      const last = round.index === round.ids.length - 1;
+      const last = round.index === round.ids.length - 1 && !pending;
       view.append(el('div', { class: 'actions dock' }, el('button', {
         class: 'button', type: 'button', dataset: { enter: '1', space: '1' },
         onclick: () => {
-          progress = { ...progress, round: last ? { ...progress.round, finishedAt: now() } : moveSession(progress.round, progress.round.index + 1) };
+          progress = { ...progress, round: advanceRound(progress.round, now()) };
           save();
           render();
         },
-      }, last ? 'Итог раунда' : 'Дальше')));
+      }, last ? 'Итог раунда' : round.index === round.ids.length - 1 && pending ? 'Повторить ошибку' : 'Дальше')));
     }
   }
 
-  function resultList(ids, answers) {
+  function resultList(ids, answers, repeats = {}) {
     return el('ul', { class: 'results' }, ids.map((id) => {
       const q = itemById.get(id);
       const chosen = answers[id];
       const ok = chosen !== undefined && chosen !== null && chosen === q.correctOptionId;
+      const retried = Object.hasOwn(repeats, id);
+      const corrected = retried && repeats[id] === q.correctOptionId;
       const body = el('div', { class: 'body' });
       const item = el('details', {
         ontoggle: (e) => {
           if (!e.target.open || body.childElementCount) return;
+          if (retried) body.append(el('p', { class: 'small muted', text: `На повторе: ${optionText(q, repeats[id])} — ${corrected ? 'верно' : 'ошибка'}. Ниже — разбор первой попытки.` }));
           body.append(questionCard(q, { kind: 'exam', selected: chosen, reveal: true, onChoose: () => {} }));
           if (chosen == null) body.append(el('p', { class: 'notice warn', text: 'Ответа не было.' }));
           body.append(feedback(q, chosen == null ? null : chosen));
@@ -1451,7 +1481,7 @@
       el('summary', {},
         el('span', { class: 'n cellnum', text: String(q.taskNumber) }),
         el('span', { class: 'zh', lang: 'zh', text: q.stem.replace(/\s+/g, ' ') }),
-        el('span', { class: ok ? 'ok-mark' : 'bad-mark', text: ok ? 'верно' : chosen == null ? 'без ответа' : 'ошибка' })),
+        el('span', { class: ok || corrected ? 'ok-mark' : 'bad-mark', text: corrected ? 'исправлено' : ok ? 'верно' : chosen == null ? 'без ответа' : retried ? 'снова ошибка' : 'ошибка' })),
       body);
       return el('li', {}, item);
     }));
@@ -1463,30 +1493,35 @@
     const wrong = result.items.filter((i) => !i.correct).map((i) => i.id);
     const tones = isTonesRound(round);
     const mode = tones ? TONES_MODE : null;
-    view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Раунд окончен' }),
-      scoreLine(result.score, result.total, 'верных ответов'),
-      taskScore(result.items),
-      ruleAdvice(result.items),
-      mistakeWork(result.items, { id: 'roundMistakes', mode }),
-      resultList(round.ids, round.answers));
+    const training = isTrainingRound(round);
+    const roundType = training ? 'training' : 'test';
+    const ids = initialRoundIds(round);
+    const retries = training ? trainingResult(round, itemById) : null;
+    view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: training ? 'Тренировка окончена' : 'Раунд окончен' }),
+      scoreLine(result.score, result.total, training ? 'верных с первой попытки' : 'верных ответов'));
+    if (training) view.append(el('p', { class: 'training-result', id: 'trainingResult',
+      text: `Повторов: ${retries.repeated} · исправлено: ${retries.corrected} · осталось ошибок: ${retries.remaining}.` }));
     // Слова тренировки тонов учитель по ID не разберёт: ни ссылки, ни отчёта у такого раунда нет.
     const share = tones ? { button: null, box: null }
-      : shareToggle('round', 'Ссылка на эти задания', pageUrl(`#/practice?${idsQuery(round.ids)}`),
-        `По ссылке откроется раунд из этих же заданий (${round.ids.length}) в том же порядке — одинаковый для всех, кто её получит.`);
+      : shareToggle('round', 'Ссылка на эти задания', pageUrl(`#/practice?${idsQuery(ids, roundType)}`),
+        `По ссылке откроется раунд из этих же заданий (${ids.length}) в том же порядке — одинаковый для всех, кто её получит.`);
     // Код отчёта держит не больше REPORT_MAX_TASKS заданий: учитель большой раунд не прочитал бы.
-    const report = tones ? { button: null, box: null } : round.ids.length <= REPORT_MAX_TASKS
-      ? reportToggle('round', { kind: 'round', at: round.finishedAt || now(), ids: round.ids, answers: sessionAnswers(round),
+    const report = tones ? { button: null, box: null } : ids.length <= REPORT_MAX_TASKS
+      ? reportToggle('round', { kind: 'round', at: round.finishedAt || now(), ids, answers: sessionAnswers(round),
         score: result.score, total: result.total })
-      : { button: null, box: el('p', { class: 'small muted', id: 'reportTooBig', text: `Отчёт учителю — для раунда до ${REPORT_MAX_TASKS} заданий, а в этом ${round.ids.length}. Для отчёта соберите раунд поменьше.` }) };
-    view.append(el('div', { class: 'actions' },
-      wrong.length ? el('button', { class: 'button', type: 'button', onclick: () => startRound(shuffle(wrong), mode) }, `Повторить ошибки раунда · ${wrong.length}`) : null,
+      : { button: null, box: el('p', { class: 'small muted', id: 'reportTooBig', text: `Отчёт учителю — для раунда до ${REPORT_MAX_TASKS} заданий, а в этом ${ids.length}. Для отчёта соберите раунд поменьше.` }) };
+    view.append(el('div', { class: 'actions result-actions' },
+      wrong.length ? el('button', { class: 'button', type: 'button', onclick: () => startRound(shuffle(wrong), mode, roundType) }, `Повторить ошибки ${training ? 'первой попытки' : 'раунда'} · ${wrong.length}`) : null,
       el('a', { class: wrong.length ? 'button alt' : 'button', href: `${roundHome(round)}/setup`, text: 'Новый раунд' }),
-      el('button', { class: 'button ghost', type: 'button', id: 'restartRound', onclick: () => startRound(round.ids, mode) }, tones ? 'Решить эти слова заново' : 'Решить эти задания заново'),
+      el('button', { class: 'button ghost', type: 'button', id: 'restartRound', onclick: () => startRound(ids, mode, roundType) }, tones ? 'Решить эти слова заново' : 'Решить эти задания заново'),
       report.button,
       share.button,
       el('a', { class: 'button ghost', href: '#/rules', text: 'На главную' })));
     if (report.box) view.append(report.box);
     if (share.box) view.append(share.box);
+    view.append(taskScore(result.items), ruleAdvice(result.items),
+      mistakeWork(result.items, { id: 'roundMistakes', mode, roundType }),
+      resultList(ids, round.answers, retries ? retries.repeats : {}));
   }
 
   // ---------- тренировка тонов ----------
@@ -1528,11 +1563,13 @@
       notice: el('p', { class: 'next-note', id: 'available', 'aria-live': 'polite', text: toneAvailableText(available.length) }),
       warning: other ? el('p', { class: 'notice warn small', id: 'replaceWarning', text: 'У вас начат раунд практики. Новый раунд тонов заменит его: вернуться к практике будет нельзя.' }) : null,
       start,
-      resume: round && !round.finishedAt ? el('a', { class: 'button alt', href: '#/tones', text: `Продолжить раунд · ${Object.keys(round.answers).length} из ${round.ids.length}` }) : null,
+      resume: round && !round.finishedAt ? el('a', { class: 'button alt', href: '#/tones', text: `Продолжить раунд · ${roundAnswerCount(round)} из ${round.ids.length + (round.retryQueue?.length || 0)}` }) : null,
     }));
+    view.append(roundModeControl(toneFilters, saveToneFilters));
     view.append(el('div', { class: 'filters-row round-settings' },
       roundStateControl('Какие слова', toneFilters.state, (value) => { toneFilters.state = value; saveToneFilters(); render(false); }),
       size.node));
+    if (toneFilters.roundType === 'training') view.append(trainingHint());
     view.append(
       chipGroup('Уровень HSK', TONE_LEVELS.filter((n) => counts.levels[n] || toneFilters.levels.includes(n))
         .map((n) => ({ value: n, label: `HSK ${n}`, count: counts.levels[n] })), toneFilters.levels, change('levels'), 'toneLevels'),
@@ -1699,6 +1736,7 @@
   }
 
   function renderVariantResult(v, actions) {
+    actions.classList.add('result-actions');
     const result = scoreSession(v, byId);
     const wrong = result.items.filter((i) => !i.correct).map((i) => i.id);
     if (wrong.length) {
@@ -1726,17 +1764,17 @@
       Number.isFinite(v.result && v.result.timeMs)
         ? el('p', { class: v.result.timeMs > VARIANT_MINUTES * 60000 ? 'small variant-time over' : 'small variant-time', id: 'variantTime', text: `Время: ${formatClock(v.result.timeMs)} · рекомендовано ${VARIANT_MINUTES}:00` })
         : document.createDocumentFragment(),
-      ruleAdvice(result.items),
-      mistakeWork(result.items, { id: 'variantMistakes' }),
+      actions);
+    if (report.box) view.append(report.box);
+    if (share.box) view.append(share.box);
+    view.append(
       sheet(v, { reveal: true, onPick: (i) => {
         // Только позиции варианта: у раскрытого разбора есть свой вложенный details.
         const items = view.querySelectorAll('.results > li > details');
         if (items[i]) { items[i].open = true; items[i].querySelector('summary').focus(); }
       } }),
-      actions);
-    // Закрытый блок ссылки — null: штатный append напечатал бы его словом «null».
-    if (report.box) view.append(report.box);
-    if (share.box) view.append(share.box);
+      ruleAdvice(result.items),
+      mistakeWork(result.items, { id: 'variantMistakes' }));
     view.append(el('p', { class: 'section-title', text: 'Разбор по позициям' }),
       resultList(v.ids, v.answers));
   }

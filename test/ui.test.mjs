@@ -728,7 +728,7 @@ test('повторение: исправленная ошибка возвращ
   await see(page, '#repeatMistakes', /Ошибок нет/);
   assert.equal(await page.locator('#repeatDue').count(), 0);
   const stored = await storedProgress(page);
-  assert.equal(stored.version, 2);
+  assert.equal(stored.version, L.PROGRESS_VERSION);
   assert.equal(stored.questions['q20-a'].review.step, 2, 'следующий повтор — через 3 дня');
   assert.deepEqual(errors, []);
   await context.close();
@@ -2235,6 +2235,120 @@ test('пробел: в проверке по правилу после отве�
   await page.locator('.feedback').waitFor();
   await page.keyboard.press('Space');
   await page.locator('.feedback').waitFor({ state: 'detached' });
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('training UI: режим сохраняется отдельно в практике и тонах', { skip }, async () => {
+  const url = buildPage('training-settings', { change: (data) => { data['tone-words'] = { words: toneWords }; } });
+  const { page, context, errors } = await open(url, { hash: '#/practice/setup' });
+  assert.equal(await page.getByRole('radio', { name: 'Тест', exact: true }).isChecked(), true);
+  await page.getByRole('radio', { name: 'Тренировка', exact: true }).check({ timeout: 2000 });
+  await page.reload();
+  assert.equal(await page.getByRole('radio', { name: 'Тренировка', exact: true }).isChecked(), true);
+  await page.goto(`${url}#/tones/setup`);
+  assert.equal(await page.getByRole('radio', { name: 'Тест', exact: true }).isChecked(), true);
+  await page.getByRole('radio', { name: 'Тренировка', exact: true }).check();
+  await page.reload();
+  assert.equal(await page.getByRole('radio', { name: 'Тренировка', exact: true }).isChecked(), true);
+  await page.goto(`${url}#/practice/setup`);
+  assert.equal(await page.getByRole('radio', { name: 'Тренировка', exact: true }).isChecked(), true);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('training UI: пять других заданий, повтор после reload, первые ответы и итоги', { skip }, async () => {
+  const ids = ['q22-a', 'q16-a', 'q17-a', 'q18-a', 'q19-a', 'q20-a', 'q21-a'];
+  const questions = new Map(fixture('questions').map((q) => [q.id, q]));
+  const { page, context, errors } = await open(mainUrl, { width: 390, height: 844,
+    hash: `#/practice?ids=${ids.join(',')}&roundType=training` });
+  await page.getByText('Тренировка', { exact: true }).waitFor({ timeout: 2000 });
+  const respond = async (id, correct) => {
+    const round = (await storedProgress(page)).round;
+    assert.equal(round.ids[round.index], id);
+    const q = questions.get(id);
+    const option = correct ? q.correctOptionId : q.options.find((o) => o.id !== q.correctOptionId).id;
+    await page.locator(`[data-card] [data-option="${option}"]`).click();
+    await page.locator('.feedback').waitFor();
+    await page.locator('.actions.dock button').click();
+  };
+  await respond(ids[0], false);
+  for (const id of ids.slice(1, 6)) await respond(id, true);
+  await page.getByText('Повтор ошибки', { exact: true }).waitFor();
+  await page.reload();
+  await page.getByText('Повтор ошибки', { exact: true }).waitFor();
+  assert.equal(await page.locator('[data-card] .option.selected').count(), 0);
+  await respond(ids[0], true);
+  await respond(ids[6], true);
+  await see(page, 'h2', /Тренировка окончена/);
+  await see(page, '.score', /6 из 7/);
+  await see(page, '#trainingResult', /исправлено: 1.*осталось ошибок: 0/);
+  const result = (await storedProgress(page)).round;
+  assert.equal(result.ids.length, 8);
+  assert.equal(result.answers[ids[0]] === questions.get(ids[0]).correctOptionId, false);
+  assert.equal((await storedProgress(page)).questions[ids[0]].attempts, 2);
+  assert.equal(await page.locator('.results > li').count(), 7);
+  assert.ok(await page.getByRole('link', { name: 'Новый раунд', exact: true }).evaluate((link) =>
+    Boolean(link.closest('.actions').compareDocumentPosition(document.querySelector('.results')) & Node.DOCUMENT_POSITION_FOLLOWING)));
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('training UI: тоны повторяются в конце и повторная ошибка завершает тренировку', { skip }, async () => {
+  const url = buildPage('training-tones', { change: (data) => { data['tone-words'] = { words: toneWords }; } });
+  const { page, context, errors } = await open(url, { width: 320, height: 640, hash: '#/tones/setup' });
+  await page.getByRole('radio', { name: 'Тренировка', exact: true }).check({ timeout: 2000 });
+  await page.locator('#roundSize').fill('1');
+  await page.locator('#roundSize').press('Enter');
+  await page.locator('#startTones').click();
+  await page.locator('[data-card]').waitFor();
+  const id = (await storedProgress(page)).round.ids[0];
+  await page.keyboard.press((await toneKeys(page)).wrong);
+  await page.getByRole('button', { name: 'Повторить ошибку', exact: true }).click();
+  await page.getByText('Повтор ошибки', { exact: true }).waitFor();
+  await page.reload();
+  await page.getByText('Повтор ошибки', { exact: true }).waitFor();
+  await page.keyboard.press((await toneKeys(page)).wrong);
+  await page.getByRole('button', { name: 'Итог раунда', exact: true }).click();
+  await see(page, 'h2', /Тренировка окончена/);
+  await see(page, '.score', /0 из 1/);
+  await see(page, '#trainingResult', /исправлено: 0.*осталось ошибок: 1/);
+  const round = (await storedProgress(page)).round;
+  assert.deepEqual(round.ids, [id, id]);
+  assert.equal(round.mode, 'tones');
+  assert.equal(await page.getByRole('button', { name: /Отчёт учителю/ }).count(), 0);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+for (const kind of ['round', 'variant']) {
+  test(`training UI: управление итогами ${kind} находится до длинного списка ошибок`, { skip }, async () => {
+    const questions = fixture('questions').filter((q) => q.origin === 'fipi' && q.id.endsWith('-a'));
+    const ids = questions.map((q) => q.id);
+    const session = L.startSession(ids, '2026-11-09T10:00:00.000Z');
+    session.answers = Object.fromEntries(questions.map((q) => [q.id, q.options.find((o) => o.id !== q.correctOptionId).id]));
+    session.finishedAt = '2026-11-09T10:01:00.000Z';
+    const { page, context, errors } = await open(mainUrl, { width: 390, height: 844, hash: `#/${kind === 'round' ? 'practice' : 'variant'}` });
+    await page.evaluate((progress) => localStorage.setItem('ege-lg-trainer:progress', JSON.stringify(progress)), { ...L.emptyProgress(), [kind]: session });
+    await page.reload();
+    const home = page.getByRole('link', { name: 'На главную', exact: true });
+    await home.waitFor();
+    assert.ok(await home.evaluate((link) => Boolean(link.closest('.actions').compareDocumentPosition(document.querySelector('.mistakes')) & Node.DOCUMENT_POSITION_FOLLOWING)));
+    assert.deepEqual(errors, []);
+    await context.close();
+  });
+}
+
+test('training UI: переход с версии 2 сохраняет исходную копию и начатый тест', { skip }, async () => {
+  const legacy = { version: 2, questions: {}, checks: {}, history: [], variant: null,
+    round: { ids: ['q20-a'], answers: {}, index: 0, startedAt: '2026-11-09T10:00:00.000Z', finishedAt: null } };
+  const { page, context, errors } = await open(mainUrl, { hash: '#/practice' });
+  await page.evaluate((value) => localStorage.setItem('ege-lg-trainer:progress', JSON.stringify(value)), legacy);
+  await page.reload();
+  await page.locator('[data-card] .option').first().click();
+  assert.equal((await storedProgress(page)).version, 3);
+  assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem('ege-lg-trainer:progress:v2'))), legacy);
+  assert.equal((await storedProgress(page)).round.roundType ?? 'test', 'test');
   assert.deepEqual(errors, []);
   await context.close();
 });

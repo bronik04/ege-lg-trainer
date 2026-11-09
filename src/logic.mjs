@@ -4,10 +4,10 @@
 
 export const TASK_NUMBERS = [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27];
 export const PROGRESS_KEY = 'ege-lg-trainer:progress';
-// Версия 2 (26.09.2026): у записи задания есть review — интервальное повторение ошибок.
-// Прогресс и файлы версии 1 читаются: review выводится из последнего ответа.
-export const PROGRESS_VERSION = 2;
-const READABLE_VERSIONS = [1, 2];
+// Версия 3: тренировочный раунд хранит отдельные ответы на первые и повторные попытки.
+// Версии 1/2 читаются; старая вкладка не должна перезаписывать новую очередь тренировки.
+export const PROGRESS_VERSION = 3;
+const READABLE_VERSIONS = [1, 2, 3];
 
 // Через сколько дней исправленная ошибка возвращается на повтор. После последнего
 // верного повтора задание считается усвоенным.
@@ -88,6 +88,21 @@ function cleanSession(session) {
   };
   // Время варианта — только число: строка из испорченного файла склеилась бы, а не сложилась.
   if ('elapsedMs' in out && !(Number.isFinite(out.elapsedMs) && out.elapsedMs >= 0)) delete out.elapsedMs;
+  if (isTrainingRound(out)) {
+    out.initialIds = [...new Set((Array.isArray(out.initialIds) ? out.initialIds : out.ids).map(String))]
+      .filter((id) => out.ids.includes(id));
+    out.attemptAnswers = Object.fromEntries(Object.entries(isRecord(out.attemptAnswers) ? out.attemptAnswers : {})
+      .filter(([key, value]) => /^(0|[1-9]\d*)$/.test(key) && Number(key) < out.ids.length && typeof value === 'string'));
+    const queued = new Set();
+    out.retryQueue = (Array.isArray(out.retryQueue) ? out.retryQueue : []).filter((entry) => {
+      if (!isRecord(entry) || !out.initialIds.includes(entry.id) || queued.has(entry.id)
+          || !Number.isSafeInteger(entry.afterPosition) || entry.afterPosition < 0) return false;
+      queued.add(entry.id);
+      return true;
+    }).map(({ id, afterPosition }) => ({ id, afterPosition }));
+    out.retriedIds = [...new Set([...(Array.isArray(out.retriedIds) ? out.retriedIds : []), ...queued])]
+      .filter((id) => out.initialIds.includes(id));
+  }
   return out;
 }
 
@@ -135,9 +150,12 @@ export function pruneProgress(progress, questions) {
     if (!session || session.ids.every((id) => known.has(id))) return session;
     const taken = new Set(session.ids.filter((id) => known.has(id)));
     const ids = [];
+    const positions = new Map();
+    let removedAnswered = 0;
     let index = session.index;
     session.ids.forEach((id, i) => {
       if (known.has(id)) {
+        positions.set(i, ids.length);
         ids.push(id);
         return;
       }
@@ -148,10 +166,20 @@ export function pruneProgress(progress, questions) {
       } else if (i < session.index) {
         index -= 1;
       }
+      if (isTrainingRound(session) && (i < session.index || (i === session.index && roundAnswer(session, i) !== undefined))) removedAnswered += 1;
     });
     if (!ids.length) return null;
     const answers = Object.fromEntries(Object.entries(session.answers).filter(([id]) => known.has(id) && ids.includes(id)));
-    return { ...session, ids, answers, index: Math.max(0, Math.min(ids.length - 1, index)) };
+    const out = { ...session, ids, answers, index: Math.max(0, Math.min(ids.length - 1, index)) };
+    if (isTrainingRound(session)) {
+      out.initialIds = initialRoundIds(session).filter((id) => known.has(id));
+      out.attemptAnswers = Object.fromEntries(Object.entries(session.attemptAnswers)
+        .filter(([position]) => positions.has(Number(position))).map(([position, value]) => [positions.get(Number(position)), value]));
+      out.retryQueue = session.retryQueue.filter(({ id }) => known.has(id))
+        .map(({ id, afterPosition }) => ({ id, afterPosition: Math.max(0, afterPosition - removedAnswered) }));
+      out.retriedIds = session.retriedIds.filter((id) => known.has(id));
+    }
+    return out;
   };
   const variant = progress.variant;
   return { ...progress, round: prune(progress.round, false), variant: prune(variant, Boolean(variant && !variant.finishedAt)) };
@@ -488,12 +516,13 @@ export function shareQuery(filters) {
   if ((filters.rules || []).length) pairs.push(['rules', filters.rules.join(',')]);
   if (filters.origins.length) pairs.push(['origins', filters.origins.join(',')]);
   pairs.push(['size', filters.size]);
+  if (filters.roundType === 'training') pairs.push(['roundType', 'training']);
   return query(pairs);
 }
 
 // Одни и те же задания для всех, в том же порядке.
-export function idsQuery(ids) {
-  return query([['ids', ids.join(',')]]);
+export function idsQuery(ids, roundType = 'test') {
+  return query([['ids', ids.join(',')], ...(roundType === 'training' ? [['roundType', 'training']] : [])]);
 }
 
 // Разбор ссылки. known: { topicIds: Set, origins: [], questionIds: Set, ruleIds: Set } — незнакомое
@@ -506,7 +535,8 @@ export function parseShareQuery(text, known) {
   if (params.has('ids')) {
     const asked = [...new Set(list('ids'))];
     const ids = asked.filter((id) => known.questionIds.has(id));
-    return { kind: 'ids', ids, missing: asked.length - ids.length };
+    return { kind: 'ids', ids, missing: asked.length - ids.length,
+      ...(params.get('roundType') === 'training' ? { roundType: 'training' } : {}) };
   }
   const asked = [...new Set(list('topics'))];
   const topics = asked.filter((t) => known.topicIds.has(t));
@@ -522,6 +552,7 @@ export function parseShareQuery(text, known) {
       rules,
       origins: list('origins').filter((o) => known.origins.includes(o)),
       size: roundSize(params.get('size')) || '10',
+      ...(params.get('roundType') === 'training' ? { roundType: 'training' } : {}),
     },
   };
 }
@@ -535,8 +566,8 @@ export function isVariant(ids, byId) {
 // Ссылка на задания поверх своей сессии. Те же задания в том же порядке — ученик вернулся по
 // ссылке из чата: начатое продолжается, решённое показывает итог. Своя начатая работа с
 // ответами — сначала вопрос. Иначе — новая сессия.
-export function linkAction(session, ids) {
-  if (session && session.ids.join() === ids.join()) return session.finishedAt ? 'result' : 'continue';
+export function linkAction(session, ids, roundType = 'test') {
+  if (session && initialRoundIds(session).join() === ids.join() && isTrainingRound(session) === (roundType === 'training')) return session.finishedAt ? 'result' : 'continue';
   if (session && !session.finishedAt && Object.keys(session.answers).length > 0) return 'ask';
   return 'start';
 }
@@ -822,8 +853,68 @@ export function blankFill(item, optionId, text = item.stem ?? item.sentence ?? i
 
 // mode — необязательная пометка вида раунда: 'tones' у круга тренировки тонов. Старая страница
 // сохраняет её как есть (сессия копируется целиком), версия прогресса не меняется.
-export function startSession(ids, at, mode = null) {
-  return { ids: ids.slice(), answers: {}, index: 0, startedAt: at, finishedAt: null, ...(mode ? { mode } : {}) };
+export function startSession(ids, at, mode = null, roundType = 'test') {
+  const session = { ids: ids.slice(), answers: {}, index: 0, startedAt: at, finishedAt: null, ...(mode ? { mode } : {}) };
+  return roundType === 'training'
+    ? { ...session, ids: [...new Set(ids)], roundType, initialIds: [...new Set(ids)], attemptAnswers: {}, retryQueue: [], retriedIds: [] }
+    : session;
+}
+
+export function isTrainingRound(session) { return Boolean(session) && session.roundType === 'training'; }
+
+export function initialRoundIds(session) { return isTrainingRound(session) ? session.initialIds : session.ids; }
+
+export function roundAnswer(session, index = session.index) {
+  return isTrainingRound(session) ? session.attemptAnswers[index] : session.answers[session.ids[index]];
+}
+
+export function roundAnswerCount(session) {
+  return Object.keys(isTrainingRound(session) ? session.attemptAnswers : session.answers).length;
+}
+
+// Как в тренажёре по лингвострановедению: пять других карточек между ошибкой и повтором;
+// каждому заданию — один повтор, а счёт первой попытки не меняется.
+export function answerRound(session, optionId, correct) {
+  if (session.finishedAt || roundAnswer(session) !== undefined) return session;
+  const id = session.ids[session.index];
+  if (!isTrainingRound(session)) return answerSession(session, id, optionId);
+  const retry = !correct && !session.retriedIds.includes(id);
+  return {
+    ...session,
+    answers: Object.hasOwn(session.answers, id) ? session.answers : { ...session.answers, [id]: optionId },
+    attemptAnswers: { ...session.attemptAnswers, [session.index]: optionId },
+    retryQueue: retry ? [...session.retryQueue, { id, afterPosition: session.index + 6 }] : session.retryQueue,
+    retriedIds: retry ? [...session.retriedIds, id] : session.retriedIds,
+  };
+}
+
+export function advanceRound(session, at) {
+  if (session.finishedAt || roundAnswer(session) === undefined) return session;
+  const index = session.index + 1;
+  let next = session;
+  if (isTrainingRound(session)) {
+    const queue = session.retryQueue.slice();
+    let due = queue.findIndex((entry) => entry.afterPosition <= index);
+    if (due === -1 && index >= session.ids.length && queue.length) due = 0;
+    const ids = session.ids.slice();
+    if (due !== -1) ids.splice(index, 0, queue.splice(due, 1)[0].id);
+    next = { ...session, ids, retryQueue: queue };
+  }
+  return index >= next.ids.length ? { ...next, finishedAt: at } : { ...next, index };
+}
+
+export function trainingResult(session, byId) {
+  const wrong = initialRoundIds(session).filter((id) => session.answers[id] !== byId.get(id).correctOptionId);
+  const repeats = {};
+  let repeated = 0;
+  const seen = new Set();
+  session.ids.forEach((id, index) => {
+    const chosen = roundAnswer(session, index);
+    if (seen.has(id) && chosen !== undefined) { repeated += 1; repeats[id] = chosen; }
+    seen.add(id);
+  });
+  const corrected = wrong.filter((id) => repeats[id] === byId.get(id).correctOptionId).length;
+  return { repeated, corrected, remaining: wrong.length - corrected, repeats };
 }
 
 export const TONES_MODE = 'tones';
@@ -845,7 +936,7 @@ export function moveSession(session, index) {
 }
 
 export function scoreSession(session, byId) {
-  const items = session.ids.map((id) => {
+  const items = initialRoundIds(session).map((id) => {
     const item = byId.get(id);
     const chosen = session.answers[id] ?? null;
     return { id, taskNumber: item.taskNumber, chosen, correct: chosen !== null && chosen === item.correctOptionId };

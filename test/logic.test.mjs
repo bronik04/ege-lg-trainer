@@ -531,7 +531,7 @@ test('прогресс версии 1 читается: неисправленн
     checks: {}, round: null, variant: null, history: [],
   };
   const p = L.parseProgress(JSON.stringify(v1));
-  assert.equal(p.version, 2);
+  assert.equal(p.version, L.PROGRESS_VERSION);
   assert.deepEqual(p.questions.a.review, { step: 0, due: 't1' });
   assert.equal(p.questions.b.review, null);
   const file = L.readProgressFile(JSON.stringify({ app: 'ege-lg-trainer', ...v1 }));
