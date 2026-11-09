@@ -23,6 +23,7 @@
   const TONE_FILTERS_KEY = 'ege-lg-trainer:tones-filters';
   const SOLO_STEM = new Set([15, 19]);
   const FILTERS_KEY = 'ege-lg-trainer:filters';
+  const TRAINING_DEFAULT_KEY = 'ege-lg-trainer:training-default';
   const THEME_KEY = 'ege-lg-trainer:theme';
 
   // ---------- хранилище ----------
@@ -130,8 +131,10 @@
     node.classList.toggle('over', state.over);
   }
 
+  // Один раз меняем прежний выбор обоих разделов; затем уважаем сохранённый режим.
+  const migrateToTraining = storage.get(TRAINING_DEFAULT_KEY) !== '1';
   function loadFilters() {
-    const empty = { topics: [], tasks: [], rules: [], origins: [], state: 'all', size: '10', roundType: 'test' };
+    const empty = { topics: [], tasks: [], rules: [], origins: [], state: 'all', size: '10', roundType: 'training' };
     try {
       const raw = JSON.parse(storage.get(FILTERS_KEY) || 'null');
       if (!raw || typeof raw !== 'object') return empty;
@@ -142,7 +145,7 @@
         origins: Array.isArray(raw.origins) ? raw.origins.filter((o) => origins.includes(o)) : [],
         state: ['all', 'new', 'done', 'review', 'mistakes'].includes(raw.state) ? raw.state : 'all',
         size: roundSize(raw.size) || '10',
-        roundType: raw.roundType === 'training' ? 'training' : 'test',
+        roundType: !migrateToTraining && raw.roundType === 'test' ? 'test' : 'training',
       }, questions);
     } catch {
       return empty;
@@ -150,12 +153,12 @@
   }
   let filters = loadFilters();
   function saveFilters() {
-    storage.set(FILTERS_KEY, JSON.stringify(filters));
+    return storage.set(FILTERS_KEY, JSON.stringify(filters));
   }
 
   // Настройка раунда тонов хранится отдельно от практики: уровни HSK, длина слова, состояние, размер.
   function loadToneFilters() {
-    const empty = { levels: [], lengths: [], state: 'all', size: '10', roundType: 'test' };
+    const empty = { levels: [], lengths: [], state: 'all', size: '10', roundType: 'training' };
     try {
       const raw = JSON.parse(storage.get(TONE_FILTERS_KEY) || 'null');
       if (!raw || typeof raw !== 'object') return empty;
@@ -164,7 +167,7 @@
         lengths: Array.isArray(raw.lengths) ? raw.lengths.filter((n) => TONE_LENGTHS.includes(n)) : [],
         state: ['all', 'new', 'done', 'review', 'mistakes'].includes(raw.state) ? raw.state : 'all',
         size: roundSize(raw.size) || '10',
-        roundType: raw.roundType === 'training' ? 'training' : 'test',
+        roundType: !migrateToTraining && raw.roundType === 'test' ? 'test' : 'training',
       };
     } catch {
       return empty;
@@ -172,7 +175,12 @@
   }
   let toneFilters = loadToneFilters();
   function saveToneFilters() {
-    storage.set(TONE_FILTERS_KEY, JSON.stringify(toneFilters));
+    return storage.set(TONE_FILTERS_KEY, JSON.stringify(toneFilters));
+  }
+  if (migrateToTraining) {
+    const practiceSaved = saveFilters();
+    const tonesSaved = saveToneFilters();
+    if (practiceSaved && tonesSaved) storage.set(TRAINING_DEFAULT_KEY, '1');
   }
 
   // Проверка правил не сохраняется между перезагрузками: это короткая разминка.

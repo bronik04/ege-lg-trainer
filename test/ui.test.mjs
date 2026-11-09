@@ -225,7 +225,7 @@ test('грамматика: правила отмеченных номеров �
   await see(page, '#available', /Доступно: 1 задание/);
   await page.locator('#share-setup').click();
   const link = new URL(await page.locator('#shareBox input').inputValue());
-  assert.equal(link.hash, '#/practice?tasks=22&rules=jiu-cai&size=10');
+  assert.equal(link.hash, '#/practice?tasks=22&rules=jiu-cai&size=10&roundType=training');
   // Снятый номер уводит и свои правила: подборка не сужается невидимо.
   await page.locator('input[data-key="Задания:22"]').uncheck();
   await see(page, '#available', /Доступно: 16 заданий/);
@@ -342,9 +342,9 @@ test('размер раунда: своё число с клавиатуры, к
   await see(page, '#available', /В раунд попадёт 15\./);
   // Открытая ссылка на подборку меняется вместе с размером, размер переживает перезагрузку.
   await page.locator('#share-setup').click();
-  assert.equal(await shareHash(), '#/practice?size=15');
+  assert.equal(await shareHash(), '#/practice?size=15&roundType=training');
   await page.locator('#roundLess').click();
-  assert.equal(await shareHash(), '#/practice?size=14');
+  assert.equal(await shareHash(), '#/practice?size=14&roundType=training');
   await page.reload();
   assert.equal(await size.inputValue(), '14');
   // «Все» без доступных — поле пустое, а не «0».
@@ -435,8 +435,9 @@ test('задание HSK: подпись источника и фильтр', { 
   await context.close();
 });
 
-test('тренировка: разбор выбранного неверного варианта, три и четыре варианта', { skip }, async () => {
+test('тест: разбор выбранного неверного варианта, три и четыре варианта', { skip }, async () => {
   const { page, context, errors } = await open(mainUrl, { hash: '#/practice' });
+  await page.getByRole('radio', { name: 'Тест', exact: true }).check();
   await page.locator('input[data-key="Задания:20"]').check();
   await page.locator('input[data-key="Задания:22"]').check();
   await page.locator('input[data-key="Размер:all"]').check();
@@ -1884,6 +1885,7 @@ async function toneKeys(page) {
 test('тоны: круг из слов, ошибки повторяются, практика и отчёт учителю не затронуты', { skip }, async () => {
   const withWords = buildPage('tones', { change: (data) => { data['tone-words'] = { words: toneWords }; } });
   const { page, context, errors } = await open(withWords, { hash: '#/tones' });
+  await page.getByRole('radio', { name: 'Тест', exact: true }).check();
   await see(page, 'h2', /Тоны · задание 15/);
   await see(page, '#available', /Доступно: 4 слова\. В раунд попадёт 4\./);
   // Счётчики у фишек: HSK 1 — два слова, три иероглифа — одно; выбор в другой группе их сужает.
@@ -2140,6 +2142,7 @@ test('практика C: источники раскрываются, ссыл�
 
 test('новые задания: видимый выбор, история попыток, сохранение и исчерпание подборки', { skip }, async () => {
   const { page, context, errors } = await open(mainUrl, { width: 390, height: 844, hash: '#/practice/setup' });
+  await page.getByRole('radio', { name: 'Тест', exact: true }).check();
   const at = '2026-11-01T12:00:00.000Z';
   let progress = L.recordAnswer(L.emptyProgress(), 'questions', 'q22-a', '1', true, at);
   progress = L.recordAnswer(progress, 'questions', 'q20-a', '1', false, at);
@@ -2187,6 +2190,7 @@ test('новые задания: видимый выбор, история по�
 test('тоны: новые слова выбираются явно и не меняют фильтр практики', { skip }, async () => {
   const url = buildPage('tones-new-mode', { change: (data) => { data['tone-words'] = { words: toneWords }; } });
   const { page, context, errors } = await open(url, { width: 320, height: 640, hash: '#/tones/setup' });
+  await page.getByRole('radio', { name: 'Тест', exact: true }).check();
   await page.getByRole('radio', { name: 'Только новые', exact: true }).check({ timeout: 2000 });
   await page.reload();
   assert.equal(await page.getByRole('radio', { name: 'Только новые', exact: true }).isChecked(), true);
@@ -2239,20 +2243,59 @@ test('пробел: в проверке по правилу после отве�
   await context.close();
 });
 
-test('training UI: режим сохраняется отдельно в практике и тонах', { skip }, async () => {
+test('training default: тренировка по умолчанию, выбор теста сохраняется отдельно', { skip }, async () => {
   const url = buildPage('training-settings', { change: (data) => { data['tone-words'] = { words: toneWords }; } });
   const { page, context, errors } = await open(url, { hash: '#/practice/setup' });
-  assert.equal(await page.getByRole('radio', { name: 'Тест', exact: true }).isChecked(), true);
-  await page.getByRole('radio', { name: 'Тренировка', exact: true }).check({ timeout: 2000 });
-  await page.reload();
   assert.equal(await page.getByRole('radio', { name: 'Тренировка', exact: true }).isChecked(), true);
+  await page.getByRole('radio', { name: 'Тест', exact: true }).check();
+  await page.reload();
+  assert.equal(await page.getByRole('radio', { name: 'Тест', exact: true }).isChecked(), true);
   await page.goto(`${url}#/tones/setup`);
+  assert.equal(await page.getByRole('radio', { name: 'Тренировка', exact: true }).isChecked(), true);
+  await page.getByRole('radio', { name: 'Тест', exact: true }).check();
+  await page.reload();
+  assert.equal(await page.getByRole('radio', { name: 'Тест', exact: true }).isChecked(), true);
+  await page.goto(`${url}#/practice/setup`);
   assert.equal(await page.getByRole('radio', { name: 'Тест', exact: true }).isChecked(), true);
   await page.getByRole('radio', { name: 'Тренировка', exact: true }).check();
+  await page.goto(`${url}#/tones/setup`);
+  assert.equal(await page.getByRole('radio', { name: 'Тест', exact: true }).isChecked(), true);
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test('training default: прежний тест переключается один раз, прогресс и фильтры сохраняются', { skip }, async () => {
+  const url = buildPage('training-migration', { change: (data) => { data['tone-words'] = { words: toneWords }; } });
+  const legacy = { ...L.emptyProgress(), round: L.startSession(['q22-a', 'q22-b'], '2026-11-09T10:00:00.000Z') };
+  legacy.round.answers = { 'q22-a': '1' };
+  const { page, context, errors } = await open(url, { hash: '#/practice/setup' });
+  await page.evaluate((progress) => {
+    localStorage.clear();
+    localStorage.setItem('ege-lg-trainer:progress', JSON.stringify(progress));
+    localStorage.setItem('ege-lg-trainer:filters', JSON.stringify({ tasks: [22], origins: ['fipi'], size: '5', roundType: 'test' }));
+    localStorage.setItem('ege-lg-trainer:tones-filters', JSON.stringify({ levels: [1], lengths: [2], size: '20', roundType: 'test' }));
+  }, legacy);
   await page.reload();
   assert.equal(await page.getByRole('radio', { name: 'Тренировка', exact: true }).isChecked(), true);
-  await page.goto(`${url}#/practice/setup`);
+  const settings = await page.evaluate(() => ['ege-lg-trainer:filters', 'ege-lg-trainer:tones-filters'].map((key) => JSON.parse(localStorage.getItem(key))));
+  assert.equal(settings[0].roundType, 'training');
+  assert.deepEqual(settings[0].tasks, [22]);
+  assert.deepEqual(settings[0].origins, ['fipi']);
+  assert.equal(settings[0].size, '5');
+  assert.equal(settings[1].roundType, 'training');
+  assert.deepEqual(settings[1].levels, [1]);
+  assert.deepEqual(settings[1].lengths, [2]);
+  assert.equal(settings[1].size, '20');
+  assert.deepEqual(await storedProgress(page), legacy);
+  await page.getByRole('radio', { name: 'Тест', exact: true }).check();
+  await page.reload();
+  assert.equal(await page.getByRole('radio', { name: 'Тест', exact: true }).isChecked(), true);
+  await page.goto(`${url}#/tones/setup`);
   assert.equal(await page.getByRole('radio', { name: 'Тренировка', exact: true }).isChecked(), true);
+  await page.getByRole('radio', { name: 'Тест', exact: true }).check();
+  await page.reload();
+  assert.equal(await page.getByRole('radio', { name: 'Тест', exact: true }).isChecked(), true);
+  assert.deepEqual(await storedProgress(page), legacy);
   assert.deepEqual(errors, []);
   await context.close();
 });
