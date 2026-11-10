@@ -17184,6 +17184,43 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g23-0102d042",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "0102d042-aac1-4ed9-9f95-fbb08be608b0",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "我的日记本已经写___了，没地方再写，只好去买新的。",
+    "options": [
+      {
+        "id": "1",
+        "text": "满"
+      },
+      {
+        "id": "2",
+        "text": "断"
+      },
+      {
+        "id": "3",
+        "text": "给"
+      },
+      {
+        "id": "4",
+        "text": "懂"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
     "id": "g23-02759bdf",
     "taskNumber": 23,
     "formatYear": 2026,
@@ -17480,6 +17517,43 @@
     "correctOptionId": "4"
   },
   {
+    "id": "g23-1df1b61d",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "1df1b61d-1b47-4afb-a3fe-37428493c61f",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "手推车上装着土，姐姐用力把它推___了，车轮开始转了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "懂"
+      },
+      {
+        "id": "2",
+        "text": "动"
+      },
+      {
+        "id": "3",
+        "text": "住"
+      },
+      {
+        "id": "4",
+        "text": "给"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g23-20773377",
     "taskNumber": 23,
     "formatYear": 2026,
@@ -17515,6 +17589,43 @@
       }
     ],
     "correctOptionId": "2"
+  },
+  {
+    "id": "g23-21277f1b",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "21277f1b-e965-4520-bada-7012250c1c49",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "晚饭后妈妈又拿来了点心，可我已经吃___了，不想再吃了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "给"
+      },
+      {
+        "id": "2",
+        "text": "在"
+      },
+      {
+        "id": "3",
+        "text": "饱"
+      },
+      {
+        "id": "4",
+        "text": "会"
+      }
+    ],
+    "correctOptionId": "3"
   },
   {
     "id": "g23-2291a646",
@@ -17591,6 +17702,43 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g23-242bfa62",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "242bfa62-a746-4853-827e-bb8924bf22e2",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "钥匙掉到书柜后面了，爸爸和我把书柜搬___了，终于拿到了钥匙。",
+    "options": [
+      {
+        "id": "1",
+        "text": "动"
+      },
+      {
+        "id": "2",
+        "text": "会"
+      },
+      {
+        "id": "3",
+        "text": "懂"
+      },
+      {
+        "id": "4",
+        "text": "给"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
     "id": "g23-2660e8e2",
     "taskNumber": 23,
     "formatYear": 2026,
@@ -17628,6 +17776,43 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g23-2afad3d6",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "2afad3d6-87dd-4851-866b-d118fc290961",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "弟弟踢球时，不小心把窗户的玻璃打___了，地上全是碎片。",
+    "options": [
+      {
+        "id": "1",
+        "text": "满"
+      },
+      {
+        "id": "2",
+        "text": "破"
+      },
+      {
+        "id": "3",
+        "text": "给"
+      },
+      {
+        "id": "4",
+        "text": "懂"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g23-2f51163c",
     "taskNumber": 23,
     "formatYear": 2026,
@@ -17663,6 +17848,80 @@
       }
     ],
     "correctOptionId": "2"
+  },
+  {
+    "id": "g23-33f612b5",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "33f612b5-d602-4a43-b3ad-a9793b8350bf",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "写字时我太用力，把笔尖弄___了，只好停下来削铅笔。",
+    "options": [
+      {
+        "id": "1",
+        "text": "给"
+      },
+      {
+        "id": "2",
+        "text": "满"
+      },
+      {
+        "id": "3",
+        "text": "断"
+      },
+      {
+        "id": "4",
+        "text": "懂"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g23-39301efb",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "39301efb-5eab-4848-8be0-bf8a9d809754",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "妈妈把罐子装___了糖，里面已经没有空的地方了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "给"
+      },
+      {
+        "id": "2",
+        "text": "破"
+      },
+      {
+        "id": "3",
+        "text": "断"
+      },
+      {
+        "id": "4",
+        "text": "满"
+      }
+    ],
+    "correctOptionId": "4"
   },
   {
     "id": "g23-3d9a5923",
@@ -17813,6 +18072,43 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g23-45d4b1a4",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "45d4b1a4-f385-4642-a9f8-774f54edb1ec",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "我猜明天会下雪，第二天果然下雪了，大家都说我猜___了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "饱"
+      },
+      {
+        "id": "2",
+        "text": "住"
+      },
+      {
+        "id": "3",
+        "text": "错"
+      },
+      {
+        "id": "4",
+        "text": "对"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
     "id": "g23-482bedee",
     "taskNumber": 23,
     "formatYear": 2026,
@@ -17848,6 +18144,43 @@
       }
     ],
     "correctOptionId": "2"
+  },
+  {
+    "id": "g23-48d8c508",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "48d8c508-c466-4024-856e-78e000dd20bd",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "切水果时，我不小心把手指弄___了，流了一点血。",
+    "options": [
+      {
+        "id": "1",
+        "text": "破"
+      },
+      {
+        "id": "2",
+        "text": "懂"
+      },
+      {
+        "id": "3",
+        "text": "满"
+      },
+      {
+        "id": "4",
+        "text": "给"
+      }
+    ],
+    "correctOptionId": "1"
   },
   {
     "id": "g23-4da2b1b5",
@@ -17996,6 +18329,43 @@
       }
     ],
     "correctOptionId": "2"
+  },
+  {
+    "id": "g23-5b1ff8a1",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5b1ff8a1-ca05-4e48-a716-a24fd8b0bfb0",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "夜里停电了，妈妈把手电筒打___了，房间里马上亮了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "错"
+      },
+      {
+        "id": "2",
+        "text": "住"
+      },
+      {
+        "id": "3",
+        "text": "饱"
+      },
+      {
+        "id": "4",
+        "text": "开"
+      }
+    ],
+    "correctOptionId": "4"
   },
   {
     "id": "g23-5cefe05e",
@@ -18627,6 +18997,43 @@
     "correctOptionId": "4"
   },
   {
+    "id": "g23-905d72ee",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "905d72ee-47c5-4223-bdcc-12edd1d88fbb",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "这些菜一共多少钱，我算___了，和售货员说的完全一样。",
+    "options": [
+      {
+        "id": "1",
+        "text": "住"
+      },
+      {
+        "id": "2",
+        "text": "对"
+      },
+      {
+        "id": "3",
+        "text": "饱"
+      },
+      {
+        "id": "4",
+        "text": "错"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g23-975dd0f3",
     "taskNumber": 23,
     "formatYear": 2026,
@@ -18736,6 +19143,43 @@
       }
     ],
     "correctOptionId": "3"
+  },
+  {
+    "id": "g23-a95ab399",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "a95ab399-0289-4c4e-a26c-e2398add2e6b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "为了赶火车，我在车站只吃了一点面包，没吃___，上车以后还想再吃。",
+    "options": [
+      {
+        "id": "1",
+        "text": "饱"
+      },
+      {
+        "id": "2",
+        "text": "给"
+      },
+      {
+        "id": "3",
+        "text": "会"
+      },
+      {
+        "id": "4",
+        "text": "懂"
+      }
+    ],
+    "correctOptionId": "1"
   },
   {
     "id": "g23-ab46fa16",
@@ -18997,6 +19441,43 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g23-be2c3842",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "be2c3842-39a2-41cb-b15f-2eddcdbcf701",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "绳子太长，爸爸用刀把它切___了，分成了两段。",
+    "options": [
+      {
+        "id": "1",
+        "text": "满"
+      },
+      {
+        "id": "2",
+        "text": "断"
+      },
+      {
+        "id": "3",
+        "text": "住"
+      },
+      {
+        "id": "4",
+        "text": "给"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g23-c215c51a",
     "taskNumber": 23,
     "formatYear": 2026,
@@ -19145,6 +19626,43 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g23-d561206a",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d561206a-bbdc-44b6-b302-66f5ed645c2f",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "爸爸把蜡烛点___了，火苗亮了起来，大家开始唱生日歌。",
+    "options": [
+      {
+        "id": "1",
+        "text": "破"
+      },
+      {
+        "id": "2",
+        "text": "给"
+      },
+      {
+        "id": "3",
+        "text": "着"
+      },
+      {
+        "id": "4",
+        "text": "住"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g23-da10bd2b",
     "taskNumber": 23,
     "formatYear": 2026,
@@ -19180,6 +19698,43 @@
       }
     ],
     "correctOptionId": "1"
+  },
+  {
+    "id": "g23-db36a0a3",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "db36a0a3-124b-4e51-a362-5c223eb31947",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "路上有石头挡着，爸爸把它推___了，大家才继续往前走。",
+    "options": [
+      {
+        "id": "1",
+        "text": "懂"
+      },
+      {
+        "id": "2",
+        "text": "在"
+      },
+      {
+        "id": "3",
+        "text": "开"
+      },
+      {
+        "id": "4",
+        "text": "到"
+      }
+    ],
+    "correctOptionId": "3"
   },
   {
     "id": "g23-de6367f4",
@@ -19291,6 +19846,43 @@
       }
     ],
     "correctOptionId": "1"
+  },
+  {
+    "id": "g23-e0ba4f3c",
+    "taskNumber": 23,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "e0ba4f3c-f2fd-4dc6-a201-eff07c496578",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "01-задания"
+    },
+    "codifierCodes": [
+      "2.4.64"
+    ],
+    "prompt": "Укажите, какая результативная морфема пропущена в данном предложении.",
+    "stem": "爷爷看球赛时睡___了，比赛结束后才醒来。",
+    "options": [
+      {
+        "id": "1",
+        "text": "满"
+      },
+      {
+        "id": "2",
+        "text": "到"
+      },
+      {
+        "id": "3",
+        "text": "给"
+      },
+      {
+        "id": "4",
+        "text": "着"
+      }
+    ],
+    "correctOptionId": "4"
   },
   {
     "id": "g23-e6330247",

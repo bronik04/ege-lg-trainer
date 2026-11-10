@@ -84,14 +84,17 @@
 - `g23-1375e3f0` «到了那»: правило result-complements
 - `g23-1375e3f0` «找到了»: `g17-7b5ce824`, `h26-464d3cbe`, `q22-bd920829`
 - `g23-20773377` «擦掉了»: правило result-more
+- `g23-2afad3d6` «打破了»: правило ba-bei
 - `g23-3d9a5923` «准备好»: `g20-8965b061`, правило result-complements
 - `g23-3d9a5923` «备好了»: правило result-complements
 - `g23-44fc7f3f` «累坏了»: правило result-rare
+- `g23-5b1ff8a1` «打开了»: правило jiu-cai
 - `g23-5cefe05e` «翻译成»: правило result-rare
 - `g23-5e9f5c71` «吃光了»: правило result-rare
 - `g23-860e1a89` «听懂了»: правило result-complements
 - `g23-bb232c5b` «花光了»: вопрос check-rr-guang, правило result-rare
 - `g23-de6367f4` «记住了»: вопрос check-rc-zhu
+- `g23-e0ba4f3c` «睡着了»: `g27-e6931c15`
 - `q16-153f9be8` «一条裙»: правило measure-words
 - `q16-153f9be8` «条裙子»: правило measure-words
 - `q16-2a9b389a` «一架飞»: правило measure-words-more
