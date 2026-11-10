@@ -21288,6 +21288,120 @@
     "correctOptionId": "4"
   },
   {
+    "id": "g24-09b239c1",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "09b239c1-ba41-4e3f-847c-8a254820dec3",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 1"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "这本书里的故事都是用图画讲的，不认识字的弟弟也看___，还能讲给我听。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得住"
+      },
+      {
+        "id": "2",
+        "text": "不懂"
+      },
+      {
+        "id": "3",
+        "text": "得懂"
+      },
+      {
+        "id": "4",
+        "text": "得起"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g24-13389417",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "13389417-ee20-4089-9b6d-242b547c642d",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 2"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "这扇门没有锁，也不重，弟弟不用我帮忙就推___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得懂"
+      },
+      {
+        "id": "2",
+        "text": "不动"
+      },
+      {
+        "id": "3",
+        "text": "得完"
+      },
+      {
+        "id": "4",
+        "text": "得动"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g24-1478ba90",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "1478ba90-8367-4f76-ba47-372a510fa2f9",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 2"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "阳台上还有一块空地方，这张小桌子放___，不会挡住门。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不下"
+      },
+      {
+        "id": "2",
+        "text": "得完"
+      },
+      {
+        "id": "3",
+        "text": "得下"
+      },
+      {
+        "id": "4",
+        "text": "得见"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g24-1766fb8d",
     "taskNumber": 24,
     "formatYear": 2026,
@@ -21362,6 +21476,44 @@
       }
     ],
     "correctOptionId": "2"
+  },
+  {
+    "id": "g24-220261c7",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "220261c7-8069-437c-b253-dfab21956eab",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 2"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "电影只有一个小时，我们出发前还有两个小时，肯定看___，不用留到明天。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得完"
+      },
+      {
+        "id": "2",
+        "text": "得动"
+      },
+      {
+        "id": "3",
+        "text": "不完"
+      },
+      {
+        "id": "4",
+        "text": "得住"
+      }
+    ],
+    "correctOptionId": "1"
   },
   {
     "id": "g24-28d2af0c",
@@ -21478,6 +21630,158 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g24-362986f5",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "362986f5-a3a3-4533-a699-2591f7e4a79e",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 1"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "给妈妈的信只差最后两句话，五分钟我就写___，然后去邮局寄。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不完"
+      },
+      {
+        "id": "2",
+        "text": "得完"
+      },
+      {
+        "id": "3",
+        "text": "得见"
+      },
+      {
+        "id": "4",
+        "text": "得起"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g24-41ea4fd7",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "41ea4fd7-95e1-4c10-912f-e921e40ba6df",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 2"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "你穿那件红衣服在车站门口等我，我一下车就找___你，不用打电话。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得到"
+      },
+      {
+        "id": "2",
+        "text": "不到"
+      },
+      {
+        "id": "3",
+        "text": "得下"
+      },
+      {
+        "id": "4",
+        "text": "得完"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g24-5808209a",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5808209a-1b88-421b-b937-a83f89a04b22",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 1"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "广播的声音很大，可是用的语言大家都没学过，所以没有人听___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得懂"
+      },
+      {
+        "id": "2",
+        "text": "得住"
+      },
+      {
+        "id": "3",
+        "text": "不懂"
+      },
+      {
+        "id": "4",
+        "text": "得动"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g24-5a0ae407",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5a0ae407-e84c-4e25-8faf-a46fbd6185a4",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 2"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "这个饭盒很大，米饭和两样菜都装___，不用再带第二个。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得动"
+      },
+      {
+        "id": "2",
+        "text": "不下"
+      },
+      {
+        "id": "3",
+        "text": "得懂"
+      },
+      {
+        "id": "4",
+        "text": "得下"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
     "id": "g24-5fa6adb2",
     "taskNumber": 24,
     "formatYear": 2026,
@@ -21514,6 +21818,44 @@
       }
     ],
     "correctOptionId": "4"
+  },
+  {
+    "id": "g24-70b9ad6a",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "70b9ad6a-c64f-476f-81e3-6b5adface56f",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 2"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "箱子装了不少东西，不过有轮子，弟弟一个人也拉___，不用我帮忙。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得下"
+      },
+      {
+        "id": "2",
+        "text": "得懂"
+      },
+      {
+        "id": "3",
+        "text": "得动"
+      },
+      {
+        "id": "4",
+        "text": "不动"
+      }
+    ],
+    "correctOptionId": "3"
   },
   {
     "id": "g24-73b98ae5",
@@ -21554,6 +21896,44 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g24-76307b6c",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "76307b6c-3fbb-4f1b-8f50-2d7f6bd48d43",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 1"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "今天只要扫地和擦桌子，两个人一起做，半个小时肯定做___这些家务。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得起"
+      },
+      {
+        "id": "2",
+        "text": "不完"
+      },
+      {
+        "id": "3",
+        "text": "得见"
+      },
+      {
+        "id": "4",
+        "text": "得完"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
     "id": "g24-78d7c578",
     "taskNumber": 24,
     "formatYear": 2026,
@@ -21587,6 +21967,82 @@
       {
         "id": "4",
         "text": "得下"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g24-7b74f3b5",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "7b74f3b5-94de-4286-9e22-91d8d11b1f25",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 1"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "篮子里只剩两个苹果，我很快就洗___，不会让大家等太久。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得完"
+      },
+      {
+        "id": "2",
+        "text": "得住"
+      },
+      {
+        "id": "3",
+        "text": "得起"
+      },
+      {
+        "id": "4",
+        "text": "不完"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g24-81cc96e1",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "81cc96e1-994a-47f1-8b25-9c0dcbeaf520",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 1"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "门铃一响，我在厨房也听___，马上就去开门。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得起"
+      },
+      {
+        "id": "2",
+        "text": "不见"
+      },
+      {
+        "id": "3",
+        "text": "得见"
+      },
+      {
+        "id": "4",
+        "text": "得住"
       }
     ],
     "correctOptionId": "3"
@@ -21630,6 +22086,44 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g24-87b59a7e",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "87b59a7e-a055-41f0-8646-19493053157d",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 1"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "小李会英语，这份英文菜单他看___，不用我翻译。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得动"
+      },
+      {
+        "id": "2",
+        "text": "得住"
+      },
+      {
+        "id": "3",
+        "text": "不懂"
+      },
+      {
+        "id": "4",
+        "text": "得懂"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
     "id": "g24-8d6a9fa5",
     "taskNumber": 24,
     "formatYear": 2026,
@@ -21663,6 +22157,44 @@
       {
         "id": "4",
         "text": "不了"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g24-8eee4bea",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "8eee4bea-1fb8-4e5c-9bff-021d31295dd3",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 1"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "奶奶说的家乡话，我从小就听，现在听___，不用别人翻译。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不懂"
+      },
+      {
+        "id": "2",
+        "text": "得懂"
+      },
+      {
+        "id": "3",
+        "text": "得住"
+      },
+      {
+        "id": "4",
+        "text": "得起"
       }
     ],
     "correctOptionId": "2"
@@ -21704,6 +22236,44 @@
       }
     ],
     "correctOptionId": "2"
+  },
+  {
+    "id": "g24-97c73db3",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "97c73db3-2c8c-419d-bf4e-a06c8d9806b7",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 1"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "墙上的钟数字很大，我在房间另一头也看___现在是几点。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得清楚"
+      },
+      {
+        "id": "2",
+        "text": "不清楚"
+      },
+      {
+        "id": "3",
+        "text": "得住"
+      },
+      {
+        "id": "4",
+        "text": "得起"
+      }
+    ],
+    "correctOptionId": "1"
   },
   {
     "id": "g24-b02ed8a0",
@@ -21820,6 +22390,44 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g24-bd98cfe9",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "bd98cfe9-a784-40c7-89ff-bbc4579a9bee",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 1"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "旁边的人说话太大声，你报的电话号码我听___，请再说一遍。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不住"
+      },
+      {
+        "id": "2",
+        "text": "不清楚"
+      },
+      {
+        "id": "3",
+        "text": "得清楚"
+      },
+      {
+        "id": "4",
+        "text": "不起"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g24-c0310d94",
     "taskNumber": 24,
     "formatYear": 2026,
@@ -21856,6 +22464,82 @@
       }
     ],
     "correctOptionId": "1"
+  },
+  {
+    "id": "g24-c4bcac72",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c4bcac72-ed4a-443a-8b47-388c6ef15ff3",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 2"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "一共有三十个碗，我一分钟只能洗一个，五分钟肯定洗___，请你来帮忙。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得完"
+      },
+      {
+        "id": "2",
+        "text": "不完"
+      },
+      {
+        "id": "3",
+        "text": "不懂"
+      },
+      {
+        "id": "4",
+        "text": "不到"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g24-c9f3578d",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c9f3578d-6b15-4cdc-aa75-a5c14bb92623",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 1"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "戴上耳机以后，你说的每个字我都听___，不用再大声说了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得住"
+      },
+      {
+        "id": "2",
+        "text": "不清楚"
+      },
+      {
+        "id": "3",
+        "text": "得清楚"
+      },
+      {
+        "id": "4",
+        "text": "得起"
+      }
+    ],
+    "correctOptionId": "3"
   },
   {
     "id": "g24-d2329cdf",
@@ -21896,6 +22580,44 @@
     "correctOptionId": "4"
   },
   {
+    "id": "g24-d4761edc",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d4761edc-e792-400f-afdf-84f274c53bd6",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 2"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "这盆花不重，我搬___，你帮我开一下门就行。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得完"
+      },
+      {
+        "id": "2",
+        "text": "得动"
+      },
+      {
+        "id": "3",
+        "text": "得见"
+      },
+      {
+        "id": "4",
+        "text": "不动"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g24-dd8c2ca8",
     "taskNumber": 24,
     "formatYear": 2026,
@@ -21932,6 +22654,82 @@
       }
     ],
     "correctOptionId": "3"
+  },
+  {
+    "id": "g24-e85171cc",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "e85171cc-a581-4cce-99e5-78bd82f12b21",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 2"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "这架钢琴太重，我一个人怎么也抬___，得请几个人来帮忙。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不动"
+      },
+      {
+        "id": "2",
+        "text": "得动"
+      },
+      {
+        "id": "3",
+        "text": "不懂"
+      },
+      {
+        "id": "4",
+        "text": "不完"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g24-e9c88a8f",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "e9c88a8f-bbd0-449e-9b64-5f48a4507444",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 2"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "老板说红纸还有很多，我们去那家商店就买___，不用再跑别处。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得住"
+      },
+      {
+        "id": "2",
+        "text": "得到"
+      },
+      {
+        "id": "3",
+        "text": "不到"
+      },
+      {
+        "id": "4",
+        "text": "得动"
+      }
+    ],
+    "correctOptionId": "2"
   },
   {
     "id": "g24-e9ff531b",
@@ -22005,6 +22803,120 @@
       {
         "id": "4",
         "text": "不住"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g24-f524d245",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f524d245-221a-480b-893b-a8c7396b0b48",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 1"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "教室前面没有人挡着，最后一排的同学也看___黑板。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不见"
+      },
+      {
+        "id": "2",
+        "text": "得动"
+      },
+      {
+        "id": "3",
+        "text": "得住"
+      },
+      {
+        "id": "4",
+        "text": "得见"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g24-fd8c7824",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "fd8c7824-b33d-471d-979f-6df6f1b4b1ff",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 2"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "钱带够了，可附近的商店都关门了，今晚在这儿买___牛奶，只好明天再来。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不起"
+      },
+      {
+        "id": "2",
+        "text": "得到"
+      },
+      {
+        "id": "3",
+        "text": "不懂"
+      },
+      {
+        "id": "4",
+        "text": "不到"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g24-ffe83183",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "ffe83183-cda2-47fb-a354-dcfb8bb8d83d",
+      "file": "sources/bank/export.json",
+      "collection": "Авторские задания ЕГЭ: №24, расширение до100",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2026-11-10 №24 партия 2"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "体育老师还有两个篮球，答应给我们留一个，所以我们放学后借___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不到"
+      },
+      {
+        "id": "2",
+        "text": "得动"
+      },
+      {
+        "id": "3",
+        "text": "得到"
+      },
+      {
+        "id": "4",
+        "text": "得完"
       }
     ],
     "correctOptionId": "3"

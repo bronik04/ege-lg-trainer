@@ -70,6 +70,7 @@
 банк ФИПИ не правят.
 
 - `g16-697c2ded` «了一道»: `q17-870095c1`
+- `g16-a135e88d` «有一块»: `g24-1478ba90`
 - `g16-aa49fdcd` «了一家»: правило word-choice
 - `g16-d8aac740` «了一台»: `q24-e12e1902`
 - `g17-00285a5a` «参观了»: правило word-choice
@@ -95,6 +96,13 @@
 - `g23-bb232c5b` «花光了»: вопрос check-rr-guang, правило result-rare
 - `g23-de6367f4` «记住了»: вопрос check-rc-zhu
 - `g23-e0ba4f3c` «睡着了»: `g27-e6931c15`
+- `g24-362986f5` «写得完»: правило potential-complements
+- `g24-97c73db3` «看得清楚»: `h26-df2b294b`
+- `g24-bd98cfe9` «听不清楚»: правило potential-complements
+- `g24-c9f3578d` «听得清楚»: правило potential-complements
+- `g24-d4761edc` «搬得动»: правило potential-complements
+- `g24-fd8c7824` «买不到»: `h26-4446c80d`, `h26-bc33e02b`, правило potential-complements
+- `g24-ffe83183` «借得到»: правило potential-complements
 - `q16-153f9be8` «一条裙»: правило measure-words
 - `q16-153f9be8` «条裙子»: правило measure-words
 - `q16-2a9b389a` «一架飞»: правило measure-words-more
@@ -109,6 +117,7 @@
 - `q16-fff46d4a` «门外语»: правило measure-words-more
 - `q17-22430935` «的时间»: `g23-8c6ebc31`, `g23-bb232c5b`
 - `q21-da9ba3fd` «的时间»: `g23-8c6ebc31`, `g23-bb232c5b`
+- `q22-1accf8c9` «再说一»: `g24-bd98cfe9`
 - `q22-b24a67ef` «今天又»: `g16-aaee9fbc`
 - `q23-147437cc` «上了一»: `g16-697c2ded`
 - `q25-a3749f53` «出去了»: `g27-f19a27db`
