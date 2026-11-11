@@ -214,6 +214,20 @@ test('ВсОШ: настройки раунда используют оформ�
   const { page, context, errors } = await open(olympiadPage(), { hash: '#/vsosh' });
   try {
     await see(page, '.practice-next h2', 'Все темы ВсОШ');
+    const rows = page.locator('#vsoshTopics .contents .task-row');
+    assert.equal(await rows.count(), 3);
+    const columns = () => rows.evaluateAll((nodes) => new Set(nodes.map((node) => node.getBoundingClientRect().x)).size);
+    assert.equal(await columns(), 2);
+    await page.setViewportSize({ width: 390, height: 900 });
+    assert.equal(await columns(), 1);
+    const topic = page.getByRole('checkbox', { name: 'Выбор слова в тексте 1 карточка' });
+    await topic.focus();
+    await page.keyboard.press('Space');
+    assert.equal(await topic.isChecked(), true);
+    assert.equal(await topic.evaluate((node) => node === document.activeElement), true);
+    await see(page, '#practiceAvailable', /1 карточка в раунде/);
+    await page.getByRole('button', { name: 'Снять фильтры' }).click();
+    assert.equal(await topic.isChecked(), false);
     await page.locator('#roundSize').fill('2');
     await page.locator('#roundSize').press('Enter');
     await see(page, '#practiceAvailable', /2 карточки в раунде/);

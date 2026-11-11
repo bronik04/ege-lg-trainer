@@ -1038,6 +1038,13 @@
     return list.includes(value) ? list.filter((x) => x !== value) : [...list, value];
   }
 
+  function contentsRow({ marker, title, count, unit, input }) {
+    return el('label', { class: 'task-row' },
+      el('input', { type: 'checkbox', ...input }),
+      el('span', {}, marker, el('span', { class: 'task-title', text: title }),
+        el('small', {}, String(count), el('span', { class: 'sr', text: ` ${unit}` }))));
+  }
+
   // Оглавление по номерам: номер в клетке, тема номера, число заданий. Тема с карточки
   // правила или из старой ссылки (filters.topics) только сужает: номер без неё не нажать.
   function taskContents() {
@@ -1065,9 +1072,11 @@
       focus,
       el('div', { class: 'contents' }, rows.map((r) => {
         const checked = filters.tasks.includes(r.n);
-        return el('label', { class: 'task-row' },
-          el('input', {
-            type: 'checkbox', checked, disabled: !checked && !r.count, dataset: { key: `Задания:${r.n}` },
+        return contentsRow({
+          marker: cellnum(r.n), title: r.title, count: r.count,
+          unit: plural(r.count, 'задание', 'задания', 'заданий'),
+          input: {
+            checked, disabled: !checked && !r.count, dataset: { key: `Задания:${r.n}` },
             onchange: () => {
               filters = fitRules({ ...filters, tasks: toggle(filters.tasks, r.n) }, questions);
               saveFilters();
@@ -1077,11 +1086,8 @@
               const off = view.querySelector('#topicFocus button');
               if (same && same.disabled && off) off.focus();
             },
-          }),
-          el('span', {},
-            cellnum(r.n),
-            el('span', { class: 'task-title', text: r.title }),
-            el('small', {}, String(r.count), el('span', { class: 'sr', text: ` ${plural(r.count, 'задание', 'задания', 'заданий')}` }))));
+          },
+        });
       })));
   }
 
@@ -1576,9 +1582,9 @@
     try { window.sessionStorage.setItem(VSOSH_SESSION_KEY, JSON.stringify(vsoshState)); } catch { /* продолжим в памяти */ }
   }
 
-  function vsoshPool() {
-    return olympiadCards.filter((card) => !vsoshState.topics.length
-      || card.questions.some((q) => vsoshState.topics.includes(q.topicId)));
+  function vsoshPool(topics = vsoshState.topics) {
+    return olympiadCards.filter((card) => !topics.length
+      || card.questions.some((q) => topics.includes(q.topicId)));
   }
 
   function startVsosh(ids, type = vsoshState.roundType) {
@@ -1590,6 +1596,24 @@
   }
 
   const cardsWord = (n) => `${n} ${plural(n, 'карточка', 'карточки', 'карточек')}`;
+
+  function vsoshTopicContents() {
+    return el('fieldset', { class: 'filter practice-contents', id: 'vsoshTopics' },
+      el('legend', { text: 'Темы' }),
+      el('div', { class: 'contents' }, [...olympiadTopics].map(([id, title]) => {
+        const checked = vsoshState.topics.includes(id);
+        const count = vsoshPool([id]).length;
+        return contentsRow({
+          marker: el('span', { class: 'cellnum', 'aria-hidden': 'true', text: checked ? '✓' : '' }),
+          title, count, unit: plural(count, 'карточка', 'карточки', 'карточек'),
+          input: { checked, dataset: { key: `Темы:${id}` }, onchange: () => {
+            vsoshState.topics = toggle(vsoshState.topics, id);
+            saveVsosh();
+            render(false);
+          } },
+        });
+      })));
+  }
 
   function renderVsoshSetup() {
     view.classList.add('practice-setup');
@@ -1618,12 +1642,7 @@
     }));
     view.append(el('div', { class: 'practice-settings vsosh-settings' }, roundModeControl(vsoshState, saveVsosh), size.node));
     if (vsoshState.roundType === 'training') view.append(trainingHint('карточек'));
-    view.append(chipGroup('Темы', [...olympiadTopics].map(([value, label]) => ({ value, label })), vsoshState.topics,
-      (value) => {
-        vsoshState.topics = toggle(vsoshState.topics, value);
-        saveVsosh();
-        render(false);
-      }, 'vsoshTopics'));
+    view.append(vsoshTopicContents());
     if (topics.length) view.append(el('div', { class: 'actions practice-service' },
       el('button', { class: 'button ghost', type: 'button', onclick: () => {
         vsoshState.topics = [];
