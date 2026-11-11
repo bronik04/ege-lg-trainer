@@ -216,6 +216,7 @@ test('ВсОШ: настройки раунда используют оформ�
     await see(page, '.practice-next h2', 'Все темы ВсОШ');
     const rows = page.locator('#vsoshTopics .contents .task-row');
     assert.equal(await rows.count(), 3);
+    assert.equal(await rows.locator('.cellnum').count(), 0);
     const columns = () => rows.evaluateAll((nodes) => new Set(nodes.map((node) => node.getBoundingClientRect().x)).size);
     assert.equal(await columns(), 2);
     await page.setViewportSize({ width: 390, height: 900 });
@@ -818,7 +819,7 @@ test('ссылки учителя: подборка, те же задания, �
   const other = await open(roundLink);
   await see(other.page, '.progress', /Задание 1 из 2/);
   assert.deepEqual((await storedProgress(other.page)).round.ids, roundIds);
-  assert.equal(new URL(other.page.url()).hash, '#/practice');
+  assert.equal(new URL(other.page.url()).hash, '#/practice/run');
   await other.context.close();
 
   // Вариант по ссылке: у всех одни и те же 13 заданий.
@@ -1838,18 +1839,19 @@ test('раунд больше 100 заданий: отчёт учителю не
     for (let i = 0; i < 101; i += 1) d.questions.push({ ...base, id: `q20-x${i}` });
   } });
   const { page, context, errors } = await open(bigUrl, { hash: '#/practice' });
-  const put = (ids) => page.evaluate((round) => localStorage.setItem('ege-lg-trainer:progress',
-    JSON.stringify({ version: 2, questions: {}, checks: {}, round, variant: null, history: [] })),
-  { ids, answers: {}, index: 0, startedAt: 't0', finishedAt: '2026-10-04T10:00:00.000Z' });
+  const openResult = async (ids) => {
+    await page.evaluate((round) => localStorage.setItem('ege-lg-trainer:progress',
+      JSON.stringify({ version: 2, questions: {}, checks: {}, round, variant: null, history: [] })),
+    { ids, answers: {}, index: 0, startedAt: 't0', finishedAt: '2026-10-04T10:00:00.000Z' });
+    await page.reload();
+    await page.goto(`${bigUrl}#/practice?ids=${ids.join(',')}`);
+    await see(page, 'h2', /Раунд окончен/);
+  };
   const ids = Array.from({ length: 101 }, (_, i) => `q20-x${i}`);
-  await put(ids);
-  await page.reload();
-  await see(page, 'h2', /Раунд окончен/);
+  await openResult(ids);
   assert.equal(await page.locator('#report-round').count(), 0);
   await see(page, '#reportTooBig', /до 100 заданий/);
-  await put(ids.slice(0, 100));
-  await page.reload();
-  await see(page, 'h2', /Раунд окончен/);
+  await openResult(ids.slice(0, 100));
   assert.equal(await page.locator('#report-round').count(), 1);
   assert.deepEqual(errors, []);
   await context.close();
@@ -2026,6 +2028,61 @@ const toneWords = [
   { word: '工程师', level: 3, pinyin: 'gōngchéngshī', syllables: ['gōng', 'chéng', 'shī'], tones: [1, 2, 1], ru: 'инженер' },
 ].map((w) => ({ ...w, status: 'accepted', acceptedHash: 'x' }));
 
+for (const [name, tab, start] of [
+  ['practice', 'Практика', '#startRound'], ['vsosh', 'ВсОШ', '#startRound'], ['tones', 'Тоны', '#startTones'],
+]) {
+  test(`раунды: ${tab} открывает настройки при возврате и сохраняет ответы до явного продолжения`, { skip }, async () => {
+    const url = name === 'vsosh' ? olympiadPage() : name === 'tones'
+      ? buildPage('tones-return', { change: (data) => { data['tone-words'] = { words: toneWords }; } })
+      : mainUrl;
+    const { page, context, errors } = await open(url, { hash: `#/${name}` });
+    try {
+      const enter = page.getByRole('link', { name: tab, exact: true });
+      const leave = page.locator('.tabs [data-tab="rules"]');
+      const resume = page.getByRole('link', { name: /Продолжить раунд/ });
+      const card = page.locator('[data-card]');
+      await page.getByRole('radio', { name: 'Тест', exact: true }).check();
+      if (name === 'vsosh') await page.getByRole('checkbox', { name: /Место слова в предложении/ }).check();
+      await page.locator('#roundSize').fill('1');
+      await page.locator('#roundSize').press('Enter');
+      await page.locator(start).click();
+      await card.waitFor();
+      await page.keyboard.press('1');
+      await page.locator('.feedback').waitFor();
+      await leave.click();
+      await enter.click();
+      await page.locator(start).waitFor({ timeout: 3000 });
+      assert.equal(await card.count(), 0);
+      await resume.click();
+      await page.locator('.feedback').waitFor();
+      await page.reload();
+      await page.locator('.feedback').waitFor();
+      await page.getByRole('button', { name: 'Итог раунда', exact: true }).click();
+      await page.locator('.score').waitFor();
+      await page.reload();
+      await page.locator('.score').waitFor();
+      await leave.click();
+      await enter.click();
+      await page.locator(start).waitFor({ timeout: 3000 });
+      assert.equal(await page.locator('.score').count(), 0);
+      assert.equal(await resume.count(), 0);
+      await page.locator(start).click();
+      await card.waitFor();
+      await page.keyboard.press('1');
+      await page.locator('.feedback').waitFor();
+      await page.getByRole('button', { name: 'Итог раунда', exact: true }).click();
+      await page.getByRole('link', { name: 'Новый раунд', exact: true }).click();
+      await page.locator(start).waitFor();
+      await page.goBack();
+      await page.locator(start).waitFor({ timeout: 3000 });
+      assert.equal(await page.locator('.score').count(), 0);
+      assert.deepEqual(errors, []);
+    } finally {
+      await context.close();
+    }
+  });
+}
+
 // Верный и один из неверных ответов по слову на экране: данные берутся из самой страницы.
 async function toneKeys(page) {
   const data = JSON.parse(await page.locator('#trainer-data').evaluate((n) => n.textContent));
@@ -2070,19 +2127,9 @@ test('тоны: круг из слов, ошибки повторяются, п�
   await see(page, '.score', /3 из 4/);
   assert.equal(await page.getByRole('button', { name: /Отчёт учителю/ }).count(), 0, 'отчёта у круга тонов нет');
   assert.equal(await page.getByRole('button', { name: /Ссылка на эти/ }).count(), 0, 'ссылки на круг тонов нет');
-  // Практика не подхватывает круг тонов, но слова — её задания №15: 16 заданий и 4 слова.
-  await page.goto(`${withWords}#/practice`);
-  await page.locator('#startRound').waitFor();
-  assert.equal(await page.getByRole('link', { name: /Продолжить раунд/ }).count(), 0);
-  await see(page, '#available', /Доступно: 20 заданий\./);
-  await pickSource(page, 'words');
-  await see(page, '#available', /Доступно: 4 задания\./);
-  // Перезагрузка вкладки «Тоны» показывает итог того же круга; ошибки повторяются в нём же.
-  await page.goto(`${withWords}#/tones`);
-  await see(page, 'h2', /Раунд окончен/);
   await page.getByRole('button', { name: /Повторить ошибки раунда · 1/ }).click();
   await see(page, '.progress', /Слово 1 из 1/);
-  assert.equal(page.url().endsWith('#/tones'), true);
+  assert.equal(page.url().endsWith('#/tones/run'), true);
   await page.keyboard.press((await toneKeys(page)).right);
   await page.keyboard.press('Enter');
   await see(page, '.score', /1 из 1/);
@@ -2090,6 +2137,16 @@ test('тоны: круг из слов, ошибки повторяются, п�
   const progress = await page.evaluate(() => JSON.parse(localStorage.getItem('ege-lg-trainer:progress')));
   assert.equal(progress.round.mode, 'tones');
   assert.equal(Object.keys(progress.questions).filter((id) => id.startsWith('w15-')).length, 4);
+  // Слова входят в практику как задания №15.
+  await page.goto(`${withWords}#/practice`);
+  await page.locator('#startRound').waitFor();
+  assert.equal(await page.getByRole('link', { name: /Продолжить раунд/ }).count(), 0);
+  await see(page, '#available', /Доступно: 20 заданий\./);
+  await pickSource(page, 'words');
+  await see(page, '#available', /Доступно: 4 задания\./);
+  await page.goto(`${withWords}#/tones`);
+  await page.locator('#startTones').waitFor();
+  assert.equal(await page.locator('.score').count(), 0);
   assert.deepEqual(errors, []);
   await context.close();
 });
@@ -2330,9 +2387,8 @@ test('новые задания: видимый выбор, история по�
   assert.equal(new URL(page.url()).hash, '#/rules');
   assert.deepEqual((await storedProgress(page)).round, finished, 'возврат на главную сохраняет итог');
   await page.goto(`${mainUrl}#/practice`);
-  await see(page, 'h2', /Раунд окончен/);
-  await page.getByRole('link', { name: 'Новый раунд', exact: true }).click();
   await see(page, '#available', /Новых заданий с такими фильтрами не осталось/);
+  assert.equal(await page.locator('.score').count(), 0);
   assert.equal(await page.locator('#startRound').isDisabled(), true, 'решённые не подмешиваются вместо новых');
   await page.getByRole('combobox', { name: 'Какие задания', exact: true }).selectOption('all');
   await see(page, '#available', /Доступно: 3 задания/);
@@ -2527,6 +2583,7 @@ for (const kind of ['round', 'variant']) {
     const { page, context, errors } = await open(mainUrl, { width: 390, height: 844, hash: `#/${kind === 'round' ? 'practice' : 'variant'}` });
     await page.evaluate((progress) => localStorage.setItem('ege-lg-trainer:progress', JSON.stringify(progress)), { ...L.emptyProgress(), [kind]: session });
     await page.reload();
+    if (kind === 'round') await page.goto(`${mainUrl}#/practice?ids=${ids.join(',')}`);
     const home = page.getByRole('link', { name: 'На главную', exact: true });
     await home.waitFor();
     assert.ok(await home.evaluate((link) => Boolean(link.closest('.actions').compareDocumentPosition(document.querySelector('.mistakes')) & Node.DOCUMENT_POSITION_FOLLOWING)));
@@ -2541,6 +2598,7 @@ test('training UI: переход с версии 2 сохраняет исхо�
   const { page, context, errors } = await open(mainUrl, { hash: '#/practice' });
   await page.evaluate((value) => localStorage.setItem('ege-lg-trainer:progress', JSON.stringify(value)), legacy);
   await page.reload();
+  await page.getByRole('link', { name: /Продолжить раунд/ }).click();
   await page.locator('[data-card] .option').first().click();
   assert.equal((await storedProgress(page)).version, 3);
   assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem('ege-lg-trainer:progress:v2'))), legacy);

@@ -251,6 +251,35 @@
     else location.hash = hash;
   }
 
+  // Обычный адрес вкладки — настройки. Экран раунда открывает явное действие ученика.
+  const roundTabs = ['practice', 'vsosh', 'tones'];
+  let activeRoundTab = null;
+
+  function roundForTab(name) {
+    if (name === 'vsosh') return vsoshState.round;
+    if (name === 'practice' && !isTonesRound(progress.round)) return progress.round;
+    if (name === 'tones' && isTonesRound(progress.round)) return progress.round;
+    return null;
+  }
+
+  function showRound(name) {
+    activeRoundTab = name;
+    go(`#/${name}/run`);
+  }
+
+  function resumeRoundLink(name, round) {
+    if (!round || round.finishedAt) return null;
+    return el('a', {
+      class: 'button alt', href: `#/${name}/run`,
+      onclick: (event) => {
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        showRound(name);
+      },
+      text: `Продолжить раунд · ${roundAnswerCount(round)} из ${round.ids.length + (round.retryQueue?.length || 0)}`,
+    });
+  }
+
   // Новый экран — с начала страницы: на телефоне сверху выход и деления раунда. Плавная прокрутка
   // прошлого экрана может ещё идти (пробел по разбору или сдвиг к нему после ответа, а сразу за
   // ними Enter), и Chrome доводит её на новом экране: одного сброса мало. Поэтому ещё
@@ -299,6 +328,12 @@
       openShared(name, query);
       ({ name, arg } = route());
     }
+    const round = arg === 'run' && activeRoundTab === name ? roundForTab(name) : null;
+    if (!round) {
+      activeRoundTab = null;
+      // При возврате по истории старый адрес раунда тоже ведёт к настройкам.
+      if (arg === 'run' && roundTabs.includes(name)) window.history.replaceState(null, '', `#/${name}/setup`);
+    }
     document.querySelectorAll('[data-tab]').forEach((tab) => {
       const active = tab.dataset.tab === name;
       if (active) tab.setAttribute('aria-current', 'page');
@@ -315,8 +350,14 @@
     if (name === 'rules' && arg) renderRule(arg);
     else if (name === 'rules') renderRules();
     else if (name === 'check') renderCheck();
-    else if (name === 'practice') renderPractice();
-    else if (olympiadMode) renderVsosh(arg);
+    else if (round && olympiadMode) {
+      if (round.finishedAt) renderVsoshResult(round);
+      else renderVsoshRound(round);
+    } else if (round) {
+      if (round.finishedAt) renderRoundResult();
+      else renderRound();
+    } else if (name === 'practice') renderPractice();
+    else if (olympiadMode) renderVsoshSetup();
     else if (name === 'tones') renderTones();
     else if (name === 'variant') renderVariant();
     else if (name === 'bank') renderBank();
@@ -439,7 +480,11 @@
         shareNotice = { warn: true, text: 'Вариант из ссылки не открыть: части его заданий больше нет в банке. Соберите новый вариант.' };
       }
     } else if (link.kind === 'ids') {
-      const action = link.ids.length ? linkAction(progress.round, link.ids, link.roundType) : null;
+      const action = link.ids.length ? linkAction(roundForTab('practice'), link.ids, link.roundType) : null;
+      if (action) {
+        activeRoundTab = 'practice';
+        target = '#/practice/run';
+      }
       if (action === 'continue' || action === 'result') {
         shareNotice = { warn: false, text: SAME_LINK.round[action] };
       } else if (action) {
@@ -1039,7 +1084,7 @@
   }
 
   function contentsRow({ marker, title, count, unit, input }) {
-    return el('label', { class: 'task-row' },
+    return el('label', { class: marker ? 'task-row' : 'task-row topic-row' },
       el('input', { type: 'checkbox', ...input }),
       el('span', {}, marker, el('span', { class: 'task-title', text: title }),
         el('small', {}, String(count), el('span', { class: 'sr', text: ` ${unit}` }))));
@@ -1259,16 +1304,7 @@
   }
 
   function renderPractice() {
-    // Круг тонов идёт на своей вкладке: «Практика» его не открывает и не продолжает.
-    const round = isTonesRound(progress.round) ? null : progress.round;
-    if (round && !round.finishedAt && route().arg !== 'setup') {
-      renderRound();
-      return;
-    }
-    if (round && round.finishedAt && route().arg !== 'setup') {
-      renderRoundResult();
-      return;
-    }
+    const round = roundForTab('practice');
     view.classList.add('practice-setup');
     if (!questions.length) {
       view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Практика ЕГЭ' }), emptyBank());
@@ -1290,7 +1326,7 @@
       detail: el('p', { class: 'practice-available', id: 'practiceAvailable', 'aria-hidden': 'true', text: practiceAvailableText(available.length) }),
       warning: unfinishedTones ? el('p', { class: 'notice warn small', id: 'replaceWarning', text: 'У вас начат раунд тонов. Новый раунд практики заменит его: вернуться к тонам будет нельзя.' }) : null,
       start,
-      resume: round && !round.finishedAt ? el('a', { class: 'button alt', href: '#/practice', text: `Продолжить раунд · ${roundAnswerCount(round)} из ${round.ids.length + (round.retryQueue?.length || 0)}` }) : null,
+      resume: resumeRoundLink('practice', round),
     }));
     view.append(el('div', { class: 'practice-settings' }, roundModeControl(filters, saveFilters), practiceStateControl(), size.node));
     if (filters.roundType === 'training') view.append(trainingHint());
@@ -1436,7 +1472,7 @@
     const type = roundType || (mode === TONES_MODE ? toneFilters.roundType : filters.roundType);
     progress = { ...progress, round: startSession(ids, now(), mode, type) };
     save();
-    go(mode === TONES_MODE ? '#/tones' : '#/practice');
+    showRound(mode === TONES_MODE ? 'tones' : 'practice');
   }
 
   function renderRound() {
@@ -1592,7 +1628,7 @@
     vsoshState.round = startSession(ids, now(), 'vsosh', type);
     vsoshState.draft = null;
     saveVsosh();
-    go('#/vsosh');
+    showRound('vsosh');
   }
 
   const cardsWord = (n) => `${n} ${plural(n, 'карточка', 'карточки', 'карточек')}`;
@@ -1604,7 +1640,6 @@
         const checked = vsoshState.topics.includes(id);
         const count = vsoshPool([id]).length;
         return contentsRow({
-          marker: el('span', { class: 'cellnum', 'aria-hidden': 'true', text: checked ? '✓' : '' }),
           title, count, unit: plural(count, 'карточка', 'карточки', 'карточек'),
           input: { checked, dataset: { key: `Темы:${id}` }, onchange: () => {
             vsoshState.topics = toggle(vsoshState.topics, id);
@@ -1637,8 +1672,7 @@
       compact: true, summary, start,
       notice: el('p', { class: 'sr', id: 'available', 'aria-live': 'polite', text: detail() }),
       detail: el('p', { class: 'practice-available', id: 'practiceAvailable', 'aria-hidden': 'true', text: detail() }),
-      resume: round && !round.finishedAt ? el('a', { class: 'button alt', href: '#/vsosh',
-        text: `Продолжить раунд · ${roundAnswerCount(round)} из ${round.ids.length + (round.retryQueue?.length || 0)}` }) : null,
+      resume: resumeRoundLink('vsosh', round),
     }));
     view.append(el('div', { class: 'practice-settings vsosh-settings' }, roundModeControl(vsoshState, saveVsosh), size.node));
     if (vsoshState.roundType === 'training') view.append(trainingHint('карточек'));
@@ -1894,13 +1928,6 @@
     })));
   }
 
-  function renderVsosh(arg) {
-    const round = vsoshState.round;
-    if (arg === 'setup' || !round) renderVsoshSetup();
-    else if (round.finishedAt) renderVsoshResult(round);
-    else renderVsoshRound(round);
-  }
-
   // ---------- тренировка тонов ----------
 
   function toneAvailableText(count) {
@@ -1913,12 +1940,7 @@
   }
 
   function renderTones() {
-    const round = isTonesRound(progress.round) ? progress.round : null;
-    if (round && route().arg !== 'setup') {
-      if (round.finishedAt) renderRoundResult();
-      else renderRound();
-      return;
-    }
+    const round = roundForTab('tones');
     view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Тоны · задание 15' }),
       el('p', { class: 'lead', text: 'Слово без пиньиня — выберите сочетание его тонов. Слова HSK 2.0 уровней 1–4 из двух-трёх иероглифов; пиньинь и перевод — после ответа.' }));
     if (!toneQuestions.length) {
@@ -1940,7 +1962,7 @@
       notice: el('p', { class: 'next-note', id: 'available', 'aria-live': 'polite', text: toneAvailableText(available.length) }),
       warning: other ? el('p', { class: 'notice warn small', id: 'replaceWarning', text: 'У вас начат раунд практики. Новый раунд тонов заменит его: вернуться к практике будет нельзя.' }) : null,
       start,
-      resume: round && !round.finishedAt ? el('a', { class: 'button alt', href: '#/tones', text: `Продолжить раунд · ${roundAnswerCount(round)} из ${round.ids.length + (round.retryQueue?.length || 0)}` }) : null,
+      resume: resumeRoundLink('tones', round),
     }));
     view.append(roundModeControl(toneFilters, saveToneFilters));
     view.append(el('div', { class: 'filters-row round-settings' },
@@ -2529,5 +2551,9 @@
     progress = incoming;
     render(false);
   });
+  const initialRoute = route();
+  const initialRound = initialRoute.arg === 'run' ? roundForTab(initialRoute.name) : null;
+  const reloaded = window.performance.getEntriesByType('navigation')[0]?.type === 'reload';
+  if (initialRound && (!initialRound.finishedAt || reloaded)) activeRoundTab = initialRoute.name;
   render(false);
 })();
