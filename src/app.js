@@ -15,6 +15,11 @@
   const byId = new Map(questions.map((q) => [q.id, q]));
   const itemById = byId;
   const allItems = questions;
+  const olympiad = DATA.vsosh;
+  const olympiadCards = vsoshCards(olympiad);
+  const olympiadById = new Map(olympiadCards.map((card) => [card.id, card]));
+  const olympiadTopics = new Map((olympiad?.topics ?? []).map((topic) => [topic.id, topic.label]));
+  const olympiadSources = new Map((olympiad?.sources ?? []).map((source) => [source.id, source]));
   const topicsById = new Map(topics.map((t) => [t.id, t]));
   const rulesById = new Map(rules.map((r) => [r.id, r]));
   const checksById = new Map(checks.map((c) => [c.id, c]));
@@ -299,6 +304,9 @@
       if (active) tab.setAttribute('aria-current', 'page');
       else tab.removeAttribute('aria-current');
     });
+    const olympiadMode = name === 'vsosh' && olympiadCards.length > 0;
+    document.getElementById('egeSubtitle').hidden = olympiadMode;
+    document.getElementById('vsoshSubtitle').hidden = !olympiadMode;
     view.replaceChildren();
     view.classList.remove('practice-setup');
     startBarText = null;
@@ -308,6 +316,7 @@
     else if (name === 'rules') renderRules();
     else if (name === 'check') renderCheck();
     else if (name === 'practice') renderPractice();
+    else if (olympiadMode) renderVsosh(arg);
     else if (name === 'tones') renderTones();
     else if (name === 'variant') renderVariant();
     else if (name === 'bank') renderBank();
@@ -321,9 +330,9 @@
       else view.prepend(node);
       shareNotice = null;
     }
-    if (progressLocked) {
+    if (!olympiadMode && progressLocked) {
       view.append(el('p', { class: 'notice warn small', id: 'progressLocked', text: 'Прогресс сохранён более новой версией тренажёра. Обновите страницу — иначе новые ответы не сохранятся.' }));
-    } else if (!storageOk) {
+    } else if (!olympiadMode && !storageOk) {
       view.append(el('p', { class: 'notice warn small', text: 'Браузер не даёт сохранить прогресс: он пропадёт после перезагрузки страницы.' }));
     }
     if (focus) {
@@ -1532,6 +1541,259 @@
       resultList(ids, round.answers, retries ? retries.repeats : {}));
   }
 
+  // ---------- практика ВсОШ ----------
+
+  const VSOSH_ROUND_SIZE = 10;
+  const VSOSH_SESSION_KEY = 'ege-lg-trainer:vsosh-session';
+  const vsoshStages = { regional: 'Региональный этап', final: 'Заключительный этап' };
+
+  function readVsoshState() {
+    const empty = { topics: [], round: null };
+    try {
+      const raw = JSON.parse(window.sessionStorage.getItem(VSOSH_SESSION_KEY));
+      const topics = Array.isArray(raw?.topics) ? [...new Set(raw.topics.filter((id) => olympiadTopics.has(id)))] : [];
+      const round = raw?.round;
+      const steps = round?.steps;
+      if (!Array.isArray(steps) || !steps.length || steps.length > VSOSH_ROUND_SIZE
+          || !Number.isInteger(round.index) || round.index < 0 || round.index > steps.length) {
+        return { topics, round: null };
+      }
+      const valid = steps.every((step, index) => {
+        const card = olympiadById.get(step?.id);
+        return card && Array.isArray(step.choices) && step.choices.length === card.questions.length
+          && typeof step.checked === 'boolean' && (index >= round.index || step.checked)
+          && card.questions.every((q, i) => (step.choices[i] === null && !step.checked)
+            || q.options.some((option) => option.id === step.choices[i]));
+      });
+      return { topics, round: valid ? round : null };
+    } catch {
+      return empty;
+    }
+  }
+
+  const vsoshState = readVsoshState();
+  function saveVsosh() {
+    // Вкладки браузера могут решать разные раунды. Перезагрузка текущей вкладки сохраняет выбор.
+    try { window.sessionStorage.setItem(VSOSH_SESSION_KEY, JSON.stringify(vsoshState)); } catch { /* продолжим в памяти */ }
+  }
+
+  function vsoshPool() {
+    return olympiadCards.filter((card) => !vsoshState.topics.length
+      || card.questions.some((q) => vsoshState.topics.includes(q.topicId)));
+  }
+
+  function startVsosh(cards) {
+    vsoshState.round = {
+      index: 0,
+      steps: shuffle(cards).slice(0, VSOSH_ROUND_SIZE).map((card) => ({
+        id: card.id, choices: card.questions.map(() => null), checked: false,
+      })),
+    };
+    saveVsosh();
+    go('#/vsosh/run');
+  }
+
+  function renderVsoshSetup() {
+    const heading = el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Практика ВсОШ' });
+    const available = el('p', { class: 'small muted', role: 'status' });
+    const start = el('button', { class: 'button', type: 'button', onclick: () => startVsosh(vsoshPool()) }, 'Начать практику');
+    function update() {
+      const count = vsoshPool().length;
+      const size = Math.min(VSOSH_ROUND_SIZE, count);
+      available.textContent = count
+        ? `Доступно ${count} ${plural(count, 'карточка', 'карточки', 'карточек')}. В раунде ${size}.`
+        : 'По выбранным темам карточек нет.';
+      start.disabled = !count;
+    }
+    const topics = el('fieldset', { class: 'filter vsosh-topics' },
+      el('legend', { text: 'Темы' }),
+      el('div', { class: 'chips' }, [...olympiadTopics].map(([id, label]) =>
+        el('label', { class: 'chip' },
+          el('input', { type: 'checkbox', checked: vsoshState.topics.includes(id), onchange: (event) => {
+            vsoshState.topics = event.target.checked
+              ? [...vsoshState.topics, id] : vsoshState.topics.filter((topic) => topic !== id);
+            saveVsosh();
+            update();
+          } }),
+          el('span', { text: label })))));
+    const round = vsoshState.round;
+    update();
+    view.append(heading,
+      el('p', { class: 'lead', text: 'Лексика и грамматика для 9–11 классов. Выберите темы или начните раунд по всему банку.' }),
+      topics, available,
+      el('div', { class: 'actions' }, start,
+        round && round.index < round.steps.length
+          ? el('a', { class: 'button alt', href: '#/vsosh/run', text: 'Продолжить раунд' }) : null));
+  }
+
+  function vsoshChoice(question, option, step, index, select, placement = false) {
+    const correct = option.id === question.correctId;
+    const chosen = option.id === step.choices[index];
+    const state = step.checked ? (correct ? ' correct' : chosen ? ' wrong' : '') : '';
+    const chinese = isChinese(option.text);
+    const props = { type: 'radio', name: `vsosh-${question.id}`, checked: chosen,
+      onchange: () => select(index, option.id) };
+    return el('label', { class: `${placement ? 'vsosh-place' : 'option vsosh-choice'}${state}` },
+      el('input', props),
+      el('span', { class: 'num', text: option.id }),
+      placement
+        ? (step.checked && correct ? el('span', { lang: 'zh', text: question.insertionText }) : null)
+        : el('span', { class: chinese ? 'text' : 'text plain', lang: chinese ? 'zh' : 'ru', text: option.text }));
+  }
+
+  function vsoshOptions(question, step, index, select) {
+    return el('fieldset', { class: 'vsosh-options', disabled: step.checked },
+      el('legend', { class: question.kind === 'passageGap' ? null : 'sr',
+        text: question.kind === 'passageGap' ? `Пропуск ${question.gapNumber}` : 'Варианты ответа' }),
+      el('div', { class: 'options' }, question.options.map((option) => vsoshChoice(question, option, step, index, select))));
+  }
+
+  function vsoshStem(question, step, select) {
+    if (question.kind === 'wordPlacement') {
+      const byLetter = new Map(question.options.map((option) => [option.id, option]));
+      return el('fieldset', { class: 'vsosh-placement', disabled: step.checked },
+        el('legend', { class: 'sr', text: 'Место для слова' }),
+        el('p', { class: 'stem', lang: 'zh' },
+          question.stem.split(/(\{\{[A-D]\}\}[，。！？；：、]?)/g).map((part, index) => {
+            if (index % 2 === 0) return part;
+            const option = byLetter.get(part[2]);
+            return el('span', { class: 'vsosh-position-token' }, vsoshChoice(question, option, step, 0, select, true), part.slice(5));
+          })));
+    }
+    if (question.emphasis) {
+      const { start, length } = question.emphasis;
+      return el('p', { class: 'stem', lang: 'zh' }, question.stem.slice(0, start),
+        el('u', { text: question.stem.slice(start, start + length) }), question.stem.slice(start + length));
+    }
+    const stem = question.stem.replace(/…+|\.{3,}/g, '___');
+    const show = step.checked ? step.choices[0] : null;
+    const format = ['stroke-count', 'tone-pattern', 'chengyu'].includes(question.topicId) ? 'stem solo' : 'stem';
+    return sentenceNode({ ...question, correctOptionId: question.correctId }, stem, format, { selected: show, reveal: step.checked });
+  }
+
+  function vsoshPassage(card, step) {
+    const byNumber = new Map(card.questions.map((q, index) => [String(q.gapNumber), { q, index }]));
+    return el('div', { class: 'vsosh-passage', lang: 'zh' }, card.context.text.split('\n').map((paragraph) =>
+      el('p', {}, paragraph.split(/\{\{(\d+)\}\}/g).map((part, index) => {
+        if (index % 2 === 0) return part;
+        const { q, index: gap } = byNumber.get(part);
+        const correct = step.choices[gap] === q.correctId;
+        return el('span', {
+          class: `vsosh-gap${step.checked ? (correct ? ' correct' : ' wrong') : ''}`,
+          lang: step.checked ? 'zh' : 'ru',
+          text: step.checked ? optionText(q, q.correctId) : part,
+        });
+      }))));
+  }
+
+  function vsoshScore(card, step) {
+    return card.questions.filter((q, index) => step.choices[index] === q.correctId).length;
+  }
+
+  function vsoshSourceLink(source, question) {
+    const url = source?.taskUrl || source?.archiveUrl || source?.publicationUrl;
+    if (!url || !/^https?:\/\//i.test(url)) return null;
+    const page = source.taskUrl && question.taskPages?.[0];
+    const label = source.taskUrl ? 'Бланк' : source.archiveUrl ? 'Комплект в ZIP' : 'Публикация';
+    return el('a', { href: page ? `${url}#page=${page}` : url, target: '_blank', rel: 'noopener', text: label });
+  }
+
+  function vsoshFeedback(card, step, source) {
+    const score = vsoshScore(card, step);
+    return el('section', { class: 'feedback vsosh-feedback', tabindex: '-1', 'aria-labelledby': 'vsosh-verdict' },
+      el('h3', { id: 'vsosh-verdict', text: card.context ? `Верных ответов ${score} из ${card.questions.length}` : 'Проверка ответа' }),
+      el('ul', {}, card.questions.map((q, index) => {
+        const correct = step.choices[index] === q.correctId;
+        const answer = optionText(q, q.correctId);
+        return el('li', { class: 'vsosh-answer' },
+          card.context ? `№ ${q.gapNumber} · ` : null,
+          el('b', { class: correct ? 'ok-mark' : 'bad-mark', text: correct ? 'Верно' : 'Ошибка' }),
+          correct ? ` · ${q.correctId}` : `. Верный ответ ${q.correctId}`,
+          q.kind === 'wordPlacement' ? null : [' ', el('span', { lang: isChinese(answer) ? 'zh' : 'ru', text: answer })]);
+      })),
+      (card.context?.editorNote || card.questions[0].editorNote)
+        ? el('p', { class: 'small muted', text: card.context?.editorNote || card.questions[0].editorNote }) : null,
+      el('p', { class: 'small' }, vsoshSourceLink(source, card.questions[0])));
+  }
+
+  function renderVsoshRound(round) {
+    const step = round.steps[round.index];
+    const card = olympiadById.get(step.id);
+    const question = card.questions[0];
+    const source = olympiadSources.get(question.sourceId);
+    const marks = round.steps.map((entry) => {
+      const item = olympiadById.get(entry.id);
+      return entry.checked ? (vsoshScore(item, entry) === item.questions.length ? 'ok' : 'bad') : null;
+    });
+    view.append(sessionBar({
+      exit: '#/vsosh', index: round.index, marks, label: `Карточка ${round.index + 1} из ${marks.length}`,
+      right: olympiadTopics.get(question.topicId),
+    }));
+    const article = el('article', { class: 'question vsosh-card' },
+      el('div', { class: 'pills' },
+        source ? el('span', { class: 'pill quiet', text: `${vsoshStages[source.stage]} · ${source.season.replace(/\/(\d{2})(\d{2})$/, '/$2')}` }) : null,
+        el('span', { class: 'pill task', text: card.context
+          ? `№ ${question.taskNumber}–${card.questions.at(-1).taskNumber}` : `№ ${question.taskNumber}` })),
+      el('p', { class: 'instruction', tabindex: '-1', dataset: { focus: '1' } },
+        question.prompt, question.insertionText ? [' ', el('b', { lang: 'zh', text: question.insertionText })] : null));
+    const check = el('button', {
+      class: 'button', type: 'button', disabled: step.choices.includes(null),
+      onclick: () => {
+        if (step.checked || step.choices.includes(null)) return;
+        step.checked = true;
+        saveVsosh();
+        render(false);
+        view.querySelector('.vsosh-feedback').focus();
+      },
+    }, card.context ? 'Проверить ответы' : 'Проверить ответ');
+    const select = (index, option) => {
+      if (step.checked) return;
+      step.choices[index] = option;
+      saveVsosh();
+      check.disabled = step.choices.includes(null);
+    };
+    if (card.context) {
+      article.append(vsoshPassage(card, step),
+        el('div', { class: 'vsosh-groups' }, card.questions.map((q, index) => vsoshOptions(q, step, index, select))));
+    } else {
+      article.append(vsoshStem(question, step, select));
+      if (question.kind !== 'wordPlacement') article.append(vsoshOptions(question, step, 0, select));
+    }
+    view.append(article);
+    if (step.checked) view.append(vsoshFeedback(card, step, source));
+    const advance = el('button', {
+      class: 'button', type: 'button', dataset: { enter: '1', space: '1' },
+      onclick: () => {
+        round.index += 1;
+        saveVsosh();
+        render();
+      },
+    }, round.index + 1 === round.steps.length ? 'Итог раунда' : 'Дальше');
+    view.append(el('div', { class: step.checked ? 'actions dock' : 'actions' }, step.checked ? advance : check));
+  }
+
+  function renderVsoshResult(round) {
+    const results = round.steps.map((step) => {
+      const card = olympiadById.get(step.id);
+      return { card, score: vsoshScore(card, step), total: card.questions.length };
+    });
+    const score = results.reduce((sum, result) => sum + result.score, 0);
+    const total = results.reduce((sum, result) => sum + result.total, 0);
+    const wrong = results.filter((result) => result.score < result.total).map((result) => result.card);
+    view.append(el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Раунд ВсОШ окончен' }),
+      scoreLine(score, total, 'верных ответов'),
+      el('div', { class: 'actions' },
+        wrong.length ? el('button', { class: 'button', type: 'button', onclick: () => startVsosh(wrong) }, 'Повторить ошибки') : null,
+        el('a', { class: wrong.length ? 'button alt' : 'button', href: '#/vsosh', text: 'К темам' })));
+  }
+
+  function renderVsosh(arg) {
+    const round = vsoshState.round;
+    if (arg !== 'run' || !round) renderVsoshSetup();
+    else if (round.index === round.steps.length) renderVsoshResult(round);
+    else renderVsoshRound(round);
+  }
+
   // ---------- тренировка тонов ----------
 
   function toneAvailableText(count) {
@@ -1870,8 +2132,13 @@
           el('p', { class: 'section-title', text: 'Тоны' }),
           el('p', { text: `Вкладка «Тоны» — отдельная тренировка к заданию 15: ${toneQuestions.length} ${plural(toneQuestions.length, 'слово', 'слова', 'слов')} HSK 2.0 уровней 1–4, по два-три иероглифа. Раунд идёт как в практике, ошибки раунда можно повторить; ссылки учителю и отчёта у этой вкладки нет.` }),
         ] : null,
+        olympiadCards.length ? [
+          el('p', { class: 'section-title', text: 'ВсОШ' }),
+          el('p', { text: 'На вкладке «ВсОШ» можно выбрать темы из региональных и заключительных этапов. Для общего текста выберите ответы ко всем пропускам, затем проверьте их вместе. Клавиша Tab переводит фокус между пропусками, стрелки выбирают вариант. Раунд сохраняется при перезагрузке вкладки.' }),
+        ] : null,
         el('p', { class: 'section-title', text: 'Клавиши' }),
-        el('p', {}, el('kbd', { text: '1' }), '–', el('kbd', { text: '4' }), ' — выбрать ответ, ', el('kbd', { text: 'Enter' }), ' или ', el('kbd', { text: 'Space' }), ' — дальше.'),
+        el('p', {}, 'В заданиях ЕГЭ ', el('kbd', { text: '1' }), '–', el('kbd', { text: '4' }), ' выбирают ответ. ',
+          el('kbd', { text: 'Enter' }), ' или ', el('kbd', { text: 'Space' }), ' ведут дальше.'),
         el('p', { class: 'section-title', text: 'Учителю' }),
         el('p', { text: 'Ссылку на подборку, на задания раунда или на вариант можно взять в практике и на итоге: по ней ученики получат то же самое. С итога ученик отправляет отчёт учителю, а отчёты всего класса сводятся в одну таблицу.' }),
         el('p', {}, el('a', { href: '#/teacher', text: 'Учителю: сводка отчётов учеников' }))));
@@ -2103,6 +2370,7 @@
   document.getElementById('reviewBanner').hidden = !DATA.meta.drafts;
   // Слов тренировки на сайте ещё нет (никто не принял) — вкладки тоже нет.
   if (!toneQuestions.length) document.querySelector('[data-tab="tones"]').remove();
+  if (!olympiadCards.length) document.querySelector('[data-tab="vsosh"]').remove();
 
   // Ссылка «К содержимому» переводит фокус, а не меняет маршрут.
   document.querySelector('.skip').addEventListener('click', (event) => {

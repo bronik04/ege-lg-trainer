@@ -1,0 +1,8045 @@
+{
+  "schemaVersion": 1,
+  "competition": "vsosh",
+  "subject": "zh",
+  "section": "lexis-grammar",
+  "grades": [
+    9,
+    10,
+    11
+  ],
+  "seasons": [
+    "2021/2022",
+    "2022/2023",
+    "2023/2024",
+    "2024/2025",
+    "2025/2026"
+  ],
+  "topics": [
+    {
+      "id": "paired-constructions",
+      "label": "Парные конструкции",
+      "domain": "grammar"
+    },
+    {
+      "id": "direction-complements",
+      "label": "Модификаторы направления",
+      "domain": "grammar"
+    },
+    {
+      "id": "localizers",
+      "label": "Послелоги",
+      "domain": "grammar"
+    },
+    {
+      "id": "classifiers",
+      "label": "Счётные слова",
+      "domain": "grammar"
+    },
+    {
+      "id": "aspect-particles",
+      "label": "Глагольные суффиксы",
+      "domain": "grammar"
+    },
+    {
+      "id": "sentence-grammar",
+      "label": "Грамматическая форма и порядок слов",
+      "domain": "grammar"
+    },
+    {
+      "id": "context-synonyms",
+      "label": "Синоним по контексту",
+      "domain": "vocabulary"
+    },
+    {
+      "id": "result-complements",
+      "label": "Результативные морфемы",
+      "domain": "grammar"
+    },
+    {
+      "id": "stroke-count",
+      "label": "Число черт",
+      "domain": "writing"
+    },
+    {
+      "id": "chengyu",
+      "label": "Чэнъюй и русский аналог",
+      "domain": "vocabulary"
+    },
+    {
+      "id": "tone-pattern",
+      "label": "Тональный рисунок",
+      "domain": "pronunciation"
+    },
+    {
+      "id": "word-placement",
+      "label": "Место слова в предложении",
+      "domain": "grammar"
+    },
+    {
+      "id": "prepositions",
+      "label": "Предлоги",
+      "domain": "grammar"
+    },
+    {
+      "id": "adverbs",
+      "label": "Наречия",
+      "domain": "grammar"
+    },
+    {
+      "id": "cloze-vocabulary",
+      "label": "Выбор слова в тексте",
+      "domain": "vocabulary"
+    }
+  ],
+  "sources": [
+    {
+      "id": "2021-reg",
+      "season": "2021/2022",
+      "stage": "regional",
+      "grades": [
+        9,
+        10,
+        11
+      ],
+      "publicationUrl": "https://xn--l1afu.xn--p1ai/%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%8B/%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%D1%80%D0%B0%D0%B7%D0%B1%D0%BE%D1%80%D1%8B-%D0%B2%D1%81%D0%BE%D1%88-%D0%BA%D0%B8%D1%82%D0%B0%D0%B9%D1%81%D0%BA%D0%B8%D0%B9-%D1%8F%D0%B7%D1%8B%D0%BA/",
+      "taskUrl": "https://vos.olimpiada.ru/upload/files/Arhive_tasks/2021-22/reg/chin/tasks-chin-9-11-pism-reg-21-22.pdf",
+      "keyUrl": "https://vos.olimpiada.ru/upload/files/Arhive_tasks/2021-22/reg/chin/ans-chin-9-11-pism-reg-21-22.pdf"
+    },
+    {
+      "id": "2021-fin",
+      "season": "2021/2022",
+      "stage": "final",
+      "grades": [
+        9,
+        10,
+        11
+      ],
+      "publicationUrl": "https://xn--l1afu.xn--p1ai/%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%8B/%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%D1%80%D0%B0%D0%B7%D0%B1%D0%BE%D1%80%D1%8B-%D0%B2%D1%81%D0%BE%D1%88-%D0%BA%D0%B8%D1%82%D0%B0%D0%B9%D1%81%D0%BA%D0%B8%D0%B9-%D1%8F%D0%B7%D1%8B%D0%BA/",
+      "taskUrl": "https://vos.olimpiada.ru/upload/files/Arhive_tasks/2021-22/final/chin/tasks-chin-9-11-pism-final-21-22.pdf",
+      "keyUrl": "https://vos.olimpiada.ru/upload/files/Arhive_tasks/2021-22/final/chin/anskrit-chin-9-11-pism-final-21-22.pdf"
+    },
+    {
+      "id": "2022-reg",
+      "season": "2022/2023",
+      "stage": "regional",
+      "grades": [
+        9,
+        10,
+        11
+      ],
+      "publicationUrl": "https://xn--l1afu.xn--p1ai/%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%8B/%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%D1%80%D0%B0%D0%B7%D0%B1%D0%BE%D1%80%D1%8B-%D0%B2%D1%81%D0%BE%D1%88-%D0%BA%D0%B8%D1%82%D0%B0%D0%B9%D1%81%D0%BA%D0%B8%D0%B9-%D1%8F%D0%B7%D1%8B%D0%BA/",
+      "taskUrl": "https://vos.olimpiada.ru/upload/files/Arhive_tasks/2022-23/reg/chin/tasks-chin-9-11-pism-reg-22-23.pdf",
+      "keyUrl": "https://vos.olimpiada.ru/upload/files/Arhive_tasks/2022-23/reg/chin/anskrit-chin-9-11-pism-reg-22-23.pdf"
+    },
+    {
+      "id": "2022-fin",
+      "season": "2022/2023",
+      "stage": "final",
+      "grades": [
+        9,
+        10,
+        11
+      ],
+      "publicationUrl": "https://vserosolimp.edsoo.ru/zakluchit_way",
+      "archiveUrl": "https://vso.edsoo.ru/index.php/s/M7npcYxwap6eMWD/download/%D0%9A%D0%B8%D1%82%D0%B0%D0%B9%D1%81%D0%BA%D0%B8%D0%B9%20%D1%8F%D0%B7%D1%8B%D0%BA%20%D0%97%D0%AD%20%D0%92%D1%81%D0%9E%D0%A8%202022-23.zip",
+      "taskFile": "ЗЭ_Кит_Тесты.pdf",
+      "keyFile": "ЗЭ_Кит_Ключи.pdf"
+    },
+    {
+      "id": "2023-reg",
+      "season": "2023/2024",
+      "stage": "regional",
+      "grades": [
+        9,
+        10,
+        11
+      ],
+      "publicationUrl": "https://xn--l1afu.xn--p1ai/%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%8B/%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%D1%80%D0%B0%D0%B7%D0%B1%D0%BE%D1%80%D1%8B-%D0%B2%D1%81%D0%BE%D1%88-%D0%BA%D0%B8%D1%82%D0%B0%D0%B9%D1%81%D0%BA%D0%B8%D0%B9-%D1%8F%D0%B7%D1%8B%D0%BA/",
+      "taskUrl": "https://xn--b1ayi3a.xn--l1afu.xn--p1ai/upload/files/Arhive_tasks/2023-24/reg/chin/tasks-chin-9-11-test-pism-reg-23-24.pdf",
+      "keyUrl": "https://xn--b1ayi3a.xn--l1afu.xn--p1ai/upload/files/Arhive_tasks/2023-24/reg/chin/ans-chin-9-11-test-pism-reg-23-24.pdf"
+    },
+    {
+      "id": "2023-fin",
+      "season": "2023/2024",
+      "stage": "final",
+      "grades": [
+        9,
+        10,
+        11
+      ],
+      "publicationUrl": "https://vserosolimp.edsoo.ru/zakluchit_way",
+      "archiveUrl": "https://vso.edsoo.ru/index.php/s/8gcKDY42i9EpMC4/download/%D0%9A%D0%B8%D1%82%D0%B0%D0%B9%D1%81%D0%BA%D0%B8%D0%B9%20%D1%8F%D0%B7%D1%8B%D0%BA%20%D0%97%D0%AD%20%D0%92%D1%81%D0%9E%D0%A8%202023-24.zip",
+      "taskFile": "ЗЭ_Китайский_Тесты-Изложение.pdf",
+      "keyFile": "ЗЭ_Китайский_Ключи.pdf"
+    },
+    {
+      "id": "2024-reg",
+      "season": "2024/2025",
+      "stage": "regional",
+      "grades": [
+        9,
+        10,
+        11
+      ],
+      "publicationUrl": "https://xn--l1afu.xn--p1ai/%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%8B/%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%D1%80%D0%B0%D0%B7%D0%B1%D0%BE%D1%80%D1%8B-%D0%B2%D1%81%D0%BE%D1%88-%D0%BA%D0%B8%D1%82%D0%B0%D0%B9%D1%81%D0%BA%D0%B8%D0%B9-%D1%8F%D0%B7%D1%8B%D0%BA/",
+      "taskUrl": "https://vos.olimpiada.ru/upload/files/Arhive_tasks/2024-25/reg/chin/tasks-chin-9-11-test-pism-reg-24-25.pdf",
+      "keyUrl": "https://vos.olimpiada.ru/upload/files/Arhive_tasks/2024-25/reg/chin/anskrit-chin-9-11-test-pism-reg-24-25.pdf"
+    },
+    {
+      "id": "2024-fin",
+      "season": "2024/2025",
+      "stage": "final",
+      "grades": [
+        9,
+        10,
+        11
+      ],
+      "publicationUrl": "https://vserosolimp.edsoo.ru/zakluchit_way",
+      "archiveUrl": "https://vso.edsoo.ru/public.php/dav/files/q65BAXjJHQydBbD/?accept=zip",
+      "taskFile": "ЗЭ_Кит_Тесты-Изложение.pdf",
+      "keyFile": "ЗЭ_Кит_Ключи к тестам.pdf"
+    },
+    {
+      "id": "2025-reg",
+      "season": "2025/2026",
+      "stage": "regional",
+      "grades": [
+        9,
+        10,
+        11
+      ],
+      "publicationUrl": "https://zsfond.ru/vsosh/regionalnyj-etap/kitajskij-yazyk-regionalnyj-etap/",
+      "taskUrl": "https://zsfond.ru/wp-content/uploads/2026/01/zadaniya-9-11-klassy_testy-izlozhenie.pdf",
+      "keyUrl": "https://zsfond.ru/wp-content/uploads/2026/01/klyuchi-otvetov-9-11-klassy_test.pdf"
+    },
+    {
+      "id": "2025-fin",
+      "season": "2025/2026",
+      "stage": "final",
+      "grades": [
+        9,
+        10,
+        11
+      ],
+      "publicationUrl": "https://vserosolimp.edsoo.ru/zakluchit_way",
+      "archiveUrl": "https://vso.edsoo.ru/public.php/dav/files/MpsDK6Xs7cyzntn/?accept=zip",
+      "taskFile": "Задания_Письменный тур.pdf",
+      "keyFile": "Ключи к тестам.pdf"
+    }
+  ],
+  "contexts": [
+    {
+      "id": "2021-reg-text",
+      "sourceId": "2021-reg",
+      "label": "Поход в магазин глазами ребёнка",
+      "text": "他女儿今年三岁，每次他带女儿逛商店，女儿总是哭着闹着不愿进。他很奇怪：商店里的商品琳琅满目，小孩子为什么不爱去呢？{{37}}他发现了其中的秘密。一天，他领着孩子在商店的人群中挤来挤去，女儿的鞋带开了。他{{38}}来给孩子系鞋带。系好鞋带他一{{39}}头，发现柜台比孩子要高得多，女儿根本看不到琳琅满目的商品，她能看到的只是大人们的一条条腿和一双双手。\n这件事给了他很大的启示：当家长的应该用孩子的{{40}}看世界，才能真正了解孩子。",
+      "sourcePages": [
+        8,
+        9
+      ]
+    },
+    {
+      "id": "2021-fin-text",
+      "sourceId": "2021-fin",
+      "label": "Занятия по пекинской опере для иностранных студентов",
+      "text": "为外国留学生{{37}}京剧知识课，是南开大学近期进行的教学尝试。他们认为京剧是中国民族文化的瑰宝，让外国人了解中国的同时，也应了解京剧。南开大学请{{38}}艺校京剧老师，每星期为学生上一两次京剧课。京剧课很{{39}}学生的欢迎。几次课之后，他们已经不满足只是听讲，而{{40}}老师教唱教演。",
+      "sourcePages": [
+        9
+      ]
+    },
+    {
+      "id": "2022-reg-text",
+      "sourceId": "2022-reg",
+      "label": "Обычаи и уважение к традициям",
+      "text": "中国是一个多民族的国家，许多少数民族有不同的宗教{{18}}和习俗。俗话说：“入乡随俗”，当你进入少数民族聚居区旅游时，要{{19}}他们的传统习俗和生活中的禁忌，不可{{20}}礼俗而伤害他们的民族自尊心。",
+      "sourcePages": [
+        7
+      ]
+    },
+    {
+      "id": "2022-fin-text",
+      "sourceId": "2022-fin",
+      "label": "Формулировка заголовка о платном образовании",
+      "text": "近日在报纸上读到一篇文章，{{18}}标题是“收费上大学与教育成本问题”。这个标题有矛盾，因为收费是学校收费，学生要上大学只能缴费。“上大学”是从{{19}}的角度说的，它与“收费”的主体不统一，不该放在一起。{{20}}，本文的标题应改为“收费办大学与教育成本问题”。",
+      "sourcePages": [
+        8
+      ]
+    },
+    {
+      "id": "2023-reg-text",
+      "sourceId": "2023-reg",
+      "label": "Привычка перекусывать",
+      "text": "阿里是我的同学，他这个人喜欢吃零食，{{18}}是上课的时候，还是休息的时候，他都喜欢吃点儿什么。很多朋友对他说：“你可是{{19}}胖，少吃点儿。”他总说：“我也想改，可是总改不了。无论我{{20}}努力，也改不掉。”",
+      "sourcePages": [
+        7
+      ]
+    },
+    {
+      "id": "2023-fin-text",
+      "sourceId": "2023-fin",
+      "label": "Спрос на услуги домашних работников в Шанхае",
+      "text": "上海目前有超过10%的居民家庭{{18}}各类保姆，其中包括全日工、半日工、钟点工和零工等， {{19}}服务正越来越受到上海人欢迎，保姆需求呈上升趋势。在各类保姆当中钟点工已成为最受上海人欢迎的用工形式。目前，上海人最迫切需要的服务是房屋清洁，占被调查家庭的65%，其他依次为洗衣、烹饪、买菜、陪伴或照顾老人、接送学龄儿童和看护婴幼儿。专家{{20}}，上海人对这些服务的需求量还将不断增加。",
+      "sourcePages": [
+        7,
+        8
+      ]
+    },
+    {
+      "id": "2024-reg-text",
+      "sourceId": "2024-reg",
+      "label": "Два значения слова 借",
+      "text": "汉语中的“借”这个词很怪，{{18}}都叫做“借”。一位语言学家是这样分析的：“我借你十块”，是你欠我了还是{{19}}了？光是这么说没有语言环境是看不出来的，得说“我借给你十块”、“你借给我十块”才行，{{20}}，账就可能算不清。",
+      "sourcePages": [
+        7
+      ]
+    },
+    {
+      "id": "2024-fin-text",
+      "sourceId": "2024-fin",
+      "label": "Как хранить книги и журналы",
+      "text": "书籍是人类的宝贵财物，如果保管不好，不利于{{18}}使用。那么我们应该怎样保护和收藏书刊呢？首先，潮湿的环境对图书十分不利，在高温、高湿度的影响{{19}}，会造成纸张的老化和对纤维发生腐蚀作用。此外，各种光线对图书都有{{20}}的危害，特别是日光的危害更大。",
+      "sourcePages": [
+        8
+      ]
+    },
+    {
+      "id": "2025-reg-text",
+      "sourceId": "2025-reg",
+      "label": "Багаж для поездки на учёбу",
+      "text": "昨天下午两点半，我下了飞机，到了中国，开始一年的汉语学习。\n我要在中国学习一年，所以行李不少，一个托运的大箱子，一个{{18}}的小箱子，还有一个双肩包。大箱子里全是穿的：衣服、裤子、鞋子。小箱子里放了一些我喜欢的书、雨伞、杯子什么的。我还带了照相机，我喜欢拍照。我的朋友说，我不用带这么多东西，因为这里都可以买到。中国那么大，如果有时间，我要去旅游。旅游的时候，我只{{19}}带几件衣服和一个照相机就可以了。出门的时候，我觉得行李越少{{20}}。大部分你觉得“可能会用到”的东西，最后都不会用到。",
+      "sourcePages": [
+        7,
+        8
+      ]
+    },
+    {
+      "id": "2025-fin-text",
+      "sourceId": "2025-fin",
+      "label": "Кошелёк в столовой",
+      "text": "吃完午饭我和朋友站起身正要离开食堂，忽然{{18}}桌子下边有一个红色的钱包。我们赶忙拾起来想交换失主，可{{19}}开饭时间已过，食堂里人已走光，我们{{20}}把钱包交给了服务员。",
+      "sourcePages": [
+        8
+      ],
+      "editorNote": "В оригинале напечатано 交换失主. По смыслу речь о том, чтобы вернуть кошелёк владельцу. Опечатка стоит вне пропусков."
+    }
+  ],
+  "questions": [
+    {
+      "id": "vsosh-zh-lg-2021-reg-21",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "regional",
+      "sourceId": "2021-reg",
+      "taskNumber": 21,
+      "sectionPosition": 1,
+      "topicId": "paired-constructions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей по смыслу грамматической конструкцией (21-22):",
+      "options": [
+        {
+          "id": "A",
+          "text": "既……又……"
+        },
+        {
+          "id": "B",
+          "text": "不但……而且……"
+        },
+        {
+          "id": "C",
+          "text": "因为……所以……"
+        },
+        {
+          "id": "D",
+          "text": "不但……就是"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "……他很守信用，……大家都愿意把钱借给他。",
+      "focus": "因为……所以……"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-reg-22",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "regional",
+      "sourceId": "2021-reg",
+      "taskNumber": 22,
+      "sectionPosition": 2,
+      "topicId": "paired-constructions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей по смыслу грамматической конструкцией (21-22):",
+      "options": [
+        {
+          "id": "A",
+          "text": "因为……所以……"
+        },
+        {
+          "id": "B",
+          "text": "既……又……"
+        },
+        {
+          "id": "C",
+          "text": "除了……还"
+        },
+        {
+          "id": "D",
+          "text": "不仅……而且……"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "她……舞跳得好，……歌也唱得很好。",
+      "focus": "不仅……而且……"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-reg-23",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "regional",
+      "sourceId": "2021-reg",
+      "taskNumber": 23,
+      "sectionPosition": 3,
+      "topicId": "localizers",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящим послелогом (23):",
+      "options": [
+        {
+          "id": "A",
+          "text": "上"
+        },
+        {
+          "id": "B",
+          "text": "中"
+        },
+        {
+          "id": "C",
+          "text": "下"
+        },
+        {
+          "id": "D",
+          "text": "内"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "他在几十年的教学实践……总结了不少有用的教学经验。",
+      "focus": "中"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-reg-24",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "regional",
+      "sourceId": "2021-reg",
+      "taskNumber": 24,
+      "sectionPosition": 4,
+      "topicId": "classifiers",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящим счетным словом (24):",
+      "options": [
+        {
+          "id": "A",
+          "text": "只"
+        },
+        {
+          "id": "B",
+          "text": "架"
+        },
+        {
+          "id": "C",
+          "text": "辆"
+        },
+        {
+          "id": "D",
+          "text": "列"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "那……国际航空公司的飞机将在20分钟后起飞。",
+      "focus": "架"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-reg-25",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "regional",
+      "sourceId": "2021-reg",
+      "taskNumber": 25,
+      "sectionPosition": 5,
+      "topicId": "aspect-particles",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск соответствующим глагольным суффиксом (25):",
+      "options": [
+        {
+          "id": "A",
+          "text": "过"
+        },
+        {
+          "id": "B",
+          "text": "了"
+        },
+        {
+          "id": "C",
+          "text": "着"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        6,
+        7
+      ],
+      "keyPage": 1,
+      "stem": "他抬起头，严肃地看……我说：“我该怎么办呢？”",
+      "focus": "着"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-reg-26",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "regional",
+      "sourceId": "2021-reg",
+      "taskNumber": 26,
+      "sectionPosition": 6,
+      "topicId": "sentence-grammar",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите правильный с точки зрения грамматики вариант (26):",
+      "options": [
+        {
+          "id": "A",
+          "text": "60左右里"
+        },
+        {
+          "id": "B",
+          "text": "多60里"
+        },
+        {
+          "id": "C",
+          "text": "60上下里"
+        },
+        {
+          "id": "D",
+          "text": "60来里"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "你一上午跑了……路，太累了，休息休息把。",
+      "focus": "Приблизительное количество с 来",
+      "editorNote": "В конце предложения в оригинале напечатано 把. По смыслу ожидается частица 吧."
+    },
+    {
+      "id": "vsosh-zh-lg-2021-reg-27",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "regional",
+      "sourceId": "2021-reg",
+      "taskNumber": 27,
+      "sectionPosition": 7,
+      "topicId": "context-synonyms",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Подберите слово, наиболее близкое по значению к подчеркнутому (27):",
+      "options": [
+        {
+          "id": "A",
+          "text": "正常"
+        },
+        {
+          "id": "B",
+          "text": "客气"
+        },
+        {
+          "id": "C",
+          "text": "平静"
+        },
+        {
+          "id": "D",
+          "text": "高兴"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "走出学校大门，李元越想越觉得这件事不对头。",
+      "emphasis": {
+        "text": "对头",
+        "start": 18,
+        "length": 2
+      },
+      "focus": "对头"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-reg-28",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "regional",
+      "sourceId": "2021-reg",
+      "taskNumber": 28,
+      "sectionPosition": 8,
+      "topicId": "stroke-count",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Укажите количество черт в иероглифе (28):",
+      "options": [
+        {
+          "id": "A",
+          "text": "14"
+        },
+        {
+          "id": "B",
+          "text": "16"
+        },
+        {
+          "id": "C",
+          "text": "17"
+        },
+        {
+          "id": "D",
+          "text": "19"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "蟀",
+      "focus": "蟀"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-reg-29",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "regional",
+      "sourceId": "2021-reg",
+      "taskNumber": 29,
+      "sectionPosition": 9,
+      "topicId": "chengyu",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Подберите китайскому фразеологизму аналог в русском языке (29):",
+      "options": [
+        {
+          "id": "A",
+          "text": "руки не доходят"
+        },
+        {
+          "id": "B",
+          "text": "хочется, да не можется"
+        },
+        {
+          "id": "C",
+          "text": "правда глаза колет"
+        },
+        {
+          "id": "D",
+          "text": "сидеть сложа руки"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "眼高手低",
+      "focus": "眼高手低"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-reg-30",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "regional",
+      "sourceId": "2021-reg",
+      "taskNumber": 30,
+      "sectionPosition": 10,
+      "topicId": "tone-pattern",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите верный тональный рисунок (30):",
+      "options": [
+        {
+          "id": "A",
+          "text": "1, 2"
+        },
+        {
+          "id": "B",
+          "text": "1, 4"
+        },
+        {
+          "id": "C",
+          "text": "4, 4"
+        },
+        {
+          "id": "D",
+          "text": "2, 4"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        7,
+        8
+      ],
+      "keyPage": 1,
+      "stem": "经过",
+      "focus": "经过"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-reg-31",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "regional",
+      "sourceId": "2021-reg",
+      "taskNumber": 31,
+      "sectionPosition": 11,
+      "topicId": "word-placement",
+      "kind": "wordPlacement",
+      "points": 1,
+      "prompt": "Укажите место лексической единицы, приведенной в скобках (31-32):",
+      "options": [
+        {
+          "id": "A",
+          "text": "A"
+        },
+        {
+          "id": "B",
+          "text": "B"
+        },
+        {
+          "id": "C",
+          "text": "C"
+        },
+        {
+          "id": "D",
+          "text": "D"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "stem": "采用新技术以后，{{A}} 工作效率 {{B}} 比以前 {{C}} 提高了 {{D}}。",
+      "insertionText": "三倍",
+      "focus": "三倍"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-reg-32",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "regional",
+      "sourceId": "2021-reg",
+      "taskNumber": 32,
+      "sectionPosition": 12,
+      "topicId": "word-placement",
+      "kind": "wordPlacement",
+      "points": 1,
+      "prompt": "Укажите место лексической единицы, приведенной в скобках (31-32):",
+      "options": [
+        {
+          "id": "A",
+          "text": "A"
+        },
+        {
+          "id": "B",
+          "text": "B"
+        },
+        {
+          "id": "C",
+          "text": "C"
+        },
+        {
+          "id": "D",
+          "text": "D"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "stem": "经理一直 {{A}} 不说话，{{B}} 都 {{C}} 不知道他是 {{D}} 怎么想的。",
+      "insertionText": "谁",
+      "focus": "谁"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-reg-33",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "regional",
+      "sourceId": "2021-reg",
+      "taskNumber": 33,
+      "sectionPosition": 13,
+      "topicId": "prepositions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящие предлоги и заполните пропуски (33-34):",
+      "options": [
+        {
+          "id": "A",
+          "text": "把"
+        },
+        {
+          "id": "B",
+          "text": "被"
+        },
+        {
+          "id": "C",
+          "text": "给"
+        },
+        {
+          "id": "D",
+          "text": "跟"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "stem": "孔子死后，他的学生……他说过的话整理成“论语”。",
+      "focus": "把"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-reg-34",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "regional",
+      "sourceId": "2021-reg",
+      "taskNumber": 34,
+      "sectionPosition": 14,
+      "topicId": "prepositions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящие предлоги и заполните пропуски (33-34):",
+      "options": [
+        {
+          "id": "A",
+          "text": "把"
+        },
+        {
+          "id": "B",
+          "text": "向"
+        },
+        {
+          "id": "C",
+          "text": "被"
+        },
+        {
+          "id": "D",
+          "text": "在"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "stem": "有问题，多……老师请教，别不好意思。",
+      "focus": "向"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-reg-35",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "regional",
+      "sourceId": "2021-reg",
+      "taskNumber": 35,
+      "sectionPosition": 15,
+      "topicId": "adverbs",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящее наречие и заполните пропуски (35-36):",
+      "options": [
+        {
+          "id": "A",
+          "text": "太"
+        },
+        {
+          "id": "B",
+          "text": "再"
+        },
+        {
+          "id": "C",
+          "text": "挺"
+        },
+        {
+          "id": "D",
+          "text": "又"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "stem": "他春风满面地走了进来，看起来……兴奋的。",
+      "focus": "挺"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-reg-36",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "regional",
+      "sourceId": "2021-reg",
+      "taskNumber": 36,
+      "sectionPosition": 16,
+      "topicId": "adverbs",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящее наречие и заполните пропуски (35-36):",
+      "options": [
+        {
+          "id": "A",
+          "text": "依然"
+        },
+        {
+          "id": "B",
+          "text": "果然"
+        },
+        {
+          "id": "C",
+          "text": "既然"
+        },
+        {
+          "id": "D",
+          "text": "仍然"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "stem": "吃了这种药，病……好了许多。",
+      "focus": "果然"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-reg-37",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "regional",
+      "sourceId": "2021-reg",
+      "taskNumber": 37,
+      "sectionPosition": 17,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (37-40) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "因为"
+        },
+        {
+          "id": "B",
+          "text": "究竟"
+        },
+        {
+          "id": "C",
+          "text": "然后"
+        },
+        {
+          "id": "D",
+          "text": "终于"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        9
+      ],
+      "keyPage": 1,
+      "contextId": "2021-reg-text",
+      "gapNumber": 37,
+      "focus": "终于"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-reg-38",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "regional",
+      "sourceId": "2021-reg",
+      "taskNumber": 38,
+      "sectionPosition": 18,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (37-40) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "站起"
+        },
+        {
+          "id": "B",
+          "text": "蹲下"
+        },
+        {
+          "id": "C",
+          "text": "笑起"
+        },
+        {
+          "id": "D",
+          "text": "放下"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        9
+      ],
+      "keyPage": 1,
+      "contextId": "2021-reg-text",
+      "gapNumber": 38,
+      "focus": "蹲下"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-reg-39",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "regional",
+      "sourceId": "2021-reg",
+      "taskNumber": 39,
+      "sectionPosition": 19,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (37-40) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "抬"
+        },
+        {
+          "id": "B",
+          "text": "转"
+        },
+        {
+          "id": "C",
+          "text": "低"
+        },
+        {
+          "id": "D",
+          "text": "点"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        9
+      ],
+      "keyPage": 1,
+      "contextId": "2021-reg-text",
+      "gapNumber": 39,
+      "focus": "抬"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-reg-40",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "regional",
+      "sourceId": "2021-reg",
+      "taskNumber": 40,
+      "sectionPosition": 20,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (37-40) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "眼里"
+        },
+        {
+          "id": "B",
+          "text": "眼前"
+        },
+        {
+          "id": "C",
+          "text": "眼色"
+        },
+        {
+          "id": "D",
+          "text": "眼光"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        9
+      ],
+      "keyPage": 1,
+      "contextId": "2021-reg-text",
+      "gapNumber": 40,
+      "focus": "眼光"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-fin-21",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "final",
+      "sourceId": "2021-fin",
+      "taskNumber": 21,
+      "sectionPosition": 1,
+      "topicId": "paired-constructions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей по смыслу грамматической конструкцией (21–22):",
+      "options": [
+        {
+          "id": "A",
+          "text": "因为……所以……"
+        },
+        {
+          "id": "B",
+          "text": "只要……就……"
+        },
+        {
+          "id": "C",
+          "text": "只有……才……"
+        },
+        {
+          "id": "D",
+          "text": "一边……一边……"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "……吃饭……看电视不利于人体消化。",
+      "focus": "一边……一边……"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-fin-22",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "final",
+      "sourceId": "2021-fin",
+      "taskNumber": 22,
+      "sectionPosition": 2,
+      "topicId": "paired-constructions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей по смыслу грамматической конструкцией (21–22):",
+      "options": [
+        {
+          "id": "A",
+          "text": "或者……或者……"
+        },
+        {
+          "id": "B",
+          "text": "如果……就……"
+        },
+        {
+          "id": "C",
+          "text": "既……又……"
+        },
+        {
+          "id": "D",
+          "text": "一……就……"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "咱们俩只能去一个，……你去，……我去。",
+      "focus": "或者……或者……"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-fin-23",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "final",
+      "sourceId": "2021-fin",
+      "taskNumber": 23,
+      "sectionPosition": 3,
+      "topicId": "localizers",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящим послелогом (23):",
+      "options": [
+        {
+          "id": "A",
+          "text": "里"
+        },
+        {
+          "id": "B",
+          "text": "外"
+        },
+        {
+          "id": "C",
+          "text": "中"
+        },
+        {
+          "id": "D",
+          "text": "下"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "在老师的严格要求……我取得了优异的成绩。",
+      "focus": "下"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-fin-24",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "final",
+      "sourceId": "2021-fin",
+      "taskNumber": 24,
+      "sectionPosition": 4,
+      "topicId": "classifiers",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящим счетным словом (24):",
+      "options": [
+        {
+          "id": "A",
+          "text": "本"
+        },
+        {
+          "id": "B",
+          "text": "册"
+        },
+        {
+          "id": "C",
+          "text": "首"
+        },
+        {
+          "id": "D",
+          "text": "篇"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "这……课文虽然不长，但生词很多。",
+      "focus": "篇"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-fin-25",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "final",
+      "sourceId": "2021-fin",
+      "taskNumber": 25,
+      "sectionPosition": 5,
+      "topicId": "aspect-particles",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск соответствующим глагольным суффиксом (25):",
+      "options": [
+        {
+          "id": "A",
+          "text": "了"
+        },
+        {
+          "id": "B",
+          "text": "着"
+        },
+        {
+          "id": "C",
+          "text": "过"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        6,
+        7
+      ],
+      "keyPage": 1,
+      "stem": "我们曾经请王教授来做……几次报告。",
+      "focus": "过"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-fin-26",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "final",
+      "sourceId": "2021-fin",
+      "taskNumber": 26,
+      "sectionPosition": 6,
+      "topicId": "sentence-grammar",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите правильный с точки зрения грамматики вариант (26):",
+      "options": [
+        {
+          "id": "A",
+          "text": "吃吃饭"
+        },
+        {
+          "id": "B",
+          "text": "吃饭"
+        },
+        {
+          "id": "C",
+          "text": "吃一吃饭"
+        },
+        {
+          "id": "D",
+          "text": "吃饭着"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "我们正……的时候，电话铃突然响了。",
+      "focus": "正……的时候"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-fin-27",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "final",
+      "sourceId": "2021-fin",
+      "taskNumber": 27,
+      "sectionPosition": 7,
+      "topicId": "context-synonyms",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Подберите выражение, наиболее близкое по значению к подчеркнутому слову (27):",
+      "options": [
+        {
+          "id": "A",
+          "text": "没有屋门"
+        },
+        {
+          "id": "B",
+          "text": "没有办法"
+        },
+        {
+          "id": "C",
+          "text": "没有关系"
+        },
+        {
+          "id": "D",
+          "text": "表示同意"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "什么？他想去？没门儿！",
+      "emphasis": {
+        "text": "没门儿",
+        "start": 7,
+        "length": 3
+      },
+      "focus": "没门儿"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-fin-28",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "final",
+      "sourceId": "2021-fin",
+      "taskNumber": 28,
+      "sectionPosition": 8,
+      "topicId": "stroke-count",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Укажите количество черт в иероглифе (28):",
+      "options": [
+        {
+          "id": "A",
+          "text": "12"
+        },
+        {
+          "id": "B",
+          "text": "11"
+        },
+        {
+          "id": "C",
+          "text": "13"
+        },
+        {
+          "id": "D",
+          "text": "10"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "觞",
+      "focus": "觞"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-fin-29",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "final",
+      "sourceId": "2021-fin",
+      "taskNumber": 29,
+      "sectionPosition": 9,
+      "topicId": "chengyu",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Подберите в русском языке аналог китайскому фразеологизму (29):",
+      "options": [
+        {
+          "id": "A",
+          "text": "не в бровь, а в глаз"
+        },
+        {
+          "id": "B",
+          "text": "пускать пыль в глаза"
+        },
+        {
+          "id": "C",
+          "text": "смотреть на всех свысока"
+        },
+        {
+          "id": "D",
+          "text": "глаза боятся, руки делают"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "目空一切",
+      "focus": "目空一切"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-fin-30",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "final",
+      "sourceId": "2021-fin",
+      "taskNumber": 30,
+      "sectionPosition": 10,
+      "topicId": "tone-pattern",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите верный тональный рисунок (30):",
+      "options": [
+        {
+          "id": "A",
+          "text": "1, 2"
+        },
+        {
+          "id": "B",
+          "text": "4, 2"
+        },
+        {
+          "id": "C",
+          "text": "4, 0"
+        },
+        {
+          "id": "D",
+          "text": "3, 3"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "stem": "距离",
+      "focus": "距离"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-fin-31",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "final",
+      "sourceId": "2021-fin",
+      "taskNumber": 31,
+      "sectionPosition": 11,
+      "topicId": "word-placement",
+      "kind": "wordPlacement",
+      "points": 1,
+      "prompt": "Укажите место лексической единицы, приведенной в скобках (31–32):",
+      "options": [
+        {
+          "id": "A",
+          "text": "A"
+        },
+        {
+          "id": "B",
+          "text": "B"
+        },
+        {
+          "id": "C",
+          "text": "C"
+        },
+        {
+          "id": "D",
+          "text": "D"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "stem": "我 {{A}} 不明白你为什么 {{B}} 不直接 {{C}} 来找 {{D}} 我，而去找他。",
+      "insertionText": "弄",
+      "focus": "弄"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-fin-32",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "final",
+      "sourceId": "2021-fin",
+      "taskNumber": 32,
+      "sectionPosition": 12,
+      "topicId": "word-placement",
+      "kind": "wordPlacement",
+      "points": 1,
+      "prompt": "Укажите место лексической единицы, приведенной в скобках (31–32):",
+      "options": [
+        {
+          "id": "A",
+          "text": "A"
+        },
+        {
+          "id": "B",
+          "text": "B"
+        },
+        {
+          "id": "C",
+          "text": "C"
+        },
+        {
+          "id": "D",
+          "text": "D"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "stem": "她 {{A}} 发誓说：“我 {{B}} 也 {{C}} 不会相信他 {{D}} 了”。",
+      "insertionText": "再",
+      "focus": "再"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-fin-33",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "final",
+      "sourceId": "2021-fin",
+      "taskNumber": 33,
+      "sectionPosition": 13,
+      "topicId": "prepositions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящие предлоги и заполните пропуски (33–34):",
+      "options": [
+        {
+          "id": "A",
+          "text": "把"
+        },
+        {
+          "id": "B",
+          "text": "被"
+        },
+        {
+          "id": "C",
+          "text": "使"
+        },
+        {
+          "id": "D",
+          "text": "于"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "stem": "教室里的玻璃……打碎了。",
+      "focus": "被"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-fin-34",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "final",
+      "sourceId": "2021-fin",
+      "taskNumber": 34,
+      "sectionPosition": 14,
+      "topicId": "prepositions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящие предлоги и заполните пропуски (33–34):",
+      "options": [
+        {
+          "id": "A",
+          "text": "因"
+        },
+        {
+          "id": "B",
+          "text": "被"
+        },
+        {
+          "id": "C",
+          "text": "从"
+        },
+        {
+          "id": "D",
+          "text": "由"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "stem": "中华民族是一个……许多民族融合而成的整体。",
+      "focus": "由"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-fin-35",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "final",
+      "sourceId": "2021-fin",
+      "taskNumber": 35,
+      "sectionPosition": 15,
+      "topicId": "adverbs",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящее наречие и заполните пропуски (35-36):",
+      "options": [
+        {
+          "id": "A",
+          "text": "才"
+        },
+        {
+          "id": "B",
+          "text": "就"
+        },
+        {
+          "id": "C",
+          "text": "曾"
+        },
+        {
+          "id": "D",
+          "text": "总"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "stem": "刘爷爷每天早上五点钟……起床去外边锻练。",
+      "focus": "就"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-fin-36",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "final",
+      "sourceId": "2021-fin",
+      "taskNumber": 36,
+      "sectionPosition": 16,
+      "topicId": "adverbs",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящее наречие и заполните пропуски (35-36):",
+      "options": [
+        {
+          "id": "A",
+          "text": "可"
+        },
+        {
+          "id": "B",
+          "text": "尤其"
+        },
+        {
+          "id": "C",
+          "text": "十分"
+        },
+        {
+          "id": "D",
+          "text": "特别"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "stem": "这种苹果……好吃了，你买点儿尝尝吧。",
+      "focus": "可"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-fin-37",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "final",
+      "sourceId": "2021-fin",
+      "taskNumber": 37,
+      "sectionPosition": 17,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (37–40) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "举行"
+        },
+        {
+          "id": "B",
+          "text": "开设"
+        },
+        {
+          "id": "C",
+          "text": "建设"
+        },
+        {
+          "id": "D",
+          "text": "步行"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        9
+      ],
+      "keyPage": 1,
+      "contextId": "2021-fin-text",
+      "gapNumber": 37,
+      "focus": "开设"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-fin-38",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "final",
+      "sourceId": "2021-fin",
+      "taskNumber": 38,
+      "sectionPosition": 18,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (37–40) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "上"
+        },
+        {
+          "id": "B",
+          "text": "下"
+        },
+        {
+          "id": "C",
+          "text": "来"
+        },
+        {
+          "id": "D",
+          "text": "去"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        9
+      ],
+      "keyPage": 1,
+      "contextId": "2021-fin-text",
+      "gapNumber": 38,
+      "focus": "来"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-fin-39",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "final",
+      "sourceId": "2021-fin",
+      "taskNumber": 39,
+      "sectionPosition": 19,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (37–40) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "收"
+        },
+        {
+          "id": "B",
+          "text": "受"
+        },
+        {
+          "id": "C",
+          "text": "爱"
+        },
+        {
+          "id": "D",
+          "text": "还"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        9
+      ],
+      "keyPage": 1,
+      "contextId": "2021-fin-text",
+      "gapNumber": 39,
+      "focus": "受"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-fin-40",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "final",
+      "sourceId": "2021-fin",
+      "taskNumber": 40,
+      "sectionPosition": 20,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (37–40) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "追求"
+        },
+        {
+          "id": "B",
+          "text": "求教"
+        },
+        {
+          "id": "C",
+          "text": "征求"
+        },
+        {
+          "id": "D",
+          "text": "要求"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        9
+      ],
+      "keyPage": 1,
+      "contextId": "2021-fin-text",
+      "gapNumber": 40,
+      "focus": "要求"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-reg-01",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "regional",
+      "sourceId": "2022-reg",
+      "taskNumber": 1,
+      "sectionPosition": 1,
+      "topicId": "paired-constructions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей по смыслу грамматической конструкцией (1-2):",
+      "options": [
+        {
+          "id": "A",
+          "text": "连……也……"
+        },
+        {
+          "id": "B",
+          "text": "或……或……"
+        },
+        {
+          "id": "C",
+          "text": "一边……一边……"
+        },
+        {
+          "id": "D",
+          "text": "一……就……"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        4
+      ],
+      "keyPage": 1,
+      "stem": "我把请假条交给领导，他……看……不看就说“不行！”。",
+      "focus": "连……也……"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-reg-02",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "regional",
+      "sourceId": "2022-reg",
+      "taskNumber": 2,
+      "sectionPosition": 2,
+      "topicId": "paired-constructions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей по смыслу грамматической конструкцией (1-2):",
+      "options": [
+        {
+          "id": "A",
+          "text": "既……又……"
+        },
+        {
+          "id": "B",
+          "text": "不……不……"
+        },
+        {
+          "id": "C",
+          "text": "一……就"
+        },
+        {
+          "id": "D",
+          "text": "要是……就……"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        4,
+        5
+      ],
+      "keyPage": 1,
+      "stem": "你算说对了，秋天是这儿最好的季节，……冷也……热。",
+      "focus": "不……不……"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-reg-03",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "regional",
+      "sourceId": "2022-reg",
+      "taskNumber": 3,
+      "sectionPosition": 3,
+      "topicId": "direction-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуски соответствующими модификаторами направления движения (3-4):",
+      "options": [
+        {
+          "id": "A",
+          "text": "下来"
+        },
+        {
+          "id": "B",
+          "text": "进来"
+        },
+        {
+          "id": "C",
+          "text": "出去"
+        },
+        {
+          "id": "D",
+          "text": "回去"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "汉语虽然有点儿难，但是我们班所有的同学都学……。",
+      "focus": "下来"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-reg-04",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "regional",
+      "sourceId": "2022-reg",
+      "taskNumber": 4,
+      "sectionPosition": 4,
+      "topicId": "direction-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуски соответствующими модификаторами направления движения (3-4):",
+      "options": [
+        {
+          "id": "A",
+          "text": "过去"
+        },
+        {
+          "id": "B",
+          "text": "回来"
+        },
+        {
+          "id": "C",
+          "text": "下去"
+        },
+        {
+          "id": "D",
+          "text": "进去"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "你说得很好，很有道理，请接着说……。",
+      "focus": "下去"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-reg-05",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "regional",
+      "sourceId": "2022-reg",
+      "taskNumber": 5,
+      "sectionPosition": 5,
+      "topicId": "sentence-grammar",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите правильный с точки зрения грамматики вариант (5-6):",
+      "options": [
+        {
+          "id": "A",
+          "text": "李玲比方芳八岁大"
+        },
+        {
+          "id": "B",
+          "text": "比方芳李玲八岁大"
+        },
+        {
+          "id": "C",
+          "text": "李玲比方芳大八岁"
+        },
+        {
+          "id": "D",
+          "text": "李玲大八岁比方芳"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "我以为她们年龄差不多，没想到……",
+      "focus": "Сравнение с 比 и величиной разницы"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-reg-06",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "regional",
+      "sourceId": "2022-reg",
+      "taskNumber": 6,
+      "sectionPosition": 6,
+      "topicId": "sentence-grammar",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите правильный с точки зрения грамматики вариант (5-6):",
+      "options": [
+        {
+          "id": "A",
+          "text": "我累得要命"
+        },
+        {
+          "id": "B",
+          "text": "我要命累得"
+        },
+        {
+          "id": "C",
+          "text": "要命我累得"
+        },
+        {
+          "id": "D",
+          "text": "累得要命我"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "帮别人搬了一天的东西，……",
+      "focus": "Дополнение степени 得要命"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-reg-07",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "regional",
+      "sourceId": "2022-reg",
+      "taskNumber": 7,
+      "sectionPosition": 7,
+      "topicId": "context-synonyms",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Подберите близкое по значению к подчеркнутому слово (7):",
+      "options": [
+        {
+          "id": "A",
+          "text": "如同"
+        },
+        {
+          "id": "B",
+          "text": "现在"
+        },
+        {
+          "id": "C",
+          "text": "如果"
+        },
+        {
+          "id": "D",
+          "text": "好像"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        5,
+        6
+      ],
+      "keyPage": 1,
+      "stem": "如今老人苦尽甜来，过上了幸福的生活。",
+      "emphasis": {
+        "text": "如今",
+        "start": 0,
+        "length": 2
+      },
+      "focus": "如今"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-reg-08",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "regional",
+      "sourceId": "2022-reg",
+      "taskNumber": 8,
+      "sectionPosition": 8,
+      "topicId": "result-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей результативной морфемой (8):",
+      "options": [
+        {
+          "id": "A",
+          "text": "住"
+        },
+        {
+          "id": "B",
+          "text": "完"
+        },
+        {
+          "id": "C",
+          "text": "清"
+        },
+        {
+          "id": "D",
+          "text": "懂"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "离得太远，那位歌手的样子我没看……。",
+      "focus": "清"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-reg-09",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "regional",
+      "sourceId": "2022-reg",
+      "taskNumber": 9,
+      "sectionPosition": 9,
+      "topicId": "stroke-count",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Укажите количество черт в иероглифе (9):",
+      "options": [
+        {
+          "id": "A",
+          "text": "13"
+        },
+        {
+          "id": "B",
+          "text": "18"
+        },
+        {
+          "id": "C",
+          "text": "15"
+        },
+        {
+          "id": "D",
+          "text": "16"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "遽",
+      "focus": "遽"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-reg-10",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "regional",
+      "sourceId": "2022-reg",
+      "taskNumber": 10,
+      "sectionPosition": 10,
+      "topicId": "chengyu",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Подберите аналог фразеологизму в русском языке (10):",
+      "options": [
+        {
+          "id": "A",
+          "text": "Крутиться как белка в колесе"
+        },
+        {
+          "id": "B",
+          "text": "Одним выстрелом убить двух зайцев"
+        },
+        {
+          "id": "C",
+          "text": "Ждать у моря погоды"
+        },
+        {
+          "id": "D",
+          "text": "Погнаться за двумя зайцами"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "守株待兔",
+      "focus": "守株待兔"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-reg-11",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "regional",
+      "sourceId": "2022-reg",
+      "taskNumber": 11,
+      "sectionPosition": 11,
+      "topicId": "tone-pattern",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите верный тональный рисунок (11):",
+      "options": [
+        {
+          "id": "A",
+          "text": "1, 4"
+        },
+        {
+          "id": "B",
+          "text": "2, 4"
+        },
+        {
+          "id": "C",
+          "text": "4, 4"
+        },
+        {
+          "id": "D",
+          "text": "1, 1"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "姿态",
+      "focus": "姿态"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-reg-12",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "regional",
+      "sourceId": "2022-reg",
+      "taskNumber": 12,
+      "sectionPosition": 12,
+      "topicId": "word-placement",
+      "kind": "wordPlacement",
+      "points": 1,
+      "prompt": "Укажите место лексической единицы, приведенной в скобках (12-13):",
+      "options": [
+        {
+          "id": "A",
+          "text": "A"
+        },
+        {
+          "id": "B",
+          "text": "B"
+        },
+        {
+          "id": "C",
+          "text": "C"
+        },
+        {
+          "id": "D",
+          "text": "D"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "几乎每个父母都 {{A}} 觉得自己的孩子 {{B}} 比 {{C}} 别人的孩子 {{D}} 可爱。",
+      "insertionText": "更",
+      "focus": "更"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-reg-13",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "regional",
+      "sourceId": "2022-reg",
+      "taskNumber": 13,
+      "sectionPosition": 13,
+      "topicId": "word-placement",
+      "kind": "wordPlacement",
+      "points": 1,
+      "prompt": "Укажите место лексической единицы, приведенной в скобках (12-13):",
+      "options": [
+        {
+          "id": "A",
+          "text": "A"
+        },
+        {
+          "id": "B",
+          "text": "B"
+        },
+        {
+          "id": "C",
+          "text": "C"
+        },
+        {
+          "id": "D",
+          "text": "D"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "最近太忙了，{{A}} 我 {{B}} 一天 {{C}} 也没 {{D}} 休息。",
+      "insertionText": "连",
+      "focus": "连"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-reg-14",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "regional",
+      "sourceId": "2022-reg",
+      "taskNumber": 14,
+      "sectionPosition": 14,
+      "topicId": "prepositions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящие предлоги и заполните пропуски (14-15):",
+      "options": [
+        {
+          "id": "A",
+          "text": "把"
+        },
+        {
+          "id": "B",
+          "text": "对"
+        },
+        {
+          "id": "C",
+          "text": "由"
+        },
+        {
+          "id": "D",
+          "text": "向"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "这家饭店是……韩国人经营管理的。",
+      "focus": "由"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-reg-15",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "regional",
+      "sourceId": "2022-reg",
+      "taskNumber": 15,
+      "sectionPosition": 15,
+      "topicId": "prepositions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящие предлоги и заполните пропуски (14-15):",
+      "options": [
+        {
+          "id": "A",
+          "text": "向"
+        },
+        {
+          "id": "B",
+          "text": "对"
+        },
+        {
+          "id": "C",
+          "text": "从"
+        },
+        {
+          "id": "D",
+          "text": "使"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "孔子首创私人办学，……文化教育得到发展。",
+      "focus": "使",
+      "editorNote": "В бланке позиция отнесена к предлогам, в официальном ключе стоит каузативный глагол 使."
+    },
+    {
+      "id": "vsosh-zh-lg-2022-reg-16",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "regional",
+      "sourceId": "2022-reg",
+      "taskNumber": 16,
+      "sectionPosition": 16,
+      "topicId": "adverbs",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящее наречие и заполните пропуск (16-17):",
+      "options": [
+        {
+          "id": "A",
+          "text": "当然"
+        },
+        {
+          "id": "B",
+          "text": "比较"
+        },
+        {
+          "id": "C",
+          "text": "偶然"
+        },
+        {
+          "id": "D",
+          "text": "一直"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "动物之间确实存在着语言信号，有的还……复杂。",
+      "focus": "比较"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-reg-17",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "regional",
+      "sourceId": "2022-reg",
+      "taskNumber": 17,
+      "sectionPosition": 17,
+      "topicId": "adverbs",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящее наречие и заполните пропуск (16-17):",
+      "options": [
+        {
+          "id": "A",
+          "text": "已经"
+        },
+        {
+          "id": "B",
+          "text": "完全"
+        },
+        {
+          "id": "C",
+          "text": "曾经"
+        },
+        {
+          "id": "D",
+          "text": "一起"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "你们吃吧，我……吃了晚饭了。",
+      "focus": "已经"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-reg-18",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "regional",
+      "sourceId": "2022-reg",
+      "taskNumber": 18,
+      "sectionPosition": 18,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18-20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "信念"
+        },
+        {
+          "id": "B",
+          "text": "信任"
+        },
+        {
+          "id": "C",
+          "text": "理念"
+        },
+        {
+          "id": "D",
+          "text": "信仰"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "contextId": "2022-reg-text",
+      "gapNumber": 18,
+      "focus": "信仰"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-reg-19",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "regional",
+      "sourceId": "2022-reg",
+      "taskNumber": 19,
+      "sectionPosition": 19,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18-20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "尊严"
+        },
+        {
+          "id": "B",
+          "text": "尊重"
+        },
+        {
+          "id": "C",
+          "text": "保护"
+        },
+        {
+          "id": "D",
+          "text": "捍卫"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "contextId": "2022-reg-text",
+      "gapNumber": 19,
+      "focus": "尊重"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-reg-20",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "regional",
+      "sourceId": "2022-reg",
+      "taskNumber": 20,
+      "sectionPosition": 20,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18-20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "忽视"
+        },
+        {
+          "id": "B",
+          "text": "缺少"
+        },
+        {
+          "id": "C",
+          "text": "服从"
+        },
+        {
+          "id": "D",
+          "text": "重视"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "contextId": "2022-reg-text",
+      "gapNumber": 20,
+      "focus": "忽视"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-fin-01",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "final",
+      "sourceId": "2022-fin",
+      "taskNumber": 1,
+      "sectionPosition": 1,
+      "topicId": "paired-constructions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей по смыслу грамматической конструкцией (1-2):",
+      "options": [
+        {
+          "id": "A",
+          "text": "既……又……"
+        },
+        {
+          "id": "B",
+          "text": "或者……或者……"
+        },
+        {
+          "id": "C",
+          "text": "一边……一边……"
+        },
+        {
+          "id": "D",
+          "text": "不但……还……"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "路太远，我们……坐车去，……骑车去，走着去可不行。",
+      "focus": "或者……或者……"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-fin-02",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "final",
+      "sourceId": "2022-fin",
+      "taskNumber": 2,
+      "sectionPosition": 2,
+      "topicId": "paired-constructions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей по смыслу грамматической конструкцией (1-2):",
+      "options": [
+        {
+          "id": "A",
+          "text": "虽然……但是……"
+        },
+        {
+          "id": "B",
+          "text": "一……就……"
+        },
+        {
+          "id": "C",
+          "text": "即使……ye……"
+        },
+        {
+          "id": "D",
+          "text": "如果……就……"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "……我没完成自己的学习计划，……我努力学习的决心没有改变。",
+      "focus": "虽然……但是……"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-fin-03",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "final",
+      "sourceId": "2022-fin",
+      "taskNumber": 3,
+      "sectionPosition": 3,
+      "topicId": "direction-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуски соответствующими модификаторами направления движения (3-4):",
+      "options": [
+        {
+          "id": "A",
+          "text": "过去"
+        },
+        {
+          "id": "B",
+          "text": "出去"
+        },
+        {
+          "id": "C",
+          "text": "进来"
+        },
+        {
+          "id": "D",
+          "text": "起来"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "一见到我，他就没完没了地说了……。",
+      "focus": "起来"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-fin-04",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "final",
+      "sourceId": "2022-fin",
+      "taskNumber": 4,
+      "sectionPosition": 4,
+      "topicId": "direction-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуски соответствующими модификаторами направления движения (3-4):",
+      "options": [
+        {
+          "id": "A",
+          "text": "下去"
+        },
+        {
+          "id": "B",
+          "text": "出去"
+        },
+        {
+          "id": "C",
+          "text": "起来"
+        },
+        {
+          "id": "D",
+          "text": "过去"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "万事开头难，你们应该坚定信心，坚持……就一定能成功。",
+      "focus": "下去"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-fin-05",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "final",
+      "sourceId": "2022-fin",
+      "taskNumber": 5,
+      "sectionPosition": 5,
+      "topicId": "sentence-grammar",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите правильный с точки зрения грамматики вариант (5-6):",
+      "options": [
+        {
+          "id": "A",
+          "text": "心里家中的亲人总想"
+        },
+        {
+          "id": "B",
+          "text": "心里总想家中的亲人"
+        },
+        {
+          "id": "C",
+          "text": "家中的亲人总想心里"
+        },
+        {
+          "id": "D",
+          "text": "总想心里家中的亲人"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        5,
+        6
+      ],
+      "keyPage": 1,
+      "stem": "离开家久了，……。",
+      "focus": "Порядок слов в предложении с дополнением"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-fin-06",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "final",
+      "sourceId": "2022-fin",
+      "taskNumber": 6,
+      "sectionPosition": 6,
+      "topicId": "sentence-grammar",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите правильный с точки зрения грамматики вариант (5-6):",
+      "options": [
+        {
+          "id": "A",
+          "text": "大学的知名度非常重要"
+        },
+        {
+          "id": "B",
+          "text": "知名度的大学非常重要"
+        },
+        {
+          "id": "C",
+          "text": "非常重要大学的知名度"
+        },
+        {
+          "id": "D",
+          "text": "非常重要的大学知名度"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "在韩国，……。",
+      "focus": "Определение с 的"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-fin-07",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "final",
+      "sourceId": "2022-fin",
+      "taskNumber": 7,
+      "sectionPosition": 7,
+      "topicId": "context-synonyms",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Подберите близкое по значению к подчеркнутому слово (7):",
+      "options": [
+        {
+          "id": "A",
+          "text": "钱"
+        },
+        {
+          "id": "B",
+          "text": "主意"
+        },
+        {
+          "id": "C",
+          "text": "问题"
+        },
+        {
+          "id": "D",
+          "text": "力量"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "这件事你可以找小李给你出出点子，他或许有办法。",
+      "emphasis": {
+        "text": "点子",
+        "start": 13,
+        "length": 2
+      },
+      "focus": "点子"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-fin-08",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "final",
+      "sourceId": "2022-fin",
+      "taskNumber": 8,
+      "sectionPosition": 8,
+      "topicId": "result-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей результативной морфемой (8):",
+      "options": [
+        {
+          "id": "A",
+          "text": "着"
+        },
+        {
+          "id": "B",
+          "text": "透"
+        },
+        {
+          "id": "C",
+          "text": "动"
+        },
+        {
+          "id": "D",
+          "text": "通"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "这部电影打……了成千上万的观众。",
+      "focus": "动"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-fin-09",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "final",
+      "sourceId": "2022-fin",
+      "taskNumber": 9,
+      "sectionPosition": 9,
+      "topicId": "stroke-count",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Укажите количество черт в иероглифе (9):",
+      "options": [
+        {
+          "id": "A",
+          "text": "19"
+        },
+        {
+          "id": "B",
+          "text": "22"
+        },
+        {
+          "id": "C",
+          "text": "21"
+        },
+        {
+          "id": "D",
+          "text": "24"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "颦",
+      "focus": "颦",
+      "repeatGroupId": "vsosh-zh-lg-2022-fin-09"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-fin-10",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "final",
+      "sourceId": "2022-fin",
+      "taskNumber": 10,
+      "sectionPosition": 10,
+      "topicId": "chengyu",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Подберите аналог китайскому фразеологизму в русском языке (10):",
+      "options": [
+        {
+          "id": "A",
+          "text": "У страха глаза велики"
+        },
+        {
+          "id": "B",
+          "text": "Пригреть на груди змею"
+        },
+        {
+          "id": "C",
+          "text": "Буря в стакане воды"
+        },
+        {
+          "id": "D",
+          "text": "Следовать за кем-то тенью"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        6,
+        7
+      ],
+      "keyPage": 1,
+      "stem": "杯弓蛇影",
+      "focus": "杯弓蛇影"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-fin-11",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "final",
+      "sourceId": "2022-fin",
+      "taskNumber": 11,
+      "sectionPosition": 11,
+      "topicId": "tone-pattern",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите верный тональный рисунок (11):",
+      "options": [
+        {
+          "id": "A",
+          "text": "4, 1"
+        },
+        {
+          "id": "B",
+          "text": "1, 4"
+        },
+        {
+          "id": "C",
+          "text": "4, 2"
+        },
+        {
+          "id": "D",
+          "text": "4, 4"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "奋斗",
+      "focus": "奋斗"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-fin-12",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "final",
+      "sourceId": "2022-fin",
+      "taskNumber": 12,
+      "sectionPosition": 12,
+      "topicId": "word-placement",
+      "kind": "wordPlacement",
+      "points": 1,
+      "prompt": "Укажите место лексической единицы, приведенной в скобках (12-13):",
+      "options": [
+        {
+          "id": "A",
+          "text": "A"
+        },
+        {
+          "id": "B",
+          "text": "B"
+        },
+        {
+          "id": "C",
+          "text": "C"
+        },
+        {
+          "id": "D",
+          "text": "D"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "飞机 {{A}} 比 {{B}} 平时 {{C}} 起飞了 {{D}} 二十分钟。",
+      "insertionText": "晚",
+      "focus": "晚"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-fin-13",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "final",
+      "sourceId": "2022-fin",
+      "taskNumber": 13,
+      "sectionPosition": 13,
+      "topicId": "word-placement",
+      "kind": "wordPlacement",
+      "points": 1,
+      "prompt": "Укажите место лексической единицы, приведенной в скобках (12-13):",
+      "options": [
+        {
+          "id": "A",
+          "text": "A"
+        },
+        {
+          "id": "B",
+          "text": "B"
+        },
+        {
+          "id": "C",
+          "text": "C"
+        },
+        {
+          "id": "D",
+          "text": "D"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "{{A}} 他的汉语说得 {{B}} 不错，{{C}} 原来他在中国住过三年 {{D}}。",
+      "insertionText": "怪不得",
+      "focus": "怪不得"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-fin-14",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "final",
+      "sourceId": "2022-fin",
+      "taskNumber": 14,
+      "sectionPosition": 14,
+      "topicId": "prepositions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящие предлоги и заполните пропуски (14-15):",
+      "options": [
+        {
+          "id": "A",
+          "text": "像"
+        },
+        {
+          "id": "B",
+          "text": "和"
+        },
+        {
+          "id": "C",
+          "text": "更"
+        },
+        {
+          "id": "D",
+          "text": "比"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "因为没有空气污染，乡下的空气……城市的蓝得多。",
+      "focus": "比"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-fin-15",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "final",
+      "sourceId": "2022-fin",
+      "taskNumber": 15,
+      "sectionPosition": 15,
+      "topicId": "prepositions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящие предлоги и заполните пропуски (14-15):",
+      "options": [
+        {
+          "id": "A",
+          "text": "因"
+        },
+        {
+          "id": "B",
+          "text": "朝"
+        },
+        {
+          "id": "C",
+          "text": "往"
+        },
+        {
+          "id": "D",
+          "text": "为"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "……达到目的，他们不惜一切代价。",
+      "focus": "为"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-fin-16",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "final",
+      "sourceId": "2022-fin",
+      "taskNumber": 16,
+      "sectionPosition": 16,
+      "topicId": "adverbs",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящее наречие и заполните пропуск (16-17):",
+      "options": [
+        {
+          "id": "A",
+          "text": "正好"
+        },
+        {
+          "id": "B",
+          "text": "简直"
+        },
+        {
+          "id": "C",
+          "text": "直接"
+        },
+        {
+          "id": "D",
+          "text": "恰好"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "他的发音好极了，……听不出来他是日本人。",
+      "focus": "简直"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-fin-17",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "final",
+      "sourceId": "2022-fin",
+      "taskNumber": 17,
+      "sectionPosition": 17,
+      "topicId": "adverbs",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящее наречие и заполните пропуск (16-17):",
+      "options": [
+        {
+          "id": "A",
+          "text": "一起"
+        },
+        {
+          "id": "B",
+          "text": "已经"
+        },
+        {
+          "id": "C",
+          "text": "一直"
+        },
+        {
+          "id": "D",
+          "text": "常常"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        7,
+        8
+      ],
+      "keyPage": 1,
+      "stem": "从昨天晚上10点到现在……停电。",
+      "focus": "一直"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-fin-18",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "final",
+      "sourceId": "2022-fin",
+      "taskNumber": 18,
+      "sectionPosition": 18,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18-20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "本"
+        },
+        {
+          "id": "B",
+          "text": "各"
+        },
+        {
+          "id": "C",
+          "text": "其"
+        },
+        {
+          "id": "D",
+          "text": "这"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "contextId": "2022-fin-text",
+      "gapNumber": 18,
+      "focus": "其"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-fin-19",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "final",
+      "sourceId": "2022-fin",
+      "taskNumber": 19,
+      "sectionPosition": 19,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18-20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "学生"
+        },
+        {
+          "id": "B",
+          "text": "教师"
+        },
+        {
+          "id": "C",
+          "text": "学校"
+        },
+        {
+          "id": "D",
+          "text": "读者"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "contextId": "2022-fin-text",
+      "gapNumber": 19,
+      "focus": "学生"
+    },
+    {
+      "id": "vsosh-zh-lg-2022-fin-20",
+      "origin": "official",
+      "season": "2022/2023",
+      "stage": "final",
+      "sourceId": "2022-fin",
+      "taskNumber": 20,
+      "sectionPosition": 20,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18-20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "因为"
+        },
+        {
+          "id": "B",
+          "text": "因此"
+        },
+        {
+          "id": "C",
+          "text": "反之"
+        },
+        {
+          "id": "D",
+          "text": "虽然"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "contextId": "2022-fin-text",
+      "gapNumber": 20,
+      "focus": "因此"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-reg-01",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "regional",
+      "sourceId": "2023-reg",
+      "taskNumber": 1,
+      "sectionPosition": 1,
+      "topicId": "paired-constructions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей по смыслу грамматической конструкцией (1-2):",
+      "options": [
+        {
+          "id": "A",
+          "text": "虽然……但是……"
+        },
+        {
+          "id": "B",
+          "text": "即使……也……"
+        },
+        {
+          "id": "C",
+          "text": "不但……反而……"
+        },
+        {
+          "id": "D",
+          "text": "如果……那么……"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        4
+      ],
+      "keyPage": 1,
+      "stem": "多喝水……不会使你长胖，……有利于减肥。",
+      "focus": "不但……反而……"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-reg-02",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "regional",
+      "sourceId": "2023-reg",
+      "taskNumber": 2,
+      "sectionPosition": 2,
+      "topicId": "paired-constructions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей по смыслу грамматической конструкцией (1-2):",
+      "options": [
+        {
+          "id": "A",
+          "text": "由于……所以……"
+        },
+        {
+          "id": "B",
+          "text": "虽然……却……"
+        },
+        {
+          "id": "C",
+          "text": "不仅……而且……"
+        },
+        {
+          "id": "D",
+          "text": "又……又……"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "……工业规模不大，……没有造成环境污染。",
+      "focus": "由于……所以……"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-reg-03",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "regional",
+      "sourceId": "2023-reg",
+      "taskNumber": 3,
+      "sectionPosition": 3,
+      "topicId": "direction-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуски соответствующими модификаторами направления движения (3-4):",
+      "options": [
+        {
+          "id": "A",
+          "text": "出去"
+        },
+        {
+          "id": "B",
+          "text": "进来"
+        },
+        {
+          "id": "C",
+          "text": "下去"
+        },
+        {
+          "id": "D",
+          "text": "回来"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "请你说……，我很想知道结果。",
+      "focus": "下去"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-reg-04",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "regional",
+      "sourceId": "2023-reg",
+      "taskNumber": 4,
+      "sectionPosition": 4,
+      "topicId": "direction-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуски соответствующими модификаторами направления движения (3-4):",
+      "options": [
+        {
+          "id": "A",
+          "text": "起来"
+        },
+        {
+          "id": "B",
+          "text": "出来"
+        },
+        {
+          "id": "C",
+          "text": "下来"
+        },
+        {
+          "id": "D",
+          "text": "过去"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "他们俩看……年龄相同。",
+      "focus": "起来"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-reg-05",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "regional",
+      "sourceId": "2023-reg",
+      "taskNumber": 5,
+      "sectionPosition": 5,
+      "topicId": "sentence-grammar",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите правильный с точки зрения грамматики вариант (5-6):",
+      "options": [
+        {
+          "id": "A",
+          "text": "两多个年以前"
+        },
+        {
+          "id": "B",
+          "text": "两个年多以前"
+        },
+        {
+          "id": "C",
+          "text": "两年多以前"
+        },
+        {
+          "id": "D",
+          "text": "两多年以前"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "大卫是……来到中国的。",
+      "focus": "Порядок слов при указании времени"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-reg-06",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "regional",
+      "sourceId": "2023-reg",
+      "taskNumber": 6,
+      "sectionPosition": 6,
+      "topicId": "sentence-grammar",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите правильный с точки зрения грамматики вариант (5-6):",
+      "options": [
+        {
+          "id": "A",
+          "text": "打打扫扫"
+        },
+        {
+          "id": "B",
+          "text": "打扫打扫"
+        },
+        {
+          "id": "C",
+          "text": "打扫扫"
+        },
+        {
+          "id": "D",
+          "text": "打扫一打扫"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "这么乱的房间还不快……，要不怎么接待客人?",
+      "focus": "Удвоение двусложного глагола"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-reg-07",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "regional",
+      "sourceId": "2023-reg",
+      "taskNumber": 7,
+      "sectionPosition": 7,
+      "topicId": "context-synonyms",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Подберите близкое по значению к подчеркнутому слово (7):",
+      "options": [
+        {
+          "id": "A",
+          "text": "幸福"
+        },
+        {
+          "id": "B",
+          "text": "发现幸福"
+        },
+        {
+          "id": "C",
+          "text": "发胖"
+        },
+        {
+          "id": "D",
+          "text": "有福"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        5,
+        6
+      ],
+      "keyPage": 1,
+      "stem": "多种因素加在一起，我就发福了。",
+      "emphasis": {
+        "text": "发福",
+        "start": 11,
+        "length": 2
+      },
+      "focus": "发福"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-reg-08",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "regional",
+      "sourceId": "2023-reg",
+      "taskNumber": 8,
+      "sectionPosition": 8,
+      "topicId": "result-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей результативной морфемой (8):",
+      "options": [
+        {
+          "id": "A",
+          "text": "上"
+        },
+        {
+          "id": "B",
+          "text": "闭"
+        },
+        {
+          "id": "C",
+          "text": "下"
+        },
+        {
+          "id": "D",
+          "text": "开"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "听说中了奖，他高兴得嘴都合不……了。",
+      "focus": "上"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-reg-09",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "regional",
+      "sourceId": "2023-reg",
+      "taskNumber": 9,
+      "sectionPosition": 9,
+      "topicId": "stroke-count",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Укажите количество черт в иероглифе (9):",
+      "options": [
+        {
+          "id": "A",
+          "text": "19"
+        },
+        {
+          "id": "B",
+          "text": "20"
+        },
+        {
+          "id": "C",
+          "text": "21"
+        },
+        {
+          "id": "D",
+          "text": "22"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "夔",
+      "focus": "夔"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-reg-10",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "regional",
+      "sourceId": "2023-reg",
+      "taskNumber": 10,
+      "sectionPosition": 10,
+      "topicId": "chengyu",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Подберите аналог китайскому фразеологизму в русском языке (10):",
+      "options": [
+        {
+          "id": "A",
+          "text": "не покладая рук"
+        },
+        {
+          "id": "B",
+          "text": "как по маслу"
+        },
+        {
+          "id": "C",
+          "text": "выкинуть из головы"
+        },
+        {
+          "id": "D",
+          "text": "кануть в Лету"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "废寝忘食",
+      "focus": "废寝忘食"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-reg-11",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "regional",
+      "sourceId": "2023-reg",
+      "taskNumber": 11,
+      "sectionPosition": 11,
+      "topicId": "tone-pattern",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите верный тональный рисунок (11):",
+      "options": [
+        {
+          "id": "A",
+          "text": "1, 0"
+        },
+        {
+          "id": "B",
+          "text": "1, 3"
+        },
+        {
+          "id": "C",
+          "text": "3, 1"
+        },
+        {
+          "id": "D",
+          "text": "3, 3"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "洗刷",
+      "focus": "洗刷"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-reg-12",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "regional",
+      "sourceId": "2023-reg",
+      "taskNumber": 12,
+      "sectionPosition": 12,
+      "topicId": "word-placement",
+      "kind": "wordPlacement",
+      "points": 1,
+      "prompt": "Укажите место лексической единицы, приведенной в с кобках (12-13):",
+      "options": [
+        {
+          "id": "A",
+          "text": "A"
+        },
+        {
+          "id": "B",
+          "text": "B"
+        },
+        {
+          "id": "C",
+          "text": "C"
+        },
+        {
+          "id": "D",
+          "text": "D"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "我 {{A}} 在 {{B}} 商场 {{C}} 买东西的时候偶然 {{D}} 发现这种新产品的。",
+      "insertionText": "是",
+      "focus": "是"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-reg-13",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "regional",
+      "sourceId": "2023-reg",
+      "taskNumber": 13,
+      "sectionPosition": 13,
+      "topicId": "word-placement",
+      "kind": "wordPlacement",
+      "points": 1,
+      "prompt": "Укажите место лексической единицы, приведенной в с кобках (12-13):",
+      "options": [
+        {
+          "id": "A",
+          "text": "A"
+        },
+        {
+          "id": "B",
+          "text": "B"
+        },
+        {
+          "id": "C",
+          "text": "C"
+        },
+        {
+          "id": "D",
+          "text": "D"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "这个问题 {{A}} 只有 {{B}} 他能 {{C}} 一听 {{D}} 明白。",
+      "insertionText": "就",
+      "focus": "就"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-reg-14",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "regional",
+      "sourceId": "2023-reg",
+      "taskNumber": 14,
+      "sectionPosition": 14,
+      "topicId": "prepositions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящие предлоги и заполните пропуски (14-15):",
+      "options": [
+        {
+          "id": "A",
+          "text": "把"
+        },
+        {
+          "id": "B",
+          "text": "向"
+        },
+        {
+          "id": "C",
+          "text": "从"
+        },
+        {
+          "id": "D",
+          "text": "被"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "他热情地……客人问好。",
+      "focus": "向"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-reg-15",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "regional",
+      "sourceId": "2023-reg",
+      "taskNumber": 15,
+      "sectionPosition": 15,
+      "topicId": "prepositions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящие предлоги и заполните пропуски (14-15):",
+      "options": [
+        {
+          "id": "A",
+          "text": "把"
+        },
+        {
+          "id": "B",
+          "text": "被"
+        },
+        {
+          "id": "C",
+          "text": "给"
+        },
+        {
+          "id": "D",
+          "text": "比"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "我们这儿的夏天不……你们那儿凉快多少。",
+      "focus": "比"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-reg-16",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "regional",
+      "sourceId": "2023-reg",
+      "taskNumber": 16,
+      "sectionPosition": 16,
+      "topicId": "adverbs",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящее наречие и заполните пропуск (16-17):",
+      "options": [
+        {
+          "id": "A",
+          "text": "又"
+        },
+        {
+          "id": "B",
+          "text": "也"
+        },
+        {
+          "id": "C",
+          "text": "再"
+        },
+        {
+          "id": "D",
+          "text": "正"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "第三课讲完了，大家回去后要认真复习，下次我……接着讲第四课。",
+      "focus": "再"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-reg-17",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "regional",
+      "sourceId": "2023-reg",
+      "taskNumber": 17,
+      "sectionPosition": 17,
+      "topicId": "adverbs",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящее наречие и заполните пропуск (16-17):",
+      "options": [
+        {
+          "id": "A",
+          "text": "很"
+        },
+        {
+          "id": "B",
+          "text": "真"
+        },
+        {
+          "id": "C",
+          "text": "够"
+        },
+        {
+          "id": "D",
+          "text": "更"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "其他三个人没有一个比我哥哥考得……好。",
+      "focus": "更"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-reg-18",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "regional",
+      "sourceId": "2023-reg",
+      "taskNumber": 18,
+      "sectionPosition": 18,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18-20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "如果"
+        },
+        {
+          "id": "B",
+          "text": "即使"
+        },
+        {
+          "id": "C",
+          "text": "不管"
+        },
+        {
+          "id": "D",
+          "text": "还是"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "contextId": "2023-reg-text",
+      "gapNumber": 18,
+      "focus": "不管"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-reg-19",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "regional",
+      "sourceId": "2023-reg",
+      "taskNumber": 19,
+      "sectionPosition": 19,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18-20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "一天一天"
+        },
+        {
+          "id": "B",
+          "text": "现在"
+        },
+        {
+          "id": "C",
+          "text": "一点儿"
+        },
+        {
+          "id": "D",
+          "text": "越来越"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "contextId": "2023-reg-text",
+      "gapNumber": 19,
+      "focus": "越来越"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-reg-20",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "regional",
+      "sourceId": "2023-reg",
+      "taskNumber": 20,
+      "sectionPosition": 20,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18-20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "这样"
+        },
+        {
+          "id": "B",
+          "text": "那么"
+        },
+        {
+          "id": "C",
+          "text": "这么"
+        },
+        {
+          "id": "D",
+          "text": "怎么"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "contextId": "2023-reg-text",
+      "gapNumber": 20,
+      "focus": "怎么"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-fin-01",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "final",
+      "sourceId": "2023-fin",
+      "taskNumber": 1,
+      "sectionPosition": 1,
+      "topicId": "paired-constructions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей по смыслу грамматической конструкцией (1-2):",
+      "options": [
+        {
+          "id": "A",
+          "text": "一边……一边……"
+        },
+        {
+          "id": "B",
+          "text": "既……又……"
+        },
+        {
+          "id": "C",
+          "text": "还……还……"
+        },
+        {
+          "id": "D",
+          "text": "也……也……"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        4
+      ],
+      "keyPage": 1,
+      "stem": "一个人的一生，要做一件……有意思……有意义的事情。",
+      "focus": "既……又……"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-fin-02",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "final",
+      "sourceId": "2023-fin",
+      "taskNumber": 2,
+      "sectionPosition": 2,
+      "topicId": "paired-constructions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей по смыслу грамматической конструкцией (1-2):",
+      "options": [
+        {
+          "id": "A",
+          "text": "大概……大概……"
+        },
+        {
+          "id": "B",
+          "text": "即使……也……"
+        },
+        {
+          "id": "C",
+          "text": "有的……有的……"
+        },
+        {
+          "id": "D",
+          "text": "一边……一边……"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "这些学生的手机……是家长或亲戚送的，……是自己攒钱买的。",
+      "focus": "有的……有的……"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-fin-03",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "final",
+      "sourceId": "2023-fin",
+      "taskNumber": 3,
+      "sectionPosition": 3,
+      "topicId": "direction-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуски соответствующими модификаторами направления движения (3):",
+      "options": [
+        {
+          "id": "A",
+          "text": "上去"
+        },
+        {
+          "id": "B",
+          "text": "出来"
+        },
+        {
+          "id": "C",
+          "text": "进去"
+        },
+        {
+          "id": "D",
+          "text": "起来"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "我把书包扔在地上，他就提了……。",
+      "focus": "起来"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-fin-04",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "final",
+      "sourceId": "2023-fin",
+      "taskNumber": 4,
+      "sectionPosition": 4,
+      "topicId": "classifiers",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящим счетным словом (4):",
+      "options": [
+        {
+          "id": "A",
+          "text": "幅"
+        },
+        {
+          "id": "B",
+          "text": "只"
+        },
+        {
+          "id": "C",
+          "text": "把"
+        },
+        {
+          "id": "D",
+          "text": "副"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "你就留在这儿吃晚饭，我给你拿……碗筷。",
+      "focus": "副"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-fin-05",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "final",
+      "sourceId": "2023-fin",
+      "taskNumber": 5,
+      "sectionPosition": 5,
+      "topicId": "sentence-grammar",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите правильный с точки зрения грамматики вариант (5-6):",
+      "options": [
+        {
+          "id": "A",
+          "text": "见面我的朋友"
+        },
+        {
+          "id": "B",
+          "text": "看我的朋友面"
+        },
+        {
+          "id": "C",
+          "text": "跟我的朋友见面"
+        },
+        {
+          "id": "D",
+          "text": "给我的朋友见面"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "……以后，我们一起去了友谊商店。",
+      "focus": "跟……见面"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-fin-06",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "final",
+      "sourceId": "2023-fin",
+      "taskNumber": 6,
+      "sectionPosition": 6,
+      "topicId": "sentence-grammar",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите правильный с точки зрения грамматики вариант (5-6):",
+      "options": [
+        {
+          "id": "A",
+          "text": "两千左右五百人"
+        },
+        {
+          "id": "B",
+          "text": "两千五个百人左右"
+        },
+        {
+          "id": "C",
+          "text": "两千五百人左右"
+        },
+        {
+          "id": "D",
+          "text": "两千五百左右人"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "我们公司的职员大概有……。",
+      "focus": "Приблизительное количество с 左右"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-fin-07",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "final",
+      "sourceId": "2023-fin",
+      "taskNumber": 7,
+      "sectionPosition": 7,
+      "topicId": "context-synonyms",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Подберите близкое по значению к подчеркнутому слово (7):",
+      "options": [
+        {
+          "id": "A",
+          "text": "吹牛"
+        },
+        {
+          "id": "B",
+          "text": "分手"
+        },
+        {
+          "id": "C",
+          "text": "有矛盾"
+        },
+        {
+          "id": "D",
+          "text": "说笑话"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "我早就说过他们俩不合适，现在果然吹了吧。",
+      "emphasis": {
+        "text": "吹",
+        "start": 16,
+        "length": 1
+      },
+      "focus": "吹"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-fin-08",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "final",
+      "sourceId": "2023-fin",
+      "taskNumber": 8,
+      "sectionPosition": 8,
+      "topicId": "result-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей результативной морфемой (8):",
+      "options": [
+        {
+          "id": "A",
+          "text": "开"
+        },
+        {
+          "id": "B",
+          "text": "上"
+        },
+        {
+          "id": "C",
+          "text": "走"
+        },
+        {
+          "id": "D",
+          "text": "完"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "我刚才放在桌子上的小说谁拿……了？",
+      "focus": "走"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-fin-09",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "final",
+      "sourceId": "2023-fin",
+      "taskNumber": 9,
+      "sectionPosition": 9,
+      "topicId": "stroke-count",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Укажите количество черт в иероглифе (9):",
+      "options": [
+        {
+          "id": "A",
+          "text": "15"
+        },
+        {
+          "id": "B",
+          "text": "16"
+        },
+        {
+          "id": "C",
+          "text": "17"
+        },
+        {
+          "id": "D",
+          "text": "18"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "篷",
+      "focus": "篷"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-fin-10",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "final",
+      "sourceId": "2023-fin",
+      "taskNumber": 10,
+      "sectionPosition": 10,
+      "topicId": "chengyu",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Подберите аналог фразеологизму в русском языке (10):",
+      "options": [
+        {
+          "id": "A",
+          "text": "Пришла беда – отворяй ворота"
+        },
+        {
+          "id": "B",
+          "text": "Все двери открыты"
+        },
+        {
+          "id": "C",
+          "text": "Пустить козла в огород"
+        },
+        {
+          "id": "D",
+          "text": "Открыть ящик Пандоры"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "开门揖盗",
+      "focus": "开门揖盗"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-fin-11",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "final",
+      "sourceId": "2023-fin",
+      "taskNumber": 11,
+      "sectionPosition": 11,
+      "topicId": "tone-pattern",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите верный тональный рисунок (11):",
+      "options": [
+        {
+          "id": "A",
+          "text": "2, 1"
+        },
+        {
+          "id": "B",
+          "text": "2, 3"
+        },
+        {
+          "id": "C",
+          "text": "2, 2"
+        },
+        {
+          "id": "D",
+          "text": "2, 4"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "材料",
+      "focus": "材料"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-fin-12",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "final",
+      "sourceId": "2023-fin",
+      "taskNumber": 12,
+      "sectionPosition": 12,
+      "topicId": "word-placement",
+      "kind": "wordPlacement",
+      "points": 1,
+      "prompt": "Укажите место лексической единицы, приведенной в скобках (12-13):",
+      "options": [
+        {
+          "id": "A",
+          "text": "A"
+        },
+        {
+          "id": "B",
+          "text": "B"
+        },
+        {
+          "id": "C",
+          "text": "C"
+        },
+        {
+          "id": "D",
+          "text": "D"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "老奶奶一看见 {{A}} 我就过来拉 {{B}} 我的手说 {{C}}：“小姑娘，咱们又见 {{D}} 面啦！”",
+      "insertionText": "着",
+      "focus": "着"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-fin-13",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "final",
+      "sourceId": "2023-fin",
+      "taskNumber": 13,
+      "sectionPosition": 13,
+      "topicId": "word-placement",
+      "kind": "wordPlacement",
+      "points": 1,
+      "prompt": "Укажите место лексической единицы, приведенной в скобках (12-13):",
+      "options": [
+        {
+          "id": "A",
+          "text": "A"
+        },
+        {
+          "id": "B",
+          "text": "B"
+        },
+        {
+          "id": "C",
+          "text": "C"
+        },
+        {
+          "id": "D",
+          "text": "D"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "他和妻子 {{A}} 打算明年 {{B}} 毕业后回 {{C}} 来 {{D}}。",
+      "insertionText": "这里",
+      "focus": "这里"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-fin-14",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "final",
+      "sourceId": "2023-fin",
+      "taskNumber": 14,
+      "sectionPosition": 14,
+      "topicId": "prepositions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящие предлоги и заполните пропуски (14-15):",
+      "options": [
+        {
+          "id": "A",
+          "text": "由"
+        },
+        {
+          "id": "B",
+          "text": "使"
+        },
+        {
+          "id": "C",
+          "text": "把"
+        },
+        {
+          "id": "D",
+          "text": "给"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "大家生活上的事儿……我负责，有问题找我就可以。",
+      "focus": "由"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-fin-15",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "final",
+      "sourceId": "2023-fin",
+      "taskNumber": 15,
+      "sectionPosition": 15,
+      "topicId": "prepositions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящие предлоги и заполните пропуски (14-15):",
+      "options": [
+        {
+          "id": "A",
+          "text": "给"
+        },
+        {
+          "id": "B",
+          "text": "为"
+        },
+        {
+          "id": "C",
+          "text": "对"
+        },
+        {
+          "id": "D",
+          "text": "把"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "上周我没上班，这使经理……我很不满意。",
+      "focus": "对"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-fin-16",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "final",
+      "sourceId": "2023-fin",
+      "taskNumber": 16,
+      "sectionPosition": 16,
+      "topicId": "adverbs",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящее наречие и заполните пропуск (16-17):",
+      "options": [
+        {
+          "id": "A",
+          "text": "何必"
+        },
+        {
+          "id": "B",
+          "text": "如何"
+        },
+        {
+          "id": "C",
+          "text": "不必"
+        },
+        {
+          "id": "D",
+          "text": "没必"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "我要是能看懂，……请你翻译？",
+      "focus": "何必"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-fin-17",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "final",
+      "sourceId": "2023-fin",
+      "taskNumber": 17,
+      "sectionPosition": 17,
+      "topicId": "adverbs",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящее наречие и заполните пропуск (16-17):",
+      "options": [
+        {
+          "id": "A",
+          "text": "终究"
+        },
+        {
+          "id": "B",
+          "text": "始终"
+        },
+        {
+          "id": "C",
+          "text": "充分"
+        },
+        {
+          "id": "D",
+          "text": "终于"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "我已经去那儿找了好几次，今天……找到了他。",
+      "focus": "终于"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-fin-18",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "final",
+      "sourceId": "2023-fin",
+      "taskNumber": 18,
+      "sectionPosition": 18,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18-20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "占用"
+        },
+        {
+          "id": "B",
+          "text": "使用"
+        },
+        {
+          "id": "C",
+          "text": "需要"
+        },
+        {
+          "id": "D",
+          "text": "聘用"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "contextId": "2023-fin-text",
+      "gapNumber": 18,
+      "focus": "聘用"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-fin-19",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "final",
+      "sourceId": "2023-fin",
+      "taskNumber": 19,
+      "sectionPosition": 19,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18-20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "公司"
+        },
+        {
+          "id": "B",
+          "text": "家政"
+        },
+        {
+          "id": "C",
+          "text": "保险"
+        },
+        {
+          "id": "D",
+          "text": "银行"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "contextId": "2023-fin-text",
+      "gapNumber": 19,
+      "focus": "家政"
+    },
+    {
+      "id": "vsosh-zh-lg-2023-fin-20",
+      "origin": "official",
+      "season": "2023/2024",
+      "stage": "final",
+      "sourceId": "2023-fin",
+      "taskNumber": 20,
+      "sectionPosition": 20,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18-20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "预报"
+        },
+        {
+          "id": "B",
+          "text": "统计"
+        },
+        {
+          "id": "C",
+          "text": "猜到"
+        },
+        {
+          "id": "D",
+          "text": "估算"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "contextId": "2023-fin-text",
+      "gapNumber": 20,
+      "focus": "估算"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-reg-01",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "regional",
+      "sourceId": "2024-reg",
+      "taskNumber": 1,
+      "sectionPosition": 1,
+      "topicId": "paired-constructions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей по смыслу грамматической конструкцией (1–2):",
+      "options": [
+        {
+          "id": "A",
+          "text": "一……就……"
+        },
+        {
+          "id": "B",
+          "text": "因为……所以……"
+        },
+        {
+          "id": "C",
+          "text": "虽然……但是……"
+        },
+        {
+          "id": "D",
+          "text": "不是……而是……"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        4
+      ],
+      "keyPage": 1,
+      "stem": "我……不想帮助你，……没有能力。",
+      "focus": "不是……而是……"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-reg-02",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "regional",
+      "sourceId": "2024-reg",
+      "taskNumber": 2,
+      "sectionPosition": 2,
+      "topicId": "paired-constructions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей по смыслу грамматической конструкцией (1–2):",
+      "options": [
+        {
+          "id": "A",
+          "text": "不但……反而……"
+        },
+        {
+          "id": "B",
+          "text": "如果……就……"
+        },
+        {
+          "id": "C",
+          "text": "虽然……但是……"
+        },
+        {
+          "id": "D",
+          "text": "即使……也……"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        4,
+        5
+      ],
+      "keyPage": 1,
+      "stem": "他听到这个好消息，……不开心，……难过起来。",
+      "focus": "不但……反而……"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-reg-03",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "regional",
+      "sourceId": "2024-reg",
+      "taskNumber": 3,
+      "sectionPosition": 3,
+      "topicId": "direction-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуски соответствующими модификаторами направления движения (3–4):",
+      "options": [
+        {
+          "id": "A",
+          "text": "回来"
+        },
+        {
+          "id": "B",
+          "text": "出来"
+        },
+        {
+          "id": "C",
+          "text": "回去"
+        },
+        {
+          "id": "D",
+          "text": "下去"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "吃得太饱了，一杯茶喝……，胃就会舒服一些。",
+      "focus": "下去"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-reg-04",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "regional",
+      "sourceId": "2024-reg",
+      "taskNumber": 4,
+      "sectionPosition": 4,
+      "topicId": "direction-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуски соответствующими модификаторами направления движения (3–4):",
+      "options": [
+        {
+          "id": "A",
+          "text": "起来"
+        },
+        {
+          "id": "B",
+          "text": "回去"
+        },
+        {
+          "id": "C",
+          "text": "进去"
+        },
+        {
+          "id": "D",
+          "text": "过去"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "天黑了，小区里各家的灯都亮……了。",
+      "focus": "起来",
+      "repeatGroupId": "vsosh-zh-lg-2024-reg-04"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-reg-05",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "regional",
+      "sourceId": "2024-reg",
+      "taskNumber": 5,
+      "sectionPosition": 5,
+      "topicId": "sentence-grammar",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите правильный с точки зрения грамматики вариант (5–6):",
+      "options": [
+        {
+          "id": "A",
+          "text": "不比美国妇女低"
+        },
+        {
+          "id": "B",
+          "text": "比美国妇女不低"
+        },
+        {
+          "id": "C",
+          "text": "不低比美国妇女"
+        },
+        {
+          "id": "D",
+          "text": "比不美国妇女低"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "现在中国妇女的社会地位……。",
+      "focus": "Отрицательное сравнение 不比"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-reg-06",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "regional",
+      "sourceId": "2024-reg",
+      "taskNumber": 6,
+      "sectionPosition": 6,
+      "topicId": "sentence-grammar",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите правильный с точки зрения грамматики вариант (5–6):",
+      "options": [
+        {
+          "id": "A",
+          "text": "越你说越我"
+        },
+        {
+          "id": "B",
+          "text": "越说你越我"
+        },
+        {
+          "id": "C",
+          "text": "你越说我越"
+        },
+        {
+          "id": "D",
+          "text": "你越说越我"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "怎么回事，……不明白了。",
+      "focus": "Конструкция 越……越……"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-reg-07",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "regional",
+      "sourceId": "2024-reg",
+      "taskNumber": 7,
+      "sectionPosition": 7,
+      "topicId": "context-synonyms",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Подберите близкое по значению к подчеркнутому слово (7):",
+      "options": [
+        {
+          "id": "A",
+          "text": "做好的"
+        },
+        {
+          "id": "B",
+          "text": "今天的"
+        },
+        {
+          "id": "C",
+          "text": "刚买来的"
+        },
+        {
+          "id": "D",
+          "text": "刚盛上的"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        5,
+        6
+      ],
+      "keyPage": 1,
+      "stem": "饭菜都是现成的，坐下来就可以吃。",
+      "emphasis": {
+        "text": "现成的",
+        "start": 4,
+        "length": 3
+      },
+      "focus": "现成的"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-reg-08",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "regional",
+      "sourceId": "2024-reg",
+      "taskNumber": 8,
+      "sectionPosition": 8,
+      "topicId": "result-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей результативной морфемой (8):",
+      "options": [
+        {
+          "id": "A",
+          "text": "下"
+        },
+        {
+          "id": "B",
+          "text": "上"
+        },
+        {
+          "id": "C",
+          "text": "到"
+        },
+        {
+          "id": "D",
+          "text": "好"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "经过几年的努力，他当……了公司的经理。",
+      "focus": "上"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-reg-09",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "regional",
+      "sourceId": "2024-reg",
+      "taskNumber": 9,
+      "sectionPosition": 9,
+      "topicId": "stroke-count",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Укажите количество черт в иероглифе (9):",
+      "options": [
+        {
+          "id": "A",
+          "text": "18"
+        },
+        {
+          "id": "B",
+          "text": "19"
+        },
+        {
+          "id": "C",
+          "text": "20"
+        },
+        {
+          "id": "D",
+          "text": "17"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "疆",
+      "focus": "疆"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-reg-10",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "regional",
+      "sourceId": "2024-reg",
+      "taskNumber": 10,
+      "sectionPosition": 10,
+      "topicId": "chengyu",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Подберите аналог фразеологизму в русском языке (10):",
+      "options": [
+        {
+          "id": "A",
+          "text": "Волей-неволей"
+        },
+        {
+          "id": "B",
+          "text": "Сердце не на месте"
+        },
+        {
+          "id": "C",
+          "text": "Глаза боятся, а руки делают"
+        },
+        {
+          "id": "D",
+          "text": "Как по маслу"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "得心应手",
+      "focus": "得心应手"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-reg-11",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "regional",
+      "sourceId": "2024-reg",
+      "taskNumber": 11,
+      "sectionPosition": 11,
+      "topicId": "tone-pattern",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите верный тональный рисунок (11):",
+      "options": [
+        {
+          "id": "A",
+          "text": "1, 3"
+        },
+        {
+          "id": "B",
+          "text": "1, 2"
+        },
+        {
+          "id": "C",
+          "text": "4, 4"
+        },
+        {
+          "id": "D",
+          "text": "1, 4"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "拼命",
+      "focus": "拼命"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-reg-12",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "regional",
+      "sourceId": "2024-reg",
+      "taskNumber": 12,
+      "sectionPosition": 12,
+      "topicId": "word-placement",
+      "kind": "wordPlacement",
+      "points": 1,
+      "prompt": "Укажите место лексической единицы, приведенной в скобках (12–13):",
+      "options": [
+        {
+          "id": "A",
+          "text": "A"
+        },
+        {
+          "id": "B",
+          "text": "B"
+        },
+        {
+          "id": "C",
+          "text": "C"
+        },
+        {
+          "id": "D",
+          "text": "D"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "{{A}} 这部电影 {{B}} 很长，{{C}} 有三个小时 {{D}}。",
+      "insertionText": "大约",
+      "focus": "大约"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-reg-13",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "regional",
+      "sourceId": "2024-reg",
+      "taskNumber": 13,
+      "sectionPosition": 13,
+      "topicId": "word-placement",
+      "kind": "wordPlacement",
+      "points": 1,
+      "prompt": "Укажите место лексической единицы, приведенной в скобках (12–13):",
+      "options": [
+        {
+          "id": "A",
+          "text": "A"
+        },
+        {
+          "id": "B",
+          "text": "B"
+        },
+        {
+          "id": "C",
+          "text": "C"
+        },
+        {
+          "id": "D",
+          "text": "D"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "我 {{A}} 二 {{B}} 十 {{C}} 年 {{D}} 前去过北京，那时的北京和现在很不一样。",
+      "insertionText": "几",
+      "focus": "几"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-reg-14",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "regional",
+      "sourceId": "2024-reg",
+      "taskNumber": 14,
+      "sectionPosition": 14,
+      "topicId": "prepositions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящие предлоги и заполните пропуски (14–15):",
+      "options": [
+        {
+          "id": "A",
+          "text": "由"
+        },
+        {
+          "id": "B",
+          "text": "被"
+        },
+        {
+          "id": "C",
+          "text": "把"
+        },
+        {
+          "id": "D",
+          "text": "按照"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "……老师的要求，同学们都完成了作业。",
+      "focus": "按照"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-reg-15",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "regional",
+      "sourceId": "2024-reg",
+      "taskNumber": 15,
+      "sectionPosition": 15,
+      "topicId": "prepositions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящие предлоги и заполните пропуски (14–15):",
+      "options": [
+        {
+          "id": "A",
+          "text": "被"
+        },
+        {
+          "id": "B",
+          "text": "把"
+        },
+        {
+          "id": "C",
+          "text": "跟"
+        },
+        {
+          "id": "D",
+          "text": "从"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "为迎接客人，她早……房间收拾好了。",
+      "focus": "把"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-reg-16",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "regional",
+      "sourceId": "2024-reg",
+      "taskNumber": 16,
+      "sectionPosition": 16,
+      "topicId": "adverbs",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящее наречие и заполните пропуск (16–17):",
+      "options": [
+        {
+          "id": "A",
+          "text": "又"
+        },
+        {
+          "id": "B",
+          "text": "再"
+        },
+        {
+          "id": "C",
+          "text": "还"
+        },
+        {
+          "id": "D",
+          "text": "才"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "他们打算先结婚，……买房子。",
+      "focus": "再"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-reg-17",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "regional",
+      "sourceId": "2024-reg",
+      "taskNumber": 17,
+      "sectionPosition": 17,
+      "topicId": "adverbs",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящее наречие и заполните пропуск (16–17):",
+      "options": [
+        {
+          "id": "A",
+          "text": "偷偷"
+        },
+        {
+          "id": "B",
+          "text": "马上"
+        },
+        {
+          "id": "C",
+          "text": "互相"
+        },
+        {
+          "id": "D",
+          "text": "一起"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "考试时绝对不能……看别人的答案！",
+      "focus": "偷偷"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-reg-18",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "regional",
+      "sourceId": "2024-reg",
+      "taskNumber": 18,
+      "sectionPosition": 18,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18–20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "借出借进"
+        },
+        {
+          "id": "B",
+          "text": "你借我借"
+        },
+        {
+          "id": "C",
+          "text": "借钱借书"
+        },
+        {
+          "id": "D",
+          "text": "借和还"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "contextId": "2024-reg-text",
+      "gapNumber": 18,
+      "focus": "借出借进"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-reg-19",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "regional",
+      "sourceId": "2024-reg",
+      "taskNumber": 19,
+      "sectionPosition": 19,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18–20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "你给我"
+        },
+        {
+          "id": "B",
+          "text": "你还我"
+        },
+        {
+          "id": "C",
+          "text": "我欠你"
+        },
+        {
+          "id": "D",
+          "text": "我还你"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "contextId": "2024-reg-text",
+      "gapNumber": 19,
+      "focus": "我欠你"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-reg-20",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "regional",
+      "sourceId": "2024-reg",
+      "taskNumber": 20,
+      "sectionPosition": 20,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18–20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "因为"
+        },
+        {
+          "id": "B",
+          "text": "要不"
+        },
+        {
+          "id": "C",
+          "text": "虽然"
+        },
+        {
+          "id": "D",
+          "text": "借多了"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "contextId": "2024-reg-text",
+      "gapNumber": 20,
+      "focus": "要不"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-fin-01",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "final",
+      "sourceId": "2024-fin",
+      "taskNumber": 1,
+      "sectionPosition": 1,
+      "topicId": "paired-constructions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей по смыслу грамматической конструкцией (1–2):",
+      "options": [
+        {
+          "id": "A",
+          "text": "不但……而且……"
+        },
+        {
+          "id": "B",
+          "text": "既然……就……"
+        },
+        {
+          "id": "C",
+          "text": "即使……也……"
+        },
+        {
+          "id": "D",
+          "text": "因为……所以……"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "以前这里比较贫穷，……在主要街道上，……看不到什么建筑。",
+      "focus": "即使……也……"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-fin-02",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "final",
+      "sourceId": "2024-fin",
+      "taskNumber": 2,
+      "sectionPosition": 2,
+      "topicId": "paired-constructions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей по смыслу грамматической конструкцией (1–2):",
+      "options": [
+        {
+          "id": "A",
+          "text": "要是……就……"
+        },
+        {
+          "id": "B",
+          "text": "又……又……"
+        },
+        {
+          "id": "C",
+          "text": "不是……而是……"
+        },
+        {
+          "id": "D",
+          "text": "不但……而且……"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "我喜欢你送我的这些小礼物，但我喜欢的……礼物本身，……收到礼物时的那种感觉。",
+      "focus": "不是……而是……"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-fin-03",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "final",
+      "sourceId": "2024-fin",
+      "taskNumber": 3,
+      "sectionPosition": 3,
+      "topicId": "direction-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуски соответствующими модификаторами направления движения (3–4):",
+      "options": [
+        {
+          "id": "A",
+          "text": "起来"
+        },
+        {
+          "id": "B",
+          "text": "下去"
+        },
+        {
+          "id": "C",
+          "text": "回去"
+        },
+        {
+          "id": "D",
+          "text": "过去"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "他前些日子事不多，最近又忙……了。",
+      "focus": "起来"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-fin-04",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "final",
+      "sourceId": "2024-fin",
+      "taskNumber": 4,
+      "sectionPosition": 4,
+      "topicId": "direction-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуски соответствующими модификаторами направления движения (3–4):",
+      "options": [
+        {
+          "id": "A",
+          "text": "起来"
+        },
+        {
+          "id": "B",
+          "text": "下去"
+        },
+        {
+          "id": "C",
+          "text": "下来"
+        },
+        {
+          "id": "D",
+          "text": "过来"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "刚才他的表情你拍……了吗？",
+      "focus": "下来"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-fin-05",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "final",
+      "sourceId": "2024-fin",
+      "taskNumber": 5,
+      "sectionPosition": 5,
+      "topicId": "sentence-grammar",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите правильный с точки зрения грамматики вариант (5–6):",
+      "options": [
+        {
+          "id": "A",
+          "text": "就解释"
+        },
+        {
+          "id": "B",
+          "text": "解释解释"
+        },
+        {
+          "id": "C",
+          "text": "解释了解释"
+        },
+        {
+          "id": "D",
+          "text": "解释解释了"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        5,
+        6
+      ],
+      "keyPage": 1,
+      "stem": "刚才讲的课他完全听不懂，下课以后你给他……。",
+      "focus": "Удвоение двусложного глагола"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-fin-06",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "final",
+      "sourceId": "2024-fin",
+      "taskNumber": 6,
+      "sectionPosition": 6,
+      "topicId": "sentence-grammar",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите правильный с точки зрения грамматики вариант (5–6):",
+      "options": [
+        {
+          "id": "A",
+          "text": "不如"
+        },
+        {
+          "id": "B",
+          "text": "不比"
+        },
+        {
+          "id": "C",
+          "text": "没有"
+        },
+        {
+          "id": "D",
+          "text": "不跟"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "我骑车的速度……你快多少。",
+      "focus": "Отрицательное сравнение 不比"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-fin-07",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "final",
+      "sourceId": "2024-fin",
+      "taskNumber": 7,
+      "sectionPosition": 7,
+      "topicId": "context-synonyms",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Подберите близкое по значению к подчеркнутому слово (7):",
+      "options": [
+        {
+          "id": "A",
+          "text": "顺利"
+        },
+        {
+          "id": "B",
+          "text": "顺应"
+        },
+        {
+          "id": "C",
+          "text": "顺便"
+        },
+        {
+          "id": "D",
+          "text": "顺从"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "房间扫完后你就顺手把院子也扫一下吧。",
+      "emphasis": {
+        "text": "顺手",
+        "start": 7,
+        "length": 2
+      },
+      "focus": "顺手"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-fin-08",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "final",
+      "sourceId": "2024-fin",
+      "taskNumber": 8,
+      "sectionPosition": 8,
+      "topicId": "result-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей результативной морфемой (8):",
+      "options": [
+        {
+          "id": "A",
+          "text": "满"
+        },
+        {
+          "id": "B",
+          "text": "全"
+        },
+        {
+          "id": "C",
+          "text": "完"
+        },
+        {
+          "id": "D",
+          "text": "透"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "看看，衣服都湿……了，还不快进来换掉。",
+      "focus": "透"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-fin-09",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "final",
+      "sourceId": "2024-fin",
+      "taskNumber": 9,
+      "sectionPosition": 9,
+      "topicId": "stroke-count",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Укажите количество черт в иероглифе (9):",
+      "options": [
+        {
+          "id": "A",
+          "text": "17"
+        },
+        {
+          "id": "B",
+          "text": "20"
+        },
+        {
+          "id": "C",
+          "text": "18"
+        },
+        {
+          "id": "D",
+          "text": "19"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "襟",
+      "focus": "襟"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-fin-10",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "final",
+      "sourceId": "2024-fin",
+      "taskNumber": 10,
+      "sectionPosition": 10,
+      "topicId": "chengyu",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Подберите аналог фразеологизму в русском языке (10):",
+      "options": [
+        {
+          "id": "A",
+          "text": "Волей-неволей, через силу"
+        },
+        {
+          "id": "B",
+          "text": "Лиха беда начало"
+        },
+        {
+          "id": "C",
+          "text": "Избежать неприятностей"
+        },
+        {
+          "id": "D",
+          "text": "Тяжело в учении, легко в бою"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        6,
+        7
+      ],
+      "keyPage": 1,
+      "stem": "勉为其难",
+      "focus": "勉为其难"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-fin-11",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "final",
+      "sourceId": "2024-fin",
+      "taskNumber": 11,
+      "sectionPosition": 11,
+      "topicId": "tone-pattern",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите верный тональный рисунок (11):",
+      "options": [
+        {
+          "id": "A",
+          "text": "1, 1"
+        },
+        {
+          "id": "B",
+          "text": "1, 4"
+        },
+        {
+          "id": "C",
+          "text": "2, 4"
+        },
+        {
+          "id": "D",
+          "text": "4, 4"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "拍摄",
+      "focus": "拍摄"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-fin-12",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "final",
+      "sourceId": "2024-fin",
+      "taskNumber": 12,
+      "sectionPosition": 12,
+      "topicId": "word-placement",
+      "kind": "wordPlacement",
+      "points": 1,
+      "prompt": "Укажите место лексической единицы, приведенной в скобках (12–13):",
+      "options": [
+        {
+          "id": "A",
+          "text": "A"
+        },
+        {
+          "id": "B",
+          "text": "B"
+        },
+        {
+          "id": "C",
+          "text": "C"
+        },
+        {
+          "id": "D",
+          "text": "D"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "学校后山 {{A}} 树林里有一条山路 {{B}} 从来没有 {{C}} 人走 {{D}}。",
+      "insertionText": "过",
+      "focus": "过"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-fin-13",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "final",
+      "sourceId": "2024-fin",
+      "taskNumber": 13,
+      "sectionPosition": 13,
+      "topicId": "word-placement",
+      "kind": "wordPlacement",
+      "points": 1,
+      "prompt": "Укажите место лексической единицы, приведенной в скобках (12–13):",
+      "options": [
+        {
+          "id": "A",
+          "text": "A"
+        },
+        {
+          "id": "B",
+          "text": "B"
+        },
+        {
+          "id": "C",
+          "text": "C"
+        },
+        {
+          "id": "D",
+          "text": "D"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "我每天 {{A}} 都会抽出 {{B}} 一定 {{C}} 时间 {{D}} 陪妈妈聊聊天。",
+      "insertionText": "的",
+      "focus": "的"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-fin-14",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "final",
+      "sourceId": "2024-fin",
+      "taskNumber": 14,
+      "sectionPosition": 14,
+      "topicId": "prepositions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящие предлоги и заполните пропуски (14–15):",
+      "options": [
+        {
+          "id": "A",
+          "text": "把"
+        },
+        {
+          "id": "B",
+          "text": "对"
+        },
+        {
+          "id": "C",
+          "text": "向"
+        },
+        {
+          "id": "D",
+          "text": "以"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "经理举起茶杯说：“来来来，我们就……茶代酒，先干了这一杯。”",
+      "focus": "以"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-fin-15",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "final",
+      "sourceId": "2024-fin",
+      "taskNumber": 15,
+      "sectionPosition": 15,
+      "topicId": "prepositions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящие предлоги и заполните пропуски (14–15):",
+      "options": [
+        {
+          "id": "A",
+          "text": "对"
+        },
+        {
+          "id": "B",
+          "text": "把"
+        },
+        {
+          "id": "C",
+          "text": "替"
+        },
+        {
+          "id": "D",
+          "text": "从"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "一出事就……责任推给别人，这不是一个领导的作风。",
+      "focus": "把"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-fin-16",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "final",
+      "sourceId": "2024-fin",
+      "taskNumber": 16,
+      "sectionPosition": 16,
+      "topicId": "adverbs",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящее наречие и заполните пропуск (16–17):",
+      "options": [
+        {
+          "id": "A",
+          "text": "一直"
+        },
+        {
+          "id": "B",
+          "text": "一连"
+        },
+        {
+          "id": "C",
+          "text": "一向"
+        },
+        {
+          "id": "D",
+          "text": "一律"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "公民无论职位高低，在法律面前……平等。",
+      "focus": "一律"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-fin-17",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "final",
+      "sourceId": "2024-fin",
+      "taskNumber": 17,
+      "sectionPosition": 17,
+      "topicId": "adverbs",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящее наречие и заполните пропуск (16–17):",
+      "options": [
+        {
+          "id": "A",
+          "text": "更"
+        },
+        {
+          "id": "B",
+          "text": "最"
+        },
+        {
+          "id": "C",
+          "text": "尤其"
+        },
+        {
+          "id": "D",
+          "text": "还"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        7,
+        8
+      ],
+      "keyPage": 1,
+      "stem": "我喜欢中国菜，……是风味独特的川菜。",
+      "focus": "尤其"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-fin-18",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "final",
+      "sourceId": "2024-fin",
+      "taskNumber": 18,
+      "sectionPosition": 18,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18–20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "长期"
+        },
+        {
+          "id": "B",
+          "text": "现在"
+        },
+        {
+          "id": "C",
+          "text": "暂时"
+        },
+        {
+          "id": "D",
+          "text": "短期"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "contextId": "2024-fin-text",
+      "gapNumber": 18,
+      "focus": "长期"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-fin-19",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "final",
+      "sourceId": "2024-fin",
+      "taskNumber": 19,
+      "sectionPosition": 19,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18–20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "上"
+        },
+        {
+          "id": "B",
+          "text": "内"
+        },
+        {
+          "id": "C",
+          "text": "下"
+        },
+        {
+          "id": "D",
+          "text": "中"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "contextId": "2024-fin-text",
+      "gapNumber": 19,
+      "focus": "下"
+    },
+    {
+      "id": "vsosh-zh-lg-2024-fin-20",
+      "origin": "official",
+      "season": "2024/2025",
+      "stage": "final",
+      "sourceId": "2024-fin",
+      "taskNumber": 20,
+      "sectionPosition": 20,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18–20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "肯定"
+        },
+        {
+          "id": "B",
+          "text": "一定"
+        },
+        {
+          "id": "C",
+          "text": "固定"
+        },
+        {
+          "id": "D",
+          "text": "确定"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "contextId": "2024-fin-text",
+      "gapNumber": 20,
+      "focus": "一定"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-reg-01",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "regional",
+      "sourceId": "2025-reg",
+      "taskNumber": 1,
+      "sectionPosition": 1,
+      "topicId": "paired-constructions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей по смыслу грамматической конструкцией (1–2):",
+      "options": [
+        {
+          "id": "A",
+          "text": "一……就……"
+        },
+        {
+          "id": "B",
+          "text": "首先……然后……"
+        },
+        {
+          "id": "C",
+          "text": "即使……也……"
+        },
+        {
+          "id": "D",
+          "text": "一边……一边……"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        4
+      ],
+      "keyPage": 1,
+      "stem": "放学以后，孩子……要完成作业，……才能玩儿。",
+      "focus": "首先……然后……"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-reg-02",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "regional",
+      "sourceId": "2025-reg",
+      "taskNumber": 2,
+      "sectionPosition": 2,
+      "topicId": "paired-constructions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей по смыслу грамматической конструкцией (1–2):",
+      "options": [
+        {
+          "id": "A",
+          "text": "既……又……"
+        },
+        {
+          "id": "B",
+          "text": "虽然……但是……"
+        },
+        {
+          "id": "C",
+          "text": "要是……就……"
+        },
+        {
+          "id": "D",
+          "text": "一……就……"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        4
+      ],
+      "keyPage": 1,
+      "stem": "这次旅行，我……看到了美丽的风景，……吃到了美味的小吃。",
+      "focus": "既……又……"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-reg-03",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "regional",
+      "sourceId": "2025-reg",
+      "taskNumber": 3,
+      "sectionPosition": 3,
+      "topicId": "direction-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуски соответствующими модификаторами направления движения (3–4):",
+      "options": [
+        {
+          "id": "A",
+          "text": "起来"
+        },
+        {
+          "id": "B",
+          "text": "下去"
+        },
+        {
+          "id": "C",
+          "text": "出来"
+        },
+        {
+          "id": "D",
+          "text": "下来"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "这种病不容易检查……。",
+      "focus": "出来"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-reg-04",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "regional",
+      "sourceId": "2025-reg",
+      "taskNumber": 4,
+      "sectionPosition": 4,
+      "topicId": "direction-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуски соответствующими модификаторами направления движения (3–4):",
+      "options": [
+        {
+          "id": "A",
+          "text": "回去"
+        },
+        {
+          "id": "B",
+          "text": "下去"
+        },
+        {
+          "id": "C",
+          "text": "过来"
+        },
+        {
+          "id": "D",
+          "text": "上来"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "别等爸爸了，再等……菜全都凉了，我们还是先吃吧。",
+      "focus": "下去"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-reg-05",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "regional",
+      "sourceId": "2025-reg",
+      "taskNumber": 5,
+      "sectionPosition": 5,
+      "topicId": "sentence-grammar",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите правильный с точки зрения грамматики вариант (5–6):",
+      "options": [
+        {
+          "id": "A",
+          "text": "这次考得不错你"
+        },
+        {
+          "id": "B",
+          "text": "你这次考得不错"
+        },
+        {
+          "id": "C",
+          "text": "你这次不错考得"
+        },
+        {
+          "id": "D",
+          "text": "你考得这次不错"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "听说……，得了第一名。",
+      "focus": "Дополнение степени 考得不错"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-reg-06",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "regional",
+      "sourceId": "2025-reg",
+      "taskNumber": 6,
+      "sectionPosition": 6,
+      "topicId": "sentence-grammar",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите правильный с точки зрения грамматики вариант (5–6):",
+      "options": [
+        {
+          "id": "A",
+          "text": "我把急坏了"
+        },
+        {
+          "id": "B",
+          "text": "我把坏急了"
+        },
+        {
+          "id": "C",
+          "text": "把我急坏了"
+        },
+        {
+          "id": "D",
+          "text": "把急坏了我"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "产品质量上不去，……。",
+      "focus": "Конструкция 把 с дополнением степени"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-reg-07",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "regional",
+      "sourceId": "2025-reg",
+      "taskNumber": 7,
+      "sectionPosition": 7,
+      "topicId": "context-synonyms",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Подберите близкое по значению к подчеркнутому слово (7):",
+      "options": [
+        {
+          "id": "A",
+          "text": "反而"
+        },
+        {
+          "id": "B",
+          "text": "仍然"
+        },
+        {
+          "id": "C",
+          "text": "后退"
+        },
+        {
+          "id": "D",
+          "text": "到底"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "今天没风，倒很冷。",
+      "emphasis": {
+        "text": "倒",
+        "start": 5,
+        "length": 1
+      },
+      "focus": "倒"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-reg-08",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "regional",
+      "sourceId": "2025-reg",
+      "taskNumber": 8,
+      "sectionPosition": 8,
+      "topicId": "result-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей результативной морфемой (8):",
+      "options": [
+        {
+          "id": "A",
+          "text": "到"
+        },
+        {
+          "id": "B",
+          "text": "成"
+        },
+        {
+          "id": "C",
+          "text": "着"
+        },
+        {
+          "id": "D",
+          "text": "完"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "最近我事情很多，心里很烦，晚上经常担心得睡不……觉。",
+      "focus": "着"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-reg-09",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "regional",
+      "sourceId": "2025-reg",
+      "taskNumber": 9,
+      "sectionPosition": 9,
+      "topicId": "stroke-count",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Укажите количество черт в иероглифе (9):",
+      "options": [
+        {
+          "id": "A",
+          "text": "20"
+        },
+        {
+          "id": "B",
+          "text": "21"
+        },
+        {
+          "id": "C",
+          "text": "18"
+        },
+        {
+          "id": "D",
+          "text": "19"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "鳗",
+      "focus": "鳗"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-reg-10",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "regional",
+      "sourceId": "2025-reg",
+      "taskNumber": 10,
+      "sectionPosition": 10,
+      "topicId": "chengyu",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Подберите аналог фразеологизму в русском языке (10):",
+      "options": [
+        {
+          "id": "A",
+          "text": "Не в своей тарелке"
+        },
+        {
+          "id": "B",
+          "text": "Спустя рукава"
+        },
+        {
+          "id": "C",
+          "text": "Кривить душой"
+        },
+        {
+          "id": "D",
+          "text": "Ни гроша за душой"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "漫不经心",
+      "focus": "漫不经心"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-reg-11",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "regional",
+      "sourceId": "2025-reg",
+      "taskNumber": 11,
+      "sectionPosition": 11,
+      "topicId": "tone-pattern",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите верный тональный рисунок (11):",
+      "options": [
+        {
+          "id": "A",
+          "text": "2, 1"
+        },
+        {
+          "id": "B",
+          "text": "2, 2"
+        },
+        {
+          "id": "C",
+          "text": "1, 4"
+        },
+        {
+          "id": "D",
+          "text": "2, 4"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "游戏",
+      "focus": "游戏"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-reg-12",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "regional",
+      "sourceId": "2025-reg",
+      "taskNumber": 12,
+      "sectionPosition": 12,
+      "topicId": "word-placement",
+      "kind": "wordPlacement",
+      "points": 1,
+      "prompt": "Укажите место лексической единицы, приведенной в скобках (12–13):",
+      "options": [
+        {
+          "id": "A",
+          "text": "A"
+        },
+        {
+          "id": "B",
+          "text": "B"
+        },
+        {
+          "id": "C",
+          "text": "C"
+        },
+        {
+          "id": "D",
+          "text": "D"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "我放假了，{{A}} 过 {{B}} 天去 {{C}} 北京找你 {{D}} 玩儿。",
+      "insertionText": "两",
+      "focus": "两"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-reg-13",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "regional",
+      "sourceId": "2025-reg",
+      "taskNumber": 13,
+      "sectionPosition": 13,
+      "topicId": "word-placement",
+      "kind": "wordPlacement",
+      "points": 1,
+      "prompt": "Укажите место лексической единицы, приведенной в скобках (12–13):",
+      "options": [
+        {
+          "id": "A",
+          "text": "A"
+        },
+        {
+          "id": "B",
+          "text": "B"
+        },
+        {
+          "id": "C",
+          "text": "C"
+        },
+        {
+          "id": "D",
+          "text": "D"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "我 {{A}} 每天 {{B}} 6点起床，上班前一般会打 {{C}} 30分钟 {{D}} 太极拳。",
+      "insertionText": "左右",
+      "focus": "左右"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-reg-14",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "regional",
+      "sourceId": "2025-reg",
+      "taskNumber": 14,
+      "sectionPosition": 14,
+      "topicId": "prepositions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящие предлоги и заполните пропуски (14–15):",
+      "options": [
+        {
+          "id": "A",
+          "text": "为"
+        },
+        {
+          "id": "B",
+          "text": "把"
+        },
+        {
+          "id": "C",
+          "text": "跟"
+        },
+        {
+          "id": "D",
+          "text": "由"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "我……一万元奖金捐给了自己的母校。",
+      "focus": "把"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-reg-15",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "regional",
+      "sourceId": "2025-reg",
+      "taskNumber": 15,
+      "sectionPosition": 15,
+      "topicId": "prepositions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящие предлоги и заполните пропуски (14–15):",
+      "options": [
+        {
+          "id": "A",
+          "text": "使"
+        },
+        {
+          "id": "B",
+          "text": "由"
+        },
+        {
+          "id": "C",
+          "text": "向"
+        },
+        {
+          "id": "D",
+          "text": "为"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "今天这桌菜是我们特意……你准备的。",
+      "focus": "为"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-reg-16",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "regional",
+      "sourceId": "2025-reg",
+      "taskNumber": 16,
+      "sectionPosition": 16,
+      "topicId": "adverbs",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящее наречие и заполните пропуск (16–17):",
+      "options": [
+        {
+          "id": "A",
+          "text": "就"
+        },
+        {
+          "id": "B",
+          "text": "才"
+        },
+        {
+          "id": "C",
+          "text": "都"
+        },
+        {
+          "id": "D",
+          "text": "也"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "你要请我吃饭，可你的钱包里……五块钱。",
+      "focus": "才"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-reg-17",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "regional",
+      "sourceId": "2025-reg",
+      "taskNumber": 17,
+      "sectionPosition": 17,
+      "topicId": "adverbs",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящее наречие и заполните пропуск (16–17):",
+      "options": [
+        {
+          "id": "A",
+          "text": "只"
+        },
+        {
+          "id": "B",
+          "text": "也"
+        },
+        {
+          "id": "C",
+          "text": "就"
+        },
+        {
+          "id": "D",
+          "text": "真"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "只要你真的努力了，……一定不会做得太差。",
+      "focus": "就"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-reg-18",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "regional",
+      "sourceId": "2025-reg",
+      "taskNumber": 18,
+      "sectionPosition": 18,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18–20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "自己"
+        },
+        {
+          "id": "B",
+          "text": "禁运"
+        },
+        {
+          "id": "C",
+          "text": "随身"
+        },
+        {
+          "id": "D",
+          "text": "提包"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "contextId": "2025-reg-text",
+      "gapNumber": 18,
+      "focus": "随身"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-reg-19",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "regional",
+      "sourceId": "2025-reg",
+      "taskNumber": 19,
+      "sectionPosition": 19,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18–20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "要求"
+        },
+        {
+          "id": "B",
+          "text": "需要"
+        },
+        {
+          "id": "C",
+          "text": "用来"
+        },
+        {
+          "id": "D",
+          "text": "得"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "contextId": "2025-reg-text",
+      "gapNumber": 19,
+      "focus": "需要"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-reg-20",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "regional",
+      "sourceId": "2025-reg",
+      "taskNumber": 20,
+      "sectionPosition": 20,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18–20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "很好"
+        },
+        {
+          "id": "B",
+          "text": "越坏"
+        },
+        {
+          "id": "C",
+          "text": "越来"
+        },
+        {
+          "id": "D",
+          "text": "越好"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "contextId": "2025-reg-text",
+      "gapNumber": 20,
+      "focus": "越好"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-fin-01",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "final",
+      "sourceId": "2025-fin",
+      "taskNumber": 1,
+      "sectionPosition": 1,
+      "topicId": "paired-constructions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей по смыслу грамматической конструкцией (1–2):",
+      "options": [
+        {
+          "id": "A",
+          "text": "虽然……但是……"
+        },
+        {
+          "id": "B",
+          "text": "只有……才……"
+        },
+        {
+          "id": "C",
+          "text": "既……又……"
+        },
+        {
+          "id": "D",
+          "text": "即使……也……"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "……通过 HSK 四级考试，……可以进入这个班学习。",
+      "focus": "只有……才……"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-fin-02",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "final",
+      "sourceId": "2025-fin",
+      "taskNumber": 2,
+      "sectionPosition": 2,
+      "topicId": "paired-constructions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей по смыслу грамматической конструкцией (1–2):",
+      "options": [
+        {
+          "id": "A",
+          "text": "连……也……"
+        },
+        {
+          "id": "B",
+          "text": "又……又……"
+        },
+        {
+          "id": "C",
+          "text": "无论……都……"
+        },
+        {
+          "id": "D",
+          "text": "要是……就……"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "我太饱了，……一口水……喝不下了。",
+      "focus": "连……也……"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-fin-03",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "final",
+      "sourceId": "2025-fin",
+      "taskNumber": 3,
+      "sectionPosition": 3,
+      "topicId": "direction-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуски соответствующими модификаторами направления движения (3–4):",
+      "options": [
+        {
+          "id": "A",
+          "text": "下去"
+        },
+        {
+          "id": "B",
+          "text": "回来"
+        },
+        {
+          "id": "C",
+          "text": "下来"
+        },
+        {
+          "id": "D",
+          "text": "起来"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "天黑了，小区里各家的灯都亮……了。",
+      "focus": "起来",
+      "repeatGroupId": "vsosh-zh-lg-2024-reg-04"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-fin-04",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "final",
+      "sourceId": "2025-fin",
+      "taskNumber": 4,
+      "sectionPosition": 4,
+      "topicId": "direction-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуски соответствующими модификаторами направления движения (3–4):",
+      "options": [
+        {
+          "id": "A",
+          "text": "回去"
+        },
+        {
+          "id": "B",
+          "text": "上来"
+        },
+        {
+          "id": "C",
+          "text": "出来"
+        },
+        {
+          "id": "D",
+          "text": "过去"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        5
+      ],
+      "keyPage": 1,
+      "stem": "妈妈一眼就看……了孩子刚刚哭过。",
+      "focus": "出来"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-fin-05",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "final",
+      "sourceId": "2025-fin",
+      "taskNumber": 5,
+      "sectionPosition": 5,
+      "topicId": "sentence-grammar",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите правильный с точки зрения грамматики вариант (5–6):",
+      "options": [
+        {
+          "id": "A",
+          "text": "想去想来"
+        },
+        {
+          "id": "B",
+          "text": "想想来去"
+        },
+        {
+          "id": "C",
+          "text": "来想去想"
+        },
+        {
+          "id": "D",
+          "text": "想来想去"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        5,
+        6
+      ],
+      "keyPage": 1,
+      "stem": "我……，还是拿不定主意。",
+      "focus": "Конструкция 想来想去"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-fin-06",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "final",
+      "sourceId": "2025-fin",
+      "taskNumber": 6,
+      "sectionPosition": 6,
+      "topicId": "sentence-grammar",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите правильный с точки зрения грамматики вариант (5–6):",
+      "options": [
+        {
+          "id": "A",
+          "text": "不早不晚"
+        },
+        {
+          "id": "B",
+          "text": "早的早,晚的晚"
+        },
+        {
+          "id": "C",
+          "text": "早的和晚的"
+        },
+        {
+          "id": "D",
+          "text": "早或晚"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "一家五口人，上班的时间……，很少坐在一起吃早饭。",
+      "focus": "Конструкция 早的早，晚的晚"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-fin-07",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "final",
+      "sourceId": "2025-fin",
+      "taskNumber": 7,
+      "sectionPosition": 7,
+      "topicId": "context-synonyms",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Подберите выражение, близкое по значению к подчеркнутому (7):",
+      "options": [
+        {
+          "id": "A",
+          "text": "同意唱歌跳舞"
+        },
+        {
+          "id": "B",
+          "text": "歌儿唱得好，舞也跳得好"
+        },
+        {
+          "id": "C",
+          "text": "会唱歌，不会跳舞"
+        },
+        {
+          "id": "D",
+          "text": "不会唱歌，只会跳舞"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "那个村里的姑娘个个能歌善舞。",
+      "emphasis": {
+        "text": "能歌善舞",
+        "start": 9,
+        "length": 4
+      },
+      "focus": "能歌善舞"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-fin-08",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "final",
+      "sourceId": "2025-fin",
+      "taskNumber": 8,
+      "sectionPosition": 8,
+      "topicId": "result-complements",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящей результативной морфемой (8):",
+      "options": [
+        {
+          "id": "A",
+          "text": "下"
+        },
+        {
+          "id": "B",
+          "text": "上"
+        },
+        {
+          "id": "C",
+          "text": "到"
+        },
+        {
+          "id": "D",
+          "text": "了"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "他已经学了两年，可汉语还谈不……好。",
+      "focus": "上"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-fin-09",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "final",
+      "sourceId": "2025-fin",
+      "taskNumber": 9,
+      "sectionPosition": 9,
+      "topicId": "stroke-count",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Укажите количество черт в иероглифе (9):",
+      "options": [
+        {
+          "id": "A",
+          "text": "19"
+        },
+        {
+          "id": "B",
+          "text": "20"
+        },
+        {
+          "id": "C",
+          "text": "21"
+        },
+        {
+          "id": "D",
+          "text": "22"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "颦",
+      "focus": "颦",
+      "repeatGroupId": "vsosh-zh-lg-2022-fin-09"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-fin-10",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "final",
+      "sourceId": "2025-fin",
+      "taskNumber": 10,
+      "sectionPosition": 10,
+      "topicId": "chengyu",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Подберите аналог фразеологизму в русском языке (10):",
+      "options": [
+        {
+          "id": "A",
+          "text": "Хоть трава не расти"
+        },
+        {
+          "id": "B",
+          "text": "Высасывать из пальца"
+        },
+        {
+          "id": "C",
+          "text": "Душа не на месте"
+        },
+        {
+          "id": "D",
+          "text": "Бить тревогу"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "漠不关心",
+      "focus": "漠不关心"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-fin-11",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "final",
+      "sourceId": "2025-fin",
+      "taskNumber": 11,
+      "sectionPosition": 11,
+      "topicId": "tone-pattern",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите верный тональный рисунок (11):",
+      "options": [
+        {
+          "id": "A",
+          "text": "1, 1"
+        },
+        {
+          "id": "B",
+          "text": "1, 4"
+        },
+        {
+          "id": "C",
+          "text": "2, 4"
+        },
+        {
+          "id": "D",
+          "text": "1, 3"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "优秀",
+      "focus": "优秀"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-fin-12",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "final",
+      "sourceId": "2025-fin",
+      "taskNumber": 12,
+      "sectionPosition": 12,
+      "topicId": "word-placement",
+      "kind": "wordPlacement",
+      "points": 1,
+      "prompt": "Укажите место лексической единицы, приведенной в скобках (12–13):",
+      "options": [
+        {
+          "id": "A",
+          "text": "A"
+        },
+        {
+          "id": "B",
+          "text": "B"
+        },
+        {
+          "id": "C",
+          "text": "C"
+        },
+        {
+          "id": "D",
+          "text": "D"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "{{A}} 300个客人 {{B}} 参加了我们 {{C}} 上个月10号 {{D}} 的婚礼。",
+      "insertionText": "大约",
+      "focus": "大约"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-fin-13",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "final",
+      "sourceId": "2025-fin",
+      "taskNumber": 13,
+      "sectionPosition": 13,
+      "topicId": "word-placement",
+      "kind": "wordPlacement",
+      "points": 1,
+      "prompt": "Укажите место лексической единицы, приведенной в скобках (12–13):",
+      "options": [
+        {
+          "id": "A",
+          "text": "A"
+        },
+        {
+          "id": "B",
+          "text": "B"
+        },
+        {
+          "id": "C",
+          "text": "C"
+        },
+        {
+          "id": "D",
+          "text": "D"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "张老师的电脑水平很高，{{A}} 一点儿 {{B}} 也 {{C}} 比专业人员 {{D}} 差。",
+      "insertionText": "不",
+      "focus": "不"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-fin-14",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "final",
+      "sourceId": "2025-fin",
+      "taskNumber": 14,
+      "sectionPosition": 14,
+      "topicId": "prepositions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящие предлоги и заполните пропуски (14–15):",
+      "options": [
+        {
+          "id": "A",
+          "text": "因"
+        },
+        {
+          "id": "B",
+          "text": "于"
+        },
+        {
+          "id": "C",
+          "text": "为"
+        },
+        {
+          "id": "D",
+          "text": "给"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "这次韩国之行……我留下了很深的印象。",
+      "focus": "给"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-fin-15",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "final",
+      "sourceId": "2025-fin",
+      "taskNumber": 15,
+      "sectionPosition": 15,
+      "topicId": "prepositions",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящие предлоги и заполните пропуски (14–15):",
+      "options": [
+        {
+          "id": "A",
+          "text": "根据"
+        },
+        {
+          "id": "B",
+          "text": "据"
+        },
+        {
+          "id": "C",
+          "text": "按照"
+        },
+        {
+          "id": "D",
+          "text": "按"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "你要……时吃药，不然病好不了。",
+      "focus": "按"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-fin-16",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "final",
+      "sourceId": "2025-fin",
+      "taskNumber": 16,
+      "sectionPosition": 16,
+      "topicId": "adverbs",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящее наречие и заполните пропуск (16–17):",
+      "options": [
+        {
+          "id": "A",
+          "text": "也"
+        },
+        {
+          "id": "B",
+          "text": "真"
+        },
+        {
+          "id": "C",
+          "text": "都"
+        },
+        {
+          "id": "D",
+          "text": "再"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        7
+      ],
+      "keyPage": 1,
+      "stem": "我们……5年没有见面了，这次一定要好好儿聚一聚！",
+      "focus": "都"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-fin-17",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "final",
+      "sourceId": "2025-fin",
+      "taskNumber": 17,
+      "sectionPosition": 17,
+      "topicId": "adverbs",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Выберите подходящее наречие и заполните пропуск (16–17):",
+      "options": [
+        {
+          "id": "A",
+          "text": "再"
+        },
+        {
+          "id": "B",
+          "text": "都"
+        },
+        {
+          "id": "C",
+          "text": "就"
+        },
+        {
+          "id": "D",
+          "text": "又"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        7,
+        8
+      ],
+      "keyPage": 1,
+      "stem": "这么大的房子，……你一个人住，你不害怕吗？",
+      "focus": "就"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-fin-18",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "final",
+      "sourceId": "2025-fin",
+      "taskNumber": 18,
+      "sectionPosition": 18,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18–20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "发觉"
+        },
+        {
+          "id": "B",
+          "text": "发现"
+        },
+        {
+          "id": "C",
+          "text": "觉得"
+        },
+        {
+          "id": "D",
+          "text": "出现"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "contextId": "2025-fin-text",
+      "gapNumber": 18,
+      "focus": "发现"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-fin-19",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "final",
+      "sourceId": "2025-fin",
+      "taskNumber": 19,
+      "sectionPosition": 19,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18–20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "暂时"
+        },
+        {
+          "id": "B",
+          "text": "一时"
+        },
+        {
+          "id": "C",
+          "text": "当时"
+        },
+        {
+          "id": "D",
+          "text": "顿时"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "contextId": "2025-fin-text",
+      "gapNumber": 19,
+      "focus": "当时"
+    },
+    {
+      "id": "vsosh-zh-lg-2025-fin-20",
+      "origin": "official",
+      "season": "2025/2026",
+      "stage": "final",
+      "sourceId": "2025-fin",
+      "taskNumber": 20,
+      "sectionPosition": 20,
+      "topicId": "cloze-vocabulary",
+      "kind": "passageGap",
+      "points": 1,
+      "prompt": "Прочитайте текст, заполните пропуски (18–20) подходящими по смыслу словами из списка:",
+      "options": [
+        {
+          "id": "A",
+          "text": "只好"
+        },
+        {
+          "id": "B",
+          "text": "快一点儿"
+        },
+        {
+          "id": "C",
+          "text": "只有"
+        },
+        {
+          "id": "D",
+          "text": "已经"
+        }
+      ],
+      "correctId": "A",
+      "taskPages": [
+        8
+      ],
+      "keyPage": 1,
+      "contextId": "2025-fin-text",
+      "gapNumber": 20,
+      "focus": "只好"
+    }
+  ]
+}

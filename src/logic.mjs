@@ -738,6 +738,28 @@ export function grade(item, optionId) {
   return { correct: optionId === item.correctOptionId, correctOptionId: item.correctOptionId };
 }
 
+// Общий текст — одна карточка, а каждый его пропуск — отдельный ответ.
+export function vsoshCards(bank) {
+  if (bank?.schemaVersion !== 1) return [];
+  const byContext = new Map();
+  const cards = [];
+  for (const q of bank.questions) {
+    if (q.kind !== 'passageGap') {
+      cards.push({ id: q.id, questions: [q] });
+      continue;
+    }
+    if (!byContext.has(q.contextId)) byContext.set(q.contextId, []);
+    byContext.get(q.contextId).push(q);
+  }
+  for (const context of bank.contexts) {
+    const gaps = byContext.get(context.id);
+    if (gaps?.length) cards.push({
+      id: context.id, context, questions: gaps.sort((a, b) => a.gapNumber - b.gapNumber),
+    });
+  }
+  return cards;
+}
+
 // Ссылка «Сообщить об ошибке»: новый issue на GitHub с ID, условием и ответами.
 // В ней только данные задания — ничего о самом ученике. Условие идёт блоком кода:
 // иначе GitHub прочтёт два пропуска ___…___ как разметку и они пропадут.

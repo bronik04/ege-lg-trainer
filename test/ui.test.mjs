@@ -88,6 +88,113 @@ async function pickSource(page, origin) {
   await page.locator(`input[data-key="Источник:${origin}"]`).check();
 }
 
+function olympiadPage() {
+  const placement = {
+    id: 'placement', kind: 'wordPlacement', topicId: 'placement', sourceId: '2021-reg',
+    taskNumber: 31, prompt: 'Укажите место слова', insertionText: '三倍',
+    stem: '采用新技术以后，{{A}} 工作效率 {{B}} 比以前 {{C}} 提高了 {{D}}。',
+    options: [...'ABCD'].map((id) => ({ id, text: id })), correctId: 'D',
+  };
+  const gaps = [
+    [37, 'D', ['因为', '究竟', '然后', '终于']],
+    [38, 'B', ['站起', '蹲下', '笑起', '放下']],
+    [39, 'A', ['抬', '转', '低', '点']],
+    [40, 'D', ['眼里', '眼前', '眼色', '眼光']],
+  ].map(([number, correctId, words]) => ({
+    id: `gap-${number}`, kind: 'passageGap', topicId: 'cloze', sourceId: '2021-reg',
+    taskNumber: number, prompt: 'Заполните пропуски', contextId: 'passage', gapNumber: number,
+    options: words.map((word, i) => ({ id: 'ABCD'[i], text: word })), correctId,
+  }));
+  const idiom = {
+    id: 'idiom', kind: 'singleChoice', topicId: 'chengyu', sourceId: '2021-reg',
+    taskNumber: 29, stem: '眼高手低', prompt: 'Подберите аналог фразеологизму',
+    options: ['Пришла беда – отворяй ворота', 'Руки не доходят', 'Хочется, да не можется', 'Сидеть сложа руки']
+      .map((text, index) => ({ id: 'ABCD'[index], text })),
+    correctId: 'C',
+  };
+  return buildPage('olympiad', {
+    change(data) {
+      data['vsosh-zh-lg'] = {
+        schemaVersion: 1,
+        topics: [{ id: 'placement', label: 'Место слова в предложении' },
+          { id: 'cloze', label: 'Выбор слова в тексте' }, { id: 'chengyu', label: 'Чэнъюй' }],
+        sources: [{ id: '2021-reg', stage: 'regional', season: '2021/2022', taskUrl: 'https://example.org/tasks.pdf' }],
+        contexts: [{ id: 'passage', text: '{{37}}他发现了其中的秘密。他{{38}}来给孩子系鞋带。系好鞋带他一{{39}}头。应该用孩子的{{40}}看世界。' }],
+        questions: [placement, idiom, ...gaps],
+      };
+    },
+  });
+}
+
+test('ВсОШ: общий текст проверяется целиком, а ответы сохраняются после перезагрузки', { skip }, async () => {
+  const { page, context, errors } = await open(olympiadPage(), { width: 360 });
+  try {
+    await page.getByRole('link', { name: 'ВсОШ', exact: true }).waitFor({ timeout: 3000 });
+    await page.getByRole('link', { name: 'ВсОШ', exact: true }).click();
+    await page.getByRole('checkbox', { name: 'Выбор слова в тексте' }).check();
+    await page.getByRole('button', { name: 'Начать практику' }).click();
+    await page.locator('.vsosh-passage').waitFor();
+    assert.equal(await page.locator('.vsosh-passage').count(), 1);
+    assert.equal(await page.locator('.vsosh-passage .vsosh-gap').count(), 4);
+    const answer = (number, label) =>
+      page.getByRole('group', { name: `Пропуск ${number}` }).getByRole('radio', { name: label });
+    const check = page.getByRole('button', { name: 'Проверить ответы' });
+    await answer(37, /究竟/).check();
+    await answer(38, /蹲下/).check();
+    await answer(39, /抬/).check();
+    assert.equal(await check.isDisabled(), true);
+    assert.equal(await page.locator('.vsosh-feedback').count(), 0);
+    await page.reload();
+    assert.equal(await answer(37, /究竟/).isChecked(), true);
+    await answer(40, /眼光/).check();
+    await check.click();
+    await see(page, '.vsosh-feedback', /3 из 4/);
+    await see(page, '.vsosh-answer', /37.*终于/s);
+    await page.getByRole('button', { name: 'Итог раунда' }).click();
+    await see(page, '.score', /3 из 4/);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
+    assert.deepEqual(errors, []);
+  } finally {
+    await context.close();
+  }
+});
+
+test('ВсОШ: место слова выбирается в предложении и проверяется по ключу', { skip }, async () => {
+  const { page, context, errors } = await open(olympiadPage(), { hash: '#/vsosh' });
+  try {
+    await page.getByRole('checkbox', { name: 'Место слова в предложении' }).waitFor({ timeout: 3000 });
+    await page.getByRole('checkbox', { name: 'Место слова в предложении' }).check();
+    await page.getByRole('button', { name: 'Начать практику' }).click();
+    await see(page, '.instruction', /三倍/);
+    const positions = page.locator('.vsosh-placement').getByRole('radio');
+    assert.equal(await positions.count(), 4);
+    await page.locator('.vsosh-placement').getByRole('radio', { name: 'D', exact: true }).check();
+    await page.getByRole('button', { name: 'Проверить ответ', exact: true }).click();
+    await see(page, '.vsosh-answer', /Верно/);
+    await page.getByRole('link', { name: 'Практика', exact: true }).click();
+    assert.equal(new URL(page.url()).hash, '#/practice');
+    assert.deepEqual(errors, []);
+  } finally {
+    await context.close();
+  }
+});
+
+test('ВсОШ: длинные варианты на планшете остаются в своих карточках', { skip }, async () => {
+  const { page, context, errors } = await open(olympiadPage(), { hash: '#/vsosh', width: 721 });
+  try {
+    await page.getByRole('checkbox', { name: 'Чэнъюй' }).check();
+    await page.getByRole('button', { name: 'Начать практику' }).click();
+    const option = page.locator('.vsosh-choice').filter({ hasText: 'Пришла беда' });
+    assert.equal(await option.evaluate((node) => {
+      const text = node.querySelector('.text');
+      return text.scrollWidth <= text.clientWidth + 1;
+    }), true);
+    assert.deepEqual(errors, []);
+  } finally {
+    await context.close();
+  }
+});
+
 test('правило → проверка правила → задания по правилу', { skip }, async () => {
   const { page, context, errors } = await open(mainUrl, { hash: '#/rules' });
   await page.getByRole('link', { name: /就 и 才/ }).click();

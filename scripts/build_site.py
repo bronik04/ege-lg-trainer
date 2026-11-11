@@ -192,9 +192,12 @@ def main():
     out = args.out or (ROOT / ("review-build/review.html" if args.drafts else "dist/index.html"))
     d = args.data_dir
     words_file = d / TONE_WORDS.name
+    vsosh_file = d / "vsosh-zh-lg.json"
     data = payload(read_json(d / "questions.json"), read_json(d / "topics.json"),
                    read_json(d / "rules.json"), read_json(d / "rule-checks.json"), drafts=args.drafts,
                    tone_words=read_json(words_file)["words"] if words_file.exists() else [])
+    if vsosh_file.exists():
+        data["vsosh"] = read_json(vsosh_file)
     if args.no_offline:
         data["meta"]["offline"] = False
     html = render(data)
@@ -206,7 +209,8 @@ def main():
     elif args.no_offline:
         write_offline_off(out.parent)
     print(f"Страница: {out} — заданий {len(data['questions'])}, правил {len(data['rules'])}, "
-          f"вопросов по правилам {len(data['ruleChecks'])}, слов для тонов {len(data['tones'])}")
+          f"вопросов по правилам {len(data['ruleChecks'])}, слов для тонов {len(data['tones'])}, "
+          f"заданий ВсОШ {len(data.get('vsosh', {}).get('questions', []))}")
 
 
 if __name__ == "__main__":
