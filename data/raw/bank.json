@@ -21288,6 +21288,44 @@
     "correctOptionId": "4"
   },
   {
+    "id": "g24-06fcd740",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "06fcd740-6f50-45e7-a8a7-2087a42f1875",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "小时候在爷爷家过年的事，我平时记不太清了。只要闻到这种茶的味道，我就想___，还能讲出好几个小故事。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不起来"
+      },
+      {
+        "id": "2",
+        "text": "得下去"
+      },
+      {
+        "id": "3",
+        "text": "得起来"
+      },
+      {
+        "id": "4",
+        "text": "得下来"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g24-09b239c1",
     "taskNumber": 24,
     "formatYear": 2026,
@@ -21324,6 +21362,82 @@
       }
     ],
     "correctOptionId": "3"
+  },
+  {
+    "id": "g24-0e08e3af",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "0e08e3af-1eb9-49fa-89e4-e169122faedf",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "海边有自行车可以租，可是一个小时要五十块，我们只剩二十块，租___，还是走路吧。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不住"
+      },
+      {
+        "id": "2",
+        "text": "得起"
+      },
+      {
+        "id": "3",
+        "text": "不动"
+      },
+      {
+        "id": "4",
+        "text": "不起"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g24-12b8ba07",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "12b8ba07-1fef-40d4-8a71-197dec8bd648",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "5"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "我在迷宫外面等弟弟。他在里面走了很久，还没找到出口，自己出___，只好打电话请我去接他。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不下去"
+      },
+      {
+        "id": "2",
+        "text": "不完"
+      },
+      {
+        "id": "3",
+        "text": "得来"
+      },
+      {
+        "id": "4",
+        "text": "不来"
+      }
+    ],
+    "correctOptionId": "4"
   },
   {
     "id": "g24-13389417",
@@ -21400,6 +21514,82 @@
       }
     ],
     "correctOptionId": "3"
+  },
+  {
+    "id": "g24-153be23e",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "153be23e-ab20-4a98-b2c6-502fa7498285",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "5"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "学校的汉语比赛在网上举行，我那天在外地也参加___，可以用手机答题。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得了"
+      },
+      {
+        "id": "2",
+        "text": "不完"
+      },
+      {
+        "id": "3",
+        "text": "不了"
+      },
+      {
+        "id": "4",
+        "text": "得开"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g24-158cd439",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "158cd439-a710-458b-8b13-24ac123f52d6",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "5"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "哥哥骑着自行车，我在后面走路，怎么走也赶___他，只好请他在路口等我。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不上"
+      },
+      {
+        "id": "2",
+        "text": "不动"
+      },
+      {
+        "id": "3",
+        "text": "不完"
+      },
+      {
+        "id": "4",
+        "text": "得上"
+      }
+    ],
+    "correctOptionId": "1"
   },
   {
     "id": "g24-1766fb8d",
@@ -21554,6 +21744,44 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g24-2a1b6fc1",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "2a1b6fc1-1556-4305-916b-49ec04a07126",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "5"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "今天的末班车八点半开，现在才八点，走到车站只要十分钟，我们赶___，不用跑。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不到"
+      },
+      {
+        "id": "2",
+        "text": "得上"
+      },
+      {
+        "id": "3",
+        "text": "得完"
+      },
+      {
+        "id": "4",
+        "text": "不上"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g24-2a1c71d2",
     "taskNumber": 24,
     "formatYear": 2026,
@@ -21621,6 +21849,82 @@
       {
         "id": "3",
         "text": "得动"
+      },
+      {
+        "id": "4",
+        "text": "得完"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g24-2cf15785",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "2cf15785-1eac-4dc0-b875-bed432234693",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "5"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "遥控器在沙发那头，我坐在这头，伸手也够___，你能把它递给我吗？",
+    "options": [
+      {
+        "id": "1",
+        "text": "得着"
+      },
+      {
+        "id": "2",
+        "text": "不动"
+      },
+      {
+        "id": "3",
+        "text": "不着"
+      },
+      {
+        "id": "4",
+        "text": "不完"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g24-312b70fa",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "312b70fa-c22c-4efb-a01a-15707bffcce9",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "我把明天上课要看的文件放在网上，用手机也打___，同学们在路上就能看。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得开"
+      },
+      {
+        "id": "2",
+        "text": "不开"
+      },
+      {
+        "id": "3",
+        "text": "得住"
       },
       {
         "id": "4",
@@ -21706,6 +22010,272 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g24-4c011521",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "4c011521-3f46-4fb4-b463-9bdecfcd511c",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "5"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "我们都在体育馆门外。门口的人看了我的票，说这张票还可以用。我现在进___，你在这儿等我拿衣服。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不去"
+      },
+      {
+        "id": "2",
+        "text": "得去"
+      },
+      {
+        "id": "3",
+        "text": "不动"
+      },
+      {
+        "id": "4",
+        "text": "得完"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g24-4e82793d",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "4e82793d-764a-4ba8-88bb-807f6c437f73",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "网上报名时，这一栏最多能写十个字，我家的地址有十八个字，在这儿写___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不清楚"
+      },
+      {
+        "id": "2",
+        "text": "不下"
+      },
+      {
+        "id": "3",
+        "text": "得下"
+      },
+      {
+        "id": "4",
+        "text": "不动"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g24-52a87759",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "52a87759-b579-41e5-b9d8-39312f1d8d4a",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "照片里的人戴着帽子和口罩，只露出眼睛。我看了半天，还是认___他是谁，只好问拍照的人。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得出来"
+      },
+      {
+        "id": "2",
+        "text": "不出来"
+      },
+      {
+        "id": "3",
+        "text": "不下去"
+      },
+      {
+        "id": "4",
+        "text": "不过来"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g24-53670100",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "53670100-3cc0-4050-9815-7ad2f971c1db",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "我们四个人想租一间房练习唱歌。一个小时八十块，每人只出二十块，钱都带够了，我们租___这间房。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得起"
+      },
+      {
+        "id": "2",
+        "text": "不完"
+      },
+      {
+        "id": "3",
+        "text": "得见"
+      },
+      {
+        "id": "4",
+        "text": "不起"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g24-56f2a36d",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "56f2a36d-78a9-4833-88f7-2e85f1b07a1f",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "钢琴课还是星期六上午十点，跟以前一样。我肯定记___，你不用再提醒我。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得完"
+      },
+      {
+        "id": "2",
+        "text": "得住"
+      },
+      {
+        "id": "3",
+        "text": "得动"
+      },
+      {
+        "id": "4",
+        "text": "不住"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g24-573aa83f",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "573aa83f-9385-4be8-ac98-f1de9e63163e",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "妹妹说她一点儿也不着急，可她说话比平时快多了，我听___她其实很着急。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得出来"
+      },
+      {
+        "id": "2",
+        "text": "不出来"
+      },
+      {
+        "id": "3",
+        "text": "得下去"
+      },
+      {
+        "id": "4",
+        "text": "不见"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g24-57d645bc",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "57d645bc-62dc-4f7a-af34-2237874ebc92",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "桌上有两瓶果汁。红盖子拧得太紧，蓝盖子是松的。现在只有蓝盖子的那瓶拧___，我们先喝那瓶吧。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得开"
+      },
+      {
+        "id": "2",
+        "text": "不开"
+      },
+      {
+        "id": "3",
+        "text": "不懂"
+      },
+      {
+        "id": "4",
+        "text": "得完"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
     "id": "g24-5808209a",
     "taskNumber": 24,
     "formatYear": 2026,
@@ -21744,6 +22314,44 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g24-586cb551",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "586cb551-6558-4191-8142-6d331107d462",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "坐夜车时，我只要听一点儿轻音乐就睡___。快到站的时候，你记得叫醒我。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不着"
+      },
+      {
+        "id": "2",
+        "text": "不完"
+      },
+      {
+        "id": "3",
+        "text": "得着"
+      },
+      {
+        "id": "4",
+        "text": "得下"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g24-5a0ae407",
     "taskNumber": 24,
     "formatYear": 2026,
@@ -21780,6 +22388,44 @@
       }
     ],
     "correctOptionId": "4"
+  },
+  {
+    "id": "g24-5b1b0b0b",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5b1b0b0b-6e3b-4100-ad79-f5943e046130",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "学校的游泳课一个月六十元。我每个月有一百元零花钱，自己付___这笔钱，不用向妈妈要。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得到"
+      },
+      {
+        "id": "2",
+        "text": "不起"
+      },
+      {
+        "id": "3",
+        "text": "得起"
+      },
+      {
+        "id": "4",
+        "text": "不完"
+      }
+    ],
+    "correctOptionId": "3"
   },
   {
     "id": "g24-5fa6adb2",
@@ -21929,6 +22575,44 @@
       {
         "id": "4",
         "text": "得完"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g24-7658d761",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "7658d761-ca11-41e5-9a45-4ea57c9bd613",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "刚学用电脑打字时，我找一个字母就要半天。现在我已经能打出自己的名字了，再练一练肯定学___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得住"
+      },
+      {
+        "id": "2",
+        "text": "不会"
+      },
+      {
+        "id": "3",
+        "text": "不下"
+      },
+      {
+        "id": "4",
+        "text": "得会"
       }
     ],
     "correctOptionId": "4"
@@ -22238,6 +22922,44 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g24-924a2068",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "924a2068-206e-4881-adea-cf555fed593b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "这条鱼一到我手里就滑出去，我怎么也抓___，只好请爸爸拿网来。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不住"
+      },
+      {
+        "id": "2",
+        "text": "不动"
+      },
+      {
+        "id": "3",
+        "text": "不懂"
+      },
+      {
+        "id": "4",
+        "text": "得住"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
     "id": "g24-97c73db3",
     "taskNumber": 24,
     "formatYear": 2026,
@@ -22276,6 +22998,120 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g24-a2172f72",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "a2172f72-ad77-4206-bdfa-931e283f6538",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "5"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "我周六本来要开会，没法去看展览。现在会议改到星期一了，这下周六我就去___，票不用退了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不动"
+      },
+      {
+        "id": "2",
+        "text": "得完"
+      },
+      {
+        "id": "3",
+        "text": "得了"
+      },
+      {
+        "id": "4",
+        "text": "不了"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g24-a581768e",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "a581768e-c428-4fd5-b4fa-4cae6f48b62b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "家里想换一台洗衣机，可最便宜的也要一千五百元，我们只存了一千。现在还买___，再等两个月吧。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不懂"
+      },
+      {
+        "id": "2",
+        "text": "不起"
+      },
+      {
+        "id": "3",
+        "text": "得起"
+      },
+      {
+        "id": "4",
+        "text": "不完"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g24-a7dc206a",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "a7dc206a-735e-4fed-9202-dd87735df6e0",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "我从来没拿球拍练过。光看别人打羽毛球，我学___，得请同学陪我练几次。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不见"
+      },
+      {
+        "id": "2",
+        "text": "不会"
+      },
+      {
+        "id": "3",
+        "text": "得会"
+      },
+      {
+        "id": "4",
+        "text": "不住"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g24-b02ed8a0",
     "taskNumber": 24,
     "formatYear": 2026,
@@ -22312,6 +23148,44 @@
       }
     ],
     "correctOptionId": "2"
+  },
+  {
+    "id": "g24-b12fb78e",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "b12fb78e-885a-4dc7-a12b-a73160ffa8bd",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "大家用的是同样的杯子，可我的杯子上画着一朵小花。我一看就认___哪个是我的。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得下去"
+      },
+      {
+        "id": "2",
+        "text": "不出来"
+      },
+      {
+        "id": "3",
+        "text": "不过来"
+      },
+      {
+        "id": "4",
+        "text": "得出来"
+      }
+    ],
+    "correctOptionId": "4"
   },
   {
     "id": "g24-b18e48f1",
@@ -22542,6 +23416,44 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g24-ce2960a1",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "ce2960a1-0449-41e2-b819-306ed4c39659",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "你刚才说的路线要换三次车，我只听了一遍，实在记___，请把路线发给我吧。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得住"
+      },
+      {
+        "id": "2",
+        "text": "不见"
+      },
+      {
+        "id": "3",
+        "text": "不住"
+      },
+      {
+        "id": "4",
+        "text": "不动"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g24-d2329cdf",
     "taskNumber": 24,
     "formatYear": 2026,
@@ -22618,6 +23530,44 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g24-d7580dda",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d7580dda-12b7-4bae-918f-23704a6011d1",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "地铁上这根杆子不粗，孩子用一只手也抓___，车开动时能站稳。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得完"
+      },
+      {
+        "id": "2",
+        "text": "不住"
+      },
+      {
+        "id": "3",
+        "text": "得懂"
+      },
+      {
+        "id": "4",
+        "text": "得住"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
     "id": "g24-dd8c2ca8",
     "taskNumber": 24,
     "formatYear": 2026,
@@ -22654,6 +23604,44 @@
       }
     ],
     "correctOptionId": "3"
+  },
+  {
+    "id": "g24-e6aacb2a",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "e6aacb2a-80d1-4209-94f4-b490351e7fa8",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "去看爷爷的一共六个人，叔叔开来一辆七座车，大家都坐___，不用另外叫车。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不起"
+      },
+      {
+        "id": "2",
+        "text": "得住"
+      },
+      {
+        "id": "3",
+        "text": "不下"
+      },
+      {
+        "id": "4",
+        "text": "得下"
+      }
+    ],
+    "correctOptionId": "4"
   },
   {
     "id": "g24-e85171cc",
@@ -22808,6 +23796,44 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g24-f3d40196",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f3d40196-a3d7-40cf-8269-af6110839834",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "5"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "这个开关装得很低，弟弟一伸手就够___，晚上可以自己关灯。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不着"
+      },
+      {
+        "id": "2",
+        "text": "得完"
+      },
+      {
+        "id": "3",
+        "text": "得开"
+      },
+      {
+        "id": "4",
+        "text": "得着"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
     "id": "g24-f524d245",
     "taskNumber": 24,
     "formatYear": 2026,
@@ -22844,6 +23870,82 @@
       }
     ],
     "correctOptionId": "4"
+  },
+  {
+    "id": "g24-fc0e91dd",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "fc0e91dd-5fc2-4580-aa42-d68eec7615a8",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "笔袋的拉链卡住了，我试了几次，还是打___，只好向同桌借笔。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不完"
+      },
+      {
+        "id": "2",
+        "text": "不起"
+      },
+      {
+        "id": "3",
+        "text": "不开"
+      },
+      {
+        "id": "4",
+        "text": "得开"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g24-fd806bc8",
+    "taskNumber": 24,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "fd806bc8-6b3f-4440-9c50-f4fc5dbfda39",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.49",
+      "2.4.61"
+    ],
+    "prompt": "Укажите, какой дополнительный элемент пропущен в данном предложении.",
+    "stem": "折这只纸船只要三步，弟弟已经会做前两步了。最后一步我再做给他看，他就学___，下次能自己折。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不会"
+      },
+      {
+        "id": "2",
+        "text": "得动"
+      },
+      {
+        "id": "3",
+        "text": "得会"
+      },
+      {
+        "id": "4",
+        "text": "不到"
+      }
+    ],
+    "correctOptionId": "3"
   },
   {
     "id": "g24-fd8c7824",

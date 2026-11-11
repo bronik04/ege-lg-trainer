@@ -94,13 +94,18 @@
 - `g23-5e9f5c71` «吃光了»: правило result-rare
 - `g23-860e1a89` «听懂了»: правило result-complements
 - `g23-bb232c5b` «花光了»: вопрос check-rr-guang, правило result-rare
+- `g23-c215c51a` «递给我»: `g24-2cf15785`
 - `g23-de6367f4` «记住了»: вопрос check-rc-zhu
 - `g23-e0ba4f3c` «睡着了»: `g27-e6931c15`
+- `g24-2cf15785` «够不着»: правило potential-complements
 - `g24-362986f5` «写得完»: правило potential-complements
+- `g24-56f2a36d` «记得住»: правило potential-complements
 - `g24-97c73db3` «看得清楚»: `h26-df2b294b`
 - `g24-bd98cfe9` «听不清楚»: правило potential-complements
 - `g24-c9f3578d` «听得清楚»: правило potential-complements
+- `g24-ce2960a1` «记不住»: вопрос check-pot-bu, правило potential-complements
 - `g24-d4761edc` «搬得动»: правило potential-complements
+- `g24-fc0e91dd` «打不开»: `g23-ca6c236c`
 - `g24-fd8c7824` «买不到»: `h26-4446c80d`, `h26-bc33e02b`, правило potential-complements
 - `g24-ffe83183` «借得到»: правило potential-complements
 - `q16-153f9be8` «一条裙»: правило measure-words
@@ -116,6 +121,8 @@
 - `q16-fff46d4a` «一门外»: правило measure-words-more
 - `q16-fff46d4a` «门外语»: правило measure-words-more
 - `q17-22430935` «的时间»: `g23-8c6ebc31`, `g23-bb232c5b`
+- `q20-1f77c632` «着自行»: `g24-158cd439`
+- `q20-1f77c632` «骑着自»: `g24-158cd439`
 - `q21-da9ba3fd` «的时间»: `g23-8c6ebc31`, `g23-bb232c5b`
 - `q22-1accf8c9` «再说一»: `g24-bd98cfe9`
 - `q22-b24a67ef` «今天又»: `g16-aaee9fbc`
