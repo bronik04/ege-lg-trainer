@@ -745,7 +745,7 @@ export function vsoshCards(bank) {
   const cards = [];
   for (const q of bank.questions) {
     if (q.kind !== 'passageGap') {
-      cards.push({ id: q.id, questions: [q] });
+      cards.push({ id: q.id, questions: [q], correctOptionId: q.correctId });
       continue;
     }
     if (!byContext.has(q.contextId)) byContext.set(q.contextId, []);
@@ -753,9 +753,10 @@ export function vsoshCards(bank) {
   }
   for (const context of bank.contexts) {
     const gaps = byContext.get(context.id);
-    if (gaps?.length) cards.push({
-      id: context.id, context, questions: gaps.sort((a, b) => a.gapNumber - b.gapNumber),
-    });
+    if (gaps?.length) {
+      gaps.sort((a, b) => a.gapNumber - b.gapNumber);
+      cards.push({ id: context.id, context, questions: gaps, correctOptionId: gaps.map((q) => q.correctId).join('') });
+    }
   }
   return cards;
 }
@@ -937,6 +938,40 @@ export function trainingResult(session, byId) {
   });
   const corrected = wrong.filter((id) => repeats[id] === byId.get(id).correctOptionId).length;
   return { repeated, corrected, remaining: wrong.length - corrected, repeats };
+}
+
+export function validVsoshChoices(card, choices, partial = false) {
+  return Boolean(card) && Array.isArray(choices) && choices.length === card.questions.length
+    && card.questions.every((q, i) => (partial && choices[i] === null)
+      || q.options.some((option) => option.id === choices[i]));
+}
+
+export function restoreVsoshRound(saved, byId, at) {
+  // Первая версия ВсОШ хранила ответы и черновик прямо в steps, без повторов.
+  if (Array.isArray(saved?.steps)) {
+    const { steps, index } = saved;
+    if (!steps.length || !Number.isInteger(index) || index < 0 || index > steps.length
+      || !steps.every((step, i) => step && typeof step.checked === 'boolean'
+        && (i >= index || step.checked) && validVsoshChoices(byId.get(step.id), step.choices, !step.checked))) return null;
+    const round = startSession(steps.map((step) => step.id), at);
+    const current = steps[index];
+    round.index = Math.min(index, steps.length - 1);
+    round.finishedAt = current ? null : at;
+    round.answers = Object.fromEntries(steps.slice(0, index + 1)
+      .filter((step) => step.checked || (step.choices.length === 1 && step.choices[0] !== null))
+      .map((step) => [step.id, step.choices.join('')]));
+    return { round, draft: current?.checked === false && current.choices.length > 1 ? current.choices : null };
+  }
+  const round = cleanSession(saved);
+  const validAnswer = (id, answer) => typeof answer === 'string' && validVsoshChoices(byId.get(id), [...answer]);
+  if (!round || !initialRoundIds(round).length
+    || !Object.entries(round.answers).every(([id, answer]) => validAnswer(id, answer))
+    || !round.ids.every((id, i) => {
+      const answer = roundAnswer(round, i);
+      return byId.has(id) && (answer === undefined
+        ? i >= round.index && !round.finishedAt : Object.hasOwn(round.answers, id) && validAnswer(id, answer));
+    })) return null;
+  return { round };
 }
 
 export const TONES_MODE = 'tones';

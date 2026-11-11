@@ -17,6 +17,22 @@ function q(id, taskNumber, extra = {}) {
 
 const fullBank = L.TASK_NUMBERS.flatMap((n) => [q(`q${n}-a`, n), q(`q${n}-b`, n)]);
 
+test('ВсОШ: прежний раунд сохраняет проверенный ответ и черновик общего текста', () => {
+  const question = { options: [{ id: 'A' }, { id: 'B' }] };
+  const cards = new Map([
+    ['single', { questions: [question] }],
+    ['text', { questions: [question, question] }],
+  ]);
+  const restored = L.restoreVsoshRound({ index: 1, steps: [
+    { id: 'single', choices: ['B'], checked: true },
+    { id: 'text', choices: ['A', null], checked: false },
+  ] }, cards, '2026-11-11T12:00:00Z');
+  assert.equal(L.isTrainingRound(restored.round), false);
+  assert.equal(L.roundAnswer(restored.round, 0), 'B');
+  assert.equal(L.roundAnswer(restored.round), undefined);
+  assert.deepEqual(restored.draft, ['A', null]);
+});
+
 test('вариант: ровно 13 позиций в порядке 15–27', () => {
   const result = L.buildVariant(fullBank, L.mulberry32(1));
   assert.equal(result.ok, true);

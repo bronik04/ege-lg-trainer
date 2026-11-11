@@ -132,7 +132,8 @@ test('ВсОШ: общий текст проверяется целиком, а 
     await page.getByRole('link', { name: 'ВсОШ', exact: true }).waitFor({ timeout: 3000 });
     await page.getByRole('link', { name: 'ВсОШ', exact: true }).click();
     await page.getByRole('checkbox', { name: 'Выбор слова в тексте' }).check();
-    await page.getByRole('button', { name: 'Начать практику' }).click();
+    await page.getByRole('radio', { name: 'Тест', exact: true }).check();
+    await page.getByRole('button', { name: 'Начать раунд', exact: true }).first().click();
     await page.locator('.vsosh-passage').waitFor();
     assert.equal(await page.locator('.vsosh-passage').count(), 1);
     assert.equal(await page.locator('.vsosh-passage .vsosh-gap').count(), 4);
@@ -148,7 +149,7 @@ test('ВсОШ: общий текст проверяется целиком, а 
     assert.equal(await answer(37, /究竟/).isChecked(), true);
     await answer(40, /眼光/).check();
     await check.click();
-    await see(page, '.vsosh-feedback', /3 из 4/);
+    await page.getByRole('region', { name: 'Верных ответов 3 из 4' }).waitFor();
     await see(page, '.vsosh-answer', /37.*终于/s);
     await page.getByRole('button', { name: 'Итог раунда' }).click();
     await see(page, '.score', /3 из 4/);
@@ -164,13 +165,14 @@ test('ВсОШ: место слова выбирается в предложен
   try {
     await page.getByRole('checkbox', { name: 'Место слова в предложении' }).waitFor({ timeout: 3000 });
     await page.getByRole('checkbox', { name: 'Место слова в предложении' }).check();
-    await page.getByRole('button', { name: 'Начать практику' }).click();
+    await page.getByRole('button', { name: 'Начать раунд', exact: true }).first().click();
     await see(page, '.instruction', /三倍/);
-    const positions = page.locator('.vsosh-placement').getByRole('radio');
+    const positions = page.locator('.vsosh-placement').getByRole('button');
     assert.equal(await positions.count(), 4);
-    await page.locator('.vsosh-placement').getByRole('radio', { name: 'D', exact: true }).check();
-    await page.getByRole('button', { name: 'Проверить ответ', exact: true }).click();
+    assert.equal(await page.getByRole('button', { name: /Проверить ответ/ }).count(), 0);
+    await page.keyboard.press('4');
     await see(page, '.vsosh-answer', /Верно/);
+    assert.equal(await page.locator('.vsosh-feedback').getAttribute('aria-live'), 'polite');
     await page.getByRole('link', { name: 'Практика', exact: true }).click();
     assert.equal(new URL(page.url()).hash, '#/practice');
     assert.deepEqual(errors, []);
@@ -179,16 +181,46 @@ test('ВсОШ: место слова выбирается в предложен
   }
 });
 
-test('ВсОШ: длинные варианты на планшете остаются в своих карточках', { skip }, async () => {
+test('ВсОШ: длинный вариант проверяется сразу, а ошибка возвращается в тренировке', { skip }, async () => {
   const { page, context, errors } = await open(olympiadPage(), { hash: '#/vsosh', width: 721 });
   try {
     await page.getByRole('checkbox', { name: 'Чэнъюй' }).check();
-    await page.getByRole('button', { name: 'Начать практику' }).click();
-    const option = page.locator('.vsosh-choice').filter({ hasText: 'Пришла беда' });
+    await page.getByRole('button', { name: 'Начать раунд', exact: true }).first().click();
+    const option = page.locator('button.option').filter({ hasText: 'Пришла беда' });
     assert.equal(await option.evaluate((node) => {
       const text = node.querySelector('.text');
       return text.scrollWidth <= text.clientWidth + 1;
     }), true);
+    assert.equal(await page.getByRole('button', { name: /Проверить ответ/ }).count(), 0);
+    await option.click();
+    await see(page, '.vsosh-answer', /Ошибка/);
+    await page.getByRole('button', { name: 'Повторить ошибку', exact: true }).click();
+    await see(page, '.repeat-mark', 'Повтор ошибки');
+    await page.reload();
+    await see(page, '.repeat-mark', 'Повтор ошибки');
+    await page.locator('button.option').filter({ hasText: 'Хочется' }).click();
+    await page.getByRole('button', { name: 'Итог раунда' }).click();
+    await see(page, '.score', /0 из 1/);
+    await see(page, '.training-result', /исправлено: 1/);
+    await page.locator('.results summary').click();
+    await see(page, '.vsosh-retry', /На повторе 1 из 1.*Хочется.*первая попытка/);
+    assert.deepEqual(errors, []);
+  } finally {
+    await context.close();
+  }
+});
+
+test('ВсОШ: настройки раунда используют оформление практики и сохраняют размер', { skip }, async () => {
+  const { page, context, errors } = await open(olympiadPage(), { hash: '#/vsosh' });
+  try {
+    await see(page, '.practice-next h2', 'Все темы ВсОШ');
+    await page.locator('#roundSize').fill('2');
+    await page.locator('#roundSize').press('Enter');
+    await see(page, '#practiceAvailable', /2 карточки в раунде/);
+    await page.reload();
+    assert.equal(await page.locator('#roundSize').inputValue(), '2');
+    await page.getByRole('button', { name: 'Начать раунд', exact: true }).first().click();
+    await see(page, '.progress', /Карточка 1 из 2/);
     assert.deepEqual(errors, []);
   } finally {
     await context.close();
