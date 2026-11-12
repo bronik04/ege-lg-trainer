@@ -27,8 +27,18 @@
       "domain": "grammar"
     },
     {
+      "id": "localizers",
+      "label": "Послелоги",
+      "domain": "grammar"
+    },
+    {
       "id": "classifiers",
       "label": "Счётные слова",
+      "domain": "grammar"
+    },
+    {
+      "id": "aspect-particles",
+      "label": "Глагольные суффиксы",
       "domain": "grammar"
     },
     {
@@ -392,6 +402,45 @@
       "focus": "不仅……而且……"
     },
     {
+      "id": "vsosh-zh-lg-2021-reg-23",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "regional",
+      "sourceId": "2021-reg",
+      "taskNumber": 23,
+      "sectionPosition": 3,
+      "topicId": "localizers",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящим послелогом (23):",
+      "options": [
+        {
+          "id": "A",
+          "text": "上"
+        },
+        {
+          "id": "B",
+          "text": "中"
+        },
+        {
+          "id": "C",
+          "text": "下"
+        },
+        {
+          "id": "D",
+          "text": "内"
+        }
+      ],
+      "correctId": "B",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "他在几十年的教学实践……总结了不少有用的教学经验。",
+      "focus": "中",
+      "fullSetOnly": true
+    },
+    {
       "id": "vsosh-zh-lg-2021-reg-24",
       "origin": "official",
       "season": "2021/2022",
@@ -428,6 +477,42 @@
       "keyPage": 1,
       "stem": "那……国际航空公司的飞机将在20分钟后起飞。",
       "focus": "架"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-reg-25",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "regional",
+      "sourceId": "2021-reg",
+      "taskNumber": 25,
+      "sectionPosition": 5,
+      "topicId": "aspect-particles",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск соответствующим глагольным суффиксом (25):",
+      "options": [
+        {
+          "id": "A",
+          "text": "过"
+        },
+        {
+          "id": "B",
+          "text": "了"
+        },
+        {
+          "id": "C",
+          "text": "着"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        6,
+        7
+      ],
+      "keyPage": 1,
+      "stem": "他抬起头，严肃地看……我说：“我该怎么办呢？”",
+      "focus": "着",
+      "fullSetOnly": true
     },
     {
       "id": "vsosh-zh-lg-2021-reg-26",
@@ -1089,6 +1174,45 @@
       "focus": "或者……或者……"
     },
     {
+      "id": "vsosh-zh-lg-2021-fin-23",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "final",
+      "sourceId": "2021-fin",
+      "taskNumber": 23,
+      "sectionPosition": 3,
+      "topicId": "localizers",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск подходящим послелогом (23):",
+      "options": [
+        {
+          "id": "A",
+          "text": "里"
+        },
+        {
+          "id": "B",
+          "text": "外"
+        },
+        {
+          "id": "C",
+          "text": "中"
+        },
+        {
+          "id": "D",
+          "text": "下"
+        }
+      ],
+      "correctId": "D",
+      "taskPages": [
+        6
+      ],
+      "keyPage": 1,
+      "stem": "在老师的严格要求……我取得了优异的成绩。",
+      "focus": "下",
+      "fullSetOnly": true
+    },
+    {
       "id": "vsosh-zh-lg-2021-fin-24",
       "origin": "official",
       "season": "2021/2022",
@@ -1125,6 +1249,42 @@
       "keyPage": 1,
       "stem": "这……课文虽然不长，但生词很多。",
       "focus": "篇"
+    },
+    {
+      "id": "vsosh-zh-lg-2021-fin-25",
+      "origin": "official",
+      "season": "2021/2022",
+      "stage": "final",
+      "sourceId": "2021-fin",
+      "taskNumber": 25,
+      "sectionPosition": 5,
+      "topicId": "aspect-particles",
+      "kind": "singleChoice",
+      "points": 1,
+      "prompt": "Заполните пропуск соответствующим глагольным суффиксом (25):",
+      "options": [
+        {
+          "id": "A",
+          "text": "了"
+        },
+        {
+          "id": "B",
+          "text": "着"
+        },
+        {
+          "id": "C",
+          "text": "过"
+        }
+      ],
+      "correctId": "C",
+      "taskPages": [
+        6,
+        7
+      ],
+      "keyPage": 1,
+      "stem": "我们曾经请王教授来做……几次报告。",
+      "focus": "过",
+      "fullSetOnly": true
     },
     {
       "id": "vsosh-zh-lg-2021-fin-26",

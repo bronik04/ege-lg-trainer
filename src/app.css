@@ -167,6 +167,7 @@ h2, h3 { overflow-wrap: break-word; hyphens: auto; }
 .task-row input:not(:disabled):hover + span { border-color: var(--line-on-ground-strong); }
 /* Выбранный номер — как выбранная карточка системы: рамка тушью потолще, лист светлее. */
 .task-row input:checked + span { border-color: var(--line-on-ground-strong); box-shadow: inset 0 0 0 1px var(--line-on-ground-strong); background: var(--surface-raised); }
+.task-row.topic-row input:checked + span { border-color: var(--accent-on-ground); box-shadow: inset 0 0 0 2px var(--accent-on-ground); }
 .task-row input:checked + span .cellnum { border-color: var(--accent-on-ground); color: var(--accent-on-ground); }
 .task-row input:checked + span .task-title::after { border-bottom-color: var(--accent-on-ground); opacity: .5; }
 .task-row input:focus-visible + span { outline: var(--border-focus) solid var(--focus); outline-offset: 3px; }
@@ -289,7 +290,7 @@ kbd {
 }
 .option .text { font-family: var(--zh); font-size: 1.45rem; line-height: 1.3; overflow-wrap: anywhere; }
 .option .text.plain { font-family: var(--ui); font-size: 1.1rem; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: .02em; }
-.option.selected { border-color: var(--ink); background: var(--surface-paper); box-shadow: inset 0 0 0 1px var(--ink); }
+.option.selected, .vsosh-place.selected { border-color: var(--ink); background: var(--surface-paper); box-shadow: inset 0 0 0 1px var(--ink); }
 .option.selected .num { border-color: var(--ink); color: var(--ink); }
 .option:disabled { cursor: default; color: var(--ink); opacity: 1; }
 .option:disabled:not(.correct):not(.wrong) { border-color: var(--line); color: var(--muted); }
@@ -302,6 +303,10 @@ kbd {
 .option.wrong::after { content: "✗"; color: var(--red); font-weight: 800; }
 
 /* ВсОШ: текст читается целиком, номера в тексте совпадают с группами ответов. */
+.vsosh-modes { display: inline-grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 100%; margin: 0 0 20px; }
+.vsosh-modes .button { min-width: 0; padding-inline: 12px; font-size: .9rem; line-height: 1.2; }
+.vsosh-modes [aria-current="page"] { border-color: var(--pen); color: var(--pen); }
+.vsosh-set-title { margin: 0; font-size: 1.25rem; }
 .vsosh-card { min-width: 0; }
 .vsosh-passage {
   margin: 12px 0 18px; padding: 12px clamp(12px, 3vw, 24px);
@@ -350,6 +355,7 @@ kbd {
 .vsosh-place.correct { border-color: var(--jade); background: var(--jade-bg); }
 .vsosh-place.wrong { border-color: var(--red); background: var(--red-bg); }
 .vsosh-feedback ul { margin: 5px 0 10px; padding-inline-start: 1.4em; }
+.vsosh-answer[data-gap]:focus { outline: var(--border-focus) solid var(--focus); outline-offset: 3px; }
 .vsosh-feedback p { margin: 5px 0 0; }
 .vsosh-result-text { flex: 1; min-width: 0; overflow-wrap: anywhere; }
 @media (min-width: 721px) {
@@ -398,6 +404,7 @@ kbd {
 /* ---------- бланк ответов: позиции 15–27 ---------- */
 
 .sheet { display: grid; grid-template-columns: repeat(13, minmax(0, 1fr)); gap: 4px; margin: 0 0 18px; padding: 0; list-style: none; }
+.sheet.vsosh-set-sheet { grid-template-columns: repeat(10, minmax(0, 1fr)); }
 .cell {
   display: grid; grid-template-rows: auto 1fr; width: 100%; padding: 0; border: 1.5px solid var(--grid);
   border-radius: 2px; background: var(--sheet); color: var(--ink); overflow: hidden;
@@ -494,6 +501,7 @@ kbd {
 .stat b { display: block; font: 800 1.9rem/1.05 var(--disp); font-variant-numeric: tabular-nums; }
 .stat span { color: var(--muted); font-size: .82rem; font-weight: 600; }
 .filters-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr)); gap: 10px; margin-bottom: 14px; }
+.filters-row.vsosh-set-settings { grid-template-columns: repeat(2, minmax(0, 1fr)) auto; }
 .filters-row > * { min-width: 0; }
 .round-settings { align-items: start; }
 .round-settings .chip input:checked:hover + span { color: var(--paper); }
@@ -715,13 +723,14 @@ kbd {
 
 @media (max-width: 720px) {
   .round-settings { grid-template-columns: 1fr; }
+  .filters-row.vsosh-set-settings { grid-template-columns: 1fr; }
   /* Фокус и прокрутка не прячут элементы под панелью внизу. */
   html { scroll-padding-bottom: 96px; }
   .shell { width: calc(100% - 32px); padding-top: 8px; }
   .tabs { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 0; margin-bottom: 20px; }
   .tab { min-width: 0; padding-inline: 2px; font-size: .84rem; font-weight: 600; }
   .options.row { grid-template-columns: 1fr; }
-  .sheet { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  .sheet, .sheet.vsosh-set-sheet { grid-template-columns: repeat(7, minmax(0, 1fr)); }
   .contrast { grid-template-columns: 1fr; }
   .bank-item { grid-template-columns: 40px minmax(0, 1fr); }
   .bank-item .state { grid-column: 2; }

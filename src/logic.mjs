@@ -761,6 +761,16 @@ export function vsoshCards(bank) {
   return cards;
 }
 
+export function vsoshSets(bank, cards) {
+  return (bank?.sources ?? []).flatMap((source) => {
+    const ordered = cards.filter((card) => card.questions[0].sourceId === source.id)
+      .sort((a, b) => a.questions[0].taskNumber - b.questions[0].taskNumber);
+    if (!ordered.length) return [];
+    const positions = ordered.flatMap((card, cardIndex) => card.questions.map((question) => ({ question, cardIndex })));
+    return [{ source, cards: ordered, positions }];
+  }).sort((a, b) => b.source.season.localeCompare(a.source.season));
+}
+
 // Ссылка «Сообщить об ошибке»: новый issue на GitHub с ID, условием и ответами.
 // В ней только данные задания — ничего о самом ученике. Условие идёт блоком кода:
 // иначе GitHub прочтёт два пропуска ___…___ как разметку и они пропадут.
@@ -974,6 +984,25 @@ export function restoreVsoshRound(saved, byId, at, draft = null) {
         ? i >= round.index && !round.finishedAt : Object.hasOwn(round.answers, id) && validAnswer(id, answer));
     })) return null;
   return { round, draft: round.ids[round.index] === previous.ids[previous.index] ? draft : null };
+}
+
+export function restoreVsoshSet(saved, set) {
+  const previous = cleanSession(saved);
+  if (!previous) return null;
+  const ids = set.cards.map((card) => card.id);
+  const index = Math.max(0, ids.indexOf(previous.ids[previous.index]));
+  const activeQuestion = set.cards[index].questions.find((q) => q.id === previous.activeQuestionId);
+  const answers = Object.fromEntries(set.positions.flatMap(({ question }) => {
+    const answer = previous.answers[question.id];
+    return question.options.some((option) => option.id === answer) ? [[question.id, answer]] : [];
+  }));
+  return {
+    ...startSession(ids, previous.startedAt),
+    index,
+    activeQuestionId: activeQuestion?.id,
+    answers,
+    finishedAt: isTime(previous.finishedAt) ? previous.finishedAt : null,
+  };
 }
 
 export const TONES_MODE = 'tones';

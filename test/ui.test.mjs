@@ -160,6 +160,37 @@ test('ВсОШ: общий текст проверяется целиком, а 
   }
 });
 
+test('ВсОШ: прогресс ЕГЭ в другой вкладке не прерывает выбор ответа', { skip }, async () => {
+  const url = olympiadPage();
+  const { page, context, errors } = await open(url, { hash: '#/vsosh' });
+  try {
+    await page.getByRole('checkbox', { name: 'Выбор слова в тексте' }).check();
+    await page.locator('#startRound').click();
+    const answer = page.getByRole('group', { name: 'Пропуск 37' }).getByRole('radio', { name: /究竟/ });
+    await answer.check();
+    await answer.focus();
+    const control = await answer.elementHandle();
+    await page.evaluate(() => {
+      window.addEventListener('storage', (event) => {
+        if (event.key === 'ege-lg-trainer:progress') document.documentElement.dataset.egeProgressReceived = '1';
+      });
+    });
+
+    const ege = await context.newPage();
+    await ege.goto(url + '#/practice');
+    await ege.locator('#startRound').click();
+    await page.waitForFunction(() => document.documentElement.dataset.egeProgressReceived === '1');
+    assert.equal(await control.evaluate((node) => node === document.activeElement), true);
+    assert.equal(await answer.isChecked(), true);
+
+    await page.getByRole('link', { name: 'Практика', exact: true }).click();
+    await page.getByRole('link', { name: /Продолжить раунд/ }).waitFor();
+    assert.deepEqual(errors, []);
+  } finally {
+    await context.close();
+  }
+});
+
 test('ВсОШ: место слова выбирается в предложении и проверяется по ключу', { skip }, async () => {
   const { page, context, errors } = await open(olympiadPage(), { hash: '#/vsosh' });
   try {
@@ -236,6 +267,101 @@ test('ВсОШ: настройки раунда используют оформ�
     assert.equal(await page.locator('#roundSize').inputValue(), '2');
     await page.getByRole('button', { name: 'Начать раунд', exact: true }).first().click();
     await see(page, '.progress', /Карточка 1 из 2/);
+    assert.deepEqual(errors, []);
+  } finally {
+    await context.close();
+  }
+});
+
+test('ВсОШ: полный комплект сохраняет ответы и открывает разбор после завершения', { skip }, async () => {
+  const bank = JSON.parse(readFileSync(join(ROOT, 'data', 'vsosh-zh-lg.json'), 'utf8'));
+  const url = buildPage('vsosh-sets', { change: (data) => { data['vsosh-zh-lg'] = bank; } });
+  const { page, context, errors } = await open(url, { hash: '#/vsosh', width: 360 });
+  try {
+    await see(page, '#practiceAvailable', /174 доступно/);
+    assert.equal(await page.locator('#vsoshTopics input').count(), 13);
+    const sets = page.getByRole('link', { name: 'Полные комплекты', exact: true });
+    await sets.waitFor({ timeout: 3000 });
+    await sets.click();
+    const season = page.getByLabel('Сезон', { exact: true });
+    const stage = page.getByLabel('Этап', { exact: true });
+    await season.selectOption('2021/2022');
+    await stage.selectOption('regional');
+    await page.getByRole('button', { name: 'Начать комплект', exact: true }).click();
+    const sheet = page.getByRole('list', { name: 'Бланк ответов' });
+    const cell = (number) => sheet.getByRole('button', { name: new RegExp('^Задание ' + number + ':') });
+    assert.deepEqual(await sheet.locator('.pos').allTextContents(), Array.from({ length: 20 }, (_, i) => String(i + 21)));
+    await see(page, '.vsosh-card .pill.task', '№ 21');
+
+    await cell(23).click();
+    await see(page, '.vsosh-card .pill.quiet', 'Послелоги');
+    await page.keyboard.press('1');
+    await page.keyboard.press('2');
+    await see(page, '.sheet .cell.current .mark', 'B');
+    assert.equal(await page.locator('.vsosh-feedback, .option.correct, .option.wrong').count(), 0);
+
+    await cell(25).click();
+    await see(page, '.vsosh-card .pill.quiet', 'Глагольные суффиксы');
+    await cell(31).click();
+    await page.locator('.vsosh-place').nth(3).click();
+    assert.equal(await page.locator('.vsosh-place').nth(3).getAttribute('aria-pressed'), 'true');
+    assert.equal(await page.locator('.vsosh-place.correct, .vsosh-place.wrong').count(), 0);
+
+    await cell(37).click();
+    assert.equal(await page.locator('.vsosh-gap').count(), 4);
+    const firstGap = page.getByRole('group', { name: 'Пропуск 37' }).getByRole('radio', { name: /终于/ });
+    await firstGap.check();
+    await cell(40).click();
+    const lastGap = page.getByRole('group', { name: 'Пропуск 40' });
+    assert.equal(await cell(40).getAttribute('aria-current'), 'step');
+    assert.equal(await lastGap.evaluate((group) => group.contains(document.activeElement)), true);
+    assert.equal(await lastGap.locator('input:checked').count(), 0);
+    assert.equal(await page.getByRole('button', { name: /Проверить ответы/ }).count(), 0);
+    assert.equal(await page.locator('.vsosh-feedback, .score').count(), 0);
+    await page.reload();
+    assert.equal(await firstGap.isChecked(), true);
+    assert.equal(await cell(40).getAttribute('aria-current'), 'step');
+
+    await page.getByRole('link', { name: 'Выйти', exact: true }).click();
+    const resume = page.getByRole('button', { name: /Продолжить комплект/ });
+    await resume.waitFor();
+    await stage.selectOption('final');
+    await season.selectOption('2024/2025');
+    await page.reload();
+    assert.equal(await season.inputValue(), '2024/2025');
+    assert.equal(await stage.inputValue(), 'final');
+    await page.getByRole('button', { name: 'Начать комплект', exact: true }).click();
+    await see(page, '.vsosh-card .pill.quiet', /Заключительный этап/);
+    await page.keyboard.press('1');
+    await page.getByRole('link', { name: 'Выйти', exact: true }).click();
+    await season.selectOption('2021/2022');
+    await stage.selectOption('regional');
+    await resume.click();
+    assert.equal(await firstGap.isChecked(), true);
+    assert.equal(await cell(40).getAttribute('aria-current'), 'step');
+    await see(page, '.progress', /3 из 20/);
+
+    await page.getByRole('button', { name: 'Завершить комплект', exact: true }).click();
+    await see(page, '.notice.warn', /Без ответа/);
+    assert.equal(await page.locator('.score').count(), 0);
+    const confirm = page.getByRole('button', { name: 'Всё равно завершить', exact: true });
+    assert.match(await confirm.evaluate((node) => document.getElementById(node.getAttribute('aria-describedby'))?.textContent), /Без ответа.*40/);
+    await confirm.click();
+    const expected = Number(bank.questions.find(q => q.id === 'vsosh-zh-lg-2021-reg-23').correctId === 'B') + 2;
+    await see(page, '.score', new RegExp(expected + ' из 20'));
+    await page.reload();
+    await see(page, '.score', new RegExp(expected + ' из 20'));
+    await cell(40).click();
+    await see(page, '.vsosh-feedback h3', 'Верных ответов 1 из 4');
+    await see(page, '.vsosh-answer', /38.*Нет ответа/);
+    await see(page, '.vsosh-answer:focus', /40.*Нет ответа/);
+    await cell(37).click();
+    await see(page, '.vsosh-answer:focus', /37.*Верно/);
+    await page.getByRole('link', { name: 'К комплектам', exact: true }).click();
+    await page.getByRole('button', { name: 'Начать комплект', exact: true }).waitFor();
+    await page.goBack();
+    await page.getByRole('button', { name: 'Начать комплект', exact: true }).waitFor();
+    assert.equal(await page.locator('.score').count(), 0);
     assert.deepEqual(errors, []);
   } finally {
     await context.close();
