@@ -23,7 +23,8 @@ test('ВсОШ: прежний раунд сохраняет проверенн�
     ['single', { questions: [question] }],
     ['text', { questions: [question, question] }],
   ]);
-  const restored = L.restoreVsoshRound({ index: 1, steps: [
+  const restored = L.restoreVsoshRound({ index: 2, steps: [
+    { id: 'removed', choices: ['A'], checked: true },
     { id: 'single', choices: ['B'], checked: true },
     { id: 'text', choices: ['A', null], checked: false },
   ] }, cards, '2026-11-11T12:00:00Z');
@@ -31,6 +32,24 @@ test('ВсОШ: прежний раунд сохраняет проверенн�
   assert.equal(L.roundAnswer(restored.round, 0), 'B');
   assert.equal(L.roundAnswer(restored.round), undefined);
   assert.deepEqual(restored.draft, ['A', null]);
+});
+
+test('ВсОШ: начатый раунд продолжается после удаления карточки из банка', () => {
+  const question = { options: [{ id: 'A' }, { id: 'B' }] };
+  const cards = new Map([
+    ['single', { id: 'single', questions: [question] }],
+    ['text', { id: 'text', questions: [question, question] }],
+  ]);
+  let saved = L.startSession(['removed', 'single', 'text'], 't0', 'vsosh', 'training');
+  saved = L.advanceRound(L.answerRound(saved, 'A', false), 't1');
+  saved = L.advanceRound(L.answerRound(saved, 'B', true), 't2');
+
+  const { round, draft } = L.restoreVsoshRound(saved, cards, 't3', ['A', null]);
+  assert.deepEqual(round.ids, ['single', 'text']);
+  assert.equal(round.ids[round.index], 'text');
+  assert.deepEqual(round.answers, { single: 'B' });
+  assert.deepEqual(round.retryQueue, []);
+  assert.deepEqual(draft, ['A', null]);
 });
 
 test('вариант: ровно 13 позиций в порядке 15–27', () => {

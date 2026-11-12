@@ -1597,9 +1597,9 @@
     try {
       const raw = JSON.parse(window.sessionStorage.getItem(VSOSH_SESSION_KEY));
       const topics = Array.isArray(raw?.topics) ? [...new Set(raw.topics.filter((id) => olympiadTopics.has(id)))] : [];
-      const restored = restoreVsoshRound(raw?.round, olympiadById, now());
+      const restored = restoreVsoshRound(raw?.round, olympiadById, now(), raw?.draft);
       const round = restored?.round ?? null;
-      const draft = restored?.draft ?? raw?.draft;
+      const draft = restored?.draft;
       const card = round && olympiadById.get(round.ids[round.index]);
       return {
         topics, round, size: roundSize(raw?.size) || empty.size,

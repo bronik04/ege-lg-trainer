@@ -946,23 +946,25 @@ export function validVsoshChoices(card, choices, partial = false) {
       || q.options.some((option) => option.id === choices[i]));
 }
 
-export function restoreVsoshRound(saved, byId, at) {
+export function restoreVsoshRound(saved, byId, at, draft = null) {
+  let previous = cleanSession(saved);
   // Первая версия ВсОШ хранила ответы и черновик прямо в steps, без повторов.
   if (Array.isArray(saved?.steps)) {
     const { steps, index } = saved;
     if (!steps.length || !Number.isInteger(index) || index < 0 || index > steps.length
-      || !steps.every((step, i) => step && typeof step.checked === 'boolean'
-        && (i >= index || step.checked) && validVsoshChoices(byId.get(step.id), step.choices, !step.checked))) return null;
-    const round = startSession(steps.map((step) => step.id), at);
+      || !steps.every((step, i) => typeof step?.id === 'string' && typeof step.checked === 'boolean'
+        && Array.isArray(step.choices) && (i >= index || step.checked)
+        && (!byId.has(step.id) || validVsoshChoices(byId.get(step.id), step.choices, !step.checked)))) return null;
+    previous = startSession(steps.map((step) => step.id), at);
     const current = steps[index];
-    round.index = Math.min(index, steps.length - 1);
-    round.finishedAt = current ? null : at;
-    round.answers = Object.fromEntries(steps.slice(0, index + 1)
+    previous.index = Math.min(index, steps.length - 1);
+    previous.finishedAt = current ? null : at;
+    previous.answers = Object.fromEntries(steps.slice(0, index + 1)
       .filter((step) => step.checked || (step.choices.length === 1 && step.choices[0] !== null))
       .map((step) => [step.id, step.choices.join('')]));
-    return { round, draft: current?.checked === false && current.choices.length > 1 ? current.choices : null };
+    if (current?.checked === false && current.choices.length > 1) draft = current.choices;
   }
-  const round = cleanSession(saved);
+  const { round } = pruneProgress({ round: previous, variant: null }, Array.from(byId.keys(), (id) => ({ id })));
   const validAnswer = (id, answer) => typeof answer === 'string' && validVsoshChoices(byId.get(id), [...answer]);
   if (!round || !initialRoundIds(round).length
     || !Object.entries(round.answers).every(([id, answer]) => validAnswer(id, answer))
@@ -971,7 +973,7 @@ export function restoreVsoshRound(saved, byId, at) {
       return byId.has(id) && (answer === undefined
         ? i >= round.index && !round.finishedAt : Object.hasOwn(round.answers, id) && validAnswer(id, answer));
     })) return null;
-  return { round };
+  return { round, draft: round.ids[round.index] === previous.ids[previous.index] ? draft : null };
 }
 
 export const TONES_MODE = 'tones';
