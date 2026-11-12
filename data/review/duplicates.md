@@ -70,16 +70,26 @@
 банк ФИПИ не правят.
 
 - `g16-697c2ded` «了一道»: `q17-870095c1`
+- `g16-6d4e93c7` «有一张»: `g25-d8ac9252`, `g25-f7a2e399`
 - `g16-a135e88d` «有一块»: `g24-1478ba90`
 - `g16-aa49fdcd` «了一家»: правило word-choice
+- `g16-cbbd46c0` «把钥匙»: `g25-60597841`
 - `g16-d8aac740` «了一台»: `q24-e12e1902`
+- `g16-f95a2f05` «的那位»: `g25-de9aa2c2`
 - `g17-00285a5a` «参观了»: правило word-choice
 - `g17-16fa0d99` «提高了»: правило word-choice
 - `g17-84fdfcf6` «增加了»: `h26-1ea781e6`, `h26-4b53638a`
 - `g17-9e4b6c5e` «养成了»: `h26-785ed71a`, `h26-a59c8de7`, `h26-c8a20b07`, правило word-choice
+- `g17-bc273e2b` «明白了»: `g25-344fec5f`
 - `g17-c84ed73f` «是价格»: `q24-e12e1902`
 - `g18-38fcabdc` «个子比»: `q27-c27b947c`
-- `g18-f76bc336` «我们在»: `g17-3c92a151`, `q25-06e87779`, `q25-fe11f817`
+- `g18-92ef69a9` «老师对»: `g25-c45d0e0e`
+- `g18-f76bc336` «在公园»: `g25-c743c8f9`
+- `g18-f76bc336` «我们在»: `g17-3c92a151`, `g25-12105c8a`, `g25-a5aaf36d`, `q25-06e87779`, `q25-fe11f817`
+- `g20-127b6928` «了三公»: `g25-ec037d33`
+- `g20-545c9b50` «了一跳»: `g25-f8b5cfb9`
+- `g20-545c9b50` «吓了一»: `g25-f8b5cfb9`
+- `g20-545c9b50` «我吓了»: `g25-f8b5cfb9`
 - `g22-44b9123e` «今天又»: `g16-aaee9fbc`
 - `g22-b7a65c53` «今天又»: `g16-aaee9fbc`
 - `g23-1375e3f0` «到了那»: правило result-complements
@@ -105,9 +115,18 @@
 - `g24-c9f3578d` «听得清楚»: правило potential-complements
 - `g24-ce2960a1` «记不住»: вопрос check-pot-bu, правило potential-complements
 - `g24-d4761edc` «搬得动»: правило potential-complements
+- `g24-e9ff531b` «回不了»: `g25-60597841`
 - `g24-fc0e91dd` «打不开»: `g23-ca6c236c`
 - `g24-fd8c7824` «买不到»: `h26-4446c80d`, `h26-bc33e02b`, правило potential-complements
 - `g24-ffe83183` «借得到»: правило potential-complements
+- `g25-31a0c774` «听起来»: правило direction-complements
+- `g25-427f4096` «静下来»: правило direction-complements
+- `g25-7a0bee2d` «游过来»: правило direction-complements
+- `g25-ac37dab6` «想出来»: `g22-6fd140a6`
+- `g25-c45d0e0e` «说下去»: `h26-273d68ec`, правило direction-complements
+- `g25-c990db1d` «抬上来»: `h26-1a7a22a3`
+- `g25-d0bdb868` «起来了»: `q25-653e1353`
+- `g25-ff316773` «看出来»: правило direction-complements
 - `q16-153f9be8` «一条裙»: правило measure-words
 - `q16-153f9be8` «条裙子»: правило measure-words
 - `q16-2a9b389a` «一架飞»: правило measure-words-more
@@ -127,4 +146,5 @@
 - `q22-1accf8c9` «再说一»: `g24-bd98cfe9`
 - `q22-b24a67ef` «今天又»: `g16-aaee9fbc`
 - `q23-147437cc` «上了一»: `g16-697c2ded`
+- `q24-8893d9bb` «找不到»: `g25-02f188ff`
 - `q25-a3749f53` «出去了»: `g27-f19a27db`
