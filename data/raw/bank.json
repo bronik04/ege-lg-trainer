@@ -14400,6 +14400,39 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g20-01f0a08e",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "01f0a08e-e16b-4445-b6b8-a5c697a3f4d5",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "今天有两位同学生病请___假，老师只好把全班合影改到明天。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "了"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g20-0307df33",
     "taskNumber": 20,
     "formatYear": 2026,
@@ -14466,6 +14499,171 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g20-083272b5",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "083272b5-c3b8-4f9d-b639-9541b3c1c58b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "鱼缸里正游___几条小鱼呢，先别换水。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "了"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g20-0a3ce008",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "0a3ce008-e9e7-4039-bcd1-6ae84c59ec3d",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "你继续蹲___别动，我看看你脚下面是什么。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "了"
+      },
+      {
+        "id": "3",
+        "text": "着"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g20-0c818281",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "0c818281-9ef8-4ca7-833f-f04ebbdfce3c",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "我想找一位以前在山区教___书的老师，请他讲讲那里的生活。",
+    "options": [
+      {
+        "id": "1",
+        "text": "了"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "过"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g20-110a8f60",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "110a8f60-03b0-46bb-9b34-f74fe6d75301",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "刚才机器卡纸，小张取出___里面的纸，现在又能打印。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "了"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g20-1149ea5a",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "1149ea5a-dddb-43e6-8c75-5bafe44ac0ec",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "厨房的水龙头正滴___水呢，谁没关紧？",
+    "options": [
+      {
+        "id": "1",
+        "text": "着"
+      },
+      {
+        "id": "2",
+        "text": "过"
+      },
+      {
+        "id": "3",
+        "text": "了"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
     "id": "g20-127b6928",
     "taskNumber": 20,
     "formatYear": 2026,
@@ -14497,6 +14695,72 @@
       }
     ],
     "correctOptionId": "1"
+  },
+  {
+    "id": "g20-16277d3b",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "16277d3b-b93b-4f6a-8063-f39fe143afc0",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "他一看到这张成绩单就生___气，马上给儿子打电话。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "了"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g20-1ce8c247",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "1ce8c247-4737-4032-bfcd-9e2a94413342",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "同学里有没有以前在花店打___工的人，可以教我们怎么包花？",
+    "options": [
+      {
+        "id": "1",
+        "text": "着"
+      },
+      {
+        "id": "2",
+        "text": "了"
+      },
+      {
+        "id": "3",
+        "text": "过"
+      }
+    ],
+    "correctOptionId": "3"
   },
   {
     "id": "g20-1d4d5aa8",
@@ -14565,6 +14829,303 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g20-29206302",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "29206302-0d1b-4f55-a667-6cec9179c29d",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "他拧开___瓶盖才发现，里面装的是水，不是果汁。",
+    "options": [
+      {
+        "id": "1",
+        "text": "了"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "过"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g20-2c824737",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "2c824737-3d01-43ce-a9ef-b3a5ec1b9693",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "你以前参加没参加___学校的合唱团？",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "了"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g20-3303e736",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3303e736-2228-431b-a70b-336051355d73",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "刚才客人太多，服务员又搬来___两把椅子，大家才有地方坐。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "了"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g20-34b28795",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "34b28795-f9f4-4885-a5a9-95875c3a5eca",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "他正踮___脚往窗里看呢，可里面太暗了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "了"
+      },
+      {
+        "id": "2",
+        "text": "过"
+      },
+      {
+        "id": "3",
+        "text": "着"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g20-35c2f50e",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "35c2f50e-ed1f-4599-ace5-1af59c6b5ac0",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "爷爷闻___闻杯里的茶，说是茉莉花茶。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "了"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g20-44ad67f8",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "44ad67f8-c135-404e-b541-fe960d6a3b5b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "我把盒子摇___摇，里面一点声音也没有。",
+    "options": [
+      {
+        "id": "1",
+        "text": "着"
+      },
+      {
+        "id": "2",
+        "text": "了"
+      },
+      {
+        "id": "3",
+        "text": "过"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g20-46752249",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "46752249-624c-43ac-a3df-3516039fd60a",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "这是我第一次当班长，以前没负责___班里的事情。",
+    "options": [
+      {
+        "id": "1",
+        "text": "着"
+      },
+      {
+        "id": "2",
+        "text": "过"
+      },
+      {
+        "id": "3",
+        "text": "了"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g20-4bb9295a",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "4bb9295a-4995-4ce6-81b4-a1fec00d087c",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "哥哥接好___两根线才开机，屏幕马上亮了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "了"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "过"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g20-4bfbe2fd",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "4bfbe2fd-2d20-4c78-b26e-5c834c247bed",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "这家店我在别的城市也见___，没想到这里也有。",
+    "options": [
+      {
+        "id": "1",
+        "text": "了"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "过"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g20-5112991c",
     "taskNumber": 20,
     "formatYear": 2026,
@@ -14593,6 +15154,72 @@
       {
         "id": "3",
         "text": "着"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g20-53500bfd",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "53500bfd-ea37-427b-8b58-b57373c7ffd0",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "小狗一直叼___那只袜子，怎么叫它也不肯放下。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "了"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g20-5415bae2",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5415bae2-2841-494b-b94c-51a3954c57f6",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "请等护士填完___记录再离开。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "了"
       }
     ],
     "correctOptionId": "3"
@@ -14631,6 +15258,138 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g20-57f6fb91",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "57f6fb91-1d56-4b17-a5fb-652bf14b42da",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "座位都满了，奶奶只能站___看演出。",
+    "options": [
+      {
+        "id": "1",
+        "text": "了"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "过"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g20-58b6122d",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "58b6122d-9305-4fd8-8af4-ab71b6337531",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "洗衣机还在转___呢，等它停下来再开盖子。",
+    "options": [
+      {
+        "id": "1",
+        "text": "了"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "过"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g20-5ac4c6bb",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5ac4c6bb-e7be-4ec9-883b-a468850ddd6d",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "他皱___皱眉，还是答应了这个要求。",
+    "options": [
+      {
+        "id": "1",
+        "text": "了"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "过"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g20-60e3c84f",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "60e3c84f-0d94-46a5-ba52-f409cf61a722",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "我刚才把密码输错___三回，系统这才锁住了账号。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "了"
+      },
+      {
+        "id": "3",
+        "text": "着"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g20-6bb451b2",
     "taskNumber": 20,
     "formatYear": 2026,
@@ -14664,6 +15423,138 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g20-6c478ae1",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "6c478ae1-bcce-47ee-9439-5dd9c229c774",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "我刚才点错___菜，麻烦您把这碗汤换成面条。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "了"
+      },
+      {
+        "id": "3",
+        "text": "着"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g20-70850544",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "70850544-6d8e-4280-bf3a-7c68381ec6ea",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "你看，门口一直挂___那串红灯笼，从早上到现在没人摘。",
+    "options": [
+      {
+        "id": "1",
+        "text": "着"
+      },
+      {
+        "id": "2",
+        "text": "过"
+      },
+      {
+        "id": "3",
+        "text": "了"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g20-76159ffd",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "76159ffd-bf18-42e4-90cc-4ca47a6ef765",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "她一边推___购物车，一边看手机上的清单。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "了"
+      },
+      {
+        "id": "3",
+        "text": "着"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g20-77a7b451",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "77a7b451-3fb0-4cea-a792-15c433d1425d",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "她给校报写___的文章里，有好几篇是在说学校里的事。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "了"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
     "id": "g20-7ef64a63",
     "taskNumber": 20,
     "formatYear": 2026,
@@ -14695,6 +15586,138 @@
       }
     ],
     "correctOptionId": "2"
+  },
+  {
+    "id": "g20-82ad4f63",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "82ad4f63-d5b4-43d0-a64e-00f499da1240",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "你有没有尝___这种酸奶？",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "了"
+      },
+      {
+        "id": "3",
+        "text": "着"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g20-833fe8cd",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "833fe8cd-96a4-4b20-959c-125651803696",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "这会儿门口没停___车，咱们可以直接进院子。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "了"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g20-8351047f",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "8351047f-6611-4151-b047-2698d2f02451",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "你把照片存好___再关电脑，不然还得重新做。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "了"
+      },
+      {
+        "id": "3",
+        "text": "着"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g20-836ad93f",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "836ad93f-f136-46c9-9010-b849e5972189",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "玻璃柜里一直摆___那套茶杯，这些天谁也没碰。",
+    "options": [
+      {
+        "id": "1",
+        "text": "着"
+      },
+      {
+        "id": "2",
+        "text": "了"
+      },
+      {
+        "id": "3",
+        "text": "过"
+      }
+    ],
+    "correctOptionId": "1"
   },
   {
     "id": "g20-839de541",
@@ -14797,6 +15820,39 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g20-90915e26",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "90915e26-14da-42c1-97be-28db4d7d5eb9",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "我正扶___梯子呢，一会儿给你回电话。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "了"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g20-a3e275ad",
     "taskNumber": 20,
     "formatYear": 2026,
@@ -14825,6 +15881,303 @@
       {
         "id": "3",
         "text": "着"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g20-a569e035",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "a569e035-6162-470a-81ac-bed2e8acb02b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "你有没有一天之内读___三本书？",
+    "options": [
+      {
+        "id": "1",
+        "text": "着"
+      },
+      {
+        "id": "2",
+        "text": "过"
+      },
+      {
+        "id": "3",
+        "text": "了"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g20-b4de14ac",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "b4de14ac-d946-4f77-a1b5-3ae9529d3c69",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "医生说，孩子要一直坐___休息，等舒服些再回家。",
+    "options": [
+      {
+        "id": "1",
+        "text": "了"
+      },
+      {
+        "id": "2",
+        "text": "过"
+      },
+      {
+        "id": "3",
+        "text": "着"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g20-b64e0cf3",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "b64e0cf3-5e6e-4baa-a1f1-8b17482ad8ad",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "刚才我发错___地址，等我把正确的发给你。",
+    "options": [
+      {
+        "id": "1",
+        "text": "了"
+      },
+      {
+        "id": "2",
+        "text": "过"
+      },
+      {
+        "id": "3",
+        "text": "着"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g20-b768d413",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "b768d413-5bbf-4f85-b9b6-09135a31f9b7",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "这种鸟我只知道名字，从来没亲手喂___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "了"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "过"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g20-c07afeba",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c07afeba-2e61-4675-848d-0a323c45ddba",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "等你填好___这张表，我再带你去办卡。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "了"
+      },
+      {
+        "id": "3",
+        "text": "着"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g20-c2974c7c",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c2974c7c-c345-49b6-8b89-b605bac98e2c",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "刚才小猫踩坏___我做的纸船，我只好再做一只。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "了"
+      },
+      {
+        "id": "3",
+        "text": "着"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g20-c2c1fe97",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c2c1fe97-30c2-4e12-af51-70f5b4afb6a9",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "下周我们去山里住一晚，你有搭___帐篷的经验吗？",
+    "options": [
+      {
+        "id": "1",
+        "text": "了"
+      },
+      {
+        "id": "2",
+        "text": "过"
+      },
+      {
+        "id": "3",
+        "text": "着"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g20-c7e2512a",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c7e2512a-5a9b-4a2b-b282-19a095b3142f",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "你这辈子有没有一个人坐___夜班火车？",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "了"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g20-ca83c8bf",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "ca83c8bf-3403-40e1-b9bf-e5472375c086",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "同一部电影，你有没有看___三遍以上？",
+    "options": [
+      {
+        "id": "1",
+        "text": "着"
+      },
+      {
+        "id": "2",
+        "text": "了"
+      },
+      {
+        "id": "3",
+        "text": "过"
       }
     ],
     "correctOptionId": "3"
@@ -14861,6 +16214,138 @@
       }
     ],
     "correctOptionId": "2"
+  },
+  {
+    "id": "g20-cdbbaa71",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "cdbbaa71-8c09-466c-9fbc-42933328672f",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "父母小时候玩___的游戏，现在很多孩子都不知道。",
+    "options": [
+      {
+        "id": "1",
+        "text": "了"
+      },
+      {
+        "id": "2",
+        "text": "过"
+      },
+      {
+        "id": "3",
+        "text": "着"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g20-d4a0be67",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d4a0be67-cd15-4de5-b92f-b17b77160f1b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "你快看，树枝上正停___两只鸟呢。",
+    "options": [
+      {
+        "id": "1",
+        "text": "着"
+      },
+      {
+        "id": "2",
+        "text": "过"
+      },
+      {
+        "id": "3",
+        "text": "了"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g20-db24c232",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "db24c232-210e-4654-959b-ed23f596e174",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "这种旧自行车我倒会修，小时候跟叔叔修___，只是现在手边没有工具。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "了"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g20-e84558ea",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "e84558ea-79ae-4233-a651-fe5b50766d7a",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "你问我雪山是什么样，我其实只在画里看___。",
+    "options": [
+      {
+        "id": "1",
+        "text": "着"
+      },
+      {
+        "id": "2",
+        "text": "了"
+      },
+      {
+        "id": "3",
+        "text": "过"
+      }
+    ],
+    "correctOptionId": "3"
   },
   {
     "id": "g20-e8baf9eb",
@@ -15024,6 +16509,237 @@
       {
         "id": "3",
         "text": "过"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g20-fa616203",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "fa616203-6890-4b24-954d-fa311ea65c49",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "照片里，他正举___一面小旗往前跑。",
+    "options": [
+      {
+        "id": "1",
+        "text": "过"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "了"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g20-fb151b05",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "fb151b05-f5bc-4ed9-abb5-85813e78262f",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "人还没到齐，锅盖得一直盖___，免得汤凉。",
+    "options": [
+      {
+        "id": "1",
+        "text": "了"
+      },
+      {
+        "id": "2",
+        "text": "着"
+      },
+      {
+        "id": "3",
+        "text": "过"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g20-fb1f69fd",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "fb1f69fd-2d72-49a9-b4af-c22b52f3b645",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "刚才咖啡洒___半杯，麻烦您帮我擦一下这张桌子。",
+    "options": [
+      {
+        "id": "1",
+        "text": "着"
+      },
+      {
+        "id": "2",
+        "text": "过"
+      },
+      {
+        "id": "3",
+        "text": "了"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g20-fdbc5d89",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "fdbc5d89-5d3e-415c-8ee0-4f9064f381d6",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "等姐姐结完___账，咱们再出去等车。",
+    "options": [
+      {
+        "id": "1",
+        "text": "着"
+      },
+      {
+        "id": "2",
+        "text": "过"
+      },
+      {
+        "id": "3",
+        "text": "了"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g20-fe4a14de",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "fe4a14de-6a08-4405-bc79-3c38008d7b14",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "你看，他没系___安全带呢，先别开车。",
+    "options": [
+      {
+        "id": "1",
+        "text": "着"
+      },
+      {
+        "id": "2",
+        "text": "了"
+      },
+      {
+        "id": "3",
+        "text": "过"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g20-fed47495",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "fed47495-5583-4ded-9755-5b99d46badab",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "试衣服时，镜子前没有站___人，你可以过去照一照。",
+    "options": [
+      {
+        "id": "1",
+        "text": "着"
+      },
+      {
+        "id": "2",
+        "text": "过"
+      },
+      {
+        "id": "3",
+        "text": "了"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g20-ff4a50ea",
+    "taskNumber": 20,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "ff4a50ea-fc73-4e17-bc61-06bb137b8e0f",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.35"
+    ],
+    "prompt": "Укажите, какой глагольный суффикс пропущен в данном предложении.",
+    "stem": "修门锁时师傅换___一根小弹簧，门这才关得上。",
+    "options": [
+      {
+        "id": "1",
+        "text": "了"
+      },
+      {
+        "id": "2",
+        "text": "过"
+      },
+      {
+        "id": "3",
+        "text": "着"
       }
     ],
     "correctOptionId": "1"
