@@ -73,7 +73,8 @@
 - `g16-6d4e93c7` «有一张»: `g25-d8ac9252`, `g25-f7a2e399`
 - `g16-a135e88d` «有一块»: `g24-1478ba90`
 - `g16-aa49fdcd` «了一家»: правило word-choice
-- `g16-cbbd46c0` «把钥匙»: `g25-60597841`
+- `g16-cbbd46c0` «一把钥»: `g27-07c46fd5`
+- `g16-cbbd46c0` «把钥匙»: `g25-60597841`, `g27-07c46fd5`
 - `g16-d8aac740` «了一台»: `q24-e12e1902`
 - `g16-f95a2f05` «的那位»: `g25-de9aa2c2`
 - `g17-00285a5a` «参观了»: правило word-choice
@@ -83,6 +84,7 @@
 - `g17-bc273e2b` «明白了»: `g25-344fec5f`
 - `g17-c84ed73f` «是价格»: `q24-e12e1902`
 - `g18-38fcabdc` «个子比»: `q27-c27b947c`
+- `g18-7b3af771` «跟朋友»: `g27-f0ea9da1`
 - `g18-92ef69a9` «老师对»: `g25-c45d0e0e`
 - `g18-f76bc336` «在公园»: `g25-c743c8f9`
 - `g18-f76bc336` «我们在»: `g17-3c92a151`, `g25-12105c8a`, `g25-a5aaf36d`, `q25-06e87779`, `q25-fe11f817`
@@ -129,6 +131,7 @@
 - `g25-ff316773` «看出来»: правило direction-complements
 - `q16-153f9be8` «一条裙»: правило measure-words
 - `q16-153f9be8` «条裙子»: правило measure-words
+- `q16-1a77e4ec` «了三种»: `g27-59381029`
 - `q16-2a9b389a` «一架飞»: правило measure-words-more
 - `q16-2a9b389a` «架飞机»: правило measure-words-more
 - `q16-3d336552` «一把刀»: правило measure-words
@@ -136,7 +139,7 @@
 - `q16-4b2ffc87` «顶帽子»: правило measure-words-more
 - `q16-b93fb601` «一条新»: правило measure-words
 - `q16-b93fb601` «条新闻»: правило measure-words
-- `q16-c469d69b` «块蛋糕»: правило measure-words-more
+- `q16-c469d69b` «块蛋糕»: `g27-eafc67dd`, правило measure-words-more
 - `q16-fff46d4a` «一门外»: правило measure-words-more
 - `q16-fff46d4a` «门外语»: правило measure-words-more
 - `q17-22430935` «的时间»: `g23-8c6ebc31`, `g23-bb232c5b`

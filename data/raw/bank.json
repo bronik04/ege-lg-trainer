@@ -46159,6 +46159,44 @@
     ]
   },
   {
+    "id": "g27-07c46fd5",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "07c46fd5-15f8-48a5-b406-b0a4c4a14158",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "___拿到第一把钥匙，___能打开箱子，可只拿到这一把还不行，还得有第二把。",
+    "options": [
+      {
+        "id": "1",
+        "text": "只有……，才……"
+      },
+      {
+        "id": "2",
+        "text": "虽然……，但是……"
+      },
+      {
+        "id": "3",
+        "text": "一……，就……"
+      },
+      {
+        "id": "4",
+        "text": "只要……，就……"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
     "id": "g27-089ae898",
     "taskNumber": 27,
     "formatYear": 2026,
@@ -46195,6 +46233,82 @@
       }
     ],
     "correctOptionId": "2"
+  },
+  {
+    "id": "g27-093f3c3f",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "093f3c3f-8cb2-4852-868c-a228fff3f984",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "吃晚饭时电视关着，手机也在另一个房间，我们___看电视，___玩手机。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不……，也不……"
+      },
+      {
+        "id": "2",
+        "text": "又……又……"
+      },
+      {
+        "id": "3",
+        "text": "一边……，一边……"
+      },
+      {
+        "id": "4",
+        "text": "不是……，就是……"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g27-0e3ae177",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "0e3ae177-ac10-4672-977a-361741b71d25",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "爷爷___下象棋，___听足球比赛，棋还没下完就听见有人进球。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不……，也不……"
+      },
+      {
+        "id": "2",
+        "text": "有的……，有的……"
+      },
+      {
+        "id": "3",
+        "text": "不是……，就是……"
+      },
+      {
+        "id": "4",
+        "text": "一边……，一边……"
+      }
+    ],
+    "correctOptionId": "4"
   },
   {
     "id": "g27-100243c4",
@@ -46235,6 +46349,120 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g27-1032aef4",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "1032aef4-bed0-47ed-9a26-d9dc74936d12",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "这家店周末只开一天，___星期六，___星期天，我记不清了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不是……，而是……"
+      },
+      {
+        "id": "2",
+        "text": "又……又……"
+      },
+      {
+        "id": "3",
+        "text": "不是……，就是……"
+      },
+      {
+        "id": "4",
+        "text": "从……到……"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g27-13d86149",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "13d86149-337c-4e36-b19f-9d6fba0da6b0",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "老师催大家：“快六点了，大家___回家___，明天见！”",
+    "options": [
+      {
+        "id": "1",
+        "text": "早就……了"
+      },
+      {
+        "id": "2",
+        "text": "还在……呢"
+      },
+      {
+        "id": "3",
+        "text": "不用……了"
+      },
+      {
+        "id": "4",
+        "text": "该……了"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g27-16d93116",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "16d93116-3558-4ba9-b64d-abbd2937dae0",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "这盏灯___能照亮桌面___，还可以给手机充电。",
+    "options": [
+      {
+        "id": "1",
+        "text": "除了……以外……"
+      },
+      {
+        "id": "2",
+        "text": "不但……而且……"
+      },
+      {
+        "id": "3",
+        "text": "一边……一边……"
+      },
+      {
+        "id": "4",
+        "text": "不是……就是……"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
     "id": "g27-1dbe091e",
     "taskNumber": 27,
     "formatYear": 2026,
@@ -46271,6 +46499,44 @@
       }
     ],
     "correctOptionId": "1"
+  },
+  {
+    "id": "g27-1ee7e8ec",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "1ee7e8ec-3b1b-4247-aa04-88f58d07b47d",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "怕毛衣变小，我___花时间用手洗，___不用洗衣机。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不是……，就是……"
+      },
+      {
+        "id": "2",
+        "text": "因为……，所以……"
+      },
+      {
+        "id": "3",
+        "text": "一边……，一边……"
+      },
+      {
+        "id": "4",
+        "text": "宁可……，也……"
+      }
+    ],
+    "correctOptionId": "4"
   },
   {
     "id": "g27-214acde3",
@@ -46311,6 +46577,158 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g27-21a57a77",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "21a57a77-a9b0-42a5-88b3-6e3175f0ab1e",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "明天不一定能收到包裹，___中午还没收到，你___给我打个电话。",
+    "options": [
+      {
+        "id": "1",
+        "text": "如果……，就……"
+      },
+      {
+        "id": "2",
+        "text": "既然……，就……"
+      },
+      {
+        "id": "3",
+        "text": "虽然……，但是……"
+      },
+      {
+        "id": "4",
+        "text": "因为……，所以……"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g27-23dcb537",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "23dcb537-050a-43d0-87dc-d863069b12aa",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "妈妈还没说能不能来，___她来不了，我___会照常上台唱歌。",
+    "options": [
+      {
+        "id": "1",
+        "text": "虽然……，但是……"
+      },
+      {
+        "id": "2",
+        "text": "因为……，所以……"
+      },
+      {
+        "id": "3",
+        "text": "即使……，也……"
+      },
+      {
+        "id": "4",
+        "text": "不是……，而是……"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g27-2802b865",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "2802b865-0d8e-43ef-9154-6ffa72bf96f8",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "参观时不许拍照或大声说话，我们守规矩，___拍照，___大声说话。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不是……，就是……"
+      },
+      {
+        "id": "2",
+        "text": "又……又……"
+      },
+      {
+        "id": "3",
+        "text": "不……，也不……"
+      },
+      {
+        "id": "4",
+        "text": "不是……，而是……"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g27-29058b5e",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "29058b5e-d6a9-469c-871f-a3be7e194c0e",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "我每次___走到门口，灯___亮，连一秒也不用等。",
+    "options": [
+      {
+        "id": "1",
+        "text": "有的……，有的……"
+      },
+      {
+        "id": "2",
+        "text": "一……，就……"
+      },
+      {
+        "id": "3",
+        "text": "一边……，一边……"
+      },
+      {
+        "id": "4",
+        "text": "不是……，而是……"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g27-2dd40af9",
     "taskNumber": 27,
     "formatYear": 2026,
@@ -46344,6 +46762,234 @@
       {
         "id": "4",
         "text": "连……，都……"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g27-2f25f9fc",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "2f25f9fc-b0cf-429b-9cd9-8761621eb0af",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "昨晚的风吹倒了几个小花盆，___门口那个很重的大花盆___被吹倒了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "因为……，所以……"
+      },
+      {
+        "id": "2",
+        "text": "有的……，有的……"
+      },
+      {
+        "id": "3",
+        "text": "只有……，才……"
+      },
+      {
+        "id": "4",
+        "text": "连……，都……"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g27-32d8edde",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "32d8edde-325c-4080-afc5-26dc68af0485",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "这箱里有两种杯子，___是玻璃做的，___是纸做的。",
+    "options": [
+      {
+        "id": "1",
+        "text": "虽然……，但是……"
+      },
+      {
+        "id": "2",
+        "text": "不是……，而是……"
+      },
+      {
+        "id": "3",
+        "text": "一边……，一边……"
+      },
+      {
+        "id": "4",
+        "text": "有的……，有的……"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g27-3c64767e",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3c64767e-1a61-46ad-8428-9ab1eb853fb8",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "饭吃完了，你还坐着，___去洗碗___，别让碗一直放在桌上。",
+    "options": [
+      {
+        "id": "1",
+        "text": "早就……了"
+      },
+      {
+        "id": "2",
+        "text": "该……了"
+      },
+      {
+        "id": "3",
+        "text": "还在……呢"
+      },
+      {
+        "id": "4",
+        "text": "已经……了"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g27-3e3b8917",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3e3b8917-defe-4f08-b3ec-dc87cc22a137",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "全家都觉得画挂在这儿好看，___没人反对，我们___挂上吧。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不但……，而且……"
+      },
+      {
+        "id": "2",
+        "text": "既然……，就……"
+      },
+      {
+        "id": "3",
+        "text": "即使……，也……"
+      },
+      {
+        "id": "4",
+        "text": "一边……，一边……"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g27-429c4629",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "429c4629-16de-47bd-9d00-964a007d28ff",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "___换新电池，玩具车___能跑，光换电池还不行，坏轮子也得换。",
+    "options": [
+      {
+        "id": "1",
+        "text": "一……，就……"
+      },
+      {
+        "id": "2",
+        "text": "只有……，才……"
+      },
+      {
+        "id": "3",
+        "text": "只要……，就……"
+      },
+      {
+        "id": "4",
+        "text": "不但……，而且……"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g27-4371c4c4",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "4371c4c4-fa10-4127-9745-f1d4e578aa0e",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "你___把盒子洗干净，___等它干了再装茶叶。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不是……，就是……"
+      },
+      {
+        "id": "2",
+        "text": "先……，然后……"
+      },
+      {
+        "id": "3",
+        "text": "有的……，有的……"
+      },
+      {
+        "id": "4",
+        "text": "一边……，一边……"
       }
     ],
     "correctOptionId": "2"
@@ -46420,6 +47066,82 @@
       {
         "id": "4",
         "text": "不管……，都……"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g27-5146a946",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5146a946-32b5-4128-bbab-b365450754f9",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "___通过游泳测试，___能参加比赛，光通过测试还不行，家长也得同意。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不但……，而且……"
+      },
+      {
+        "id": "2",
+        "text": "即使……，也……"
+      },
+      {
+        "id": "3",
+        "text": "只有……，才……"
+      },
+      {
+        "id": "4",
+        "text": "只要……，就……"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g27-59381029",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "59381029-3335-4b36-bb3f-7172eeb4352f",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "同学们每人只带一种水果，全班一共带了三种，___带苹果，___带香蕉，还有人带西瓜。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不是……，而是……"
+      },
+      {
+        "id": "2",
+        "text": "从……到……"
+      },
+      {
+        "id": "3",
+        "text": "先……，然后……"
+      },
+      {
+        "id": "4",
+        "text": "有的……，有的……"
       }
     ],
     "correctOptionId": "4"
@@ -46539,6 +47261,44 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g27-69d468c9",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "69d468c9-daff-4528-88a0-9317ded8626b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "小林___往前走，___给我介绍路边的店，说了一路。",
+    "options": [
+      {
+        "id": "1",
+        "text": "有的……，有的……"
+      },
+      {
+        "id": "2",
+        "text": "只有……，才……"
+      },
+      {
+        "id": "3",
+        "text": "不是……，就是……"
+      },
+      {
+        "id": "4",
+        "text": "一边……，一边……"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
     "id": "g27-6f632588",
     "taskNumber": 27,
     "formatYear": 2026,
@@ -46575,6 +47335,120 @@
       }
     ],
     "correctOptionId": "1"
+  },
+  {
+    "id": "g27-77e0b5ec",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "77e0b5ec-bc39-4264-8f62-f33570cd90dc",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "下周上台讲话时，___你选哪个题目，___要讲两分钟。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不是……，就是……"
+      },
+      {
+        "id": "2",
+        "text": "宁可……，也……"
+      },
+      {
+        "id": "3",
+        "text": "如果……，就……"
+      },
+      {
+        "id": "4",
+        "text": "无论……，都……"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g27-793a94a0",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "793a94a0-9a6d-4637-a8da-95af392c3fae",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "那家小旅馆___便宜___干净，花钱不多，住得也舒服。",
+    "options": [
+      {
+        "id": "1",
+        "text": "越……越……"
+      },
+      {
+        "id": "2",
+        "text": "不……，也不……"
+      },
+      {
+        "id": "3",
+        "text": "有的……，有的……"
+      },
+      {
+        "id": "4",
+        "text": "又……又……"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g27-7a5c054e",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "7a5c054e-9d03-459f-a87c-9ad0d0403ae3",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "修鞋店___早上八点___下午六点一直开着。",
+    "options": [
+      {
+        "id": "1",
+        "text": "一……，就……"
+      },
+      {
+        "id": "2",
+        "text": "从……到……"
+      },
+      {
+        "id": "3",
+        "text": "先……，然后……"
+      },
+      {
+        "id": "4",
+        "text": "不是……，就是……"
+      }
+    ],
+    "correctOptionId": "2"
   },
   {
     "id": "g27-7c9193db",
@@ -46691,6 +47565,120 @@
     "correctOptionId": "4"
   },
   {
+    "id": "g27-955e5e43",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "955e5e43-2689-4843-aa51-2994ff9822b4",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "昨晚停电太久，___冰箱里那一大块冰___化了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "连……，都……"
+      },
+      {
+        "id": "2",
+        "text": "因为……，所以……"
+      },
+      {
+        "id": "3",
+        "text": "有的……，有的……"
+      },
+      {
+        "id": "4",
+        "text": "从……到……"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g27-9d8d11d7",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "9d8d11d7-a2fd-45de-a63e-793415c67a35",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "去学校只有一路车和二路车，小陈没换车，他___坐了一路车，___坐了二路车，我没看清是几路。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不是……，而是……"
+      },
+      {
+        "id": "2",
+        "text": "又……又……"
+      },
+      {
+        "id": "3",
+        "text": "不是……，就是……"
+      },
+      {
+        "id": "4",
+        "text": "虽然……，但是……"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g27-a0147ae5",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "a0147ae5-0ded-4010-a839-0a0da368bad8",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "小周以为我在茶里加了糖，我摇头说：“我___放了糖，___放了蜂蜜。”",
+    "options": [
+      {
+        "id": "1",
+        "text": "不是……，而是……"
+      },
+      {
+        "id": "2",
+        "text": "因为……，所以……"
+      },
+      {
+        "id": "3",
+        "text": "不是……，就是……"
+      },
+      {
+        "id": "4",
+        "text": "一边……，一边……"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
     "id": "g27-a4d26a35",
     "taskNumber": 27,
     "formatYear": 2026,
@@ -46724,6 +47712,120 @@
       {
         "id": "4",
         "text": "因为……，所以……"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g27-a75bbb32",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "a75bbb32-c409-42b2-ad12-652344e96e0c",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "___老师送来的书___，桌上还有同学们带来的铅笔。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不但……而且……"
+      },
+      {
+        "id": "2",
+        "text": "一边……一边……"
+      },
+      {
+        "id": "3",
+        "text": "除了……以外……"
+      },
+      {
+        "id": "4",
+        "text": "只有……才……"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g27-acdd88e7",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "acdd88e7-37fb-44d9-aacd-eab4211f8348",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "我把地图下载到手机上了，___有没有网络，___能打开它。",
+    "options": [
+      {
+        "id": "1",
+        "text": "只要……，就……"
+      },
+      {
+        "id": "2",
+        "text": "只有……，才……"
+      },
+      {
+        "id": "3",
+        "text": "不是……，而是……"
+      },
+      {
+        "id": "4",
+        "text": "无论……，都……"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g27-ae7870ba",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "ae7870ba-b4e9-42b3-97cc-8009a5d245a0",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "哥哥___按门铃，小狗___跑到门边摇尾巴，两次按铃都是这样。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不……，也不……"
+      },
+      {
+        "id": "2",
+        "text": "一边……，一边……"
+      },
+      {
+        "id": "3",
+        "text": "一……，就……"
+      },
+      {
+        "id": "4",
+        "text": "有的……，有的……"
       }
     ],
     "correctOptionId": "3"
@@ -46767,6 +47869,120 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g27-b5953530",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "b5953530-4a3d-4c83-b58b-be341d6e07b3",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "这个小风扇___轻___安静，好带出门，晚上开着也不吵。",
+    "options": [
+      {
+        "id": "1",
+        "text": "一边……，一边……"
+      },
+      {
+        "id": "2",
+        "text": "又……又……"
+      },
+      {
+        "id": "3",
+        "text": "越……越……"
+      },
+      {
+        "id": "4",
+        "text": "不……，也不……"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g27-b8170fce",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "b8170fce-1304-40da-84e9-bd746c93f94e",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "水还没开，但小泡越来越多，水___开___，等开了再放面条。",
+    "options": [
+      {
+        "id": "1",
+        "text": "就要……了"
+      },
+      {
+        "id": "2",
+        "text": "已经……了"
+      },
+      {
+        "id": "3",
+        "text": "早就……了"
+      },
+      {
+        "id": "4",
+        "text": "又……了"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g27-b860bc11",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "b860bc11-e3a5-45cd-a8fe-3bfd0e2a63a6",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "还不知道博物馆周一开不开门。___开门，我们当天___去看画，不开就改天。",
+    "options": [
+      {
+        "id": "1",
+        "text": "如果……，就……"
+      },
+      {
+        "id": "2",
+        "text": "既然……，就……"
+      },
+      {
+        "id": "3",
+        "text": "即使……，也……"
+      },
+      {
+        "id": "4",
+        "text": "无论……，都……"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
     "id": "g27-bc790d04",
     "taskNumber": 27,
     "formatYear": 2026,
@@ -46803,6 +48019,120 @@
       }
     ],
     "correctOptionId": "1"
+  },
+  {
+    "id": "g27-bd1361f5",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "bd1361f5-1171-4327-beb1-473f4fcf531c",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "我看见三组家长，___正在看画，___正在跟老师聊天，还有一组在等孩子。",
+    "options": [
+      {
+        "id": "1",
+        "text": "无论……，都……"
+      },
+      {
+        "id": "2",
+        "text": "先……，然后……"
+      },
+      {
+        "id": "3",
+        "text": "有的……，有的……"
+      },
+      {
+        "id": "4",
+        "text": "不是……，而是……"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g27-bf90f94e",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "bf90f94e-cf0b-4372-b142-0c1235fa90a5",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "___学校___邮局，一路上有三个红绿灯。",
+    "options": [
+      {
+        "id": "1",
+        "text": "先……，然后……"
+      },
+      {
+        "id": "2",
+        "text": "不是……，就是……"
+      },
+      {
+        "id": "3",
+        "text": "从……到……"
+      },
+      {
+        "id": "4",
+        "text": "连……，都……"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g27-c36ac6da",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c36ac6da-64c5-43bd-8345-65d885cb9bb1",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "照片分完才能发，我们___按班分好照片，___发给各班老师。",
+    "options": [
+      {
+        "id": "1",
+        "text": "一边……，一边……"
+      },
+      {
+        "id": "2",
+        "text": "先……，然后……"
+      },
+      {
+        "id": "3",
+        "text": "不是……，而是……"
+      },
+      {
+        "id": "4",
+        "text": "不……，也不……"
+      }
+    ],
+    "correctOptionId": "2"
   },
   {
     "id": "g27-c58c515b",
@@ -46881,6 +48211,82 @@
     "correctOptionId": "4"
   },
   {
+    "id": "g27-c9d72f78",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c9d72f78-e35b-459c-8499-6f8917ae444a",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "按老师的要求，值日生___关好窗户，___开空调，窗户不关好就不能开。",
+    "options": [
+      {
+        "id": "1",
+        "text": "先……，然后……"
+      },
+      {
+        "id": "2",
+        "text": "一边……，一边……"
+      },
+      {
+        "id": "3",
+        "text": "从……到……"
+      },
+      {
+        "id": "4",
+        "text": "不是……，就是……"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g27-cb3cdc9f",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "cb3cdc9f-56b9-4a6f-ad03-97c56b4e80dc",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "下午练琴的人太多，我___早起一小时，___不在下午练。",
+    "options": [
+      {
+        "id": "1",
+        "text": "一边……，一边……"
+      },
+      {
+        "id": "2",
+        "text": "宁可……，也……"
+      },
+      {
+        "id": "3",
+        "text": "不是……，就是……"
+      },
+      {
+        "id": "4",
+        "text": "连……，都……"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g27-cd38c9b1",
     "taskNumber": 27,
     "formatYear": 2026,
@@ -46914,6 +48320,120 @@
       {
         "id": "4",
         "text": "又……，又……"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g27-d15f2464",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d15f2464-2674-40b7-8831-44ada3bc589a",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "弟弟说今晚不用电脑，___这样，我___先查资料吧。",
+    "options": [
+      {
+        "id": "1",
+        "text": "既然……，就……"
+      },
+      {
+        "id": "2",
+        "text": "一边……，一边……"
+      },
+      {
+        "id": "3",
+        "text": "无论……，都……"
+      },
+      {
+        "id": "4",
+        "text": "不但……，而且……"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g27-d24ad9fe",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d24ad9fe-0b9a-4c51-90c4-c46e099e4a60",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "___路有多远，小赵___会把花送到客人手里。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不是……，而是……"
+      },
+      {
+        "id": "2",
+        "text": "既然……，就……"
+      },
+      {
+        "id": "3",
+        "text": "宁可……，也……"
+      },
+      {
+        "id": "4",
+        "text": "不管……，都……"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g27-d500a7a8",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d500a7a8-cbc6-4599-bded-89c32c35520e",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "闹钟___坏了，___你设错了时间，我刚改好，它就响了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不但……，而且……"
+      },
+      {
+        "id": "2",
+        "text": "不是……，就是……"
+      },
+      {
+        "id": "3",
+        "text": "不是……，而是……"
+      },
+      {
+        "id": "4",
+        "text": "因为……，所以……"
       }
     ],
     "correctOptionId": "3"
@@ -46957,6 +48477,44 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g27-d915f0ad",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d915f0ad-75de-4fa2-962f-09fd4b02c514",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "周五看电影，___在网上写下名字，___能留座，请老师留座也行。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不是……，就是……"
+      },
+      {
+        "id": "2",
+        "text": "一边……，一边……"
+      },
+      {
+        "id": "3",
+        "text": "只要……，就……"
+      },
+      {
+        "id": "4",
+        "text": "只有……，才……"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g27-e0f245fa",
     "taskNumber": 27,
     "formatYear": 2026,
@@ -46993,6 +48551,44 @@
       }
     ],
     "correctOptionId": "2"
+  },
+  {
+    "id": "g27-e217f769",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "e217f769-274c-467e-a669-8ac724e608c7",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "出发时间还没定，我觉得六点太早，但___最后定在六点，我___会一起去。",
+    "options": [
+      {
+        "id": "1",
+        "text": "即使……，也……"
+      },
+      {
+        "id": "2",
+        "text": "既然……，就……"
+      },
+      {
+        "id": "3",
+        "text": "因为……，所以……"
+      },
+      {
+        "id": "4",
+        "text": "虽然……，但是……"
+      }
+    ],
+    "correctOptionId": "1"
   },
   {
     "id": "g27-e4cd0ae2",
@@ -47109,6 +48705,44 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g27-eafc67dd",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "eafc67dd-f979-4629-81a1-fca2c3da96fd",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "今天___买两个面包，___送一杯牛奶，买两块蛋糕也送一杯。",
+    "options": [
+      {
+        "id": "1",
+        "text": "虽然……，但是……"
+      },
+      {
+        "id": "2",
+        "text": "只要……，就……"
+      },
+      {
+        "id": "3",
+        "text": "不是……，就是……"
+      },
+      {
+        "id": "4",
+        "text": "只有……，才……"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g27-ede8b5d4",
     "taskNumber": 27,
     "formatYear": 2026,
@@ -47145,6 +48779,44 @@
       }
     ],
     "correctOptionId": "3"
+  },
+  {
+    "id": "g27-f0ea9da1",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f0ea9da1-4ea7-4182-a16e-8b68800eca83",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "我___给小猫梳毛，___跟朋友视频聊天，直到挂电话也没停手。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不是……，就是……"
+      },
+      {
+        "id": "2",
+        "text": "一边……，一边……"
+      },
+      {
+        "id": "3",
+        "text": "不是……，而是……"
+      },
+      {
+        "id": "4",
+        "text": "有的……，有的……"
+      }
+    ],
+    "correctOptionId": "2"
   },
   {
     "id": "g27-f19a27db",
@@ -47221,6 +48893,44 @@
       }
     ],
     "correctOptionId": "2"
+  },
+  {
+    "id": "g27-f8fc7ed5",
+    "taskNumber": 27,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f8fc7ed5-d601-4f57-b823-90fb914cc0f0",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.44",
+      "2.4.58"
+    ],
+    "prompt": "Укажите, какая грамматическая конструкция пропущена в данном предложении.",
+    "stem": "___带借书证，___能借这本书，用身份证也能借。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不是……，而是……"
+      },
+      {
+        "id": "2",
+        "text": "一边……，一边……"
+      },
+      {
+        "id": "3",
+        "text": "只有……，才……"
+      },
+      {
+        "id": "4",
+        "text": "只要……，就……"
+      }
+    ],
+    "correctOptionId": "4"
   },
   {
     "id": "q27-0ee06dd4",
