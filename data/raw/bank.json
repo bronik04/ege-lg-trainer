@@ -9003,6 +9003,43 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g18-03028c33",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "03028c33-204a-4051-9010-0134f3417b6f",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.31"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "那张多出来的电影票，我送___了邻居家的孩子。",
+    "options": [
+      {
+        "id": "1",
+        "text": "给"
+      },
+      {
+        "id": "2",
+        "text": "跟"
+      },
+      {
+        "id": "3",
+        "text": "离"
+      },
+      {
+        "id": "4",
+        "text": "从"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
     "id": "g18-0404c14d",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -9157,6 +9194,43 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g18-12ed2567",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "12ed2567-b30a-41e7-8348-1a2db15162e4",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.31"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "去体育馆不用走大路，___这条小路过去更快。",
+    "options": [
+      {
+        "id": "1",
+        "text": "为"
+      },
+      {
+        "id": "2",
+        "text": "从"
+      },
+      {
+        "id": "3",
+        "text": "把"
+      },
+      {
+        "id": "4",
+        "text": "离"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g18-1b609183",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -9191,6 +9265,45 @@
       {
         "id": "4",
         "text": "到"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g18-26b39529",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "26b39529-1430-4e49-83c2-58c191564bed",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.31",
+      "2.4.45",
+      "2.4.46"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "外面太暗了，他___手电筒照着脚下的路。",
+    "options": [
+      {
+        "id": "1",
+        "text": "离"
+      },
+      {
+        "id": "2",
+        "text": "把"
+      },
+      {
+        "id": "3",
+        "text": "向"
+      },
+      {
+        "id": "4",
+        "text": "用"
       }
     ],
     "correctOptionId": "4"
@@ -9306,6 +9419,117 @@
       {
         "id": "4",
         "text": "为"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g18-396a1f1e",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "396a1f1e-19d9-4597-9206-4aba2a76a65e",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.31"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "早上进教室时，同学们都___老师问好。",
+    "options": [
+      {
+        "id": "1",
+        "text": "离"
+      },
+      {
+        "id": "2",
+        "text": "向"
+      },
+      {
+        "id": "3",
+        "text": "从"
+      },
+      {
+        "id": "4",
+        "text": "比"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g18-3c144482",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3c144482-5599-4788-a021-bcc38a36aeec",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.31"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "下班后想去游泳，哪家游泳馆___你们公司最近？",
+    "options": [
+      {
+        "id": "1",
+        "text": "往"
+      },
+      {
+        "id": "2",
+        "text": "跟"
+      },
+      {
+        "id": "3",
+        "text": "从"
+      },
+      {
+        "id": "4",
+        "text": "离"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g18-473dfc86",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "473dfc86-bea5-46da-b9d5-40097876631f",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.31"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "我___这张老照片上认出了小时候的同桌。",
+    "options": [
+      {
+        "id": "1",
+        "text": "向"
+      },
+      {
+        "id": "2",
+        "text": "离"
+      },
+      {
+        "id": "3",
+        "text": "从"
+      },
+      {
+        "id": "4",
+        "text": "把"
       }
     ],
     "correctOptionId": "3"
@@ -9467,6 +9691,80 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g18-5317f78b",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5317f78b-a575-4773-be2b-4d3e5824344a",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.31"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "书架___墙还有十厘米，东西容易掉到后面。",
+    "options": [
+      {
+        "id": "1",
+        "text": "离"
+      },
+      {
+        "id": "2",
+        "text": "为"
+      },
+      {
+        "id": "3",
+        "text": "从"
+      },
+      {
+        "id": "4",
+        "text": "向"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g18-53a14710",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "53a14710-8016-4568-b2de-56fd88c254bd",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.45"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "这家小店每天九点开门，___旁边那家一样。",
+    "options": [
+      {
+        "id": "1",
+        "text": "和"
+      },
+      {
+        "id": "2",
+        "text": "往"
+      },
+      {
+        "id": "3",
+        "text": "从"
+      },
+      {
+        "id": "4",
+        "text": "离"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
     "id": "g18-5431fa02",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -9502,6 +9800,271 @@
       }
     ],
     "correctOptionId": "2"
+  },
+  {
+    "id": "g18-56a962f7",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "56a962f7-3f8b-4dc8-b6fa-23b11eecb162",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.31"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "姐姐___周末的音乐会选了件新衣服。",
+    "options": [
+      {
+        "id": "1",
+        "text": "为"
+      },
+      {
+        "id": "2",
+        "text": "跟"
+      },
+      {
+        "id": "3",
+        "text": "从"
+      },
+      {
+        "id": "4",
+        "text": "离"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g18-56b86592",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "56b86592-9d06-4360-ab23-fdb926ad7349",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.31"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "我的座位___黑板太远了，我只能看清大字。",
+    "options": [
+      {
+        "id": "1",
+        "text": "往"
+      },
+      {
+        "id": "2",
+        "text": "从"
+      },
+      {
+        "id": "3",
+        "text": "离"
+      },
+      {
+        "id": "4",
+        "text": "给"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g18-5ac4ec58",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5ac4ec58-9fc9-4857-bf75-2f71518ae2c3",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.31",
+      "2.4.45",
+      "2.4.46"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "___这次旅行，我对中国南方有了更多了解。",
+    "options": [
+      {
+        "id": "1",
+        "text": "向"
+      },
+      {
+        "id": "2",
+        "text": "通过"
+      },
+      {
+        "id": "3",
+        "text": "离"
+      },
+      {
+        "id": "4",
+        "text": "沿着"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g18-5b58f966",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5b58f966-342e-4285-b56b-f4934297eff3",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.31",
+      "2.4.45",
+      "2.4.46"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "请___左边的墙每隔一米摆一张桌子，别挡住门。",
+    "options": [
+      {
+        "id": "1",
+        "text": "通过"
+      },
+      {
+        "id": "2",
+        "text": "沿着"
+      },
+      {
+        "id": "3",
+        "text": "把"
+      },
+      {
+        "id": "4",
+        "text": "为"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g18-5b741531",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5b741531-acd1-4b8b-8442-d31c67f03f1b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.45"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "超市的苹果十块一斤，市场的八块一斤，所以市场的苹果___超市的贵。",
+    "options": [
+      {
+        "id": "1",
+        "text": "没有"
+      },
+      {
+        "id": "2",
+        "text": "和"
+      },
+      {
+        "id": "3",
+        "text": "比"
+      },
+      {
+        "id": "4",
+        "text": "从"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g18-5fd8a85f",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5fd8a85f-b5c9-446c-8380-06efe6a1b812",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.31",
+      "2.4.45",
+      "2.4.46"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "请大家___号码从小到大排队，准备进场。",
+    "options": [
+      {
+        "id": "1",
+        "text": "往"
+      },
+      {
+        "id": "2",
+        "text": "离"
+      },
+      {
+        "id": "3",
+        "text": "按"
+      },
+      {
+        "id": "4",
+        "text": "给"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g18-67fe1ccf",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "67fe1ccf-068d-4365-836e-b62fe7164240",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.45"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "跑同样的路，你用了十分钟，我用了十二分钟，我跑得___你快。",
+    "options": [
+      {
+        "id": "1",
+        "text": "和"
+      },
+      {
+        "id": "2",
+        "text": "比"
+      },
+      {
+        "id": "3",
+        "text": "向"
+      },
+      {
+        "id": "4",
+        "text": "没有"
+      }
+    ],
+    "correctOptionId": "4"
   },
   {
     "id": "g18-687b17c2",
@@ -9582,6 +10145,43 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g18-719343fa",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "719343fa-d250-41a1-a417-f8181aa7b4f8",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.31"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "这里太冷了，请把空调的温度___上调两度。",
+    "options": [
+      {
+        "id": "1",
+        "text": "从"
+      },
+      {
+        "id": "2",
+        "text": "离"
+      },
+      {
+        "id": "3",
+        "text": "跟"
+      },
+      {
+        "id": "4",
+        "text": "往"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
     "id": "g18-76a15c80",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -9616,6 +10216,45 @@
       {
         "id": "4",
         "text": "在"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g18-7af10e97",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "7af10e97-fe34-4c72-a3d2-c2e929f7ae5d",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.31",
+      "2.4.45",
+      "2.4.46"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "___图书馆的规定，一次最多能借三本书。",
+    "options": [
+      {
+        "id": "1",
+        "text": "按"
+      },
+      {
+        "id": "2",
+        "text": "给"
+      },
+      {
+        "id": "3",
+        "text": "往"
+      },
+      {
+        "id": "4",
+        "text": "向"
       }
     ],
     "correctOptionId": "1"
@@ -9658,6 +10297,45 @@
       }
     ],
     "correctOptionId": "1"
+  },
+  {
+    "id": "g18-815b9c12",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "815b9c12-ecca-406c-900f-bcdacaaa8368",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.31",
+      "2.4.45",
+      "2.4.46"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "这幅画___老师选中了，下周会挂在教室里。",
+    "options": [
+      {
+        "id": "1",
+        "text": "把"
+      },
+      {
+        "id": "2",
+        "text": "往"
+      },
+      {
+        "id": "3",
+        "text": "被"
+      },
+      {
+        "id": "4",
+        "text": "向"
+      }
+    ],
+    "correctOptionId": "3"
   },
   {
     "id": "g18-87d79fc9",
@@ -9738,6 +10416,80 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g18-8e4f312c",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "8e4f312c-4aba-4c0f-b2e9-2fb2683c051f",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.46"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "奶奶牙不好，先___梨切成小块再给她吃。",
+    "options": [
+      {
+        "id": "1",
+        "text": "跟"
+      },
+      {
+        "id": "2",
+        "text": "从"
+      },
+      {
+        "id": "3",
+        "text": "向"
+      },
+      {
+        "id": "4",
+        "text": "把"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g18-90c1b93f",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "90c1b93f-3741-4d15-8d6c-aabef071be6a",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.45"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "两部电影同时开始，先结束的那部___另一部长。",
+    "options": [
+      {
+        "id": "1",
+        "text": "从"
+      },
+      {
+        "id": "2",
+        "text": "跟"
+      },
+      {
+        "id": "3",
+        "text": "没有"
+      },
+      {
+        "id": "4",
+        "text": "比"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g18-92ef69a9",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -9777,6 +10529,119 @@
     "correctOptionId": "4"
   },
   {
+    "id": "g18-936f6478",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "936f6478-4eaa-4271-a5e4-3ceeee6c338f",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.31"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "出门前，请把备用钥匙留___还没回来的弟弟。",
+    "options": [
+      {
+        "id": "1",
+        "text": "从"
+      },
+      {
+        "id": "2",
+        "text": "跟"
+      },
+      {
+        "id": "3",
+        "text": "给"
+      },
+      {
+        "id": "4",
+        "text": "为"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g18-945a26fe",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "945a26fe-10ec-4699-97e3-ddc6efce63e3",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.45"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "今天的西瓜不甜，我觉得___昨天买的那个好吃。",
+    "options": [
+      {
+        "id": "1",
+        "text": "跟"
+      },
+      {
+        "id": "2",
+        "text": "向"
+      },
+      {
+        "id": "3",
+        "text": "为"
+      },
+      {
+        "id": "4",
+        "text": "没有"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g18-95092f5c",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "95092f5c-0bbc-4d4b-a490-29c360ad94cf",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.31",
+      "2.4.45",
+      "2.4.46"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "班里借来的书每周___两名学生负责整理。",
+    "options": [
+      {
+        "id": "1",
+        "text": "向"
+      },
+      {
+        "id": "2",
+        "text": "往"
+      },
+      {
+        "id": "3",
+        "text": "由"
+      },
+      {
+        "id": "4",
+        "text": "从"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g18-9619165c",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -9809,6 +10674,43 @@
       {
         "id": "4",
         "text": "从"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g18-9e71d9d0",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "9e71d9d0-3c39-48bf-8e39-ea0e36c22525",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.31"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "他想___帮他找回钱包的人说声谢谢。",
+    "options": [
+      {
+        "id": "1",
+        "text": "向"
+      },
+      {
+        "id": "2",
+        "text": "从"
+      },
+      {
+        "id": "3",
+        "text": "往"
+      },
+      {
+        "id": "4",
+        "text": "比"
       }
     ],
     "correctOptionId": "1"
@@ -9853,6 +10755,80 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g18-a20be8d7",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "a20be8d7-1dcf-4539-8dc6-9ed680ce6182",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.31"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "这扇门得___外推才能打开。",
+    "options": [
+      {
+        "id": "1",
+        "text": "跟"
+      },
+      {
+        "id": "2",
+        "text": "离"
+      },
+      {
+        "id": "3",
+        "text": "往"
+      },
+      {
+        "id": "4",
+        "text": "为"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g18-a4787214",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "a4787214-37e1-4a14-8040-a7bbd6b50e8e",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.45"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "弟弟一米五，姐姐一米六，所以弟弟___姐姐高。",
+    "options": [
+      {
+        "id": "1",
+        "text": "离"
+      },
+      {
+        "id": "2",
+        "text": "没有"
+      },
+      {
+        "id": "3",
+        "text": "比"
+      },
+      {
+        "id": "4",
+        "text": "跟"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g18-a4fca329",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -9892,6 +10868,43 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g18-a58347be",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "a58347be-6daa-4f63-a69f-3909c6020037",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.31"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "想参加学校的比赛，要先___老师申请。",
+    "options": [
+      {
+        "id": "1",
+        "text": "比"
+      },
+      {
+        "id": "2",
+        "text": "向"
+      },
+      {
+        "id": "3",
+        "text": "离"
+      },
+      {
+        "id": "4",
+        "text": "往"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g18-a63ab52a",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -9929,6 +10942,82 @@
       }
     ],
     "correctOptionId": "3"
+  },
+  {
+    "id": "g18-b14c7605",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "b14c7605-9f25-4369-8af9-dbceb81b1078",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.31"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "___节约用水，刷牙时别一直开着水龙头。",
+    "options": [
+      {
+        "id": "1",
+        "text": "从"
+      },
+      {
+        "id": "2",
+        "text": "向"
+      },
+      {
+        "id": "3",
+        "text": "为"
+      },
+      {
+        "id": "4",
+        "text": "离"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g18-b1916fa0",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "b1916fa0-f330-44f3-b8a5-2d0da836cb8c",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.31",
+      "2.4.45",
+      "2.4.46"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "在外地的爷爷常常___视频和我聊天。",
+    "options": [
+      {
+        "id": "1",
+        "text": "沿着"
+      },
+      {
+        "id": "2",
+        "text": "把"
+      },
+      {
+        "id": "3",
+        "text": "给"
+      },
+      {
+        "id": "4",
+        "text": "通过"
+      }
+    ],
+    "correctOptionId": "4"
   },
   {
     "id": "g18-b2acfd46",
@@ -10202,6 +11291,117 @@
     "correctOptionId": "4"
   },
   {
+    "id": "g18-bdd38990",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "bdd38990-ebb0-4212-b5b0-f815194456aa",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.46"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "小猫___装鞋的纸盒当作自己的床，每天在里面睡觉。",
+    "options": [
+      {
+        "id": "1",
+        "text": "把"
+      },
+      {
+        "id": "2",
+        "text": "跟"
+      },
+      {
+        "id": "3",
+        "text": "往"
+      },
+      {
+        "id": "4",
+        "text": "离"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g18-be37bc0f",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "be37bc0f-423e-4934-8fdd-88fcd19ab3d7",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.31"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "妈妈在厨房做饭，你把桌上的盐递___她吧。",
+    "options": [
+      {
+        "id": "1",
+        "text": "为"
+      },
+      {
+        "id": "2",
+        "text": "离"
+      },
+      {
+        "id": "3",
+        "text": "给"
+      },
+      {
+        "id": "4",
+        "text": "跟"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g18-c735b3a2",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c735b3a2-ff48-4bc9-a93a-cdb72dd435c1",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.31"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "这班车开___机场，中间只停两站。",
+    "options": [
+      {
+        "id": "1",
+        "text": "往"
+      },
+      {
+        "id": "2",
+        "text": "跟"
+      },
+      {
+        "id": "3",
+        "text": "给"
+      },
+      {
+        "id": "4",
+        "text": "比"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
     "id": "g18-c8278173",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -10239,6 +11439,119 @@
       }
     ],
     "correctOptionId": "4"
+  },
+  {
+    "id": "g18-cedd9d70",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "cedd9d70-77fd-4d54-a39c-06848072d4b3",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.31"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "明天要在班里表演，我想___小林一起练习。",
+    "options": [
+      {
+        "id": "1",
+        "text": "往"
+      },
+      {
+        "id": "2",
+        "text": "跟"
+      },
+      {
+        "id": "3",
+        "text": "比"
+      },
+      {
+        "id": "4",
+        "text": "离"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g18-d094eae3",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d094eae3-6f08-4e87-af9b-4fdac5d2195e",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.31"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "晚上放音乐太吵了，我打算明天___邻居道歉。",
+    "options": [
+      {
+        "id": "1",
+        "text": "离"
+      },
+      {
+        "id": "2",
+        "text": "往"
+      },
+      {
+        "id": "3",
+        "text": "从"
+      },
+      {
+        "id": "4",
+        "text": "向"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g18-d1e55db5",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d1e55db5-a147-465d-9628-ee39f67c3711",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.31",
+      "2.4.45",
+      "2.4.46"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "爷爷每天早晨都___湖边那条路慢跑。",
+    "options": [
+      {
+        "id": "1",
+        "text": "沿着"
+      },
+      {
+        "id": "2",
+        "text": "离"
+      },
+      {
+        "id": "3",
+        "text": "给"
+      },
+      {
+        "id": "4",
+        "text": "关于"
+      }
+    ],
+    "correctOptionId": "1"
   },
   {
     "id": "g18-d7083fb6",
@@ -10356,6 +11669,43 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g18-db6bb47b",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "db6bb47b-f397-41f1-b9ec-fef82e8e63f8",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.46"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "请___座位号写在纸袋上，等会儿我来发。",
+    "options": [
+      {
+        "id": "1",
+        "text": "往"
+      },
+      {
+        "id": "2",
+        "text": "把"
+      },
+      {
+        "id": "3",
+        "text": "从"
+      },
+      {
+        "id": "4",
+        "text": "离"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g18-e112996e",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -10395,6 +11745,43 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g18-e1210b09",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "e1210b09-bac1-465a-a650-ddae49908d0d",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.31"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "拍照时请大家___中间靠一靠，别站得太开。",
+    "options": [
+      {
+        "id": "1",
+        "text": "离"
+      },
+      {
+        "id": "2",
+        "text": "往"
+      },
+      {
+        "id": "3",
+        "text": "为"
+      },
+      {
+        "id": "4",
+        "text": "比"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g18-e1498403",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -10430,6 +11817,43 @@
       }
     ],
     "correctOptionId": "3"
+  },
+  {
+    "id": "g18-e35ec312",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "e35ec312-48d8-4cc4-b898-1bc43ab8047b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.31"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "快___我妈打个电话，她还不知道我们已经到了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "往"
+      },
+      {
+        "id": "2",
+        "text": "给"
+      },
+      {
+        "id": "3",
+        "text": "离"
+      },
+      {
+        "id": "4",
+        "text": "从"
+      }
+    ],
+    "correctOptionId": "2"
   },
   {
     "id": "g18-e4d426f2",
@@ -10471,6 +11895,82 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g18-e6fbfcc2",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "e6fbfcc2-162a-4530-b975-cdb465dfd807",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.31",
+      "2.4.45",
+      "2.4.46"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "明天去哪儿玩儿，___大家投票决定。",
+    "options": [
+      {
+        "id": "1",
+        "text": "向"
+      },
+      {
+        "id": "2",
+        "text": "从"
+      },
+      {
+        "id": "3",
+        "text": "离"
+      },
+      {
+        "id": "4",
+        "text": "由"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g18-e7e467c0",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "e7e467c0-8d52-4678-85e6-90cde4b012b0",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.45"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "___住在市中心相比，住在学校附近更安静。",
+    "options": [
+      {
+        "id": "1",
+        "text": "比"
+      },
+      {
+        "id": "2",
+        "text": "跟"
+      },
+      {
+        "id": "3",
+        "text": "离"
+      },
+      {
+        "id": "4",
+        "text": "从"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g18-e9edfbd6",
     "taskNumber": 18,
     "formatYear": 2026,
@@ -10508,6 +12008,121 @@
       }
     ],
     "correctOptionId": "1"
+  },
+  {
+    "id": "g18-f55839d3",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f55839d3-1a34-4661-bdcc-46fa64197615",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.46"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "门口还有两箱牛奶，麻烦___那两箱搬到楼上。",
+    "options": [
+      {
+        "id": "1",
+        "text": "离"
+      },
+      {
+        "id": "2",
+        "text": "为"
+      },
+      {
+        "id": "3",
+        "text": "向"
+      },
+      {
+        "id": "4",
+        "text": "把"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g18-f59e2c40",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f59e2c40-2e72-4b9a-a1df-a01be44f2ea0",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.31",
+      "2.4.45",
+      "2.4.46"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "小李的新同学是法国人，他决定___法语介绍自己。",
+    "options": [
+      {
+        "id": "1",
+        "text": "为"
+      },
+      {
+        "id": "2",
+        "text": "跟"
+      },
+      {
+        "id": "3",
+        "text": "用"
+      },
+      {
+        "id": "4",
+        "text": "向"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g18-f6bb0180",
+    "taskNumber": 18,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f6bb0180-fe87-405d-a296-64b840a6a38d",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.31",
+      "2.4.45",
+      "2.4.46"
+    ],
+    "prompt": "Укажите, какой предлог пропущен в данном предложении.",
+    "stem": "活动还没结束，门上的通知却___拿走了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "离"
+      },
+      {
+        "id": "2",
+        "text": "被"
+      },
+      {
+        "id": "3",
+        "text": "从"
+      },
+      {
+        "id": "4",
+        "text": "向"
+      }
+    ],
+    "correctOptionId": "2"
   },
   {
     "id": "g18-f6f186c5",
