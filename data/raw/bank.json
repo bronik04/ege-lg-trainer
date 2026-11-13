@@ -15412,6 +15412,80 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g22-02fb285e",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "02fb285e-8906-4bf7-984d-6cff93ef154a",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "这只手套___紧了，戴上以后手指完全动不了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "必须"
+      },
+      {
+        "id": "2",
+        "text": "太"
+      },
+      {
+        "id": "3",
+        "text": "一共"
+      },
+      {
+        "id": "4",
+        "text": "从来"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g22-0df39fbe",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "0df39fbe-17a1-47fb-a73c-2abc1d03a144",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "这四门课，你___愿意学哪一门？只能选一门。",
+    "options": [
+      {
+        "id": "1",
+        "text": "一共"
+      },
+      {
+        "id": "2",
+        "text": "常常"
+      },
+      {
+        "id": "3",
+        "text": "别"
+      },
+      {
+        "id": "4",
+        "text": "最"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
     "id": "g22-0efff49d",
     "taskNumber": 22,
     "formatYear": 2026,
@@ -15486,6 +15560,117 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g22-1b1d700e",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "1b1d700e-3dbe-4464-bb3b-5a9cb5319946",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "他___搬来，对这里的路还不熟。",
+    "options": [
+      {
+        "id": "1",
+        "text": "刚"
+      },
+      {
+        "id": "2",
+        "text": "一直"
+      },
+      {
+        "id": "3",
+        "text": "都"
+      },
+      {
+        "id": "4",
+        "text": "再"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g22-21565589",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "21565589-4cec-495a-870a-2684deda65ac",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "这张图___简单，只有几条线，刚学画画的人也能画。",
+    "options": [
+      {
+        "id": "1",
+        "text": "别"
+      },
+      {
+        "id": "2",
+        "text": "一共"
+      },
+      {
+        "id": "3",
+        "text": "从来"
+      },
+      {
+        "id": "4",
+        "text": "比较"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g22-2216f986",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "2216f986-e446-48f4-9253-d4c9aff526dc",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "盒子里的水___变成冰了，现在硬得像石头。",
+    "options": [
+      {
+        "id": "1",
+        "text": "正在"
+      },
+      {
+        "id": "2",
+        "text": "常常"
+      },
+      {
+        "id": "3",
+        "text": "一共"
+      },
+      {
+        "id": "4",
+        "text": "已经"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
     "id": "g22-28358953",
     "taskNumber": 22,
     "formatYear": 2026,
@@ -15521,6 +15706,43 @@
       }
     ],
     "correctOptionId": "1"
+  },
+  {
+    "id": "g22-29a2160b",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "29a2160b-0f7e-4e90-8a68-d57ba6810acb",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "桌子太重了，咱们___把上面的东西拿下来，再搬桌子吧。",
+    "options": [
+      {
+        "id": "1",
+        "text": "已经"
+      },
+      {
+        "id": "2",
+        "text": "先"
+      },
+      {
+        "id": "3",
+        "text": "又"
+      },
+      {
+        "id": "4",
+        "text": "一共"
+      }
+    ],
+    "correctOptionId": "2"
   },
   {
     "id": "g22-32275447",
@@ -15560,6 +15782,117 @@
     "correctOptionId": "1"
   },
   {
+    "id": "g22-3404e9d2",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3404e9d2-000f-4497-af41-86ee13e93d09",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "小李没听清门牌号，小周___没听清。",
+    "options": [
+      {
+        "id": "1",
+        "text": "也"
+      },
+      {
+        "id": "2",
+        "text": "一共"
+      },
+      {
+        "id": "3",
+        "text": "才"
+      },
+      {
+        "id": "4",
+        "text": "再"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g22-36610fe3",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "36610fe3-99f5-47ff-a184-7bde6272a447",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "班上有三十个人，今天来了二十九个，___全到了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "一共"
+      },
+      {
+        "id": "2",
+        "text": "几乎"
+      },
+      {
+        "id": "3",
+        "text": "都"
+      },
+      {
+        "id": "4",
+        "text": "已经"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g22-3a4ee2f3",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3a4ee2f3-4f39-4961-bfa2-1c595ba1f8d4",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "东西再便宜，用不上的我___不买。",
+    "options": [
+      {
+        "id": "1",
+        "text": "正在"
+      },
+      {
+        "id": "2",
+        "text": "也"
+      },
+      {
+        "id": "3",
+        "text": "一共"
+      },
+      {
+        "id": "4",
+        "text": "刚"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g22-3b227a02",
     "taskNumber": 22,
     "formatYear": 2026,
@@ -15595,6 +15928,80 @@
       }
     ],
     "correctOptionId": "3"
+  },
+  {
+    "id": "g22-3c908cab",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3c908cab-8d3e-4290-abb6-29c94914f323",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "在网上就能把表填好，你___为了填表跑一趟学校。",
+    "options": [
+      {
+        "id": "1",
+        "text": "刚才"
+      },
+      {
+        "id": "2",
+        "text": "必须"
+      },
+      {
+        "id": "3",
+        "text": "一共"
+      },
+      {
+        "id": "4",
+        "text": "不必"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g22-3ea28017",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3ea28017-6eee-4f52-8bae-304bb021051f",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "这家店除了卖书，___卖文具。",
+    "options": [
+      {
+        "id": "1",
+        "text": "刚"
+      },
+      {
+        "id": "2",
+        "text": "先"
+      },
+      {
+        "id": "3",
+        "text": "才"
+      },
+      {
+        "id": "4",
+        "text": "还"
+      }
+    ],
+    "correctOptionId": "4"
   },
   {
     "id": "g22-44b9123e",
@@ -15634,6 +16041,117 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g22-4688cb4f",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "4688cb4f-2005-4d09-8e06-62155fb38a2d",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "跟在外面送东西比起来，这项工作___轻松，只要坐着写下客人的名字。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不必"
+      },
+      {
+        "id": "2",
+        "text": "一共"
+      },
+      {
+        "id": "3",
+        "text": "比较"
+      },
+      {
+        "id": "4",
+        "text": "刚才"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g22-4e5c332d",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "4e5c332d-f53d-470f-8fc1-823865d2f6a8",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "进场前___把票给工作人员看，不给看就不能进去。",
+    "options": [
+      {
+        "id": "1",
+        "text": "必须"
+      },
+      {
+        "id": "2",
+        "text": "别"
+      },
+      {
+        "id": "3",
+        "text": "不必"
+      },
+      {
+        "id": "4",
+        "text": "偶尔"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g22-4f0a1fb8",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "4f0a1fb8-27d1-493c-b4de-e11267a5b8e1",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "按店员的经验，周末早上的顾客___比平时多。",
+    "options": [
+      {
+        "id": "1",
+        "text": "太"
+      },
+      {
+        "id": "2",
+        "text": "一共"
+      },
+      {
+        "id": "3",
+        "text": "往往"
+      },
+      {
+        "id": "4",
+        "text": "别"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g22-4f24d32f",
     "taskNumber": 22,
     "formatYear": 2026,
@@ -15669,6 +16187,80 @@
       }
     ],
     "correctOptionId": "1"
+  },
+  {
+    "id": "g22-4fb9991f",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "4fb9991f-682f-4690-bef7-0b0ed90fb783",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "这个杯子___能装冷水，不能装热水。",
+    "options": [
+      {
+        "id": "1",
+        "text": "刚"
+      },
+      {
+        "id": "2",
+        "text": "一共"
+      },
+      {
+        "id": "3",
+        "text": "再"
+      },
+      {
+        "id": "4",
+        "text": "只"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g22-5382883a",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5382883a-f130-4180-bc9a-d1bc3669e132",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "她认识很多汉字，___连我不认识的字她也认识。",
+    "options": [
+      {
+        "id": "1",
+        "text": "都"
+      },
+      {
+        "id": "2",
+        "text": "甚至"
+      },
+      {
+        "id": "3",
+        "text": "比较"
+      },
+      {
+        "id": "4",
+        "text": "太"
+      }
+    ],
+    "correctOptionId": "2"
   },
   {
     "id": "g22-57b72439",
@@ -15745,6 +16337,43 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g22-5e90fe70",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5e90fe70-90ad-493b-a49e-728159a23666",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "会___开完，大家还没走出会议室。",
+    "options": [
+      {
+        "id": "1",
+        "text": "先"
+      },
+      {
+        "id": "2",
+        "text": "刚"
+      },
+      {
+        "id": "3",
+        "text": "一共"
+      },
+      {
+        "id": "4",
+        "text": "再"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g22-5fc40188",
     "taskNumber": 22,
     "formatYear": 2026,
@@ -15819,6 +16448,228 @@
     "correctOptionId": "4"
   },
   {
+    "id": "g22-60efa6f5",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "60efa6f5-d6a6-4bdd-bb46-e70370408057",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "谢谢你上次请我吃饭，这次我___请你吃一顿吧。",
+    "options": [
+      {
+        "id": "1",
+        "text": "一共"
+      },
+      {
+        "id": "2",
+        "text": "已经"
+      },
+      {
+        "id": "3",
+        "text": "正在"
+      },
+      {
+        "id": "4",
+        "text": "也"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g22-61eb2e4c",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "61eb2e4c-10a8-4c34-9ee9-839821cf650c",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "爸爸还没收到这封信，___拆开，等他回来再给他。",
+    "options": [
+      {
+        "id": "1",
+        "text": "常常"
+      },
+      {
+        "id": "2",
+        "text": "别"
+      },
+      {
+        "id": "3",
+        "text": "从来"
+      },
+      {
+        "id": "4",
+        "text": "一共"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g22-64521a93",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "64521a93-b824-4687-880e-ae7bd2746df2",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "我们原来打算坐火车，___发现机票更便宜，就改坐飞机了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "后来"
+      },
+      {
+        "id": "2",
+        "text": "常常"
+      },
+      {
+        "id": "3",
+        "text": "正在"
+      },
+      {
+        "id": "4",
+        "text": "一共"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g22-67dc7b2d",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "67dc7b2d-c74a-4c46-89bc-9728001cf877",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "小时候住在海边，___也没在海里游过泳，今天想试一试。",
+    "options": [
+      {
+        "id": "1",
+        "text": "比较"
+      },
+      {
+        "id": "2",
+        "text": "从来"
+      },
+      {
+        "id": "3",
+        "text": "最好"
+      },
+      {
+        "id": "4",
+        "text": "一共"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g22-6b8dd923",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "6b8dd923-0d5c-4ad8-96e7-1c266ff373c7",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "医生说我对这两种药过敏，所以我平时___不能吃。",
+    "options": [
+      {
+        "id": "1",
+        "text": "都"
+      },
+      {
+        "id": "2",
+        "text": "已经"
+      },
+      {
+        "id": "3",
+        "text": "刚"
+      },
+      {
+        "id": "4",
+        "text": "正在"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g22-6ea7304f",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "6ea7304f-7b6f-4f89-99ee-3a81f11a0521",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "小陈以前不敢在台上说话，___当了老师，现在每天都给学生上课。",
+    "options": [
+      {
+        "id": "1",
+        "text": "一共"
+      },
+      {
+        "id": "2",
+        "text": "后来"
+      },
+      {
+        "id": "3",
+        "text": "正在"
+      },
+      {
+        "id": "4",
+        "text": "别"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
     "id": "g22-6fd140a6",
     "taskNumber": 22,
     "formatYear": 2026,
@@ -15854,6 +16705,339 @@
       }
     ],
     "correctOptionId": "4"
+  },
+  {
+    "id": "g22-70a2ba04",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "70a2ba04-9091-4731-ab7e-b293ee31f3f7",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "大家别一起说，让小王___说，你们一个一个来。",
+    "options": [
+      {
+        "id": "1",
+        "text": "先"
+      },
+      {
+        "id": "2",
+        "text": "刚"
+      },
+      {
+        "id": "3",
+        "text": "已经"
+      },
+      {
+        "id": "4",
+        "text": "还"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g22-798e4058",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "798e4058-06d2-4a94-999f-e63d54c007a6",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "我不知道小吴在哪儿，___她在楼下的商店里，你去看看吧。",
+    "options": [
+      {
+        "id": "1",
+        "text": "也许"
+      },
+      {
+        "id": "2",
+        "text": "一共"
+      },
+      {
+        "id": "3",
+        "text": "一直"
+      },
+      {
+        "id": "4",
+        "text": "都"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g22-7adfc8e2",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "7adfc8e2-437f-4372-aebe-a2479ddc54bb",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "照片里的姐姐和妹妹___戴着眼镜，眼镜颜色一样。",
+    "options": [
+      {
+        "id": "1",
+        "text": "先"
+      },
+      {
+        "id": "2",
+        "text": "刚"
+      },
+      {
+        "id": "3",
+        "text": "一共"
+      },
+      {
+        "id": "4",
+        "text": "都"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g22-7e39b2a3",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "7e39b2a3-beee-4d0d-b879-1972421b5005",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "如果每人每月交八百元房租，四个人一个月___要交多少钱？",
+    "options": [
+      {
+        "id": "1",
+        "text": "常常"
+      },
+      {
+        "id": "2",
+        "text": "正在"
+      },
+      {
+        "id": "3",
+        "text": "刚才"
+      },
+      {
+        "id": "4",
+        "text": "一共"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g22-7f745a1b",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "7f745a1b-a898-4544-aecb-4030c0f59468",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "天这么黑，今晚___会下雨，晾在外面的衣服得收了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "常常"
+      },
+      {
+        "id": "2",
+        "text": "正在"
+      },
+      {
+        "id": "3",
+        "text": "也许"
+      },
+      {
+        "id": "4",
+        "text": "一共"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g22-82307e80",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "82307e80-ccb1-4361-8301-1642b124cb87",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "老师买了八支蓝笔、七支黑笔，两种笔___十五支。",
+    "options": [
+      {
+        "id": "1",
+        "text": "一共"
+      },
+      {
+        "id": "2",
+        "text": "刚"
+      },
+      {
+        "id": "3",
+        "text": "后来"
+      },
+      {
+        "id": "4",
+        "text": "先"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g22-82c80e3a",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "82c80e3a-4394-4147-b907-e9259bd29291",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "你要去邮局的话，沿着这条街___走，别拐弯。",
+    "options": [
+      {
+        "id": "1",
+        "text": "都"
+      },
+      {
+        "id": "2",
+        "text": "一直"
+      },
+      {
+        "id": "3",
+        "text": "已经"
+      },
+      {
+        "id": "4",
+        "text": "一共"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g22-8be39743",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "8be39743-9a34-4eb0-a6e0-ce07b03693b1",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "我平时坐地铁上班，___会骑车，一年也就两三次。",
+    "options": [
+      {
+        "id": "1",
+        "text": "一共"
+      },
+      {
+        "id": "2",
+        "text": "刚才"
+      },
+      {
+        "id": "3",
+        "text": "常常"
+      },
+      {
+        "id": "4",
+        "text": "偶尔"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g22-8c77cfa9",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "8c77cfa9-1cf1-466b-96b6-0f460b94cde8",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "手机可能会没电，明天出门前___把酒店地址抄在纸上。",
+    "options": [
+      {
+        "id": "1",
+        "text": "最好"
+      },
+      {
+        "id": "2",
+        "text": "刚才"
+      },
+      {
+        "id": "3",
+        "text": "一共"
+      },
+      {
+        "id": "4",
+        "text": "从来"
+      }
+    ],
+    "correctOptionId": "1"
   },
   {
     "id": "g22-8e0d6e04",
@@ -15930,6 +17114,117 @@
     "correctOptionId": "4"
   },
   {
+    "id": "g22-9940d029",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "9940d029-220a-4444-b422-950e8d764131",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "搬家以后，这个电话号码___没变过，到现在有十年了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "常常"
+      },
+      {
+        "id": "2",
+        "text": "先"
+      },
+      {
+        "id": "3",
+        "text": "一直"
+      },
+      {
+        "id": "4",
+        "text": "刚"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g22-9ac95cf5",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "9ac95cf5-5eb5-4988-a496-783cc52fad5a",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "这张卡___过期了，得去换一张新的。",
+    "options": [
+      {
+        "id": "1",
+        "text": "先"
+      },
+      {
+        "id": "2",
+        "text": "再"
+      },
+      {
+        "id": "3",
+        "text": "一直"
+      },
+      {
+        "id": "4",
+        "text": "已经"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g22-9d2017aa",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "9d2017aa-7c72-4829-af1e-f71abd515668",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "晚上她___在阳台上坐一会儿，每月只有一两次。",
+    "options": [
+      {
+        "id": "1",
+        "text": "偶尔"
+      },
+      {
+        "id": "2",
+        "text": "不必"
+      },
+      {
+        "id": "3",
+        "text": "刚才"
+      },
+      {
+        "id": "4",
+        "text": "常常"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
     "id": "g22-9e68f70e",
     "taskNumber": 22,
     "formatYear": 2026,
@@ -15965,6 +17260,339 @@
       }
     ],
     "correctOptionId": "3"
+  },
+  {
+    "id": "g22-a3b14903",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "a3b14903-610e-46ac-8090-7ba669b3162f",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "她八点开始等公交车，到九点___在等。",
+    "options": [
+      {
+        "id": "1",
+        "text": "再"
+      },
+      {
+        "id": "2",
+        "text": "才"
+      },
+      {
+        "id": "3",
+        "text": "还"
+      },
+      {
+        "id": "4",
+        "text": "先"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g22-a697b1ca",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "a697b1ca-10d6-4f2a-82e2-e51986b5eaed",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "路牌上写着，离山顶___剩三公里。",
+    "options": [
+      {
+        "id": "1",
+        "text": "先"
+      },
+      {
+        "id": "2",
+        "text": "还"
+      },
+      {
+        "id": "3",
+        "text": "再"
+      },
+      {
+        "id": "4",
+        "text": "都"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g22-a8b9440d",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "a8b9440d-61a2-4203-8cc4-5fcd724041c9",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "这三家店每周一___不开门，想买东西得等到周二。",
+    "options": [
+      {
+        "id": "1",
+        "text": "刚"
+      },
+      {
+        "id": "2",
+        "text": "正在"
+      },
+      {
+        "id": "3",
+        "text": "一共"
+      },
+      {
+        "id": "4",
+        "text": "都"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g22-aba52e16",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "aba52e16-ee97-42c9-9c4c-1f0fe48bed78",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "小张___会写自己的中文名字，别的汉字一个也不会写。",
+    "options": [
+      {
+        "id": "1",
+        "text": "再"
+      },
+      {
+        "id": "2",
+        "text": "先"
+      },
+      {
+        "id": "3",
+        "text": "只"
+      },
+      {
+        "id": "4",
+        "text": "一共"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g22-ac27b775",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "ac27b775-b027-41a4-b7c5-9b7a5229bddc",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "修车用了半小时，洗车用了十分钟，修车和洗车___用了多少时间？",
+    "options": [
+      {
+        "id": "1",
+        "text": "一边"
+      },
+      {
+        "id": "2",
+        "text": "先"
+      },
+      {
+        "id": "3",
+        "text": "一共"
+      },
+      {
+        "id": "4",
+        "text": "正在"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g22-ac811159",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "ac811159-08c9-4d36-9dcc-fd819d7b8e03",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "妹妹把盐当成糖，___放进茶里。幸好妈妈拦住她，盐没放进去。",
+    "options": [
+      {
+        "id": "1",
+        "text": "一共"
+      },
+      {
+        "id": "2",
+        "text": "差点儿"
+      },
+      {
+        "id": "3",
+        "text": "已经"
+      },
+      {
+        "id": "4",
+        "text": "一直"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g22-ad6159f7",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "ad6159f7-496b-4ab7-b2a0-661ec33fbb9a",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "一路上，爷爷___站着，一次也没坐下。",
+    "options": [
+      {
+        "id": "1",
+        "text": "刚"
+      },
+      {
+        "id": "2",
+        "text": "一共"
+      },
+      {
+        "id": "3",
+        "text": "一直"
+      },
+      {
+        "id": "4",
+        "text": "才"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g22-adad3373",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "adad3373-e978-4588-9602-87c5b7d1a593",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "学开车以前，姐姐___就没摸过方向盘，今天才第一次摸到。",
+    "options": [
+      {
+        "id": "1",
+        "text": "不必"
+      },
+      {
+        "id": "2",
+        "text": "偶尔"
+      },
+      {
+        "id": "3",
+        "text": "从来"
+      },
+      {
+        "id": "4",
+        "text": "刚才"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g22-b3088b5d",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "b3088b5d-4231-43ca-83fb-0330abd5629d",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "别急着把箱子寄出去，___看看地址写对了没有。",
+    "options": [
+      {
+        "id": "1",
+        "text": "一直"
+      },
+      {
+        "id": "2",
+        "text": "刚"
+      },
+      {
+        "id": "3",
+        "text": "已经"
+      },
+      {
+        "id": "4",
+        "text": "先"
+      }
+    ],
+    "correctOptionId": "4"
   },
   {
     "id": "g22-b7a65c53",
@@ -16004,6 +17632,154 @@
     "correctOptionId": "3"
   },
   {
+    "id": "g22-b7cdb41d",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "b7cdb41d-3b6c-459a-9e02-edd79d5b91a3",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "这盏灯___亮了，照得我眼睛疼。",
+    "options": [
+      {
+        "id": "1",
+        "text": "最好"
+      },
+      {
+        "id": "2",
+        "text": "一共"
+      },
+      {
+        "id": "3",
+        "text": "太"
+      },
+      {
+        "id": "4",
+        "text": "从来"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g22-bbd19f8f",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "bbd19f8f-96ef-4477-98e0-ba7de9ea1213",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "___谁把音乐关了？我还想听完这首歌呢。",
+    "options": [
+      {
+        "id": "1",
+        "text": "刚才"
+      },
+      {
+        "id": "2",
+        "text": "一直"
+      },
+      {
+        "id": "3",
+        "text": "已经"
+      },
+      {
+        "id": "4",
+        "text": "常常"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g22-c3e6a2d8",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c3e6a2d8-f231-464b-987f-be1635f9a8c9",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "下过雨以后，晒不到太阳的地方___干得慢些。",
+    "options": [
+      {
+        "id": "1",
+        "text": "一共"
+      },
+      {
+        "id": "2",
+        "text": "别"
+      },
+      {
+        "id": "3",
+        "text": "不必"
+      },
+      {
+        "id": "4",
+        "text": "往往"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g22-c532ace8",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c532ace8-8078-4de8-b0ac-132d138950a7",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "离发车只剩一分钟，小周___错过最后一班公交车，好在他赶到了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "正在"
+      },
+      {
+        "id": "2",
+        "text": "先"
+      },
+      {
+        "id": "3",
+        "text": "差点儿"
+      },
+      {
+        "id": "4",
+        "text": "已经"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g22-cac19890",
     "taskNumber": 22,
     "formatYear": 2026,
@@ -16032,6 +17808,80 @@
       {
         "id": "3",
         "text": "一直"
+      },
+      {
+        "id": "4",
+        "text": "先"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g22-cb91654d",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "cb91654d-6d5f-4a1b-82f8-6c2a21c83b2b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "小心，那面墙___刷过，油漆还没干。",
+    "options": [
+      {
+        "id": "1",
+        "text": "一共"
+      },
+      {
+        "id": "2",
+        "text": "一直"
+      },
+      {
+        "id": "3",
+        "text": "刚"
+      },
+      {
+        "id": "4",
+        "text": "再"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g22-d20b702a",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d20b702a-5f1d-4e58-8c56-d2c62d888bfb",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "上个月小林出门时___忘关灯，光最后一周就有四次。",
+    "options": [
+      {
+        "id": "1",
+        "text": "常常"
+      },
+      {
+        "id": "2",
+        "text": "刚才"
+      },
+      {
+        "id": "3",
+        "text": "正在"
       },
       {
         "id": "4",
@@ -16078,6 +17928,154 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g22-d7d7eae8",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d7d7eae8-f398-41dc-b518-c7ac6f9aad3e",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "小心，盘子很烫，___用手碰！",
+    "options": [
+      {
+        "id": "1",
+        "text": "一共"
+      },
+      {
+        "id": "2",
+        "text": "最"
+      },
+      {
+        "id": "3",
+        "text": "别"
+      },
+      {
+        "id": "4",
+        "text": "后来"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g22-d8b4b160",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d8b4b160-846b-4100-a296-da7ab5076f25",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "拼图___拼好了，右下角还差最后一块。",
+    "options": [
+      {
+        "id": "1",
+        "text": "几乎"
+      },
+      {
+        "id": "2",
+        "text": "一共"
+      },
+      {
+        "id": "3",
+        "text": "刚才"
+      },
+      {
+        "id": "4",
+        "text": "已经"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g22-d9be3ed7",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d9be3ed7-a0f1-413a-9220-443a2ed18a08",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "雨停后，河水从早到晚___涨，一刻也没停。",
+    "options": [
+      {
+        "id": "1",
+        "text": "一共"
+      },
+      {
+        "id": "2",
+        "text": "一直"
+      },
+      {
+        "id": "3",
+        "text": "刚才"
+      },
+      {
+        "id": "4",
+        "text": "再"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g22-db91a335",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "db91a335-aa72-4abb-8adb-d230a0105714",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "小周帮我收了衣服，___把每件衣服都放进了柜子。",
+    "options": [
+      {
+        "id": "1",
+        "text": "一共"
+      },
+      {
+        "id": "2",
+        "text": "最"
+      },
+      {
+        "id": "3",
+        "text": "甚至"
+      },
+      {
+        "id": "4",
+        "text": "别"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
     "id": "g22-dd72ab9f",
     "taskNumber": 22,
     "formatYear": 2026,
@@ -16106,6 +18104,154 @@
       {
         "id": "3",
         "text": "又"
+      },
+      {
+        "id": "4",
+        "text": "一共"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g22-e3b08dca",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "e3b08dca-6a26-465b-ad4d-51200123ee07",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "门票___在网上卖，别的地方不卖。",
+    "options": [
+      {
+        "id": "1",
+        "text": "也"
+      },
+      {
+        "id": "2",
+        "text": "只"
+      },
+      {
+        "id": "3",
+        "text": "才"
+      },
+      {
+        "id": "4",
+        "text": "再"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g22-f668f1ea",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f668f1ea-2831-4665-b805-0824a06a6931",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "三座桥里，东边的那座___宽，比另外两座都宽。",
+    "options": [
+      {
+        "id": "1",
+        "text": "最"
+      },
+      {
+        "id": "2",
+        "text": "不必"
+      },
+      {
+        "id": "3",
+        "text": "刚才"
+      },
+      {
+        "id": "4",
+        "text": "一共"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g22-f66fd0f2",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f66fd0f2-9676-431d-a29d-ce5c0094d753",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "宝宝___睡下了，请小声一点儿。",
+    "options": [
+      {
+        "id": "1",
+        "text": "一直"
+      },
+      {
+        "id": "2",
+        "text": "再"
+      },
+      {
+        "id": "3",
+        "text": "已经"
+      },
+      {
+        "id": "4",
+        "text": "一共"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g22-f6e7f0f5",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f6e7f0f5-473e-4630-87b2-7b0241ee58ac",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "你再等几分钟，汤___没好。",
+    "options": [
+      {
+        "id": "1",
+        "text": "还"
+      },
+      {
+        "id": "2",
+        "text": "再"
+      },
+      {
+        "id": "3",
+        "text": "先"
       },
       {
         "id": "4",
@@ -16150,6 +18296,117 @@
       }
     ],
     "correctOptionId": "1"
+  },
+  {
+    "id": "g22-f89b7e70",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f89b7e70-9135-43c3-997d-f9efa046a9e0",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "包裹___送走了，现在来改地址太晚了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "正在"
+      },
+      {
+        "id": "2",
+        "text": "已经"
+      },
+      {
+        "id": "3",
+        "text": "常常"
+      },
+      {
+        "id": "4",
+        "text": "一直"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g22-f9441ff9",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f9441ff9-7784-44a2-9092-b9b9cc4fe226",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "___你试的那件外套呢，怎么不见了？",
+    "options": [
+      {
+        "id": "1",
+        "text": "常常"
+      },
+      {
+        "id": "2",
+        "text": "正在"
+      },
+      {
+        "id": "3",
+        "text": "已经"
+      },
+      {
+        "id": "4",
+        "text": "刚才"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g22-f94b972f",
+    "taskNumber": 22,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f94b972f-b31d-4afa-b1c5-87613c63c973",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.27"
+    ],
+    "prompt": "Укажите, какое наречие пропущено в данном предложении.",
+    "stem": "以前住在学校附近的时候，她___去公园画画，每个星期去三四次。",
+    "options": [
+      {
+        "id": "1",
+        "text": "正在"
+      },
+      {
+        "id": "2",
+        "text": "一共"
+      },
+      {
+        "id": "3",
+        "text": "常常"
+      },
+      {
+        "id": "4",
+        "text": "别"
+      }
+    ],
+    "correctOptionId": "3"
   },
   {
     "id": "q22-047fe66d",
