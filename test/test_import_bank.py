@@ -114,6 +114,28 @@ class ImportBankTest(unittest.TestCase):
         self.assertIn("## Заметки об источнике", report)
         self.assertIn("`q19-cccc3333`: нестандартная запись числа в вариантах: 三百五", report)
 
+    def test_er_liang_exercises_have_a_context_instruction(self):
+        b = block("abab1919-0000", 19, "她做了 2 道菜。", ["二道", "两道", "十二道", "二十道"], "2",
+                  source="скилл ege-chinese", tags=["Числительные 二 и 两"])
+        [record], _, problems = records_from_export(export([b]), {})
+        self.assertEqual(problems, [])
+        self.assertIn("в повседневной речи", record["prompt"])
+        self.assertEqual(record["stem"], b["prompt"])
+        self.assertEqual(record["options"], b["options"])
+        self.assertEqual(record["correctOptionId"], "2")
+        self.assertNotIn("notes", record)
+
+    def test_ordinal_exercises_ask_for_the_explicit_ordinal_form(self):
+        b = block("cdef1919-0000", 19, "看完前四幕，大家等着看下一幕。",
+                  ["第四幕", "第五幕", "五幕", "第六幕"], "2",
+                  source="скилл ege-chinese", tags=["Порядковые числительные с 第"])
+        [record], _, problems = records_from_export(export([b]), {})
+        self.assertEqual(problems, [])
+        self.assertIn("порядковое числительное с 第", record["prompt"])
+        self.assertEqual(record["options"], b["options"])
+        self.assertEqual(record["correctOptionId"], "2")
+        self.assertNotIn("notes", record)
+
     def test_replaces_comes_from_the_explanation(self):
         b = block("dddd4444-0000", 16, "她送了一大___花。", ["支", "束", "件", "个"], "2", source="тренажёр ЛГ", lg=["g16-56406db2"])
         authored = {"g16-56406db2": {"status": "accepted", "replaces": "q16-15173f0c"}}

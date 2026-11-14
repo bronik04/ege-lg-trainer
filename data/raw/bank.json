@@ -13285,6 +13285,2670 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g19-019133a0",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "019133a0-3c2c-4021-9aeb-e325e5c23842",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "九十万四千二百零八",
+    "options": [
+      {
+        "id": "1",
+        "text": "904 208"
+      },
+      {
+        "id": "2",
+        "text": "90 428"
+      },
+      {
+        "id": "3",
+        "text": "904 280"
+      },
+      {
+        "id": "4",
+        "text": "940 208"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g19-05e68e83",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "05e68e83-8590-4907-9121-efa65997bd03",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "六万四千三百零七",
+    "options": [
+      {
+        "id": "1",
+        "text": "64 370"
+      },
+      {
+        "id": "2",
+        "text": "64 307"
+      },
+      {
+        "id": "3",
+        "text": "64 037"
+      },
+      {
+        "id": "4",
+        "text": "6 437"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g19-08d4342c",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "08d4342c-252d-4146-889f-77b0c3d6b2a0",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите порядковое числительное с 第, которое подходит по условию.",
+    "stem": "老师让大家做练习册上紧接着第十四题的那道题。",
+    "options": [
+      {
+        "id": "1",
+        "text": "第十六题"
+      },
+      {
+        "id": "2",
+        "text": "第十四题"
+      },
+      {
+        "id": "3",
+        "text": "十五道题"
+      },
+      {
+        "id": "4",
+        "text": "第十五题"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g19-08f27c48",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "08f27c48-ca03-4f6c-b411-f88000bae315",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите, как прочитать указанное цифрами количество со счётным словом в повседневной речи на путунхуа.",
+    "stem": "周六我们要去看电影，我买了 2 张电影票。",
+    "options": [
+      {
+        "id": "1",
+        "text": "二十张"
+      },
+      {
+        "id": "2",
+        "text": "两张"
+      },
+      {
+        "id": "3",
+        "text": "十二张"
+      },
+      {
+        "id": "4",
+        "text": "二张"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g19-0dbe7a49",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "0dbe7a49-9751-4030-b4a2-6293c32ceb4b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "八百七十六万一千三百二十",
+    "options": [
+      {
+        "id": "1",
+        "text": "876 132"
+      },
+      {
+        "id": "2",
+        "text": "8 760 132"
+      },
+      {
+        "id": "3",
+        "text": "8 761 302"
+      },
+      {
+        "id": "4",
+        "text": "8 761 320"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g19-18726a0a",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "18726a0a-455e-41e1-b818-095d0d40b3b2",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "五十万八千九百一十",
+    "options": [
+      {
+        "id": "1",
+        "text": "50 891"
+      },
+      {
+        "id": "2",
+        "text": "508 901"
+      },
+      {
+        "id": "3",
+        "text": "508 910"
+      },
+      {
+        "id": "4",
+        "text": "509 810"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g19-18781dce",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "18781dce-57f9-42fd-a4f1-190005dcd280",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "五十二",
+    "options": [
+      {
+        "id": "1",
+        "text": "52"
+      },
+      {
+        "id": "2",
+        "text": "25"
+      },
+      {
+        "id": "3",
+        "text": "502"
+      },
+      {
+        "id": "4",
+        "text": "520"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g19-1baf3f7b",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "1baf3f7b-a00a-4640-9ff2-120f05629e2b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите, как прочитать указанное цифрами количество со счётным словом в повседневной речи на путунхуа.",
+    "stem": "她今年 32 岁。",
+    "options": [
+      {
+        "id": "1",
+        "text": "三十二岁"
+      },
+      {
+        "id": "2",
+        "text": "三十两岁"
+      },
+      {
+        "id": "3",
+        "text": "二十三岁"
+      },
+      {
+        "id": "4",
+        "text": "三十岁"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g19-1de045f4",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "1de045f4-5e26-4571-b513-3b26df6422ba",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "七万三千零一十九",
+    "options": [
+      {
+        "id": "1",
+        "text": "73 190"
+      },
+      {
+        "id": "2",
+        "text": "73 109"
+      },
+      {
+        "id": "3",
+        "text": "73 019"
+      },
+      {
+        "id": "4",
+        "text": "70 319"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g19-1fcb400b",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "1fcb400b-91e6-424f-88cc-826d723bf1b9",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "一千一百万零六百零九",
+    "options": [
+      {
+        "id": "1",
+        "text": "11 006 009"
+      },
+      {
+        "id": "2",
+        "text": "11 000 690"
+      },
+      {
+        "id": "3",
+        "text": "1 100 609"
+      },
+      {
+        "id": "4",
+        "text": "11 000 609"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g19-282ba126",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "282ba126-4e46-4bf6-baba-24fb50775a6b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "六亿零九十万",
+    "options": [
+      {
+        "id": "1",
+        "text": "690 000 000"
+      },
+      {
+        "id": "2",
+        "text": "600 900 000"
+      },
+      {
+        "id": "3",
+        "text": "600 090 000"
+      },
+      {
+        "id": "4",
+        "text": "609 000 000"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g19-2e3d3454",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "2e3d3454-99e5-403b-af12-96ec1a3919d7",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "六十七万零八十三",
+    "options": [
+      {
+        "id": "1",
+        "text": "678 030"
+      },
+      {
+        "id": "2",
+        "text": "670 803"
+      },
+      {
+        "id": "3",
+        "text": "67 083"
+      },
+      {
+        "id": "4",
+        "text": "670 083"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g19-2fe5551c",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "2fe5551c-5e85-4396-b445-56346d0c96b2",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите порядковое числительное с 第, которое подходит по условию.",
+    "stem": "从左往右看，前十一张照片上都没有小李，再往右一张就能看到他。",
+    "options": [
+      {
+        "id": "1",
+        "text": "第十张照片"
+      },
+      {
+        "id": "2",
+        "text": "第十二张照片"
+      },
+      {
+        "id": "3",
+        "text": "第二十张照片"
+      },
+      {
+        "id": "4",
+        "text": "十二张照片"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g19-30e8971a",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "30e8971a-c4bc-410a-bc96-a2f25ced790a",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "三千九百零五万",
+    "options": [
+      {
+        "id": "1",
+        "text": "39 050 000"
+      },
+      {
+        "id": "2",
+        "text": "39 500 000"
+      },
+      {
+        "id": "3",
+        "text": "39 005 000"
+      },
+      {
+        "id": "4",
+        "text": "3 905 000"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g19-3172750a",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3172750a-f95d-48fd-80c1-22eaaf6317ca",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "六百八十",
+    "options": [
+      {
+        "id": "1",
+        "text": "6 080"
+      },
+      {
+        "id": "2",
+        "text": "860"
+      },
+      {
+        "id": "3",
+        "text": "680"
+      },
+      {
+        "id": "4",
+        "text": "608"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g19-36fdf6d0",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "36fdf6d0-aadb-45db-9ad1-8c99de30fd7b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите, как прочитать указанное цифрами количество со счётным словом в повседневной речи на путунхуа.",
+    "stem": "学校要买 26 把椅子。",
+    "options": [
+      {
+        "id": "1",
+        "text": "六十二把"
+      },
+      {
+        "id": "2",
+        "text": "十六把"
+      },
+      {
+        "id": "3",
+        "text": "两十六把"
+      },
+      {
+        "id": "4",
+        "text": "二十六把"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g19-3b72bab3",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3b72bab3-1478-4c45-96a1-bb07779345a1",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите, как прочитать указанное цифрами количество со счётным словом в повседневной речи на путунхуа.",
+    "stem": "箱子里放着 2 件衣服。",
+    "options": [
+      {
+        "id": "1",
+        "text": "二十件"
+      },
+      {
+        "id": "2",
+        "text": "两件"
+      },
+      {
+        "id": "3",
+        "text": "十件"
+      },
+      {
+        "id": "4",
+        "text": "二件"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g19-3c2f8a97",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3c2f8a97-63ce-43dc-add8-f48a0c2597c8",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "一百零三万七千零四",
+    "options": [
+      {
+        "id": "1",
+        "text": "1 307 004"
+      },
+      {
+        "id": "2",
+        "text": "1 037 004"
+      },
+      {
+        "id": "3",
+        "text": "1 037 040"
+      },
+      {
+        "id": "4",
+        "text": "1 030 704"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g19-3cbf7ce0",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3cbf7ce0-6b04-4c7a-8357-f877438b1c1c",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "一千零五亿三千四百五十六万七千八百九十",
+    "options": [
+      {
+        "id": "1",
+        "text": "10 534 567 890"
+      },
+      {
+        "id": "2",
+        "text": "100 534 560 789"
+      },
+      {
+        "id": "3",
+        "text": "100 534 567 890"
+      },
+      {
+        "id": "4",
+        "text": "100 543 567 890"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g19-3ceb1456",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3ceb1456-4b88-4527-b7eb-ccf49fc13564",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "五千九百零三",
+    "options": [
+      {
+        "id": "1",
+        "text": "593"
+      },
+      {
+        "id": "2",
+        "text": "5 903"
+      },
+      {
+        "id": "3",
+        "text": "5 093"
+      },
+      {
+        "id": "4",
+        "text": "5 930"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g19-3e4fdaff",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3e4fdaff-0a33-4c80-a00a-3eff1e4b432f",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите порядковое числительное с 第, которое подходит по условию.",
+    "stem": "前十位选手已经出场，现在轮到下一位了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "第十二位选手"
+      },
+      {
+        "id": "2",
+        "text": "第十一位选手"
+      },
+      {
+        "id": "3",
+        "text": "第十位选手"
+      },
+      {
+        "id": "4",
+        "text": "十一位选手"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g19-3e7313e7",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3e7313e7-6ec0-4ab7-9818-bf86e7d444ec",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "二百一十二万",
+    "options": [
+      {
+        "id": "1",
+        "text": "2 120 000"
+      },
+      {
+        "id": "2",
+        "text": "212 000"
+      },
+      {
+        "id": "3",
+        "text": "2 102 000"
+      },
+      {
+        "id": "4",
+        "text": "2 210 000"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g19-47297ba1",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "47297ba1-cf6e-462a-9358-e8593adea1d2",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "一万三千二百零五",
+    "options": [
+      {
+        "id": "1",
+        "text": "10 325"
+      },
+      {
+        "id": "2",
+        "text": "13 250"
+      },
+      {
+        "id": "3",
+        "text": "13 205"
+      },
+      {
+        "id": "4",
+        "text": "132 005"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g19-4bb0da63",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "4bb0da63-1a7a-4f28-ae7c-0f0d815633fb",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "十万零四百五十",
+    "options": [
+      {
+        "id": "1",
+        "text": "10 450"
+      },
+      {
+        "id": "2",
+        "text": "100 450"
+      },
+      {
+        "id": "3",
+        "text": "100 405"
+      },
+      {
+        "id": "4",
+        "text": "104 500"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g19-4cba0925",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "4cba0925-daed-44a6-8727-8867e5c0e2e3",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите, как прочитать указанное цифрами количество со счётным словом в повседневной речи на путунхуа.",
+    "stem": "这条路长 42 公里。",
+    "options": [
+      {
+        "id": "1",
+        "text": "四十二公里"
+      },
+      {
+        "id": "2",
+        "text": "四十公里"
+      },
+      {
+        "id": "3",
+        "text": "二十四公里"
+      },
+      {
+        "id": "4",
+        "text": "四十两公里"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g19-4d76e9d7",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "4d76e9d7-25ab-4cdc-96b6-509baf5869d4",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "两千七百四十一万六千零一十八",
+    "options": [
+      {
+        "id": "1",
+        "text": "27 416 180"
+      },
+      {
+        "id": "2",
+        "text": "27 410 618"
+      },
+      {
+        "id": "3",
+        "text": "2 741 618"
+      },
+      {
+        "id": "4",
+        "text": "27 416 018"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g19-50282a77",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "50282a77-5821-4363-bc2e-6aa53ec8ea30",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "三亿",
+    "options": [
+      {
+        "id": "1",
+        "text": "30 000 000"
+      },
+      {
+        "id": "2",
+        "text": "3 000 000"
+      },
+      {
+        "id": "3",
+        "text": "3 000 000 000"
+      },
+      {
+        "id": "4",
+        "text": "300 000 000"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g19-5319cc15",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5319cc15-721b-4074-b749-f685ad6b0b33",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите порядковое числительное с 第, которое подходит по условию.",
+    "stem": "我在名单上正好排在第二十五位后面。",
+    "options": [
+      {
+        "id": "1",
+        "text": "第二十六位"
+      },
+      {
+        "id": "2",
+        "text": "第六十二位"
+      },
+      {
+        "id": "3",
+        "text": "第二十四位"
+      },
+      {
+        "id": "4",
+        "text": "二十六位"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g19-55a7cefe",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "55a7cefe-743b-4021-85ac-36797be8c50f",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "十六亿八千七百万",
+    "options": [
+      {
+        "id": "1",
+        "text": "1 687 000 000"
+      },
+      {
+        "id": "2",
+        "text": "1 608 700 000"
+      },
+      {
+        "id": "3",
+        "text": "1 687 000 008"
+      },
+      {
+        "id": "4",
+        "text": "168 700 000"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g19-5ca0a1b6",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5ca0a1b6-5588-4fd1-a643-2e51350b9e5a",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "二百四十",
+    "options": [
+      {
+        "id": "1",
+        "text": "204"
+      },
+      {
+        "id": "2",
+        "text": "420"
+      },
+      {
+        "id": "3",
+        "text": "240"
+      },
+      {
+        "id": "4",
+        "text": "2 040"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g19-5ddb103e",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5ddb103e-4fa2-4cd7-b210-e078dba2bed1",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "三百四十八万零七百二十",
+    "options": [
+      {
+        "id": "1",
+        "text": "348 720"
+      },
+      {
+        "id": "2",
+        "text": "3 480 720"
+      },
+      {
+        "id": "3",
+        "text": "3 480 702"
+      },
+      {
+        "id": "4",
+        "text": "3 487 200"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g19-5f5539d3",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5f5539d3-aeb9-4f15-86bc-e8eedb4b6d20",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "二十三万六千零九",
+    "options": [
+      {
+        "id": "1",
+        "text": "263 009"
+      },
+      {
+        "id": "2",
+        "text": "236 090"
+      },
+      {
+        "id": "3",
+        "text": "236 009"
+      },
+      {
+        "id": "4",
+        "text": "230 609"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g19-5fd4c563",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5fd4c563-8459-4cce-8d04-700063ab1145",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите, как прочитать указанное цифрами количество со счётным словом в повседневной речи на путунхуа.",
+    "stem": "小林借了 2 本中文书，周五还。",
+    "options": [
+      {
+        "id": "1",
+        "text": "二本"
+      },
+      {
+        "id": "2",
+        "text": "二十本"
+      },
+      {
+        "id": "3",
+        "text": "两本"
+      },
+      {
+        "id": "4",
+        "text": "十二本"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g19-67386991",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "67386991-0cd5-4aba-bbb8-d04ffb01ae25",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "八",
+    "options": [
+      {
+        "id": "1",
+        "text": "18"
+      },
+      {
+        "id": "2",
+        "text": "80"
+      },
+      {
+        "id": "3",
+        "text": "8"
+      },
+      {
+        "id": "4",
+        "text": "800"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g19-6a3fbde0",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "6a3fbde0-e28c-4a25-bcd0-52f534d78841",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "一万零六",
+    "options": [
+      {
+        "id": "1",
+        "text": "1 060"
+      },
+      {
+        "id": "2",
+        "text": "10 060"
+      },
+      {
+        "id": "3",
+        "text": "10 600"
+      },
+      {
+        "id": "4",
+        "text": "10 006"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g19-6b8df979",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "6b8df979-c521-4742-a933-5f42b28be09f",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "三百一十五",
+    "options": [
+      {
+        "id": "1",
+        "text": "305"
+      },
+      {
+        "id": "2",
+        "text": "350"
+      },
+      {
+        "id": "3",
+        "text": "315"
+      },
+      {
+        "id": "4",
+        "text": "3 015"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g19-70837aa9",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "70837aa9-557c-43d2-83d6-679772c3c3a7",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите порядковое числительное с 第, которое подходит по условию.",
+    "stem": "比赛结束后，成绩表上只有一位同学排在小林前面。",
+    "options": [
+      {
+        "id": "1",
+        "text": "两名"
+      },
+      {
+        "id": "2",
+        "text": "第一名"
+      },
+      {
+        "id": "3",
+        "text": "第二名"
+      },
+      {
+        "id": "4",
+        "text": "第三名"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g19-7e63a43e",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "7e63a43e-4e20-4d00-9f4d-a2840c050733",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "两万零二百",
+    "options": [
+      {
+        "id": "1",
+        "text": "2 200"
+      },
+      {
+        "id": "2",
+        "text": "20 200"
+      },
+      {
+        "id": "3",
+        "text": "20 020"
+      },
+      {
+        "id": "4",
+        "text": "22 000"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g19-837163b8",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "837163b8-000d-4b49-9ae3-7a336fa90339",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "十七",
+    "options": [
+      {
+        "id": "1",
+        "text": "107"
+      },
+      {
+        "id": "2",
+        "text": "17"
+      },
+      {
+        "id": "3",
+        "text": "71"
+      },
+      {
+        "id": "4",
+        "text": "70"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g19-83f69358",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "83f69358-9682-4f57-bde5-6edaf2a639f4",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите порядковое числительное с 第, которое подходит по условию.",
+    "stem": "这一排座位从左往右数，小王左边有十九个座位。",
+    "options": [
+      {
+        "id": "1",
+        "text": "第二十个座位"
+      },
+      {
+        "id": "2",
+        "text": "第二十一个座位"
+      },
+      {
+        "id": "3",
+        "text": "第十九个座位"
+      },
+      {
+        "id": "4",
+        "text": "二十个座位"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g19-84d6084a",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "84d6084a-6e9c-499d-8d85-bbcf80e23b73",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "八亿九千四百二十三万六千五百一十四",
+    "options": [
+      {
+        "id": "1",
+        "text": "894 236 541"
+      },
+      {
+        "id": "2",
+        "text": "894 230 654"
+      },
+      {
+        "id": "3",
+        "text": "894 236 514"
+      },
+      {
+        "id": "4",
+        "text": "849 236 514"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g19-874e9703",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "874e9703-0efb-4362-aedd-f6419ff2ccee",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите порядковое числительное с 第, которое подходит по условию.",
+    "stem": "电梯停下时，里面的屏幕上显示的是数字 7。",
+    "options": [
+      {
+        "id": "1",
+        "text": "第七层"
+      },
+      {
+        "id": "2",
+        "text": "七层"
+      },
+      {
+        "id": "3",
+        "text": "第六层"
+      },
+      {
+        "id": "4",
+        "text": "第十七层"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g19-8d0e6559",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "8d0e6559-05dc-467d-9919-bf70cf91da00",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "一千零八",
+    "options": [
+      {
+        "id": "1",
+        "text": "1 800"
+      },
+      {
+        "id": "2",
+        "text": "1 008"
+      },
+      {
+        "id": "3",
+        "text": "1 080"
+      },
+      {
+        "id": "4",
+        "text": "108"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g19-9450ed86",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "9450ed86-d7f3-4eb7-85f5-c6c90dd11e68",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "四万八千七百六十",
+    "options": [
+      {
+        "id": "1",
+        "text": "48 760"
+      },
+      {
+        "id": "2",
+        "text": "487 600"
+      },
+      {
+        "id": "3",
+        "text": "48 670"
+      },
+      {
+        "id": "4",
+        "text": "40 876"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g19-98e62130",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "98e62130-6a19-4d88-a435-59e4c4e08d8f",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "二百零三亿零一百二十万零九十",
+    "options": [
+      {
+        "id": "1",
+        "text": "20 312 000 090"
+      },
+      {
+        "id": "2",
+        "text": "20 301 200 009"
+      },
+      {
+        "id": "3",
+        "text": "23 001 200 090"
+      },
+      {
+        "id": "4",
+        "text": "20 301 200 090"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g19-aa0484a7",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "aa0484a7-372a-40b4-b6da-9f92f93a8c68",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "十九万",
+    "options": [
+      {
+        "id": "1",
+        "text": "19 000"
+      },
+      {
+        "id": "2",
+        "text": "109 000"
+      },
+      {
+        "id": "3",
+        "text": "910 000"
+      },
+      {
+        "id": "4",
+        "text": "190 000"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g19-afc7c787",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "afc7c787-fadc-4b2f-b29d-019ecd9b1a0a",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите порядковое числительное с 第, которое подходит по условию.",
+    "stem": "这次旅行有六天，最后一天回家，前一天去海边。",
+    "options": [
+      {
+        "id": "1",
+        "text": "五天"
+      },
+      {
+        "id": "2",
+        "text": "第六天"
+      },
+      {
+        "id": "3",
+        "text": "第四天"
+      },
+      {
+        "id": "4",
+        "text": "第五天"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g19-b0fd81f2",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "b0fd81f2-59ce-4f38-a35c-4ebb5cb73e7b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "一百零六",
+    "options": [
+      {
+        "id": "1",
+        "text": "1 006"
+      },
+      {
+        "id": "2",
+        "text": "160"
+      },
+      {
+        "id": "3",
+        "text": "106"
+      },
+      {
+        "id": "4",
+        "text": "16"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g19-baba172b",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "baba172b-5c04-418d-bc8d-470adf63e00f",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите, как прочитать указанное цифрами количество со счётным словом в повседневной речи на путунхуа.",
+    "stem": "爷爷今天买了 12 个苹果。",
+    "options": [
+      {
+        "id": "1",
+        "text": "十二个"
+      },
+      {
+        "id": "2",
+        "text": "十两个"
+      },
+      {
+        "id": "3",
+        "text": "二十个"
+      },
+      {
+        "id": "4",
+        "text": "二十二个"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g19-bb45d1f9",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "bb45d1f9-54cf-4423-8367-e5dc4c00d3b7",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите, как прочитать указанное цифрами количество со счётным словом в повседневной речи на путунхуа.",
+    "stem": "水里有 2 条鱼。",
+    "options": [
+      {
+        "id": "1",
+        "text": "二条"
+      },
+      {
+        "id": "2",
+        "text": "两条"
+      },
+      {
+        "id": "3",
+        "text": "十二条"
+      },
+      {
+        "id": "4",
+        "text": "二十条"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g19-be72fef7",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "be72fef7-e4ef-4f8c-8adc-854c6796c114",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "三亿零七千二百一十",
+    "options": [
+      {
+        "id": "1",
+        "text": "307 210 000"
+      },
+      {
+        "id": "2",
+        "text": "300 007 201"
+      },
+      {
+        "id": "3",
+        "text": "300 072 100"
+      },
+      {
+        "id": "4",
+        "text": "300 007 210"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g19-c1ba0bd6",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c1ba0bd6-b609-482f-913e-ffddeacc50d0",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "九十",
+    "options": [
+      {
+        "id": "1",
+        "text": "90"
+      },
+      {
+        "id": "2",
+        "text": "9"
+      },
+      {
+        "id": "3",
+        "text": "19"
+      },
+      {
+        "id": "4",
+        "text": "900"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g19-c1f7f6d9",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c1f7f6d9-5e23-466e-996e-9b115fc4702a",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите, как прочитать указанное цифрами количество со счётным словом в повседневной речи на путунхуа.",
+    "stem": "我们班有 22 名学生。",
+    "options": [
+      {
+        "id": "1",
+        "text": "二十二名"
+      },
+      {
+        "id": "2",
+        "text": "十二名"
+      },
+      {
+        "id": "3",
+        "text": "二十两名"
+      },
+      {
+        "id": "4",
+        "text": "两十二名"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g19-c2e37f39",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c2e37f39-9079-42e2-8c5a-e5eccc24b05e",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите, как прочитать указанное цифрами количество со счётным словом в повседневной речи на путунхуа.",
+    "stem": "这本书一共有 20 页。",
+    "options": [
+      {
+        "id": "1",
+        "text": "二十二页"
+      },
+      {
+        "id": "2",
+        "text": "十二页"
+      },
+      {
+        "id": "3",
+        "text": "两十页"
+      },
+      {
+        "id": "4",
+        "text": "二十页"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g19-c73fd32e",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c73fd32e-f657-4082-8ba9-5fa43eb1fbd7",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите порядковое числительное с 第, которое подходит по условию.",
+    "stem": "这门课一共有十节，前八节都上完了，今天接着上。",
+    "options": [
+      {
+        "id": "1",
+        "text": "九节课"
+      },
+      {
+        "id": "2",
+        "text": "第十节课"
+      },
+      {
+        "id": "3",
+        "text": "第九节课"
+      },
+      {
+        "id": "4",
+        "text": "第八节课"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g19-c76362d5",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c76362d5-2ee0-4b06-8a16-81dc583d97e3",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите порядковое числительное с 第, которое подходит по условию.",
+    "stem": "昨天我读到第三十一页，今天从下一页接着读。",
+    "options": [
+      {
+        "id": "1",
+        "text": "第二十三页"
+      },
+      {
+        "id": "2",
+        "text": "第三十页"
+      },
+      {
+        "id": "3",
+        "text": "第三十二页"
+      },
+      {
+        "id": "4",
+        "text": "三十二页"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g19-c7e99f5a",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c7e99f5a-d124-44e0-899f-684ff1629242",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите, как прочитать указанное цифрами количество со счётным словом в повседневной речи на путунхуа.",
+    "stem": "我给弟弟买了 2 双袜子。",
+    "options": [
+      {
+        "id": "1",
+        "text": "十二双"
+      },
+      {
+        "id": "2",
+        "text": "二十双"
+      },
+      {
+        "id": "3",
+        "text": "两双"
+      },
+      {
+        "id": "4",
+        "text": "二双"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g19-ca036896",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "ca036896-8ea6-46ab-98f1-78d191da9ce8",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "九千四百零一万八千五百零六",
+    "options": [
+      {
+        "id": "1",
+        "text": "94 018 560"
+      },
+      {
+        "id": "2",
+        "text": "94 018 506"
+      },
+      {
+        "id": "3",
+        "text": "94 015 806"
+      },
+      {
+        "id": "4",
+        "text": "9 401 856"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g19-ca820dda",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "ca820dda-3d12-4028-8d48-fa06b1e93534",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите порядковое числительное с 第, которое подходит по условию.",
+    "stem": "前三个节目都结束了，接下来轮到哪一个节目？",
+    "options": [
+      {
+        "id": "1",
+        "text": "四个节目"
+      },
+      {
+        "id": "2",
+        "text": "第三个节目"
+      },
+      {
+        "id": "3",
+        "text": "第五个节目"
+      },
+      {
+        "id": "4",
+        "text": "第四个节目"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g19-cc36fddb",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "cc36fddb-bf70-4b63-8d46-a5a83ca390e7",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите порядковое числительное с 第, которое подходит по условию.",
+    "stem": "小说的前两章读过了，今晚接着读下一章。",
+    "options": [
+      {
+        "id": "1",
+        "text": "三章"
+      },
+      {
+        "id": "2",
+        "text": "第三章"
+      },
+      {
+        "id": "3",
+        "text": "第二章"
+      },
+      {
+        "id": "4",
+        "text": "第四章"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g19-d103bf14",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d103bf14-a283-4538-8051-a8501ac6ffd5",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "三万零七百零二",
+    "options": [
+      {
+        "id": "1",
+        "text": "30 072"
+      },
+      {
+        "id": "2",
+        "text": "30 720"
+      },
+      {
+        "id": "3",
+        "text": "37 002"
+      },
+      {
+        "id": "4",
+        "text": "30 702"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g19-d1842429",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d1842429-7513-47a4-b6a6-e36287239e35",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "六百零二万零六",
+    "options": [
+      {
+        "id": "1",
+        "text": "6 200 006"
+      },
+      {
+        "id": "2",
+        "text": "6 020 060"
+      },
+      {
+        "id": "3",
+        "text": "6 020 006"
+      },
+      {
+        "id": "4",
+        "text": "602 006"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g19-d41e0fe9",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d41e0fe9-ce63-4bc0-a130-8b4bb9ea289f",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "三千零四十二",
+    "options": [
+      {
+        "id": "1",
+        "text": "3 042"
+      },
+      {
+        "id": "2",
+        "text": "3 420"
+      },
+      {
+        "id": "3",
+        "text": "3 402"
+      },
+      {
+        "id": "4",
+        "text": "342"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g19-d659cb2c",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d659cb2c-f739-492c-b516-95412e341cb8",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "两万五千零七十",
+    "options": [
+      {
+        "id": "1",
+        "text": "25 070"
+      },
+      {
+        "id": "2",
+        "text": "20 570"
+      },
+      {
+        "id": "3",
+        "text": "25 007"
+      },
+      {
+        "id": "4",
+        "text": "25 700"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g19-dcd536c1",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "dcd536c1-024b-47fc-b243-1b42044221fe",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "七千八百六十四",
+    "options": [
+      {
+        "id": "1",
+        "text": "7 684"
+      },
+      {
+        "id": "2",
+        "text": "7 864"
+      },
+      {
+        "id": "3",
+        "text": "7 846"
+      },
+      {
+        "id": "4",
+        "text": "78 064"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g19-de06cf27",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "de06cf27-a6b1-460f-8d38-70e6436e4b56",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "八十万七千零四十",
+    "options": [
+      {
+        "id": "1",
+        "text": "870 040"
+      },
+      {
+        "id": "2",
+        "text": "807 004"
+      },
+      {
+        "id": "3",
+        "text": "80 740"
+      },
+      {
+        "id": "4",
+        "text": "807 040"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g19-e4a30bea",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "e4a30bea-4e2f-4baf-b241-89c3627702e5",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "五千零七万零四百三十",
+    "options": [
+      {
+        "id": "1",
+        "text": "50 070 430"
+      },
+      {
+        "id": "2",
+        "text": "5 007 430"
+      },
+      {
+        "id": "3",
+        "text": "50 070 403"
+      },
+      {
+        "id": "4",
+        "text": "50 700 430"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g19-e571fee2",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "e571fee2-ac66-46c6-ac12-66d6eb006ceb",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "四亿一千六百二十万零八",
+    "options": [
+      {
+        "id": "1",
+        "text": "416 200 080"
+      },
+      {
+        "id": "2",
+        "text": "416 200 008"
+      },
+      {
+        "id": "3",
+        "text": "401 620 008"
+      },
+      {
+        "id": "4",
+        "text": "416 208 000"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g19-f5574b21",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f5574b21-a1ab-454c-8b9e-c1333ffe0ce2",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "九十六万两千五百四十",
+    "options": [
+      {
+        "id": "1",
+        "text": "962 450"
+      },
+      {
+        "id": "2",
+        "text": "960 254"
+      },
+      {
+        "id": "3",
+        "text": "96 254"
+      },
+      {
+        "id": "4",
+        "text": "962 540"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
+    "id": "g19-f6e24fed",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f6e24fed-c111-4219-bde5-9cebc5d981db",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Выберите, как прочитать указанное цифрами количество со счётным словом в повседневной речи на путунхуа.",
+    "stem": "早上我喝了 2 杯茶。",
+    "options": [
+      {
+        "id": "1",
+        "text": "二杯"
+      },
+      {
+        "id": "2",
+        "text": "二十二杯"
+      },
+      {
+        "id": "3",
+        "text": "两杯"
+      },
+      {
+        "id": "4",
+        "text": "十杯"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g19-f918334a",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f918334a-8f33-445b-aa9f-3364c5eba052",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "两千零六十",
+    "options": [
+      {
+        "id": "1",
+        "text": "2 060"
+      },
+      {
+        "id": "2",
+        "text": "2 600"
+      },
+      {
+        "id": "3",
+        "text": "2 006"
+      },
+      {
+        "id": "4",
+        "text": "206"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g19-fa8228f2",
+    "taskNumber": 19,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "fa8228f2-097f-4ae5-8314-0ab3df63d29d",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.32"
+    ],
+    "prompt": "Укажите, какое числительное представлено в иероглифической записи.",
+    "stem": "四千七百",
+    "options": [
+      {
+        "id": "1",
+        "text": "7 400"
+      },
+      {
+        "id": "2",
+        "text": "4 070"
+      },
+      {
+        "id": "3",
+        "text": "407"
+      },
+      {
+        "id": "4",
+        "text": "4 700"
+      }
+    ],
+    "correctOptionId": "4"
+  },
+  {
     "id": "q19-181ee482",
     "taskNumber": 19,
     "formatYear": 2026,

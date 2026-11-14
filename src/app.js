@@ -740,7 +740,9 @@
       return el('ol', { class: 'fragments' },
         q.fragments.map((f) => el('li', {}, el('b', { text: f.id }), el('span', { text: f.text }))));
     }
-    return sentenceNode(q, q.stem, SOLO_STEM.has(q.taskNumber) ? 'stem solo' : 'stem', state);
+    const numeralContext = q.taskNumber === 19 && q.ruleIds.some(id => id === 'numerals-er-liang' || id === 'numerals-ordinal');
+    const standalone = SOLO_STEM.has(q.taskNumber) && !numeralContext;
+    return sentenceNode(q, q.stem, standalone ? 'stem solo' : 'stem', state);
   }
 
   // Карточка вопроса: задание ЕГЭ или вопрос по правилу. reveal — показать верный/неверный.

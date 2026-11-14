@@ -30,6 +30,11 @@ KES_TAG = re.compile(r"^КЭС ФИПИ ([0-9.]+)$")
 HSK_TAG = re.compile(r"^HSK4 (.+?) №(\d+)$")
 BATCH_NOTE = re.compile(r"партия ([^,\s]+)")
 SNAPSHOT_FILE = "sources/bank/export.json"
+ER_LIANG_TAG = "Числительные 二 и 两"
+ER_LIANG_INSTRUCTION = "Выберите, как прочитать указанное цифрами количество со счётным словом в повседневной речи на путунхуа."
+ORDINAL_TAG = "Порядковые числительные с 第"
+ORDINAL_INSTRUCTION = "Выберите порядковое числительное с 第, которое подходит по условию."
+NUMERAL_CONTEXT_INSTRUCTIONS = {ER_LIANG_TAG: ER_LIANG_INSTRUCTION, ORDINAL_TAG: ORDINAL_INSTRUCTION}
 
 
 def source_ref(block, origin):
@@ -69,6 +74,8 @@ def records_from_export(export, authored):
     for block in export["blocks"]:
         n = block["taskNumber"]
         origin = origin_of(block)
+        numeral_instruction = next((NUMERAL_CONTEXT_INSTRUCTIONS[tag] for tag in block["tags"]
+                                    if n == 19 and tag in NUMERAL_CONTEXT_INSTRUCTIONS), None)
         if len(block["lgIds"]) > 1:
             raise ValueError(f"задание банка {block['id']}: несколько ID тренажёра ({', '.join(block['lgIds'])}) — "
                              "в банке должен остаться один (unlink lg лишнего)")
@@ -85,7 +92,7 @@ def records_from_export(export, authored):
             "origin": origin,
             "sourceRef": source_ref(block, origin),
             "codifierCodes": list(block["codifierCodes"]),
-            "prompt": INSTRUCTIONS[n],
+            "prompt": numeral_instruction or INSTRUCTIONS[n],
             "stem": block["prompt"],
             "options": options,
             "correctOptionId": block["correct"],
@@ -102,7 +109,7 @@ def records_from_export(export, authored):
         replaces = (authored.get(qid) or {}).get("replaces")
         if replaces:
             record["replaces"] = replaces
-        notes = quality_notes(n, options)
+        notes = [] if numeral_instruction else quality_notes(n, options)
         if issues:
             record["issues"] = issues
             problems += [f"`{qid}`: {i}" for i in issues]
