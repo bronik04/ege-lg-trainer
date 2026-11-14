@@ -17729,6 +17729,2382 @@
     "correctOptionId": "2"
   },
   {
+    "id": "g21-020ae059",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "020ae059-8b49-428b-862a-bedf5b3de03b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.18"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "这棵树是奶奶种___，现在已经比房子高了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "地"
+      },
+      {
+        "id": "2",
+        "text": "得"
+      },
+      {
+        "id": "3",
+        "text": "的"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g21-074a021e",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "074a021e-923c-4bc8-a964-67cbdb0bbfb6",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "小李把车开___很稳，后面坐着的孩子一路都没醒。",
+    "options": [
+      {
+        "id": "1",
+        "text": "地"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g21-07bc96f9",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "07bc96f9-0817-43ae-9551-9d779f4e1fbe",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "你站到这个小凳子上，就够___到最上面那本书。",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "得"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-0b32bbc4",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "0b32bbc4-e1b8-4299-a5c9-1e6fc012012e",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.18"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "这张合影是在体育馆门口拍___，大家当时还穿着球衣。",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "得"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-0be243e5",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "0be243e5-34de-424a-aaf7-26634172c6ba",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "看见妈妈进来，孩子笑眯眯___递过自己画的卡片。",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-0d868f83",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "0d868f83-b84e-437f-b36a-1999b7ad4fa9",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "店员把几个纸箱堆___太高，最上面的掉了下来。",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g21-0e2e78cc",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "0e2e78cc-dd97-4ccc-92c4-6faca9059f88",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "他把旧书一本一本___摆回书架，怕放错顺序。",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-111088ac",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "111088ac-5e3f-421a-be95-b47082abdc6b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.18"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "她把在海边捡到___贝壳带回了家。",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-12f49f04",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "12f49f04-21f5-4076-9939-76bb7e0cd9c6",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "我们一到门口，主人就很热情___请我们进屋喝茶。",
+    "options": [
+      {
+        "id": "1",
+        "text": "地"
+      },
+      {
+        "id": "2",
+        "text": "得"
+      },
+      {
+        "id": "3",
+        "text": "的"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-15b96984",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "15b96984-449f-4811-b4b5-0efa69c03011",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "他在纸上一笔一画___抄了三个生字。",
+    "options": [
+      {
+        "id": "1",
+        "text": "地"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-22cc4ef7",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "22cc4ef7-8b31-4496-a034-c513dea1e1b2",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.18"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "厨房里那盏很亮___灯坏了，我们得买一盏新的。",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "得"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-24f239cf",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "24f239cf-20e0-4f9b-9c0e-e21a2f4f8b8b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.18"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "鱼还没熟___话，就再蒸两分钟。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "的"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g21-258c4334",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "258c4334-09fc-4c8d-81ad-bdc9bc068804",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "把面条煮___比上次软一点儿，奶奶吃起来更方便。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "的"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-271d2d2c",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "271d2d2c-a22e-4f87-b0b9-c492fefc3576",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.18"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "这两杯豆浆里，没加糖___是给我的。",
+    "options": [
+      {
+        "id": "1",
+        "text": "地"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-2a9bdfd8",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "2a9bdfd8-d388-4b48-8230-ca466e8d3f52",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "小郑把画上的动物涂___五颜六色，像给它们换上了新衣服。",
+    "options": [
+      {
+        "id": "1",
+        "text": "地"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g21-2decc3bd",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "2decc3bd-3a9b-4364-b2d3-2f7c5c1d220d",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "窗外的阳光亮___我不得不拉上窗帘。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-2e901e54",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "2e901e54-bf2e-4c62-8bfa-f0b3b143f084",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "这根蜡烛不大，小孩子也吹___灭。",
+    "options": [
+      {
+        "id": "1",
+        "text": "地"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g21-33efb27c",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "33efb27c-ff79-4c94-a19b-7664995efcc1",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "图书馆里有人在看书，工作人员低声___提醒我们先出去接电话。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g21-367b12d1",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "367b12d1-43ac-4974-9de0-6b6ca936d427",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "停电以后，屋里黑___连自己的手都看不见。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "的"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-3bd1fc72",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3bd1fc72-4835-48f9-9a10-937bd48a60c7",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.18"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "我用表弟___相机拍了几张雪景。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-3f17222a",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "3f17222a-1c77-43c8-bbf6-1477241f638a",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "小周游泳游___又快又稳，教练打算让他参加比赛。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-41aad81a",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "41aad81a-ee27-4002-939a-c8359e0fb1b8",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.18"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "叔叔___车正在修，今天他坐公共汽车上班。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "的"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g21-451551e3",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "451551e3-e1c9-4933-bcc3-756e6cca747b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.18"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "门边那双是外公___拖鞋，他在家天天穿。",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "得"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-487d8c07",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "487d8c07-9c26-4254-8b1f-0131c035c229",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "这个花盆看着重，但你一个人也抱___动。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-5215838a",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5215838a-08dc-41f4-9843-057345f4cca1",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "她把清单上的东西一样一样___放进袋子，生怕忘了什么。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "的"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-5419fa72",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5419fa72-e645-4d69-b9c1-17dc6258c2c5",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "走上台后，她满脸笑容___举起了奖杯。",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "得"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g21-59d0be7a",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "59d0be7a-b740-4603-961a-e4a4492c7073",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "听到广播说火车快要开了，他匆匆___跑上了站台。",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-5bf03106",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5bf03106-0b30-4672-a2a9-f5f687d7115d",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "他把行李放___整整齐齐，一打开箱子就能找到要用的东西。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "的"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-5f722347",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "5f722347-379d-41bf-86b3-a47540fa3b96",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "为了让第一次来的人也能参加，她尽量简单___解释了游戏规则。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g21-625b8417",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "625b8417-a1ba-4a62-a25d-faf7f1d3f2ca",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "她把家里的窗户擦___很干净，屋里比平时还亮。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-6562c314",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "6562c314-709b-41bf-b1d2-bb9518cb0c57",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "懂了怎么做，她高高兴兴___回到座位上继续画画儿。",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-6861a40b",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "6861a40b-6f25-48e1-8964-564857dbc302",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "这个手机虽然比旧的长一点儿，但还塞___进裤子口袋。",
+    "options": [
+      {
+        "id": "1",
+        "text": "地"
+      },
+      {
+        "id": "2",
+        "text": "得"
+      },
+      {
+        "id": "3",
+        "text": "的"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-694f1a97",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "694f1a97-9a28-49f9-98d9-0132c19fba86",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "杯底有个小洞，水一滴一滴___漏到了桌上。",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-74e10f96",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "74e10f96-7171-4cc3-acfd-d53d8b36ea3f",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "为了不打扰别人，他小心___扶住门，没让它发出声音。",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-802a49d2",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "802a49d2-0553-4ac2-aa40-7310a376f2b5",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "箱子不重，她毫不费力___把它抬到了桌上。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g21-848a9ca0",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "848a9ca0-cb65-4083-96ea-5f69e15b91be",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "他很快___把桌上的东西分成了三组，大家就知道该去哪儿找。",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "得"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g21-8a47f86d",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "8a47f86d-814b-4565-9eaa-dcd4b25ca766",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.18"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "这家店是去年秋天开___，老板以前在对面开店。",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "得"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-8d2d6b18",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "8d2d6b18-9ba9-4581-8e65-fc28f2061e79",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "有了这把新刀，那么厚的面包也切___开。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-91e2526d",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "91e2526d-e22c-4338-a773-7f936d4451d4",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "外面吵___我连电话里的人说什么都听不清。",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g21-9a3054a7",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "9a3054a7-3b34-4518-ac14-f9d4a934fde6",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.18"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "你把昨晚收到___票放在哪儿了？",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-9ca08773",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "9ca08773-febc-4b94-8f7b-b2077d4b9118",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "她一层一层___拆掉了外面的纸，这才看见杯子。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "的"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-9dc5d6eb",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "9dc5d6eb-ade7-43a3-861d-1491e88b6d7d",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "时间还早，她不紧不慢___在绳子上打了个结。",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-9f0173c8",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "9f0173c8-9205-4602-bee7-ad5e17ae6d00",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "接到邀请后，小林愉快___答应带几张照片来。",
+    "options": [
+      {
+        "id": "1",
+        "text": "地"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-a718a706",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "a718a706-6a8e-4deb-940d-3920cbde0b9d",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.18"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "这几条毛巾还没全干，请帮我把干___收进柜子里。",
+    "options": [
+      {
+        "id": "1",
+        "text": "地"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-a72034a9",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "a72034a9-d1d4-48de-b6d2-f3c558c68864",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "星期六上午我有事，能把那天的课安排___晚一些吗？",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "得"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-a7bd6d3d",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "a7bd6d3d-aa67-475a-846c-8f370f772d88",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "姐姐爬山爬___两条腿直发抖，只好休息一会儿。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-a8d2a883",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "a8d2a883-99ba-4750-a4bb-c586a5742ddc",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.18"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "他们搬进了一间又大又亮___教室，后面还有一扇窗。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "的"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g21-b027192a",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "b027192a-2df5-497d-81ff-1056dad72292",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.18"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "给孩子买鞋时，最好挑鞋底比较软___那一双。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-be1b2dac",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "be1b2dac-1fc1-4e27-b027-2e2b0f68e301",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "她比平时更认真___读了一遍通知，怕记错集合时间。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "的"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-bfaec66b",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "bfaec66b-93cd-487f-9206-baed4d64f7d4",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.18"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "这件毛衣是手工织___，外婆花了一个月才织完。",
+    "options": [
+      {
+        "id": "1",
+        "text": "地"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-c25de94f",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c25de94f-0ca5-4058-86c6-8f63741ee3dc",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "她稳稳___端着两碗汤走进了房间。",
+    "options": [
+      {
+        "id": "1",
+        "text": "地"
+      },
+      {
+        "id": "2",
+        "text": "得"
+      },
+      {
+        "id": "3",
+        "text": "的"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-c26fe0bd",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c26fe0bd-9e65-4fcc-a8bc-6dda8f74e48b",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.18"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "姐姐刚洗___草莓已经放在盘子里了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-c4dade1b",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c4dade1b-c7e1-40cd-b263-5d07a6d330b5",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "请把这根线剪___跟那根一样长，我要用它们做两条手链。",
+    "options": [
+      {
+        "id": "1",
+        "text": "地"
+      },
+      {
+        "id": "2",
+        "text": "得"
+      },
+      {
+        "id": "3",
+        "text": "的"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-c53b4517",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c53b4517-1646-4785-afd1-59f2ecabc886",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "面对这么多客人，她还是十分自然___用中文介绍自己。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g21-c56d1419",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c56d1419-9c5e-49bd-a848-a2b2b389e6b7",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.18"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "别把上课时画___那张图撕掉，下次还要用。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-c93e1dcb",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "c93e1dcb-93dd-4129-96cf-58c1553bc0ee",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "4"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "她把我的中文名字念___很准，连声调都对了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "的"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-cc40c585",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "cc40c585-5515-4540-9c97-28854ed50401",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "衣服上的果汁还没干，用水就洗___掉。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-cd1c58fc",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "cd1c58fc-b5ff-47dd-90f7-35222717086e",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "她拉小提琴拉___很动听，我连咳一声都不敢。",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "得"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-cd3ed29a",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "cd3ed29a-72f4-400e-9483-3014acf7b501",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "医生仔仔细细___看了我手上的伤，这才告诉我该怎么办。",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "得"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g21-cfa953fb",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "cfa953fb-de82-4fef-8057-46cfd3f8e093",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "他渴___一到家就喝了两杯水，连鞋都还没换。",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g21-d3f0b5d4",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "d3f0b5d4-51b6-4762-8ab9-3705652c5b07",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "大家还在说话，弟弟就悄悄___躲到了桌子下面。",
+    "options": [
+      {
+        "id": "1",
+        "text": "地"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-da50e669",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "da50e669-cf26-4f18-8619-cd2721e0b917",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.18"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "那几把伞太重了，你能帮我找把轻一些___吗？",
+    "options": [
+      {
+        "id": "1",
+        "text": "地"
+      },
+      {
+        "id": "2",
+        "text": "得"
+      },
+      {
+        "id": "3",
+        "text": "的"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g21-ddc9cf39",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "ddc9cf39-681b-4381-b395-389bb3fd7ea8",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.18"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "小周___书包在我这儿，他下车时忘了拿。",
+    "options": [
+      {
+        "id": "1",
+        "text": "地"
+      },
+      {
+        "id": "2",
+        "text": "得"
+      },
+      {
+        "id": "3",
+        "text": "的"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g21-e613028f",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "e613028f-8047-4bfd-8062-dbbb0b1c2e00",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "售票员把换票的办法说___清清楚楚，我一下就懂了。",
+    "options": [
+      {
+        "id": "1",
+        "text": "地"
+      },
+      {
+        "id": "2",
+        "text": "得"
+      },
+      {
+        "id": "3",
+        "text": "的"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-e79076ce",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "e79076ce-e8f6-4a21-b97a-9a8a9bd6a233",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "风大___连小船都靠不了岸，大家只好继续等。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "的"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-eba6f6dc",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "eba6f6dc-24dc-4881-97a1-f773f6ba63fb",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "她急___连外套都忘了穿，一开门就往外跑。",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g21-ebc745a2",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "ebc745a2-b3da-48ad-bc45-1d01fca2594c",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "你能把这段音乐放___比刚才慢一点儿吗？",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "地"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-ec564fd0",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "ec564fd0-96eb-4911-8a85-8189605f1fe0",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "这家店的辣椒辣___我吃了一口就开始流眼泪。",
+    "options": [
+      {
+        "id": "1",
+        "text": "地"
+      },
+      {
+        "id": "2",
+        "text": "的"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g21-ed792b38",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "ed792b38-ca2b-466b-8b09-740a1291d2db",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "小雨骑车骑___满头是汗，回家先洗了个澡。",
+    "options": [
+      {
+        "id": "1",
+        "text": "的"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "得"
+      }
+    ],
+    "correctOptionId": "3"
+  },
+  {
+    "id": "g21-f16a36b9",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f16a36b9-2ba8-4500-87f1-21c685fdb1be",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "1"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "这道题有点儿难，老师一步一步___讲给我们听。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "的"
+      }
+    ],
+    "correctOptionId": "2"
+  },
+  {
+    "id": "g21-f5297429",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "f5297429-4c8e-4d52-9a42-2397d1b7f5e6",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "3"
+    },
+    "codifierCodes": [
+      "2.4.49"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "爸爸把大门关___很严，屋里一点儿风都没有。",
+    "options": [
+      {
+        "id": "1",
+        "text": "得"
+      },
+      {
+        "id": "2",
+        "text": "地"
+      },
+      {
+        "id": "3",
+        "text": "的"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
+    "id": "g21-ffb73a8d",
+    "taskNumber": 21,
+    "formatYear": 2026,
+    "origin": "generated",
+    "sourceRef": {
+      "bankId": "ffb73a8d-e762-4abd-9b1b-35047a1cce09",
+      "file": "sources/bank/export.json",
+      "collection": "скилл ege-chinese",
+      "specVersion": "ЕГЭ 2026",
+      "batch": "2"
+    },
+    "codifierCodes": [
+      "2.4.43"
+    ],
+    "prompt": "Укажите, какое служебное слово пропущено в данном предложении.",
+    "stem": "练了几个星期，小陈已经能很熟练___用左手拿筷子。",
+    "options": [
+      {
+        "id": "1",
+        "text": "地"
+      },
+      {
+        "id": "2",
+        "text": "得"
+      },
+      {
+        "id": "3",
+        "text": "的"
+      }
+    ],
+    "correctOptionId": "1"
+  },
+  {
     "id": "q21-00b236e6",
     "taskNumber": 21,
     "formatYear": 2026,
