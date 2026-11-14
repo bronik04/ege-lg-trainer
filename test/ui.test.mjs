@@ -724,11 +724,12 @@ test('тест: разбор выбранного неверного вариа�
   await page.locator('#startRound').click();
   const seen = new Set();
   for (let i = 0; i < 3; i += 1) {
-    const count = await page.locator('.option').count();
-    const task = await text(page, '.pill');
-    seen.add(`${task}:${count}`);
+    const card = page.locator('[data-card]');
+    await card.waitFor();
+    const task = await text(page, '[data-card] .pill.task');
     // Выбираем второй вариант: в задании 20 он верен, в обоих заданиях 22 — нет.
-    const texts = await page.evaluate(() => [...document.querySelectorAll('.option .text')].map((n) => n.textContent));
+    const texts = await card.locator('.option .text').allTextContents();
+    seen.add(`${task}:${texts.length}`);
     await page.keyboard.press('2');
     await page.locator('.feedback').waitFor();
     const order = await page.evaluate(() => [...document.querySelectorAll('.verdict')].map((n) => (n.classList.contains('bad') ? 'bad' : 'ok')));
