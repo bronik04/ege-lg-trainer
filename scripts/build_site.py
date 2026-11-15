@@ -181,6 +181,42 @@ def write_offline_off(directory):
     shutil.copyfile(PWA / "sw-off.js", directory / "sw.js")
 
 
+def vsosh_practice(path, bank):
+    collection = read_json(path)
+    if collection.get("schemaVersion") != 1 or collection.get("status") != "accepted" or not bank:
+        raise ValueError("Для авторской практики ВсОШ нужен проверенный набор и основной банк")
+    ids = {q["id"] for q in bank["questions"]} | {c["id"] for c in bank["contexts"]}
+    topics = {topic["id"] for topic in bank["topics"]}
+
+    def filled(value):
+        return isinstance(value, str) and bool(value.strip())
+
+    for q in collection["questions"]:
+        label = q["id"]
+        if label in ids or q["topicId"] not in topics:
+            raise ValueError(f"{label}: повтор идентификатора или неизвестная тема")
+        ids.add(label)
+        if q["origin"] != "generated" or q["stage"] != "final" or q["kind"] != "singleChoice":
+            raise ValueError(f"{label}: ожидается авторское задание заключительного этапа с выбором ответа")
+        options = q["options"]
+        correct = q["correctId"]
+        if ([o["id"] for o in options] != list("ABCD") or correct not in set("ABCD")
+                or len({o["text"] for o in options}) != 4):
+            raise ValueError(f"{label}: нужны четыре варианта и один ключ")
+        blanks = len(re.findall(r"_{2,}", q["stem"]))
+        if blanks not in (1, 2) or any(
+                len([part for part in o["text"].split("……") if part.strip()]) != blanks for o in options):
+            raise ValueError(f"{label}: число пропусков не совпадает с вариантами ответа")
+        explanation = q["explanation"]
+        wrong = explanation["options"]
+        if (not filled(explanation["correct"]) or set(wrong) != set("ABCD") - {correct}
+                or not all(filled(note) for note in wrong.values())):
+            raise ValueError(f"{label}: нужен разбор каждого варианта")
+        if not filled(q.get("sentenceRu")) or not all(filled(o.get("ru")) for o in options):
+            raise ValueError(f"{label}: нужен перевод предложения и каждого варианта")
+    return {"schemaVersion": 1, "contexts": [], "questions": collection["questions"]}
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--drafts", action="store_true", help="показать черновики (страница для проверки)")
@@ -193,11 +229,14 @@ def main():
     d = args.data_dir
     words_file = d / TONE_WORDS.name
     vsosh_file = d / "vsosh-zh-lg.json"
+    vsosh_practice_file = d / "vsosh-practice.json"
     data = payload(read_json(d / "questions.json"), read_json(d / "topics.json"),
                    read_json(d / "rules.json"), read_json(d / "rule-checks.json"), drafts=args.drafts,
                    tone_words=read_json(words_file)["words"] if words_file.exists() else [])
     if vsosh_file.exists():
         data["vsosh"] = read_json(vsosh_file)
+    if vsosh_practice_file.exists():
+        data["vsoshPractice"] = vsosh_practice(vsosh_practice_file, data.get("vsosh"))
     if args.no_offline:
         data["meta"]["offline"] = False
     html = render(data)

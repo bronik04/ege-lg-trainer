@@ -357,6 +357,9 @@ kbd {
 .vsosh-feedback ul { margin: 5px 0 10px; padding-inline-start: 1.4em; }
 .vsosh-answer[data-gap]:focus { outline: var(--border-focus) solid var(--focus); outline-offset: 3px; }
 .vsosh-feedback p { margin: 5px 0 0; }
+.vsosh-translation h4 { margin: 0; font-size: .9rem; }
+.vsosh-translation ol { margin: 4px 0 0; padding-inline-start: 1.35em; }
+.vsosh-translation li + li { margin-top: 3px; }
 .vsosh-result-text { flex: 1; min-width: 0; overflow-wrap: anywhere; }
 @media (min-width: 721px) {
   .practice-setup .practice-settings.vsosh-settings { grid-template-columns: minmax(162px, .65fr) minmax(0, 1.7fr); }
