@@ -255,7 +255,17 @@ def vsosh_practice_drafts(paths, bank, status="draft", accepted=None):
         if ([option["id"] for option in options] != list("ABCD")
                 or len({o["text"] for o in options}) != 4 or correct not in set("ABCD")):
             raise ValueError(f"{label}: нужны четыре разных варианта и один ключ")
-        if question["kind"] == "wordPlacement":
+        stroke_count = question["topicId"] == "stroke-count"
+        if stroke_count:
+            order = question.get("strokeOrder", "")
+            if (question["kind"] != "singleChoice"
+                    or not re.fullmatch(r"[\u3400-\u4dbf\u4e00-\u9fff]", question["stem"])
+                    or not all(re.fullmatch(r"[1-9][0-9]*", option["text"]) for option in options)
+                    or not re.fullmatch(r"[1-5]+", order)):
+                raise ValueError(f"{label}: нужны один иероглиф, числовые варианты и порядок черт")
+            if options["ABCD".index(correct)]["text"] != str(len(order)):
+                raise ValueError(f"{label}: ключ не совпадает с числом черт")
+        elif question["kind"] == "wordPlacement":
             if (re.findall(r"\{\{([A-D])\}\}", question["stem"]) != list("ABCD")
                     or not question.get("insertionText") or [o["text"] for o in options] != list("ABCD")):
                 raise ValueError(f"{label}: нужны слово для вставки и четыре позиции в предложении")
@@ -267,7 +277,7 @@ def vsosh_practice_drafts(paths, bank, status="draft", accepted=None):
         else:
             raise ValueError(f"{label}: неизвестный вид задания")
         vsosh_explanation(question.get("explanation"), set("ABCD") - {correct}, label)
-        if not question.get("sentenceRu") or not all(o.get("ru") for o in options):
+        if not stroke_count and (not question.get("sentenceRu") or not all(o.get("ru") for o in options)):
             raise ValueError(f"{label}: нужны перевод и значения вариантов")
     return {"schemaVersion": 1, "contexts": [], "topics": extra_topics, "questions": questions}
 

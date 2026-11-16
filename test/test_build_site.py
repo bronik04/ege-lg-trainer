@@ -66,6 +66,31 @@ class PayloadTest(unittest.TestCase):
         self.assertEqual(data["questions"][0]["sourceRef"], {"collection": "HSK 4", "paper": "H41001", "number": 56})
 
 
+class VsoshStrokeCountTest(unittest.TestCase):
+    def load(self, correct):
+        question = {
+            "id": "vsosh-stroke-test", "origin": "generated", "stage": "final",
+            "kind": "singleChoice", "topicId": "stroke-count", "stem": "爽",
+            "options": [{"id": letter, "text": number} for letter, number in zip("ABCD", ["9", "10", "11", "12"])],
+            "strokeOrder": "13434343434", "correctId": correct,
+            "explanation": {"correct": "Одна горизонталь, четыре перекрестия и две длинные черты.",
+                            "options": {letter: "Объяснение неверного подсчёта." for letter in "ABCD" if letter != correct}},
+        }
+        bank = {"topics": [{"id": "stroke-count"}]}
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "draft.json"
+            path.write_text(json.dumps({"schemaVersion": 1, "status": "draft", "questions": [question]}),
+                            encoding="utf-8")
+            return bs.vsosh_practice_drafts([path], bank)["questions"]
+
+    def test_stroke_count_accepts_one_character_and_numeric_options(self):
+        self.assertEqual(self.load("C")[0]["stem"], "爽")
+
+    def test_stroke_count_rejects_key_that_disagrees_with_stroke_order(self):
+        with self.assertRaisesRegex(ValueError, "ключ не совпадает с числом черт"):
+            self.load("B")
+
+
 class RenderTest(unittest.TestCase):
     def test_json_cannot_close_script(self):
         embedded = bs.embed_json({"stem": "</script><script>alert(1)</script>"})
