@@ -181,40 +181,123 @@ def write_offline_off(directory):
     shutil.copyfile(PWA / "sw-off.js", directory / "sw.js")
 
 
-def vsosh_practice(path, bank):
+def vsosh_explanation(explanation, wrong_ids, label):
+    correct_note = explanation.get("correct") if isinstance(explanation, dict) else None
+    wrong_notes = explanation.get("options") if isinstance(explanation, dict) else None
+    if (not isinstance(correct_note, str) or not correct_note.strip()
+            or not isinstance(wrong_notes, dict) or set(wrong_notes) != wrong_ids
+            or any(not isinstance(note, str) or not note.strip() for note in wrong_notes.values())):
+        raise ValueError(f"{label}: нужен разбор верного и каждого неверного ответа")
+    return explanation
+
+
+def vsosh_new_texts(path):
     collection = read_json(path)
-    if collection.get("schemaVersion") != 1 or collection.get("status") != "accepted" or not bank:
-        raise ValueError("Для авторской практики ВсОШ нужен проверенный набор и основной банк")
-    ids = {q["id"] for q in bank["questions"]} | {c["id"] for c in bank["contexts"]}
-    topics = {topic["id"] for topic in bank["topics"]}
+    contexts = []
+    questions = []
+    for passage in collection["passages"]:
+        context_id = passage["id"]
+        markers = re.findall(r"\{\{(\d+)\}\}", passage["text"])
+        numbers = [str(gap["number"]) for gap in passage["gaps"]]
+        if markers != numbers or numbers != ["18", "19", "20"]:
+            raise ValueError(f"{context_id}: ожидаются пропуски 18–20 по порядку")
+        contexts.append({"id": context_id, "label": passage["title"], "text": passage["text"]})
+        for gap in passage["gaps"]:
+            number = gap["number"]
+            options = gap["options"]
+            if set(options) != set("ABCD") or len(set(options.values())) != 4 or gap["correctId"] not in options:
+                raise ValueError(f"{context_id}, № {number}: нужны четыре разных варианта и один ключ")
+            explanation = vsosh_explanation(gap.get("explanation"), set(options) - {gap["correctId"]},
+                                            f"{context_id}, № {number}")
+            questions.append({
+                "id": f"{context_id}-{number}",
+                "kind": "passageGap",
+                "topicId": "cloze-vocabulary",
+                "contextId": context_id,
+                "taskNumber": number,
+                "gapNumber": number,
+                "prompt": collection["instruction"],
+                "options": [{"id": key, "text": options[key]} for key in "ABCD"],
+                "correctId": gap["correctId"],
+                "explanation": explanation,
+            })
+    return {"schemaVersion": 1, "contexts": contexts, "questions": questions}
 
-    def filled(value):
-        return isinstance(value, str) and bool(value.strip())
 
-    for q in collection["questions"]:
-        label = q["id"]
-        if label in ids or q["topicId"] not in topics:
+def vsosh_practice_drafts(paths, bank, status="draft", accepted=None):
+    collections = [read_json(path) for path in paths]
+    if not bank or any(item["schemaVersion"] != 1 or item["status"] != status for item in collections):
+        raise ValueError(f"Для практики ВсОШ нужен основной банк и набор со статусом {status}")
+
+    known_banks = (bank, accepted or {})
+    ids = {item["id"] for known in known_banks for key in ("questions", "contexts") for item in known.get(key, [])}
+    topics = {topic["id"] for known in known_banks for topic in known.get("topics", [])}
+    extra_topics = [topic for collection in collections for topic in collection.get("topics", [])]
+    for topic in extra_topics:
+        topic_id = topic.get("id")
+        label = topic.get("label")
+        if not isinstance(topic_id, str) or not topic_id.strip() or topic_id in topics:
+            raise ValueError(f"Повтор или пустой идентификатор темы ВсОШ: {topic_id!r}")
+        if not isinstance(label, str) or not label.strip():
+            raise ValueError(f"{topic_id}: нужно название темы ВсОШ")
+        topics.add(topic_id)
+
+    questions = [question for collection in collections for question in collection["questions"]]
+    for question in questions:
+        label = question["id"]
+        if label in ids or question["topicId"] not in topics:
             raise ValueError(f"{label}: повтор идентификатора или неизвестная тема")
+        if question["origin"] != "generated" or question["stage"] != "final":
+            raise ValueError(f"{label}: ожидается авторское задание заключительного этапа")
         ids.add(label)
-        if q["origin"] != "generated" or q["stage"] != "final" or q["kind"] != "singleChoice":
-            raise ValueError(f"{label}: ожидается авторское задание заключительного этапа с выбором ответа")
-        options = q["options"]
-        correct = q["correctId"]
-        if ([o["id"] for o in options] != list("ABCD") or correct not in set("ABCD")
-                or len({o["text"] for o in options}) != 4):
-            raise ValueError(f"{label}: нужны четыре варианта и один ключ")
-        blanks = len(re.findall(r"_{2,}", q["stem"]))
-        if blanks not in (1, 2) or any(
-                len([part for part in o["text"].split("……") if part.strip()]) != blanks for o in options):
-            raise ValueError(f"{label}: число пропусков не совпадает с вариантами ответа")
-        explanation = q["explanation"]
-        wrong = explanation["options"]
-        if (not filled(explanation["correct"]) or set(wrong) != set("ABCD") - {correct}
-                or not all(filled(note) for note in wrong.values())):
-            raise ValueError(f"{label}: нужен разбор каждого варианта")
-        if not filled(q.get("sentenceRu")) or not all(filled(o.get("ru")) for o in options):
-            raise ValueError(f"{label}: нужен перевод предложения и каждого варианта")
-    return {"schemaVersion": 1, "contexts": [], "questions": collection["questions"]}
+        options = question["options"]
+        correct = question["correctId"]
+        if ([option["id"] for option in options] != list("ABCD")
+                or len({o["text"] for o in options}) != 4 or correct not in set("ABCD")):
+            raise ValueError(f"{label}: нужны четыре разных варианта и один ключ")
+        if question["kind"] == "wordPlacement":
+            if (re.findall(r"\{\{([A-D])\}\}", question["stem"]) != list("ABCD")
+                    or not question.get("insertionText") or [o["text"] for o in options] != list("ABCD")):
+                raise ValueError(f"{label}: нужны слово для вставки и четыре позиции в предложении")
+        elif question["kind"] == "singleChoice":
+            blanks = len(re.findall(r"_{2,}", question["stem"]))
+            if blanks not in (1, 2) or any(
+                    len([part for part in o["text"].split("……") if part.strip()]) != blanks for o in options):
+                raise ValueError(f"{label}: число пропусков не совпадает с вариантами ответа")
+        else:
+            raise ValueError(f"{label}: неизвестный вид задания")
+        vsosh_explanation(question.get("explanation"), set("ABCD") - {correct}, label)
+        if not question.get("sentenceRu") or not all(o.get("ru") for o in options):
+            raise ValueError(f"{label}: нужны перевод и значения вариантов")
+    return {"schemaVersion": 1, "contexts": [], "topics": extra_topics, "questions": questions}
+
+
+def add_vsosh_reviews(bank, path):
+    review = read_json(path)
+    questions = review["questions"]
+    passages = review["contexts"]
+    if set(questions) != {q["id"] for q in bank["questions"]}:
+        raise ValueError("Разборы ВсОШ должны покрывать все задания основного банка")
+    if set(passages) != {c["id"] for c in bank["contexts"]}:
+        raise ValueError("Переводы ВсОШ должны покрывать все общие тексты")
+    for q in bank["questions"]:
+        row = questions[q["id"]]
+        if (not isinstance(row["ru"], str) or not row["ru"].strip()
+                or any(len(row[key]) != len(q["options"]) for key in ("gloss", "why"))
+                or not all(isinstance(x, str) and x.strip() for key in ("gloss", "why") for x in row[key])):
+            raise ValueError(f'{q["id"]}: нужны перевод и разбор каждого варианта')
+        notes = dict(zip((o["id"] for o in q["options"]), row["why"]))
+        q["explanation"] = {"correct": notes.pop(q["correctId"]), "options": notes}
+        q["sentenceRu"] = row["ru"]
+        for option, gloss in zip(q["options"], row["gloss"]):
+            option["ru"] = gloss
+        if row.get("note"):
+            q["reviewNote"] = row["note"]
+    for context in bank["contexts"]:
+        translation = passages[context["id"]]
+        if not isinstance(translation, str) or not translation.strip():
+            raise ValueError(f'{context["id"]}: нужен перевод всего текста')
+        context["textRu"] = translation
 
 
 def main():
@@ -222,21 +305,42 @@ def main():
     parser.add_argument("--drafts", action="store_true", help="показать черновики (страница для проверки)")
     parser.add_argument("--data-dir", type=Path, default=DATA)
     parser.add_argument("--out", type=Path)
+    parser.add_argument("--vsosh-new-texts", type=Path, help="локальная подборка текстов ВсОШ для сборки с --drafts")
+    parser.add_argument("--vsosh-practice-drafts", type=Path, action="append",
+                        help="локальная подборка практики ВсОШ для сборки с --drafts, можно указать несколько раз")
+    parser.add_argument("--vsosh-review", type=Path, help="локальные разборы официальных заданий ВсОШ для сборки с --drafts")
     parser.add_argument("--no-offline", action="store_true",
                         help="аварийно выключить работу без сети у всех, кто открывал сайт (кладёт sw-off.js как sw.js)")
     args = parser.parse_args()
+    if args.vsosh_new_texts and not args.drafts:
+        parser.error("--vsosh-new-texts требует --drafts")
+    if args.vsosh_practice_drafts and not args.drafts:
+        parser.error("--vsosh-practice-drafts требует --drafts")
+    if args.vsosh_review and not args.drafts:
+        parser.error("--vsosh-review требует --drafts")
     out = args.out or (ROOT / ("review-build/review.html" if args.drafts else "dist/index.html"))
     d = args.data_dir
     words_file = d / TONE_WORDS.name
     vsosh_file = d / "vsosh-zh-lg.json"
-    vsosh_practice_file = d / "vsosh-practice.json"
     data = payload(read_json(d / "questions.json"), read_json(d / "topics.json"),
                    read_json(d / "rules.json"), read_json(d / "rule-checks.json"), drafts=args.drafts,
                    tone_words=read_json(words_file)["words"] if words_file.exists() else [])
     if vsosh_file.exists():
         data["vsosh"] = read_json(vsosh_file)
-    if vsosh_practice_file.exists():
-        data["vsoshPractice"] = vsosh_practice(vsosh_practice_file, data.get("vsosh"))
+    practice_file = d / "vsosh-practice.json"
+    if practice_file.exists():
+        data["vsoshPractice"] = vsosh_practice_drafts([practice_file], data.get("vsosh"), "accepted")
+    review_file = args.vsosh_review or d / "vsosh-review.json"
+    if args.vsosh_review or review_file.exists():
+        if "vsosh" not in data:
+            raise ValueError("Разборы ВсОШ требуют основной банк заданий")
+        add_vsosh_reviews(data["vsosh"], review_file)
+    if args.vsosh_new_texts:
+        data["vsoshNewTexts"] = vsosh_new_texts(args.vsosh_new_texts)
+    if args.vsosh_practice_drafts:
+        data["vsoshPracticeDrafts"] = vsosh_practice_drafts(
+            args.vsosh_practice_drafts, data.get("vsosh"), accepted=data.get("vsoshPractice"),
+        )
     if args.no_offline:
         data["meta"]["offline"] = False
     html = render(data)

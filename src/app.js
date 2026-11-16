@@ -17,17 +17,20 @@
   const allItems = questions;
   const olympiad = DATA.vsosh;
   const olympiadAllCards = vsoshCards(olympiad);
-  const authoredVsoshCards = vsoshCards(DATA.vsoshPractice);
-  const authoredVsoshIds = new Set(authoredVsoshCards.map((card) => card.id));
-  const authoredVsoshTopics = new Set(authoredVsoshCards.map((card) => card.questions[0].topicId));
-  const hasOlympiad = olympiadAllCards.length > 0;
+  const vsoshAuthoredCards = vsoshCards(DATA.vsoshPractice);
+  const vsoshAuthoredIds = new Set(vsoshAuthoredCards.map((card) => card.id));
+  const vsoshDraftCards = vsoshCards(DATA.vsoshPracticeDrafts);
+  const vsoshDraftIds = new Set(vsoshDraftCards.map((card) => card.id));
+  const newTextCards = vsoshCards(DATA.vsoshNewTexts);
+  const newTextsById = new Map(newTextCards.map((card) => [card.id, card]));
+  const hasOlympiad = olympiadAllCards.length > 0 || newTextCards.length > 0;
   const olympiadCards = [
     ...olympiadAllCards.filter((card) => card.questions.every((q) => !q.fullSetOnly)),
-    ...authoredVsoshCards,
+    ...vsoshAuthoredCards, ...vsoshDraftCards,
   ];
   const olympiadById = new Map(olympiadCards.map((card) => [card.id, card]));
-  const olympiadTopics = new Map((olympiad?.topics ?? []).map((topic) => [topic.id, topic.label]));
-  const olympiadPracticeTopics = new Set(olympiadCards.flatMap((card) => card.questions.map((q) => q.topicId)));
+  const olympiadTopics = new Map([olympiad, DATA.vsoshPractice, DATA.vsoshPracticeDrafts]
+    .flatMap((bank) => (bank?.topics ?? []).map((topic) => [topic.id, topic.label])));
   const olympiadSources = new Map((olympiad?.sources ?? []).map((source) => [source.id, source]));
   const olympiadSets = new Map(vsoshSets(olympiad, olympiadAllCards).map((set) => [set.source.id, set]));
   const topicsById = new Map(topics.map((t) => [t.id, t]));
@@ -278,14 +281,15 @@
     go(activeRoundPath);
   }
 
-  function resumeRoundLink(name, round) {
+  function resumeRoundLink(name, round, screen = 'run', onResume) {
     if (!round || round.finishedAt) return null;
     return el('a', {
-      class: 'button alt', href: `#/${name}/run`,
+      class: 'button alt', href: `#/${name}/${screen}`,
       onclick: (event) => {
         if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
         event.preventDefault();
-        showRound(name);
+        onResume?.();
+        showRound(name, screen);
       },
       text: `Продолжить раунд · ${roundAnswerCount(round)} из ${round.ids.length + (round.retryQueue?.length || 0)}`,
     });
@@ -342,15 +346,20 @@
     const olympiadMode = name === 'vsosh' && hasOlympiad;
     const activeRun = activeRoundPath === `#/${name}/${arg}`;
     const round = arg === 'run' && activeRun ? roundForTab(name) : null;
+    const newTextRound = olympiadMode && arg === 'new-run' && activeRun ? currentVsoshTextAttempt()?.round : null;
     const setAttempt = olympiadMode && arg === 'set' && activeRun ? vsoshState.attempts[vsoshState.setId] : null;
     if (!setAttempt) vsoshSetConfirm = false;
-    if (!round && !setAttempt) {
+    if (!round && !setAttempt && !newTextRound) {
       activeRoundPath = null;
       // При возврате по истории старый адрес раунда тоже ведёт к настройкам.
       if (arg === 'run' && roundTabs.includes(name)) window.history.replaceState(null, '', `#/${name}/setup`);
       if (olympiadMode && arg === 'set') {
         arg = 'sets';
         window.history.replaceState(null, '', '#/vsosh/sets');
+      }
+      if (olympiadMode && arg === 'new-run') {
+        arg = 'new-texts';
+        window.history.replaceState(null, '', '#/vsosh/new-texts');
       }
     }
     document.querySelectorAll('[data-tab]').forEach((tab) => {
@@ -371,12 +380,16 @@
     else if (round && olympiadMode) {
       if (round.finishedAt) renderVsoshResult(round);
       else renderVsoshRound(round);
+    } else if (newTextRound) {
+      if (newTextRound.finishedAt) renderVsoshResult(newTextRound, true);
+      else renderVsoshRound(newTextRound, true);
     } else if (round) {
       if (round.finishedAt) renderRoundResult();
       else renderRound();
     } else if (name === 'practice') renderPractice();
     else if (setAttempt) renderVsoshSet(olympiadSets.get(vsoshState.setId), setAttempt);
     else if (olympiadMode && arg === 'sets' && olympiadSets.size) renderVsoshSetsSetup();
+    else if (olympiadMode && newTextCards.length && (arg === 'new-texts' || !olympiadAllCards.length)) renderVsoshNewTexts();
     else if (olympiadMode) renderVsoshSetup();
     else if (name === 'tones') renderTones();
     else if (name === 'variant') renderVariant();
@@ -746,9 +759,7 @@
       return el('ol', { class: 'fragments' },
         q.fragments.map((f) => el('li', {}, el('b', { text: f.id }), el('span', { text: f.text }))));
     }
-    const numeralContext = q.taskNumber === 19 && q.ruleIds.some(id => id === 'numerals-er-liang' || id === 'numerals-ordinal');
-    const standalone = SOLO_STEM.has(q.taskNumber) && !numeralContext;
-    return sentenceNode(q, q.stem, standalone ? 'stem solo' : 'stem', state);
+    return sentenceNode(q, q.stem, SOLO_STEM.has(q.taskNumber) ? 'stem solo' : 'stem', state);
   }
 
   // Карточка вопроса: задание ЕГЭ или вопрос по правилу. reveal — показать верный/неверный.
@@ -789,7 +800,7 @@
     return card;
   }
 
-  function optionButtons(item, { selected, reveal, onChoose, labels = false }) {
+  function optionButtons(item, { selected, reveal, onChoose, adaptive = false }) {
     // В ряд — только короткие варианты; союзы №27 с «……» в узкой колонке рвались бы посередине.
     const short = item.options.every((o) => o.text.length <= 12 && !o.text.includes('…'));
     // Числа и тоны — не китайский текст: свой ряд, без переноса внутри варианта.
@@ -807,11 +818,11 @@
         'aria-pressed': o.id === selected ? 'true' : 'false',
         dataset: { option: String(i + 1) },
         onclick: () => onChoose(o.id),
-      }, el('span', { class: 'num', text: labels ? o.id : String(i + 1) }),
+      }, el('span', { class: 'num', text: String(i + 1) }),
       // Тоны «2-4-2», числа и «CAB» — не китайский текст: свой шрифт и lang.
       isChinese(o.text) ? el('span', { class: 'text', lang: 'zh', text: o.text }) : el('span', { class: 'text plain', lang: 'ru', text: o.text })));
     });
-    return list;
+    return adaptive ? fitVsoshChoices(list) : list;
   }
 
   function ruleNote(ruleIds, contrast) {
@@ -1614,29 +1625,55 @@
   const VSOSH_SESSION_KEY = 'ege-lg-trainer:vsosh-session';
   const vsoshStages = { regional: 'Региональный этап', final: 'Заключительный этап' };
   const vsoshSeason = (season) => season.replace(/\/(\d{2})(\d{2})$/, '/$2');
+  const newTextsSetup = '#/vsosh/new-texts';
+  const vsoshRoundSetup = (newTexts) => newTexts ? newTextsSetup : '#/vsosh/setup';
+
+  function readVsoshRound(saved, cards) {
+    const restored = restoreVsoshRound(saved?.round, cards, now(), saved?.draft);
+    const round = restored?.round ?? null;
+    const draft = restored?.draft;
+    const card = round && cards.get(round.ids[round.index]);
+    return {
+      round,
+      draft: card?.context && !round.finishedAt && roundAnswer(round) === undefined
+        && validVsoshChoices(card, draft, true) ? draft : null,
+    };
+  }
 
   function readVsoshState() {
     const empty = {
-      topics: [], authoredOnly: false, size: '10', roundType: 'training', round: null, draft: null,
+      topics: [], practiceSource: 'all', size: '10', roundType: 'training', round: null, draft: null,
       setId: olympiadSets.keys().next().value ?? null, attempts: {},
+      newTexts: { round: null, draft: null }, newTextAttempts: {}, newTextId: null,
     };
     try {
       const raw = JSON.parse(window.sessionStorage.getItem(VSOSH_SESSION_KEY));
-      const topics = Array.isArray(raw?.topics) ? [...new Set(raw.topics.filter((id) => olympiadPracticeTopics.has(id)))] : [];
-      const restored = restoreVsoshRound(raw?.round, olympiadById, now(), raw?.draft);
-      const round = restored?.round ?? null;
-      const draft = restored?.draft;
-      const card = round && olympiadById.get(round.ids[round.index]);
+      const practiceSource = (raw?.practiceSource === 'drafts' || raw?.draftsOnly) && vsoshDraftCards.length ? 'drafts'
+        : (raw?.practiceSource === 'authored' || raw?.authoredOnly) && vsoshAuthoredCards.length ? 'authored' : 'all';
+      const availableTopics = new Set(vsoshSourceCards(practiceSource).map((card) => card.questions[0].topicId));
+      const topics = Array.isArray(raw?.topics) ? [...new Set(raw.topics.filter((id) => availableTopics.has(id)))] : [];
       const attempts = Object.fromEntries([...olympiadSets].flatMap(([id, set]) => {
         const attempt = restoreVsoshSet(raw?.attempts?.[id], set);
         return attempt ? [[id, attempt]] : [];
       }));
+      let newTexts = readVsoshRound(raw?.newTexts, newTextsById);
+      const newTextAttempts = Object.fromEntries(newTextCards.flatMap((card) => {
+        const attempt = readVsoshRound(raw?.newTextAttempts?.[card.id], newTextsById);
+        return attempt.round?.ids.every((id) => id === card.id) ? [[card.id, attempt]] : [];
+      }));
+      let newTextId = Object.hasOwn(newTextAttempts, raw?.newTextId) ? raw.newTextId : null;
+      // Раньше весь набор и отдельный текст занимали одну ячейку. Сохраняем то, что в ней было.
+      if (!raw?.newTextAttempts && newTexts.round?.ids.length === 1) {
+        newTextId = newTexts.round.ids[0];
+        newTextAttempts[newTextId] = newTexts;
+        newTexts = empty.newTexts;
+      }
       return {
-        topics, round, size: roundSize(raw?.size) || empty.size,
-        authoredOnly: authoredVsoshCards.length > 0 && raw?.authoredOnly === true,
+        ...readVsoshRound(raw, olympiadById),
+        topics, practiceSource,
+        size: roundSize(raw?.size) || empty.size,
         roundType: raw?.roundType === 'test' ? 'test' : 'training',
-        draft: card?.context && !round.finishedAt && roundAnswer(round) === undefined
-          && validVsoshChoices(card, draft, true) ? draft : null,
+        newTexts, newTextAttempts, newTextId,
         setId: olympiadSets.has(raw?.setId) ? raw.setId : empty.setId,
         attempts,
       };
@@ -1651,24 +1688,35 @@
     try { window.sessionStorage.setItem(VSOSH_SESSION_KEY, JSON.stringify(vsoshState)); } catch { /* продолжим в памяти */ }
   }
 
-  function vsoshPool(topics = vsoshState.topics) {
-    return olympiadCards.filter((card) =>
-      (!vsoshState.authoredOnly || authoredVsoshIds.has(card.id))
-      && (!topics.length || card.questions.some((q) => topics.includes(q.topicId))));
+  function vsoshSourceCards(source) {
+    if (source === 'drafts') return vsoshDraftCards;
+    if (source === 'authored') return vsoshAuthoredCards;
+    return olympiadCards;
   }
 
-  function startVsosh(ids, type = vsoshState.roundType) {
+  function vsoshPool(topics = vsoshState.topics) {
+    return vsoshSourceCards(vsoshState.practiceSource).filter((card) =>
+      !topics.length || card.questions.some((q) => topics.includes(q.topicId)));
+  }
+
+  function currentVsoshTextAttempt() {
+    return vsoshState.newTextId ? vsoshState.newTextAttempts[vsoshState.newTextId] : vsoshState.newTexts;
+  }
+
+  function startVsosh(ids, type = vsoshState.roundType, newTexts = false) {
     if (!ids.length) return;
-    vsoshState.round = startSession(ids, now(), 'vsosh', type);
-    vsoshState.draft = null;
+    const attempt = { round: startSession(ids, now(), 'vsosh', type), draft: null };
+    if (!newTexts) Object.assign(vsoshState, attempt);
+    else if (vsoshState.newTextId) vsoshState.newTextAttempts[vsoshState.newTextId] = attempt;
+    else vsoshState.newTexts = attempt;
     saveVsosh();
-    showRound('vsosh');
+    showRound('vsosh', newTexts ? 'new-run' : 'run');
   }
 
   const cardsWord = (n) => `${n} ${plural(n, 'карточка', 'карточки', 'карточек')}`;
 
   function vsoshTopicContents() {
-    const availableTopics = vsoshState.authoredOnly ? authoredVsoshTopics : olympiadPracticeTopics;
+    const availableTopics = new Set(vsoshPool([]).map((card) => card.questions[0].topicId));
     return el('fieldset', { class: 'filter practice-contents', id: 'vsoshTopics' },
       el('legend', { text: 'Темы' }),
       el('div', { class: 'contents' }, [...olympiadTopics].filter(([id]) => availableTopics.has(id)).map(([id, title]) => {
@@ -1685,15 +1733,22 @@
       })));
   }
 
-  function vsoshModes(sets) {
+  function vsoshModes(current) {
+    const modes = [
+      olympiadAllCards.length ? ['#/vsosh', 'Практика по темам'] : null,
+      olympiadSets.size ? ['#/vsosh/sets', 'Полные комплекты'] : null,
+      newTextCards.length ? [newTextsSetup, 'Новые тексты'] : null,
+    ].filter(Boolean);
+    if (modes.length < 2) return document.createDocumentFragment();
     return el('nav', { class: 'actions vsosh-modes', 'aria-label': 'Режим ВсОШ' },
-      el('a', { class: 'button alt', href: '#/vsosh', 'aria-current': sets ? null : 'page', text: 'Практика по темам' }),
-      el('a', { class: 'button alt', href: '#/vsosh/sets', 'aria-current': sets ? 'page' : null, text: 'Полные комплекты' }));
+      modes.map(([href, label]) => el('a', {
+        class: 'button alt', href, 'aria-current': href === current ? 'page' : null, text: label,
+      })));
   }
 
   function renderVsoshSetup() {
     view.classList.add('practice-setup');
-    if (olympiadSets.size) view.append(vsoshModes(false));
+    view.append(vsoshModes('#/vsosh'));
     const available = vsoshPool();
     const count = available.length;
     const countText = () => cardsWord(roundCount(vsoshState.size, count));
@@ -1709,7 +1764,14 @@
     }, 'Начать раунд');
     const round = vsoshState.round;
     const topics = vsoshState.topics.map((id) => olympiadTopics.get(id));
-    const summary = topics.length ? topics.join(' · ') : vsoshState.authoredOnly ? 'Авторские задания ВсОШ' : 'Все темы ВсОШ';
+    const sourceOptions = [
+      ['all', 'Все задания'],
+      vsoshAuthoredCards.length ? ['authored', 'Авторские · заключительный этап'] : null,
+      vsoshDraftCards.length ? ['drafts', 'Новые задания · черновики'] : null,
+    ].filter(Boolean);
+    const summary = topics.length ? topics.join(' · ')
+      : vsoshState.practiceSource === 'all' ? 'Все темы ВсОШ'
+      : sourceOptions.find(([value]) => value === vsoshState.practiceSource)[1];
     view.append(nextRound({
       compact: true, summary, start,
       notice: el('p', { class: 'sr', id: 'available', 'aria-live': 'polite', text: detail() }),
@@ -1718,15 +1780,16 @@
     }));
     view.append(el('div', { class: 'practice-settings vsosh-settings' }, roundModeControl(vsoshState, saveVsosh), size.node));
     if (vsoshState.roundType === 'training') view.append(trainingHint('карточек'));
-    if (authoredVsoshCards.length) view.append(el('fieldset', { class: 'filter' },
+    if (sourceOptions.length > 1) view.append(el('fieldset', { class: 'filter' },
       el('legend', { text: 'Источник' }),
-      el('div', { class: 'chips' }, [[false, 'Все задания'], [true, 'Авторские · заключительный этап']].map(([value, label]) =>
+      el('div', { class: 'chips' }, sourceOptions.map(([value, label]) =>
         el('label', { class: 'chip' }, el('input', {
-          type: 'radio', name: 'vsoshSource', checked: vsoshState.authoredOnly === value,
+          type: 'radio', name: 'vsoshSource', checked: vsoshState.practiceSource === value,
           dataset: { key: `vsoshSource:${value}` },
           onchange: () => {
-            vsoshState.authoredOnly = value;
-            if (value) vsoshState.topics = vsoshState.topics.filter((id) => authoredVsoshTopics.has(id));
+            vsoshState.practiceSource = value;
+            const availableTopics = new Set(vsoshSourceCards(value).map((card) => card.questions[0].topicId));
+            vsoshState.topics = vsoshState.topics.filter((id) => availableTopics.has(id));
             saveVsosh();
             render(false);
           },
@@ -1742,22 +1805,102 @@
     view.append(startBar(start, () => count ? `В раунд: ${countText()}` : 'Карточек нет'));
   }
 
-  function vsoshChoice(question, option, step, index, select) {
+  function renderVsoshNewTexts() {
+    view.classList.add('practice-setup');
+    function selectAttempt(id) {
+      vsoshState.newTextId = id;
+      saveVsosh();
+    }
+
+    function openText(card) {
+      selectAttempt(card.id);
+      const attempt = currentVsoshTextAttempt()?.round;
+      if (attempt && !attempt.finishedAt) showRound('vsosh', 'new-run');
+      else startVsosh([card.id], 'test', true);
+    }
+    const count = newTextCards.length;
+    view.append(vsoshModes(newTextsSetup), nextRound({
+      compact: true,
+      summary: 'Новые тексты',
+      detail: el('p', { class: 'practice-available',
+        text: `${count} ${plural(count, 'текст', 'текста', 'текстов')} · по 3 пропуска` }),
+      start: el('button', { class: 'button', type: 'button', dataset: { enter: '1' },
+        onclick: () => {
+          vsoshState.newTextId = null;
+          startVsosh(newTextCards.map((card) => card.id), 'test', true);
+        }, text: 'Начать подборку' }),
+      resume: resumeRoundLink('vsosh', vsoshState.newTexts.round, 'new-run', () => selectAttempt(null)),
+    }), el('ol', { class: 'vsosh-new-list', 'aria-label': 'Тексты подборки' }, newTextCards.map((card, index) => {
+      const attempt = vsoshState.newTextAttempts[card.id]?.round;
+      return el('li', {}, el('button', { class: 'button alt', type: 'button', onclick: () => openText(card) },
+        cellnum(index + 1), el('span', { lang: 'zh', text: card.context.label }),
+        attempt && !attempt.finishedAt ? el('span', { class: 'small muted', text: 'Продолжить' }) : null));
+    })));
+  }
+
+  const vsoshMeasure = document.createElement('canvas').getContext('2d');
+  const vsoshChoiceObserver = new ResizeObserver((entries) => {
+    for (const { target } of entries) {
+      if (!target.isConnected) vsoshChoiceObserver.unobserve(target);
+      else measureVsoshChoices(target);
+    }
+  });
+
+  function measureVsoshChoices(list) {
+    if (!list.clientWidth || !vsoshMeasure) return;
+    const compact = list.classList.contains('vsosh-compact') && window.matchMedia('(max-width: 600px)').matches;
+    const sizes = [...list.children].map((option) => {
+      const text = option.querySelector('.text');
+      const font = getComputedStyle(text);
+      const style = getComputedStyle(option);
+      const value = (key) => parseFloat(style[key]) || 0;
+      vsoshMeasure.font = `${font.fontWeight} ${font.fontSize} ${font.fontFamily}`;
+      const width = vsoshMeasure.measureText(text.textContent).width;
+      const badge = option.querySelector('.num').offsetWidth;
+      const chrome = value('paddingLeft') + value('paddingRight') + value('borderLeftWidth') + value('borderRightWidth');
+      const contents = compact ? Math.max(width, badge + 24) : width + badge + value('columnGap') + 24;
+      return Math.ceil(chrome + contents);
+    });
+    const gap = parseFloat(getComputedStyle(list).columnGap) || 0;
+    const fits = list.clientWidth >= Math.max(...sizes) * sizes.length + gap * (sizes.length - 1);
+    list.classList.toggle('row', fits);
+  }
+
+  function fitVsoshChoices(list, compact = false) {
+    list.classList.add('vsosh-adaptive');
+    if (compact) list.classList.add('vsosh-compact');
+    list.classList.remove('row');
+    list.style.setProperty('--choice-count', list.children.length);
+    vsoshChoiceObserver.observe(list);
+    return list;
+  }
+
+  document.fonts?.addEventListener('loadingdone', () => {
+    view.querySelectorAll('.vsosh-adaptive').forEach(measureVsoshChoices);
+  });
+
+  function vsoshOptionNumber(question, id) {
+    return question.options.findIndex((option) => option.id === id) + 1;
+  }
+
+  function vsoshChoice(question, option, step, index, select, number) {
     const correct = option.id === question.correctId;
     const chosen = option.id === step.choices[index];
     const state = step.checked ? (correct ? ' correct' : chosen ? ' wrong' : '') : '';
     const chinese = isChinese(option.text);
     return el('label', { class: `option vsosh-choice${state}` },
       el('input', { type: 'radio', name: `vsosh-${question.id}`, checked: chosen,
-        dataset: { key: `vsosh:${question.id}:${option.id}` }, onchange: () => select(index, option.id) }),
-      el('span', { class: 'num', text: option.id }),
+        dataset: { key: `vsosh:${question.id}:${option.id}`, option: number },
+        onchange: () => select(index, option.id) }),
+      el('span', { class: 'num', text: number }),
       el('span', { class: chinese ? 'text' : 'text plain', lang: chinese ? 'zh' : 'ru', text: option.text }));
   }
 
-  function vsoshOptions(question, step, index, select) {
+  function vsoshOptions(question, step, index, select, newTexts) {
     return el('fieldset', { class: 'vsosh-options', dataset: { gap: question.gapNumber }, disabled: step.checked },
       el('legend', { text: `Пропуск ${question.gapNumber}` }),
-      el('div', { class: 'options' }, question.options.map((option) => vsoshChoice(question, option, step, index, select))));
+      fitVsoshChoices(el('div', { class: 'options' }, question.options.map((option, i) =>
+        vsoshChoice(question, option, step, index, select, i + 1))), newTexts));
   }
 
   function vsoshStem(question, step, select) {
@@ -1768,14 +1911,15 @@
           question.stem.split(/(\{\{[A-D]\}\}[，。！？；：、]?)/g).map((part, index) => {
             if (index % 2 === 0) return part;
             const letter = part[2];
+            const number = vsoshOptionNumber(question, letter);
             const correct = letter === question.correctId;
             const chosen = letter === step.choices[0];
             const state = step.checked ? (correct ? ' correct' : chosen ? ' wrong' : '') : chosen ? ' selected' : '';
             return el('span', { class: 'vsosh-position-token' },
               el('button', { class: `vsosh-place${state}`, type: 'button', disabled: step.checked,
-                'aria-pressed': String(chosen), dataset: { option: String(question.options.findIndex((o) => o.id === letter) + 1) },
+                'aria-pressed': String(chosen), dataset: { option: number },
                 onclick: () => select(0, letter) },
-              el('span', { class: 'num', text: letter }),
+              el('span', { class: 'num', text: number }),
               step.checked && correct ? el('span', { lang: 'zh', text: question.insertionText }) : null),
               part.slice(5));
           })));
@@ -1793,7 +1937,7 @@
 
   function vsoshPassage(card, step) {
     const byNumber = new Map(card.questions.map((q, index) => [String(q.gapNumber), { q, index }]));
-    return el('div', { class: 'vsosh-passage', lang: 'zh' }, card.context.text.split('\n').map((paragraph) =>
+    return el('div', { class: 'vsosh-passage', lang: 'zh' }, card.context.text.split(/\n+/).map((paragraph) =>
       el('p', {}, paragraph.split(/\{\{(\d+)\}\}/g).map((part, index) => {
         if (index % 2 === 0) return part;
         const { q, index: gap } = byNumber.get(part);
@@ -1818,98 +1962,152 @@
     return el('a', { href: page ? `${url}#page=${page}` : url, target: '_blank', rel: 'noopener', text: label });
   }
 
+  function vsoshReviewLabel(question, id) {
+    const label = vsoshOptionNumber(question, id);
+    if (question.kind === 'wordPlacement') {
+      return [label, ' · ', el('span', { class: 'zh', lang: 'zh', text: question.insertionText })];
+    }
+    const word = question.options[label - 1]?.text || '';
+    return [label, ' · ', el('span', { class: isChinese(word) ? 'zh' : null, lang: isChinese(word) ? 'zh' : 'ru', text: word })];
+  }
+
+  function vsoshReview(question, chosen, headingId) {
+    const answer = explainChoice({ ...question, correctOptionId: question.correctId }, chosen);
+    const label = (id) => vsoshReviewLabel(question, id);
+    const headline = (id, kind) => [
+      kind === 'bad' ? 'Почему не ' : question.reviewNote ? 'По официальному ключу: ' : answer.correct ? 'Верно: ' : 'Верный ответ: ',
+      ...label(id),
+    ];
+    const translated = question.options.filter((option) => option.ru);
+    const grouped = !headingId;
+    const title = (id, kind) => el(grouped ? 'b' : 'h3', {
+      id: kind === 'ok' ? headingId : null,
+      class: kind === 'ok' && !grouped ? 'vsosh-answer' : null,
+    }, headline(id, kind));
+    return [
+      chosen == null ? el('p', { class: 'small muted', text: 'Нет ответа' }) : null,
+      chosen != null && !answer.correct ? el('div', { class: 'verdict bad' },
+        title(chosen, 'bad'), el('p', { text: answer.chosenExplanation })) : null,
+      el('div', { class: 'verdict ok' },
+        title(question.correctId, 'ok'), el('p', { text: answer.correctExplanation })),
+      question.reviewNote ? el('p', { class: 'small muted', text: question.reviewNote }) : null,
+      question.sentenceRu ? el('div', { class: 'vsosh-translation' },
+        el('b', { text: question.kind === 'passageGap' ? 'Фраза в тексте' : 'Перевод предложения' }),
+        el('p', { text: question.sentenceRu })) : null,
+      translated.length ? el('div', { class: 'vsosh-translation' },
+        el('b', { text: question.kind === 'wordPlacement' ? 'Места вставки' : 'Значения вариантов' }),
+        el('ul', {}, translated.map((option) => el('li', {}, label(option.id), ' — ', option.ru)))) : null,
+      answer.others.length ? el('details', { class: 'others vsosh-others' },
+        el('summary', { text: 'Остальные варианты' }),
+        el('ul', {}, answer.others.map((option) => el('li', {},
+          el('b', {}, 'Почему не ', label(option.id)),
+          el('p', { text: option.explanation }))))) : null,
+    ];
+  }
+
   function vsoshFeedback(card, step, source) {
     const q = card.questions[0];
-    const key = (item) => {
-      const value = item.insertionText || optionText(item, item.correctId);
-      return [item.correctId, ' ', el('span', { lang: isChinese(value) ? 'zh' : 'ru', text: value })];
-    };
+    const hasReview = Boolean(q.explanation?.correct);
     const note = card.context?.editorNote || q.editorNote;
     const link = vsoshSourceLink(source, q);
     const headingId = `vsosh-verdict-${card.id}`;
-    const box = el('section', { class: 'feedback vsosh-feedback', tabindex: '-1', 'aria-labelledby': headingId,
-      'aria-live': card.context ? null : 'polite' });
+    const box = el('section', { class: `feedback vsosh-feedback${card.context && hasReview ? ' vsosh-text-review' : ''}`,
+      tabindex: '-1', 'aria-labelledby': headingId, 'aria-live': card.context ? null : 'polite' });
     if (card.context) {
-      box.append(el('h3', { id: headingId, text: `Верных ответов ${vsoshScore(card, step.choices)} из ${card.questions.length}` }),
-        el('ul', {}, card.questions.map((item, index) => {
+      const score = `Верных ответов ${vsoshScore(card, step.choices)} из ${card.questions.length}`;
+      if (hasReview) {
+        box.append(el('h3', { id: headingId, text: 'Разбор ответов' }),
+          el('p', { class: 'vsosh-review-score small', text: score }),
+          ...card.questions.map((item, index) => el('div', {
+            class: 'vsosh-answer vsosh-review-gap', tabindex: '-1', dataset: { gap: item.gapNumber },
+          }, el('h4', { class: 'vsosh-review-label', text: `Пропуск ${item.gapNumber}` }),
+          el('div', { class: 'vsosh-review-notes' }, vsoshReview(item, step.choices[index])))),
+        );
+        if (card.context.textRu) box.append(el('div', { class: 'vsosh-translation' },
+          el('b', { text: 'Перевод текста' }),
+          card.context.textRu.split(/\n+/).map((text) => el('p', { text }))));
+      } else {
+        box.append(el('h3', { id: headingId, text: score }), el('ul', {}, card.questions.map((item, index) => {
           const correct = step.choices[index] === item.correctId;
-          return el('li', { class: 'vsosh-answer', tabindex: '-1', dataset: { gap: item.gapNumber } }, `№ ${item.gapNumber} · `,
-            el('b', { class: correct ? 'ok-mark' : 'bad-mark',
+          return el('li', { class: 'vsosh-answer', tabindex: '-1', dataset: { gap: item.gapNumber } },
+            `№ ${item.gapNumber} · `, el('b', { class: correct ? 'ok-mark' : 'bad-mark',
               text: correct ? 'Верно' : step.choices[index] == null ? 'Нет ответа' : 'Ошибка' }),
-            correct ? ' · ' : '. Верный ответ ', key(item));
+            correct ? ' · ' : '. Верный ответ ', vsoshReviewLabel(item, item.correctId));
         })));
-    } else if (authoredVsoshIds.has(card.id)) {
-      const chosen = step.choices[0];
-      const answer = explainChoice({ ...q, correctOptionId: q.correctId }, chosen);
-      const label = (id, word) => [
-        `${q.options.findIndex((option) => option.id === id) + 1} · `,
-        el('span', { class: 'zh', lang: 'zh', text: word }),
-      ];
-      if (!answer.correct && chosen != null) box.append(el('div', { class: 'verdict bad' },
-        el('h3', {}, 'Почему не ', label(chosen, answer.chosenText)),
-        el('p', { text: answer.chosenExplanation })));
-      box.append(el('div', { class: 'verdict ok' },
-        el('h3', { class: 'vsosh-answer', id: headingId }, answer.correct ? 'Верно: ' : 'Верный ответ: ',
-          label(q.correctId, answer.correctText)),
-        el('p', { text: answer.correctExplanation })));
-      box.append(el('div', { class: 'vsosh-translation' },
-        el('h4', { text: 'Перевод предложения' }),
-        el('p', { text: q.sentenceRu })));
-      box.append(el('div', { class: 'vsosh-translation' },
-        el('h4', { text: 'Значения вариантов' }),
-        el('ol', {}, q.options.map((option) => el('li', {},
-          el('span', { class: 'zh', lang: 'zh', text: option.text }), ' — ', option.ru)))));
+      }
+    } else if (hasReview) {
+      box.append(...vsoshReview(q, step.choices[0], headingId).filter(Boolean));
     } else {
       const correct = step.choices[0] === q.correctId;
       const verdict = correct ? 'Верно · ' : step.choices[0] == null ? 'Нет ответа. Верный ответ ' : 'Ошибка. Верный ответ ';
       box.append(el('div', { class: `verdict ${correct ? 'ok' : 'bad'}` },
-        el('h3', { class: 'vsosh-answer', id: headingId }, verdict, key(q))));
+        el('h3', { class: 'vsosh-answer', id: headingId }, verdict, vsoshReviewLabel(q, q.correctId))));
     }
     if (note) box.append(el('p', { class: 'small muted', text: note }));
     if (link) box.append(el('p', { class: 'small' }, link));
     return box;
   }
 
-  function vsoshQuestion(card, step, select) {
+  function vsoshKeys(card, fullSet) {
+    const options = Math.max(...card.questions.map((question) => question.options.length));
+    return el('p', { class: 'keys' }, 'Клавиши ', el('kbd', { text: `1–${options}` }), ' — выбор ответа',
+      card.context && !fullSet
+        ? [', ', el('kbd', { text: 'Enter' }), ' — проверка после заполнения всех пропусков. После проверки ',
+          el('kbd', { text: 'Пробел' }), ' или ', el('kbd', { text: 'Enter' }), ' — дальше.']
+        : [card.context ? '. После заполнения пропусков ' : '. После выбора ', el('kbd', { text: 'Пробел' }), ' или ', el('kbd', { text: 'Enter' }), ' — дальше.']);
+  }
+
+  function vsoshQuestion(card, step, select, newTexts = false, fullSet = false, showKeys = false) {
     const question = card.questions[0];
     const source = olympiadSources.get(question.sourceId);
-    const authored = authoredVsoshIds.has(card.id);
+    const draft = vsoshDraftIds.has(card.id);
+    const authored = vsoshAuthoredIds.has(card.id);
     const article = el('article', { class: 'question vsosh-card', dataset: { card: '1' } },
       el('div', { class: 'pills' },
-        authored ? null : el('span', { class: 'pill task', text: card.context
+        draft || authored ? null : el('span', { class: 'pill task', text: card.context
           ? `№ ${question.taskNumber}–${card.questions.at(-1).taskNumber}` : `№ ${question.taskNumber}` }),
         el('span', { class: 'pill quiet', text: olympiadTopics.get(question.topicId) }),
         source ? el('span', { class: 'pill quiet', text: `${vsoshStages[source.stage]} · ${vsoshSeason(source.season)}` }) : null,
+        newTexts ? el('span', { class: 'pill draft', text: 'Новый текст' }) : null,
+        draft ? el('span', { class: 'pill draft', text: 'Авторское · черновик' }) : null,
         authored ? el('span', { class: 'pill quiet', text: 'Авторское задание' }) : null),
+      newTexts ? el('h3', { class: 'vsosh-text-title', lang: 'zh', text: card.context.label }) : null,
       el('p', { class: 'instruction', tabindex: '-1', dataset: { focus: '1' } },
-        question.prompt, question.insertionText ? [' ', el('b', { lang: 'zh', text: question.insertionText })] : null));
+        question.prompt, question.insertionText
+          ? [' ', el('b', { class: 'vsosh-insertion', lang: 'zh', text: `「${question.insertionText}」` })]
+          : null));
     if (card.context) {
       article.append(vsoshPassage(card, step),
-        el('div', { class: 'vsosh-groups' }, card.questions.map((q, index) => vsoshOptions(q, step, index, select))));
+        el('div', { class: `vsosh-groups${newTexts ? ' vsosh-text-rows' : ''}` },
+          card.questions.map((q, index) => vsoshOptions(q, step, index, select, newTexts))));
     } else {
       article.append(vsoshStem(question, step, select));
       if (question.kind !== 'wordPlacement') article.append(optionButtons({ ...question, correctOptionId: question.correctId },
-        { selected: step.choices[0], reveal: step.checked, labels: !authored, onChoose: (id) => select(0, id) }));
+        { selected: step.choices[0], reveal: step.checked, adaptive: true, onChoose: (id) => select(0, id) }));
     }
+    if (showKeys) article.append(vsoshKeys(card, fullSet));
     return article;
   }
 
-  function renderVsoshRound(round) {
+  function renderVsoshRound(round, newTexts = false) {
+    const state = newTexts ? currentVsoshTextAttempt() : vsoshState;
+    const byId = newTexts ? newTextsById : olympiadById;
     const id = round.ids[round.index];
-    const card = olympiadById.get(id);
+    const card = byId.get(id);
     const answer = roundAnswer(round);
     const step = { checked: answer !== undefined,
-      choices: answer !== undefined ? [...answer] : vsoshState.draft ?? card.questions.map(() => null) };
+      choices: answer !== undefined ? [...answer] : state.draft ?? card.questions.map(() => null) };
     const multiple = Boolean(card.context) && card.questions.length > 1;
     const training = isTrainingRound(round);
     const pending = training ? round.retryQueue.length : 0;
     const originals = initialRoundIds(round);
-    const score = originals.reduce((sum, id) => sum + vsoshScore(olympiadById.get(id), round.answers[id]), 0);
-    const total = originals.reduce((sum, id) => sum + olympiadById.get(id).questions.length, 0);
-    const marks = round.ids.map((id, i) => markOf(roundAnswer(round, i), olympiadById.get(id).correctOptionId));
+    const score = originals.reduce((sum, id) => sum + vsoshScore(byId.get(id), round.answers[id]), 0);
+    const total = originals.reduce((sum, id) => sum + byId.get(id).questions.length, 0);
+    const marks = round.ids.map((id, i) => markOf(roundAnswer(round, i), byId.get(id).correctOptionId));
     marks.push(...Array(pending).fill(null));
     view.append(sessionBar({
-      exit: '#/vsosh/setup', index: round.index, marks, label: `Карточка ${round.index + 1} из ${marks.length}`,
+      exit: vsoshRoundSetup(newTexts), index: round.index, marks,
+      label: `${newTexts ? 'Текст' : 'Карточка'} ${round.index + 1} из ${marks.length}`,
       right: training ? `с первого раза: ${score} из ${total}` : `верно: ${score}`, useTicks: originals.length <= 30,
     }));
     if (training) view.append(el('p', { class: 'pills round-mode-status' },
@@ -1917,17 +2115,18 @@
       round.ids.indexOf(id) < round.index ? el('span', { class: 'pill quiet repeat-mark', text: 'Повтор ошибки' }) : null));
 
     function submit() {
-      if (vsoshState.round !== round || step.checked || step.choices.includes(null)) return;
+      if (state.round !== round || step.checked || step.choices.includes(null)) return;
       const chosen = step.choices.join('');
-      vsoshState.round = answerRound(round, chosen, chosen === card.correctOptionId);
-      vsoshState.draft = null;
+      state.round = answerRound(round, chosen, chosen === card.correctOptionId);
+      state.draft = null;
       saveVsosh();
       render(false);
       if (multiple) view.querySelector('.vsosh-feedback').focus();
       else afterAnswer();
     }
     const check = multiple && !step.checked ? el('button', {
-      class: 'button', type: 'button', disabled: step.choices.includes(null), onclick: submit,
+      class: 'button', type: 'button', id: 'vsoshCheck', dataset: { enter: '1' },
+      disabled: step.choices.includes(null), onclick: submit,
     }, 'Проверить ответы') : null;
     view.append(vsoshQuestion(card, step, (index, option) => {
       step.choices[index] = option;
@@ -1935,10 +2134,10 @@
         submit();
         return;
       }
-      vsoshState.draft = step.choices;
+      state.draft = step.choices;
       saveVsosh();
       check.disabled = step.choices.includes(null);
-    }));
+    }, newTexts, false, true));
     if (!step.checked) {
       if (check) view.append(el('div', { class: 'actions' }, check));
       return;
@@ -1948,21 +2147,22 @@
     view.append(el('div', { class: 'actions dock' }, el('button', {
       class: 'button', type: 'button', dataset: { enter: '1', space: '1' },
       onclick: () => {
-        if (vsoshState.round !== round) return;
-        vsoshState.round = advanceRound(round, now());
+        if (state.round !== round) return;
+        state.round = advanceRound(round, now());
         saveVsosh();
         render();
       },
     }, last ? (pending ? 'Повторить ошибку' : 'Итог раунда') : 'Дальше')));
   }
 
-  function renderVsoshResult(round) {
+  function renderVsoshResult(round, newTexts = false) {
+    const byId = newTexts ? newTextsById : olympiadById;
     const ids = initialRoundIds(round);
     const training = isTrainingRound(round);
     const type = training ? 'training' : 'test';
-    const retries = training ? trainingResult(round, olympiadById) : null;
+    const retries = training ? trainingResult(round, byId) : null;
     const results = ids.map((id) => {
-      const card = olympiadById.get(id);
+      const card = byId.get(id);
       return { card, score: vsoshScore(card, round.answers[id]), total: card.questions.length };
     });
     const score = results.reduce((sum, result) => sum + result.score, 0);
@@ -1973,17 +2173,19 @@
     if (retries) view.append(el('p', { class: 'training-result',
       text: `Карточек на повторе ${retries.repeated} · исправлено: ${retries.corrected} · с ошибками ${retries.remaining}.` }));
     view.append(el('div', { class: 'actions result-actions' },
-      wrong.length ? el('button', { class: 'button', type: 'button', onclick: () => startVsosh(shuffle(wrong), type) },
+      wrong.length ? el('button', { class: 'button', type: 'button', onclick: () => startVsosh(shuffle(wrong), type, newTexts) },
         `Повторить ошибки ${training ? 'первой попытки' : 'раунда'} · ${wrong.length}`) : null,
-      el('a', { class: wrong.length ? 'button alt' : 'button', href: '#/vsosh/setup', text: 'Новый раунд' }),
-      el('button', { class: 'button ghost', type: 'button', onclick: () => startVsosh(ids, type) }, 'Решить эти задания заново')));
-    view.append(vsoshResults(results, (card) => [...round.answers[card.id]], retries?.repeats));
+      el('a', { class: wrong.length ? 'button alt' : 'button', href: vsoshRoundSetup(newTexts),
+        text: newTexts ? 'К новым текстам' : 'Новый раунд' }),
+      el('button', { class: 'button ghost', type: 'button', onclick: () => startVsosh(ids, type, newTexts) }, 'Решить эти задания заново')));
+    view.append(vsoshResults(results, (card) => [...round.answers[card.id]], retries?.repeats, newTexts));
   }
 
-  function vsoshResults(results, choicesFor, repeats = {}) {
-    return el('ul', { class: 'results' }, results.map(({ card, score, total }) => {
+  function vsoshResults(results, choicesFor, repeats = {}, newTexts = false) {
+    return el('ul', { class: 'results' }, results.map(({ card, score, total }, index) => {
       const question = card.questions[0];
-      const authored = authoredVsoshIds.has(card.id);
+      const authored = vsoshDraftIds.has(card.id) || vsoshAuthoredIds.has(card.id);
+      const number = newTexts ? newTextCards.indexOf(card) + 1 : authored ? index + 1 : question.taskNumber;
       const body = el('div', { class: 'body' });
       const choices = choicesFor(card);
       const retry = repeats[card.id];
@@ -1995,20 +2197,21 @@
           if (!event.currentTarget.open || body.childElementCount) return;
           if (retry !== undefined) {
             const answers = card.questions.map((q, i) => {
+              const optionNumber = vsoshOptionNumber(q, retry[i]);
               const choice = optionText(q, retry[i]);
-              const label = authored ? q.options.findIndex((option) => option.id === retry[i]) + 1 : retry[i];
-              return card.context ? `№ ${q.gapNumber} ${label} ${choice}`
-                : q.kind === 'wordPlacement' ? label : `${label} ${choice}`;
+              return card.context ? `№ ${q.gapNumber}, вариант ${optionNumber} · ${choice}`
+                : q.kind === 'wordPlacement' ? `позиция ${optionNumber}` : `${optionNumber} · ${choice}`;
             });
             body.append(el('p', { class: 'small muted vsosh-retry' },
               `На повторе ${vsoshScore(card, retry)} из ${total}. ${answers.join(' · ')}. Ниже первая попытка.`));
           }
           const step = { checked: true, choices };
-          body.append(vsoshQuestion(card, step, () => {}), vsoshFeedback(card, step, olympiadSources.get(question.sourceId)));
+          body.append(vsoshQuestion(card, step, () => {}, newTexts),
+            vsoshFeedback(card, step, olympiadSources.get(question.sourceId)));
         },
       }, el('summary', {},
-        authored ? null : cellnum(question.taskNumber),
-        el('span', { class: card.context ? 'vsosh-result-text' : 'zh', lang: card.context ? 'ru' : 'zh',
+        cellnum(number),
+        el('span', { class: card.context ? 'vsosh-result-text' : 'zh', lang: card.context && !newTexts ? 'ru' : 'zh',
           text: card.context ? (card.context.label || olympiadTopics.get(question.topicId))
             : question.stem.replace(/\{\{[A-D]\}\}/g, '□') }),
         el('span', { class: score === total || corrected ? 'ok-mark' : 'bad-mark', text: status })),
@@ -2060,7 +2263,7 @@
       } }, inSeason.map(({ source }) => el('option', {
         value: source.stage, selected: source.stage === stage, text: vsoshStages[source.stage],
       }))));
-    view.append(vsoshModes(true),
+    view.append(vsoshModes('#/vsosh/sets'),
       el('h2', { tabindex: '-1', dataset: { focus: '1' }, text: 'Лексика и грамматика' }),
       el('p', { class: 'lead', text: detail }),
       el('div', { class: 'filters-row vsosh-set-settings' }, seasonField, stageField, start));
@@ -2071,8 +2274,9 @@
     return answerSheet(set.positions.map(({ question }) => {
       const answer = attempt.answers[question.id];
       return {
-        number: question.taskNumber, answer, correct: answer === question.correctId,
-        current: question.id === activeQuestionId,
+        number: question.taskNumber,
+        answer: answer == null ? null : String(vsoshOptionNumber(question, answer)),
+        correct: answer === question.correctId, current: question.id === activeQuestionId,
       };
     }), { reveal, className: 'sheet vsosh-set-sheet', onPick: (i) => {
       const { cardIndex, question } = set.positions[i];
@@ -2117,6 +2321,7 @@
     const finish = () => update({ ...attempt, finishedAt: now() });
     const finishButton = el('button', {
       class: last ? 'button' : 'button ghost', type: 'button', id: 'finishVsoshSet',
+      dataset: last && step.choices.every((choice) => choice !== null) ? { enter: '1', space: '1' } : null,
       onclick: () => {
         if (!missing.length) { finish(); return; }
         vsoshSetConfirm = true;
@@ -2141,7 +2346,7 @@
         const id = card.questions[index].id;
         update(answerSession({ ...attempt, activeQuestionId: id }, id, option), false);
         if (!card.context) focusAfterAnswer();
-      }));
+      }, false, true, true));
     if (!last) view.append(el('div', { class: 'actions' }, finishButton));
     if (vsoshSetConfirm && missing.length) {
       view.append(el('div', { class: 'notice warn' },
@@ -2149,6 +2354,8 @@
           text: `Без ответа остались задания № ${missing.map(({ question }) => question.taskNumber).join(', ')}. За них баллы не начисляются.` }),
         el('div', { class: 'actions' },
           el('button', { class: 'button', type: 'button', id: 'confirmVsoshSet', 'aria-describedby': 'vsoshSetMissing',
+            // Удержание Enter на «Завершить комплект» не заменяет отдельное подтверждение.
+            onkeydown: (event) => { if (event.key === 'Enter' && event.repeat) event.preventDefault(); },
             onclick: finish }, 'Всё равно завершить'),
           el('button', { class: 'button ghost', type: 'button', onclick: () => {
             vsoshSetConfirm = false;
@@ -2509,7 +2716,7 @@
         el('p', {}, el('span', { id: 'bankCount', text: count }),
           `. Задания — ${sourceNote}, формат ЕГЭ ${DATA.meta.formatYear}. Разборы и правила проверены автором тренажёра.`),
         el('p', { class: 'section-title', text: 'Прогресс' }),
-        el('p', { text: 'Прогресс хранится только в этом браузере на этом устройстве. Перенести его на другое устройство можно файлом: «Банк» → «Сохранить в файл».' }),
+        el('p', { text: 'Прогресс ЕГЭ хранится в этом браузере. Чтобы перенести его на другое устройство, откройте «Банк» и нажмите «Сохранить в файл».' }),
         toneQuestions.length ? [
           el('p', { class: 'section-title', text: 'Тоны' }),
           el('p', { text: `Вкладка «Тоны» — отдельная тренировка к заданию 15: ${toneQuestions.length} ${plural(toneQuestions.length, 'слово', 'слова', 'слов')} HSK 2.0 уровней 1–4, по два-три иероглифа. Раунд идёт как в практике, ошибки раунда можно повторить; ссылки учителю и отчёта у этой вкладки нет.` }),
@@ -2517,7 +2724,8 @@
         hasOlympiad ? [
           el('p', { class: 'section-title', text: 'ВсОШ' }),
           el('p', { text: 'В практике по темам обычный ответ проверяется сразу. В общем тексте заполните все пропуски и проверьте их вместе. Клавиша Tab переводит фокус между пропусками, стрелки выбирают вариант.' }),
-          olympiadSets.size ? el('p', { text: 'В полных комплектах выберите сезон и этап. Ответы можно менять до завершения, а итог и разбор появятся после него. Начатый комплект можно продолжить после перезагрузки вкладки.' }) : null,
+          olympiadSets.size ? el('p', { text: 'В полных комплектах выберите сезон и этап. Ответы можно менять до завершения, а итог и разбор появятся после него.' }) : null,
+          el('p', { text: 'Попытки ВсОШ сохраняются в текущей вкладке, в том числе после её перезагрузки.' }),
         ] : null,
         el('p', { class: 'section-title', text: 'Клавиши' }),
         el('p', {}, el('kbd', { text: '1' }), '–', el('kbd', { text: '4' }), ' выбирают один ответ. ',
@@ -2706,10 +2914,26 @@
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleStartBar);
 
   document.addEventListener('keydown', (event) => {
-    if (event.altKey || event.ctrlKey || event.metaKey) return;
+    if (event.altKey || event.ctrlKey || event.metaKey || event.isComposing) return;
     const tag = (event.target.tagName || '').toLowerCase();
-    if (tag === 'input' || tag === 'select' || tag === 'textarea') return;
+    const activeGroup = event.target.closest?.('.vsosh-options');
+    if ((tag === 'input' && !activeGroup) || tag === 'select' || tag === 'textarea') return;
     if (/^[1-4]$/.test(event.key)) {
+      if (event.repeat) return;
+      const groups = [...view.querySelectorAll('[data-card] .vsosh-options:not([disabled])')];
+      if (groups.length) {
+        const group = groups.includes(activeGroup) ? activeGroup
+          : groups.find((node) => !node.querySelector(':checked')) ?? groups[0];
+        const input = group.querySelector(`input[data-option="${event.key}"]`);
+        if (!input) return;
+        event.preventDefault();
+        const following = groups.slice(groups.indexOf(group) + 1).find((node) => !node.querySelector(':checked'));
+        input.click();
+        if (following) view.querySelector(`.vsosh-options[data-gap="${following.dataset.gap}"] input`)?.focus();
+        else (view.querySelector('#vsoshCheck:not(:disabled), .dock [data-enter]:not(:disabled)')
+          ?? view.querySelector(`.vsosh-options[data-gap="${group.dataset.gap}"] input:checked`))?.focus();
+        return;
+      }
       const button = view.querySelector(`[data-card] button[data-option="${event.key}"]:not(:disabled)`);
       if (button) {
         event.preventDefault();
@@ -2722,7 +2946,7 @@
     const mark = event.key === 'Enter' ? 'enter' : event.key === ' ' ? 'space' : null;
     // Удержанная клавиша не пролистывает экраны подряд.
     if (mark && event.repeat) return;
-    if (mark && tag !== 'button' && tag !== 'a' && tag !== 'summary') {
+    if (mark && tag !== 'button' && tag !== 'a' && tag !== 'summary' && (!activeGroup || mark === 'enter' || event.target.checked)) {
       const next = view.querySelector(`[data-${mark}]:not(:disabled)`);
       if (next) {
         event.preventDefault();
@@ -2810,5 +3034,9 @@
   const reloaded = window.performance.getEntriesByType('navigation')[0]?.type === 'reload';
   if (initialRound && (!initialRound.finishedAt || reloaded)) activeRoundPath = `#/${initialRoute.name}/run`;
   if (reloaded && initialRoute.name === 'vsosh' && initialRoute.arg === 'set') activeRoundPath = '#/vsosh/set';
+  if (initialRoute.name === 'vsosh' && initialRoute.arg === 'new-run') {
+    const initialTextRound = currentVsoshTextAttempt()?.round;
+    if (initialTextRound && (!initialTextRound.finishedAt || reloaded)) activeRoundPath = '#/vsosh/new-run';
+  }
   render(false);
 })();

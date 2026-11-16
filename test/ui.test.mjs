@@ -126,6 +126,87 @@ function olympiadPage() {
   });
 }
 
+test('ВсОШ: удержание Enter не подтверждает сдачу комплекта', { skip }, async () => {
+  const { page, context, errors } = await open(olympiadPage(), { hash: '#/vsosh/sets' });
+  try {
+    await page.getByRole('button', { name: 'Начать комплект' }).click();
+    await page.locator('#finishVsoshSet').focus();
+    await page.keyboard.down('Enter');
+    const confirm = page.locator('#confirmVsoshSet');
+    assert.equal(await confirm.evaluate((button) => button === document.activeElement), true);
+    await page.keyboard.down('Enter');
+    await page.keyboard.up('Enter');
+    assert.equal(await confirm.isVisible(), true);
+    assert.equal(await page.locator('.score').count(), 0);
+    await page.keyboard.press('Enter');
+    await see(page, '.score', /0 из 6/);
+    assert.deepEqual(errors, []);
+  } finally {
+    await context.close();
+  }
+});
+
+test('ВсОШ: подборка текстов и отдельные тексты сохраняются раздельно', { skip }, async () => {
+  const file = join(work, 'vsosh-new-texts.json');
+  writeFileSync(file, JSON.stringify({
+    instruction: 'Заполните пропуски',
+    passages: ['第一篇', '第二篇', '第三篇'].map((title, index) => ({
+      id: `text-${index + 1}`, title, text: '{{18}}……{{19}}……{{20}}。',
+      gaps: [18, 19, 20].map((number) => ({
+        number, options: { A: '一', B: '二', C: '三', D: '四' }, correctId: 'A',
+        explanation: { correct: 'Верный вариант', options: { B: 'Второй', C: 'Третий', D: 'Четвёртый' } },
+      })),
+    })),
+  }));
+  const url = buildPage('vsosh-new-texts', { drafts: true, args: ['--vsosh-new-texts', file] });
+  const { page, context, errors } = await open(url, { hash: '#/vsosh/new-texts' });
+  try {
+    const exit = page.getByRole('link', { name: 'Выйти', exact: true });
+    const card = page.locator('.vsosh-new-list button');
+    const gap = page.locator('.vsosh-options[data-gap="18"] input');
+    await page.getByRole('button', { name: 'Начать подборку' }).click();
+    await gap.nth(1).check();
+    await exit.click();
+    await card.nth(1).click();
+    await gap.nth(2).check();
+    await page.reload();
+    assert.equal(await gap.nth(2).isChecked(), true);
+    await exit.click();
+    await card.nth(2).click();
+    await gap.nth(3).check();
+    await exit.click();
+    await page.getByRole('link', { name: /^Продолжить раунд/ }).click();
+    assert.match(await page.locator('.progress').innerText(), /Текст 1 из 3/);
+    assert.equal(await gap.nth(1).isChecked(), true);
+    await exit.click();
+    await card.nth(1).click();
+    assert.equal(await gap.nth(2).isChecked(), true);
+    await exit.click();
+    await card.nth(2).click();
+    assert.equal(await gap.nth(3).isChecked(), true);
+
+    // Формат старой сборки: в newTexts могла лежать незавершённая попытка одного текста.
+    await page.evaluate(() => {
+      const key = 'ege-lg-trainer:vsosh-session';
+      const legacy = JSON.parse(sessionStorage.getItem(key));
+      legacy.newTexts = legacy.newTextAttempts[legacy.newTextId];
+      delete legacy.newTextAttempts;
+      delete legacy.newTextId;
+      sessionStorage.setItem(key, JSON.stringify(legacy));
+    });
+    await page.reload();
+    assert.match(await page.locator('.progress').innerText(), /Текст 1 из 1/);
+    assert.equal(await gap.nth(3).isChecked(), true);
+    await exit.click();
+    assert.equal(await page.getByRole('link', { name: /^Продолжить раунд/ }).count(), 0);
+    await card.nth(2).click();
+    assert.equal(await gap.nth(3).isChecked(), true);
+    assert.deepEqual(errors, []);
+  } finally {
+    await context.close();
+  }
+});
+
 test('ВсОШ: общий текст проверяется целиком, а ответы сохраняются после перезагрузки', { skip }, async () => {
   const { page, context, errors } = await open(olympiadPage(), { width: 360 });
   try {
@@ -199,10 +280,10 @@ test('ВсОШ: место слова выбирается в предложен
     await page.getByRole('button', { name: 'Начать раунд', exact: true }).first().click();
     await see(page, '.instruction', /三倍/);
     const positions = page.locator('.vsosh-placement').getByRole('button');
-    assert.equal(await positions.count(), 4);
+    assert.deepEqual(await positions.locator('.num').allTextContents(), ['1', '2', '3', '4']);
     assert.equal(await page.getByRole('button', { name: /Проверить ответ/ }).count(), 0);
     await page.keyboard.press('4');
-    await see(page, '.vsosh-answer', /Верно/);
+    await see(page, '.vsosh-answer', /Верно.*4.*三倍/);
     assert.equal(await page.locator('.vsosh-feedback').getAttribute('aria-live'), 'polite');
     await page.getByRole('link', { name: 'Практика', exact: true }).click();
     assert.equal(new URL(page.url()).hash, '#/practice');
@@ -234,7 +315,7 @@ test('ВсОШ: длинный вариант проверяется сразу,
     await see(page, '.score', /0 из 1/);
     await see(page, '.training-result', /исправлено: 1/);
     await page.locator('.results summary').click();
-    await see(page, '.vsosh-retry', /На повторе 1 из 1.*Хочется.*первая попытка/);
+    await see(page, '.vsosh-retry', /На повторе 1 из 1.*3 · Хочется.*первая попытка/);
     assert.deepEqual(errors, []);
   } finally {
     await context.close();
@@ -297,7 +378,7 @@ test('ВсОШ: полный комплект сохраняет ответы и
     await see(page, '.vsosh-card .pill.quiet', 'Послелоги');
     await page.keyboard.press('1');
     await page.keyboard.press('2');
-    await see(page, '.sheet .cell.current .mark', 'B');
+    await see(page, '.sheet .cell.current .mark', '2');
     assert.equal(await page.locator('.vsosh-feedback, .option.correct, .option.wrong').count(), 0);
 
     await cell(25).click();
@@ -1744,7 +1825,7 @@ test('справка: кнопка в шапке, описание и ссылк
   assert.equal(await page.getByRole('link', { name: 'Справка' }).getAttribute('aria-current'), 'page');
   await see(page, '#view', /Ошибку здесь разбирают на том варианте, который вы выбрали/);
   await see(page, '#bankCount', /16 заданий · 2 правила/);
-  await see(page, '#view', /Прогресс хранится/);
+  await see(page, '#view', /Прогресс ЕГЭ хранится в этом браузере/);
   await page.getByRole('link', { name: /сводка отчётов/ }).click();
   await see(page, 'h2', /Результаты класса/);
   assert.deepEqual(errors, []);

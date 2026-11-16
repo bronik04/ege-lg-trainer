@@ -303,9 +303,13 @@ kbd {
 .option.wrong::after { content: "✗"; color: var(--red); font-weight: 800; }
 
 /* ВсОШ: текст читается целиком, номера в тексте совпадают с группами ответов. */
-.vsosh-modes { display: inline-grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 100%; margin: 0 0 20px; }
+.vsosh-modes { display: inline-grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); max-width: 100%; margin: 0 0 20px; }
 .vsosh-modes .button { min-width: 0; padding-inline: 12px; font-size: .9rem; line-height: 1.2; }
 .vsosh-modes [aria-current="page"] { border-color: var(--pen); color: var(--pen); }
+.vsosh-new-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr)); gap: 8px; padding: 0; list-style: none; }
+.vsosh-new-list .button { width: 100%; justify-content: flex-start; padding: 8px 12px; text-align: start; }
+.vsosh-new-list [lang="zh"], .vsosh-text-title { font: 600 1.2rem/1.45 var(--zh); }
+.vsosh-feedback .vsosh-answer + .vsosh-answer { margin-top: 8px; }
 .vsosh-set-title { margin: 0; font-size: 1.25rem; }
 .vsosh-card { min-width: 0; }
 .vsosh-passage {
@@ -323,10 +327,9 @@ kbd {
 .vsosh-gap.correct, .vsosh-gap.wrong { font: inherit; line-height: 1.5; }
 .vsosh-gap.correct { border-color: var(--jade); color: var(--jade); }
 .vsosh-gap.wrong { border-color: var(--red); color: var(--red); }
-.vsosh-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.vsosh-groups { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
 .vsosh-options, .vsosh-placement { min-width: 0; margin: 0; padding: 0; border: 0; }
 .vsosh-options legend { padding: 0; margin-bottom: 5px; color: var(--muted); font-size: .86rem; font-weight: 650; }
-.vsosh-options .options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .vsosh-choice { position: relative; min-width: 0; cursor: pointer; }
 .vsosh-card .option .text.plain { white-space: normal; }
 .vsosh-choice input {
@@ -343,6 +346,16 @@ kbd {
 .vsosh-choice:has(input:disabled):not(.correct):hover { background: var(--sheet); }
 .vsosh-groups .vsosh-choice { min-height: 46px; padding: 5px 8px; gap: 7px; }
 .vsosh-groups .vsosh-choice .text { font-size: 1.15rem; }
+.vsosh-text-rows { gap: 12px; }
+.vsosh-text-rows .options { gap: 7px; }
+.vsosh-text-rows .vsosh-choice { grid-template-columns: auto minmax(0, 1fr); }
+.vsosh-text-rows .vsosh-choice .text { grid-column: 2; grid-row: 1; padding-inline-end: 16px; }
+.vsosh-text-rows .option::after { position: absolute; inset: 50% 8px auto auto; transform: translateY(-50%); }
+.vsosh-text-rows .vsosh-choice:has(input:disabled):not(.correct, .wrong) {
+  border-color: var(--line-quiet); color: var(--muted);
+}
+.options.vsosh-adaptive:not(.row) { grid-template-columns: minmax(0, 1fr); }
+.options.vsosh-adaptive.row { grid-template-columns: repeat(var(--choice-count), minmax(0, 1fr)); }
 .vsosh-place {
   position: relative; display: inline-flex; justify-content: center; align-items: center; gap: .25em;
   min-width: 44px; min-height: 44px; padding: 0 5px; vertical-align: baseline;
@@ -350,6 +363,10 @@ kbd {
 }
 .vsosh-place .num { font: 700 .85rem var(--ui); color: var(--pen); }
 .vsosh-place:hover:not(:disabled) { background: var(--surface-hover); }
+.vsosh-insertion {
+  display: inline-block; font-family: var(--zh);
+  font-size: clamp(1.75rem, 4vw, 2.25rem); line-height: 1.2;
+}
 .vsosh-placement .stem { font-size: clamp(1.35rem, 4vw, 1.85rem); line-height: 2.2; }
 .vsosh-position-token { white-space: nowrap; }
 .vsosh-place.correct { border-color: var(--jade); background: var(--jade-bg); }
@@ -357,16 +374,36 @@ kbd {
 .vsosh-feedback ul { margin: 5px 0 10px; padding-inline-start: 1.4em; }
 .vsosh-answer[data-gap]:focus { outline: var(--border-focus) solid var(--focus); outline-offset: 3px; }
 .vsosh-feedback p { margin: 5px 0 0; }
-.vsosh-translation h4 { margin: 0; font-size: .9rem; }
-.vsosh-translation ol { margin: 4px 0 0; padding-inline-start: 1.35em; }
+.vsosh-translation > b { display: block; font-size: .9rem; }
+.vsosh-translation ul { margin: 4px 0 0; padding-inline-start: 1.35em; }
 .vsosh-translation li + li { margin-top: 3px; }
+.vsosh-others li + li { margin-top: 8px; }
+.vsosh-text-review { padding-top: 14px; border-top: 1px solid var(--line-quiet); gap: 12px; }
+.vsosh-text-review > h3 { margin: 0; font: 700 1.3rem/1.3 var(--disp); }
+.vsosh-text-review .vsosh-review-score { margin: -8px 0 2px; color: var(--muted); }
+.vsosh-review-gap { display: grid; grid-template-columns: 92px minmax(0, 1fr); align-items: start; gap: 12px; }
+.vsosh-text-review .vsosh-review-gap + .vsosh-review-gap { margin-top: 0; }
+.vsosh-review-label { margin: 3px 0 0; color: var(--muted); font-size: .86rem; }
+.vsosh-review-notes { display: grid; gap: 8px; font-size: .92rem; }
+.vsosh-review-notes .verdict p { margin: 0; }
+.vsosh-review-notes .verdict.ok b { color: var(--jade); }
+.vsosh-review-notes .verdict.bad b { color: var(--red); }
 .vsosh-result-text { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 600px) {
+  .vsosh-text-rows .options { gap: 5px; }
+  .vsosh-text-rows .vsosh-choice {
+    grid-template-columns: minmax(0, 1fr); justify-items: center; padding-inline: 4px; gap: 3px; text-align: center;
+  }
+  .vsosh-text-rows .option .num { width: 20px; height: 20px; font-size: .78rem; }
+  .vsosh-text-rows .vsosh-choice .text { grid-column: 1; grid-row: 2; padding: 0; font-size: 1.06rem; }
+  .vsosh-text-rows .option::after { inset: 5px 4px auto auto; transform: none; font-size: .74rem; line-height: 1; }
+  .vsosh-review-gap { grid-template-columns: minmax(0, 1fr); gap: 3px; }
+}
 @media (min-width: 721px) {
   .practice-setup .practice-settings.vsosh-settings { grid-template-columns: minmax(162px, .65fr) minmax(0, 1.7fr); }
   .practice-setup .practice-settings.vsosh-settings .round-type { grid-column: auto; }
 }
 @media (max-width: 540px) {
-  .vsosh-groups { grid-template-columns: 1fr; }
   .tabs:has([data-tab="vsosh"]) { grid-auto-flow: row; grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
@@ -707,7 +744,7 @@ kbd {
 
 /* Планшет стоя: четыре варианта по 180 px не встают в ряд — два ряда по два, а не три и один. */
 @media (min-width: 721px) and (max-width: 899px) {
-  .options.row:has(> :nth-child(4)) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .options.row:not(.vsosh-adaptive):has(> :nth-child(4)) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 /* Следующий раунд: что войдёт и кнопка — первыми на экране, настройки ниже (nextRound в app.js). */
