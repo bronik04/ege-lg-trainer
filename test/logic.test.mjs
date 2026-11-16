@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import * as L from '../src/logic.mjs';
@@ -875,4 +876,21 @@ test('слова в практике: в круге они — своя груп
   // №15 без заданий формата ЕГЭ: слова позицию не закрывают.
   const noFifteen = [...fullBank.filter((x) => x.taskNumber !== 15), ...words];
   assert.deepEqual(L.buildVariant(noFifteen).missing, [15]);
+});
+
+test('ВсОШ: перенесённые идиомы доступны по теме и не меняют состав комплектов', () => {
+  const bank = JSON.parse(readFileSync(new URL('../data/vsosh-zh-lg.json', import.meta.url), 'utf8'));
+  const cards = L.vsoshCards(bank);
+  const idioms = cards.filter(({ questions: [q] }) => q.topicId === 'chengyu');
+  assert.equal(idioms.length, 124);
+  const copied = idioms.find(({ id }) => id === 'cy-细水长流').questions[0];
+  assert.equal(copied.correctId, 'B');
+  assert.equal(copied.options.find(({ id }) => id === copied.correctId).text, 'Копейка рубль бережёт');
+  assert.match(copied.chengyu.meaning, /тратить понемногу/);
+
+  const sets = L.vsoshSets(bank, cards);
+  assert.equal(sets.length, 10);
+  for (const set of sets) assert.equal(set.positions.length, 20, set.source.id);
+  assert.equal(sets.flatMap(({ positions }) => positions)
+    .filter(({ question }) => question.topicId === 'chengyu').length, 10);
 });

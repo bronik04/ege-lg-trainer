@@ -111,6 +111,8 @@ function olympiadPage() {
     options: ['Пришла беда – отворяй ворота', 'Руки не доходят', 'Хочется, да не можется', 'Сидеть сложа руки']
       .map((text, index) => ({ id: 'ABCD'[index], text })),
     correctId: 'C',
+    chengyu: { pinyin: 'yǎn gāo shǒu dī', literal: 'глаза высоко, руки низко',
+      meaning: 'притязания выше способностей', trap: 'Сравниваются притязания и умение.' },
   };
   return buildPage('olympiad', {
     change(data) {
@@ -306,6 +308,7 @@ test('ВсОШ: длинный вариант проверяется сразу,
     assert.equal(await page.getByRole('button', { name: /Проверить ответ/ }).count(), 0);
     await option.click();
     await see(page, '.vsosh-answer', /Ошибка/);
+    await see(page, '.vsosh-feedback', /притязания выше способностей/);
     await page.getByRole('button', { name: 'Повторить ошибку', exact: true }).click();
     await see(page, '.repeat-mark', 'Повтор ошибки');
     await page.reload();
@@ -359,8 +362,10 @@ test('ВсОШ: полный комплект сохраняет ответы и
   const url = buildPage('vsosh-sets', { change: (data) => { data['vsosh-zh-lg'] = bank; } });
   const { page, context, errors } = await open(url, { hash: '#/vsosh', width: 360 });
   try {
-    await see(page, '#practiceAvailable', /174 доступно/);
+    await see(page, '#practiceAvailable', /288 доступно/);
     assert.equal(await page.locator('#vsoshTopics input').count(), 13);
+    await page.getByRole('checkbox', { name: /Чэнъюй.*124 карточки/ }).check();
+    await see(page, '#practiceAvailable', /124 доступно/);
     const sets = page.getByRole('link', { name: 'Полные комплекты', exact: true });
     await sets.waitFor({ timeout: 3000 });
     await sets.click();

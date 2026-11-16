@@ -276,11 +276,14 @@ def add_vsosh_reviews(bank, path):
     review = read_json(path)
     questions = review["questions"]
     passages = review["contexts"]
-    if set(questions) != {q["id"] for q in bank["questions"]}:
-        raise ValueError("Разборы ВсОШ должны покрывать все задания основного банка")
+    # Файл разборов относится к полным комплектам. У карточек дополнительной
+    # практики собственные пояснения, они не привязаны к комплекту через sourceId.
+    set_questions = [q for q in bank["questions"] if q.get("sourceId")]
+    if set(questions) != {q["id"] for q in set_questions}:
+        raise ValueError("Разборы ВсОШ должны покрывать все задания полных комплектов")
     if set(passages) != {c["id"] for c in bank["contexts"]}:
         raise ValueError("Переводы ВсОШ должны покрывать все общие тексты")
-    for q in bank["questions"]:
+    for q in set_questions:
         row = questions[q["id"]]
         if (not isinstance(row["ru"], str) or not row["ru"].strip()
                 or any(len(row[key]) != len(q["options"]) for key in ("gloss", "why"))

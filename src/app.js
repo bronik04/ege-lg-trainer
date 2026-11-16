@@ -2005,6 +2005,37 @@
     ];
   }
 
+  function vsoshChengyuFeedback(question) {
+    const info = question.chengyu;
+    const facts = [
+      ['Пиньинь', info.pinyin, 'zh-Latn-pinyin'],
+      ['Буквально', info.literal],
+      ['Значение', info.meaning],
+      ['Ловушка', info.trap],
+      ['История', info.story],
+    ].filter(([, value]) => value).map(([label, value, lang]) =>
+      el('p', {}, el('b', { text: label + ' — ' }), el('span', { lang, text: value })));
+    const glossary = question.options.filter((option) => option.gloss);
+    const original = info.originalTask;
+    const links = (info.sources ?? []).filter(({ url }) => /^https?:\/\//i.test(url));
+    return el('div', { class: 'small' },
+      ...facts,
+      glossary.length ? el('ul', {}, glossary.map(({ text, gloss }) =>
+        el('li', { text: `${text} — ${gloss}` }))) : null,
+      info.disputedKey ? el('p', { text: 'Ключ ВсОШ спорный. Выше приведён официальный ответ.' }) : null,
+      original ? el('details', {},
+        el('summary', { text: 'Исходное задание ВсОШ' }),
+        el('p', { text: original.prompt }),
+        el('ul', {}, original.options.map((option) => el('li', {},
+          el('span', { lang: 'zh', text: option.text }),
+          option.id === original.answer ? ' — официальный ключ' : null,
+          option.gloss ? ` — ${option.gloss}` : null))),
+        original.disputedKey ? el('p', { text: 'Ключ ВсОШ спорный.' }) : null,
+        original.trap ? el('p', { text: original.trap }) : null) : null,
+      links.length ? el('ul', {}, links.map(({ title, url }) => el('li', {},
+        el('a', { href: url, target: '_blank', rel: 'noopener', text: title })))) : null);
+  }
+
   function vsoshFeedback(card, step, source) {
     const q = card.questions[0];
     const hasReview = Boolean(q.explanation?.correct);
@@ -2044,9 +2075,15 @@
         el('h3', { class: 'vsosh-answer', id: headingId }, verdict, vsoshReviewLabel(q, q.correctId))));
     }
     if (note) box.append(el('p', { class: 'small muted', text: note }));
+    if (q.chengyu) box.append(vsoshChengyuFeedback(q));
     if (link) box.append(el('p', { class: 'small' }, link));
     return box;
   }
+
+  const chengyuStages = {
+    pri: 'Пригласительный этап', shk: 'Школьный этап', mun: 'Муниципальный этап',
+    reg: 'Региональный этап', zak: 'Заключительный этап',
+  };
 
   function vsoshKeys(card, fullSet) {
     const options = Math.max(...card.questions.map((question) => question.options.length));
@@ -2060,17 +2097,22 @@
   function vsoshQuestion(card, step, select, newTexts = false, fullSet = false, showKeys = false) {
     const question = card.questions[0];
     const source = olympiadSources.get(question.sourceId);
+    const occurrence = question.chengyu?.occurrences?.[0];
+    const attribution = source ? `${vsoshStages[source.stage]} · ${vsoshSeason(source.season)}`
+      : occurrence ? `${chengyuStages[occurrence.stageCode]} · ${occurrence.year.replace('-', '/')}` : null;
     const draft = vsoshDraftIds.has(card.id);
     const authored = vsoshAuthoredIds.has(card.id);
     const article = el('article', { class: 'question vsosh-card', dataset: { card: '1' } },
       el('div', { class: 'pills' },
-        draft || authored ? null : el('span', { class: 'pill task', text: card.context
+        draft || authored || !question.taskNumber ? null : el('span', { class: 'pill task', text: card.context
           ? `№ ${question.taskNumber}–${card.questions.at(-1).taskNumber}` : `№ ${question.taskNumber}` }),
         el('span', { class: 'pill quiet', text: olympiadTopics.get(question.topicId) }),
-        source ? el('span', { class: 'pill quiet', text: `${vsoshStages[source.stage]} · ${vsoshSeason(source.season)}` }) : null,
+        attribution ? el('span', { class: 'pill quiet', text: attribution }) : null,
+        question.chengyu?.originalTask ? el('span', { class: 'pill quiet', text: 'Учебная адаптация' }) : null,
         newTexts ? el('span', { class: 'pill draft', text: 'Новый текст' }) : null,
         draft ? el('span', { class: 'pill draft', text: 'Авторское · черновик' }) : null,
-        authored ? el('span', { class: 'pill quiet', text: 'Авторское задание' }) : null),
+        authored || question.origin === 'authored'
+          ? el('span', { class: 'pill quiet', text: 'Авторское задание' }) : null),
       newTexts ? el('h3', { class: 'vsosh-text-title', lang: 'zh', text: card.context.label }) : null,
       el('p', { class: 'instruction', tabindex: '-1', dataset: { focus: '1' } },
         question.prompt, question.insertionText
@@ -2210,7 +2252,7 @@
             vsoshFeedback(card, step, olympiadSources.get(question.sourceId)));
         },
       }, el('summary', {},
-        cellnum(number),
+        number ? cellnum(number) : null,
         el('span', { class: card.context ? 'vsosh-result-text' : 'zh', lang: card.context && !newTexts ? 'ru' : 'zh',
           text: card.context ? (card.context.label || olympiadTopics.get(question.topicId))
             : question.stem.replace(/\{\{[A-D]\}\}/g, '□') }),
