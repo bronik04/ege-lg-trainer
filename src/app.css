@@ -371,7 +371,7 @@ kbd {
 .vsosh-position-token { white-space: nowrap; }
 .vsosh-place.correct { border-color: var(--jade); background: var(--jade-bg); }
 .vsosh-place.wrong { border-color: var(--red); background: var(--red-bg); }
-.vsosh-feedback ul { margin: 5px 0 10px; padding-inline-start: 1.4em; }
+.vsosh-feedback :is(ul, ol) { margin: 5px 0 10px; padding-inline-start: 1.4em; }
 .vsosh-answer[data-gap]:focus { outline: var(--border-focus) solid var(--focus); outline-offset: 3px; }
 .vsosh-feedback p { margin: 5px 0 0; }
 .vsosh-translation > b { display: block; font-size: .9rem; }

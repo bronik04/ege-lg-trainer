@@ -1974,22 +1974,20 @@
   function vsoshReview(question, chosen, headingId) {
     const answer = explainChoice({ ...question, correctOptionId: question.correctId }, chosen);
     const label = (id) => vsoshReviewLabel(question, id);
-    const headline = (id, kind) => [
-      kind === 'bad' ? 'Почему не ' : question.reviewNote ? 'По официальному ключу: ' : answer.correct ? 'Верно: ' : 'Верный ответ: ',
-      ...label(id),
-    ];
+    const official = Boolean(question.reviewNote || question.chengyu?.disputedKey);
+    const correctTitle = answer.correct ? 'Верно' : 'Верный ответ';
     const translated = question.options.filter((option) => option.ru);
     const grouped = !headingId;
-    const title = (id, kind) => el(grouped ? 'b' : 'h3', {
+    const title = (id, kind, verdict) => el(grouped ? 'b' : 'h3', {
       id: kind === 'ok' ? headingId : null,
       class: kind === 'ok' && !grouped ? 'vsosh-answer' : null,
-    }, headline(id, kind));
+    }, verdict, official ? ' по официальному ключу' : '', ' · ', label(id));
     return [
       chosen == null ? el('p', { class: 'small muted', text: 'Нет ответа' }) : null,
       chosen != null && !answer.correct ? el('div', { class: 'verdict bad' },
-        title(chosen, 'bad'), el('p', { text: answer.chosenExplanation })) : null,
+        title(chosen, 'bad', 'Неверно'), el('p', { text: answer.chosenExplanation })) : null,
       el('div', { class: 'verdict ok' },
-        title(question.correctId, 'ok'), el('p', { text: answer.correctExplanation })),
+        title(question.correctId, 'ok', correctTitle), el('p', { text: answer.correctExplanation })),
       question.reviewNote ? el('p', { class: 'small muted', text: question.reviewNote }) : null,
       question.sentenceRu ? el('div', { class: 'vsosh-translation' },
         el('b', { text: question.kind === 'passageGap' ? 'Фраза в тексте' : 'Перевод предложения' }),
@@ -2026,7 +2024,7 @@
       original ? el('details', {},
         el('summary', { text: 'Исходное задание ВсОШ' }),
         el('p', { text: original.prompt }),
-        el('ul', {}, original.options.map((option) => el('li', {},
+        el('ol', {}, original.options.map((option) => el('li', {},
           el('span', { lang: 'zh', text: option.text }),
           option.id === original.answer ? ' — официальный ключ' : null,
           option.gloss ? ` — ${option.gloss}` : null))),

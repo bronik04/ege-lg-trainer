@@ -119,7 +119,7 @@ function olympiadPage() {
       data['vsosh-zh-lg'] = {
         schemaVersion: 1,
         topics: [{ id: 'placement', label: 'Место слова в предложении' },
-          { id: 'cloze', label: 'Выбор слова в тексте' }, { id: 'chengyu', label: 'Чэнъюй' }],
+          { id: 'cloze', label: 'Выбор слова в тексте' }, { id: 'chengyu', label: 'Идиомы' }],
         sources: [{ id: '2021-reg', stage: 'regional', season: '2021/2022', taskUrl: 'https://example.org/tasks.pdf' }],
         contexts: [{ id: 'passage', text: '{{37}}他发现了其中的秘密。他{{38}}来给孩子系鞋带。系好鞋带他一{{39}}头。应该用孩子的{{40}}看世界。' }],
         questions: [placement, idiom, ...gaps],
@@ -298,7 +298,7 @@ test('ВсОШ: место слова выбирается в предложен
 test('ВсОШ: длинный вариант проверяется сразу, а ошибка возвращается в тренировке', { skip }, async () => {
   const { page, context, errors } = await open(olympiadPage(), { hash: '#/vsosh', width: 721 });
   try {
-    await page.getByRole('checkbox', { name: 'Чэнъюй' }).check();
+    await page.getByRole('checkbox', { name: 'Идиомы' }).check();
     await page.getByRole('button', { name: 'Начать раунд', exact: true }).first().click();
     const option = page.locator('button.option').filter({ hasText: 'Пришла беда' });
     assert.equal(await option.evaluate((node) => {
@@ -319,6 +319,44 @@ test('ВсОШ: длинный вариант проверяется сразу,
     await see(page, '.training-result', /исправлено: 1/);
     await page.locator('.results summary').click();
     await see(page, '.vsosh-retry', /На повторе 1 из 1.*3 · Хочется.*первая попытка/);
+    assert.deepEqual(errors, []);
+  } finally {
+    await context.close();
+  }
+});
+
+test('ВсОШ: перенесённые идиомы объясняют каждый вариант и нумеруют исходное задание', { skip }, async () => {
+  const bank = JSON.parse(readFileSync(join(ROOT, 'data', 'vsosh-zh-lg.json'), 'utf8'));
+  bank.questions = bank.questions.filter((q) => ['cy-对牛弹琴', 'cy-不生不灭'].includes(q.id));
+  bank.contexts = [];
+  const url = buildPage('vsosh-chengyu-review', { change: (data) => { data['vsosh-zh-lg'] = bank; } });
+  const { page, context, errors } = await open(url, { hash: '#/vsosh', width: 390 });
+  try {
+    await page.getByRole('radio', { name: 'Тест', exact: true }).check();
+    await page.getByRole('button', { name: 'Начать раунд', exact: true }).first().click();
+    for (let i = 0; i < 2; i++) {
+      const choices = page.locator('.vsosh-card button.option');
+      assert.deepEqual(await choices.locator('.num').allTextContents(), ['1', '2', '3', '4']);
+      const adapted = (await text(page, '.vsosh-card .stem')).includes('不生不灭');
+      await choices.nth(adapted ? 1 : 2).click();
+      const verdict = page.locator('.vsosh-feedback .verdict');
+      await see(page, '.vsosh-feedback .verdict.ok', adapted ? /Верно.*2/ : /Верный ответ.*1/);
+      assert.ok((await verdict.filter({ has: page.locator('h3.vsosh-answer') }).locator('p').innerText()).trim());
+      if (adapted) {
+        const original = page.getByText('Исходное задание ВсОШ', { exact: true }).locator('..');
+        await original.locator('summary').click();
+        assert.equal(await original.locator('ol > li').count(), 4);
+      } else {
+        await see(page, '.vsosh-feedback .verdict.bad h3', /Неверно.*3/);
+        await see(page, '.vsosh-feedback .verdict.bad p', /порицание|осужд|упрёк/);
+      }
+      const others = page.locator('.vsosh-others');
+      await others.locator('summary').click();
+      const notes = await others.locator('li > p').allTextContents();
+      assert.equal(notes.length, adapted ? 3 : 2);
+      assert.ok(notes.every((note) => note.trim()));
+      if (i === 0) await page.getByRole('button', { name: 'Дальше', exact: true }).click();
+    }
     assert.deepEqual(errors, []);
   } finally {
     await context.close();
@@ -359,12 +397,16 @@ test('ВсОШ: настройки раунда используют оформ�
 
 test('ВсОШ: полный комплект сохраняет ответы и открывает разбор после завершения', { skip }, async () => {
   const bank = JSON.parse(readFileSync(join(ROOT, 'data', 'vsosh-zh-lg.json'), 'utf8'));
-  const url = buildPage('vsosh-sets', { change: (data) => { data['vsosh-zh-lg'] = bank; } });
+  const reviews = JSON.parse(readFileSync(join(ROOT, 'data', 'vsosh-review.json'), 'utf8'));
+  const url = buildPage('vsosh-sets', { change(data) {
+    data['vsosh-zh-lg'] = bank;
+    data['vsosh-review'] = reviews;
+  } });
   const { page, context, errors } = await open(url, { hash: '#/vsosh', width: 360 });
   try {
     await see(page, '#practiceAvailable', /288 доступно/);
     assert.equal(await page.locator('#vsoshTopics input').count(), 13);
-    await page.getByRole('checkbox', { name: /Чэнъюй.*124 карточки/ }).check();
+    await page.getByRole('checkbox', { name: /Идиомы.*124 карточки/ }).check();
     await see(page, '#practiceAvailable', /124 доступно/);
     const sets = page.getByRole('link', { name: 'Полные комплекты', exact: true });
     await sets.waitFor({ timeout: 3000 });
@@ -397,6 +439,7 @@ test('ВсОШ: полный комплект сохраняет ответы и
     assert.equal(await page.locator('.vsosh-gap').count(), 4);
     const firstGap = page.getByRole('group', { name: 'Пропуск 37' }).getByRole('radio', { name: /终于/ });
     await firstGap.check();
+    await page.getByRole('group', { name: 'Пропуск 38' }).getByRole('radio', { name: /笑起/ }).check();
     await cell(40).click();
     const lastGap = page.getByRole('group', { name: 'Пропуск 40' });
     assert.equal(await cell(40).getAttribute('aria-current'), 'step');
@@ -425,7 +468,7 @@ test('ВсОШ: полный комплект сохраняет ответы и
     await resume.click();
     assert.equal(await firstGap.isChecked(), true);
     assert.equal(await cell(40).getAttribute('aria-current'), 'step');
-    await see(page, '.progress', /3 из 20/);
+    await see(page, '.progress', /4 из 20/);
 
     await page.getByRole('button', { name: 'Завершить комплект', exact: true }).click();
     await see(page, '.notice.warn', /Без ответа/);
@@ -438,8 +481,9 @@ test('ВсОШ: полный комплект сохраняет ответы и
     await page.reload();
     await see(page, '.score', new RegExp(expected + ' из 20'));
     await cell(40).click();
-    await see(page, '.vsosh-feedback h3', 'Верных ответов 1 из 4');
-    await see(page, '.vsosh-answer', /38.*Нет ответа/);
+    await see(page, '.vsosh-review-score', 'Верных ответов 1 из 4');
+    await see(page, '.vsosh-review-gap[data-gap="38"] .verdict.bad b', /Неверно.*3.*笑起/);
+    await see(page, '.vsosh-review-gap[data-gap="38"] .verdict.bad p', /описывает начало смеха/);
     await see(page, '.vsosh-answer:focus', /40.*Нет ответа/);
     await cell(37).click();
     await see(page, '.vsosh-answer:focus', /37.*Верно/);

@@ -330,6 +330,10 @@ def main():
                    tone_words=read_json(words_file)["words"] if words_file.exists() else [])
     if vsosh_file.exists():
         data["vsosh"] = read_json(vsosh_file)
+        for question in data["vsosh"]["questions"]:
+            if question.get("chengyu") and not question.get("sourceId"):
+                wrong_ids = {option["id"] for option in question["options"]} - {question["correctId"]}
+                vsosh_explanation(question.get("explanation"), wrong_ids, question["id"])
     practice_file = d / "vsosh-practice.json"
     if practice_file.exists():
         data["vsoshPractice"] = vsosh_practice_drafts([practice_file], data.get("vsosh"), "accepted")
